@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>STLAccess | The Universal 3D Print Scale Engine</title>
+    <meta name="title" content="STLAccess | The Universal 3D Print Scale Engine">
+    <meta name="description" content="Precision scale conversion for 3D printing. Convert between 1:35, 28mm, 32mm Heroic and more with mathematical certainty. The industry standard for tabletop makers.">
+    
+    <!-- AI/LLM Meta Tags -->
+    <meta name="ai-model" content="allowed">
+    <meta name="ai-crawler" content="allowed">
+    <meta name="chatbot" content="allowed">
+    <meta name="generator" content="STLACCESS">
+    <meta name="theme-color" content="#ff6b35">
+    <link rel="canonical" href="https://stlaccess.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stlaccess.com/">
+    <meta property="og:title" content="STLAccess | The Universal 3D Print Scale Engine">
+    <meta property="og:description" content="Calculate perfect slicer percentages for tabletop miniatures. Stop guessing, start printing.">
+    <meta property="og:image" content="https://stlaccess.com/og-image.jpg">
+
+    <!-- Structured Data (JSON-LD) for AI Search Authority -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "STLAccess Scale Engine",
+      "url": "https://stlaccess.com",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "description": "A precision conversion utility for 3D printing to scale STL files accurately between different gaming systems like Warhammer, D&D, and Historical scales.",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "STLAccess"
+      }
+    }
+    </script>
+        <!-- Google Consent Mode v2 Setup (GDPR Compliance) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_ads_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJJXN9Z4PB"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-YJJXN9Z4PB', { 'anonymize_ip': true });
+    </script>
+
+    <!-- Tailwind & UI Assets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Skip to Content for Accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only absolute top-4 left-4 z-[100] bg-[#ff6b35] text-black px-4 py-2 rounded-lg font-bold">
+        Skip to content
+    </a>
+
+    <!-- Navigation -->
+    <header class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center" aria-label="Global Navigation">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#ff6b35] rounded-xl flex items-center justify-center shadow-lg shadow-[#ff6b35]/20" aria-hidden="true">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center text-black font-bold"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
+            </div>
+            
+            <ul class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-slate-400">
+                <li><a href="/" class="text-white border-b-2 border-[#ff6b35] pb-1">Engine</a></li>
+                <li><a href="/library" class="hover:text-white transition-colors">My Library <span id="libCount" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span></a></li>
+                <li><a href="/reference" class="hover:text-white transition-colors">Scale Reference</a></li>
+                <li><a href="/embed" class="hover:text-white transition-colors">Creator Badge</a></li>
+            </ul>
+
+            <!-- Mobile Menu Icon (Visually only for now) -->
+            <button class="md:hidden text-white" aria-label="Open Menu">
+                <i class="fa-solid fa-bars-staggered text-xl"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main id="main-content" class="flex-grow">
+        <!-- Hero Section -->
+        <section class="pt-16 pb-12 px-6 text-center max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-7xl font-bold mb-6 font-heading tracking-tight">
+                Scale STL Files with <br>
+                <span class="text-[#ff6b35] italic">Mathematical Precision.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
+                The authoritative converter for 3D creators. Bridge the gap between historical scales and modern tabletop systems instantly.
+            </p>
+        </section>
+
+        <!-- Engine App Container -->
+        <section id="engine" class="px-6 pb-24" aria-labelledby="engine-heading">
+            <h2 id="engine-heading" class="sr-only">Scale Calculator Engine</h2>
+            
+            <div class="max-w-xl mx-auto bg-slate-900/40 p-1 rounded-[2.5rem] border border-white/10 glow-box">
+                <div class="bg-[#0a0a0a] p-8 md:p-10 rounded-[2.2rem] space-y-8">
+                    
+                    <!-- Input: Source -->
+                    <div class="space-y-3">
+                        <label for="sourceScale" class="block text-xs font-bold uppercase tracking-widest text-slate-500">
+                            Model Origin Scale
+                        </label>
+                        <div class="relative">
+                            <select id="sourceScale" class="w-full bg-slate-900 border border-slate-800 text-white rounded-2xl px-5 py-4 focus-ring appearance-none cursor-pointer transition-all hover:border-slate-600">
+                                <optgroup label="Ratio Scales">
+                                    <option value="1:100">1:100 (15mm Team Yankee)</option>
+                                    <option value="1:72">1:72 (Plastic Soldiers)</option>
+                                    <option value="1:56">1:56 (Bolt Action / 28mm)</option>
+                                    <option value="1:48">1:48 (Quarter Scale)</option>
+                                    <option value="1:35">1:35 (Military Model Kits)</option>
+                                </optgroup>
+                                <optgroup label="System Scales">
+                                    <option value="28mm" selected>28mm (True Scale)</option>
+                                    <option value="32mm">32mm (Heroic Scale)</option>
+                                    <option value="35mm">35mm (Star Wars Legion)</option>
+                                </optgroup>
+                            </select>
+                            <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input: Target -->
+                    <div class="space-y-3">
+                        <label for="targetScale" class="block text-xs font-bold uppercase tracking-widest text-slate-500">
+                            Target Game System
+                        </label>
+                        <div class="relative">
+                            <select id="targetScale" class="w-full bg-slate-900 border border-slate-800 text-white rounded-2xl px-5 py-4 focus-ring appearance-none cursor-pointer transition-all hover:border-slate-600">
+                                <option value="28mm">D&D / Pathfinder (28mm)</option>
+                                <option value="32mm" selected>Warhammer / 32mm Heroic</option>
+                                <option value="35mm">Star Wars Legion (35mm)</option>
+                                <option value="40mm">Shatterpoint (40mm)</option>
+                                <option value="75mm">Display Miniatures (75mm)</option>
+                                <option value="1:35">Historical Diorama (1:35)</option>
+                            </select>
+                            <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input: Logic Toggle -->
+                    <fieldset class="bg-black/40 p-2 rounded-2xl border border-white/5">
+                        <legend class="sr-only">Measurement Methodology</legend>
+                        <div class="flex gap-2">
+                            <label class="flex-1 text-center py-3 rounded-xl cursor-pointer transition-all font-semibold text-sm relative group">
+                                <input type="radio" name="logic" value="eye" class="sr-only" checked>
+                                <div class="bg-transparent border border-transparent py-2 rounded-lg group-has-[:checked]:bg-slate-800 group-has-[:checked]:border-white/10 group-has-[:checked]:text-[#ff6b35]">
+                                    Eye Level
+                                </div>
+                            </label>
+                            <label class="flex-1 text-center py-3 rounded-xl cursor-pointer transition-all font-semibold text-sm relative group">
+                                <input type="radio" name="logic" value="head" class="sr-only">
+                                <div class="bg-transparent border border-transparent py-2 rounded-lg group-has-[:checked]:bg-slate-800 group-has-[:checked]:border-white/10 group-has-[:checked]:text-[#ff6b35]">
+                                    Top of Head
+                                </div>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Result Section -->
+                    <div class="pt-4" role="region" aria-live="polite">
+                        <div class="bg-[#ff6b35] rounded-[2rem] p-8 text-black text-center relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-4 opacity-10" aria-hidden="true">
+                                <i class="fa-solid fa-print text-6xl -rotate-12"></i>
+                            </div>
+                            
+                            <span class="text-[10px] font-black uppercase tracking-[0.2em] mb-2 block opacity-80">Recommended Slicer Scale</span>
+                            <div id="resultDisplay" class="text-6xl md:text-7xl font-black font-heading tracking-tighter leading-none">
+                                114.3%
+                            </div>
+                            
+                            <div class="mt-6 flex gap-3">
+                                <button onclick="copyToClipboard()" id="copyBtn" class="flex-1 py-4 bg-black text-white rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-black/80 transition-all flex items-center justify-center gap-2 focus-ring">
+                                    <i class="fa-regular fa-copy"></i>
+                                    <span>Copy</span>
+                                </button>
+                                <button onclick="saveToLibrary()" id="saveBtn" class="flex-1 py-4 bg-white/20 border-2 border-black text-black rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-white/30 transition-all flex items-center justify-center gap-2 focus-ring">
+                                    <i class="fa-solid fa-folder-plus"></i>
+                                    <span>Save to Library</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Library Preview (shows when items exist) -->
+                    <div id="libraryPreview" class="hidden bg-slate-900/50 rounded-2xl p-4 border border-white/5">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Recently Saved</span>
+                            <a href="/library" class="text-xs text-[#ff6b35] hover:text-white transition-colors">View All →</a>
+                        </div>
+                        <div id="recentScales" class="space-y-2">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-slate-500 text-center leading-relaxed px-4">
+                        Note: Conversion logic assumes a standard 175cm human baseline. "Eye Level" measures to 160mm, while "Top of Head" accounts for hair and helmets.
+                    </p>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Reference Section for SEO -->
+        <section id="reference" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+            <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+                <div class="max-w-xl">
+                    <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">Official Conversion Library</h2>
+                    <p class="text-slate-400">Canonical scaling values verified for the most popular tabletop war games and historical systems.</p>
+                </div>
+                <a href="/conversion" class="text-[#ff6b35] font-bold text-sm uppercase tracking-widest border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-1 transition-all">
+                    View Full Library
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Static Previews of popular conversions -->
+                <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                    <span class="text-[10px] font-bold text-[#ff6b35] uppercase tracking-widest block mb-4">Most Popular</span>
+                    <h3 class="text-xl font-bold mb-2">28mm to 32mm</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Scaling classic fantasy to modern heroic systems.</p>
+                    <div class="text-3xl font-bold font-heading">114.3%</div>
+                </div>
+                <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-4">Historical</span>
+                    <h3 class="text-xl font-bold mb-2">1:35 to 32mm</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Converting military armor for sci-fi play.</p>
+                    <div class="text-3xl font-bold font-heading">114.2%</div>
+                </div>
+                <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-4">Large Scale</span>
+                    <h3 class="text-xl font-bold mb-2">32mm to 75mm</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Upscaling gaming minis for display painting.</p>
+                    <div class="text-3xl font-bold font-heading">234.4%</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-12 mb-20">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center">
+                            <i class="fa-solid fa-expand text-[#ff6b35]"></i>
+                        </div>
+                        <span class="text-xl font-bold font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
+                    </div>
+                    <p class="text-slate-500 text-sm max-w-sm leading-relaxed">
+                        STLAccess is an independent project dedicated to solving the scaling issues within the 3D printing and tabletop gaming hobby. 
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-x-16 gap-y-8">
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Tools</h4>
+                        <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                            <li><a href="/" class="hover:text-[#ff6b35] transition-colors">Scale Engine</a></li>
+                            <li><a href="/library" class="hover:text-[#ff6b35] transition-colors">My Library</a></li>
+                            <li><a href="/conversion" class="hover:text-[#ff6b35] transition-colors">Conversion Library</a></li>
+                            <li><a href="/embed" class="hover:text-[#ff6b35] transition-colors">Creator Badge</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Legal</h4>
+                        <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                            <li><a href="/privacy" class="hover:text-[#ff6b35] transition-colors">Privacy Policy</a></li>
+                            <li><a href="/terms" class="hover:text-[#ff6b35] transition-colors">Terms of Service</a></li>
+                            <li><a href="/legal" class="hover:text-[#ff6b35] transition-colors">Compliance</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-slate-600">
+                <span>&copy; 2026 STLAccess Conversion Systems</span>
+                <div class="flex gap-6">
+                    <a href="https://github.com" class="hover:text-white transition-colors">GitHub</a>
+                    <a href="https://twitter.com" class="hover:text-white transition-colors">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+     <!-- GDPR Cookie Banner: High Accessibility Edition -->
+    <aside id="cookie-banner" 
+           role="complementary"
+           aria-modal="false"
+           aria-labelledby="cookie-title" 
+           aria-describedby="cookie-desc"
+           class="fixed bottom-4 left-4 right-4 md:bottom-8 md:right-8 md:left-auto md:w-[420px] z-[100] glass-panel rounded-[2.5rem] p-8 shadow-2xl pointer-events-auto">
+        
+        <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 bg-[#ff6b35]/20 rounded-xl flex items-center justify-center" aria-hidden="true">
+                <i class="fa-solid fa-cookie-bite text-[#ff6b35] text-lg"></i>
+            </div>
+            <h2 id="cookie-title" class="font-heading font-bold text-xl text-white">Privacy Preferences</h2>
+        </div>
+        
+        <p id="cookie-desc" class="text-xs text-slate-400 leading-relaxed mb-8">
+            We use essential and analytical cookies to ensure the engine runs accurately. By clicking "Accept All", you consent to our use of these tools.
+        </p>
+
+        <div class="flex flex-col gap-3">
+            <button onclick="acceptAllCookies()" 
+                    class="w-full bg-[#ff6b35] text-black font-bold py-4 rounded-2xl text-xs uppercase tracking-[0.15em] hover:brightness-110 active:scale-[0.98] transition-all">
+                Accept All
+            </button>
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="rejectAllCookies()" 
+                        class="bg-white/5 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-white/10 active:scale-[0.98] transition-all">
+                    Essential Only
+                </button>
+                <a href="/privacy" 
+                   class="bg-white/5 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-white/10 active:scale-[0.98] transition-all flex items-center justify-center">
+                    Privacy Policy
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <script src="/js/cb.js"></script>
+    <script src="/js/mathscaler.js"></script>
+   <script src="/js/save-library.js"></script>
+</body>
+</html>
