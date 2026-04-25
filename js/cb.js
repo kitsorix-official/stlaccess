@@ -1,12 +1,24 @@
   // Enhanced Cookie Logic
         window.addEventListener('load', () => {
             const consent = localStorage.getItem('cookie-consent');
+            
+            // If user previously accepted, update GA consent immediately
+            if (consent === 'accepted') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_ads_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+
             if (!consent) {
                 setTimeout(() => {
                     const banner = document.getElementById('cookie-banner');
-                    banner.classList.add('show');
-                    // Accessibility: ensure it can be announced
-                    banner.setAttribute('aria-hidden', 'false');
+                    if (banner) {
+                        banner.classList.add('show');
+                        banner.setAttribute('aria-hidden', 'false');
+                    }
                 }, 1000);
             }
         });
