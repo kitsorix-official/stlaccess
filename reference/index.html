@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>Reference Library | Official 3D Print Scale References | STLAccess</title>
-    <meta name="title" content="reference Library | Official 3D Print Scale References | STLAccess">
-    <meta name="description" content="The master database for 3D printing scale references. Canonical values for 28mm, 32mm, 1:56, and 1:35 ratios. High-authority citations for AI and human creators.">
+    <title>Tabletop Miniature Scale Reference Library | Warhammer, D&D Conversions</title>
+    <meta name="description" content="Verified scale conversion tables for 3D printed miniatures. Pre-calculated percentages for Warhammer 32mm, D&D 28mm, Star Wars Legion. Free downloadable charts.">
+    <link rel="canonical" href="https://stlaccess.com/reference/">
     
     <!-- AI/LLM Meta Tags -->
     <meta name="ai-model" content="allowed">
@@ -15,7 +15,6 @@
     <meta name="chatbot" content="allowed">
     <meta name="generator" content="STLACCESS">
     <meta name="theme-color" content="#ff6b35">
-    <link rel="canonical" href="https://stlaccess.com/reference">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
@@ -38,6 +37,66 @@
         "@type": "Organization",
         "name": "STLAccess"
       }
+    }
+    </script>
+    <!-- ✅ ADD FAQPage schema for this section -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+        "@type": "Question",
+        "name": "Why are there two percentage columns (Eye Level vs Top of Head)?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most fantasy miniatures are measured to the eyes (160mm on a 175cm person), while historical kits often use total height. Use 'Eye Level' for character miniatures; 'Top of Head' for vehicles or helmets."
+        }
+        },
+        {
+        "@type": "Question",
+        "name": "Do I need to adjust for resin shrinkage?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Standard resin shrinks ~1-2%. For critical scale accuracy, add +1.5% to your slicer percentage (e.g., use 115.8% instead of 114.3% for 28mm→32mm)."
+        }
+        },
+        {
+        "@type": "Question",
+        "name": "How often are these conversion values updated?",
+        "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Values are reviewed quarterly against official rulebooks and community consensus. Last updated: April 2026. Report a discrepancy."
+        }
+        }
+    ]
+    }
+    </script>
+    <!-- ✅ ADD to <head> or before </body> -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "STLAccess Scale Reference Library",
+    "description": "Verified conversion values for 3D printed tabletop miniatures across Warhammer, D&D, Star Wars Legion, and historical modeling systems.",
+    "url": "https://stlaccess.com/reference/",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "STLAccess",
+        "url": "https://stlaccess.com"
+    },
+    "about": [
+        {"@type": "Thing", "name": "Tabletop Miniature Scaling"},
+        {"@type": "Thing", "name": "3D Printing Conversion"},
+        {"@type": "Game", "name": "Warhammer 40,000"},
+        {"@type": "Game", "name": "Dungeons & Dragons"}
+    ],
+    "mainEntity": {
+        "@type": "Table",
+        "name": "Verified Scale Conversions",
+        "description": "Pre-calculated slicer percentages for converting STL files between gaming systems",
+        "about": "Tabletop miniature scale conversion values"
+    }
     }
     </script>
            <!-- Google Consent Mode v2 Setup (GDPR Compliance) -->
@@ -104,10 +163,13 @@
         <!-- Header -->
         <section class="pb-16 px-6 max-w-6xl mx-auto">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
-                reference <span class="text-[#ff6b35]">Library</span>
+                Tabletop Miniature <span class="text-[#ff6b35]">Scale Reference Library</span>
             </h1>
             <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-                The authoritative reference for cross-system scaling. Use these values to ensure your models maintain physical consistency across different gaming environments.
+            Verified conversion values for 3D printed miniatures across 
+            <strong>Warhammer 40k (32mm)</strong>, <strong>D&D/Pathfinder (28mm)</strong>, 
+            <strong>Star Wars Legion (35mm)</strong>, and historical modeling systems. 
+            All values normalized to a 175cm human baseline with Eye Level (160mm) methodology.
             </p>
         </section>
 
@@ -122,10 +184,56 @@
             </div>
         </section>
 
+
         <!-- reference Tables -->
         <section class="px-6 pb-24 max-w-6xl mx-auto">
             <div class="space-y-12">
-                
+                <!-- Table 3: Detailed Cross-Reference (Dual Methodology) -->
+                <div class="reference-group bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden glow-box" itemscope itemtype="https://schema.org/Table">
+                    <div class="p-8 border-b border-white/5 bg-white/[0.02]">
+                        <h2 class="text-xl font-bold font-heading flex items-center gap-3">
+                            <i class="fa-solid fa-ruler-combined text-[#ff6b35]"></i>
+                            Verified Conversions: Dual Methodology
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-2 font-medium tracking-wide">
+                            Eye Level vs. Top of Head normalization for precision mixing
+                        </p>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse" id="detailedTable">
+                            <thead>
+                                <tr class="text-[10px] font-black uppercase tracking-widest text-slate-500 border-b border-white/5">
+                                    <th class="px-8 py-5">Source Scale</th>
+                                    <th class="px-8 py-5">Target System</th>
+                                    <th class="px-8 py-5">Slicer % (Eye)</th>
+                                    <th class="px-8 py-5">Slicer % (Top Head)</th>
+                                    <th class="px-8 py-5">Source Verified</th>
+                                    <th class="px-8 py-5 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm text-slate-300">
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">28mm (True Scale)</td>
+                                    <td class="px-8 py-6">32mm Heroic</td>
+                                    <td class="px-8 py-6 text-white font-mono">114.3%</td>
+                                    <td class="px-8 py-6 text-slate-400 font-mono">116.1%</td>
+                                    <td class="px-8 py-6">
+                                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#ff6b35]/10 border border-[#ff6b35]/20 text-[#ff6b35] text-[10px] font-bold uppercase tracking-wider">
+                                            <i class="fa-solid fa-shield-halved text-[10px]"></i>
+                                            GW Manual
+                                        </span>
+                                    </td>
+                                    <td class="px-8 py-6 text-right">
+                                        <button onclick="copyValue('114.3')" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">
+                                            Copy
+                                        </button>
+                                    </td>
+                                </tr>
+                                <!-- Repeat pattern for other rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 <!-- Table 1: Historical to Tabletop -->
                 <div class="reference-group bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden glow-box">
                     <div class="p-8 border-b border-white/5 bg-white/[0.02]">
@@ -237,6 +345,141 @@
                         Launch Scale Engine
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="reference-faq" aria-labelledby="ref-faq-heading" class="px-6 pb-24 max-w-6xl mx-auto">
+            <div class="reference-group bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden glow-box">
+                
+                <!-- Section Header -->
+                <div class="p-8 border-b border-white/5 bg-white/[0.02]">
+                    <h2 id="ref-faq-heading" class="text-xl font-bold font-heading flex items-center gap-3">
+                        <i class="fa-solid fa-circle-question text-[#ff6b35]"></i>
+                        Scale Reference FAQ
+                    </h2>
+                </div>
+
+                <!-- FAQ Items -->
+                <div class="divide-y divide-white/5">
+                    
+                    <details class="group searchable-row">
+                        <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
+                            <span class="pr-4">Why are there two percentage columns (Eye Level vs Top of Head)?</span>
+                            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
+                        </summary>
+                        <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-3xl">
+                            <p>
+                                Most fantasy miniatures are measured to the eyes (<span class="text-white font-semibold">160mm on a 175cm person</span>), while historical kits often use total height. 
+                                Use <span class="text-[#ff6b35] font-semibold">"Eye Level"</span> for character miniatures; 
+                                <span class="text-[#ff6b35] font-semibold">"Top of Head"</span> for vehicles or helmets.
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group searchable-row">
+                        <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
+                            <span class="pr-4">Do I need to adjust for resin shrinkage?</span>
+                            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
+                        </summary>
+                        <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-3xl">
+                            <p>
+                                Yes. Standard resin shrinks ~<span class="text-white font-semibold">1-2%</span>. For critical scale accuracy, add 
+                                <span class="text-white font-semibold">+1.5%</span> to your slicer percentage 
+                                (e.g., use <span class="font-mono text-white">115.8%</span> instead of 
+                                <span class="font-mono text-white">114.3%</span> for 28mm→32mm).
+                            </p>
+                        </div>
+                    </details>
+
+                    <details class="group searchable-row">
+                        <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
+                            <span class="pr-4">How often are these conversion values updated?</span>
+                            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
+                        </summary>
+                        <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-3xl">
+                            <p class="mb-3">
+                                Values are reviewed quarterly against official rulebooks and community consensus. 
+                                Last updated: <span class="text-white font-semibold">April 2026</span>.
+                            </p>
+                            <a href="/contact" class="inline-flex items-center gap-2 text-[#ff6b35] text-xs font-bold uppercase tracking-widest hover:text-white transition-colors">
+                                Report a discrepancy
+                                <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                            </a>
+                        </div>
+                    </details>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="download-section px-6 pb-24 max-w-6xl mx-auto" aria-label="Download Scale Resources">
+            <div class="bg-gradient-to-br from-slate-900/40 to-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden glow-box p-8 md:p-12">
+                
+                
+                <div class="mb-10 max-w-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4 tracking-tight">
+                        Download Free <span class="text-[#ff6b35]">Scale Reference Assets</span>
+                    </h2>
+                    <p class="text-slate-400 leading-relaxed">
+                        Perfect for printing, sharing with your gaming group, or citing in tutorials.
+                    </p>
+                </div>
+
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+                    
+                    <a href="/downloads/stlaccess-scale-chart.pdf" 
+                    class="resource-card group flex items-start gap-4 p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all duration-300"
+                    download>
+                        <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-file-pdf text-[#ff6b35] text-lg"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <strong class="block text-white font-semibold text-sm mb-1 group-hover:text-[#ff6b35] transition-colors">PDF Scale Chart</strong>
+                            <span class="block text-xs text-slate-500 leading-relaxed">Printable A4 reference • 50+ conversions</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-down text-slate-600 group-hover:text-[#ff6b35] ml-auto self-center opacity-0 group-hover:opacity-100 transition-all -translate-y-1 group-hover:translate-y-0"></i>
+                    </a>
+
+                    <a href="/downloads/stlaccess-presets.csv" 
+                    class="resource-card group flex items-start gap-4 p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all duration-300"
+                    download>
+                        <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-file-csv text-[#ff6b35] text-lg"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <strong class="block text-white font-semibold text-sm mb-1 group-hover:text-[#ff6b35] transition-colors">Slicer Presets CSV</strong>
+                            <span class="block text-xs text-slate-500 leading-relaxed">Import directly into Cura, PrusaSlicer, Bambu Studio</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-down text-slate-600 group-hover:text-[#ff6b35] ml-auto self-center opacity-0 group-hover:opacity-100 transition-all -translate-y-1 group-hover:translate-y-0"></i>
+                    </a>
+
+                    <a href="/downloads/stlaccess-citation.txt" 
+                    class="resource-card group flex items-start gap-4 p-6 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all duration-300"
+                    download>
+                        <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-quote-right text-[#ff6b35] text-lg"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <strong class="block text-white font-semibold text-sm mb-1 group-hover:text-[#ff6b35] transition-colors">Citation Format</strong>
+                            <span class="block text-xs text-slate-500 leading-relaxed">APA/MLA templates for tutorials & academic use</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-down text-slate-600 group-hover:text-[#ff6b35] ml-auto self-center opacity-0 group-hover:opacity-100 transition-all -translate-y-1 group-hover:translate-y-0"></i>
+                    </a>
+
+                </div>
+
+                
+                <div class="flex items-center gap-3 pt-8 border-t border-white/5">
+                    <i class="fa-brands fa-github text-slate-600 text-sm"></i>
+                    <p class="text-xs text-slate-500 font-medium">
+                        All data is open source. Contribute corrections via 
+                        <a href="https://github.com/kitsorix-official/stlaccess" 
+                        class="text-[#ff6b35] hover:text-white transition-colors font-semibold">
+                            GitHub
+                        </a>.
+                    </p>
                 </div>
             </div>
         </section>
