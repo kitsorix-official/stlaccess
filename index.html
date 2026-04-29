@@ -42,10 +42,27 @@
   },
   "featureList": "Convert between 15+ gaming scales, Eye Level/Top of Head measurement options, Pre-verified Warhammer/D&D conversions, Browser-based (no file upload)",
   "creator": {
-    "@type": "Organization",
-    "name": "STLAccess",
-    "url": "https://stlaccess.com"
+    "@type": "Person",
+    "name": "Kitsorix",
+    "url": "https://stlaccess.com/about"
   }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "WebPage",
+  "name": "STLAccess Scale Converter",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      "title",
+      "#resultDisplay",
+      "#faq .group summary"
+    ]
+  },
+  "url": "https://stlaccess.com/"
 }
 </script>
 
@@ -128,9 +145,10 @@
             </div>
             
             <ul class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-slate-400">
-                <li><a href="/" class="text-white border-b-2 border-[#ff6b35] pb-1">Engine</a></li>
-                <li><a href="/library" class="hover:text-white transition-colors">My Library <span id="libCount" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span></a></li>
-                <li><a href="/reference" class="hover:text-white transition-colors">Scale Reference</a></li>
+                <li><a href="/" class="text-white border-b-2 border-[#ff6b35] pb-1">Scale Engine</a></li>
+                <li><a href="/library" class="hover:text-white transition-colors">Personal Library <span id="libCount" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span></a></li>
+                <li><a href="/reference" class="hover:text-white transition-colors">Reference Library</a></li>
+                <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
                 <li><a href="/embed" class="hover:text-white transition-colors">Creator Badge</a></li>
             </ul>
 
@@ -148,9 +166,7 @@
                 Free STL Scale Converter <br>
                 <span class="text-[#ff6b35] italic">For Warhammer, D&D & Tabletop Miniatures</span>
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                Bridge historical scales (1:35, 1:72) and modern gaming systems (28mm, 32mm, 35mm) with mathematically precise conversions. Trusted by 10,000+ 3D creators.
-            </p>
+                Bridge historical scales (1:35, 1:72) and modern gaming systems (28mm, 32mm, 35mm) with mathematically precise conversions. A free, community-focused tool for 3D creators.
         </section>
 
         <!-- Engine App Container -->
@@ -158,7 +174,12 @@
             <h2 id="engine-heading" class="sr-only">Scale Calculator Engine</h2>
             
             <div class="max-w-xl mx-auto bg-slate-900/40 p-1 rounded-[2.5rem] border border-white/10 glow-box">
-                <div class="bg-[#0a0a0a] p-8 md:p-10 rounded-[2.2rem] space-y-8">
+                <div class="bg-[#0a0a0a] p-8 md:p-10 rounded-[2.2rem] space-y-8 relative">
+                    
+                    <!-- Voice Search Button -->
+                    <button onclick="voiceManager.toggleListening()" class="mic-btn absolute top-8 right-8 w-12 h-12 rounded-2xl bg-slate-900/50 border border-white/5 flex items-center justify-center hover:bg-slate-800 transition-all focus-ring" title="Voice Search">
+                        <i class="fa-solid fa-microphone text-slate-500"></i>
+                    </button>
                     
                     <!-- Input: Source -->
                     <div class="space-y-3">
@@ -247,6 +268,11 @@
                                     <span>Save to Library</span>
                                 </button>
                             </div>
+                            <div class="mt-4">
+                                <a href="/reference" class="text-[10px] font-black uppercase tracking-[0.2em] text-black/60 hover:text-black transition-colors">
+                                    <i class="fa-solid fa-book-open mr-1"></i> Verify in Reference Library
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -295,7 +321,7 @@
                 <i class="fa-solid fa-chevron-down text-slate-500 group-open:rotate-180 transition-transform duration-300"></i>
             </summary>
             <div class="px-8 pb-8 text-slate-400 leading-relaxed">
-                <p>Multiply your 28mm STL file by <strong class="text-[#ff6b35]">114.3%</strong> to achieve heroic 32mm scale. This accounts for the standard 175cm human baseline and eye-level measurement methodology used by STLAccess.</p>
+                <p>Multiply your 28mm STL file by <strong class="text-[#ff6b35]">114.3%</strong> to achieve heroic 32mm scale. This accounts for the standard 175cm human baseline and <a href="/about#methodology" class="text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors">eye-level measurement methodology</a> used by STLAccess.</p>
             </div>
         </details>
 
@@ -315,7 +341,7 @@
 <section class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5" aria-label="About STLAccess">
     <div class="text-center max-w-3xl mx-auto mb-16">
         <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">Built by Tabletop Gamers, for Tabletop Gamers</h2>
-        <p class="text-slate-400">Why thousands of 3D creators trust our conversion engine.</p>
+        <p class="text-slate-400">Why I built this conversion engine for the 3D printing community.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -324,7 +350,7 @@
                 <i class="fa-solid fa-dice-d20 text-[#ff6b35] text-xl"></i>
             </div>
             <h3 class="text-lg font-bold mb-3">Experience</h3>
-            <p class="text-sm text-slate-400 leading-relaxed">Created by active Warhammer, D&D, and historical modelers who test every conversion.</p>
+            <p class="text-sm text-slate-400 leading-relaxed">Created by an active Warhammer, D&D, and historical modeler who tests every conversion.</p>
         </div>
 
         <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/20 transition-all group">
@@ -332,7 +358,7 @@
                 <i class="fa-solid fa-ruler-combined text-[#ff6b35] text-xl"></i>
             </div>
             <h3 class="text-lg font-bold mb-3">Expertise</h3>
-            <p class="text-sm text-slate-400 leading-relaxed">Scaling methodology reviewed by professional miniature painters and 3D printing engineers.</p>
+            <p class="text-sm text-slate-400 leading-relaxed">Scaling methodology built for the hobby community, designed to solve real-world printing issues.</p>
         </div>
 
         <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/20 transition-all group">
@@ -348,13 +374,13 @@
                 <i class="fa-solid fa-shield-halved text-[#ff6b35] text-xl"></i>
             </div>
             <h3 class="text-lg font-bold mb-3">Trust</h3>
-            <p class="text-sm text-slate-400 leading-relaxed">All calculations happen in your browser. We never upload or store your STL files.</p>
+            <p class="text-sm text-slate-400 leading-relaxed">All calculations happen in your browser. I never upload or store your STL files.</p>
         </div>
     </div>
 
     <div class="mt-16 text-center">
         <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500">
-            <a href="/about" class="hover:text-[#ff6b35] transition-colors">Learn more about our methodology</a>
+            <a href="/about" class="hover:text-[#ff6b35] transition-colors">Learn more about my methodology</a>
             <span class="mx-2 text-slate-700">•</span>
             <a href="/reference" class="hover:text-[#ff6b35] transition-colors">View data sources</a>
             <span class="mx-2 text-slate-700">•</span>
@@ -419,9 +445,17 @@
                         <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Tools</h4>
                         <ul class="space-y-4 text-sm text-slate-500 font-medium">
                             <li><a href="/" class="hover:text-[#ff6b35] transition-colors">Scale Engine</a></li>
-                            <li><a href="/library" class="hover:text-[#ff6b35] transition-colors">My Library</a></li>
-                            <li><a href="/conversion" class="hover:text-[#ff6b35] transition-colors">Conversion Library</a></li>
+                            <li><a href="/library" class="hover:text-[#ff6b35] transition-colors">Personal Library</a></li>
+                            <li><a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference Library</a></li>
                             <li><a href="/embed" class="hover:text-[#ff6b35] transition-colors">Creator Badge</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Project</h4>
+                        <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                            <li><a href="/about" class="hover:text-[#ff6b35] transition-colors">About & Methodology</a></li>
+                            <li><a href="https://github.com/kitsorix-official/stlaccess" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener">GitHub Source</a></li>
+                            <li><a href="https://github.com/kitsorix-official/stlaccess/issues" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener">Report an Issue</a></li>
                         </ul>
                     </div>
                     <div>
@@ -429,14 +463,14 @@
                         <ul class="space-y-4 text-sm text-slate-500 font-medium">
                             <li><a href="/privacy" class="hover:text-[#ff6b35] transition-colors">Privacy Policy</a></li>
                             <li><a href="/terms" class="hover:text-[#ff6b35] transition-colors">Terms of Service</a></li>
-                            <li><a href="/legal" class="hover:text-[#ff6b35] transition-colors">Compliance</a></li>
+                            <li><a href="/legal" class="hover:text-[#ff6b35] transition-colors">Global Compliance</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             
             <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-slate-600">
-                <span>&copy; 2026 STLAccess Conversion Systems</span>
+                <span>&copy; 2026 STLAccess Conversion Systems | Precision is my goal.</span>
                 <div class="flex gap-6">
                     <a href="https://github.com/kitsorix-official/stlaccess" class="hover:text-white transition-colors" target="_blank" rel="noopener">GitHub</a>
                     <!-- <a href="https://twitter.com" class="hover:text-white transition-colors">Twitter</a> -->
@@ -461,7 +495,7 @@
         </div>
         
         <p id="cookie-desc" class="text-xs text-slate-400 leading-relaxed mb-8">
-            We use essential and analytical cookies to ensure the engine runs accurately. By clicking "Accept All", you consent to our use of these tools.
+            I use essential and analytical cookies to ensure the engine runs accurately. By clicking "Accept All", you consent to my use of these tools.
         </p>
 
         <div class="flex flex-col gap-3">
@@ -479,11 +513,16 @@
                     Privacy Policy
                 </a>
             </div>
+            <button id="voice-search-btn" onclick="voiceManager.toggleListening()" class="mt-2 w-full bg-white/5 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-white/10 flex items-center justify-center gap-2 transition-all">
+                <i class="fa-solid fa-microphone"></i> Voice Command
+            </button>
         </div>
     </aside>
 
-    <script src="/js/cb.js"></script>
+    <!-- Scripts -->
     <script src="/js/mathscaler.js"></script>
-   <script src="/js/save-library.js"></script>
+    <script src="/js/save-library.js"></script>
+    <script src="/js/cb.js"></script>
+    <script src="/js/voice-search.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 **Mathematical certainty for the modern maker.**
 
-STLAccess is the industry-standard conversion utility designed to solve the persistent "scale creep" and measurement inconsistencies within the 3D printing and tabletop gaming hobby. By normalizing disparate sculpting standards against a universal human baseline, STLAccess provides creators and hobbyists with the exact slicer percentages needed to bridge the gap between historical military scales and modern heroic tabletop systems.
+STLAccess is a free conversion utility designed to solve the persistent "scale creep" and measurement inconsistencies within the 3D printing and tabletop gaming hobby. By normalizing disparate sculpting standards against a universal human baseline, STLAccess provides creators and hobbyists with the exact slicer percentages needed to bridge the gap between historical military scales and modern heroic tabletop systems.
 
 ---
 
@@ -29,13 +29,13 @@ A centralized, verified database of canonical scaling values. From converting 1:
 A privacy-first personal vault. Save your most frequent conversions locally in your browser. No accounts, no tracking, no cloud—just instant access to your specific project needs.
 
 ### 3. Creator Verification Badge
-An embeddable trust signal for 3D sculptors and storefronts. The STLAccess Badge signals to customers that a creator's models have been mathematically verified against industry-standard scales, reducing customer support burden and increasing buyer confidence.
+An embeddable trust signal for 3D sculptors and storefronts. The STLAccess Badge signals to customers that a creator's models have been mathematically verified against widely-used gaming scales, reducing customer support burden and increasing buyer confidence.
 
 ---
 
 ## Project Philosophy
 
-In an era where "32mm" can mean anything from eye-level to base-to-banner-tip, STLAccess serves as the authoritative source of truth. We believe that scale should not be a matter of guesswork or visual estimation, but of mathematical precision.
+In an era where "32mm" can mean anything from eye-level to base-to-banner-tip, STLAccess serves as a reliable source of truth. I believe that scale should not be a matter of guesswork or visual estimation, but of mathematical precision.
 
 ## Access
 
@@ -43,4 +43,4 @@ STLAccess is an independent project accessible exclusively via:
 **[https://stlaccess.com](https://stlaccess.com)**
 
 ---
-*&copy; 2026 STLAccess Conversion Systems | Precision is the standard.*
+*&copy; 2026 STLAccess Conversion Systems | Precision is my goal.*

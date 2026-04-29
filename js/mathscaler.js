@@ -73,5 +73,30 @@
             el.addEventListener('change', calculate);
         });
 
+        // URL Parameter Support for Deep Linking
+        function checkURLParams() {
+            const params = new URLSearchParams(window.location.search);
+            const source = params.get('source');
+            const target = params.get('target');
+            const logic = params.get('logic');
+
+            if (source && SCALES[source]) {
+                document.getElementById('sourceScale').value = source;
+            }
+            if (target && SCALES[target]) {
+                const targetSelect = document.getElementById('targetScale');
+                // Check if target value exists in options
+                if ([...targetSelect.options].some(opt => opt.value === target)) {
+                    targetSelect.value = target;
+                }
+            }
+            if (logic === 'eye' || logic === 'head') {
+                const radio = document.querySelector(`input[name="logic"][value="${logic}"]`);
+                if (radio) radio.checked = true;
+            }
+            
+            calculate();
+        }
+
         // Initial Run
-        window.addEventListener('DOMContentLoaded', calculate);
+        window.addEventListener('DOMContentLoaded', checkURLParams);

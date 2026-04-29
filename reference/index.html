@@ -20,23 +20,25 @@
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://stlaccess.com/reference">
     <meta property="og:title" content="reference Library | Official 3D Print Scale References">
-    <meta property="og:description" content="Canonical scaling values verified for the most popular tabletop war games and historical systems.">
+    <meta property="og:description" content="Verified scaling values for the most popular tabletop war games and historical systems.">
     <meta property="og:image" content="https://stlaccess.com/og-library.jpg">
 
     <!-- Structured Data (JSON-LD) for reference Tables -->
+
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "Table",
-      "about": "3D Printing Scale reference Values",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://stlaccess.com/reference"
+      "@context": "https://schema.org/",
+      "@type": "WebPage",
+      "name": "STLAccess Reference Library",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "title",
+          ".reference-group h2",
+          "#faq-section .group summary"
+        ]
       },
-      "publisher": {
-        "@type": "Organization",
-        "name": "STLAccess"
-      }
+      "url": "https://stlaccess.com/reference"
     }
     </script>
     <!-- ✅ ADD FAQPage schema for this section -->
@@ -141,8 +143,10 @@
             </div>
             
             <ul class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-slate-400">
-                <li><a href="/" class="hover:text-white transition-colors">Engine</a></li>
-                <li><a href="/reference" class="text-white border-b-2 border-[#ff6b35] pb-1">reference Library</a></li>
+                <li><a href="/" class="hover:text-white transition-colors">Scale Engine</a></li>
+                <li><a href="/library" class="hover:text-white transition-colors">Personal Library</a></li>
+                <li><a href="/reference" class="text-white border-b-2 border-[#ff6b35] pb-1">Reference Library</a></li>
+                <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
                 <li><a href="/embed" class="hover:text-white transition-colors">Creator Badge</a></li>
             </ul>
 
@@ -157,7 +161,7 @@
         <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
             <a href="/" class="hover:text-[#ff6b35]">Home</a> 
             <span class="mx-2 text-slate-800">/</span> 
-            <span class="text-slate-400">reference Library</span>
+            <span class="text-slate-400">Reference Library</span>
         </nav>
 
         <!-- Header -->
@@ -177,7 +181,10 @@
         <section class="px-6 mb-12 max-w-6xl mx-auto">
             <div class="relative group">
                 <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors"></i>
-                <input type="text" id="librarySearch" onkeyup="filterTable()" placeholder="Search scales (e.g. 1:56, 32mm Heroic...)" class="w-full bg-slate-900/50 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus-ring transition-all placeholder:text-slate-600">
+                <input type="text" id="librarySearch" onkeyup="filterTable()" placeholder="Search scales (e.g. 1:56, 32mm Heroic...)" class="w-full bg-slate-900/50 border border-white/10 rounded-2xl py-5 pl-14 pr-20 text-white focus-ring transition-all placeholder:text-slate-600">
+                <button onclick="voiceManager.toggleListening('librarySearch')" class="mic-btn absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-slate-800/50 border border-white/5 flex items-center justify-center hover:bg-slate-700 transition-all focus-ring" title="Voice Search">
+                    <i class="fa-solid fa-microphone text-slate-500"></i>
+                </button>
             </div>
             <div id="noResults" class="hidden mt-8 text-center text-slate-500 italic py-12 border border-dashed border-white/5 rounded-3xl">
                 No matching references found in our records.
@@ -223,10 +230,13 @@
                                             GW Manual
                                         </span>
                                     </td>
-                                    <td class="px-8 py-6 text-right">
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
                                         <button onclick="copyValue('114.3')" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">
                                             Copy
                                         </button>
+                                        <a href="/?source=28mm&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">
+                                            Apply
+                                        </a>
                                     </td>
                                 </tr>
                                 <!-- Repeat pattern for other rows -->
@@ -257,24 +267,27 @@
                                     <td class="px-8 py-6 font-semibold">1:35 Military</td>
                                     <td class="px-8 py-6">32mm Heroic</td>
                                     <td class="px-8 py-6 text-white font-mono">114.2%</td>
-                                    <td class="px-8 py-6 text-right">
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:35&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                                 <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
                                     <td class="px-8 py-6 font-semibold">1:48 Quarter Scale</td>
                                     <td class="px-8 py-6">28mm True Scale</td>
                                     <td class="px-8 py-6 text-white font-mono">76.8%</td>
-                                    <td class="px-8 py-6 text-right">
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:48&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                                 <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
                                     <td class="px-8 py-6 font-semibold">1:56 Bolt Action</td>
                                     <td class="px-8 py-6">32mm Heroic</td>
                                     <td class="px-8 py-6 text-white font-mono">102.4%</td>
-                                    <td class="px-8 py-6 text-right">
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:56&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -305,24 +318,27 @@
                                     <td class="px-8 py-6 font-semibold">28mm (D&D)</td>
                                     <td class="px-8 py-6">32mm (Warhammer)</td>
                                     <td class="px-8 py-6 text-white font-mono">114.3%</td>
-                                    <td class="px-8 py-6 text-right">
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=28mm&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                                 <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
                                     <td class="px-8 py-6 font-semibold">32mm Heroic</td>
                                     <td class="px-8 py-6">35mm (Legion)</td>
                                     <td class="px-8 py-6 text-white font-mono">109.4%</td>
-                                    <td class="px-8 py-6 text-right">
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=32mm&target=35mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                                 <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
                                     <td class="px-8 py-6 font-semibold">32mm Heroic</td>
                                     <td class="px-8 py-6">75mm (Display)</td>
                                     <td class="px-8 py-6 text-white font-mono">234.4%</td>
-                                    <td class="px-8 py-6 text-right">
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=32mm&target=75mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -505,8 +521,17 @@
                         <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Tools</h4>
                         <ul class="space-y-4 text-sm text-slate-500 font-medium">
                             <li><a href="/" class="hover:text-[#ff6b35] transition-colors">Scale Engine</a></li>
-                            <li><a href="/reference" class="text-[#ff6b35]">reference Library</a></li>
+                            <li><a href="/library" class="hover:text-[#ff6b35] transition-colors">Personal Library</a></li>
+                            <li><a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference Library</a></li>
                             <li><a href="/embed" class="hover:text-[#ff6b35] transition-colors">Creator Badge</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Project</h4>
+                        <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                            <li><a href="/about" class="hover:text-[#ff6b35] transition-colors">About & Methodology</a></li>
+                            <li><a href="https://github.com/kitsorix-official/stlaccess" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener">GitHub Source</a></li>
+                            <li><a href="https://github.com/kitsorix-official/stlaccess/issues" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener">Report an Issue</a></li>
                         </ul>
                     </div>
                     <div>
@@ -514,6 +539,7 @@
                         <ul class="space-y-4 text-sm text-slate-500 font-medium">
                             <li><a href="/privacy" class="hover:text-[#ff6b35] transition-colors">Privacy Policy</a></li>
                             <li><a href="/terms" class="hover:text-[#ff6b35] transition-colors">Terms of Service</a></li>
+                            <li><a href="/legal" class="hover:text-[#ff6b35] transition-colors">Global Compliance</a></li>
                         </ul>
                     </div>
                 </div>
@@ -562,10 +588,26 @@
                     Privacy Policy
                 </a>
             </div>
+            <button id="voice-search-btn" onclick="voiceManager.toggleListening('librarySearch')" class="mt-2 w-full bg-white/5 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-white/10 active:scale-[0.98] transition-all">
+                <i class="fa-solid fa-microphone mr-2"></i> Voice Search
+            </button>
         </div>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": ["h2", ".searchable-row"]
+          }
+        }
+        </script>
     </aside>
 
+    <!-- Scripts -->
+    <script src="/js/conversion-filter.js"></script>
     <script src="/js/cb.js"></script>
+    <script src="/js/voice-search.js"></script>
     <script src="/js/reference-filter.js"></script>
 </body>
 </html>
