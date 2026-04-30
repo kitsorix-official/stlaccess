@@ -45,7 +45,7 @@
         function updateLibraryCount() {
             const library = JSON.parse(localStorage.getItem('stlaccess_library') || '[]');
             const countBadge = document.getElementById('libCount');
-            if (library.length > 0) {
+            if (countBadge && library.length > 0) {
                 countBadge.textContent = library.length;
                 countBadge.classList.remove('hidden');
             }

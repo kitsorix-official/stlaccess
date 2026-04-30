@@ -54,18 +54,16 @@
     <!-- Navigation -->
     <header class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50">
         <nav class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center" aria-label="Global Navigation">
-            <div class="flex items-center gap-3">
-                <a href="/" class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-[#ff6b35] rounded-xl flex items-center justify-center shadow-lg shadow-[#ff6b35]/20" aria-hidden="true">
-                        <i class="fa-solid fa-up-right-and-down-left-from-center text-black font-bold"></i>
-                    </div>
-                    <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
-                </a>
-            </div>
+            <a href="/" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#ff6b35] rounded-xl flex items-center justify-center shadow-lg shadow-[#ff6b35]/20" aria-hidden="true">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center text-black font-bold"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
+            </a>
             
             <ul class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-slate-400">
                 <li><a href="/" class="hover:text-white transition-colors">Scale Engine</a></li>
-                <li><a href="/library" class="hover:text-white transition-colors">Personal Library</a></li>
+                <li><a href="/library" class="hover:text-white transition-colors">Personal Library <span id="libCount" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span></a></li>
                 <li><a href="/reference" class="hover:text-white transition-colors">Reference Library</a></li>
                 <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
                 <li><a href="/embed" class="text-white border-b-2 border-[#ff6b35] pb-1">Creator Badge</a></li>
@@ -211,10 +209,9 @@
             </div>
             
             <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-slate-600">
-                <span>&copy; 2026 STLAccess Conversion Systems</span>
+                <span>&copy; 2026 STLAccess Conversion Systems | Precision is my goal.</span>
                 <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition-colors">GitHub</a>
-                    <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                    <a href="https://github.com/kitsorix-official/stlaccess" class="hover:text-white transition-colors" target="_blank" rel="noopener">GitHub</a>
                 </div>
             </div>
         </div>
@@ -256,7 +253,8 @@
         </div>
     </aside>
 
-<script src="/js/cb.js"></script>
-  <script src="/js/creator-embed.js"></script>
+    <script src="/js/cb.js"></script>
+    <script src="/js/save-library.js"></script>
+    <script src="/js/creator-embed.js"></script>
 </body>
 </html>

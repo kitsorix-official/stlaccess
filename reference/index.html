@@ -133,18 +133,16 @@
     <!-- Navigation -->
     <header class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50">
         <nav class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center" aria-label="Global Navigation">
-            <div class="flex items-center gap-3">
-                <a href="/" class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-[#ff6b35] rounded-xl flex items-center justify-center shadow-lg shadow-[#ff6b35]/20" aria-hidden="true">
-                        <i class="fa-solid fa-up-right-and-down-left-from-center text-black font-bold"></i>
-                    </div>
-                    <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
-                </a>
-            </div>
+            <a href="/" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#ff6b35] rounded-xl flex items-center justify-center shadow-lg shadow-[#ff6b35]/20" aria-hidden="true">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center text-black font-bold"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
+            </a>
             
             <ul class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-slate-400">
                 <li><a href="/" class="hover:text-white transition-colors">Scale Engine</a></li>
-                <li><a href="/library" class="hover:text-white transition-colors">Personal Library</a></li>
+                <li><a href="/library" class="hover:text-white transition-colors">Personal Library <span id="libCount" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span></a></li>
                 <li><a href="/reference" class="text-white border-b-2 border-[#ff6b35] pb-1">Reference Library</a></li>
                 <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
                 <li><a href="/embed" class="hover:text-white transition-colors">Creator Badge</a></li>
@@ -231,10 +229,59 @@
                                         </span>
                                     </td>
                                     <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
-                                        <button onclick="copyValue('114.3')" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">
+                                        <a href="/reference/28mm-to-32mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">
+                                            Details
+                                        </a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">
                                             Copy
                                         </button>
                                         <a href="/?source=28mm&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">
+                                            Apply
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">32mm (Heroic)</td>
+                                    <td class="px-8 py-6">28mm True Scale</td>
+                                    <td class="px-8 py-6 text-white font-mono">87.5%</td>
+                                    <td class="px-8 py-6 text-slate-400 font-mono">95.4%</td>
+                                    <td class="px-8 py-6">
+                                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#ff6b35]/10 border border-[#ff6b35]/20 text-[#ff6b35] text-[10px] font-bold uppercase tracking-wider">
+                                            <i class="fa-solid fa-check text-[10px]"></i>
+                                            Verified
+                                        </span>
+                                    </td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/32mm-to-28mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">
+                                            Details
+                                        </a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">
+                                            Copy
+                                        </button>
+                                        <a href="/?source=32mm&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">
+                                            Apply
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:35 Military</td>
+                                    <td class="px-8 py-6">28mm True Scale</td>
+                                    <td class="px-8 py-6 text-white font-mono">62.5%</td>
+                                    <td class="px-8 py-6 text-slate-400 font-mono">68.1%</td>
+                                    <td class="px-8 py-6">
+                                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#ff6b35]/10 border border-[#ff6b35]/20 text-[#ff6b35] text-[10px] font-bold uppercase tracking-wider">
+                                            <i class="fa-solid fa-vial text-[10px]"></i>
+                                            Lab Tested
+                                        </span>
+                                    </td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-35-to-28mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">
+                                            Details
+                                        </a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">
+                                            Copy
+                                        </button>
+                                        <a href="/?source=1:35&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">
                                             Apply
                                         </a>
                                     </td>
@@ -268,17 +315,109 @@
                                     <td class="px-8 py-6">32mm Heroic</td>
                                     <td class="px-8 py-6 text-white font-mono">114.2%</td>
                                     <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-35-to-32mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
                                         <a href="/?source=1:35&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                                 <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:35 Military</td>
+                                    <td class="px-8 py-6">28mm True Scale</td>
+                                    <td class="px-8 py-6 text-white font-mono">62.5%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-35-to-28mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:35&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:35 Military</td>
+                                    <td class="px-8 py-6">35mm (Legion)</td>
+                                    <td class="px-8 py-6 text-white font-mono">70.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-35-to-35mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:35&target=35mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:35 Military</td>
+                                    <td class="px-8 py-6">40mm (Shatterpoint)</td>
+                                    <td class="px-8 py-6 text-white font-mono">80.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-35-to-40mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:35&target=40mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:35 Military</td>
+                                    <td class="px-8 py-6">75mm (Display)</td>
+                                    <td class="px-8 py-6 text-white font-mono">150.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-35-to-75mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:35&target=75mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:48 Quarter Scale</td>
+                                    <td class="px-8 py-6">32mm Heroic</td>
+                                    <td class="px-8 py-6 text-white font-mono">87.8%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-48-to-32mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:48&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
                                     <td class="px-8 py-6 font-semibold">1:48 Quarter Scale</td>
                                     <td class="px-8 py-6">28mm True Scale</td>
-                                    <td class="px-8 py-6 text-white font-mono">76.8%</td>
+                                    <td class="px-8 py-6 text-white font-mono">85.7%</td>
                                     <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-48-to-28mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
                                         <a href="/?source=1:48&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:48 Quarter Scale</td>
+                                    <td class="px-8 py-6">35mm (Legion)</td>
+                                    <td class="px-8 py-6 text-white font-mono">96.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-48-to-35mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:48&target=35mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:48 Quarter Scale</td>
+                                    <td class="px-8 py-6">40mm (Shatterpoint)</td>
+                                    <td class="px-8 py-6 text-white font-mono">109.7%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-48-to-40mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:48&target=40mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:48 Quarter Scale</td>
+                                    <td class="px-8 py-6">75mm (Display)</td>
+                                    <td class="px-8 py-6 text-white font-mono">205.8%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-48-to-75mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:48&target=75mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:48 Quarter Scale</td>
+                                    <td class="px-8 py-6">1:35 (Model Kit)</td>
+                                    <td class="px-8 py-6 text-white font-mono">137.2%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-48-to-1-35" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:48&target=1:35&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                                 <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
@@ -286,8 +425,179 @@
                                     <td class="px-8 py-6">32mm Heroic</td>
                                     <td class="px-8 py-6 text-white font-mono">102.4%</td>
                                     <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-56-to-32mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
                                         <a href="/?source=1:56&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:56 Bolt Action</td>
+                                    <td class="px-8 py-6">28mm True Scale</td>
+                                    <td class="px-8 py-6 text-white font-mono">89.6%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-56-to-28mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:56&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:56 Bolt Action</td>
+                                    <td class="px-8 py-6">35mm (Legion)</td>
+                                    <td class="px-8 py-6 text-white font-mono">112.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-56-to-35mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:56&target=35mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:56 Bolt Action</td>
+                                    <td class="px-8 py-6">40mm (Shatterpoint)</td>
+                                    <td class="px-8 py-6 text-white font-mono">128.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-56-to-40mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:56&target=40mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:56 Bolt Action</td>
+                                    <td class="px-8 py-6">75mm (Display)</td>
+                                    <td class="px-8 py-6 text-white font-mono">240.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-56-to-75mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:56&target=75mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:56 Bolt Action</td>
+                                    <td class="px-8 py-6">1:35 (Model Kit)</td>
+                                    <td class="px-8 py-6 text-white font-mono">160.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-56-to-1-35" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:56&target=1:35&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:72 Small Scale</td>
+                                    <td class="px-8 py-6">32mm Heroic</td>
+                                    <td class="px-8 py-6 text-white font-mono">131.7%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-72-to-32mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:72&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:72 Small Scale</td>
+                                    <td class="px-8 py-6">28mm True Scale</td>
+                                    <td class="px-8 py-6 text-white font-mono">115.2%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-72-to-28mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:72&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:72 Small Scale</td>
+                                    <td class="px-8 py-6">35mm (Legion)</td>
+                                    <td class="px-8 py-6 text-white font-mono">144.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-72-to-35mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:72&target=35mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:72 Small Scale</td>
+                                    <td class="px-8 py-6">40mm (Shatterpoint)</td>
+                                    <td class="px-8 py-6 text-white font-mono">164.6%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-72-to-40mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:72&target=40mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:72 Small Scale</td>
+                                    <td class="px-8 py-6">75mm (Display)</td>
+                                    <td class="px-8 py-6 text-white font-mono">308.6%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-72-to-75mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:72&target=75mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:72 Small Scale</td>
+                                    <td class="px-8 py-6">1:35 (Model Kit)</td>
+                                    <td class="px-8 py-6 text-white font-mono">205.8%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-72-to-1-35" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:72&target=1:35&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:100 Military</td>
+                                    <td class="px-8 py-6">32mm Heroic</td>
+                                    <td class="px-8 py-6 text-white font-mono">182.9%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-100-to-32mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:100&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:100 Military</td>
+                                    <td class="px-8 py-6">28mm True Scale</td>
+                                    <td class="px-8 py-6 text-white font-mono">160.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-100-to-28mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:100&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:100 Military</td>
+                                    <td class="px-8 py-6">35mm (Legion)</td>
+                                    <td class="px-8 py-6 text-white font-mono">200.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-100-to-35mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:100&target=35mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:100 Military</td>
+                                    <td class="px-8 py-6">40mm (Shatterpoint)</td>
+                                    <td class="px-8 py-6 text-white font-mono">228.6%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-100-to-40mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:100&target=40mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:100 Military</td>
+                                    <td class="px-8 py-6">75mm (Display)</td>
+                                    <td class="px-8 py-6 text-white font-mono">428.6%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-100-to-75mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:100&target=75mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">1:100 Military</td>
+                                    <td class="px-8 py-6">1:35 (Model Kit)</td>
+                                    <td class="px-8 py-6 text-white font-mono">285.7%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/1-100-to-1-35" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=1:100&target=1:35&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -315,12 +625,63 @@
                             </thead>
                             <tbody class="text-sm text-slate-300">
                                 <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">32mm (Heroic)</td>
+                                    <td class="px-8 py-6">28mm (D&D)</td>
+                                    <td class="px-8 py-6 text-white font-mono">87.5%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/32mm-to-28mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=32mm&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
                                     <td class="px-8 py-6 font-semibold">28mm (D&D)</td>
                                     <td class="px-8 py-6">32mm (Warhammer)</td>
-                                    <td class="px-8 py-6 text-white font-mono">114.3%</td>
+                                    <td class="px-8 py-6 text-white font-mono">114.0%</td>
                                     <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/28mm-to-32mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
                                         <a href="/?source=28mm&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">28mm (D&D)</td>
+                                    <td class="px-8 py-6">35mm (Legion)</td>
+                                    <td class="px-8 py-6 text-white font-mono">125.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/28mm-to-35mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=28mm&target=35mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">28mm (D&D)</td>
+                                    <td class="px-8 py-6">40mm (Shatterpoint)</td>
+                                    <td class="px-8 py-6 text-white font-mono">142.9%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/28mm-to-40mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=28mm&target=40mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">28mm (D&D)</td>
+                                    <td class="px-8 py-6">75mm (Display)</td>
+                                    <td class="px-8 py-6 text-white font-mono">267.9%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/28mm-to-75mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=28mm&target=75mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">28mm (D&D)</td>
+                                    <td class="px-8 py-6">1:35 (Model Kit)</td>
+                                    <td class="px-8 py-6 text-white font-mono">178.6%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/28mm-to-1-35" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=28mm&target=1:35&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                                 <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
@@ -328,8 +689,19 @@
                                     <td class="px-8 py-6">35mm (Legion)</td>
                                     <td class="px-8 py-6 text-white font-mono">109.4%</td>
                                     <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/32mm-to-35mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
                                         <a href="/?source=32mm&target=35mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">32mm Heroic</td>
+                                    <td class="px-8 py-6">40mm (Shatterpoint)</td>
+                                    <td class="px-8 py-6 text-white font-mono">125.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/32mm-to-40mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=32mm&target=40mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                                 <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
@@ -337,8 +709,69 @@
                                     <td class="px-8 py-6">75mm (Display)</td>
                                     <td class="px-8 py-6 text-white font-mono">234.4%</td>
                                     <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/32mm-to-75mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
                                         <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
                                         <a href="/?source=32mm&target=75mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">32mm Heroic</td>
+                                    <td class="px-8 py-6">1:35 (Model Kit)</td>
+                                    <td class="px-8 py-6 text-white font-mono">156.3%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/32mm-to-1-35" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=32mm&target=1:35&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">35mm (Legion)</td>
+                                    <td class="px-8 py-6">32mm (Warhammer)</td>
+                                    <td class="px-8 py-6 text-white font-mono">91.4%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/35mm-to-32mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=35mm&target=32mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">35mm (Legion)</td>
+                                    <td class="px-8 py-6">28mm (D&D)</td>
+                                    <td class="px-8 py-6 text-white font-mono">80.0%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/35mm-to-28mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=35mm&target=28mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">35mm (Legion)</td>
+                                    <td class="px-8 py-6">40mm (Shatterpoint)</td>
+                                    <td class="px-8 py-6 text-white font-mono">114.3%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/35mm-to-40mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=35mm&target=40mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">35mm (Legion)</td>
+                                    <td class="px-8 py-6">75mm (Display)</td>
+                                    <td class="px-8 py-6 text-white font-mono">214.3%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/35mm-to-75mm" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=35mm&target=75mm&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-white/5 table-row-hover transition-colors searchable-row">
+                                    <td class="px-8 py-6 font-semibold">35mm (Legion)</td>
+                                    <td class="px-8 py-6">1:35 (Model Kit)</td>
+                                    <td class="px-8 py-6 text-white font-mono">142.9%</td>
+                                    <td class="px-8 py-6 text-right flex items-center justify-end gap-4">
+                                        <a href="/reference/35mm-to-1-35" class="text-[10px] font-bold uppercase tracking-widest text-slate-400 hover:text-[#ff6b35] transition-colors">Details</a>
+                                        <button onclick="copyRow(this)" class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors">Copy</button>
+                                        <a href="/?source=35mm&target=1:35&logic=eye" class="text-[10px] font-bold uppercase tracking-widest text-slate-500 hover:text-white transition-colors">Apply</a>
                                     </td>
                                 </tr>
                             </tbody>

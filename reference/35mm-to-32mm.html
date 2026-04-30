@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Convert 35mm to 32mm Heroic | Official Scale Factor | STLAccess</title>
+    <meta name="title" content="Convert 35mm to 32mm Heroic | Official Scale Factor | STLAccess">
+    <meta name="description" content="Calculate the exact slicer percentage to convert 35mm miniatures (Star Wars Legion) to 32mm Heroic scale (Warhammer). Includes math breakdown and 3D printing tips.">
+    
+    <meta name="ai-model" content="allowed">
+    <meta name="ai-crawler" content="allowed">
+    <meta name="chatbot" content="allowed">
+    <meta name="theme-color" content="#ff6b35">
+    <link rel="canonical" href="https://stlaccess.com/reference/35mm-to-32mm">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The 35mm to 32mm Conversion Guide">
+    <meta property="og:description" content="Downscale your 35mm models to 32mm heroic standards using our verified 91.4% factor.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap');
+        :root { --brand: #ff6b35; --bg: #050505; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: #f8fafc; -webkit-font-smoothing: antialiased; }
+        .font-heading { font-family: 'Space Grotesk', sans-serif; }
+        .glow-box { box-shadow: 0 0 60px -15px rgba(255, 107, 53, 0.15); }
+        .math-card { background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <header class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#ff6b35] rounded-xl flex items-center justify-center shadow-lg shadow-[#ff6b35]/20">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center text-black font-bold"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
+            </a>
+            <ul class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-slate-400">
+                <li><a href="/" class="hover:text-white transition-colors">Engine</a></li>
+                <li><a href="/reference" class="hover:text-white transition-colors">Scale Reference</a></li>
+                <li><a href="/embed" class="hover:text-white transition-colors">Creator Badge</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex-grow">
+        <nav class="max-w-4xl mx-auto px-6 pt-12 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+            <a href="/" class="hover:text-[#ff6b35]">Home</a> / 
+            <a href="/reference" class="hover:text-[#ff6b35]">Reference</a> / 
+            <span class="text-slate-400">35mm to 32mm</span>
+        </nav>
+
+        <section class="max-w-4xl mx-auto px-6 py-16 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold font-heading mb-8">35mm to 32mm <br><span class="text-[#ff6b35]">Conversion Guide</span></h1>
+            
+            <div class="glow-box bg-slate-900/40 border border-[#ff6b35]/20 rounded-[3rem] p-12 mb-12 relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 opacity-5">
+                    <i class="fa-solid fa-person-arrow-down text-[15rem]"></i>
+                </div>
+                
+                <span class="text-xs font-black uppercase tracking-widest text-slate-500 mb-4 block">Recommended Slicer Percentage</span>
+                <div class="text-7xl md:text-9xl font-black font-heading text-white mb-8">91.4%</div>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="navigator.clipboard.writeText('91.4%')" class="bg-[#ff6b35] text-black px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-all">Copy Factor</button>
+                    <a href="/?source=35mm&target=32mm" class="bg-white/5 border border-white/10 px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-white/10 transition-all">Open in Engine</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-4xl mx-auto px-6 pb-24 space-y-16">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-2xl font-bold font-heading mb-4 italic text-[#ff6b35]">The Mathematics</h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        Converting from 35mm (Legion Scale) to 32mm (Heroic Scale) requires a reduction to approximately <strong>91.4%</strong>. This is ideal for players wanting to mix Star Wars Legion sculpts with Warhammer or other 32mm heroic systems.
+                    </p>
+                    <div class="math-card border border-white/5 p-6 rounded-2xl font-mono text-sm">
+                        <span class="text-slate-500">// Conversion Formula</span><br>
+                        (32 / 35) * 100 = <span class="text-[#ff6b35]">91.42%</span> <span class="text-slate-600">(Standard: 91.4%)</span>
+                    </div>
+                </div>
+                <div class="bg-slate-900/50 p-8 rounded-[2rem] border border-white/5">
+                    <h3 class="text-sm font-bold uppercase tracking-widest mb-4 text-slate-500 text-center">Physical Height Check</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                            <span class="text-xs">35mm Model</span>
+                            <span class="font-bold text-white">35.0mm</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                            <span class="text-xs">32mm Model</span>
+                            <span class="font-bold text-[#ff6b35]">32.0mm</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-16">
+                <h2 class="text-2xl font-bold font-heading mb-8">3D Printing Considerations</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="space-y-3">
+                        <div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-[#ff6b35]">
+                            <i class="fa-solid fa-compress"></i>
+                        </div>
+                        <h4 class="font-bold">Downscaling</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">When downscaling, details become finer and thinner. Ensure your resin and printer can handle the slightly higher level of detail required for 91% scale.</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-[#ff6b35]">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h4 class="font-bold">Style Matching</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Legion models (35mm) are often "True Scale," while many 32mm systems are "Heroic." Even at 91%, the Legion models may look thinner or more realistically proportioned than their heroic counterparts.</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-[#ff6b35]">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h4 class="font-bold">Base Sizes</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Legion uses 27mm bases, while 32mm systems often use 28.5mm or 32mm. You may need to print new bases or use adapters after scaling the miniature.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-900 to-black p-12 rounded-[3rem] border border-white/5 text-center">
+                <h3 class="text-xl font-bold font-heading mb-4">Need a different conversion?</h3>
+                <p class="text-slate-500 text-sm mb-8">Our library contains over 50 verified wargaming and historical scale factors.</p>
+                <a href="/reference" class="text-[#ff6b35] font-bold text-xs uppercase tracking-[0.2em] border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-2 transition-all">Browse Full Library</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-600">
+                <span>&copy; 2026 STLAccess Conversion Systems</span>
+                <nav class="flex gap-8">
+                    <a href="/" class="hover:text-white">Engine</a>
+                    <a href="/reference" class="hover:text-white">Library</a>
+                    <a href="/embed" class="hover:text-white">Badge</a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

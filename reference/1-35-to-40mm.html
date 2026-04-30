@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1:35 to 40mm Scale Conversion | 80.0% STL Scale Guide</title>
+    <meta name="description" content="Learn how to convert 1:35 scale miniatures to 40mm scale. Use 80.0% scaling for 3D printed STLs. Mathematical breakdown and scale guide.">
+    <meta name="ai-model" content="allowed">
+    <meta name="ai-crawler" content="allowed">
+    <meta name="chatbot" content="allowed">
+    <meta name="generator" content="STLACCESS">
+    <meta name="theme-color" content="#ff6b35">
+    <link rel="canonical" href="https://stlaccess.com/reference/1-35-to-40mm">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/global.css">
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50">
+        <nav class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center" aria-label="Global Navigation">
+            <a href="/" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-[#ff6b35] rounded-xl flex items-center justify-center shadow-lg shadow-[#ff6b35]/20" aria-hidden="true">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center text-black font-bold"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
+            </a>
+            <ul class="hidden md:flex gap-8 text-sm font-semibold tracking-wide text-slate-400">
+                <li><a href="/" class="hover:text-white transition-colors">Scale Engine</a></li>
+                <li><a href="/library" class="hover:text-white transition-colors">Personal Library <span id="libCount" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span></a></li>
+                <li><a href="/reference" class="text-white border-b-2 border-[#ff6b35] pb-1">Reference Library</a></li>
+                <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
+                <li><a href="/embed" class="hover:text-white transition-colors">Creator Badge</a></li>
+            </ul>
+            <button class="md:hidden text-white" aria-label="Open Menu"><i class="fa-solid fa-bars-staggered text-xl"></i></button>
+        </nav>
+    </header>
+    <main id="main-content" class="flex-grow">
+        <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+            <a href="/" class="hover:text-[#ff6b35]">Home</a> / <a href="/reference" class="hover:text-[#ff6b35]">Reference</a> / <span class="text-slate-400">1:35 to 40mm</span>
+        </nav>
+        <article class="max-w-4xl mx-auto px-6 py-12">
+            <header class="mb-16">
+                <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">1:35 to <span class="text-[#ff6b35]">40mm</span></h1>
+                <p class="text-xl text-slate-400 leading-relaxed max-w-2xl">Downscaling 1:35 model kit figures for use in 40mm games.</p>
+            </header>
+            <section class="bg-slate-900/50 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-12 mb-16 glow-box">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                    <div>
+                        <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-2">Recommended Scale</h2>
+                        <div class="text-6xl md:text-8xl font-black font-heading text-white tracking-tighter">80.0<span class="text-[#ff6b35] text-4xl">%</span></div>
+                    </div>
+                    <div class="space-y-4 w-full md:w-auto">
+                        <button onclick="copyValue('80.0')" class="w-full md:w-auto bg-[#ff6b35] text-black font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:brightness-110 active:scale-95 transition-all"><i class="fa-solid fa-copy"></i> Copy Percentage</button>
+                        <a href="/?src=1:35&tgt=40mm&logic=standard" class="w-full md:w-auto bg-white/5 border border-white/10 text-white font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-white/10 transition-all"><i class="fa-solid fa-calculator"></i> Open in Engine</a>
+                    </div>
+                </div>
+            </section>
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-microscope text-[#ff6b35]"></i> Mathematical Proof</h3>
+                    <code class="block bg-black/50 p-4 rounded-xl text-xs font-mono text-[#ff6b35]">(40.0mm / 50.0mm) * 100 = 80.0%</code>
+                </div>
+                <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                    <h3 class="font-bold text-white mb-4 flex items-center gap-2"><i class="fa-solid fa-circle-info text-[#ff6b35]"></i> Scale Baselines</h3>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li class="flex justify-between"><span>Source (1:35)</span> <span class="text-white font-mono">50.0mm Eye</span></li>
+                        <li class="flex justify-between"><span>Target (40mm)</span> <span class="text-white font-mono">40.0mm Eye</span></li>
+                    </ul>
+                </div>
+            </section>
+        </article>
+    </main>
+    <footer class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-20">
+        <div class="max-w-6xl mx-auto text-[10px] font-bold uppercase tracking-widest text-slate-600">
+            &copy; 2026 STLAccess Conversion Systems | Precision is my goal.
+        </div>
+    </footer>
+    <script src="/js/cb.js"></script>
+    <script src="/js/save-library.js"></script>
+    <script>function copyValue(val){navigator.clipboard.writeText(val).then(()=>{alert('Copied '+val+'% to clipboard');});}</script>
+</body>
+</html>
