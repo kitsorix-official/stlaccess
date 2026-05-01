@@ -208,7 +208,7 @@
         </div>
         
         <p id="cookie-desc" class="text-xs text-slate-400 leading-relaxed mb-8">
-            We use essential and analytical cookies to ensure the engine runs accurately. By clicking "Accept All", you consent to our use of these tools.
+            I use essential and analytical cookies to ensure the engine runs accurately. By clicking "Accept All", you consent to my use of these tools.
         </p>
 
         <div class="flex flex-col gap-3">
@@ -226,10 +226,14 @@
                     Privacy Policy
                 </a>
             </div>
+            <button id="voice-search-btn" onclick="voiceManager.toggleListening()" class="mt-2 w-full bg-white/5 border border-white/10 text-white font-bold py-3.5 rounded-2xl text-[10px] uppercase tracking-widest hover:bg-white/10 flex items-center justify-center gap-2 transition-all">
+                <i class="fa-solid fa-microphone"></i> Voice Command
+            </button>
         </div>
     </aside>
 
- <script src="/js/cb.js"></script>
-  <script src="/js/load-library.js"></script>
+    <script src="/js/cb.js"></script>
+    <script src="/js/voice-search.js"></script>
+    <script src="/js/load-library.js"></script>
 </body>
 </html>

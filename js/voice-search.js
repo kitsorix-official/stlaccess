@@ -69,11 +69,11 @@ class VoiceManager {
     }
 
     handleCommand(transcript) {
-        // 1. Library Search Logic
-        if (this.targetInputId === 'librarySearch') {
-            const searchInput = document.getElementById('librarySearch');
-            if (searchInput) {
-                searchInput.value = transcript;
+        // 1. Library Search Logic - Auto-detect if on library/reference page
+        const librarySearchInput = document.getElementById('librarySearch');
+        if (this.targetInputId === 'librarySearch' || (this.targetInputId === null && librarySearchInput)) {
+            if (librarySearchInput) {
+                librarySearchInput.value = transcript;
                 // Trigger the filter function (assumed to be global)
                 if (typeof filterTable === 'function') filterTable();
             }
