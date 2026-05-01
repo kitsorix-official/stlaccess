@@ -18,9 +18,9 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://stlaccess.com/reference">
-    <meta property="og:title" content="reference Library | Official 3D Print Scale References">
-    <meta property="og:description" content="Verified scaling values for the most popular tabletop war games and historical systems.">
+    <meta property="og:url" content="https://stlaccess.com/reference/">
+    <meta property="og:title" content="Tabletop Miniature Scale Reference Library | Warhammer, D&D Conversions">
+    <meta property="og:description" content="Verified scale conversion tables for 3D printed miniatures. Pre-calculated percentages for Warhammer 32mm, D&D 28mm, Star Wars Legion. Free downloadable charts.">
     <meta property="og:image" content="https://stlaccess.com/og-library.jpg">
 
     <!-- Structured Data (JSON-LD) for reference Tables -->
@@ -42,65 +42,60 @@
     }
     </script>
     <!-- ✅ ADD FAQPage schema for this section -->
-    <script type="application/ld+json">
+<!-- ✅ ADD before </body> of /reference/ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "STLAccess Scale Reference Library",
+  "description": "Verified conversion values for 3D printed tabletop miniatures across Warhammer, D&D, Star Wars Legion, and historical modeling systems.",
+  "url": "https://stlaccess.com/reference/",
+  "isPartOf": {"@type": "WebSite", "name": "STLAccess", "url": "https://stlaccess.com"},
+  "about": [
+    {"@type": "Thing", "name": "Tabletop Miniature Scaling"},
+    {"@type": "Game", "name": "Warhammer 40,000"},
+    {"@type": "Game", "name": "Dungeons & Dragons"}
+  ],
+  "mainEntity": {
+    "@type": "Table",
+    "name": "Verified Scale Conversions",
+    "description": "Pre-calculated slicer percentages for converting STL files between gaming systems"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-        {
-        "@type": "Question",
-        "name": "Why are there two percentage columns (Eye Level vs Top of Head)?",
-        "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most fantasy miniatures are measured to the eyes (160mm on a 175cm person), while historical kits often use total height. Use 'Eye Level' for character miniatures; 'Top of Head' for vehicles or helmets."
-        }
-        },
-        {
-        "@type": "Question",
-        "name": "Do I need to adjust for resin shrinkage?",
-        "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes. Standard resin shrinks ~1-2%. For critical scale accuracy, add +1.5% to your slicer percentage (e.g., use 115.8% instead of 114.3% for 28mm→32mm)."
-        }
-        },
-        {
-        "@type": "Question",
-        "name": "How often are these conversion values updated?",
-        "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Values are reviewed quarterly against official rulebooks and community consensus. Last updated: April 2026. Report a discrepancy."
-        }
-        }
-    ]
-    }
-    </script>
-    <!-- ✅ ADD to <head> or before </body> -->
-    <script type="application/ld+json">
-    {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "STLAccess Scale Reference Library",
-    "description": "Verified conversion values for 3D printed tabletop miniatures across Warhammer, D&D, Star Wars Legion, and historical modeling systems.",
-    "url": "https://stlaccess.com/reference/",
-    "isPartOf": {
-        "@type": "WebSite",
-        "name": "STLAccess",
-        "url": "https://stlaccess.com"
+      "@type": "Question",
+      "name": "Why are there two percentage columns (Eye Level vs Top of Head)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most fantasy miniatures are measured to the eyes (160mm on a 175cm person), while historical kits often use total height. Use 'Eye Level' for character miniatures; 'Top of Head' for vehicles or helmets."
+      }
     },
-    "about": [
-        {"@type": "Thing", "name": "Tabletop Miniature Scaling"},
-        {"@type": "Thing", "name": "3D Printing Conversion"},
-        {"@type": "Game", "name": "Warhammer 40,000"},
-        {"@type": "Game", "name": "Dungeons & Dragons"}
-    ],
-    "mainEntity": {
-        "@type": "Table",
-        "name": "Verified Scale Conversions",
-        "description": "Pre-calculated slicer percentages for converting STL files between gaming systems",
-        "about": "Tabletop miniature scale conversion values"
+    {
+      "@type": "Question",
+      "name": "Do I need to adjust for resin shrinkage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Standard resin shrinks ~1-2%. For critical scale accuracy, add +1.5% to your slicer percentage (e.g., use 115.8% instead of 114.3% for 28mm→32mm)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often are these conversion values updated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Values are reviewed quarterly against official rulebooks and community consensus. Last updated: April 2026. Report a discrepancy."
+      }
     }
-    }
-    </script>
+  ]
+}
+</script>
            <!-- Google Consent Mode v2 Setup (GDPR Compliance) -->
     <script>
         window.dataLayer = window.dataLayer || [];
