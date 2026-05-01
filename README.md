@@ -1,46 +1,38 @@
-# STLAccess | The Universal 3D Print Scale Engine
+# STLAccess — Free STL Scale Converter
 
-**Mathematical certainty for the modern maker.**
+A simple, fast, and accurate web tool to convert STL files between different miniature scales. Designed specifically for the tabletop gaming and 3D printing community.
 
-STLAccess is a free conversion utility designed to solve the persistent "scale creep" and measurement inconsistencies within the 3D printing and tabletop gaming hobby. By normalizing disparate sculpting standards against a universal human baseline, STLAccess provides creators and hobbyists with the exact slicer percentages needed to bridge the gap between historical military scales and modern heroic tabletop systems.
+No uploads. No accounts. No nonsense. All calculations run in your browser.
 
----
+### Why I Built It
 
-## The Engine of Precision
+Scale conversion is one of the most annoying problems when 3D printing miniatures. I got tired of doing messy math in my slicer, so I built STLAccess with a consistent 175cm human baseline and proper eye-level methodology.
 
-At the core of STLAccess is a high-authority mathematical engine that translates between ratio-based scales (e.g., 1:35, 1:56) and system-based height measurements (e.g., 28mm, 32mm).
+### Features
 
-### Key Methodologies
+- Accurate scale conversion between 28mm, 32mm Heroic, 35mm, 75mm, and historical scales (1:35, 1:72, etc.)
+- Eye Level vs Top of Head measurement options
+- Resin shrinkage compensation
+- Pre-verified reference library with 50+ official conversions
+- Personal library (saved locally)
+- Fully client-side — your files never leave your computer
 
-*   **Normalized Baseline**: All calculations are derived from a standard 1.75m (1750mm) human baseline, ensuring physical consistency regardless of the source material.
-*   **Measurement Logic Toggles**:
-    *   **Eye Level (160cm)**: The canonical standard for most fantasy and sci-fi miniatures (Warhammer, D&D).
-    *   **Top of Head (175cm)**: The standard for historical military kits and modern display minis, accounting for helmets, hair, and vertical posture.
-*   **Direct Slicer Integration**: Results are optimized for immediate entry into slicing software (Lychee, Chitubox, Bambu Studio) with single-click clipboard functionality.
+### Live Tool
 
----
+→ **[Try STLAccess](https://stlaccess.com)**
 
-## System Features
+### Tech Stack
 
-### 1. Official Conversion Library
-A centralized, verified database of canonical scaling values. From converting 1:48 "Quarter Scale" armor to 28mm "True Scale" infantry, the library provides high-authority citations for the most popular systems in the hobby.
+- HTML, Tailwind CSS, Vanilla JavaScript
+- Fully client-side (no backend)
 
-### 2. My Library (Client-Side Storage)
-A privacy-first personal vault. Save your most frequent conversions locally in your browser. No accounts, no tracking, no cloud—just instant access to your specific project needs.
+### Feedback & Contributions
 
-### 3. Creator Verification Badge
-An embeddable trust signal for 3D sculptors and storefronts. The STLAccess Badge signals to customers that a creator's models have been mathematically verified against widely-used gaming scales, reducing customer support burden and increasing buyer confidence.
+Found a bug? Have a suggestion for a new scale or feature?  
+Feel free to open an issue or pull request.
 
----
-
-## Project Philosophy
-
-In an era where "32mm" can mean anything from eye-level to base-to-banner-tip, STLAccess serves as a reliable source of truth. I believe that scale should not be a matter of guesswork or visual estimation, but of mathematical precision.
-
-## Access
-
-STLAccess is an independent project accessible exclusively via:
-**[https://stlaccess.com](https://stlaccess.com)**
+I'm always happy to improve the tool for the community.
 
 ---
-*&copy; 2026 STLAccess Conversion Systems | Precision is my goal.*
+
+**Made by [kitsorix](https://github.com/kitsorix-official)** — because perfectly scaled miniatures should not be this hard.
