@@ -29,6 +29,60 @@
         .glow-box { box-shadow: 0 0 60px -15px rgba(255, 107, 53, 0.15); }
         .math-card { background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0) 100%); }
     </style>
+    <!-- Google Consent Mode v2 Setup (GDPR Compliance) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_ads_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJJXN9Z4PB"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-YJJXN9Z4PB');
+    </script>
+<!-- ✅ Schema.org JSON-LD for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemPage",
+  "name": "32mm to 28mm STL Scale Conversion Guide",
+  "description": "Convert 32mm true-scale miniatures to 28mm heroic scale for Warhammer and D&D. Verified slicer percentage: 87.5%.",
+  "url": "https://stlaccess.com/reference/32mm-to-28mm",
+  "isPartOf": {"@type": "WebSite", "name": "STLAccess", "url": "https://stlaccess.com"},
+  "mainEntity": {
+    "@type": "HowTo",
+    "name": "How to Scale 32mm STL to 28mm",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "text": "Open your STL file in your slicer (Cura, PrusaSlicer, etc.)"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Select uniform scaling and enter 87.5% for Eye Level measurement"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Add +1.5% compensation if using standard resin (use 89.0% total)"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Slice and print; verify base size compatibility with your game system"
+      }
+    ],
+    "tool": {"@type": "SoftwareApplication", "name": "STLAccess Scale Converter"}
+  }
+}
+</script>
 </head>
 <body class="min-h-screen flex flex-col">
 

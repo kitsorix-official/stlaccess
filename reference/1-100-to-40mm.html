@@ -14,6 +14,60 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/css/global.css">
+    <!-- Google Consent Mode v2 Setup (GDPR Compliance) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_ads_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YJJXN9Z4PB"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-YJJXN9Z4PB');
+    </script>
+<!-- ✅ Schema.org JSON-LD for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemPage",
+  "name": "1:100 to 40mm STL Scale Conversion Guide",
+  "description": "Convert 1:100 true-scale miniatures to 40mm heroic scale for Warhammer and D&D. Verified slicer percentage: 228.6%.",
+  "url": "https://stlaccess.com/reference/1-100-to-40mm",
+  "isPartOf": {"@type": "WebSite", "name": "STLAccess", "url": "https://stlaccess.com"},
+  "mainEntity": {
+    "@type": "HowTo",
+    "name": "How to Scale 1:100 STL to 40mm",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "text": "Open your STL file in your slicer (Cura, PrusaSlicer, etc.)"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Select uniform scaling and enter 228.6% for Eye Level measurement"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Add +1.5% compensation if using standard resin (use 230.1% total)"
+      },
+      {
+        "@type": "HowToStep",
+        "text": "Slice and print; verify base size compatibility with your game system"
+      }
+    ],
+    "tool": {"@type": "SoftwareApplication", "name": "STLAccess Scale Converter"}
+  }
+}
+</script>
 </head>
 <body class="min-h-screen flex flex-col">
     <header class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50">
