@@ -35,10 +35,20 @@
         "cssSelector": [
           "title",
           ".reference-group h2",
-          "#faq-section .group summary"
+          "#faq-section .group summary",
+          "#pillar-heading",
+          "#point-1 h3",
+          "#point-2 h3",
+          "#point-3 h3",
+          "#point-4 h3",
+          "#point-5 h3"
         ]
       },
-      "url": "https://stlaccess.com/reference"
+      "url": "https://stlaccess.com/reference",
+      "mainEntity": {
+        "@type": "Article",
+        "@id": "https://stlaccess.com/reference/#pillar-article"
+      }
     }
     </script>
     <!-- ✅ ADD FAQPage schema for this section -->
@@ -122,6 +132,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <link rel="stylesheet" href="/css/global.css">
+
+    <!-- Article Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Size Matters (But Scale is a Lie): 5 Things You Didn't Know About Your Miniatures",
+      "description": "Five technical truths about miniature scaling that every hobbyist, tournament player, and 3D printing enthusiast needs to understand before building their next army.",
+      "author": {
+        "@type": "Organization",
+        "name": "STLAccess"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "STLAccess",
+        "url": "https://stlaccess.com"
+      },
+      "datePublished": "2026-05-07",
+      "dateModified": "2026-05-07",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://stlaccess.com/reference/"
+      },
+      "about": [
+        {"@type": "Thing", "name": "Tabletop Miniature Scaling"},
+        {"@type": "Thing", "name": "3D Printing Scale Conversion"},
+        {"@type": "Game", "name": "Warhammer 40,000"},
+        {"@type": "Game", "name": "Dungeons & Dragons"},
+        {"@type": "Game", "name": "Bolt Action"}
+      ]
+    }
+    </script>
+
 </head>
 <body class="min-h-screen flex flex-col">
 
@@ -792,6 +835,247 @@
                 </div>
             </div>
         </section>
+
+
+        <!-- Authority Pillar Content: Size Matters (But Scale is a Lie) -->
+        <section id="pillar-article" class="px-6 pb-24 max-w-6xl mx-auto" aria-labelledby="pillar-heading">
+            <article class="reference-group bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden glow-box" itemscope itemtype="https://schema.org/Article">
+                <meta itemprop="headline" content="Size Matters (But Scale is a Lie): 5 Things You Didn't Know About Your Miniatures">
+                <meta itemprop="author" content="STLAccess">
+                <meta itemprop="datePublished" content="2026-05-07">
+                <meta itemprop="publisher" content="STLAccess">
+
+                <!-- Article Header -->
+                <div class="p-8 md:p-12 border-b border-white/5 bg-white/[0.02]">
+                    <span class="inline-block text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-4">Authority Guide</span>
+                    <h2 id="pillar-heading" class="text-3xl md:text-5xl font-bold font-heading tracking-tight mb-6" itemprop="name">
+                        Size Matters <span class="text-[#ff6b35]">(But Scale is a Lie)</span>
+                    </h2>
+                    <p class="text-lg text-slate-400 max-w-3xl leading-relaxed" itemprop="description">
+                        Five technical truths about miniature scaling that every hobbyist, tournament player, and 3D printing enthusiast needs to understand before building their next army.
+                    </p>
+
+                    <!-- Table of Contents -->
+                    <nav aria-label="Article Contents" class="mt-10 p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/5">
+                        <h3 class="text-xs font-black uppercase tracking-[0.2em] text-slate-500 mb-4">In This Guide</h3>
+                        <ol class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+                            <li>
+                                <a href="#point-1" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
+                                    <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">1</span>
+                                    <span>The 28mm Mystery: Reference Points and the 1:60 Trap</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#point-2" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
+                                    <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">2</span>
+                                    <span>The Bolt Action Secret: Why 1:48 Tanks Look Better</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#point-3" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
+                                    <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">3</span>
+                                    <span>The "Stay Puft" Effect: Growing Hands and Heads</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#point-4" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
+                                    <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">4</span>
+                                    <span>The Silent Scale-Killer: The 5mm Base Factor</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#point-5" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
+                                    <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">5</span>
+                                    <span>The 3D Printing Math: Precision Sizing</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#conclusion" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
+                                    <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">6</span>
+                                    <span>Conclusion: The Future of the Tabletop</span>
+                                </a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+
+                <!-- Article Body -->
+                <div class="p-8 md:p-12 text-slate-300 leading-relaxed max-w-4xl" itemprop="articleBody">
+
+                    <p class="text-lg mb-10 text-slate-400">
+                        Every veteran hobbyist knows the "box-art betrayal." You buy a box of "28mm" infantry to reinforce your platoon, but once they're on the bench, they look like middle-schoolers standing next to your existing squad. One manufacturer's "28mm" is another's "32mm," and the industry-standard ruler seems to be made of rubber.
+                    </p>
+                    <p class="mb-10">
+                        This isn't just poor quality control; it's the result of <strong class="text-white">"Scale Creep,"</strong> a decades-long evolution where miniatures have slowly put on volumetric bulk. As a technical consultant in this hobby, I've seen players tear their hair out trying to maintain a cohesive tabletop. The truth is, "scale" in wargaming is less a mathematical constant and more of a stylistic suggestion. To build a truly uniform army, you have to look past the label and understand the mechanics of the lie.
+                    </p>
+
+                    <!-- Point 1 -->
+                    <div id="point-1" class="mb-14 scroll-mt-28">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">1</span>
+                            <h3 class="text-2xl font-bold font-heading text-white">The 28mm Mystery: Reference Points and the 1:60 Trap</h3>
+                        </div>
+                        <div class="pl-14">
+                            <p class="mb-4">
+                                The fundamental discrepancy in height starts with where the manufacturer places their ruler. In the history of the hobby, the "Standard-gauge" for a 175cm-180cm human was often mapped to a <strong class="text-white">1:60 ratio</strong>—the classic "1 inch = 5 feet" rule used in countless battlemaps. Mathematically, a 1:60 human should be 30mm tall. So why are they called 28mm?
+                            </p>
+                            <p class="mb-6">
+                                The answer lies in the <strong class="text-white">"chosen reference point."</strong> As the expert source at Alkony notes, manufacturers are rarely transparent about where they stop measuring.
+                            </p>
+                            <blockquote class="border-l-4 border-[#ff6b35] pl-6 py-2 my-6 bg-[#ff6b35]/5 rounded-r-xl">
+                                <p class="text-slate-300 italic mb-2">"A 28mm miniature means that the size of the miniature will be 28mm from the feet of the mini to the chosen reference point."</p>
+                                <cite class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] not-italic">— Alkony</cite>
+                            </blockquote>
+                            <p class="mb-4">
+                                In most cases, that reference point is the <strong class="text-white">eye level</strong>, not the top of the head. This is a practical concession; it's easier for a sculptor to find the eyes than the crown of a head obscured by a helmet or a mitre cap. However, by the time you add the forehead and headgear, a "28mm" model actually stands 30mm to 32mm tall.
+                            </p>
+                            <p>
+                                This creates a <strong class="text-white">"marketing vs. reality"</strong> conflict: you are often buying 32mm models that have simply been grandfathered into a 28mm label for the sake of branding.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Point 2 -->
+                    <div id="point-2" class="mb-14 scroll-mt-28">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">2</span>
+                            <h3 class="text-2xl font-bold font-heading text-white">The Bolt Action Secret: Why 1:48 Tanks Often Look Better Than 1:56</h3>
+                        </div>
+                        <div class="pl-14">
+                            <p class="mb-4">
+                                In Bolt Action, the "official" vehicle scale is 1:56. On paper, this is the correct ratio for 28mm. However, walk into any tournament and you'll see <strong class="text-white">Tamiya 1:48 scale kits</strong> dominating the motor pool. This isn't an accident.
+                            </p>
+                            <p class="mb-6">
+                                The issue is Warlord Games' internal inconsistency. Their metal miniatures are generally traditional 28mm (closer to a 1:52 or 1:56 ratio), but their newer plastic sprues are actually <strong class="text-white">32mm</strong>. Because these plastics are "beefier" and taller, a true 1:56 tank looks like a toy next to them. The "volumetric bulk" of the infantry makes the vehicle appear as though the crew couldn't possibly fit inside.
+                            </p>
+                            <blockquote class="border-l-4 border-[#ff6b35] pl-6 py-2 my-6 bg-[#ff6b35]/5 rounded-r-xl">
+                                <p class="text-slate-300 italic mb-2">"I believe they fit with the oversized nature of Warlord's infantry better than the actual Warlord tanks themselves."</p>
+                                <cite class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] not-italic">— Reddit (r/boltaction)</cite>
+                            </blockquote>
+                            <p class="mb-4">
+                                Beyond the visual immersion, there's a cold, hard fiscal reality: 1:48 Tamiya kits are widely available at hobby shops and often cost <strong class="text-white">half the price</strong> of "official" wargaming-branded 1:56 kits.
+                            </p>
+                            <p>
+                                For the technical hobbyist, 1:48 provides a rare win-win: better visual proportions and a significantly lower cost of entry. Use our <a href="/?source=1:48&target=32mm&logic=eye" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">1:48 to 32mm conversion</a> in the Scale Engine to verify your own builds.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Point 3 -->
+                    <div id="point-3" class="mb-14 scroll-mt-28">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">3</span>
+                            <h3 class="text-2xl font-bold font-heading text-white">The "Stay Puft" Effect: Why Hands and Heads are Growing</h3>
+                        </div>
+                        <div class="pl-14">
+                            <p class="mb-6">
+                                <strong class="text-white">"Heroic Scale"</strong> is often dismissed as a lack of anatomical skill, but it is actually a functional design choice. From three feet away—the standard "tabletop distance"—a realistically proportioned 28mm head is roughly the size of a peppercorn.
+                            </p>
+                            <blockquote class="border-l-4 border-[#ff6b35] pl-6 py-2 my-6 bg-[#ff6b35]/5 rounded-r-xl">
+                                <p class="text-slate-300 italic mb-2">"From a Tabletop distance, a realistically scaled figure will have unintelligible hands and heads, and if they are scaled up to be readable, the feet look tiny."</p>
+                                <cite class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] not-italic">— Zandoria Studios</cite>
+                            </blockquote>
+                            <p class="mb-4">
+                                To make models "readable" and easier to paint, sculptors exaggerate the heads, hands, and weapons. However, this has led to a divisive phenomenon known in the Warlord Games forums as the <strong class="text-white">"Stay Puft Marshmallow Man" effect</strong>.
+                            </p>
+                            <p class="mb-4">
+                                You can see this clearly in the brand-new plastic German Veteran and US Airborne kits. They are so "puffy-beefy" that they are functionally incompatible with older "True Scale" kits.
+                            </p>
+                            <p>
+                                This makes <strong class="text-white">"kit-bashing"</strong>—mixing parts from different sets—an exercise in frustration, as a new-style arm on an old-style body looks like a prosthetic from a different species. Before you commit to a conversion, cross-reference the source scales in our <a href="#detailedTable" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Dual Methodology table</a> above.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Point 4 -->
+                    <div id="point-4" class="mb-14 scroll-mt-28">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">4</span>
+                            <h3 class="text-2xl font-bold font-heading text-white">The Silent Scale-Killer: The 5mm Base Factor</h3>
+                        </div>
+                        <div class="pl-14">
+                            <p class="mb-4">
+                                The most overlooked factor in tabletop scale isn't the model; it's the <strong class="text-white">plastic disc it stands on</strong>. Infantry are almost always based on 2mm to 5mm thick plastic, while vehicles—especially in historical games—are frequently left unbased.
+                            </p>
+                            <p class="mb-6">
+                                This creates a <strong class="text-white">3-5mm "false height"</strong> disparity. When you place a 32mm soldier on a 4mm base, his eye level is now 36mm above the table. If he stands next to a 1:56 scale Tiger tank resting directly on the mat, he will tower over the engine deck.
+                            </p>
+                            <p class="mb-4">
+                                This gap in height is the primary reason why "official" scales feel wrong; the base effectively "raises" the infantry's scale while the vehicle remains grounded.
+                            </p>
+                            <p>
+                                This is where 3D printing has become the <strong class="text-white">"Great Equalizer."</strong> Technical hobbyists no longer have to accept the manufacturer's fixed height; they can use digital scaling to compensate for base thickness and ensure that the infantry and armor share the same visual horizon. Our <a href="/" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Scale Engine</a> accounts for both Eye Level and Top of Head methodologies to help you dial this in precisely.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Point 5 -->
+                    <div id="point-5" class="mb-14 scroll-mt-28">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">5</span>
+                            <h3 class="text-2xl font-bold font-heading text-white">The 3D Printing Math: Precision Sizing for the Workbench</h3>
+                        </div>
+                        <div class="pl-14">
+                            <p class="mb-6">
+                                Digital manufacturing has shifted the power from the factory to the player. By using a universal <strong class="text-white">175cm human baseline</strong>, we can finally bridge the gap between "28mm" (D&D/Historical) and "32mm" (Warhammer/Modern) systems. If you are mixing STL files from different designers, you need to account for both the measurement methodology and material physics.
+                            </p>
+
+                            <h4 class="text-sm font-black uppercase tracking-widest text-white mb-4">The Technical Sizing Takeaway</h4>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
+                                    <i class="fa-solid fa-calculator text-[#ff6b35] mt-0.5"></i>
+                                    <div>
+                                        <p class="text-white font-semibold text-sm mb-1">28mm (True Scale) → 32mm (Heroic)</p>
+                                        <p class="text-slate-400 text-sm">Set your slicer to <span class="text-white font-mono">114.3%</span> if measuring to Eye Level, or <span class="text-white font-mono">116.1%</span> if measuring to the Top of the Head.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
+                                    <i class="fa-solid fa-flask text-[#ff6b35] mt-0.5"></i>
+                                    <div>
+                                        <p class="text-white font-semibold text-sm mb-1">The Casting Shrinkage Buffer</p>
+                                        <p class="text-slate-400 text-sm">All resins experience shrinkage during curing (typically 1–2%). For critical accuracy, add a <span class="text-white font-mono">+1.5%</span> buffer to your final calculation.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
+                                    <i class="fa-solid fa-bullseye text-[#ff6b35] mt-0.5"></i>
+                                    <div>
+                                        <p class="text-white font-semibold text-sm mb-1">The Golden Ratio</p>
+                                        <p class="text-slate-400 text-sm">To match a realistic 28mm soldier to a modern "Heroic" system with resin shrinkage accounted for, the optimal slicer setting is <span class="text-white font-mono">115.8%</span>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                These values are pre-calculated and verified in our <a href="#detailedTable" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Dual Methodology reference table</a> above, complete with source verification tags.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Conclusion -->
+                    <div id="conclusion" class="scroll-mt-28">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-flag-checkered"></i>
+                            </span>
+                            <h3 class="text-2xl font-bold font-heading text-white">Conclusion: The Future of the Tabletop</h3>
+                        </div>
+                        <div class="pl-14">
+                            <p class="mb-4">
+                                We are currently witnessing a shift toward larger, more detailed models. While "True Scale" realism offers the satisfaction of historical accuracy—akin to "Micro Armor" or "N Gauge" precision—the "Heroic" style's ease of painting and visual "readability" is winning the market.
+                            </p>
+                            <p class="mb-6">
+                                However, as 3D printing matures, the concept of a "locked" scale is dying. We are entering an era where the <strong class="text-white">player, not the company, decides the standard</strong>.
+                            </p>
+                            <div class="p-6 rounded-2xl bg-gradient-to-r from-[#ff6b35]/10 to-transparent border border-[#ff6b35]/20">
+                                <p class="text-white font-semibold text-lg mb-2">If every manufacturer uses a different ruler, is it time for hobbyists to stop chasing "official" scales and start printing their own standards?</p>
+                                <p class="text-slate-400 text-sm">Use the <a href="/" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">STLAccess Scale Engine</a> to normalize any STL to your personal baseline.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+        </section>
+
 
         <section id="reference-faq" aria-labelledby="ref-faq-heading" class="px-6 pb-24 max-w-6xl mx-auto">
             <div class="reference-group bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden glow-box">
