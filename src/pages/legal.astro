@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const schema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://stlaccess.com/legal#webpage",
+      "url": "https://stlaccess.com/legal",
+      "name": "Global Compliance Statement",
+      "isPartOf": { "@id": "https://stlaccess.com/#organization" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Legal", "item": "https://stlaccess.com/legal" }
+        ]
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "Compliance, Privacy, and Intellectual Property",
+      "author": { "@id": "https://stlaccess.com/#person" },
+      "publisher": { "@id": "https://stlaccess.com/#organization" },
+      "datePublished": "2026-05-01",
+      "dateModified": "2026-05-07"
+    }
+  ]
+}`;
+---
+
+<Layout 
+	title="Global Compliance & Legal | STLACCESS"
+	description="Official legal documentation for STLACCESS: GDPR compliance, accessibility standards (WCAG 2.1), and intellectual property disclaimers."
+	schema={schema}
+>
+    <div class="max-w-4xl mx-auto px-6 py-20 w-full">
+        <!-- Breadcrumbs -->
+        <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+            <a href="/" class="hover:text-[#ff6b35]">Home</a> 
+            <span class="mx-2 text-slate-800">/</span> 
+            <span class="text-slate-400">Global Compliance</span>
+        </nav>
+
+        <!-- Header -->
+        <div class="mb-16">
+            <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">Legal <span class="text-[#ff6b35]">Compliance</span></h1>
+            <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">Ensuring STLACCESS meets global standards for accessibility, privacy, and technical transparency.</p>
+        </div>
+
+        <section class="space-y-16">
+            
+            <div class="prose prose-invert max-w-none space-y-12 text-slate-300">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 not-prose">
+                    <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                        <h2 class="text-xl font-bold text-white font-heading mb-4">Accessibility (A11Y)</h2>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                            I aim to meet WCAG 2.1 Level AA standards. My interface is designed to be usable by everyone, including those using screen readers and keyboard-only navigation.
+                        </p>
+                        <ul class="text-xs space-y-2 text-slate-500">
+                            <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> High contrast text ratios</li>
+                            <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> ARIA labels for dynamic content</li>
+                            <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> Semantic HTML5 structure</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                        <h2 class="text-xl font-bold text-white font-heading mb-4">Data Protection</h2>
+                        <p class="text-sm text-slate-400 leading-relaxed mb-6">
+                            STLACCESS is fully compliant with global privacy regulations, including GDPR (EU), CCPA (USA), and UK-GDPR. The site operates with a strict zero-tracking policy, utilizing no analytics or cookies.
+                        </p>
+                        <ul class="text-xs space-y-2 text-slate-500">
+                            <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> 100% Tracking-Free</li>
+                            <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> Local-first data architecture</li>
+                            <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> Transparent methodology</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">Global Validity Statement</h2>
+                    <p>
+                        STLACCESS is designed to be legally valid for worldwide use. By minimizing data collection and using clear and robust disclaimers, I ensure that users from any jurisdiction can use my engine with confidence.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">Technical Stack</h2>
+                    <p>
+                        To ensure security and performance, STLACCESS utilizes the following technologies:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-4">
+                        <li><strong>Vanilla JavaScript:</strong> No heavy frameworks to ensure maximum browser compatibility.</li>
+                        <li><strong>Tailwind CSS:</strong> For responsive and accessible layout design.</li>
+                        <li><strong>Font Awesome:</strong> For high-clarity iconography.</li>
+                        <li><strong>Cloudflare:</strong> For secure delivery and global availability.</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">Intellectual Property & Fair Use</h2>
+                    <p>
+                        <strong>STLACCESS</strong> is an independent mathematical tool. It is not affiliated with, endorsed by, or sponsored by Games Workshop Limited, Disney, Wizards of the Coast, or any other miniature manufacturer. 
+                    </p>
+                    <p class="text-sm text-slate-400">
+                        All brand names, trademarks, and registered trademarks (e.g., Warhammer, Star Wars Legion, Dungeons & Dragons) are the property of their respective owners. Their use on this site is for <em>referential purposes only</em> to assist hobbyists in scale conversion and does not imply any ownership or official connection.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">Accuracy Disclaimer</h2>
+                    <p>
+                        While my engine uses high-precision formulas based on the 175cm human baseline, results should be used as a guide. Factors such as resin shrinkage (typically 0.5% - 2%), slicer tolerances, and individual sculptor interpretations may affect the final physical result.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">Reporting Issues</h2>
+                    <p>
+                        If you believe any part of STLACCESS does not meet a specific legal or accessibility standard in your region, please open an issue on my GitHub repository. I am committed to continuous improvement.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+</Layout>

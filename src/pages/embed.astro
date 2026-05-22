@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const schema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://stlaccess.com/embed#webpage",
+      "url": "https://stlaccess.com/embed",
+      "name": "Creator Badge | Official Scaling Verification",
+      "description": "Embed the STLACCESS trust badge on your storefront. Let your customers know your models follow common scaling conventions for 28mm and 32mm systems.",
+      "isPartOf": { "@id": "https://stlaccess.com/#organization" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Creator Badge", "item": "https://stlaccess.com/embed" }
+        ]
+      }
+    }
+  ]
+}`;
+---
+
+<Layout 
+	title="Creator Badge | Official Scaling Verification | STLACCESS"
+	description="Embed the STLACCESS trust badge on your storefront. Let your customers know your models follow common scaling conventions for 28mm and 32mm systems."
+	schema={schema}
+>
+    <!-- Breadcrumbs -->
+    <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+        <a href="/" class="hover:text-[#ff6b35]">Home</a> 
+        <span class="mx-2 text-slate-800">/</span> 
+        <span class="text-slate-400">Creator Badge</span>
+    </nav>
+
+    <!-- Header -->
+    <section class="pb-16 px-6 max-w-6xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
+            Creator <span class="text-[#ff6b35]">Badge</span>
+        </h1>
+        <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
+            Add the official STLACCESS verification to your store descriptions. Give your customers the confidence that your models are tested against widely-used gaming scales.
+        </p>
+    </section>
+
+    <!-- Generator Section -->
+    <section class="px-6 pb-24 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            
+            <!-- Controls -->
+            <div class="space-y-8 bg-slate-900/20 p-8 md:p-12 rounded-[2.5rem] border border-white/5 glow-box">
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Badge Label</label>
+                    <input type="text" id="badgeLabel" oninput="updateBadge()" value="STLACCESS Verified" class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 text-white focus-ring transition-all outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Theme</label>
+                        <select id="badgeTheme" onchange="updateBadge()" class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 text-white focus-ring transition-all outline-none appearance-none">
+                            <option value="dark">Dark Slate</option>
+                            <option value="brand">Brand Orange</option>
+                            <option value="glass">Glass Morph</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Icon</label>
+                        <select id="badgeIcon" onchange="updateBadge()" class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 text-white focus-ring transition-all outline-none appearance-none">
+                            <option value="check">Checkmark</option>
+                            <option value="shield">Shield</option>
+                            <option value="cube">3D Cube</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Embed Code</label>
+                    <div class="relative group">
+                        <textarea id="embedCode" readonly class="w-full h-32 bg-black border border-white/10 rounded-xl p-6 text-xs font-mono text-slate-400 focus-ring resize-none"></textarea>
+                        <button onclick="copyEmbed()" class="absolute top-4 right-4 bg-white/5 hover:bg-white/10 border border-white/10 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg transition-all" id="copyBtn">
+                            Copy Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Display -->
+            <div class="flex flex-col gap-8">
+                <div class="badge-preview-container aspect-video border border-dashed border-white/10 rounded-[2.5rem] flex items-center justify-center p-12 relative overflow-hidden">
+                    <div id="previewBadge" class="flex items-center gap-4 px-8 py-5 rounded-2xl border transition-all duration-500 cursor-default">
+                        <div id="iconContainer" class="w-8 h-8 flex items-center justify-center rounded-lg">
+                            <i id="badgeIconClass" class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div class="flex flex-col leading-tight">
+                             <span id="badgeLabelText" class="font-bold text-sm font-heading tracking-tight">STLACCESS Verified</span>
+                            <span class="text-[9px] uppercase font-black tracking-widest text-slate-500">Cross-Scale Tested</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 left-6 text-[9px] font-bold uppercase tracking-widest text-slate-700">Live Preview Area</div>
+                </div>
+
+                <div class="bg-white/[0.02] border border-white/5 p-8 rounded-[2.5rem]">
+                    <h3 class="text-sm font-bold mb-4 flex items-center gap-3">
+                        <i class="fa-solid fa-circle-info text-[#ff6b35]"></i>
+                        Installation Tip
+                    </h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Paste the generated HTML into your "Product Description" or "About the Artist" section. The badge is fully responsive and automatically links to the STLACCESS Conversion Library so your customers can verify the math themselves.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Page Specific Scripts -->
+    <script is:inline src="/js/creator-embed.js"></script>
+</Layout>

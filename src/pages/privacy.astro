@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const schema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "PrivacyPolicyPage",
+      "@id": "https://stlaccess.com/privacy#webpage",
+      "url": "https://stlaccess.com/privacy",
+      "name": "Privacy Policy | STLACCESS",
+      "description": "Transparent privacy policy for STLACCESS. 100% cookie-free and tracking-free. We only use local storage.",
+      "isPartOf": { "@id": "https://stlaccess.com/#organization" },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Privacy", "item": "https://stlaccess.com/privacy" }
+        ]
+      }
+    }
+  ]
+}`;
+---
+
+<Layout 
+	title="Privacy Policy | STLACCESS"
+	description="Simple, transparent privacy policy for STLACCESS users. No accounts, no tracking, just precision."
+	schema={schema}
+>
+    <div class="max-w-4xl mx-auto px-6 py-20 w-full">
+        <!-- Breadcrumbs -->
+        <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+            <a href="/" class="hover:text-[#ff6b35]">Home</a> 
+            <span class="mx-2 text-slate-800">/</span> 
+            <span class="text-slate-400">Privacy Policy</span>
+        </nav>
+
+        <!-- Header -->
+        <div class="mb-16">
+            <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">Privacy <span class="text-[#ff6b35]">Policy</span></h1>
+            <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">I believe your scale data should stay exactly where it belongs: with you. Here is how I handle your information.</p>
+        </div>
+
+        <section class="space-y-16">
+            
+            <!-- Key Points Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                    <div class="w-10 h-10 bg-[#ff6b35]/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-user-slash text-[#ff6b35]"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">No Accounts</h3>
+                    <p class="text-sm text-slate-400">I don't ask for your name, email, or any personal details.</p>
+                </div>
+                <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                    <div class="w-10 h-10 bg-[#ff6b35]/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-hard-drive text-[#ff6b35]"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">Local Storage</h3>
+                    <p class="text-sm text-slate-400">Your "My Library" data is stored in your own browser's memory.</p>
+                </div>
+                <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+                    <div class="w-10 h-10 bg-[#ff6b35]/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-eye-slash text-[#ff6b35]"></i>
+                    </div>
+                    <h3 class="font-bold text-white mb-2">No Tracking</h3>
+                    <p class="text-sm text-slate-400">STLACCESS is completely free of analytics, cookies, and trackers.</p>
+                </div>
+            </div>
+
+            <!-- Detailed Sections -->
+            <div class="prose prose-invert max-w-none space-y-12 text-slate-300">
+                
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">1. Data We Collect</h2>
+                    <p>
+                        STLACCESS does not collect any personally identifiable information (PII). When you use our calculator, the mathematical operations happen locally on your device.
+                    </p>
+                    <p>
+                        <strong>Usage Data:</strong> We do not track or collect usage data. Your interactions on this site are entirely private.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">2. Cookies and Storage</h2>
+                    <p>
+                        STLACCESS is 100% cookie-free. The only storage technology I use is:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-4">
+                        <li><strong>LocalStorage:</strong> This is used exclusively to save your conversions in the "My Library" feature. This data never leaves your computer and is completely inaccessible to me or anyone else.</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">3. Your Rights</h2>
+                    <p>
+                        Since I don't store your data on my servers, you have total control:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-4">
+                        <li><strong>Access & Portability:</strong> You can see all your saved data in the "My Library" tab.</li>
+                        <li><strong>Deletion:</strong> You can delete your entire library at any time by clicking "Clear All" in the Library tab or by clearing your browser's site data.</li>
+                        <li><strong>Zero Footprint:</strong> Since there is no tracking, there is nothing for you to opt-out of. You're already secure.</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">4. Third-Party Services</h2>
+                    <p>
+                        I use the following third-party services:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-4">
+                        <li><strong>Cloudflare:</strong> For secure hosting, caching, and DDoS protection.</li>
+                    </ul>
+                </div>
+
+                <div class="space-y-6">
+                    <h2 class="text-2xl font-bold text-white font-heading">5. Contact & Legal</h2>
+                    <p>
+                        If you have questions about this policy or my privacy practices, please contact me via my GitHub repository. For information on service usage, see my <a href="/terms" class="text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors">Terms of Service</a>.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</Layout>

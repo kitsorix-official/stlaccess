@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+	title="My Library | STLACCESS"
+	description="Manage your saved scale conversions and prepare for the full STL file manager."
+>
+    <div class="max-w-6xl mx-auto px-6 py-12 w-full">
+        
+        <!-- Breadcrumbs -->
+        <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+            <a href="/" class="hover:text-[#ff6b35]">Home</a> 
+            <span class="mx-2 text-slate-800">/</span> 
+            <span class="text-slate-400">Personal Library</span>
+        </nav>
+
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+            <div>
+                <h1 class="text-4xl md:text-5xl font-bold font-heading mb-2">Personal <span class="text-[#ff6b35]">Library</span></h1>
+                <p class="text-slate-400">Saved scale conversions and upcoming file manager.</p>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="if(window.clearLibrary) clearLibrary()" class="px-4 py-2 border border-red-500/30 text-red-400 rounded-xl text-sm font-semibold hover:bg-red-500/10 transition-colors">
+                    <i class="fa-solid fa-trash mr-2"></i>Clear All
+                </button>
+                <a href="/" class="px-6 py-2 bg-[#ff6b35] text-black rounded-xl text-sm font-bold hover:opacity-90 transition-opacity">
+                    <i class="fa-solid fa-plus mr-2"></i>New Conversion
+                </a>
+            </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6">
+                <div class="text-3xl font-bold text-[#ff6b35] font-heading" id="totalScales">0</div>
+                <div class="text-sm text-slate-500 mt-1">Saved Conversions</div>
+            </div>
+            <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6">
+                <div class="text-3xl font-bold text-white font-heading">Coming Soon</div>
+                <div class="text-sm text-slate-500 mt-1">STL File Manager</div>
+            </div>
+            <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6">
+                <div class="text-3xl font-bold text-white font-heading">100%</div>
+                <div class="text-sm text-slate-500 mt-1">Client-Side Storage</div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state rounded-[2.5rem] border border-white/5 p-12 text-center hidden">
+            <div class="w-20 h-20 bg-slate-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-folder-open text-3xl text-slate-600"></i>
+            </div>
+            <h3 class="text-2xl font-bold font-heading mb-3">No saved conversions yet</h3>
+            <p class="text-slate-500 max-w-md mx-auto mb-8">Start converting scales and save them here for quick access. Soon you'll be able to upload and manage your STL files too.</p>
+            <a href="/" class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform">
+                <i class="fa-solid fa-calculator"></i>
+                Open Scale Engine
+            </a>
+        </div>
+
+        <!-- Library List -->
+        <div id="libraryList" class="space-y-4">
+            <!-- Items injected here -->
+        </div>
+
+        <!-- Coming Soon Banner -->
+        <div class="mt-16 bg-gradient-to-r from-[#ff6b35]/10 to-transparent border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-[#ff6b35]/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+            <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-[#ff6b35] mb-2 block">Coming Q4 2025</span>
+                    <h2 class="text-3xl font-bold font-heading mb-2">STL File Manager</h2>
+                    <p class="text-slate-400 max-w-xl">Upload, organize, and preview your STL files directly in the browser. Apply saved scales instantly and track your printing projects.</p>
+                </div>
+                <button class="px-6 py-3 bg-slate-800 text-white rounded-xl font-semibold opacity-50 cursor-not-allowed">
+                    Join Waitlist
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Page Specific Scripts -->
+    <script is:inline src="/js/load-library.js"></script>
+</Layout>
