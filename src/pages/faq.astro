@@ -1,0 +1,448 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const schema = `{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What percentage do I use to scale 28mm to 32mm miniatures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To transition from 28mm (ocular line) to 32mm (cranial height), apply a uniform scaling factor of 114.3% in your slicer. To downscale from 32mm to 28mm, apply exactly 87.5%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you convert a 1:35 scale historical model to 1:56 for tabletop wargaming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To downscale a high-detail 1:35 scale dedicated model kit into a 1:56 scale wargaming asset (e.g., Bolt Action), apply a uniform reduction factor of exactly 62.5% in your slicer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does resin shrinkage affect 3D printed miniature scale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, typical photopolymer resins contract by 0.5% to 2% during UV curing. STLAccess integrates material contraction values directly into the scaling calculation to eliminate manual slicing adjustments."
+      }
+    }
+  ]
+}`;
+---
+
+<Layout 
+    title="The Global Tabletop & Historical Scaling FAQ | STLAccess"
+    description="Master conversion metrics and architectural solutions for 28mm, 32mm, 1:56, 1:48 and 1:35 scaling conflicts in tabletop 3D printing."
+    schema={schema}
+>
+    <div class="max-w-4xl mx-auto px-6 py-20 w-full">
+        <!-- Breadcrumbs -->
+        <nav class="max-w-6xl mx-auto pt-4 pb-12 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumbs">
+            <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a> 
+            <span class="mx-2 text-slate-800">/</span> 
+            <span class="text-slate-400">FAQ</span>
+        </nav>
+
+        <!-- Page Intro -->
+        <div class="mb-16 text-center">
+            <span class="text-xs font-black uppercase tracking-[0.3em] text-[#ff6b35] mb-4 block glow-text">Master Resource</span>
+            <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight text-white leading-tight">
+                The Global Tabletop & <br/>
+                <span class="text-[#ff6b35] glow-text">Historical Scaling</span> FAQ
+            </h1>
+            <p class="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                Standardizing measurement baselines is the primary strategic requirement for resolving the persistent "scale vs. size" conflict in tabletop fabrication. stlaccess.com establishes a baseline human height of 175cm (Total Height) and a corresponding 160cm equivalent at the ocular midline (Eye Level) to secure absolute dimensional integrity across manufacturers.
+            </p>
+        </div>
+
+        <!-- Dynamic Real-time Search Box -->
+        <div class="relative w-full max-w-xl mx-auto mb-16 glow-box">
+            <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                <i class="fa-solid fa-magnifying-glass text-slate-500 text-base"></i>
+            </div>
+            <input 
+                type="text" 
+                id="faqSearch" 
+                placeholder="Search conversions, scales, or technical questions..." 
+                class="w-full bg-[#0a0a0a] border border-white/5 rounded-2xl py-4.5 pl-13 pr-5 text-white placeholder-slate-600 focus:outline-none focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] transition-all text-sm font-medium focus-ring"
+                aria-label="Search FAQs"
+            />
+        </div>
+
+        <!-- Master Conversion Matrix -->
+        <section class="mb-20 bg-slate-900/10 border border-white/5 p-6 md:p-10 rounded-[2rem] glow-box" aria-labelledby="matrix-heading">
+            <div class="mb-6">
+                <h2 id="matrix-heading" class="text-2xl font-bold font-heading text-[#ff6b35] mb-2">
+                    Pre-Verified Master Conversion Matrix
+                </h2>
+                <p class="text-xs text-slate-500 font-mono tracking-wide">
+                    The community-agreed reference for the most frequent scaling conflicts identified by digital hobbyists.
+                </p>
+            </div>
+            
+            <div class="overflow-x-auto rounded-xl border border-white/5 bg-black/40">
+                <table class="w-full border-collapse text-left text-sm">
+                    <caption class="sr-only">Tested STL Scale Percentages & Historical Conversions</caption>
+                    <thead>
+                        <tr class="border-b border-white/5 font-heading text-xs font-bold uppercase tracking-wider text-slate-400 bg-slate-900/30">
+                            <th scope="col" class="py-4 px-6">Scaling Conflict Type</th>
+                            <th scope="col" class="py-4 px-6">From Scale</th>
+                            <th scope="col" class="py-4 px-6">To Scale</th>
+                            <th scope="col" class="py-4 px-6 text-[#ff6b35] text-right">STLAccess %</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-medium text-slate-300 divide-y divide-white/5">
+                        <tr class="table-row-hover transition-colors">
+                            <td class="py-4 px-6 font-bold text-white">Sci-Fi Modernization</td>
+                            <td class="py-4 px-6 font-mono text-xs">32mm (Primaris)</td>
+                            <td class="py-4 px-6 font-mono text-xs">28mm (Firstborn)</td>
+                            <td class="py-4 px-6 text-right font-black text-[#ff6b35] font-mono">87.5%</td>
+                        </tr>
+                        <tr class="table-row-hover transition-colors">
+                            <td class="py-4 px-6 font-bold text-white">Historical Bulk Match</td>
+                            <td class="py-4 px-6 font-mono text-xs">1:56 (Warlord)</td>
+                            <td class="py-4 px-6 font-mono text-xs">1:48 (Tamiya)</td>
+                            <td class="py-4 px-6 text-right font-black text-[#ff6b35] font-mono">114.3%</td>
+                        </tr>
+                        <tr class="table-row-hover transition-colors">
+                            <td class="py-4 px-6 font-bold text-white">True Scale Correction</td>
+                            <td class="py-4 px-6 font-mono text-xs">1:35 (Model Kit)</td>
+                            <td class="py-4 px-6 font-mono text-xs">1:56 (Tabletop)</td>
+                            <td class="py-4 px-6 text-right font-black text-[#ff6b35] font-mono">62.5%</td>
+                        </tr>
+                        <tr class="table-row-hover transition-colors">
+                            <td class="py-4 px-6 font-bold text-white">Fantasy Standardization</td>
+                            <td class="py-4 px-6 font-mono text-xs">32mm (AoS/Legion)</td>
+                            <td class="py-4 px-6 font-mono text-xs">28mm (D&D/Pathfinder)</td>
+                            <td class="py-4 px-6 text-right font-black text-[#ff6b35] font-mono">87.5%</td>
+                        </tr>
+                        <tr class="table-row-hover transition-colors">
+                            <td class="py-4 px-6 font-bold text-white">Historical Mini Match</td>
+                            <td class="py-4 px-6 font-mono text-xs">28mm (Heroic)</td>
+                            <td class="py-4 px-6 font-mono text-xs">1:48 (True Figure)</td>
+                            <td class="py-4 px-6 text-right font-black text-[#ff6b35] font-mono">85.7%</td>
+                        </tr>
+                        <tr class="table-row-hover transition-colors">
+                            <td class="py-4 px-6 font-bold text-white">Aviation Perspective</td>
+                            <td class="py-4 px-6 font-mono text-xs">1:48 (Aircraft)</td>
+                            <td class="py-4 px-6 font-mono text-xs">1:56 (Ground)</td>
+                            <td class="py-4 px-6 text-right font-black text-[#ff6b35] font-mono">85.7%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Accordion FAQ Deep Dive -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold font-heading text-white mb-8 border-b border-white/5 pb-4">
+                Deep-Dive Architectural Solutions
+            </h2>
+
+            <!-- Category 1 -->
+            <section class="category-block mb-12" aria-labelledby="cat-1-title">
+                <h3 id="cat-1-title" class="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-5 border-l-2 border-[#ff6b35] pl-3 font-heading">
+                    1. Foundational Methodology: The "Eye Level" vs. "Top of Head" Standards
+                </h3>
+                <div class="space-y-4">
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">In your opinion, what do you believe is the standard for measuring miniatures when determining its scale, feet to top of head or feet to eyes?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            The platform utilizes the <strong class="text-white font-semibold">160cm equivalent (ocular midline)</strong> as its primary anchor point. This resolves the discrepancy between "Total Height" and "Eye Level" by providing a digital benchmark that accounts for arbitrary headgear without distorting skeletal proportions.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Some manufacturers measure from the feet to the head, others from feet to eyes due to helmets/hair. How do we keep consistency?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            stlaccess.com enforces a data-driven standard: <strong class="text-white font-semibold">28mm is defined strictly as the eye-level measurement</strong> for a 1:56 scale human. This baseline remains fixed regardless of manufacturer-specific marketing labels or vertical hair and helmet details.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Can 28mm and 32mm scale labels refer to the exact same physical size?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            Yes. For a normal, unaugmented human, 28mm is often the eye-line height while 32mm is the height to the top of the head (without a helmet). The platform codifies this 28mm-to-32mm relationship as a fixed mathematical ratio based on a 175cm real-world subject.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">How do we handle the lack of an official standard for what miniature "size" means?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            By completely abandoning subjective "size" labels and adopting a <strong class="text-white font-semibold">175cm/160cm real-world mathematical baseline</strong>, the platform provides the objective dimensional truth required for cross-manufacturer integration. It bridges the gap by treating "mm" labels as variable inputs that convert automatically into fixed 1:56 or 1:48 ratios.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Scale can be deceiving in renders. How can I verify files without printing qualitative comparison shots?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            We replace qualitative comparison photos with quantitative data. Our integrated <strong class="text-white font-semibold">"Sir Scalesby" logic</strong> allows for immediate side-by-side verification of digital assets directly against the 175cm human baseline in-browser prior to fabrication.
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Category 2 -->
+            <section class="category-block mb-12" aria-labelledby="cat-2-title">
+                <h3 id="cat-2-title" class="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-5 border-l-2 border-[#ff6b35] pl-3 font-heading">
+                    2. Sci-Fi & Fantasy Disparities: Warhammer (28mm) vs. Primaris/Legion (32mm+)
+                </h3>
+                <div class="space-y-4">
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Are the new Primaris space marine models 32mm or 28mm?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            Primaris models are verified as <strong class="text-white font-semibold">32mm to the head (28mm to the eye)</strong>, matching the standard 1:56 scale ratio. Their increased height compared to older models is an expression of lore-accurate "True Scale" leg and torso proportions rather than a change in the 160cm ocular baseline.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Does "32mm" mean model height or base diameter size for modern wargaming?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            The platform clearly distinguishes between <strong class="text-white font-semibold">Base Diameter (32mm)</strong> and <strong class="text-white font-semibold">Model Height (28mm eye level)</strong>. Our conversion calculator prevents you from mistakenly applying base circumference dimensions to vertical scaling calculations.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Does "28/32mm tabletop wargaming scale miniatures" mean an STL fits both scales?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            No, that is an imprecise marketing term. The stlaccess.com <a href="/" class="text-[#ff6b35] hover:underline">stl scale converter</a> specifies the exact millimetric height needed to ensure third-party bits and components fit either a 28mm ocular or 32mm cranial target perfectly.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Are helmets interchangeable across different scale generations and factions?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            Technical verification shows that critical helmet components stay consistently <strong class="text-white font-semibold">between 6mm and 7mm tall</strong> across generations. However, because specialized factions (like Space Marines vs. standard Guardsmen) have greater facial volume, our <strong class="text-white font-semibold">"Component Volume" filter</strong> dynamically scales width and depth independently of height.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">How do I mix models from systems like Necromunda (32/35mm) with standard 28mm systems?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            Users can toggle between 32mm (Standard) and 35mm (Large Human) cranial presets. To downscale 32mm-labeled assets (like Warzone or AvP) to legacy 28mm, apply an <strong class="text-white font-semibold">87.5% scaling factor</strong>. To upscale 28mm assets to 32mm, use a <strong class="text-white font-semibold">114.3% scaling factor</strong>.
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Category 3 -->
+            <section class="category-block mb-12" aria-labelledby="cat-3-title">
+                <h3 id="cat-3-title" class="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-5 border-l-2 border-[#ff6b35] pl-3 font-heading">
+                    3. Historical Modeling Integrations: Bolt Action (1:56) and the 1:48 vs. 1:35 Dilemma
+                </h3>
+                <div class="space-y-4">
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">What scale should I use for vehicles in Bolt Action wargaming? 1:48 or 1:56?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            Warlord infantry has chunky, exaggerated heroic proportions. While 1:56 is mathematically correct, it makes historical vehicles look small. Upscaling 1:56 vehicle STLs to <strong class="text-white font-semibold">114.3% (matching 1:48 scale)</strong> or utilizing a 1:50 middle ground aligns the vehicle's volume with the physical mass of heroic infantry, resolving the "Tank as Toy" issue.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">If I use 1:48 scale vehicles, won't true historical 1:48 infantry look too tall?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            Yes, true 1:48 figures are far taller than 28mm tabletop miniatures. The platform provides an <strong class="text-white font-semibold">85.7% downscaling factor</strong> to match true 1:48 figures with 28mm eye-level squads while preserving realistic proportions.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Why are there so few native 1:56 scale vehicle models available online?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            Most historical designers create models at 1:35 scale for traditional hobby kits. stlaccess.com solves this shortage by applying a precise <strong class="text-white font-semibold">62.5% uniform reduction factor</strong> to down-regulate high-detail 1:35 model kits into perfect 1:56 wargaming assets.
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- Category 4 -->
+            <section class="category-block mb-12" aria-labelledby="cat-4-title">
+                <h3 id="cat-4-title" class="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-5 border-l-2 border-[#ff6b35] pl-3 font-heading">
+                    4. Technical Execution: Resin Shrinkage, Detail Preservation, and Slicer Logic
+                </h3>
+                <div class="space-y-4">
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Why shouldn't I use uniform scaling based on the bounding box max Z-height?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            Models with raised swords, horns, or flying dynamic poses will break typical <a href="/" class="text-[#ff6b35] hover:underline">stl file resize tools</a>. A model waving a weapon in the air will be shrunk to half its actual size if you scale by bounding box. Our <strong class="text-white font-semibold">"Ocular Anchor" system</strong> completely ignores weapon styling and measures purely from foot-to-eye line.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">Does resin shrinkage affect miniature scale and how do I compensate for it?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            Yes, photopolymer resin typically shrinks between <strong class="text-white font-semibold">0.5% and 2%</strong> during processing. STLAccess incorporates shrinkage presets directly into the output percentage. This eliminates the need for manual mathematical tracking inside software like Lychee, Chitubox, or Cura.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">When should I choose Resin over FDM printing when scaling down miniatures?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            For miniatures under 40mm, resin is mandatory to preserve micro-details like buttons or badges. FDM printing with a <strong class="text-white font-semibold">0.2mm nozzle</strong> is highly recommended for structural gaming terrain and modular tiles to guarantee strength and prevent nozzle clogs.
+                        </div>
+                    </details>
+
+                    <details class="faq-item group border border-white/5 bg-[#0a0a0a]/50 hover:bg-[#111]/30 hover:border-white/10 rounded-2xl overflow-hidden transition-all duration-200">
+                        <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none outline-none focus-ring">
+                            <span class="pr-6 leading-relaxed">How does base grid integration work for custom gridless wargame terrain?</span>
+                            <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform duration-300 ease-in-out fill-none stroke-current stroke-2" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </summary>
+                        <div class="answer-body p-6 pt-0 text-slate-400 text-[15px] leading-relaxed border-t border-white/5 bg-[#050505]/40">
+                            To support gridless setups, the engine calculates <strong class="text-white font-semibold">1.6" x 1.6" Digital Grid Overlays</strong>, providing oversized miniature models (like alien Crushers or heavy cavalry) with appropriate physical clearance on your custom boards.
+                        </div>
+                    </details>
+                </div>
+            </section>
+        </div>
+
+        <!-- Master Conversion CTA -->
+        <div class="mt-20 pt-12 border-t border-white/5 text-center">
+            <h3 class="text-2xl font-bold font-heading mb-6 text-white">Ready to stop guessing scale conversions?</h3>
+            <a href="/" class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-[#ff6b35]/20 focus-ring">
+                <i class="fa-solid fa-calculator"></i>
+                Start Scaling Now
+            </a>
+        </div>
+    </div>
+
+    <!-- Client-side Interactive FAQ search -->
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('faqSearch');
+            const categories = document.querySelectorAll('.category-block');
+            const faqs = document.querySelectorAll('.faq-item');
+            const tableRows = document.querySelectorAll('tbody tr');
+            
+            if (!searchInput) return;
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                
+                // 1. Filter FAQs
+                faqs.forEach(faq => {
+                    const question = faq.querySelector('summary').textContent.toLowerCase();
+                    const answer = faq.querySelector('.answer-body').textContent.toLowerCase();
+                    const matches = question.includes(query) || answer.includes(query);
+                    
+                    if (matches) {
+                        faq.classList.remove('hidden');
+                        // Auto-expand accordion if user has typed a query longer than 2 characters
+                        if (query.length > 2) {
+                            faq.setAttribute('open', '');
+                        } else {
+                            faq.removeAttribute('open');
+                        }
+                    } else {
+                        faq.classList.add('hidden');
+                        faq.removeAttribute('open');
+                    }
+                });
+                
+                // 2. Hide/Show Categories based on visible FAQs inside them
+                categories.forEach(category => {
+                    const visibleFaqs = category.querySelectorAll('.faq-item:not(.hidden)');
+                    if (visibleFaqs.length > 0) {
+                        category.classList.remove('hidden');
+                    } else {
+                        category.classList.add('hidden');
+                    }
+                });
+                
+                // 3. Filter Master Conversion Matrix Table rows
+                tableRows.forEach(row => {
+                    const cells = Array.from(row.querySelectorAll('td')).map(td => td.textContent.toLowerCase());
+                    const matches = cells.some(text => text.includes(query));
+                    if (matches) {
+                        row.classList.remove('hidden');
+                    } else {
+                        row.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</Layout>
