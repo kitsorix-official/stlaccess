@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&display=swap');
 
+@theme {
+    --color-brand: #ff6b35;
+    --color-surface-2: #141414;
+}
+
 :root {
     --brand: #ff6b35;
     --bg: #050505;
