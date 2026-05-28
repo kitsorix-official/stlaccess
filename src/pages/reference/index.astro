@@ -1732,6 +1732,88 @@ const schema = `{
         </div>
     </section>
 
+    <div class="max-w-3xl mx-auto px-6 pb-24">
+       <aside id="ref-feedback-container" class="my-16 rounded-[2rem] border border-white/5 bg-slate-900/20 p-8 md:p-12 glow-box animate-fade-in text-center" aria-labelledby="ref-feedback-heading">
+    <div id="ref-form-wrapper">
+      <div class="max-w-[550px] mx-auto mb-8">
+        <span class="font-mono inline-block rounded bg-[#ff6b35]/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-3">
+          Data Verification
+        </span>
+        <h2 id="ref-feedback-heading" class="font-heading text-2xl font-bold text-white mb-3 tracking-tight">
+          Found a scaling error?
+        </h2>
+        <p class="text-sm leading-relaxed text-slate-400">
+          Tabletop standards shift. If any ratio or compression offset in the tables above feels inaccurate for your specific prints, drop the correction here.
+        </p>
+      </div>
+      
+      <form id="ref-feedback-form" action="https://script.google.com/macros/s/AKfycbxgBWP8jUCPC_RSWMSxeajo-aPl1htSt1XNDYU6Rk2mXpUhQLHOssv_4t4mpUWry2PEsw/exec" method="POST" class="space-y-6 max-w-xl mx-auto text-left">
+        <input type="hidden" name="page_source" value="reference_page_historical" />
+        <input type="hidden" name="type" value="data-correction" />
+        
+        <div>
+          <label class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-2" for="ref-correction">What needs correction?</label>
+          <textarea id="ref-correction" name="correction" rows="3" placeholder="e.g., The 1:48 scale vehicle upscale for Bolt Action should be 114.5% instead of 114.3% because..." required
+                    class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all resize-none"></textarea>
+        </div>
+
+        <div class="flex justify-center pt-2">
+          <button type="submit" id="ref-submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-[#ff6b35] px-8 py-4 text-sm font-bold text-black hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer">
+            Submit Correction
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="ref-success-msg" class="hidden py-12 animate-fade-in flex flex-col items-center justify-center">
+        <div class="h-14 w-14 rounded-full bg-[#ff6b35]/10 flex items-center justify-center border border-[#ff6b35]/30 mb-4 shadow-[0_0_30px_rgba(255,107,53,0.2)]">
+            <span class="text-[#ff6b35] text-2xl font-bold">🛠️</span>
+        </div>
+        <h3 class="font-heading text-xl font-bold text-white mb-2 tracking-tight">Data Correction Submitted</h3>
+        <p class="text-sm text-slate-400 max-w-sm mx-auto">Thank you for helping keep the library accurate. I will verify the geometry specs and update the matrix.</p>
+    </div>
+</aside>
+
+<script>
+  const refForm = document.getElementById('ref-feedback-form');
+  const refWrapper = document.getElementById('ref-form-wrapper');
+  const refSuccessMsg = document.getElementById('ref-success-msg');
+  const refBtn = document.getElementById('ref-submit-btn');
+
+  if (refForm) {
+    refForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (refBtn) {
+        refBtn.disabled = true;
+        refBtn.innerText = "Transmitting...";
+        refBtn.style.opacity = "0.7";
+      }
+
+      const formData = new FormData(refForm);
+      
+      fetch(refForm.action, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      })
+      .then(() => {
+        refWrapper.classList.add('hidden');
+        refSuccessMsg.classList.remove('hidden');
+      })
+      .catch(err => {
+        console.error('Error submitting form:', err);
+        if (refBtn) {
+          refBtn.disabled = false;
+          refBtn.innerText = "Error. Try again?";
+          refBtn.style.opacity = "1";
+        }
+      });
+    });
+  }
+</script>
+    </div>
+
     <!-- Knowledge Base Hook -->
     <section class="max-w-6xl mx-auto px-6 pb-24">
         <div
