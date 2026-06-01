@@ -25,6 +25,61 @@ const schema = `{
 </script>
 <script type="application/ld+json">
 {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://stlaccess.com/#organization",
+  "name": "STLACCESS",
+  "alternateName": "stlscale",
+  "url": "https://stlaccess.com/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://stlaccess.com/favicon.svg"
+  },
+  "sameAs": [
+    "https://github.com/kitsorix-official/stlaccess"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "STLACCESS Scale Converter",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["#resultDisplay", "#faq .group summary", ".reference-intro"]
+  },
+  "url": "https://stlaccess.com/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://stlaccess.com/about#kitsorix",
+  "name": "kitsorix",
+  "url": "https://stlaccess.com/about",
+  "jobTitle": "3D Printing Hobbyist & Miniature Scale Specialist",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "STLACCESS",
+    "url": "https://stlaccess.com/"
+  },
+  "knowsAbout": [
+    "3D printing miniatures",
+    "tabletop wargaming scales",
+    "resin printing shrinkage",
+    "Warhammer 40k scale",
+    "D&D miniature scaling",
+    "STL file conversion"
+  ],
+  "sameAs": [
+    "https://github.com/kitsorix-official/stlaccess"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
   "@context": "https://schema.org/",
   "@type": "WebPage",
   "name": "STLACCESS Scale Converter",
@@ -73,8 +128,8 @@ const schema = `{
 ---
 
 <Layout
-    title="STL Scale Converter for Warhammer & D&D | Free 28mm↔32mm Tool"
-    description="Convert STL files between tabletop gaming scales instantly. Pre-verified conversions for Warhammer, D&D, Star Wars Legion. Free, no signup required."
+    title="STLACCESS (stlscale) — Free Miniature Scale Converter | Warhammer, D&D, 3D Print"
+    description="STLACCESS (stlscale) — free online scale converter for 3D printed miniatures. Convert Warhammer 32mm, D&D 28mm, Star Wars Legion, and historical scales. 175cm baseline, eye-level precision."
     schema={schema}
 >
     <!-- Hero Section -->
@@ -82,11 +137,14 @@ const schema = `{
         <h1
             class="text-4xl md:text-7xl font-bold mb-6 font-heading tracking-tight"
         >
-            Free STL Scale Converter <br />
+            STLACCESS Scale Engine <br />
             <span class="text-[#ff6b35] italic"
-                >For Warhammer, D&D & Tabletop Miniatures</span
+                >The Original stlscale Converter for Warhammer, D&D & 3D Printing</span
             >
         </h1>
+        <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-8">
+  STLSCALE Engine v1.0 — Precision Scaling for Makers
+</p>
         Bridge historical scales (1:35, 1:72) and modern gaming systems (28mm, 32mm,
         35mm) with mathematically precise conversions. A free, community-focused
         tool for 3D creators.
@@ -322,17 +380,15 @@ const schema = `{
                                 <span>Save to Library</span>
                             </button>
                         </div>
-                        <div class="mt-4">
-                            <a
-                                href="/reference"
-                                class="text-[10px] font-black uppercase tracking-[0.2em] text-black/60 hover:text-black transition-colors"
-                            >
-                                <i class="fa-solid fa-book-open mr-1"></i> Verify
-                                in Reference Library
-                            </a>
-                        </div>
+                        <div class="mt-4 flex items-center justify-center gap-2 text-[10px] text-black/60 font-bold uppercase tracking-widest">
+  <i class="fa-solid fa-shield-halved"></i>
+  Verified against 175cm baseline • <a href="/about" class="hover:underline">Methodology</a>
+</div>
+                        
+                        
                     </div>
                 </div>
+                
 
                 <!-- Library Preview (shows when items exist) -->
                 <div
@@ -367,6 +423,7 @@ const schema = `{
                 </p>
             </div>
         </div>
+        
 
         <div class="max-w-3xl mx-auto px-6">
             <aside id="hp-feedback-container" class="my-16 rounded-[2rem] border border-white/5 bg-slate-900/20 p-8 md:p-12 glow-box animate-fade-in text-center" aria-labelledby="feedback-heading">
@@ -674,6 +731,7 @@ const schema = `{
             </p>
         </div>
     </section>
+    
 
     <!-- Dynamic Reference Section -->
     <section
