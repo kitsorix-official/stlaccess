@@ -19,6 +19,18 @@ const {
 
 // Format canonical URL to ensure no trailing slash except for root
 let formattedCanonical = canonicalURL instanceof URL ? canonicalURL.href : canonicalURL;
+
+// Strip .html extension if present
+if (formattedCanonical.endsWith('.html')) {
+    formattedCanonical = formattedCanonical.slice(0, -5);
+}
+
+// Strip /index if present
+if (formattedCanonical.endsWith('/index')) {
+    formattedCanonical = formattedCanonical.slice(0, -5); // Keeps the trailing slash before index
+}
+
+// Strip trailing slash except for root
 if (formattedCanonical !== 'https://stlaccess.com/' && formattedCanonical.endsWith('/')) {
     formattedCanonical = formattedCanonical.slice(0, -1);
 }

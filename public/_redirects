@@ -1,7 +1,17 @@
-# Force www to non-www
-https://www.stlaccess.com/* https://stlaccess.com/:splat 301!
+# 1. Force HTTPS AND non-www in a single redirect (prevents double redirects)
+http://* https://stlaccess.com/:splat 301
 
-https://stlaccess.com/reference1-48-to-75mm https://stlaccess.com/reference/1-48-to-75mm 301!
+# 2. Catch any HTTPS www requests that bypassed rule #1
+https://www.stlaccess.com/* https://stlaccess.com/:splat 301
 
-# Optional: force trailing slash consistency (if you use trailing slashes)
-# /*/ /:splat/ 301!
+# 3. Clean up root index.html requests
+/index.html / 301
+
+# 4. NEW: Force trailing slash removal for the reference directory
+/reference/ /reference 301
+
+# 5. Redirect old .html reference pages to clean URLs
+/reference/*.html /reference/:splat 301
+
+# 6. Fix specific typo URL
+/reference1-48-to-75mm /reference/1-48-to-75mm 301

@@ -1,0 +1,14 @@
+# Force HTTPS for all requests
+http://* https://:splat 301
+
+# Redirect root index.html if it ever gets requested
+/index.html / 301
+
+# Force www to non-www
+https://www.stlaccess.com/* https://stlaccess.com/:splat 301!
+
+# Redirect old .html reference pages to clean URLs
+/reference/*.html /reference/:splat 301
+
+https://stlaccess.com/reference1-48-to-75mm https://stlaccess.com/reference/1-48-to-75mm 301!
+
