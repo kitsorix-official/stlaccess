@@ -1,0 +1,5 @@
+# Force www to non-www
+https://www.stlaccess.com/* https://stlaccess.com/:splat 301!
+
+# Optional: force trailing slash consistency (if you use trailing slashes)
+# /*/ /:splat/ 301!
