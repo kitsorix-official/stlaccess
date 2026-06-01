@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import conversions from "../../data/conversions.json";
+import { getContextualContent } from "../../data/referenceContent.js";
 
 export async function getStaticPaths() {
   return conversions.map((conv) => ({
@@ -10,6 +11,29 @@ export async function getStaticPaths() {
 }
 
 const { conv } = Astro.props;
+const ctx = getContextualContent(conv.h1Source, conv.h1Target, conv);
+
+// Build enhanced schema with FAQ when context is available
+const faqSchema = ctx ? `, "mainEntityOfPage": {
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why convert ${conv.h1Source} to ${conv.h1Target}?",
+      "acceptedAnswer": { "@type": "Answer", "text": "${ctx.useCase.replace(/"/g, '\"')}" }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I account for resin shrinkage when scaling ${conv.h1Source} to ${conv.h1Target}?",
+      "acceptedAnswer": { "@type": "Answer", "text": "${ctx.resinNote.replace(/"/g, '\"')}" }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between ${conv.h1Source} and ${conv.h1Target} miniatures?",
+      "acceptedAnswer": { "@type": "Answer", "text": "${conv.h1Source} miniatures are ${ctx.sourceContext.replace(/"/g, '\"')} ${conv.h1Target} miniatures are ${ctx.targetContext.replace(/"/g, '\"')}" }
+    }
+  ]
+}` : "";
 
 const schema = `{
   "@context": "https://schema.org",
@@ -17,30 +41,18 @@ const schema = `{
   "name": "${conv.title}",
   "description": "${conv.description}",
   "url": "https://stlaccess.com/reference/${conv.slug}",
-  "isPartOf": {"@type": "WebSite", "name": "STLACCESS", "url": "https://stlaccess.com/"},
+  "isPartOf": { "@type": "WebSite", "name": "STLACCESS", "url": "https://stlaccess.com/" },
   "mainEntity": {
     "@type": "HowTo",
     "name": "How to Scale ${conv.sourceLabel} to ${conv.targetLabel}",
     "step": [
-      {
-        "@type": "HowToStep",
-        "text": "Open your STL file in your slicer (Cura, PrusaSlicer, etc.)"
-      },
-      {
-        "@type": "HowToStep",
-        "text": "Select uniform scaling and enter ${conv.percentage}% for Eye Level measurement"
-      },
-      {
-        "@type": "HowToStep",
-        "text": "Add +1.5% compensation if using standard resin"
-      },
-      {
-        "@type": "HowToStep",
-        "text": "Slice and print; verify base size compatibility with your game system"
-      }
+      { "@type": "HowToStep", "text": "Open your STL file in your slicer (Cura, PrusaSlicer, Bambu Studio, etc.)" },
+      { "@type": "HowToStep", "text": "Select uniform scaling and enter ${conv.percentage}% using Eye Level measurement" },
+      { "@type": "HowToStep", "text": "${ctx ? ctx.resinNote.replace(/"/g, '\"') : 'Add +1.5% compensation if using standard resin'}" },
+      { "@type": "HowToStep", "text": "Slice and print; verify base size compatibility with your game system" }
     ],
-    "tool": {"@type": "SoftwareApplication", "name": "STLACCESS Scale Converter"}
-  }
+    "tool": { "@type": "SoftwareApplication", "name": "STLACCESS Scale Converter" }
+  }${faqSchema}
 }`;
 ---
 
@@ -54,6 +66,7 @@ const schema = `{
       class="hover:text-[#ff6b35]">Reference</a
     > / <span class="text-slate-400">{conv.h1Source} to {conv.h1Target}</span>
   </nav>
+
   <article class="max-w-4xl mx-auto px-6 py-12">
     <header class="mb-16">
       <h1
@@ -65,6 +78,8 @@ const schema = `{
         {conv.subtext}
       </p>
     </header>
+
+    <!-- Main Percentage Box -->
     <section
       class="bg-slate-900/50 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-12 mb-16 glow-box"
     >
@@ -88,8 +103,9 @@ const schema = `{
             ><i class="fa-solid fa-copy"></i> Copy Percentage</button
           >
           <a
+            rel="nofollow"
             href={`/?source=${encodeURIComponent(
-              conv.sourceLabel
+              conv.sourceLabel,
             )}&target=${encodeURIComponent(conv.targetLabel)}&logic=eye`}
             class="w-full md:w-auto bg-white/5 border border-white/10 text-white font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-white/10 transition-all"
             ><i class="fa-solid fa-calculator"></i> Open in Engine</a
@@ -97,6 +113,8 @@ const schema = `{
         </div>
       </div>
     </section>
+
+    <!-- Math & Baselines -->
     <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
       <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
         <h3 class="font-bold text-white mb-4 flex items-center gap-2">
@@ -123,5 +141,116 @@ const schema = `{
         </ul>
       </div>
     </section>
+
+    <!-- Author / Methodology Box -->
+    <aside
+      class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12 mb-16"
+      aria-label="Calculation methodology"
+    >
+      <h3 class="font-bold text-white mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-graduation-cap text-[#ff6b35]"></i>
+        About This Calculation
+      </h3>
+      <p class="text-sm text-slate-400 leading-relaxed">
+        <strong class="text-white">STLACCESS</strong> uses the <em
+          >175cm human baseline</em
+        > with eye-level measurement (160cm) as the standard for fantasy and sci-fi
+        miniatures. This method accounts for variable headgear and base heights that
+        make "total height" scaling unreliable.
+        <a
+          href="/about"
+          class="text-[#ff6b35] hover:underline font-bold ml-1 inline-flex items-center gap-1 transition-all"
+          rel="author"
+        >
+          Read the full methodology <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </aside>
+
+    <!-- Contextual Content (injected from referenceContent.js) -->
+    {ctx && (
+      <section class="space-y-8 mb-16">
+
+        <!-- When You Need This -->
+        <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+          <h3 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-chess-knight text-[#ff6b35]"></i>
+            When You Need This
+          </h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            {ctx.useCase}
+          </p>
+        </div>
+
+        <!-- Scale Context Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+            <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">
+              Source Scale: {conv.h1Source}
+            </h4>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              {ctx.sourceContext}
+            </p>
+            {ctx.sourceCaveat && (
+              <p class="text-xs text-slate-500 mt-4 border-l-2 border-[#ff6b35]/30 pl-3">
+                <strong class="text-slate-400">Note:</strong> {ctx.sourceCaveat}
+              </p>
+            )}
+          </div>
+          <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+            <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">
+              Target Scale: {conv.h1Target}
+            </h4>
+            <p class="text-sm text-slate-400 leading-relaxed">
+              {ctx.targetContext}
+            </p>
+            {ctx.targetCaveat && (
+              <p class="text-xs text-slate-500 mt-4 border-l-2 border-[#ff6b35]/30 pl-3">
+                <strong class="text-slate-400">Note:</strong> {ctx.targetCaveat}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <!-- Resin & Print Settings -->
+        <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+          <h3 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-flask text-[#ff6b35]"></i>
+            Resin & Print Settings
+          </h3>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            {ctx.resinNote}
+          </p>
+        </div>
+
+      </section>
+    )}
+
+    <!-- Related Conversions & Internal Linking -->
+    <nav class="border-t border-white/10 pt-12 mb-8" aria-label="Related scale conversions">
+      <h3 class="text-xs font-black uppercase tracking-widest text-slate-500 mb-6">
+        Explore Related Scales
+      </h3>
+      <div class="flex flex-wrap gap-3">
+        <a 
+          href="/reference" 
+          class="bg-white/5 border border-white/10 text-slate-300 text-sm font-bold px-5 py-3 rounded-2xl hover:bg-white/10 hover:text-[#ff6b35] transition-all"
+        >
+          <i class="fa-solid fa-book-open mr-2"></i>Full Reference Library
+        </a>
+        <a 
+          href={`/reference/${conv.h1Target.toLowerCase().replace(/:/g, '-').replace(/\//g, '-')}-to-${conv.h1Source.toLowerCase().replace(/:/g, '-').replace(/\//g, '-')}`} 
+          class="bg-white/5 border border-white/10 text-slate-300 text-sm font-bold px-5 py-3 rounded-2xl hover:bg-white/10 hover:text-[#ff6b35] transition-all"
+        >
+          <i class="fa-solid fa-right-left mr-2"></i>Reverse: {conv.h1Target} to {conv.h1Source}
+        </a>
+        <a 
+          href="/" 
+          class="bg-white/5 border border-white/10 text-slate-300 text-sm font-bold px-5 py-3 rounded-2xl hover:bg-white/10 hover:text-[#ff6b35] transition-all"
+        >
+          <i class="fa-solid fa-calculator mr-2"></i>Open Scale Engine
+        </a>
+      </div>
+    </nav>
   </article>
 </Layout>

@@ -1844,6 +1844,33 @@ const schema = `{
         </div>
     </section>
 
+    <!-- Author / Methodology Box -->
+<aside 
+  class="max-w-6xl mx-auto px-6 mb-16" 
+  aria-label="Calculation methodology"
+>
+  <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12">
+    <h3 class="font-bold text-white mb-4 flex items-center gap-2">
+      <i class="fa-solid fa-graduation-cap text-[#ff6b35]"></i>
+      About the STLACCESS Reference Library
+    </h3>
+    <p class="text-sm text-slate-400 leading-relaxed">
+      <strong class="text-white">STLACCESS</strong> uses the <em>175cm human baseline</em> 
+      with eye-level measurement (160cm) as the standard for fantasy and sci-fi miniatures. 
+      Every percentage in the tables above is mathematically derived from this baseline, 
+      accounting for the variable headgear and base heights that make "total height" scaling unreliable. 
+      Values are verified against real-world prints on resin (Elegoo, Anycubic) and FDM (Bambu Lab, Prusa) systems.
+      <a 
+        href="/about" 
+        class="text-[#ff6b35] hover:underline font-bold ml-1 inline-flex items-center gap-1 transition-all" 
+        rel="author"
+      >
+        Read the full methodology <span aria-hidden="true">→</span>
+      </a>
+    </p>
+  </div>
+</aside>
+
     <!-- Authority Pillar Content: Size Matters (But Scale is a Lie) -->
     <section
         id="pillar-article"
@@ -2620,6 +2647,10 @@ const schema = `{
                     </details>
                 </div>
             </section>
+            <p class="text-xs text-slate-500 mt-8 text-center">
+  Calculations verified by <a href="/about" class="text-[#ff6b35] hover:underline" rel="author">STLACCESS</a> 
+  using the 175cm human baseline method.
+</p>
         </div>
     </section>
 
