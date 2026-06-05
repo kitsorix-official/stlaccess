@@ -10,7 +10,7 @@ export const scaleInfo = {
         note: "The classic tabletop standard. Measures to the eyes (160cm on a 175cm human), not the top of the head. Helmets, top-knots, and ornate headgear often add 2-4mm of perceived height.",
         resinOffset: "+1.5%",
         fdmNote: "FDM printers rarely need compensation; slight over-extrusion usually cancels any shrinkage.",
-        commonIssue: "Older sculpts may be closer to 25mm true-scale. Always verify the sculptor's baseline before scaling.",
+        commonIssue: "Older sculpts may be closer to 25mm true-scale. Always check the sculptor's baseline before scaling.",
     },
     "32mm": {
         shortName: "32mm",
@@ -28,7 +28,7 @@ export const scaleInfo = {
         note: "Popular with painters who want more canvas for freehand detail without entering true bust territory. Often sits between 32mm heroic and 40mm skirmish scales.",
         resinOffset: "+2%",
         fdmNote: "FDM at 35mm starts to show detail limitations on faces; consider 0.12mm layer height or resin for character models.",
-        commonIssue: "35mm is sometimes marketed as 'true 35mm' (realistic proportions) vs 'heroic 35mm' (exaggerated). Verify before mixing.",
+        commonIssue: "35mm is sometimes marketed as 'true 35mm' (realistic proportions) vs 'heroic 35mm' (exaggerated). Check before mixing.",
     },
     "40mm": {
         shortName: "40mm",
@@ -106,7 +106,7 @@ export function getContextualContent(h1Source, h1Target, conv) {
     const direction = isUp ? "upscale" : "downscale";
     const magnitude = Math.abs(rawPct - 100);
 
-    // Physical context based on magnitude - rewritten for direct voice
+    // Physical context based on magnitude
     let physicalContext = "";
     if (magnitude < 10) {
         physicalContext = `At only ${Math.round(magnitude)}% difference, these scales can mix on the same table without looking wrong. Keep bases consistent and paint styles matched.`;
@@ -118,7 +118,7 @@ export function getContextualContent(h1Source, h1Target, conv) {
         physicalContext = `This is a dramatic jump—more than double or less than half. The result is essentially a different model category. Use this only for deliberate artistic or display purposes, not mixed armies.`;
     }
 
-    // Use case - rewritten with direct voice, no AI patterns
+    // Use case
     let useCase = "";
     if (isUp) {
         useCase = `You need this when bringing older or smaller ${src.shortName} models into a modern ${tgt.shortName} collection. ${physicalContext}`;
@@ -126,8 +126,8 @@ export function getContextualContent(h1Source, h1Target, conv) {
         useCase = `You need this when fitting oversized ${src.shortName} heroes or monsters into a smaller ${tgt.shortName} regiment, or when printing ${src.shortName} STL files for a ${tgt.shortName} game system. ${physicalContext}`;
     }
 
-    // Resin note - simplified, no awkward construction
-    const resinNote = `Apply ${pct}% uniform scaling in your slicer. For resin prints, add ${tgt.resinOffset} shrinkage compensation. ${tgt.fdmNote}`;
+    // Resin note - simplified
+    const resinNote = `Set your slicer to ${pct}%. I add ${tgt.resinOffset} for resin shrinkage. ${tgt.fdmNote}`;
 
     return {
         useCase,

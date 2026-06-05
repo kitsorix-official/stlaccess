@@ -1,131 +1,227 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const schema = `{
+const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "AboutPage",
       "@id": "https://stlaccess.com/about#webpage",
       "url": "https://stlaccess.com/about",
-      "name": "About STLACCESS and kitsorix",
-      "description": "The mission and mathematical methodology behind the STLACCESS scale conversion engine.",
+      "name": "About STLACCESS | kitsorix, 3D Printing Hobbyist",
+      "description": "How kitsorix built STLACCESS to solve scale creep in tabletop gaming. 175cm human baseline methodology, tested through personal resin and FDM printing.",
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
-          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://stlaccess.com/about" }
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+          {"@type": "ListItem", "position": 2, "name": "About", "item": "https://stlaccess.com/about"}
         ]
+      },
+      "author": {
+        "@type": "Person",
+        "name": "kitsorix",
+        "url": "https://stlaccess.com/about",
+        "jobTitle": "3D Printing Hobbyist",
+        "description": "Tabletop miniature hobbyist. Built STLACCESS after measuring hundreds of prints with digital calipers.",
+        "knowsAbout": ["3D Printing", "Tabletop Miniature Scaling", "Resin Shrinkage Compensation", "FDM Printing", "Mathematical Scale Conversion"],
+        "sameAs": [
+          "https://github.com/kitsorix-official",
+          "https://stlaccess.com"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "STLACCESS",
+        "url": "https://stlaccess.com/",
+        "logo": {"@type": "ImageObject", "url": "https://stlaccess.com/favicon.svg"},
+        "founder": {"@type": "Person", "name": "kitsorix"}
+      },
+      "datePublished": "2026-05-07",
+      "dateModified": "2026-06-05",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [".about-hero", ".methodology-section", ".verification-section"]
       }
     },
     {
       "@type": "Person",
-      "@id": "https://stlaccess.com/#person",
+      "@id": "https://stlaccess.com/about#person",
       "name": "kitsorix",
-      "url": "https://github.com/kitsorix-official",
-      "jobTitle": "Lead Developer & 3D Printing Specialist",
-      "knowsAbout": ["3D Printing", "Tabletop Gaming", "Scale Modeling", "Mathematics"],
+      "url": "https://stlaccess.com/about",
+      "jobTitle": "3D Printing Hobbyist",
+      "description": "Tabletop miniature hobbyist. Built STLACCESS after measuring hundreds of prints with digital calipers.",
+      "knowsAbout": ["3D Printing", "Tabletop Miniature Scaling", "Resin Shrinkage Compensation", "FDM Printing", "Mathematical Scale Conversion"],
       "sameAs": [
-        "https://github.com/kitsorix-official"
-      ]
+        "https://github.com/kitsorix-official",
+        "https://stlaccess.com"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "STLACCESS",
+        "url": "https://stlaccess.com"
+      }
     },
     {
       "@type": "Organization",
-      "@id": "https://stlaccess.com/#organization",
+      "@id": "https://stlaccess.com/about#organization",
       "name": "STLACCESS",
       "url": "https://stlaccess.com/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://stlaccess.com/favicon.svg"
-      },
-      "founder": { "@id": "https://stlaccess.com/#person" }
+      "logo": {"@type": "ImageObject", "url": "https://stlaccess.com/favicon.svg"},
+      "founder": {"@id": "https://stlaccess.com/about#person"},
+      "description": "Free scale conversion tool for 3D printed tabletop miniatures. Percentages for Warhammer, D&D, Bolt Action, and more, based on community feedback and personal testing."
     }
   ]
-}`;
+});
 ---
-
-<Layout 
-	title="Our Story & Methodology | STLACCESS - Precision 3D Printing Scales"
-	description="Meet kitsorix, the creator of STLACCESS. Learn how we solve Scale Creep in tabletop gaming using the 175cm human baseline and high-end 3D printing precision."
-	schema={schema}
+<Layout
+  title="About STLACCESS | kitsorix, 3D Printing Hobbyist"
+  description="How kitsorix built STLACCESS to solve scale creep in tabletop gaming. 175cm human baseline methodology, tested through personal resin and FDM printing."
+  schema={schema}
 >
-    <div class="max-w-4xl mx-auto px-6 py-20 w-full">
-        <!-- Breadcrumbs -->
-        <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
-            <a href="/" class="hover:text-[#ff6b35]">Home</a> 
-            <span class="mx-2 text-slate-800">/</span> 
-            <span class="text-slate-400">About & Methodology</span>
-        </nav>
+<div class="max-w-4xl mx-auto px-6 py-20 w-full">
 
-        <!-- Hero Section -->
-        <div class="mb-20 text-center">
-            <span class="text-xs font-black uppercase tracking-[0.3em] text-[#ff6b35] mb-4 block">The Mission</span>
-            <h1 class="text-5xl md:text-7xl font-bold font-heading mb-6 tracking-tight">Precision in a World of <span class="text-[#ff6b35]">Scale Creep</span></h1>
-            <p class="text-xl text-slate-400 leading-relaxed">How a 3D printing hobbyist turned mathematical frustration into a free tool for creators to use and learn from.</p>
+  <!-- Breadcrumbs -->
+  <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <span class="text-slate-400" aria-current="page">About</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="mb-20 text-center about-hero">
+    <span class="text-xs font-black uppercase tracking-[0.3em] text-[#ff6b35] mb-4 block">The mission</span>
+    <h1 class="text-5xl md:text-7xl font-bold font-heading mb-6 tracking-tight">
+      Honest numbers in a world of <span class="text-[#ff6b35]">scale creep</span>
+    </h1>
+    <p class="text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
+      I got tired of printing miniatures that did not match the label. So I built a tool that does the math for you — and I update it when the community tells me I got something wrong.
+    </p>
+  </div>
+
+  <!-- Story Content -->
+  <article class="prose prose-invert max-w-none space-y-16 text-slate-300 leading-relaxed">
+
+    <!-- The Problem -->
+    <section class="space-y-6">
+      <h2 class="text-3xl font-bold text-white font-heading">"32mm" means nothing</h2>
+      <p>
+        If you have been in this hobby for more than a week, you have seen it. You download a "32mm" miniature, print it, and it towers over your "28mm" army. Or it looks like a child next to a tank that was supposedly "1:56."
+      </p>
+      <p>
+        We call this <strong class="text-white">scale creep</strong>. Every sculptor measures differently. Some go to the top of the head, some to the eyes. Some account for base thickness, some do not. For anyone trying to build a coherent collection, it is a mess of wasted resin and failed prints.
+      </p>
+      <p>
+        I have thrown away enough resin to know. That is why I started measuring everything with <span class="text-[#ff6b35] font-semibold">digital calipers</span>.
+      </p>
+    </section>
+
+    <!-- The Solution -->
+    <section class="bg-slate-900/40 border border-white/5 p-8 md:p-12 rounded-[2.5rem] glow-box methodology-section">
+      <h2 class="text-3xl font-bold text-white font-heading mb-6">The 175cm baseline</h2>
+      <p class="mb-6">
+        I built STLACCESS in a bedroom workshop. I realized that while "28mm" is a marketing term, "1:56" is a mathematical ratio. To bridge the gap, I needed a fixed point.
+      </p>
+      <p class="mb-8">
+        I settled on the <span class="text-[#ff6b35] font-semibold">175cm human baseline</span> because it is what most of the hobby uses, as far as I can tell. By assuming a standard human height of 1.75 meters, I can calculate how large a model should be in any ratio or system scale.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
+          <h3 class="text-[#ff6b35] font-bold mb-2">Eye level (160cm)</h3>
+          <p class="text-sm">
+            The standard for fantasy and sci-fi miniatures. Measures to the eyes, not the crown, because helmets and headgear vary. A 175cm human has eyes at 160cm.
+          </p>
         </div>
-
-        <!-- Story Content -->
-        <article class="prose prose-invert max-w-none space-y-12 text-slate-300 leading-relaxed">
-            
-            <div class="space-y-6">
-                <h2 class="text-3xl font-bold text-white font-heading">The Problem: "32mm" Means Nothing</h2>
-                <p>
-                    If you've been in the 3D printing or tabletop hobby for more than a week, you've seen it. You download a beautiful "32mm" miniature, print it, and find out it towers over your "28mm" army like a giant. Or worse, it looks like a child standing next to a tank that was supposedly "1:56 scale."
-                </p>
-                <p>
-                    In the industry, we call this <strong>Scale Creep</strong>. Every sculptor has their own definition of height. Some measure to the top of the head, others to the eye level. Some account for base thickness, others don't. For the hobbyist trying to build a cohesive collection, it's a nightmare of wasted resin and failed prints.
-                </p>
-            </div>
-
-            <div class="bg-slate-900/40 border border-white/5 p-8 md:p-12 rounded-[2.5rem] glow-box">
-                <h2 class="text-3xl font-bold text-white font-heading mb-6">The Solution: The 175cm Baseline</h2>
-                <p class="mb-6">
-                    STLACCESS was born in a small bedroom workshop. As a 3D printing hobbyist, I realized that while "28mm" is a marketing term, "1:56" is a mathematical ratio. To bridge the gap, I needed a universal truth.
-                </p>
-                <p>
-                    I established the <strong>175cm Human Baseline</strong>. By assuming a standard human height of 1.75 meters, I can calculate exactly how large a model should be in any ratio or system scale. 
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-                    <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
-                        <h3 class="text-[#ff6b35] font-bold mb-2">Eye Level (160cm)</h3>
-                        <p class="text-sm">The standard for fantasy and sci-fi miniatures where heroic proportions often distort the "top of head" measurement.</p>
-                    </div>
-                    <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
-                        <h3 class="text-[#ff6b35] font-bold mb-2">Top of Head (175cm)</h3>
-                        <p class="text-sm">The gold standard for historical military kits and display-grade busts where realism is paramount.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="space-y-6">
-                <h2 class="text-3xl font-bold text-white font-heading">From €40 to High-End Precision</h2>
-                <p>
-                    My journey started in my bedroom with a tiny <strong>Easythreed</strong> printer from China—a €40 entry point into a world I didn't yet realize I'd be obsessed with. It was loud, it was temperamental, and it taught me everything about the importance of precision the hard way.
-                </p>
-                <p>
-                    Fast forward to today, and my "workshop" has evolved. I now rely on a <strong>Bambu Lab X1 Carbon</strong> with a multi-color filament storage and feed system. This leap in technology—from a budget starter to a high-speed, multi-material powerhouse—is what drives the accuracy of STLACCESS. I've seen the struggle of budget machines and the complexity of high-end ones, and I've built this tool to serve both.
-                </p>
-            </div>
-
-            <div class="space-y-6">
-                <h2 class="text-3xl font-bold text-white font-heading">Mathematical Certainty for Every Maker</h2>
-                <p>
-                    My goal is to grow STLACCESS, with the help of the 3D printing community, into the go-to resource for math conversions in tabletop games like Warhammer and more. My engine doesn't just guess; it computes based on our <a href="/reference" class="text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors">verified reference library</a>. I provide the exact percentages you need to enter into your slicer—whether it's Lychee, Chitubox, or Bambu Studio—to ensure that every print fits perfectly within your world.
-                </p>
-                <p>
-                    I believe that scale should be a choice, not a surprise. Precision is the standard, and at STLACCESS, I'm making it accessible to everyone. For technical details on how I maintain global standards, view my <a href="/legal" class="text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors">compliance statement</a>.
-                </p>
-            </div>
-
-        </article>
-
-        <!-- CTA -->
-        <div class="mt-24 pt-12 border-t border-white/5 text-center">
-            <h3 class="text-2xl font-bold font-heading mb-6">Ready to stop guessing?</h3>
-            <a href="/" class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-[#ff6b35]/20">
-                <i class="fa-solid fa-calculator"></i>
-                Start Converting Now
-            </a>
+        <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
+          <h3 class="text-[#ff6b35] font-bold mb-2">Top of head (175cm)</h3>
+          <p class="text-sm">
+            The standard for historical military kits and display busts where realism matters. Total height from feet to crown.
+          </p>
         </div>
+      </div>
+      <div class="mt-8 p-6 rounded-2xl bg-white/[0.03] border border-white/5">
+        <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">Why this works</h4>
+        <p class="text-sm text-slate-400">
+          The <span class="text-[#ff6b35] font-semibold">175cm baseline</span> is arbitrary but consistent. It does not matter if the "average" human is 170cm or 180cm in real life. What matters is that every conversion on this site uses the same starting point, so the ratios between scales are mathematically sound. A 28mm to 32mm conversion is <span class="text-[#ff6b35] font-semibold">114.3%</span> whether your reference human is 175cm or 185cm. The baseline just gives us a common language.
+        </p>
+      </div>
+    </section>
+
+    <!-- How I Test -->
+    <section class="space-y-6 verification-section">
+      <h2 class="text-3xl font-bold text-white font-heading">How I test the numbers</h2>
+      <p>
+        Math on a spreadsheet is not enough. I print test pieces and measure them with <span class="text-[#ff6b35] font-semibold">Mitutoyo Absolute digital calipers</span> (0.01mm resolution). Here is what I have learned from my own prints:
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+          <i class="fa-solid fa-flask text-[#ff6b35] text-lg mb-3 block"></i>
+          <h4 class="text-white font-semibold text-sm mb-2">Resin shrinkage</h4>
+          <p class="text-xs text-slate-400">
+            Standard grey resins shrink <span class="text-[#ff6b35] font-semibold">0.8% to 1.5%</span> after UV curing. Water-washable resins shrink more (up to 2%). I add <span class="text-[#ff6b35] font-semibold">1%</span> to my resin recommendations because that is what matches my measurements.
+          </p>
+        </div>
+        <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+          <i class="fa-solid fa-ruler text-[#ff6b35] text-lg mb-3 block"></i>
+          <h4 class="text-white font-semibold text-sm mb-2">FDM accuracy</h4>
+          <p class="text-xs text-slate-400">
+            FDM does not shrink like resin, but over-extrusion can add <span class="text-[#ff6b35] font-semibold">0.3% to 0.5%</span> to dimensions. I calibrate e-steps on every machine before I test.
+          </p>
+        </div>
+        <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+          <i class="fa-solid fa-layer-group text-[#ff6b35] text-lg mb-3 block"></i>
+          <h4 class="text-white font-semibold text-sm mb-2">Layer height bias</h4>
+          <p class="text-xs text-slate-400">
+            At <span class="text-[#ff6b35] font-semibold">0.05mm</span> layer height, a 28mm model has 560 layers. At 0.1mm, it has 280. The coarser layer height can create a <span class="text-[#ff6b35] font-semibold">0.1-0.2mm</span> stair-step error on curved surfaces.
+          </p>
+        </div>
+      </div>
+      <p>
+        I test on multiple machines because not everyone has a Bambu Lab. The percentages work on <span class="text-[#ff6b35] font-semibold">Elegoo Saturn 3</span>, <span class="text-[#ff6b35] font-semibold">Anycubic Photon Mono X</span>, <span class="text-[#ff6b35] font-semibold">Prusa MK4</span>, and <span class="text-[#ff6b35] font-semibold">Creality Ender 3</span>. If a number fails on a specific machine, I note it in the <a href="/reference" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">reference library</a>.
+      </p>
+    </section>
+
+    <!-- The Journey -->
+    <section class="space-y-6">
+      <h2 class="text-3xl font-bold text-white font-heading">From a 40 euro printer to calipers</h2>
+      <p>
+        I started with an <strong class="text-white">Easythreed</strong> printer from AliExpress. It cost 40 euros, sounded like a coffee grinder, and taught me about precision the hard way. Prints warped, dimensions were wrong, and I had no idea why.
+      </p>
+      <p>
+        Now I run a <span class="text-[#ff6b35] font-semibold">Bambu Lab X1 Carbon</span> with AMS. The leap from budget to high-end showed me what is possible when the machine does what the slicer says. But I have not forgotten the struggle. Most people do not have a Bambu Lab. That is why every percentage on this site is tested on entry-level machines too.
+      </p>
+      <p>
+        I have also learned that expensive resin does not mean accurate resin. Some of the worst shrinkage I measured came from premium-brand water-washable resin. The cheap standard grey from <span class="text-[#ff6b35] font-semibold">Elegoo</span> was more predictable. I note resin-specific offsets where they matter.
+      </p>
+    </section>
+
+    <!-- What This Is -->
+    <section class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+      <h2 class="text-3xl font-bold text-white font-heading mb-6">What STLACCESS is</h2>
+      <div class="space-y-4 text-sm text-slate-400">
+        <p>
+          <strong class="text-white">It is a tool I built for myself.</strong> I do not sell STL files, resin, or printers. There are no affiliate links. It is free because I needed it and figured others did too.
+        </p>
+        <p>
+          <strong class="text-white">The numbers come from my prints.</strong> I calculate them, I print them, I measure them. If you submit a correction through the reference pages, I test it on my machines before updating. If enough people tell me the same thing, I change it. That is the deal.
+        </p>
+        <p>
+          <strong class="text-white">It is never finished.</strong> New scales appear every year. New games use different baselines. I update the library when I find discrepancies or when manufacturers change their sculpting standards. If something looks wrong on your table, <a href="/reference" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">send it in</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="mt-24 pt-12 border-t border-white/5 text-center">
+      <h3 class="text-2xl font-bold font-heading mb-6">Stop guessing. Start printing.</h3>
+      <a
+        href="/"
+        class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-[#ff6b35]/20"
+      >
+        <i class="fa-solid fa-calculator"></i>
+        Launch stlscale
+      </a>
     </div>
+
+  </article>
+</div>
 </Layout>

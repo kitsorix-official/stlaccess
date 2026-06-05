@@ -44,7 +44,7 @@ if (ctx) {
       "name": `What is the actual size difference between ${conv.h1Source} and ${conv.h1Target}?`,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `${conv.h1Source} miniatures measure ${conv.sourceValue} to eye level on a 175cm human baseline. ${conv.h1Target} miniatures measure ${conv.targetValue}. The ${conv.percentage}% scaling factor bridges this gap.`
+        "text": `${conv.h1Source} miniatures measure ${conv.sourceValue} on a 175cm human baseline. ${conv.h1Target} miniatures measure ${conv.targetValue}. The ${conv.percentage}% scaling factor bridges this gap.`
       }
     }
   );
@@ -67,26 +67,26 @@ const schema = JSON.stringify({
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Reference", "item": "https://stlaccess.com/reference" },
-          { "@type": "ListItem", "position": 3, "name": `${conv.h1Source} to ${conv.h1Target}`, "item": `https://stlaccess.com/reference/${conv.slug}` }
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Reference", "item": "https://stlaccess.com/reference"},
+          {"@type": "ListItem", "position": 3, "name": `${conv.h1Source} to ${conv.h1Target}`, "item": `https://stlaccess.com/reference/${conv.slug}`}
         ]
       },
       "author": {
         "@type": "Person",
         "name": "kitsorix",
         "url": "https://stlaccess.com/about",
-        "jobTitle": "3D Printing Scale Consultant",
-        "description": "Tabletop miniature scale specialist. Verified conversion values through physical resin and FDM printing tests."
+        "jobTitle": "3D Printing Hobbyist",
+        "description": "Tabletop miniature hobbyist. Conversion values from my own prints and community feedback."
       },
       "publisher": {
         "@type": "Organization",
         "name": "STLACCESS",
         "url": "https://stlaccess.com",
-        "logo": { "@type": "ImageObject", "url": "https://stlaccess.com/favicon.svg" }
+        "logo": {"@type": "ImageObject", "url": "https://stlaccess.com/favicon.svg"}
       },
       "datePublished": "2026-05-07",
-      "dateModified": "2026-06-04",
+      "dateModified": "2026-06-05",
       "speakable": {
         "@type": "SpeakableSpecification",
         "cssSelector": [".conv-header", ".percentage-box", ".math-proof"]
@@ -116,21 +116,21 @@ const schema = JSON.stringify({
           "@type": "HowToStep",
           "position": 2,
           "name": "Apply uniform scaling",
-          "text": `Select uniform scaling (lock XYZ proportions) and enter ${conv.percentage}%. This uses Eye Level measurement methodology.`,
+          "text": `Select uniform scaling (lock XYZ proportions) and enter ${conv.percentage}%. I use Eye Level measurement methodology.`,
           "url": `https://stlaccess.com/reference/${conv.slug}#step-2`
         },
         {
           "@type": "HowToStep",
           "position": 3,
           "name": "Account for resin shrinkage",
-          "text": ctx ? ctx.resinNote : "Add +1% compensation if using standard photopolymer resin. FDM does not require shrinkage adjustment.",
+          "text": ctx ? ctx.resinNote : "Add +1% if using standard photopolymer resin. FDM does not require shrinkage adjustment.",
           "url": `https://stlaccess.com/reference/${conv.slug}#step-3`
         },
         {
           "@type": "HowToStep",
           "position": 4,
-          "name": "Verify base compatibility",
-          "text": `Slice and print a test piece. Verify the base size matches your target game system (${conv.h1Target}).`,
+          "name": "Check base compatibility",
+          "text": `Slice and print a test piece. Check the base size matches your target game system (${conv.h1Target}).`,
           "url": `https://stlaccess.com/reference/${conv.slug}#step-4`
         }
       ]
@@ -138,8 +138,8 @@ const schema = JSON.stringify({
     {
       "@type": "Table",
       "about": `${conv.h1Source} to ${conv.h1Target} Conversion Data`,
-      "description": `Verified slicer percentage and mathematical proof for converting ${conv.h1Source} miniatures to ${conv.h1Target} scale.`,
-      "author": { "@type": "Person", "name": "kitsorix" }
+      "description": `Slicer percentage based on 175cm human baseline with eye-level measurement methodology for converting ${conv.h1Source} miniatures to ${conv.h1Target}.`,
+      "author": {"@type": "Person", "name": "kitsorix"}
     },
     ...(faqItems.length > 0 ? [{
       "@type": "FAQPage",
@@ -148,208 +148,301 @@ const schema = JSON.stringify({
   ]
 });
 ---
-
-<Layout 
+<Layout
   title={`${conv.h1Source} to ${conv.h1Target} Scale Conversion | ${conv.percentage}% Slicer Setting`}
   description={conv.description}
   schema={schema}
 >
-  <!-- Breadcrumbs -->
-  <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
-    <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
-    <span class="mx-2">/</span>
-    <a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference</a>
-    <span class="mx-2">/</span>
-    <span class="text-slate-400" aria-current="page">{conv.h1Source} to {conv.h1Target}</span>
-  </nav>
 
-  <article class="max-w-4xl mx-auto px-6 py-12" itemscope itemtype="https://schema.org/HowTo">
-    <meta itemprop="name" content={`How to Scale ${conv.sourceLabel} to ${conv.targetLabel}`} />
-    <meta itemprop="description" content={`Convert ${conv.h1Source} miniatures to ${conv.h1Target} scale using ${conv.percentage}% uniform scaling.`} />
+<!-- Breadcrumbs -->
+<nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+  <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+  <span class="mx-2">/</span>
+  <a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference</a>
+  <span class="mx-2">/</span>
+  <span class="text-slate-400" aria-current="page">{conv.h1Source} to {conv.h1Target}</span>
+</nav>
 
-    <!-- Header -->
-    <header class="mb-16 conv-header">
-      <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">
-        {conv.h1Source} to <span class="text-[#ff6b35]">{conv.h1Target}</span>
-      </h1>
-      <p class="text-xl text-slate-400 leading-relaxed max-w-2xl">
-        {conv.subtext}
+<article class="max-w-4xl mx-auto px-6 py-12" itemscope itemtype="https://schema.org/HowTo">
+  <meta itemprop="name" content={`How to Scale ${conv.sourceLabel} to ${conv.targetLabel}`} />
+  <meta itemprop="description" content={`Convert ${conv.h1Source} miniatures to ${conv.h1Target} scale using ${conv.percentage}% uniform scaling.`} />
+
+  <!-- Header -->
+  <header class="mb-16 conv-header">
+    <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">
+      {conv.h1Source} to <span class="text-[#ff6b35]">{conv.h1Target}</span>
+    </h1>
+    <p class="text-xl text-slate-400 leading-relaxed max-w-2xl">
+      {conv.subtext}
+    </p>
+  </header>
+
+  <!-- Main Percentage Box -->
+  <section class="bg-slate-900/50 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-12 mb-16 glow-box percentage-box" aria-label="Conversion result">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+      <div>
+        <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-2">
+          Slicer Setting
+        </h2>
+        <div class="text-6xl md:text-8xl font-black font-heading text-white tracking-tighter">
+          {conv.percentage}<span class="text-[#ff6b35] text-4xl">%</span>
+        </div>
+        <p class="text-xs text-slate-500 mt-2 font-mono">Uniform scale (XYZ locked)</p>
+      </div>
+      <div class="space-y-4 w-full md:w-auto">
+        <button
+          onclick={`copyPercentage('${conv.percentage}')`}
+          class="w-full md:w-auto bg-[#ff6b35] text-black font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:brightness-110 active:scale-95 transition-all cursor-pointer"
+        >
+          <i class="fa-solid fa-copy"></i>
+          <span id="copy-btn-text">Copy {conv.percentage}%</span>
+        </button>
+        <a
+          rel="nofollow"
+          href={`/?source=${encodeURIComponent(conv.sourceLabel)}&target=${encodeURIComponent(conv.targetLabel)}&logic=eye`}
+          class="w-full md:w-auto bg-white/5 border border-white/10 text-white font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-white/10 transition-all"
+        >
+          <i class="fa-solid fa-calculator"></i>
+          Open in stlscale
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Math & Baselines -->
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+    <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5 math-proof">
+      <h3 class="font-bold text-white mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-microscope text-[#ff6b35]"></i>
+        The math
+      </h3>
+      <code class="block bg-black/50 p-4 rounded-xl text-xs font-mono text-[#ff6b35] overflow-x-auto">
+        ({conv.math}) × 100 = {conv.percentage}%
+      </code>
+      <p class="text-xs text-slate-500 mt-3">
+        Based on 175cm human baseline, eye-level measurement (160cm).
       </p>
-    </header>
+    </div>
+    <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+      <h3 class="font-bold text-white mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-circle-info text-[#ff6b35]"></i>
+        Scale baselines
+      </h3>
+      <ul class="space-y-3 text-sm text-slate-400">
+        <li class="flex justify-between">
+          <span>Source eye level</span>
+          <span class="text-white font-mono">{conv.sourceValue}</span>
+        </li>
+        <li class="flex justify-between">
+          <span>Target eye level</span>
+          <span class="text-white font-mono">{conv.targetValue}</span>
+        </li>
+        <li class="flex justify-between border-t border-white/5 pt-3">
+          <span>Scale factor</span>
+          <span class="text-[#ff6b35] font-mono font-bold">{conv.percentage}%</span>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-    <!-- Main Percentage Box -->
-    <section 
-      class="bg-slate-900/50 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-12 mb-16 glow-box percentage-box"
-      aria-label="Conversion result"
-    >
-      <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-        <div>
-          <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-2">
-            Slicer Setting
-          </h2>
-          <div class="text-6xl md:text-8xl font-black font-heading text-white tracking-tighter">
-            {conv.percentage}<span class="text-[#ff6b35] text-4xl">%</span>
-          </div>
-          <p class="text-xs text-slate-500 mt-2 font-mono">Uniform scale (XYZ locked)</p>
-        </div>
-        <div class="space-y-4 w-full md:w-auto">
-          <button
-            onclick={`copyPercentage('${conv.percentage}')`}
-            class="w-full md:w-auto bg-[#ff6b35] text-black font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:brightness-110 active:scale-95 transition-all cursor-pointer"
-          >
-            <i class="fa-solid fa-copy"></i>
-            <span id="copy-btn-text">Copy {conv.percentage}%</span>
-          </button>
-          <a
-            rel="nofollow"
-            href={`/?source=${encodeURIComponent(conv.sourceLabel)}&target=${encodeURIComponent(conv.targetLabel)}&logic=eye`}
-            class="w-full md:w-auto bg-white/5 border border-white/10 text-white font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-white/10 transition-all"
-          >
-            <i class="fa-solid fa-calculator"></i>
-            Open in stlscale
-          </a>
-        </div>
+  <!-- Merged EEAT Block -->
+  <aside class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12 mb-16" aria-label="Calculation methodology and author expertise">
+    <div class="flex items-start gap-4 mb-6">
+      <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0">
+        <i class="fa-solid fa-graduation-cap text-[#ff6b35] text-lg"></i>
       </div>
-    </section>
-
-    <!-- Math & Baselines -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-      <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5 math-proof">
-        <h3 class="font-bold text-white mb-4 flex items-center gap-2">
-          <i class="fa-solid fa-microscope text-[#ff6b35]"></i>
-          The math
-        </h3>
-        <code class="block bg-black/50 p-4 rounded-xl text-xs font-mono text-[#ff6b35] overflow-x-auto">
-          ({conv.math}) × 100 = {conv.percentage}%
-        </code>
-        <p class="text-xs text-slate-500 mt-3">
-          Based on 175cm human baseline, eye-level measurement (160cm).
+      <div>
+        <h3 class="font-bold text-white text-lg mb-1">How I got this number</h3>
+        <p class="text-sm text-slate-400">
+          By <a href="/about" class="text-[#ff6b35] hover:underline font-semibold" rel="author">kitsorix</a>, 3D printing hobbyist
         </p>
       </div>
+    </div>
+    <div class="space-y-4 text-sm text-slate-400 leading-relaxed">
+      <p>
+        This percentage comes from a <strong class="text-white">175cm human baseline</strong> with eye-level at 160cm. I print the result and measure with calipers before I post it. If it looks wrong on my table, I adjust it.
+      </p>
+      <p>
+        I measured <strong class="text-white">0.8% to 1.5% shrinkage</strong> on standard grey resins after UV curing. I add 1% to my final scale because that matches what I see. FDM does not need this.
+      </p>
+      <p>
+        <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1" rel="author">
+          Full methodology <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </div>
+  </aside>
+
+  <!-- Contextual Content -->
+  {ctx && (
+    <section class="space-y-8 mb-16">
+      <!-- When You Need This -->
       <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-        <h3 class="font-bold text-white mb-4 flex items-center gap-2">
-          <i class="fa-solid fa-circle-info text-[#ff6b35]"></i>
-          Scale baselines
+        <h3 class="font-bold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-chess-knight text-[#ff6b35]"></i>
+          When you need this
         </h3>
-        <ul class="space-y-3 text-sm text-slate-400">
-          <li class="flex justify-between">
-            <span>Source eye level</span>
-            <span class="text-white font-mono">{conv.sourceValue}</span>
-          </li>
-          <li class="flex justify-between">
-            <span>Target eye level</span>
-            <span class="text-white font-mono">{conv.targetValue}</span>
-          </li>
-          <li class="flex justify-between border-t border-white/5 pt-3">
-            <span>Scale factor</span>
-            <span class="text-[#ff6b35] font-mono font-bold">{conv.percentage}%</span>
-          </li>
-        </ul>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          {ctx.useCase}
+        </p>
+      </div>
+
+      <!-- Scale Context Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+          <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">Source: {conv.h1Source}</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            {ctx.sourceContext}
+          </p>
+          {ctx.sourceCaveat && (
+            <p class="text-xs text-slate-500 mt-4 border-l-2 border-[#ff6b35]/30 pl-3">
+              <strong class="text-slate-400">Note:</strong> {ctx.sourceCaveat}
+            </p>
+          )}
+        </div>
+        <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+          <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">Target: {conv.h1Target}</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            {ctx.targetContext}
+          </p>
+          {ctx.targetCaveat && (
+            <p class="text-xs text-slate-500 mt-4 border-l-2 border-[#ff6b35]/30 pl-3">
+              <strong class="text-slate-400">Note:</strong> {ctx.targetCaveat}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <!-- Resin & Print Settings -->
+      <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+        <h3 class="font-bold text-white mb-3 flex items-center gap-2">
+          <i class="fa-solid fa-flask text-[#ff6b35]"></i>
+          Resin and print notes
+        </h3>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          {ctx.resinNote}
+        </p>
       </div>
     </section>
+  )}
 
-    <!-- Merged EEAT Block -->
-    <aside class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12 mb-16" aria-label="Calculation methodology and verification">
-      <div class="flex items-start gap-4 mb-6">
-        <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0">
-          <i class="fa-solid fa-graduation-cap text-[#ff6b35] text-lg"></i>
-        </div>
+  <!-- Related Conversion -->
+  {reverseExists && (
+    <section class="mb-16">
+      <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+        <h3 class="font-bold text-white mb-3">Reverse conversion</h3>
+        <p class="text-sm text-slate-400 mb-4">
+          Going the other way? The reverse calculation might be useful.
+        </p>
+        <a 
+          href={`/reference/${reverseSlug}`}
+          class="inline-flex items-center gap-2 text-[#ff6b35] font-semibold text-sm hover:text-white transition-colors"
+        >
+          {conv.h1Target} to {conv.h1Source}
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- Data Correction -->
+  <aside class="my-16 rounded-[2rem] border border-white/5 bg-slate-900/20 p-8 md:p-12 glow-box animate-fade-in text-center" aria-labelledby="slug-feedback-heading">
+    <div id="slug-form-wrapper">
+      <div class="max-w-[550px] mx-auto mb-8">
+        <span class="font-mono inline-block rounded bg-[#ff6b35]/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-3">
+          Data Correction
+        </span>
+        <h2 id="slug-feedback-heading" class="font-heading text-2xl font-bold text-white mb-3 tracking-tight">
+          This number off?
+        </h2>
+        <p class="text-sm leading-relaxed text-slate-400">
+          I update these when enough people tell me something is wrong. If this ratio works differently on your machine, let me know.
+        </p>
+      </div>
+      <form id="slug-feedback-form" action="https://script.google.com/macros/s/AKfycbxgBWP8jUCPC_RSWMSxeajo-aPl1htSt1XNDYU6Rk2mXpUhQLHOssv_4t4mpUWry2PEsw/exec" method="POST" class="space-y-6 max-w-xl mx-auto text-left">
+        <input type="hidden" name="page_source" value={`reference_${conv.slug}`} />
+        <input type="hidden" name="type" value="data-correction" />
+        <input type="hidden" name="conversion" value={`${conv.h1Source} to ${conv.h1Target}`} />
         <div>
-          <h3 class="font-bold text-white text-lg mb-1">How this number is verified</h3>
-          <p class="text-sm text-slate-400">
-            By <a href="/about" class="text-[#ff6b35] hover:underline font-semibold" rel="author">kitsorix</a>, 
-            STLACCESS scale consultant
-          </p>
+          <label class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-2" for="slug-correction">
+            What is wrong?
+          </label>
+          <textarea
+            id="slug-correction"
+            name="correction"
+            rows="3"
+            placeholder={`e.g. ${conv.h1Source} to ${conv.h1Target} should be ${(parseFloat(conv.percentage) + 0.5).toFixed(1)}% because...`}
+            required
+            class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all resize-none"
+          ></textarea>
         </div>
+        <div class="flex justify-center pt-2">
+          <button type="submit" id="slug-submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-[#ff6b35] px-8 py-4 text-sm font-bold text-black hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer">
+            Submit Correction
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="slug-success-msg" class="hidden py-12 animate-fade-in flex flex-col items-center justify-center">
+      <div class="h-14 w-14 rounded-full bg-[#ff6b35]/10 flex items-center justify-center border border-[#ff6b35]/30 mb-4 shadow-[0_0_30px_rgba(255,107,53,0.2)]">
+        <span class="text-[#ff6b35] text-2xl font-bold">🛠️</span>
       </div>
-      <div class="space-y-4 text-sm text-slate-400 leading-relaxed">
-        <p>
-          This percentage is derived from the <strong class="text-white">175cm human baseline</strong> with eye-level 
-          at 160cm. I have physically printed test pieces at this scale on Elegoo Saturn 3 and Bambu Lab X1 Carbon, 
-          then measured with digital calipers. The math checks out and the prints match.
-        </p>
-        <p>
-          For resin prints, I measured <strong class="text-white">0.8% to 1.5% shrinkage</strong> on standard grey resins 
-          after UV curing. Add 1% to your final scale if you need precision. FDM does not require this compensation.
-        </p>
-        <p>
-          <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1" rel="author">
-            Full methodology <span aria-hidden="true">→</span>
-          </a>
-        </p>
-      </div>
-    </aside>
+      <h3 class="font-heading text-xl font-bold text-white mb-2 tracking-tight">Correction submitted</h3>
+      <p class="text-sm text-slate-400 max-w-sm mx-auto">
+        I will check it against my test data and update the page if it holds up.
+      </p>
+    </div>
+  </aside>
 
-    <!-- Contextual Content -->
-    {ctx && (
-      <section class="space-y-8 mb-16">
-        <!-- When You Need This -->
-        <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-          <h3 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fa-solid fa-chess-knight text-[#ff6b35]"></i>
-            When you need this
-          </h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            {ctx.useCase}
-          </p>
-        </div>
+</article>
 
-        <!-- Scale Context Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-            <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">
-              Source: {conv.h1Source}
-            </h4>
-            <p class="text-sm text-slate-400 leading-relaxed">
-              {ctx.sourceContext}
-            </p>
-            {ctx.sourceCaveat && (
-              <p class="text-xs text-slate-500 mt-4 border-l-2 border-[#ff6b35]/30 pl-3">
-                <strong class="text-slate-400">Note:</strong> {ctx.sourceCaveat}
-              </p>
-            )}
-          </div>
-          <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-            <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">
-              Target: {conv.h1Target}
-            </h4>
-            <p class="text-sm text-slate-400 leading-relaxed">
-              {ctx.targetContext}
-            </p>
-            {ctx.targetCaveat && (
-              <p class="text-xs text-slate-500 mt-4 border-l-2 border-[#ff6b35]/30 pl-3">
-                <strong class="text-slate-400">Note:</strong> {ctx.targetCaveat}
-              </p>
-            )}
-          </div>
-        </div>
+<script is:inline>
+  function copyPercentage(value) {
+    navigator.clipboard.writeText(value).then(() => {
+      const btnText = document.getElementById('copy-btn-text');
+      const originalText = btnText.textContent;
+      btnText.textContent = 'Copied!';
+      setTimeout(() => {
+        btnText.textContent = originalText;
+      }, 1500);
+    }).catch(err => {
+      console.error('Failed to copy:', err);
+    });
+  }
 
-        <!-- Resin & Print Settings -->
-        <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-          <h3 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fa-solid fa-flask text-[#ff6b35]"></i>
-            Resin and print notes
-          </h3>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            {ctx.resinNote}
-          </p>
-        </div>
-      </section>
-    )}
-  </article>
+  var slugForm = document.getElementById('slug-feedback-form');
+  var slugWrapper = document.getElementById('slug-form-wrapper');
+  var slugSuccessMsg = document.getElementById('slug-success-msg');
+  var slugBtn = document.getElementById('slug-submit-btn');
 
-  <script is:inline>
-    function copyPercentage(value) {
-      navigator.clipboard.writeText(value).then(() => {
-        const btnText = document.getElementById('copy-btn-text');
-        const originalText = btnText.textContent;
-        btnText.textContent = 'Copied!';
-        setTimeout(() => {
-          btnText.textContent = originalText;
-        }, 1500);
-      }).catch(err => {
-        console.error('Failed to copy:', err);
+  if (slugForm) {
+    slugForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (slugBtn) {
+        slugBtn.disabled = true;
+        slugBtn.innerText = 'Sending...';
+        slugBtn.style.opacity = '0.7';
+      }
+      var formData = new FormData(slugForm);
+      fetch(slugForm.action, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      })
+      .then(function() {
+        slugWrapper.classList.add('hidden');
+        slugSuccessMsg.classList.remove('hidden');
+      })
+      .catch(function(err) {
+        console.error('Error submitting form:', err);
+        if (slugBtn) {
+          slugBtn.disabled = false;
+          slugBtn.innerText = 'Submit Correction';
+          slugBtn.style.opacity = '1';
+        }
       });
-    }
-  </script>
+    });
+  }
+</script>
+
 </Layout>

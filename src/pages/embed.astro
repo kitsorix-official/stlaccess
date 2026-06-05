@@ -1,120 +1,255 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const schema = `{
+const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "WebPage",
       "@id": "https://stlaccess.com/embed#webpage",
       "url": "https://stlaccess.com/embed",
-      "name": "Creator Badge | Official Scaling Verification",
-      "description": "Embed the STLACCESS trust badge on your storefront. Let your customers know your models follow common scaling conventions for 28mm and 32mm systems.",
-      "isPartOf": { "@id": "https://stlaccess.com/#organization" },
+      "name": "Creator Badge | Link Your STL Store to Scale Conversions",
+      "description": "Free embeddable badge for 3D model creators. Links your store to STLACCESS scale conversions. Customers see percentages for 28mm, 32mm, and more.",
+      "isPartOf": {"@id": "https://stlaccess.com/#organization"},
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Creator Badge", "item": "https://stlaccess.com/embed" }
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Creator Badge", "item": "https://stlaccess.com/embed"}
         ]
-      }
+      },
+      "author": {
+        "@type": "Person",
+        "name": "kitsorix",
+        "url": "https://stlaccess.com/about",
+        "jobTitle": "3D Printing Hobbyist"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "STLACCESS",
+        "url": "https://stlaccess.com",
+        "logo": {"@type": "ImageObject", "url": "https://stlaccess.com/favicon.svg"}
+      },
+      "datePublished": "2026-05-07",
+      "dateModified": "2026-06-05"
+    },
+    {
+      "@type": "HowTo",
+      "name": "How to Add the STLACCESS Creator Badge to Your Store",
+      "description": "Step-by-step guide to embedding the STLACCESS scale conversion badge on your storefront or portfolio.",
+      "totalTime": "PT3M",
+      "tool": {"@type": "SoftwareApplication", "name": "STLACCESS Badge Generator"},
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Choose your badge style",
+          "text": "Select a theme (Dark Slate, Brand Orange, or Glass Morph) and an icon (Checkmark, Shield, 3D Cube)."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Copy the embed code",
+          "text": "Click the Copy Code button to copy the generated HTML to your clipboard."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Paste into your store",
+          "text": "Paste the HTML into your product description, about section, or footer. The badge links back to STLACCESS scale conversions."
+        }
+      ]
     }
   ]
-}`;
+});
 ---
-
-<Layout 
-	title="Creator Badge | Official Scaling Verification | STLACCESS"
-	description="Embed the STLACCESS trust badge on your storefront. Let your customers know your models follow common scaling conventions for 28mm and 32mm systems."
-	schema={schema}
+<Layout
+  title="Creator Badge | Link Your STL Store to Scale Conversions"
+  description="Free embeddable badge for 3D model creators. Links your store to STLACCESS scale conversions. Customers see percentages for 28mm, 32mm, and more."
+  schema={schema}
 >
-    <!-- Breadcrumbs -->
-    <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
-        <a href="/" class="hover:text-[#ff6b35]">Home</a> 
-        <span class="mx-2 text-slate-800">/</span> 
-        <span class="text-slate-400">Creator Badge</span>
-    </nav>
 
-    <!-- Header -->
-    <section class="pb-16 px-6 max-w-6xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
-            Creator <span class="text-[#ff6b35]">Badge</span>
-        </h1>
-        <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-            Add the official STLACCESS verification to your store descriptions. Give your customers the confidence that your models are tested against widely-used gaming scales.
-        </p>
-    </section>
+<!-- Breadcrumbs -->
+<nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+  <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+  <span class="mx-2 text-slate-800">/</span>
+  <span class="text-slate-400" aria-current="page">Creator Badge</span>
+</nav>
 
-    <!-- Generator Section -->
-    <section class="px-6 pb-24 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            
-            <!-- Controls -->
-            <div class="space-y-8 bg-slate-900/20 p-8 md:p-12 rounded-[2.5rem] border border-white/5 glow-box">
-                <div>
-                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Badge Label</label>
-                    <input type="text" id="badgeLabel" oninput="updateBadge()" value="STLACCESS Verified" class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 text-white focus-ring transition-all outline-none">
-                </div>
+<!-- Header -->
+<section class="pb-16 px-6 max-w-6xl mx-auto">
+  <h1 class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
+    Creator <span class="text-[#ff6b35]">Badge</span>
+  </h1>
+  <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
+    A free badge that links your store or portfolio to STLACCESS scale conversions. Your customers click through and see the slicer percentages I use for your models.
+  </p>
+</section>
 
-                <div class="grid grid-cols-2 gap-6">
-                    <div>
-                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Theme</label>
-                        <select id="badgeTheme" onchange="updateBadge()" class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 text-white focus-ring transition-all outline-none appearance-none">
-                            <option value="dark">Dark Slate</option>
-                            <option value="brand">Brand Orange</option>
-                            <option value="glass">Glass Morph</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Icon</label>
-                        <select id="badgeIcon" onchange="updateBadge()" class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 text-white focus-ring transition-all outline-none appearance-none">
-                            <option value="check">Checkmark</option>
-                            <option value="shield">Shield</option>
-                            <option value="cube">3D Cube</option>
-                        </select>
-                    </div>
-                </div>
+<!-- Why Use This -->
+<section class="px-6 pb-12 max-w-6xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+      <i class="fa-solid fa-link text-[#ff6b35] text-lg mb-3 block"></i>
+      <h3 class="text-white font-semibold text-sm mb-2">Backlink to conversions</h3>
+      <p class="text-xs text-slate-400">
+        The badge links to the <a href="/reference" class="text-[#ff6b35] hover:text-white transition-colors">STLACCESS reference library</a>. Customers can check the scale math themselves.
+      </p>
+    </div>
+    <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+      <i class="fa-solid fa-calculator text-[#ff6b35] text-lg mb-3 block"></i>
+      <h3 class="text-white font-semibold text-sm mb-2">Clear percentages</h3>
+      <p class="text-xs text-slate-400">
+        Instead of "28mm compatible," your customers get <span class="text-[#ff6b35] font-semibold">114.3%</span> or <span class="text-[#ff6b35] font-semibold">87.5%</span>. No guessing.
+      </p>
+    </div>
+    <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+      <i class="fa-solid fa-code text-[#ff6b35] text-lg mb-3 block"></i>
+      <h3 class="text-white font-semibold text-sm mb-2">One line of HTML</h3>
+      <p class="text-xs text-slate-400">
+        Copy and paste. The badge is responsive, loads fast, and does not track users. No JavaScript required in your store.
+      </p>
+    </div>
+  </div>
+</section>
 
-                <div>
-                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Embed Code</label>
-                    <div class="relative group">
-                        <textarea id="embedCode" readonly class="w-full h-32 bg-black border border-white/10 rounded-xl p-6 text-xs font-mono text-slate-400 focus-ring resize-none"></textarea>
-                        <button onclick="copyEmbed()" class="absolute top-4 right-4 bg-white/5 hover:bg-white/10 border border-white/10 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg transition-all" id="copyBtn">
-                            Copy Code
-                        </button>
-                    </div>
-                </div>
-            </div>
+<!-- Generator Section -->
+<section class="px-6 pb-24 max-w-6xl mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
-            <!-- Preview Display -->
-            <div class="flex flex-col gap-8">
-                <div class="badge-preview-container aspect-video border border-dashed border-white/10 rounded-[2.5rem] flex items-center justify-center p-12 relative overflow-hidden">
-                    <div id="previewBadge" class="flex items-center gap-4 px-8 py-5 rounded-2xl border transition-all duration-500 cursor-default">
-                        <div id="iconContainer" class="w-8 h-8 flex items-center justify-center rounded-lg">
-                            <i id="badgeIconClass" class="fa-solid fa-circle-check"></i>
-                        </div>
-                        <div class="flex flex-col leading-tight">
-                             <span id="badgeLabelText" class="font-bold text-sm font-heading tracking-tight">STLACCESS Verified</span>
-                            <span class="text-[9px] uppercase font-black tracking-widest text-slate-500">Cross-Scale Tested</span>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-6 left-6 text-[9px] font-bold uppercase tracking-widest text-slate-700">Live Preview Area</div>
-                </div>
-
-                <div class="bg-white/[0.02] border border-white/5 p-8 rounded-[2.5rem]">
-                    <h3 class="text-sm font-bold mb-4 flex items-center gap-3">
-                        <i class="fa-solid fa-circle-info text-[#ff6b35]"></i>
-                        Installation Tip
-                    </h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">
-                        Paste the generated HTML into your "Product Description" or "About the Artist" section. The badge is fully responsive and automatically links to the STLACCESS Conversion Library so your customers can verify the math themselves.
-                    </p>
-                </div>
-            </div>
-
+    <!-- Controls -->
+    <div class="space-y-8 bg-slate-900/20 p-8 md:p-12 rounded-[2.5rem] border border-white/5 glow-box">
+      <div>
+        <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Badge label</label>
+        <input
+          type="text"
+          id="badgeLabel"
+          oninput="updateBadge()"
+          value="STLACCESS Scale Link"
+          class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 text-white focus:ring-1 focus:ring-[#ff6b35] transition-all outline-none"
+        />
+      </div>
+      <div class="grid grid-cols-2 gap-6">
+        <div>
+          <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Theme</label>
+          <select
+            id="badgeTheme"
+            onchange="updateBadge()"
+            class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 text-white focus:ring-1 focus:ring-[#ff6b35] transition-all outline-none appearance-none"
+          >
+            <option value="dark">Dark Slate</option>
+            <option value="brand">Brand Orange</option>
+            <option value="glass">Glass Morph</option>
+          </select>
         </div>
-    </section>
+        <div>
+          <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Icon</label>
+          <select
+            id="badgeIcon"
+            onchange="updateBadge()"
+            class="w-full bg-black border border-white/10 rounded-xl px-6 py-4 text-white focus:ring-1 focus:ring-[#ff6b35] transition-all outline-none appearance-none"
+          >
+            <option value="check">Checkmark</option>
+            <option value="shield">Shield</option>
+            <option value="cube">3D Cube</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 block mb-4">Embed code</label>
+        <div class="relative group">
+          <textarea
+            id="embedCode"
+            readonly
+            class="w-full h-32 bg-black border border-white/10 rounded-xl p-6 text-xs font-mono text-slate-400 focus:ring-1 focus:ring-[#ff6b35] resize-none"
+          ></textarea>
+          <button
+            onclick="copyEmbed()"
+            class="absolute top-4 right-4 bg-white/5 hover:bg-white/10 border border-white/10 text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg transition-all"
+            id="copyBtn"
+          >
+            Copy Code
+          </button>
+        </div>
+      </div>
+    </div>
 
-    <!-- Page Specific Scripts -->
-    <script is:inline src="/js/creator-embed.js"></script>
+    <!-- Preview Display -->
+    <div class="flex flex-col gap-8">
+      <div class="badge-preview-container aspect-video border border-dashed border-white/10 rounded-[2.5rem] flex items-center justify-center p-12 relative overflow-hidden bg-slate-900/10">
+        <div
+          id="previewBadge"
+          class="flex items-center gap-4 px-8 py-5 rounded-2xl border transition-all duration-500 cursor-default"
+        >
+          <div id="iconContainer" class="w-8 h-8 flex items-center justify-center rounded-lg">
+            <i id="badgeIconClass" class="fa-solid fa-circle-check"></i>
+          </div>
+          <div class="flex flex-col leading-tight">
+            <span id="badgeLabelText" class="font-bold text-sm font-heading tracking-tight">STLACCESS Scale Link</span>
+            <span class="text-[9px] uppercase font-black tracking-widest text-slate-500">Scale conversions</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white/[0.02] border border-white/5 p-8 rounded-[2.5rem]">
+        <h3 class="text-sm font-bold mb-4 flex items-center gap-3">
+          <i class="fa-solid fa-circle-info text-[#ff6b35]"></i>
+          Where to paste this
+        </h3>
+        <ul class="text-xs text-slate-500 leading-relaxed space-y-2">
+          <li>• <strong class="text-slate-400">MyMiniFactory</strong> — Product description or artist bio</li>
+          <li>• <strong class="text-slate-400">Cults3D</strong> — About the designer section</li>
+          <li>• <strong class="text-slate-400">Gumroad</strong> — Product page or profile</li>
+          <li>• <strong class="text-slate-400">Patreon</strong> — Post footer or about page</li>
+          <li>• <strong class="text-slate-400">Personal site</strong> — Anywhere HTML is accepted</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ for creators -->
+<section class="px-6 pb-24 max-w-6xl mx-auto" aria-labelledby="creator-faq-heading">
+  <h2 id="creator-faq-heading" class="text-3xl font-bold font-heading text-white mb-8 border-b border-white/5 pb-4">
+    Questions from creators
+  </h2>
+  <div class="space-y-4">
+    <details class="group border border-white/5 bg-[#0a0a0a]/50 rounded-2xl overflow-hidden">
+      <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none">
+        <span class="pr-6">Does the badge cost anything?</span>
+        <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 9l-7 7-7-7"/>
+        </svg>
+      </summary>
+      <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-white/5">
+        <p>No. The badge and the converter are free. I built STLACCESS because I needed it myself. If it helps you sell more models, that is the point.</p>
+      </div>
+    </details>
+    <details class="group border border-white/5 bg-[#0a0a0a]/50 rounded-2xl overflow-hidden">
+      <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none">
+        <span class="pr-6">What if my models use a custom scale?</span>
+        <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 9l-7 7-7-7"/>
+        </svg>
+      </summary>
+      <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-white/5">
+        <p>The badge links to the <a href="/reference" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">reference library</a>, which covers 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100. If your scale is not listed, <a href="/contact" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">contact me</a> and I will add it after I test it.</p>
+      </div>
+    </details>
+    <details class="group border border-white/5 bg-[#0a0a0a]/50 rounded-2xl overflow-hidden">
+      <summary class="flex justify-between items-center p-6 cursor-pointer font-bold text-slate-200 hover:text-white list-none">
+        <span class="pr-6">Will this slow down my store page?</span>
+        <svg class="w-5 h-5 text-slate-500 group-open:rotate-180 group-open:text-[#ff6b35] transition-transform shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 9l-7 7-7-7"/>
+        </svg>
+      </summary>
+      <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-white/5">
+        <p>No. The badge is pure HTML and CSS. No JavaScript, no tracking pixels, no external images. It loads in under 1KB and does not block your page render.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<script is:inline src="/js/creator-embed.js"></script>
+
 </Layout>
