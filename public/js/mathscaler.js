@@ -1,5 +1,5 @@
     /**
-         * The STLAccess Scale Engine Core
+         * The STLACCESS Scale Engine Core
          * Logic: Ratio conversion based on a 1750mm (1.75m) human baseline.
          */
         const SCALES = {

@@ -1,38 +1,39 @@
-# STLAccess — Free STL Scale Converter
+# STLACCESS — Mini Scale Converter
 
-A simple, fast, and accurate web tool to convert STL files between different miniature scales. Designed specifically for the tabletop gaming and 3D printing community.
+A fast, simple browser tool to scale 3D files between different miniature sizes. I built this specifically to take the guesswork out of sizing up tabletop prints.
 
-No uploads. No accounts. No nonsense. All calculations run in your browser.
+No file uploads, no user accounts, and zero tracking. Every calculation runs directly in your browser.
 
-### Why I Built It
+### Why I Built This
 
-Scale conversion is one of the most annoying problems when 3D printing miniatures. I got tired of doing messy math in my slicer, so I built STLAccess with a consistent 175cm human baseline and proper eye-level methodology.
+Messing with scale adjustments is one of the most tedious parts of 3D printing miniatures. I got tired of guessing percentage slides inside my slicer or getting mixed results because different sculptors treat heights differently. 
 
-### Features
+I put this engine together using a flat 175cm human baseline as my starting index, calculating changes from eye-level height rather than the top of a helmet or hair. It gives me consistent results across different creators, so I figured other folks in the hobby could use it too.
 
-- Accurate scale conversion between 28mm, 32mm Heroic, 35mm, 75mm, and historical scales (1:35, 1:72, etc.)
-- Eye Level vs Top of Head measurement options
-- Resin shrinkage compensation
-- Pre-verified reference library with 50+ official conversions
-- Personal library (saved locally)
-- Fully client-side — your files never leave your computer
+### How It Works
 
-### Live Tool
+*   **Scale Shifting:** Move numbers between common tabletop footprints (like 28mm, 32mm Heroic, or 75mm) and model kit ratios (1:35, 1:48, 1:72).
+*   **Measurement Toggles:** Account for eye-level sizing vs full height calculations depending on how the model was sculpted.
+*   **Material Shrinkage:** Tweak your scale by fractional percentages to counteract natural resin shrinkage.
+*   **Quick Reference List:** Jump straight to standard conversion setups that I use most frequently for my own games.
+*   **My Library:** Save your custom setups locally inside your browser's memory.
+*   **Privacy-First:** Your project files and dimensions stay on your hardware. Nothing is uploaded to a server.
 
-→ **[Try STLAccess](https://stlaccess.com)**
+### Try the Tool
 
-### Tech Stack
+👉 **[Launch STLACCESS](https://stlaccess.com)**
 
-- HTML, Tailwind CSS, Vanilla JavaScript
-- Fully client-side (no backend)
+### The Stack
 
-### Feedback & Contributions
+*   Built with HTML, Tailwind CSS, and plain JavaScript.
+*   Runs completely client-side (no backend database overhead).
 
-Found a bug? Have a suggestion for a new scale or feature?  
-Feel free to open an issue or pull request.
+### Updates, Tweaks, & Suggestions
 
-I'm always happy to improve the tool for the community.
+If you run into an inaccurate calculation or want to suggest a new preset scale layout, use the input forms directly on the website to submit your notes. I monitor those requests and push out regular manual updates whenever there's a strong demand from the community for a specific conversion. 
+
+For bug reports or code-level changes, feel free to open a ticket or a pull request right here on the repository.
 
 ---
 
-**Made by [kitsorix](https://github.com/kitsorix-official)** — because perfectly scaled miniatures should not be this hard.
+**Built by [kitsorix](https://github.com/kitsorix-official)** — because getting miniatures to look right next to each other shouldn't be a chore.

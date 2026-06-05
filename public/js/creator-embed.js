@@ -1,5 +1,5 @@
    function updateBadge() {
-            const labelInput = document.getElementById('badgeLabel').value || "STLAccess Verified";
+            const labelInput = document.getElementById('badgeLabel').value || "STLACCESS Verified";
             const theme = document.getElementById('badgeTheme').value;
             const icon = document.getElementById('badgeIcon').value;
             
@@ -44,7 +44,7 @@
 
             // 4. Update Embed Code
             const currentBadgeHtml = badge.outerHTML.replace('previewBadge', '').replace('transition-all duration-500', '');
-            embedArea.value = `<!-- STLAccess Trust Badge -->\n<a href="https://stlaccess.com/conversion" style="text-decoration:none; display:inline-block;" target="_blank">\n${currentBadgeHtml}\n</a>`;
+            embedArea.value = `<!-- STLACCESS Trust Badge -->\n<a href="https://stlaccess.com/conversion" style="text-decoration:none; display:inline-block;" target="_blank">\n${currentBadgeHtml}\n</a>`;
         }
 
         async function copyEmbed() {
