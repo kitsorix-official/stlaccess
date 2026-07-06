@@ -56,7 +56,7 @@ const schema = JSON.stringify({
     {
       "@type": "ItemPage",
       "@id": `https://stlaccess.com/reference/${conv.slug}#webpage`,
-      "name": `${conv.h1Source} to ${conv.h1Target} Scale Conversion | ${conv.percentage}% Slicer Setting`,
+      "name": `${conv.h1Source} to ${conv.h1Target} Miniature 3D Print STL Scale | STLACCESS`,
       "description": conv.description,
       "url": `https://stlaccess.com/reference/${conv.slug}`,
       "isPartOf": {
@@ -149,7 +149,7 @@ const schema = JSON.stringify({
 });
 ---
 <Layout
-  title={`${conv.h1Source} to ${conv.h1Target} Scale Conversion | ${conv.percentage}% Slicer Setting`}
+  title={`${conv.h1Source} to ${conv.h1Target} Miniature 3D Print STL Scale | STLACCESS`}
   description={conv.description}
   schema={schema}
 >
@@ -170,10 +170,10 @@ const schema = JSON.stringify({
   <!-- Header -->
   <header class="mb-16 conv-header">
     <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">
-      {conv.h1Source} to <span class="text-[#ff6b35]">{conv.h1Target}</span>
+      {conv.h1Source} to <span class="text-[#ff6b35]">{conv.h1Target}</span> Miniature Scale for 3D Printing
     </h1>
     <p class="text-xl text-slate-400 leading-relaxed max-w-2xl">
-      {conv.subtext}
+      Convert 3D printed tabletop miniatures from {conv.h1Source} to {conv.h1Target}. This STL scale calculator is designed for Warhammer, D&D, and tabletop gaming miniatures.
     </p>
   </header>
 

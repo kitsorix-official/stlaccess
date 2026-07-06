@@ -99,3 +99,101 @@ button:focus-visible, a:focus-visible {
     outline: 2px solid var(--brand);
     outline-offset: 4px;
 }
+
+/* Blog post prose styles */
+.prose h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #f8fafc;
+}
+.prose h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: #f8fafc;
+}
+.prose p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+    color: #94a3b8;
+}
+.prose ul, .prose ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+    color: #94a3b8;
+}
+.prose li {
+    margin-bottom: 0.5rem;
+    line-height: 1.75;
+}
+.prose strong {
+    color: #f8fafc;
+    font-weight: 600;
+}
+.prose a {
+    color: #ff6b35;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.prose a:hover {
+    color: #f8fafc;
+}
+.prose code {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    color: #e2e8f0;
+}
+.prose pre {
+    background-color: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+.prose pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+.prose blockquote {
+    border-left: 3px solid #ff6b35;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: #94a3b8;
+    font-style: italic;
+}
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+.prose th {
+    text-align: left;
+    font-weight: 600;
+    color: #f8fafc;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.prose td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #94a3b8;
+}
+.prose hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+.prose img {
+    border-radius: 0.75rem;
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+}

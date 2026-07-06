@@ -105,8 +105,13 @@ const currentPath = Astro.url.pathname;
           </a>
         </li>
         <li>
-          <a href="/embed" class={currentPath === '/embed' ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
-            Creator Badge
+          <a href="/tools" class={currentPath === '/tools' ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
+            All Tools
+          </a>
+        </li>
+        <li>
+          <a href="/blog" class={currentPath.startsWith('/blog') ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
+            Blog
           </a>
         </li>
       </ul>
@@ -147,8 +152,13 @@ const currentPath = Astro.url.pathname;
           </a>
         </li>
         <li>
-          <a href="/embed" class={currentPath === '/embed' ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
-            Creator Badge
+          <a href="/tools" class={currentPath === '/tools' ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
+            All Tools
+          </a>
+        </li>
+        <li>
+          <a href="/blog" class={currentPath.startsWith('/blog') ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
+            Blog
           </a>
         </li>
       </ul>
@@ -187,7 +197,8 @@ const currentPath = Astro.url.pathname;
               <li><a href="/" class="hover:text-[#ff6b35] transition-colors">Scale Engine</a></li>
               <li><a href="/library" class="hover:text-[#ff6b35] transition-colors">Personal Library</a></li>
               <li><a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference Library</a></li>
-              <li><a href="/embed" class="hover:text-[#ff6b35] transition-colors">Creator Badge</a></li>
+              <li><a href="/tools" class="hover:text-[#ff6b35] transition-colors">All Tools</a></li>
+              <li><a href="/blog" class="hover:text-[#ff6b35] transition-colors">Blog</a></li>
             </ul>
           </div>
 

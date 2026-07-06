@@ -1,0 +1,109 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import posts from "../../data/blogPosts.json";
+
+export function getStaticPaths() {
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const pubDate = new Date(post.pubDate);
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `https://stlaccess.com/blog/${post.slug}#blogposting`,
+  "headline": post.title,
+  "description": post.description,
+  "url": `https://stlaccess.com/blog/${post.slug}`,
+  "datePublished": post.pubDate,
+  "author": {
+    "@type": "Person",
+    "name": "kitsorix",
+    "url": "https://stlaccess.com/about",
+    "jobTitle": "3D Printing Hobbyist"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "STLACCESS",
+    "url": "https://stlaccess.com",
+    "logo": { "@type": "ImageObject", "url": "https://stlaccess.com/favicon.svg" }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://stlaccess.com/blog/${post.slug}#webpage`
+  },
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "https://stlaccess.com/blog#webpage",
+    "name": "STLACCESS Blog",
+    "publisher": {
+      "@type": "Organization",
+      "name": "STLACCESS",
+      "url": "https://stlaccess.com",
+      "logo": { "@type": "ImageObject", "url": "https://stlaccess.com/favicon.svg" }
+    }
+  }
+});
+---
+
+<Layout
+  title={`${post.title} | STLACCESS`}
+  description={post.description}
+  schema={schema}
+>
+
+<!-- Breadcrumbs -->
+<nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+  <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+  <span class="mx-2 text-slate-800">/</span>
+  <a href="/blog" class="hover:text-[#ff6b35] transition-colors">Blog</a>
+  <span class="mx-2 text-slate-800">/</span>
+  <span class="text-slate-400" aria-current="page">{post.title}</span>
+</nav>
+
+<article class="max-w-4xl mx-auto px-6 py-12">
+
+  <header class="mb-12">
+    {post.tags && post.tags.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-4">
+        {post.tags.map((tag) => (
+          <span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+
+    <time datetime={post.pubDate} class="text-sm text-slate-500 mb-4 block">
+      {pubDate.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })}
+    </time>
+
+    <h1 class="text-4xl md:text-5xl font-bold font-heading tracking-tight mb-6">
+      {post.title}
+    </h1>
+
+    <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">
+      {post.description}
+    </p>
+  </header>
+
+  <div class="prose max-w-none" set:html={post.html} />
+
+  <footer class="mt-16 pt-8 border-t border-white/5">
+    <a href="/blog" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
+      <i class="fa-solid fa-arrow-left text-xs"></i>
+      Back to all posts
+    </a>
+  </footer>
+
+</article>
+
+</Layout>
