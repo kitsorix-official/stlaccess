@@ -82,6 +82,19 @@ const schema = JSON.stringify({
   </p>
 </section>
 
+<!-- Search / Filter -->
+<div class="px-6 pb-8 max-w-6xl mx-auto">
+  <div class="relative max-w-md">
+    <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm pointer-events-none"></i>
+    <input
+      type="text"
+      id="blog-search"
+      placeholder="Search posts by title, topic, or tag..."
+      class="w-full bg-slate-900/30 border border-white/5 rounded-2xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#ff6b35]/40 transition-colors"
+    />
+  </div>
+</div>
+
 <!-- Posts Grid -->
 {sortedPosts.length === 0 ? (
   <section class="px-6 pb-24 max-w-6xl mx-auto">
@@ -89,11 +102,12 @@ const schema = JSON.stringify({
   </section>
 ) : (
   <section class="px-6 pb-24 max-w-6xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {sortedPosts.map((post) => (
         <a
           href={`/blog/${post.slug}`}
           class="blog-card group block bg-slate-900/30 rounded-3xl border border-white/5 p-8 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50"
+          data-search={`${post.title} ${post.description} ${post.tags ? post.tags.join(' ') : ''}`.toLowerCase()}
         >
           <div class="flex flex-col h-full">
             {post.tags && post.tags.length > 0 && (
@@ -136,5 +150,20 @@ const schema = JSON.stringify({
     Back to Scale Engine
   </a>
 </aside>
+
+<script>
+  const input = document.getElementById('blog-search');
+  const grid = document.getElementById('blog-grid');
+  if (input && grid) {
+    const cards = Array.from(grid.children);
+    input.addEventListener('input', () => {
+      const query = input.value.toLowerCase().trim();
+      for (const card of cards) {
+        const data = card.getAttribute('data-search') || '';
+        card.style.display = !query || data.includes(query) ? '' : 'none';
+      }
+    });
+  }
+</script>
 
 </Layout>
