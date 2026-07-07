@@ -9,14 +9,7 @@ const schema = `{
       "@id": "https://stlaccess.com/legal#webpage",
       "url": "https://stlaccess.com/legal",
       "name": "Legal Stuff & How Things Work",
-      "isPartOf": { "@id": "https://stlaccess.com/#organization" },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Legal", "item": "https://stlaccess.com/legal" }
-        ]
-      }
+      "isPartOf": { "@id": "https://stlaccess.com/#organization" }
     },
     {
       "@type": "Article",
@@ -26,6 +19,13 @@ const schema = `{
       "publisher": { "@id": "https://stlaccess.com/#organization" },
       "datePublished": "2026-05-01",
       "dateModified": "2026-05-07"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Legal" }
+      ]
     }
   ]
 }`;
@@ -37,7 +37,7 @@ const schema = `{
 >
   <div class="max-w-4xl mx-auto px-6 py-20 w-full">
     <!-- Breadcrumbs -->
-    <nav class="max-w-6xl mx-auto pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600">
+    <nav class="max-w-6xl mx-auto pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
       <a href="/" class="hover:text-[#ff6b35]">Home</a>
       <span class="mx-2 text-slate-800">/</span>
       <span class="text-slate-400">Legal</span>
@@ -109,7 +109,7 @@ const schema = `{
         <div class="space-y-6">
           <h2 class="text-2xl font-bold text-white font-heading">The Math Disclaimer</h2>
           <p>
-            The tools here use scale math based on a standard 175cm human baseline. While the formulas are highly precise, treat the output as an excellent starting guide. Real world factors like resin shrinkage (usually between 0.5% and 2%), specific slicer settings, or even how an individual artist stylizes their models can change how the final printed miniature looks. 
+            The tools here use scale math based on a 175cm human baseline. While the formulas are highly precise, treat the output as an excellent starting guide. Real world factors like material shrinkage (typically 0.2-0.5% for PLA/PETG), specific slicer settings, or even how an individual artist stylizes their models can change how the final printed miniature looks. 
           </p>
         </div>
 

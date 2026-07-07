@@ -20,31 +20,48 @@ const reverseSlug = `${conv.h1Target.toLowerCase().replace(/:/g, '-').replace(/\
 const reverseExists = conversions.some(c => c.slug === reverseSlug);
 
 // Build enhanced schema
+const author = {
+  "@type": "Person",
+  "name": "kitsorix",
+  "url": "https://github.com/kitsorix-official"
+};
 const faqItems = [];
 if (ctx) {
+  const q1 = `Why convert ${conv.h1Source} to ${conv.h1Target}?`;
+  const q2 = `How do I scale ${conv.h1Source} to ${conv.h1Target} in my slicer?`;
+  const q3 = `What is the actual size difference between ${conv.h1Source} and ${conv.h1Target}?`;
   faqItems.push(
     {
       "@type": "Question",
-      "name": `Why convert ${conv.h1Source} to ${conv.h1Target}?`,
+      "name": q1,
+      "text": q1,
+      "author": author,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": ctx.useCase
+        "text": ctx.useCase,
+        "author": author
       }
     },
     {
       "@type": "Question",
-      "name": `How do I scale ${conv.h1Source} to ${conv.h1Target} in my slicer?`,
+      "name": q2,
+      "text": q2,
+      "author": author,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `Open your STL in Cura, PrusaSlicer, or Bambu Studio. Select uniform scaling and enter ${conv.percentage}%. ${ctx.resinNote}`
+        "text": `Open your STL in Cura, PrusaSlicer, or Bambu Studio. Select uniform scaling and enter ${conv.percentage}%.`,
+        "author": author
       }
     },
     {
       "@type": "Question",
-      "name": `What is the actual size difference between ${conv.h1Source} and ${conv.h1Target}?`,
+      "name": q3,
+      "text": q3,
+      "author": author,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `${conv.h1Source} miniatures measure ${conv.sourceValue} on a 175cm human baseline. ${conv.h1Target} miniatures measure ${conv.targetValue}. The ${conv.percentage}% scaling factor bridges this gap.`
+        "text": `${conv.h1Source} miniatures measure ${conv.sourceValue} on a 175cm human baseline. ${conv.h1Target} miniatures measure ${conv.targetValue}. The ${conv.percentage}% scaling factor bridges this gap.`,
+        "author": author
       }
     }
   );
@@ -63,14 +80,6 @@ const schema = JSON.stringify({
         "@type": "WebSite",
         "name": "STLACCESS",
         "url": "https://stlaccess.com/"
-      },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
-          {"@type": "ListItem", "position": 2, "name": "Reference", "item": "https://stlaccess.com/reference"},
-          {"@type": "ListItem", "position": 3, "name": `${conv.h1Source} to ${conv.h1Target}`, "item": `https://stlaccess.com/reference/${conv.slug}`}
-        ]
       },
       "author": {
         "@type": "Person",
@@ -101,15 +110,20 @@ const schema = JSON.stringify({
       "tool": {
         "@type": "SoftwareApplication",
         "name": "STLACCESS Scale Converter",
+        "operatingSystem": "Web",
         "applicationCategory": "UtilityApplication",
-        "operatingSystem": "Any"
+        "offers": {
+          "@type": "Offer",
+          "price": 0.00,
+          "priceCurrency": "USD"
+        }
       },
       "step": [
         {
           "@type": "HowToStep",
           "position": 1,
           "name": "Open your STL file",
-          "text": `Open your ${conv.h1Source} STL file in your slicer (Cura, PrusaSlicer, Bambu Studio, or Lychee for resin).`,
+          "text": `Open your ${conv.h1Source} STL file in your slicer (Cura, PrusaSlicer, or Bambu Studio).`,
           "url": `https://stlaccess.com/reference/${conv.slug}#step-1`
         },
         {
@@ -122,8 +136,8 @@ const schema = JSON.stringify({
         {
           "@type": "HowToStep",
           "position": 3,
-          "name": "Account for resin shrinkage",
-          "text": ctx ? ctx.resinNote : "Add +1% if using standard photopolymer resin. FDM does not require shrinkage adjustment.",
+          "name": "Apply the scale in your slicer",
+          "text": ctx ? ctx.printNote : "Set your slicer to uniform scaling and enter the percentage above.",
           "url": `https://stlaccess.com/reference/${conv.slug}#step-3`
         },
         {
@@ -142,9 +156,17 @@ const schema = JSON.stringify({
       "author": {"@type": "Person", "name": "kitsorix"}
     },
     ...(faqItems.length > 0 ? [{
-      "@type": "FAQPage",
+      "@type": "QAPage",
       "mainEntity": faqItems
-    }] : [])
+    }] : []),
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Reference", "item": "https://stlaccess.com/reference"},
+        {"@type": "ListItem", "position": 3, "name": `${conv.h1Source} to ${conv.h1Target}`}
+      ]
+    }
   ]
 });
 ---
@@ -263,7 +285,7 @@ const schema = JSON.stringify({
         This percentage comes from a <strong class="text-white">175cm human baseline</strong> with eye-level at 160cm. I print the result and measure with calipers before I post it. If it looks wrong on my table, I adjust it.
       </p>
       <p>
-        I measured <strong class="text-white">0.8% to 1.5% shrinkage</strong> on standard grey resins after UV curing. I add 1% to my final scale because that matches what I see. FDM does not need this.
+        I test every percentage on an FDM printer before publishing. PLA and PETG cool with minimal dimensional change — typically under 0.5%. If a number fails on my machine, I adjust it.
       </p>
       <p>
         <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1" rel="author">
@@ -313,14 +335,14 @@ const schema = JSON.stringify({
         </div>
       </div>
 
-      <!-- Resin & Print Settings -->
+      <!-- Print Settings -->
       <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
         <h3 class="font-bold text-white mb-3 flex items-center gap-2">
-          <i class="fa-solid fa-flask text-[#ff6b35]"></i>
-          Resin and print notes
+          <i class="fa-solid fa-sliders text-[#ff6b35]"></i>
+          Print notes
         </h3>
         <p class="text-sm text-slate-400 leading-relaxed">
-          {ctx.resinNote}
+          {ctx.printNote}
         </p>
       </div>
     </section>

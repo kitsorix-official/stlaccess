@@ -10,13 +10,6 @@ const schema = JSON.stringify({
       "url": "https://stlaccess.com/contact",
       "name": "Contact | 3D Print Miniature Scale Support | STLACCESS",
       "description": "Get in touch about 3D printed miniature scale conversions. Report wrong percentages, request new gaming scales, or suggest features for STLACCESS.",
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
-          {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://stlaccess.com/contact"}
-        ]
-      },
       "author": {
         "@type": "Person",
         "name": "kitsorix",
@@ -31,15 +24,18 @@ const schema = JSON.stringify({
       },
       "datePublished": "2026-06-04",
       "dateModified": "2026-06-05"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Contact"}
+      ]
     }
   ]
 });
 
-const mailtoGeneral = `mailto:kitsorix@proton.me?subject=STLACCESS%20Question`;
-const mailtoCorrection = `mailto:kitsorix@proton.me?subject=Scale%20Correction%20-%20STLACCESS&body=Source%20scale:%0D%0ATarget%20scale:%0D%0ACurrent%20percentage%20on%20site:%0D%0AWhat%20it%20should%20be:%0D%0AWhy:%0D%0A`;
-const mailtoNewScale = `mailto:kitsorix@proton.me?subject=New%20Scale%20Request%20-%20STLACCESS&body=Scale%20name:%0D%0AGames%20that%20use%20it:%0D%0AMeasurement%20method%20(eye%20level%20or%20top%20of%20head):%0D%0A`;
-const mailtoFeature = `mailto:kitsorix@proton.me?subject=Feature%20Idea%20-%20STLACCESS&body=What%20it%20does:%0D%0AWhy%20it%20helps:%0D%0A`;
-const mailtoEarlyAccess = `mailto:kitsorix@proton.me?subject=Early%20Access%20Request%20-%20STL%20File%20Manager&body=What%20I%20would%20use%20it%20for:%0D%0A`;
+const googleFormUrl = "https://forms.gle/njKi8KgCjUQEM1n96";
 ---
 <Layout
   title="Contact | 3D Print Miniature Scale Support | STLACCESS"
@@ -69,17 +65,19 @@ const mailtoEarlyAccess = `mailto:kitsorix@proton.me?subject=Early%20Access%20Re
   <section class="mb-16 bg-slate-900/30 border border-white/5 rounded-[2.5rem] p-8 md:p-12">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
       <div>
-        <h2 class="text-2xl font-bold font-heading text-white mb-3">Open your email app</h2>
+        <h2 class="text-2xl font-bold font-heading text-white mb-3">Send me a message</h2>
         <p class="text-slate-400">
-          The fastest way. No forms, no waiting. Pick a topic below and your mail client opens with the subject and body pre-filled.
+          Use the Google Form below. No account needed. I read every submission and reply within a couple of days.
         </p>
       </div>
       <a
-        href={mailtoGeneral}
+        href={googleFormUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-8 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shrink-0"
       >
-        <i class="fa-solid fa-envelope"></i>
-        General question
+        <i class="fa-solid fa-pen"></i>
+        Open form
       </a>
     </div>
   </section>
@@ -87,12 +85,14 @@ const mailtoEarlyAccess = `mailto:kitsorix@proton.me?subject=Early%20Access%20Re
   <!-- Quick Links -->
   <section class="mb-16" aria-labelledby="quick-links-heading">
     <h2 id="quick-links-heading" class="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-5 border-l-2 border-[#ff6b35] pl-3 font-heading">
-      Pick a template
+      Pick a topic
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <a
-        href={mailtoCorrection}
-        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all"
+        href={googleFormUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
       >
         <div class="flex items-center gap-3 mb-2">
           <div class="w-8 h-8 rounded-lg bg-[#ff6b35]/10 flex items-center justify-center">
@@ -101,12 +101,14 @@ const mailtoEarlyAccess = `mailto:kitsorix@proton.me?subject=Early%20Access%20Re
           <h3 class="text-white font-semibold text-sm">Report a wrong percentage</h3>
         </div>
         <p class="text-xs text-slate-500">
-          Pre-filled with fields for source scale, target scale, and what you think the correct value is.
+          Source scale, target scale, and what you think the correct value is.
         </p>
       </a>
       <a
-        href={mailtoNewScale}
-        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all"
+        href={googleFormUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
       >
         <div class="flex items-center gap-3 mb-2">
           <div class="w-8 h-8 rounded-lg bg-[#ff6b35]/10 flex items-center justify-center">
@@ -115,12 +117,14 @@ const mailtoEarlyAccess = `mailto:kitsorix@proton.me?subject=Early%20Access%20Re
           <h3 class="text-white font-semibold text-sm">Request a new scale</h3>
         </div>
         <p class="text-xs text-slate-500">
-          Tell me the scale name, games that use it, and how it is measured.
+          Scale name, games that use it, and how it is measured.
         </p>
       </a>
       <a
-        href={mailtoFeature}
-        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all"
+        href={googleFormUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
       >
         <div class="flex items-center gap-3 mb-2">
           <div class="w-8 h-8 rounded-lg bg-[#ff6b35]/10 flex items-center justify-center">
@@ -133,8 +137,10 @@ const mailtoEarlyAccess = `mailto:kitsorix@proton.me?subject=Early%20Access%20Re
         </p>
       </a>
       <a
-        href={mailtoEarlyAccess}
-        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all"
+        href={googleFormUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
       >
         <div class="flex items-center gap-3 mb-2">
           <div class="w-8 h-8 rounded-lg bg-[#ff6b35]/10 flex items-center justify-center">

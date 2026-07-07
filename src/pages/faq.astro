@@ -54,32 +54,32 @@ const faqData = [
       },
       {
         q: "Will 1:48 infantry look too tall next to 28mm figures?",
-        a: `Yes. True 1:48 figures are about 35mm tall. They will tower over 28mm tabletop miniatures. If you have 1:48 figures you want to use, scale them down to <span class="text-[#ff6b35] font-semibold">85.7%</span> to match 28mm eye level. Or just use them as officers and heroes who are supposed to be tall.`,
+        a: `Yes. True 1:48 figures are about 35mm tall. They will tower over 28mm tabletop miniatures. If you have 1:48 figures you want to use, scale them down to <span class="text-[#ff6b35] font-semibold">76.8%</span> to match 28mm eye level. Or just use them as officers and heroes who are supposed to be tall.`,
       },
       {
         q: "Why are there so few 1:56 vehicle STLs available?",
-        a: `Most historical vehicle designers work in 1:35 for traditional model kits. 1:56 is a wargaming niche. You can downscale a 1:35 vehicle STL to <span class="text-[#ff6b35] font-semibold">62.5%</span> to get a 1:56 equivalent. The detail holds up well at that reduction on a resin printer. On FDM, you may lose fine surface detail.`,
+        a: `Most historical vehicle designers work in 1:35 for traditional model kits. 1:56 is a wargaming niche. You can downscale a 1:35 vehicle STL to <span class="text-[#ff6b35] font-semibold">62.5%</span> to get a 1:56 equivalent. On FDM the detail may soften at that reduction, but a 0.2mm nozzle helps preserve it.`,
       },
     ]
   },
   {
-    category: "Resin, FDM, and slicers",
+    category: "FDM printing and slicers",
     questions: [
       {
         q: "Should I scale by bounding box height?",
         a: `No. A model with a raised sword or horn will have a tall bounding box that has nothing to do with the figure's actual scale. Always measure from <span class="text-[#ff6b35] font-semibold">foot contact point to eye level</span>. Ignore weapons, banners, and dynamic poses. The stlscale converter uses this foot-to-eye method automatically.`,
       },
       {
-        q: "How much does resin shrink, and how do I compensate?",
-        a: `Standard grey resins shrink <span class="text-[#ff6b35] font-semibold">0.8% to 1.5%</span> after UV curing. Water-washable resins shrink more, up to 2%. I add <span class="text-[#ff6b35] font-semibold">1%</span> to my resin recommendations because that is what matches my measurements. In Lychee or Chitubox, enter the percentage from the converter, then add 1% in your slicer's scale field. FDM does not need this compensation.`,
+        q: "Does FDM filament shrink and affect scale?",
+        a: `PLA and PETG can shrink <span class="text-[#ff6b35] font-semibold">0.2% to 0.5%</span> as they cool from printing temperature. This is small enough that it rarely matters for miniature scaling, but if you need maximum accuracy, print a temperature tower and measure the result. I do not add compensation for FDM because over-extrusion and cooling shrinkage tend to cancel each other out.`,
       },
       {
-        q: "Should I print miniatures in resin or FDM?",
-        a: `Under 40mm, resin is better for faces, fingers, and weapons. FDM works for terrain, vehicles, and monsters where layer lines are less noticeable. I print infantry on an <span class="text-[#ff6b35] font-semibold">Elegoo Saturn 3</span> and terrain on a <span class="text-[#ff6b35] font-semibold">Bambu Lab X1 Carbon</span>. The percentages on this site work for both.`,
+        q: "Can FDM print miniatures at 28mm and 32mm scale?",
+        a: `Yes. FDM at 28mm and 32mm works well with a <span class="text-[#ff6b35] font-semibold">0.2mm nozzle</span> at 0.06mm layer height. The detail is good enough for tabletop use. With a 0.4mm nozzle at 0.1mm layers, faces lose definition but armour, weapons, and terrain still look great. I print all my own models on a <span class="text-[#ff6b35] font-semibold">Bambu Lab A1 Mini</span> with PLA. The percentages on this site match what I get on my own prints.`,
       },
       {
         q: "Which slicer should I use for scale conversions?",
-        a: `For resin: <span class="text-[#ff6b35] font-semibold">Lychee Slicer</span> or <span class="text-[#ff6b35] font-semibold">Chitubox</span>. For FDM: <span class="text-[#ff6b35] font-semibold">PrusaSlicer</span>, <span class="text-[#ff6b35] font-semibold">Bambu Studio</span>, or <span class="text-[#ff6b35] font-semibold">Cura</span>. All of them have a uniform scale field. Enter the percentage from stlscale, lock the XYZ proportions, and slice. The math is the same in every slicer.`,
+        a: `<span class="text-[#ff6b35] font-semibold">Bambu Studio</span>, <span class="text-[#ff6b35] font-semibold">PrusaSlicer</span>, and <span class="text-[#ff6b35] font-semibold">Cura</span> all have a uniform scale field. Enter the percentage from stlscale, lock the XYZ proportions, and slice. The math is the same in every slicer. For FDM, check the preview before slicing — supports can add a few millimeters to the bounding box.`,
       },
     ]
   },
@@ -94,9 +94,20 @@ faqData.forEach(cat => {
     mainEntity.push({
       "@type": "Question",
       "name": item.q,
+      "text": item.q,
+      "author": {
+        "@type": "Person",
+        "name": "kitsorix",
+        "url": "https://github.com/kitsorix-official"
+      },
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": cleanA
+        "text": cleanA,
+        "author": {
+          "@type": "Person",
+          "name": "kitsorix",
+          "url": "https://github.com/kitsorix-official"
+        }
       }
     });
   });
@@ -106,36 +117,15 @@ const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "FAQPage",
-      "@id": "https://stlaccess.com/faq#webpage",
-      "url": "https://stlaccess.com/faq",
-      "name": "STL Scale FAQ | Miniature Conversion Questions Answered",
-      "description": "Common questions about 3D printed miniature scale conversion. 28mm to 32mm, resin shrinkage, vehicle scales, and slicer settings.",
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
-          {"@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://stlaccess.com/faq"}
-        ]
-      },
-      "author": {
-        "@type": "Person",
-        "name": "kitsorix",
-        "url": "https://stlaccess.com/about",
-        "jobTitle": "3D Printing Hobbyist"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "STLACCESS",
-        "url": "https://stlaccess.com"
-      },
-      "datePublished": "2026-05-07",
-      "dateModified": "2026-06-05",
-      "mainEntity": mainEntity,
-      "speakable": {
-        "@type": "SpeakableSpecification",
-        "cssSelector": [".faq-question", ".faq-answer"]
-      }
+      "@type": "QAPage",
+      "mainEntity": mainEntity
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+        {"@type": "ListItem", "position": 2, "name": "FAQ"}
+      ]
     }
   ]
 });
@@ -143,16 +133,16 @@ const schema = JSON.stringify({
 // Quick reference table data
 const quickRef = [
   {from: "32mm (Heroic)", to: "28mm (True)", pct: "87.5%"},
-  {from: "1:56 (Bolt Action)", to: "1:48 (Tamiya)", pct: "114.3%"},
+  {from: "1:56 (Bolt Action)", to: "1:48 (Tamiya)", pct: "116.7%"},
   {from: "1:35 (Model Kit)", to: "1:56 (Tabletop)", pct: "62.5%"},
   {from: "32mm (AoS/Legion)", to: "28mm (D&D)", pct: "87.5%"},
-  {from: "28mm (Heroic)", to: "1:48 (True)", pct: "85.7%"},
+  {from: "28mm (Heroic)", to: "1:48 (True)", pct: "130.4%"},
   {from: "1:48 (Aircraft)", to: "1:56 (Ground)", pct: "85.7%"},
 ];
 ---
 <Layout
   title="STL Scale FAQ | Miniature Conversion Questions Answered"
-  description="Common questions about 3D printed miniature scale conversion. 28mm to 32mm, resin shrinkage, vehicle scales, and slicer settings."
+  description="Common questions about 3D printed miniature scale conversion. 28mm to 32mm, vehicle scales, FDM slicer settings, and more."
   schema={schema}
 >
 <div class="max-w-4xl mx-auto px-6 py-20 w-full">

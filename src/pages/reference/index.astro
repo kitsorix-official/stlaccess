@@ -10,13 +10,6 @@ const schema = `{
 "url": "https://stlaccess.com/reference",
 "name": "STL Scale Conversion Reference | Percentages for 3D Printing",
 "description": "Slicer percentages for converting tabletop miniatures between scales. 28mm to 32mm, 1:35, 1:48, 1:56, and more. Based on a 175cm human baseline.",
-"breadcrumb": {
-"@type": "BreadcrumbList",
-"itemListElement": [
-{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
-{"@type": "ListItem", "position": 2, "name": "Reference", "item": "https://stlaccess.com/reference"}
-]
-},
 "author": {
 "@type": "Person",
 "name": "kitsorix",
@@ -43,89 +36,184 @@ const schema = `{
 "description": "Slicer scale percentages for converting between tabletop miniature scales. Based on a 175cm human baseline with eye-level measurement methodology.",
 "author": {"@type": "Person", "name": "kitsorix"}
 },
-{
-"@type": "FAQPage",
-"mainEntity": [
-{
-"@type": "Question",
-"name": "What percentage do I scale 28mm to 32mm?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Set your slicer to 114.3% to convert 28mm to 32mm when measuring to eye level. If measuring to top of head, use 116.1%. I add 1% for resin shrinkage because that is what works on my printer."
-}
-},
-{
-"@type": "Question",
-"name": "How big is a 28mm miniature in real measurements?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "A 28mm miniature represents a 175cm human at approximately 1:56 to 1:60 scale. The figure stands about 30-32mm to top of head, with eye level at 28mm. Base thickness adds 2-5mm to total height."
-}
-},
-{
-"@type": "Question",
-"name": "What is the difference between 28mm and 32mm scale?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "28mm measures to eye level of a 175cm human. 32mm 'Heroic' scale exaggerates proportions for paintability — heads and hands are larger relative to body. The actual height difference is 14.3%, but visual bulk makes it feel like a bigger gap."
-}
-},
-{
-"@type": "Question",
-"name": "What scale is 1:35 in mm for miniatures?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "1:35 scale equals approximately 50mm for a 175cm human (measured to eye level). Military model kits in 1:35 are significantly larger than standard 28mm tabletop miniatures. To mix 1:35 vehicles with 28mm infantry, scale the vehicle down to 62.5%."
-}
-},
-{
-"@type": "Question",
-"name": "Do I need to add extra scale for resin shrinkage?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Yes. Standard photopolymer resins shrink 0.5% to 2% during UV curing. I add 1% to my final scale factor in Lychee or Chitubox because that is what matches my measurements. FDM printers do not need this."
-}
-},
-{
-"@type": "Question",
-"name": "Why do 1:48 tanks look better with 28mm infantry than 1:56?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Modern 28mm plastic miniatures from manufacturers like Warlord Games are closer to 30-32mm in practice. A true 1:56 tank looks small next to them. 1:48 Tamiya kits match the 'heroic' proportions better and are often cheaper than official wargaming vehicles."
-}
-},
-{
-"@type": "Question",
-"name": "What does 'Eye Level' vs 'Top of Head' mean in miniature scale?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Eye Level measures from feet to eyes (160cm on a 175cm human). Top of Head measures to the crown. The 15mm difference creates a 5-10% variance in scale calculations. Fantasy miniatures typically use eye level to account for helmets and hats. Historical kits often use top of head."
-}
-},
-{
-"@type": "Question",
-"name": "How do I scale STL files for different tabletop games?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Use the conversion matrix on this page to find your percentage, then apply uniform scaling (XYZ) in your slicer. For resin prints, I add 1% for shrinkage. Always print a test piece before committing to a full batch. The stlscale converter at STLACCESS automates this with source and target selection."
-}
-}
-]
-}
-]
+    {
+      "@type": "QAPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What percentage do I scale 28mm to 32mm?",
+          "text": "What percentage do I scale 28mm to 32mm?",
+          "author": {
+            "@type": "Person",
+            "name": "kitsorix",
+            "url": "https://github.com/kitsorix-official"
+          },
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Set your slicer to 114.3% to convert 28mm to 32mm when measuring to eye level. If measuring to top of head, use 116.1%. FDM rarely needs additional compensation.",
+            "author": {
+              "@type": "Person",
+              "name": "kitsorix",
+              "url": "https://github.com/kitsorix-official"
+            }
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How big is a 28mm miniature in real measurements?",
+          "text": "How big is a 28mm miniature in real measurements?",
+          "author": {
+            "@type": "Person",
+            "name": "kitsorix",
+            "url": "https://github.com/kitsorix-official"
+          },
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 28mm miniature represents a 175cm human at approximately 1:56 to 1:60 scale. The figure stands about 30-32mm to top of head, with eye level at 28mm. Base thickness adds 2-5mm to total height.",
+            "author": {
+              "@type": "Person",
+              "name": "kitsorix",
+              "url": "https://github.com/kitsorix-official"
+            }
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between 28mm and 32mm scale?",
+          "text": "What is the difference between 28mm and 32mm scale?",
+          "author": {
+            "@type": "Person",
+            "name": "kitsorix",
+            "url": "https://github.com/kitsorix-official"
+          },
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "28mm measures to eye level of a 175cm human. 32mm 'Heroic' scale exaggerates proportions for paintability — heads and hands are larger relative to body. The actual height difference is 14.3%, but visual bulk makes it feel like a bigger gap.",
+            "author": {
+              "@type": "Person",
+              "name": "kitsorix",
+              "url": "https://github.com/kitsorix-official"
+            }
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What scale is 1:35 in mm for miniatures?",
+          "text": "What scale is 1:35 in mm for miniatures?",
+          "author": {
+            "@type": "Person",
+            "name": "kitsorix",
+            "url": "https://github.com/kitsorix-official"
+          },
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "1:35 scale equals approximately 50mm for a 175cm human (measured to eye level). Military model kits in 1:35 are significantly larger than standard 28mm tabletop miniatures. To mix 1:35 vehicles with 28mm infantry, scale the vehicle down to 62.5%.",
+            "author": {
+              "@type": "Person",
+              "name": "kitsorix",
+              "url": "https://github.com/kitsorix-official"
+            }
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does PLA or PETG shrink after printing?",
+          "text": "Does PLA or PETG shrink after printing?",
+          "author": {
+            "@type": "Person",
+            "name": "kitsorix",
+            "url": "https://github.com/kitsorix-official"
+          },
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "PLA and PETG can shrink 0.2% to 0.5% as they cool from printing temperature. This is small enough to ignore for miniature scaling. I do not add compensation for FDM because over-extrusion and cooling shrinkage tend to cancel each other out.",
+            "author": {
+              "@type": "Person",
+              "name": "kitsorix",
+              "url": "https://github.com/kitsorix-official"
+            }
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do 1:48 tanks look better with 28mm infantry than 1:56?",
+          "text": "Why do 1:48 tanks look better with 28mm infantry than 1:56?",
+          "author": {
+            "@type": "Person",
+            "name": "kitsorix",
+            "url": "https://github.com/kitsorix-official"
+          },
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Modern 28mm plastic miniatures from manufacturers like Warlord Games are closer to 30-32mm in practice. A true 1:56 tank looks small next to them. 1:48 Tamiya kits match the 'heroic' proportions better and are often cheaper than official wargaming vehicles.",
+            "author": {
+              "@type": "Person",
+              "name": "kitsorix",
+              "url": "https://github.com/kitsorix-official"
+            }
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does 'Eye Level' vs 'Top of Head' mean in miniature scale?",
+          "text": "What does 'Eye Level' vs 'Top of Head' mean in miniature scale?",
+          "author": {
+            "@type": "Person",
+            "name": "kitsorix",
+            "url": "https://github.com/kitsorix-official"
+          },
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Eye Level measures from feet to eyes (160cm on a 175cm human). Top of Head measures to the crown. The 15mm difference creates a 5-10% variance in scale calculations. Fantasy miniatures typically use eye level to account for helmets and hats. Historical kits often use top of head.",
+            "author": {
+              "@type": "Person",
+              "name": "kitsorix",
+              "url": "https://github.com/kitsorix-official"
+            }
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I scale STL files for different tabletop games?",
+          "text": "How do I scale STL files for different tabletop games?",
+          "author": {
+            "@type": "Person",
+            "name": "kitsorix",
+            "url": "https://github.com/kitsorix-official"
+          },
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the conversion matrix on this page to find your percentage, then apply uniform scaling (XYZ) in your slicer. Always print a test piece before committing to a full batch. The stlscale converter at STLACCESS automates this with source and target selection.",
+            "author": {
+              "@type": "Person",
+              "name": "kitsorix",
+              "url": "https://github.com/kitsorix-official"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+        {"@type": "ListItem", "position": 2, "name": "Reference"}
+      ]
+    }
+  ]
 }`;
 
 const conversions = [
   // Source, Target, Eye%, TopHead%, Slug, Popular
   ["28mm (True Scale)", "32mm Heroic", "114.3%", "116.1%", "28mm-to-32mm", false],
   ["32mm (Heroic)", "28mm True Scale", "87.5%", "95.4%", "32mm-to-28mm", false],
-  ["1:35 Military", "32mm Heroic", "114.2%", "—", "1-35-to-32mm", true],
-  ["1:35 Military", "28mm True Scale", "62.5%", "68.1%", "1-35-to-28mm", true],
+  ["1:35 Military", "32mm Heroic", "64.0%", "—", "1-35-to-32mm", true],
+  ["1:35 Military", "28mm True Scale", "56.0%", "61.3%", "1-35-to-28mm", true],
   ["1:35 Military", "35mm (Legion)", "70.0%", "—", "1-35-to-35mm", false],
   ["1:35 Military", "40mm (Shatterpoint)", "80.0%", "—", "1-35-to-40mm", false],
   ["1:35 Military", "75mm (Display)", "150.0%", "—", "1-35-to-75mm", false],
   ["1:48 Quarter Scale", "32mm Heroic", "87.8%", "—", "1-48-to-32mm", false],
-  ["1:48 Quarter Scale", "28mm True Scale", "85.7%", "—", "1-48-to-28mm", true],
+  ["1:48 Quarter Scale", "28mm True Scale", "76.8%", "—", "1-48-to-28mm", true],
   ["1:48 Quarter Scale", "35mm (Legion)", "96.0%", "—", "1-48-to-35mm", false],
   ["1:48 Quarter Scale", "40mm (Shatterpoint)", "109.7%", "—", "1-48-to-40mm", false],
   ["1:48 Quarter Scale", "75mm (Display)", "205.8%", "—", "1-48-to-75mm", false],
@@ -148,7 +236,7 @@ const conversions = [
   ["1:100 Military", "40mm (Shatterpoint)", "228.6%", "—", "1-100-to-40mm", false],
   ["1:100 Military", "75mm (Display)", "428.6%", "—", "1-100-to-75mm", false],
   ["1:100 Military", "1:35 (Model Kit)", "285.7%", "—", "1-100-to-1-35", false],
-  ["28mm (D&D)", "32mm (Warhammer)", "114.0%", "—", "28mm-to-32mm", false],
+  ["28mm (D&D)", "32mm (Warhammer)", "114.3%", "—", "28mm-to-32mm", false],
   ["28mm (D&D)", "35mm (Legion)", "125.0%", "—", "28mm-to-35mm", false],
   ["28mm (D&D)", "40mm (Shatterpoint)", "142.9%", "—", "28mm-to-40mm", false],
   ["28mm (D&D)", "75mm (Display)", "267.9%", "—", "28mm-to-75mm", false],
@@ -183,7 +271,7 @@ const conversions = [
     Scale Conversion <span class="text-[#ff6b35]">Reference</span>
   </h1>
   <p class="reference-intro text-lg text-slate-400 max-w-2xl leading-relaxed">
-    Slicer percentages for converting miniatures between tabletop systems. These are the numbers I use, based on a 175cm human baseline with eye-level measurement. I print on an Elegoo Saturn 3, Anycubic Photon Mono X, Bambu Lab X1 Carbon, and Prusa MK4. Your resin and settings may differ.
+    Slicer percentages for converting miniatures between tabletop systems. These are the numbers I use, based on a 175cm human baseline with eye-level measurement. I print on a Bambu Lab A1 Mini. Your settings may differ.
   </p>
 </section>
 
@@ -286,10 +374,10 @@ const conversions = [
         I use a <strong class="text-white">175cm human baseline</strong> with eye-level at 160cm. This is what most of the fantasy and sci-fi miniature hobby uses. Historical kits sometimes measure to top of head, which is why the matrix includes both where it matters.
       </p>
       <p>
-        The math is simple division. I print the result on my Elegoo Saturn 3, Anycubic Photon Mono X, Bambu Lab X1 Carbon, and Prusa MK4 before I post it. Resin shrinkage is real — I have measured 0.8% to 1.5% loss on standard grey resins after curing. Your mileage will vary.
+        The math is simple division. I print the result on my Bambu Lab A1 Mini before I post it. FDM materials are dimensionally stable within 0.5%, so the percentage you see is the percentage you get. Your mileage will vary.
       </p>
       <p>
-        These values are what works for me and what the community reports back as functional. Your printer, resin, and settings may vary. Always print a test piece.
+        These values are what works for me and what the community reports back as functional. Your printer, filament, and settings may vary. Always print a test piece.
       </p>
       <p>
         <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1" rel="author">
@@ -483,15 +571,15 @@ const conversions = [
             <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
               <i class="fa-solid fa-flask text-[#ff6b35] mt-0.5"></i>
               <div>
-                <p class="text-white font-semibold text-sm mb-1">Resin shrinkage buffer</p>
-                <p class="text-slate-400 text-sm">Standard resins shrink 1-2% during curing. I add <span class="text-white font-mono">1%</span> to my final scale factor because that is what matches my measurements.</p>
+                <p class="text-white font-semibold text-sm mb-1">Material compensation</p>
+                <p class="text-slate-400 text-sm">PLA and PETG shrink under 0.5% during cooling. I do not add compensation for FDM because the effect is smaller than normal print variation.</p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
               <i class="fa-solid fa-bullseye text-[#ff6b35] mt-0.5"></i>
               <div>
                 <p class="text-white font-semibold text-sm mb-1">The number I actually use</p>
-                <p class="text-slate-400 text-sm">To match a realistic 28mm soldier to a modern heroic system with resin shrinkage accounted for, I land on <span class="text-white font-mono">115.8%</span>. Your printer may want something different.</p>
+                <p class="text-slate-400 text-sm">To match a realistic 28mm soldier to a modern heroic system with material cooling accounted for, I land on <span class="text-white font-mono">115.8%</span>. Your printer may want something different.</p>
               </div>
             </div>
           </div>
@@ -519,7 +607,7 @@ const conversions = [
       <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
         <div itemprop="text">
           <p>
-            Set your slicer to <span class="text-[#ff6b35] font-bold">114.3%</span> when converting 28mm to 32mm and measuring to eye level. For top-of-head measurement, use <span class="text-[#ff6b35] font-bold">116.1%</span>. If you are printing in resin, I add <span class="text-[#ff6b35] font-bold">1%</span> to compensate for shrinkage during curing.
+            Set your slicer to <span class="text-[#ff6b35] font-bold">114.3%</span> when converting 28mm to 32mm and measuring to eye level. For top-of-head measurement, use <span class="text-[#ff6b35] font-bold">116.1%</span>. FDM materials do not need additional compensation.
           </p>
         </div>
       </div>
@@ -569,13 +657,13 @@ const conversions = [
 
     <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
       <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-        <span class="faq-question pr-4" itemprop="name">Do I need to add extra scale for resin shrinkage?</span>
+        <span class="faq-question pr-4" itemprop="name">Does PLA or PETG shrink after printing?</span>
         <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
       </summary>
       <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
         <div itemprop="text">
           <p>
-            <span class="text-white font-semibold">Yes.</span> Standard photopolymer resins shrink <span class="text-white font-semibold">0.5% to 2%</span> during UV curing. I add <span class="text-[#ff6b35] font-bold">1%</span> to my final scale factor in Lychee or Chitubox because that is what matches my measurements. FDM printers do not need this.
+            <span class="text-white font-semibold">Barely.</span> PLA and PETG can shrink <span class="text-white font-semibold">0.2% to 0.5%</span> as they cool from printing temperature. This is small enough to ignore for miniature scaling. I do not add compensation for FDM because over-extrusion and cooling shrinkage tend to cancel each other out.
           </p>
         </div>
       </div>
@@ -617,7 +705,7 @@ const conversions = [
       <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
         <div itemprop="text">
           <p>
-            Find your source and target scales in the <a href="#conversion-matrix" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">conversion matrix</a> above, then apply uniform scaling (XYZ) in your slicer. For resin prints, I add 1% for shrinkage. Always print a test piece before a full batch. The <a href="/" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">stlscale converter</a> automates this with source and target selection.
+            Find your source and target scales in the <a href="#conversion-matrix" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">conversion matrix</a> above, then apply uniform scaling (XYZ) in your slicer. Always print a test piece before a full batch. The <a href="/" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">stlscale converter</a> automates this with source and target selection.
           </p>
         </div>
       </div>

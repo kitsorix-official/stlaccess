@@ -21,14 +21,6 @@ const schema = JSON.stringify({
       "name": `${tool.name} | 3D Print Tool for Miniatures | STLACCESS`,
       "description": tool.shortDescription,
       "isPartOf": { "@id": "https://stlaccess.com/#organization" },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://stlaccess.com/tools" },
-          { "@type": "ListItem", "position": 3, "name": tool.name, "item": `https://stlaccess.com/tools/${tool.slug}` }
-        ]
-      },
       "author": {
         "@type": "Person",
         "name": "kitsorix",
@@ -47,20 +39,21 @@ const schema = JSON.stringify({
     {
       "@type": "SoftwareApplication",
       "name": tool.name,
-      "description": tool.shortDescription,
-      "applicationCategory": "UtilityApplication",
       "operatingSystem": "Web",
-      "browserRequirements": "Requires JavaScript. No login required.",
+      "applicationCategory": "UtilityApplication",
       "offers": {
         "@type": "Offer",
-        "price": "0",
+        "price": 0.00,
         "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "kitsorix",
-        "url": "https://stlaccess.com/about"
       }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://stlaccess.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": tool.name }
+      ]
     }
   ]
 });
@@ -174,6 +167,95 @@ const schema = JSON.stringify({
         </div>
       </div>
     </section>
+  ) : tool.slug === "filament-cost-calculator" ? (
+    <section class="mb-12">
+      <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Calculator</h2>
+      <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <label for="roll-price" class="block text-sm font-bold text-slate-300 mb-2">Roll Price ($)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">$</span>
+              <input id="roll-price" type="number" value="24.99" step="0.01" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label for="roll-weight" class="block text-sm font-bold text-slate-300 mb-2">Roll Weight (g)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">g</span>
+              <input id="roll-weight" type="number" value="1000" step="10" min="1" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label for="filament-used" class="block text-sm font-bold text-slate-300 mb-2">Filament Used (g)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">g</span>
+              <input id="filament-used" type="number" value="" step="0.1" min="0" placeholder="45" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors placeholder-slate-600" />
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Check your slicer's estimated filament usage</p>
+          </div>
+          <div>
+            <label for="cost-per-gram" class="block text-sm font-bold text-slate-300 mb-2">Cost Per Gram</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">$</span>
+              <input id="cost-per-gram" type="text" value="" readonly class="w-full bg-slate-950/50 border border-white/5 rounded-xl px-10 py-4 text-slate-400 text-lg font-mono cursor-default" />
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8 p-6 bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-4">Optional — Electricity Cost</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <label for="power-draw" class="block text-xs font-semibold text-slate-400 mb-1">Printer Power Draw (W)</label>
+              <input id="power-draw" type="number" value="0" step="5" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+              <p class="text-[10px] text-slate-500 mt-0.5">A1 Mini ~60W, typical ~80-120W</p>
+            </div>
+            <div>
+              <label for="electricity-rate" class="block text-xs font-semibold text-slate-400 mb-1">Electricity Rate ($/kWh)</label>
+              <input id="electricity-rate" type="number" value="0" step="0.01" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+              <p class="text-[10px] text-slate-500 mt-0.5">US avg ~$0.12, EU ~$0.25</p>
+            </div>
+            <div>
+              <label for="print-time" class="block text-xs font-semibold text-slate-400 mb-1">Print Time (hours)</label>
+              <input id="print-time" type="number" value="0" step="0.5" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+              <p class="text-[10px] text-slate-500 mt-0.5">Check your slicer estimate</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+            <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Filament Cost</p>
+            <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="cost-filament">$0.00</p>
+          </div>
+          <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+            <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Electricity Cost</p>
+            <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="cost-electricity">$0.00</p>
+          </div>
+          <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+            <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Total Cost</p>
+            <p class="text-2xl md:text-3xl font-black text-white font-heading" id="cost-total">$0.00</p>
+          </div>
+          <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+            <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Grams per Dollar</p>
+            <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="cost-gpd">—</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6">
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5 shrink-0"></i>
+            <div>
+              <p class="text-sm font-semibold text-white mb-1">Disclaimer: This is an estimate</p>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                All values are approximations. Actual filament usage varies by purge tower, support material, raft, and slicer settings. Electricity cost depends on your local rate, printer efficiency, and whether the bed and nozzle reach full temperature for the entire print. This calculator is a planning aid only and has no legal or contractual value.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   ) : (
     <section class="bg-gradient-to-r from-[#ff6b35]/10 to-transparent rounded-[2.5rem] border border-[#ff6b35]/20 p-8 md:p-12">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -249,6 +331,54 @@ const schema = JSON.stringify({
       }
     });
 
+    update();
+  </script>
+)}
+
+{tool.slug === "filament-cost-calculator" && (
+  <script>
+    const els = {
+      rollPrice: document.getElementById("roll-price"),
+      rollWeight: document.getElementById("roll-weight"),
+      filamentUsed: document.getElementById("filament-used"),
+      costPerGram: document.getElementById("cost-per-gram"),
+      powerDraw: document.getElementById("power-draw"),
+      electricityRate: document.getElementById("electricity-rate"),
+      printTime: document.getElementById("print-time"),
+      costFilament: document.getElementById("cost-filament"),
+      costElectricity: document.getElementById("cost-electricity"),
+      costTotal: document.getElementById("cost-total"),
+      costGpd: document.getElementById("cost-gpd"),
+    };
+
+    function update() {
+      const rollPrice = parseFloat(els.rollPrice.value) || 0;
+      const rollWeight = parseFloat(els.rollWeight.value) || 0;
+      const used = parseFloat(els.filamentUsed.value) || 0;
+      const power = parseFloat(els.powerDraw.value) || 0;
+      const rate = parseFloat(els.electricityRate.value) || 0;
+      const hours = parseFloat(els.printTime.value) || 0;
+
+      const cpGram = rollWeight > 0 ? rollPrice / rollWeight : 0;
+      els.costPerGram.value = cpGram > 0 ? "$" + cpGram.toFixed(4) : "$0.0000";
+
+      const filamentCost = cpGram * used;
+      const elecCost = (power / 1000) * rate * hours;
+      const total = filamentCost + elecCost;
+
+      els.costFilament.textContent = "$" + filamentCost.toFixed(2);
+      els.costElectricity.textContent = "$" + elecCost.toFixed(2);
+      els.costTotal.textContent = "$" + total.toFixed(2);
+
+      if (used > 0 && total > 0) {
+        els.costGpd.textContent = (used / total).toFixed(1) + "g";
+      } else {
+        els.costGpd.textContent = "\u2014";
+      }
+    }
+
+    const inputs = [els.rollPrice, els.rollWeight, els.filamentUsed, els.powerDraw, els.electricityRate, els.printTime];
+    inputs.forEach((el) => el.addEventListener("input", update));
     update();
   </script>
 )}

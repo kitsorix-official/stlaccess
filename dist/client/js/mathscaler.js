@@ -16,10 +16,10 @@
         };
 
         const STANDARD_OVERRIDES = {
-            "28mm_32mm": 114.0,
+            "28mm_32mm": 114.3,
             "32mm_28mm": 87.5,
-            "1:35_28mm": 62.5,
-            "1:48_28mm": 85.7
+            "1:35_28mm": 56.0,
+            "1:48_28mm": 76.8
         };
 
         function calculate() {

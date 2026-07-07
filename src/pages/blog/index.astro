@@ -14,15 +14,8 @@ const schema = JSON.stringify({
       "@id": "https://stlaccess.com/blog#webpage",
       "url": "https://stlaccess.com/blog",
       "name": "STL 3D Print Miniature Scale Blog | STLACCESS",
-      "description": "Articles about 3D printing miniature scale conversion, scale theory, resin shrinkage, and printing tips for tabletop wargaming miniatures.",
+      "description": "Articles about 3D printing miniature scale conversion, scale theory, and printing tips for tabletop wargaming miniatures.",
       "isPartOf": { "@id": "https://stlaccess.com/#organization" },
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://stlaccess.com/blog" }
-        ]
-      },
       "author": {
         "@type": "Person",
         "name": "kitsorix",
@@ -41,6 +34,13 @@ const schema = JSON.stringify({
         "@type": "SpeakableSpecification",
         "cssSelector": [".blog-intro", ".blog-card h3"]
       }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog" }
+      ]
     },
     {
       "@type": "ItemList",
@@ -62,7 +62,7 @@ const schema = JSON.stringify({
 
 <Layout
   title="STL 3D Print Miniature Scale Blog | STLACCESS"
-  description="Articles about 3D printing miniature scale conversion, scale theory, resin shrinkage, and printing tips for tabletop wargaming miniatures."
+  description="Articles about 3D printing miniature scale conversion, scale theory, and printing tips for tabletop wargaming miniatures."
   schema={schema}
 >
 
@@ -79,7 +79,7 @@ const schema = JSON.stringify({
     3D Print Scale <span class="text-[#ff6b35]">Blog</span>
   </h1>
   <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-    Articles on miniature scale theory, resin and FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.
+    Articles on miniature scale theory, FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.
   </p>
 </section>
 

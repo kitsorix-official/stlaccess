@@ -38,6 +38,7 @@ const posts = files
       title: frontmatter.title || slug,
       description: frontmatter.description || "",
       pubDate: frontmatter.pubDate || "2026-01-01",
+      modDate: frontmatter.modDate || frontmatter.pubDate || "2026-01-01",
       tags: frontmatter.tags || [],
       html,
     };

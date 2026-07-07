@@ -27,6 +27,18 @@ const schema =`
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
+"@type":"WebSite",
+"@id":"https://stlaccess.com/#website",
+"url":"https://stlaccess.com/",
+"name":"STLACCESS",
+"description":"Browser-based STL scale converter for 3D printed miniatures. Free calculator for Warhammer, D&D, and tabletop gaming scales.",
+"publisher":{"@id":"https://stlaccess.com/#organization"},
+"inLanguage":"en"
+}
+</script>
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
 "@type":"Organization",
 "@id":"https://stlaccess.com/#organization",
 "name":"STLACCESS",
@@ -73,12 +85,12 @@ const schema =`
 "@id":"https://stlaccess.com/#organization"
 },
 "knowsAbout":[
-"3D printing miniatures",
-"tabletop wargaming scales",
-"resin printing shrinkage",
-"Warhammer 40k scale",
-"D&D miniature scaling",
-"STL file conversion"
+  "3D printing miniatures",
+  "tabletop wargaming scales",
+  "FDM printing",
+  "Warhammer 40k scale",
+  "D&D miniature scaling",
+  "STL file conversion"
 ],
 "sameAs":[
 "https://github.com/kitsorix-official/stlaccess"
@@ -88,54 +100,120 @@ const schema =`
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
-"@type":"FAQPage",
+"@type":"QAPage",
 "mainEntity":[
 {
 "@type":"Question",
 "name":"What scale is Warhammer 40k miniatures?",
+"text":"What scale is Warhammer 40k miniatures?",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+},
 "acceptedAnswer":{
 "@type":"Answer",
-"text":"Most people in the hobby treat Games Workshop miniatures as 32mm heroic scale, measured from eye level at roughly 160cm. To convert a 28mm STL to 32mm heroic, scale it to 114.3% in your slicer. Your mileage may vary depending on the sculpt."
+"text":"Most people in the hobby treat Games Workshop miniatures as 32mm heroic scale, measured from eye level at roughly 160cm. To convert a 28mm STL to 32mm heroic, scale it to 114.3% in your slicer. Your mileage may vary depending on the sculpt.",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+}
 }
 },
 {
 "@type":"Question",
 "name":"How do I convert 28mm to 32mm for D&D?",
+"text":"How do I convert 28mm to 32mm for D&D?",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+},
 "acceptedAnswer":{
 "@type":"Answer",
-"text":"Multiply your 28mm STL file by 114.3% to get what most players call heroic 32mm. This uses a 175cm human baseline and eye-level measurement, which is what I use on STLACCESS because it matches my prints. If your group uses something different, adjust accordingly."
+"text":"Multiply your 28mm STL file by 114.3% to get what most players call heroic 32mm. This uses a 175cm human baseline and eye-level measurement, which is what I use on STLACCESS because it matches my prints. If your group uses something different, adjust accordingly.",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+}
 }
 },
 {
 "@type":"Question",
-"name":"Does resin shrinkage affect miniature scale?",
+"name":"Does material shrinkage affect FDM miniatures?",
+"text":"Does material shrinkage affect FDM miniatures?",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+},
 "acceptedAnswer":{
 "@type":"Answer",
-"text":"Yes. Standard resin shrinks about 1-2% during curing. I add 1.5% compensation to my own slicer settings because that is what works on my Mars 3. Your resin and printer might differ. For example, try 115.8% instead of 114.3% when converting 28mm to 32mm, then measure the result and tweak from there."
+"text":"PLA and PETG shrink about 0.2-0.5% during cooling. This is small enough that I do not add compensation. If you want maximum accuracy, print a test piece first and measure with calipers.",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+}
 }
 },
 {
 "@type":"Question",
 "name":"What is the difference between 28mm and 32mm miniatures?",
+"text":"What is the difference between 28mm and 32mm miniatures?",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+},
 "acceptedAnswer":{
 "@type":"Answer",
-"text":"28mm true scale measures a 175cm human from eye level. 32mm heroic uses the same baseline but adds bigger hands, heads, and weapons for detail and durability. A 32mm miniature ends up roughly 14% taller than its 28mm equivalent. Games Workshop uses 32mm heroic for Warhammer 40k. A lot of D&D and Pathfinder miniatures are closer to 28mm true scale, though it varies by manufacturer."
+"text":"28mm true scale measures a 175cm human from eye level. 32mm heroic uses the same baseline but adds bigger hands, heads, and weapons for detail and durability. A 32mm miniature ends up roughly 14% taller than its 28mm equivalent. Games Workshop uses 32mm heroic for Warhammer 40k. A lot of D&D and Pathfinder miniatures are closer to 28mm true scale, though it varies by manufacturer.",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+}
 }
 },
 {
 "@type":"Question",
 "name":"How do I scale an STL file in my slicer?",
+"text":"How do I scale an STL file in my slicer?",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+},
 "acceptedAnswer":{
 "@type":"Answer",
-"text":"Import the STL into your slicer (Chitubox, Lychee, PrusaSlicer, or Cura). Select the model, open the scale tool, and enter the percentage from stlscale. Lock the X, Y, and Z axes to uniform scaling. Apply the change and slice as normal."
+"text":"Import the STL into your slicer (Chitubox, Lychee, PrusaSlicer, or Cura). Select the model, open the scale tool, and enter the percentage from stlscale. Lock the X, Y, and Z axes to uniform scaling. Apply the change and slice as normal.",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+}
 }
 },
 {
 "@type":"Question",
 "name":"What does 1:56 scale mean in miniature gaming?",
+"text":"What does 1:56 scale mean in miniature gaming?",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+},
 "acceptedAnswer":{
 "@type":"Answer",
-"text":"1:56 is a ratio scale common in historical wargaming, including Bolt Action. It works out to roughly 28mm true scale if you use a 175cm human baseline. To convert 1:56 STLs to 32mm heroic, most people scale them to 114.3%."
+"text":"1:56 is a ratio scale common in historical wargaming, including Bolt Action. It works out to roughly 28mm true scale if you use a 175cm human baseline. To convert 1:56 STLs to 32mm heroic, most people scale them to 114.3%.",
+"author":{
+"@type":"Person",
+"name":"kitsorix",
+"url":"https://github.com/kitsorix-official"
+}
 }
 }
 ]
@@ -147,6 +225,10 @@ title="STL Scale Converter | 28mm to 32mm, Warhammer & D&D | stlscale"
 description="STL scale converter for 3D printed miniatures. Calculates resize percentages for 28mm to 32mm, 1:35 to 32mm, and other tabletop gaming scales. Runs in your browser. No file upload."
 schema={schema}
 >
+<nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+  <span class="text-slate-400" aria-current="page">Home</span>
+</nav>
+
 <!-- Hero Section -->
 <section class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto">
 <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-6">
@@ -240,10 +322,10 @@ Top of Head
 <div class="flex items-center justify-between">
 <div class="space-y-1">
 <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400">
-Resin shrinkage
+Material compensation
 </h3>
 <p class="text-[10px] text-slate-500">
-Compensate for curing contraction
+Add a small percentage for cooling shrinkage
 </p>
 </div>
 <label class="relative inline-flex items-center cursor-pointer">
@@ -368,13 +450,13 @@ View full scale reference library
 <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-4">Historical</span>
 <h3 class="text-xl font-bold mb-2 group-hover:text-[#ff6b35] transition-colors">1:35 to 32mm</h3>
 <p class="text-sm text-slate-500 mb-6">Military kits to heroic gaming scale</p>
-<div class="text-4xl font-bold font-heading text-[#ff6b35]">114.2%</div>
+      <div class="text-4xl font-bold font-heading text-[#ff6b35]">64.0%</div>
 </a>
 <a href="/reference/1-48-to-28mm" class="group block bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50">
 <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-4">Quarter scale</span>
 <h3 class="text-xl font-bold mb-2 group-hover:text-[#ff6b35] transition-colors">1:48 to 28mm</h3>
 <p class="text-sm text-slate-500 mb-6">Aircraft and vehicle models to true 28mm</p>
-<div class="text-4xl font-bold font-heading text-[#ff6b35]">85.7%</div>
+<div class="text-4xl font-bold font-heading text-[#ff6b35]">76.8%</div>
 </a>
 <a href="/reference/1-56-to-28mm" class="group block bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50">
 <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-4">Bolt Action</span>
@@ -434,12 +516,12 @@ Multiply your 28mm STL file by <span class="text-[#ff6b35] font-bold text-lg">11
 </details>
 <details class="bg-slate-900/30 rounded-3xl border border-white/5 overflow-hidden group open:bg-slate-900/50 transition-all">
 <summary class="p-8 cursor-pointer list-none flex justify-between items-center font-bold text-lg hover:text-[#ff6b35] transition-colors">
-<span>Does <span class="text-[#ff6b35]">resin shrinkage</span> affect miniature scale?</span>
+<span>Does <span class="text-[#ff6b35]">material shrinkage</span> affect FDM miniatures?</span>
 <i class="fa-solid fa-chevron-down text-slate-500 group-open:rotate-180 transition-transform duration-300"></i>
 </summary>
 <div class="px-8 pb-8 text-slate-400 leading-relaxed">
 <p>
-Yes. Standard resin shrinks about <span class="text-white font-semibold">1-2%</span> during curing. I add 1.5% compensation to my own slicer settings because that is what works on my Mars 3. Your resin and printer might differ. For example, try <span class="text-[#ff6b35] font-bold text-lg">115.8%</span> instead of 114.3% when converting 28mm to 32mm, then measure the result and tweak from there.
+PLA and PETG shrink about <span class="text-white font-semibold">0.2-0.5%</span> during cooling. This is small enough that I do not add compensation. If you want maximum accuracy, print a test piece first and measure with calipers.
 </p>
 </div>
 </details>
