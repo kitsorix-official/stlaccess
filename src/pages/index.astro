@@ -32,22 +32,27 @@ const schema =`
 "url":"https://stlaccess.com/",
 "name":"STLACCESS",
 "description":"Browser-based STL scale converter for 3D printed miniatures. Free calculator for Warhammer, D&D, and tabletop gaming scales.",
-"publisher":{"@id":"https://stlaccess.com/#organization"},
+"publisher":{"@id":"https://stlaccess.com/#person"},
 "inLanguage":"en"
 }
 </script>
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
-"@type":"Organization",
-"@id":"https://stlaccess.com/#organization",
-"name":"STLACCESS",
+"@type":"Person",
+"@id":"https://stlaccess.com/#person",
+"name":"kitsorix",
 "alternateName":"stlscale",
 "url":"https://stlaccess.com/",
-"logo":{
-"@type":"ImageObject",
-"url":"https://stlaccess.com/favicon.svg"
-},
+"jobTitle":"3D Printing Hobbyist",
+"knowsAbout":[
+  "3D printing miniatures",
+  "tabletop wargaming scales",
+  "FDM printing",
+  "Warhammer 40k scale",
+  "D&D miniature scaling",
+  "STL file conversion"
+],
 "sameAs":[
 "https://github.com/kitsorix-official/stlaccess"
 ]
@@ -69,32 +74,8 @@ const schema =`
 ]
 },
 "isPartOf":{
-"@id":"https://stlaccess.com/#organization"
+"@id":"https://stlaccess.com/#website"
 }
-}
-</script>
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"Person",
-"@id":"https://stlaccess.com/about#kitsorix",
-"name":"kitsorix",
-"url":"https://stlaccess.com/about",
-"jobTitle":"3D Printing Hobbyist",
-"worksFor":{
-"@id":"https://stlaccess.com/#organization"
-},
-"knowsAbout":[
-  "3D printing miniatures",
-  "tabletop wargaming scales",
-  "FDM printing",
-  "Warhammer 40k scale",
-  "D&D miniature scaling",
-  "STL file conversion"
-],
-"sameAs":[
-"https://github.com/kitsorix-official/stlaccess"
-]
 }
 </script>
 <script type="application/ld+json">
@@ -225,8 +206,8 @@ title="STL Scale Converter | 28mm to 32mm, Warhammer & D&D | stlscale"
 description="STL scale converter for 3D printed miniatures. Calculates resize percentages for 28mm to 32mm, 1:35 to 32mm, and other tabletop gaming scales. Runs in your browser. No file upload."
 schema={schema}
 >
-<nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
-  <span class="text-slate-400" aria-current="page">Home</span>
+<nav class="sr-only" aria-label="Breadcrumb">
+  <span aria-current="page">Home</span>
 </nav>
 
 <!-- Hero Section -->

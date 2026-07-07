@@ -20,7 +20,7 @@ const schema = JSON.stringify({
       "url": `https://stlaccess.com/tools/${tool.slug}`,
       "name": `${tool.name} | 3D Print Tool for Miniatures | STLACCESS`,
       "description": tool.shortDescription,
-      "isPartOf": { "@id": "https://stlaccess.com/#organization" },
+      "isPartOf": { "@id": "https://stlaccess.com/#website" },
       "author": {
         "@type": "Person",
         "name": "kitsorix",
@@ -28,10 +28,9 @@ const schema = JSON.stringify({
         "jobTitle": "3D Printing Hobbyist"
       },
       "publisher": {
-        "@type": "Organization",
-        "name": "STLACCESS",
-        "url": "https://stlaccess.com",
-        "logo": { "@type": "ImageObject", "url": "https://stlaccess.com/favicon.svg" }
+        "@type": "Person",
+        "name": "kitsorix",
+        "url": "https://stlaccess.com/about"
       },
       "datePublished": "2026-05-07",
       "dateModified": "2026-06-05"
@@ -39,13 +38,29 @@ const schema = JSON.stringify({
     {
       "@type": "SoftwareApplication",
       "name": tool.name,
-      "operatingSystem": "Web",
+      "url": `https://stlaccess.com/tools/${tool.slug}`,
+      "description": tool.shortDescription,
       "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Web",
+      "browserRequirements": "Requires JavaScript. No login required.",
       "offers": {
         "@type": "Offer",
-        "price": 0.00,
+        "price": "0",
         "priceCurrency": "USD"
-      }
+      },
+      "featureList": tool.features.join(", "),
+      "author": {
+        "@type": "Person",
+        "name": "kitsorix",
+        "url": "https://stlaccess.com/about"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "kitsorix",
+        "url": "https://stlaccess.com/about"
+      },
+      "datePublished": "2026-05-07",
+      "dateModified": "2026-07-07"
     },
     {
       "@type": "BreadcrumbList",
