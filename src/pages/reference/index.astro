@@ -1,29 +1,33 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import site from "../../data/site.json";
+import rawConversions from "../../data/conversions.json";
+
+const { author, datePublished, dateModified, url, referencePageQA, gasEndpoint, printerName } = site;
 
 const schema = `{
 "@context": "https://schema.org",
 "@graph": [
 {
 "@type": "WebPage",
-"@id": "https://stlaccess.com/reference#webpage",
-"url": "https://stlaccess.com/reference",
+"@id": "${url}/reference#webpage",
+  "url": "${url}/reference",
 "name": "STL Scale Conversion Reference | Percentages for 3D Printing",
 "description": "Slicer percentages for converting tabletop miniatures between scales. 28mm to 32mm, 1:35, 1:48, 1:56, and more. Based on a 175cm human baseline.",
 "author": {
-"@type": "Person",
-"name": "kitsorix",
-"url": "https://stlaccess.com/about",
-"jobTitle": "3D Printing Hobbyist",
-"description": "Tabletop miniature hobbyist. Conversion values from my own prints and community feedback."
-},
-"publisher": {
-"@type": "Person",
-"name": "kitsorix",
-"url": "https://stlaccess.com/about"
-},
-"datePublished": "2026-05-07",
-"dateModified": "2026-06-05",
+    "@type": "Person",
+    "name": "${author.name}",
+    "url": "${author.siteUrl}",
+    "jobTitle": "${author.jobTitle}",
+    "description": "Tabletop miniature hobbyist. Conversion values from my own prints and community feedback."
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "${author.name}",
+    "url": "${author.siteUrl}"
+  },
+  "datePublished": "${datePublished}",
+  "dateModified": "${dateModified}",
 "speakable": {
 "@type": "SpeakableSpecification",
 "cssSelector": [".reference-intro", ".faq-question", "#conversion-matrix"]
@@ -33,223 +37,40 @@ const schema = `{
 "@type": "Table",
 "about": "Miniature Scale Conversion Percentages",
 "description": "Slicer scale percentages for converting between tabletop miniature scales. Based on a 175cm human baseline with eye-level measurement methodology.",
-"author": {"@type": "Person", "name": "kitsorix"}
+"author": {"@type": "Person", "name": "${author.name}"}
 },
     {
       "@type": "QAPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What percentage do I scale 28mm to 32mm?",
-          "text": "What percentage do I scale 28mm to 32mm?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Set your slicer to 114.3% to convert 28mm to 32mm when measuring to eye level. If measuring to top of head, use 116.1%. FDM rarely needs additional compensation.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How big is a 28mm miniature in real measurements?",
-          "text": "How big is a 28mm miniature in real measurements?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A 28mm miniature represents a 175cm human at approximately 1:56 to 1:60 scale. The figure stands about 30-32mm to top of head, with eye level at 28mm. Base thickness adds 2-5mm to total height.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the difference between 28mm and 32mm scale?",
-          "text": "What is the difference between 28mm and 32mm scale?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "28mm measures to eye level of a 175cm human. 32mm 'Heroic' scale exaggerates proportions for paintability — heads and hands are larger relative to body. The actual height difference is 14.3%, but visual bulk makes it feel like a bigger gap.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What scale is 1:35 in mm for miniatures?",
-          "text": "What scale is 1:35 in mm for miniatures?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "1:35 scale equals approximately 50mm for a 175cm human (measured to eye level). Military model kits in 1:35 are significantly larger than standard 28mm tabletop miniatures. To mix 1:35 vehicles with 28mm infantry, scale the vehicle down to 62.5%.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does PLA or PETG shrink after printing?",
-          "text": "Does PLA or PETG shrink after printing?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "PLA and PETG can shrink 0.2% to 0.5% as they cool from printing temperature. This is small enough to ignore for miniature scaling. I do not add compensation for FDM because over-extrusion and cooling shrinkage tend to cancel each other out.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why do 1:48 tanks look better with 28mm infantry than 1:56?",
-          "text": "Why do 1:48 tanks look better with 28mm infantry than 1:56?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Modern 28mm plastic miniatures from manufacturers like Warlord Games are closer to 30-32mm in practice. A true 1:56 tank looks small next to them. 1:48 Tamiya kits match the 'heroic' proportions better and are often cheaper than official wargaming vehicles.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What does 'Eye Level' vs 'Top of Head' mean in miniature scale?",
-          "text": "What does 'Eye Level' vs 'Top of Head' mean in miniature scale?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Eye Level measures from feet to eyes (160cm on a 175cm human). Top of Head measures to the crown. The 15mm difference creates a 5-10% variance in scale calculations. Fantasy miniatures typically use eye level to account for helmets and hats. Historical kits often use top of head.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I scale STL files for different tabletop games?",
-          "text": "How do I scale STL files for different tabletop games?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Use the conversion matrix on this page to find your percentage, then apply uniform scaling (XYZ) in your slicer. Always print a test piece before committing to a full batch. The stlscale converter at STLACCESS automates this with source and target selection.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        }
-      ]
+      "mainEntity": ${JSON.stringify(referencePageQA.map(qa => ({
+  "@type": "Question",
+  "name": qa.question.replace(/<[^>]*>/g, ''),
+  "text": qa.question.replace(/<[^>]*>/g, ''),
+  "author": { "@type": "Person", "name": author.name, "url": author.url },
+  "acceptedAnswer": {
+    "@type": "Answer",
+    "text": qa.answer.replace(/<[^>]*>/g, ''),
+    "author": { "@type": "Person", "name": author.name, "url": author.url }
+  }
+})))}
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "${url}/"},
         {"@type": "ListItem", "position": 2, "name": "Reference"}
       ]
     }
   ]
 }`;
 
-const conversions = [
-  // Source, Target, Eye%, TopHead%, Slug, Popular
-  ["28mm (True Scale)", "32mm Heroic", "114.3%", "116.1%", "28mm-to-32mm", false],
-  ["32mm (Heroic)", "28mm True Scale", "87.5%", "95.4%", "32mm-to-28mm", false],
-  ["1:35 Military", "32mm Heroic", "64.0%", "—", "1-35-to-32mm", true],
-  ["1:35 Military", "28mm True Scale", "56.0%", "61.3%", "1-35-to-28mm", true],
-  ["1:35 Military", "35mm (Legion)", "70.0%", "—", "1-35-to-35mm", false],
-  ["1:35 Military", "40mm (Shatterpoint)", "80.0%", "—", "1-35-to-40mm", false],
-  ["1:35 Military", "75mm (Display)", "150.0%", "—", "1-35-to-75mm", false],
-  ["1:48 Quarter Scale", "32mm Heroic", "87.8%", "—", "1-48-to-32mm", false],
-  ["1:48 Quarter Scale", "28mm True Scale", "76.8%", "—", "1-48-to-28mm", true],
-  ["1:48 Quarter Scale", "35mm (Legion)", "96.0%", "—", "1-48-to-35mm", false],
-  ["1:48 Quarter Scale", "40mm (Shatterpoint)", "109.7%", "—", "1-48-to-40mm", false],
-  ["1:48 Quarter Scale", "75mm (Display)", "205.8%", "—", "1-48-to-75mm", false],
-  ["1:48 Quarter Scale", "1:35 (Model Kit)", "137.2%", "—", "1-48-to-1-35", false],
-  ["1:56 Bolt Action", "32mm Heroic", "102.4%", "—", "1-56-to-32mm", false],
-  ["1:56 Bolt Action", "28mm True Scale", "89.6%", "—", "1-56-to-28mm", true],
-  ["1:56 Bolt Action", "35mm (Legion)", "112.0%", "—", "1-56-to-35mm", false],
-  ["1:56 Bolt Action", "40mm (Shatterpoint)", "128.0%", "—", "1-56-to-40mm", false],
-  ["1:56 Bolt Action", "75mm (Display)", "240.0%", "—", "1-56-to-75mm", false],
-  ["1:56 Bolt Action", "1:35 (Model Kit)", "160.0%", "—", "1-56-to-1-35", false],
-  ["1:72 Small Scale", "32mm Heroic", "131.7%", "—", "1-72-to-32mm", false],
-  ["1:72 Small Scale", "28mm True Scale", "115.2%", "—", "1-72-to-28mm", false],
-  ["1:72 Small Scale", "35mm (Legion)", "144.0%", "—", "1-72-to-35mm", false],
-  ["1:72 Small Scale", "40mm (Shatterpoint)", "164.6%", "—", "1-72-to-40mm", false],
-  ["1:72 Small Scale", "75mm (Display)", "308.6%", "—", "1-72-to-75mm", false],
-  ["1:72 Small Scale", "1:35 (Model Kit)", "205.8%", "—", "1-72-to-1-35", false],
-  ["1:100 Military", "32mm Heroic", "182.9%", "—", "1-100-to-32mm", false],
-  ["1:100 Military", "28mm True Scale", "160.0%", "—", "1-100-to-28mm", false],
-  ["1:100 Military", "35mm (Legion)", "200.0%", "—", "1-100-to-35mm", false],
-  ["1:100 Military", "40mm (Shatterpoint)", "228.6%", "—", "1-100-to-40mm", false],
-  ["1:100 Military", "75mm (Display)", "428.6%", "—", "1-100-to-75mm", false],
-  ["1:100 Military", "1:35 (Model Kit)", "285.7%", "—", "1-100-to-1-35", false],
-  ["28mm (D&D)", "32mm (Warhammer)", "114.3%", "—", "28mm-to-32mm", false],
-  ["28mm (D&D)", "35mm (Legion)", "125.0%", "—", "28mm-to-35mm", false],
-  ["28mm (D&D)", "40mm (Shatterpoint)", "142.9%", "—", "28mm-to-40mm", false],
-  ["28mm (D&D)", "75mm (Display)", "267.9%", "—", "28mm-to-75mm", false],
-  ["28mm (D&D)", "1:35 (Model Kit)", "178.6%", "—", "28mm-to-1-35", false],
-  ["32mm Heroic", "35mm (Legion)", "109.4%", "—", "32mm-to-35mm", false],
-  ["32mm Heroic", "40mm (Shatterpoint)", "125.0%", "—", "32mm-to-40mm", false],
-  ["32mm Heroic", "75mm (Display)", "234.4%", "—", "32mm-to-75mm", false],
-  ["32mm Heroic", "1:35 (Model Kit)", "156.3%", "—", "32mm-to-1-35", false],
-  ["35mm (Legion)", "32mm (Warhammer)", "91.4%", "—", "35mm-to-32mm", false],
-  ["35mm (Legion)", "28mm (D&D)", "80.0%", "—", "35mm-to-28mm", false],
-  ["35mm (Legion)", "40mm (Shatterpoint)", "114.3%", "—", "35mm-to-40mm", false],
-  ["35mm (Legion)", "75mm (Display)", "214.3%", "—", "35mm-to-75mm", false],
-  ["35mm (Legion)", "1:35 (Model Kit)", "142.9%", "—", "35mm-to-1-35", false],
-];
+const conversions = rawConversions.map(c => ({
+  source: c.sourceLabel,
+  target: c.targetLabel,
+  eye: c.percentage + '%',
+  topHead: c.topHeadPercentage ? c.topHeadPercentage + '%' : '—',
+  slug: c.slug,
+  popular: c.popular
+}));
 ---
 <Layout
   title="STL Scale Conversion Reference | Percentages for 3D Printing"
@@ -270,8 +91,9 @@ const conversions = [
     Scale Conversion <span class="text-[#ff6b35]">Reference</span>
   </h1>
   <p class="reference-intro text-lg text-slate-400 max-w-2xl leading-relaxed">
-    Slicer percentages for converting miniatures between tabletop systems. These are the numbers I use, based on a 175cm human baseline with eye-level measurement. I print on a Bambu Lab A1 Mini. Your settings may differ.
+    Slicer percentages for converting miniatures between tabletop systems. These are the numbers I use, based on a 175cm human baseline with eye-level measurement. I print on a {printerName}. Your settings may differ.
   </p>
+  <p class="text-xs text-slate-600 mt-3">Last updated: {dateModified}</p>
 </section>
 
 <!-- Search / Filter -->
@@ -298,7 +120,7 @@ const conversions = [
     <span class="text-xs text-slate-500 font-medium">Eye level measurements</span>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="cards-container">
-    {conversions.map(([source, target, eye, topHead, slug, popular]) => (
+    {conversions.map(({source, target, eye, topHead, slug, popular}) => (
       <div
         class={`searchable-card group rounded-2xl p-6 transition-all ${popular ? 'bg-[#ff6b35] border border-[#ff6b35]' : 'bg-slate-900/30 border border-white/5 hover:border-[#ff6b35]/30'}`}
         data-search={`${source} ${target} ${eye}`}
@@ -373,7 +195,7 @@ const conversions = [
         I use a <strong class="text-white">175cm human baseline</strong> with eye-level at 160cm. This is what most of the fantasy and sci-fi miniature hobby uses. Historical kits sometimes measure to top of head, which is why the matrix includes both where it matters.
       </p>
       <p>
-        The math is simple division. I print the result on my Bambu Lab A1 Mini before I post it. FDM materials are dimensionally stable within 0.5%, so the percentage you see is the percentage you get. Your mileage will vary.
+        The math is simple division. I print the result on my {printerName} before I post it. FDM materials are dimensionally stable within 0.5%, so the percentage you see is the percentage you get. Your mileage will vary.
       </p>
       <p>
         These values are what works for me and what the community reports back as functional. Your printer, filament, and settings may vary. Always print a test piece.
@@ -391,14 +213,14 @@ const conversions = [
 <section id="pillar-article" class="px-6 pb-24 max-w-6xl mx-auto" aria-labelledby="pillar-heading">
   <article class="reference-group bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden glow-box" itemscope itemtype="https://schema.org/Article">
     <meta itemprop="headline" content="Why miniature scale is inconsistent and how to fix it with math" />
-    <meta itemprop="author" content="kitsorix" />
-    <meta itemprop="datePublished" content="2026-05-07" />
+    <meta itemprop="author" content={author.name} />
+    <meta itemprop="datePublished" content={datePublished} />
     <meta itemprop="publisher" content="STLACCESS" />
     
     <div class="p-8 md:p-12 border-b border-white/5">
       <span class="inline-block text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-4">Technical guide</span>
       <h2 id="pillar-heading" class="text-3xl md:text-5xl font-bold font-heading tracking-tight mb-6" itemprop="name">
-        Scale is a <span class="text-[#ff6b35]">marketing term</span>
+        Why is miniature scale <span class="text-[#ff6b35]">inconsistent</span>?
       </h2>
       <p class="text-lg text-slate-400 max-w-3xl leading-relaxed" itemprop="description">
         Five things I learned after mixing up miniatures from six manufacturers and measuring them with calipers. The numbers on the box rarely match the model.
@@ -409,31 +231,31 @@ const conversions = [
           <li>
             <a href="#point-1" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
               <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">1</span>
-              <span>The 28mm mystery: where the ruler actually stops</span>
+              <span>Why does a 28mm miniature measure 30-32mm?</span>
             </a>
           </li>
           <li>
             <a href="#point-2" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
               <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">2</span>
-              <span>Why 1:48 tanks look right next to 28mm infantry</span>
+              <span>Why do 1:48 tanks look better with 28mm infantry?</span>
             </a>
           </li>
           <li>
             <a href="#point-3" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
               <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">3</span>
-              <span>The Stay Puft effect: why hands keep getting bigger</span>
+              <span>Why do miniature hands keep getting bigger?</span>
             </a>
           </li>
           <li>
             <a href="#point-4" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
               <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">4</span>
-              <span>The 5mm base factor nobody talks about</span>
+              <span>How much height does a miniature base add?</span>
             </a>
           </li>
           <li>
             <a href="#point-5" class="flex items-center gap-3 text-slate-400 hover:text-[#ff6b35] transition-colors group">
               <span class="w-6 h-6 rounded-md bg-[#ff6b35]/10 text-[#ff6b35] text-[10px] font-black flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35] group-hover:text-black transition-colors">5</span>
-              <span>3D printing math: how I actually size things</span>
+              <span>How do I calculate scale conversions for 3D printing?</span>
             </a>
           </li>
         </ol>
@@ -452,7 +274,7 @@ const conversions = [
       <div id="point-1" class="mb-14 scroll-mt-28">
         <div class="flex items-center gap-4 mb-4">
           <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">1</span>
-          <h3 class="text-2xl font-bold font-heading text-white">The 28mm mystery: where the ruler actually stops</h3>
+          <h3 class="text-2xl font-bold font-heading text-white">Why does a 28mm miniature measure 30-32mm?</h3>
         </div>
         <div class="pl-14">
           <p class="mb-4">
@@ -478,7 +300,7 @@ const conversions = [
       <div id="point-2" class="mb-14 scroll-mt-28">
         <div class="flex items-center gap-4 mb-4">
           <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">2</span>
-          <h3 class="text-2xl font-bold font-heading text-white">Why 1:48 tanks look right next to 28mm infantry</h3>
+          <h3 class="text-2xl font-bold font-heading text-white">Why do 1:48 tanks look better with 28mm infantry than 1:56?</h3>
         </div>
         <div class="pl-14">
           <p class="mb-4">
@@ -504,7 +326,7 @@ const conversions = [
       <div id="point-3" class="mb-14 scroll-mt-28">
         <div class="flex items-center gap-4 mb-4">
           <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">3</span>
-          <h3 class="text-2xl font-bold font-heading text-white">The Stay Puft effect: why hands keep getting bigger</h3>
+          <h3 class="text-2xl font-bold font-heading text-white">Why do miniature hands keep getting bigger?</h3>
         </div>
         <div class="pl-14">
           <p class="mb-6">
@@ -530,7 +352,7 @@ const conversions = [
       <div id="point-4" class="mb-14 scroll-mt-28">
         <div class="flex items-center gap-4 mb-4">
           <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">4</span>
-          <h3 class="text-2xl font-bold font-heading text-white">The 5mm base factor nobody talks about</h3>
+          <h3 class="text-2xl font-bold font-heading text-white">How much height does a miniature base add?</h3>
         </div>
         <div class="pl-14">
           <p class="mb-4">
@@ -552,7 +374,7 @@ const conversions = [
       <div id="point-5" class="mb-14 scroll-mt-28">
         <div class="flex items-center gap-4 mb-4">
           <span class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 text-[#ff6b35] text-sm font-black flex items-center justify-center shrink-0">5</span>
-          <h3 class="text-2xl font-bold font-heading text-white">3D printing math: how I actually size things</h3>
+          <h3 class="text-2xl font-bold font-heading text-white">How do I calculate scale conversions for 3D printing?</h3>
         </div>
         <div class="pl-14">
           <p class="mb-6">
@@ -597,119 +419,17 @@ const conversions = [
     Scale conversion <span class="text-[#ff6b35]">FAQ</span>
   </h2>
   <div class="bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden divide-y divide-white/5" itemscope itemtype="https://schema.org/FAQPage">
-    
-    <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-        <span class="faq-question pr-4" itemprop="name">What percentage do I scale 28mm to 32mm?</span>
-        <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
-      </summary>
-      <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div itemprop="text">
-          <p>
-            Set your slicer to <span class="text-[#ff6b35] font-bold">114.3%</span> when converting 28mm to 32mm and measuring to eye level. For top-of-head measurement, use <span class="text-[#ff6b35] font-bold">116.1%</span>. FDM materials do not need additional compensation.
-          </p>
+    {referencePageQA.map((item) => (
+      <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
+          <span class="faq-question pr-4" itemprop="name">{item.question}</span>
+          <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
+        </summary>
+        <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text" set:html={item.answer} />
         </div>
-      </div>
-    </details>
-
-    <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-        <span class="faq-question pr-4" itemprop="name">How big is a 28mm miniature in real measurements?</span>
-        <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
-      </summary>
-      <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div itemprop="text">
-          <p>
-            A 28mm miniature represents a 175cm human at approximately <span class="text-white font-semibold">1:56 to 1:60 scale</span>. The figure itself stands about 30-32mm to the top of the head, with the eye level at 28mm. Base thickness (typically 2-5mm) adds to the total height on the table.
-          </p>
-        </div>
-      </div>
-    </details>
-
-    <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-        <span class="faq-question pr-4" itemprop="name">What is the difference between 28mm and 32mm scale?</span>
-        <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
-      </summary>
-      <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div itemprop="text">
-          <p>
-            28mm measures to eye level of a 175cm human. 32mm "Heroic" scale exaggerates proportions for paintability: heads and hands are larger relative to the body. The actual height difference is 14.3%, but the increased bulk makes the gap feel larger on the table. <a href="/reference/28mm-to-32mm" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Full conversion guide</a>
-          </p>
-        </div>
-      </div>
-    </details>
-
-    <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-        <span class="faq-question pr-4" itemprop="name">What scale is 1:35 in mm for miniatures?</span>
-        <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
-      </summary>
-      <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div itemprop="text">
-          <p>
-            1:35 scale equals approximately <span class="text-white font-semibold">50mm</span> for a 175cm human measured to eye level. Military model kits in 1:35 are significantly larger than standard 28mm tabletop miniatures. To mix 1:35 vehicles with 28mm infantry, scale the vehicle down to <span class="text-[#ff6b35] font-bold">62.5%</span>.
-          </p>
-        </div>
-      </div>
-    </details>
-
-    <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-        <span class="faq-question pr-4" itemprop="name">Does PLA or PETG shrink after printing?</span>
-        <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
-      </summary>
-      <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div itemprop="text">
-          <p>
-            <span class="text-white font-semibold">Barely.</span> PLA and PETG can shrink <span class="text-white font-semibold">0.2% to 0.5%</span> as they cool from printing temperature. This is small enough to ignore for miniature scaling. I do not add compensation for FDM because over-extrusion and cooling shrinkage tend to cancel each other out.
-          </p>
-        </div>
-      </div>
-    </details>
-
-    <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-        <span class="faq-question pr-4" itemprop="name">Why do 1:48 tanks look better with 28mm infantry than 1:56?</span>
-        <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
-      </summary>
-      <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div itemprop="text">
-          <p>
-            Modern 28mm plastic miniatures from manufacturers like Warlord Games are closer to 30-32mm in practice. A true 1:56 tank looks small next to them. 1:48 Tamiya kits match the heroic proportions better and are often cheaper than official wargaming vehicles. Use our <a href="/reference/1-48-to-28mm" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">1:48 to 28mm guide</a> and see how it looks on your table.
-          </p>
-        </div>
-      </div>
-    </details>
-
-    <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-        <span class="faq-question pr-4" itemprop="name">What does "Eye Level" vs "Top of Head" mean in miniature scale?</span>
-        <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
-      </summary>
-      <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div itemprop="text">
-          <p>
-            Eye Level measures from feet to eyes (160cm on a 175cm human). Top of Head measures to the crown. The 15cm difference creates a <span class="text-white font-semibold">5-10% variance</span> in scale calculations. Fantasy miniatures typically use eye level to account for helmets and hats. Historical kits often use top of head. Our matrix includes both values where relevant.
-          </p>
-        </div>
-      </div>
-    </details>
-
-    <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-      <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-        <span class="faq-question pr-4" itemprop="name">How do I scale STL files for different tabletop games?</span>
-        <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
-      </summary>
-      <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-        <div itemprop="text">
-          <p>
-            Find your source and target scales in the <a href="#conversion-matrix" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">conversion matrix</a> above, then apply uniform scaling (XYZ) in your slicer. Always print a test piece before a full batch. The <a href="/" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">stlscale converter</a> automates this with source and target selection.
-          </p>
-        </div>
-      </div>
-    </details>
-
+      </details>
+    ))}
   </div>
   <p class="text-xs text-slate-500 mt-8 text-center">
     Calculations by <a href="/about" class="text-[#ff6b35] hover:underline" rel="author">STLACCESS</a> using a 175cm human baseline
@@ -747,7 +467,7 @@ const conversions = [
           These are starting points from my own prints and community feedback. If a ratio works differently on your machine, send it and I will add a note.
         </p>
       </div>
-      <form id="ref-feedback-form" action="https://script.google.com/macros/s/AKfycbxgBWP8jUCPC_RSWMSxeajo-aPl1htSt1XNDYU6Rk2mXpUhQLHOssv_4t4mpUWry2PEsw/exec" method="POST" class="space-y-6 max-w-xl mx-auto text-left">
+      <form id="ref-feedback-form" action={gasEndpoint} method="POST" class="space-y-6 max-w-xl mx-auto text-left">
         <input type="hidden" name="page_source" value="reference_page" />
         <input type="hidden" name="type" value="data-correction" />
         <div>

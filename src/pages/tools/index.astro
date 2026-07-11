@@ -1,30 +1,34 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import tools from "../../data/tools.json";
+import site from "../../data/site.json";
+import categoryLabels from "../../data/toolCategories.json";
+
+const { url, datePublished, dateModified, printerName } = site;
 
 const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "CollectionPage",
-      "@id": "https://stlaccess.com/tools#webpage",
-      "url": "https://stlaccess.com/tools",
+      "@id": `${url}/tools#webpage`,
+      "url": `${url}/tools`,
       "name": "3D Print Scale Tools for Miniatures | STLACCESS",
       "description": "Free browser-based tools for 3D printing miniature scale conversion. Calculator, reference library, personal library, and creator badge for Warhammer, D&D, and tabletop gaming.",
-      "isPartOf": { "@id": "https://stlaccess.com/#website" },
+      "isPartOf": { "@id": `${url}/#website` },
       "author": {
         "@type": "Person",
-        "name": "kitsorix",
-        "url": "https://stlaccess.com/about",
-        "jobTitle": "3D Printing Hobbyist"
+        "name": site.author.name,
+        "url": site.author.siteUrl,
+        "jobTitle": site.author.jobTitle
       },
       "publisher": {
         "@type": "Person",
-        "name": "kitsorix",
-        "url": "https://stlaccess.com/about"
+        "name": site.author.name,
+        "url": site.author.siteUrl
       },
-      "datePublished": "2026-05-07",
-      "dateModified": "2026-06-05",
+      "datePublished": datePublished,
+      "dateModified": dateModified,
       "speakable": {
         "@type": "SpeakableSpecification",
         "cssSelector": [".tools-intro", ".tool-card h3"]
@@ -33,7 +37,7 @@ const schema = JSON.stringify({
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/" },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${url}/` },
         { "@type": "ListItem", "position": 2, "name": "Tools" }
       ]
     },
@@ -41,13 +45,13 @@ const schema = JSON.stringify({
       "@type": "ItemList",
       "name": "STLACCESS Tools for 3D Printed Miniatures",
       "description": "Browser-based utilities for scaling, referencing, and saving STL scale conversions.",
-      "url": "https://stlaccess.com/tools",
+      "url": `${url}/tools`,
       "numberOfItems": tools.length,
       "itemListElement": tools.map((tool, i) => ({
         "@type": "ListItem",
         "position": i + 1,
         "name": tool.name,
-        "url": `https://stlaccess.com/tools/${tool.slug}`,
+        "url": `${url}/tools/${tool.slug}`,
         "description": tool.shortDescription
       }))
     },
@@ -58,95 +62,33 @@ const schema = JSON.stringify({
           "@type": "Question",
           "name": "What tools does STLACCESS offer for 3D printing miniatures?",
           "text": "What tools does STLACCESS offer for 3D printing miniatures?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
+          "author": { "@type": "Person", "name": site.author.name, "url": site.author.url },
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "STLACCESS provides browser-based tools for STL scale conversion: the stlscale Engine calculator with 15+ gaming scales, a Scale Conversion Reference library with 45 verified percentages, a Personal Library for saving conversions locally, and a Creator Badge for storefronts.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
+            "text": "STLACCESS provides browser-based tools for STL scale conversion: " + tools.map(t => t.name).join(", ") + ". All tools run client-side with no uploads or accounts.",
+            "author": { "@type": "Person", "name": site.author.name, "url": site.author.url }
           }
         },
         {
           "@type": "Question",
           "name": "Is there a cost to use these STL scale tools?",
           "text": "Is there a cost to use these STL scale tools?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
+          "author": { "@type": "Person", "name": site.author.name, "url": site.author.url },
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "All tools on STLACCESS are free. No account, no login, no payment required. The calculator runs entirely in your browser. Data saved to your personal library stays on your device.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What miniature scales are supported by the scale tools?",
-          "text": "What miniature scales are supported by the scale tools?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The tools support 28mm true scale, 32mm heroic (Warhammer 40k), 35mm (Star Wars Legion), 40mm (Shatterpoint), 75mm display scale, and ratio scales 1:35, 1:48, 1:56, 1:72, and 1:100. All conversions use a 175cm human baseline.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do the conversion tools account for FDM material shrinkage?",
-          "text": "Do the conversion tools account for FDM material shrinkage?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "PLA and PETG shrink under 0.5% during cooling, which is negligible for miniature scaling. The reference library includes FDM print notes for each conversion.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
+            "text": "All tools on STLACCESS are free. No account, no login, no payment required. The calculator runs entirely in your browser.",
+            "author": { "@type": "Person", "name": site.author.name, "url": site.author.url }
           }
         },
         {
           "@type": "Question",
           "name": "Do these tools work offline?",
           "text": "Do these tools work offline?",
-          "author": {
-            "@type": "Person",
-            "name": "kitsorix",
-            "url": "https://github.com/kitsorix-official"
-          },
+          "author": { "@type": "Person", "name": site.author.name, "url": site.author.url },
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The stlscale Engine and reference library require an internet connection to load. Once loaded, the calculator runs entirely in your browser. Saved conversions in your Personal Library persist in localStorage and are available when you return.",
-            "author": {
-              "@type": "Person",
-              "name": "kitsorix",
-              "url": "https://github.com/kitsorix-official"
-            }
+            "text": "The stlscale Engine and reference library require an internet connection to load. Once loaded, the calculator runs entirely in your browser. Saved conversions persist in localStorage.",
+            "author": { "@type": "Person", "name": site.author.name, "url": site.author.url }
           }
         }
       ]
@@ -155,12 +97,6 @@ const schema = JSON.stringify({
 });
 
 const categories = [...new Set(tools.map(t => t.category))];
-const categoryLabels = {
-  calculators: "Calculators",
-  references: "Reference Data",
-  storage: "Storage & Organization",
-  integrations: "Integrations"
-};
 ---
 
 <Layout
@@ -307,7 +243,7 @@ const categoryLabels = {
         All tools run entirely in your browser. There is no backend, no database, and no user tracking. The scale calculator uses a <strong class="text-white">175cm human baseline</strong> with eye-level at 160cm — the same reference point used by most of the tabletop miniatures community. Conversion percentages are printed and measured with digital calipers before they are published.
       </p>
       <p>
-        New scales are added when wargaming manufacturers release new systems or when enough users submit corrections through the feedback form. Every percentage is tested on my Bambu Lab A1 Mini before publishing.
+        New scales are added when wargaming manufacturers release new systems or when enough users submit corrections through the feedback form. Every percentage is tested on my {printerName} before publishing.
       </p>
       <p>
         <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1" rel="author">

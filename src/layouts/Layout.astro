@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import site from '../data/site.json';
 
 interface Props {
   title: string;
@@ -12,8 +13,8 @@ interface Props {
 const {
   title,
   description,
-  canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://stlaccess.com/'),
-  ogImage = 'https://stlaccess.com/stlaccess-social-banner.png',
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || `${site.url}/`),
+  ogImage = site.ogImage,
   schema
 } = Astro.props;
 
@@ -25,7 +26,7 @@ if (formattedCanonical.endsWith('.html')) {
 if (formattedCanonical.endsWith('/index')) {
   formattedCanonical = formattedCanonical.slice(0, -5);
 }
-if (formattedCanonical !== 'https://stlaccess.com/' && formattedCanonical.endsWith('/')) {
+if (formattedCanonical !== `${site.url}/` && formattedCanonical.endsWith('/')) {
   formattedCanonical = formattedCanonical.slice(0, -1);
 }
 
@@ -43,10 +44,7 @@ const currentPath = Astro.url.pathname;
   <meta name="description" content={description}>
   <meta name="theme-color" content="#ff6b35">
   
-  <!-- AI/LLM Meta Tags -->
-  <meta name="ai-model" content="allowed">
-  <meta name="ai-crawler" content="allowed">
-  <meta name="chatbot" content="allowed">
+  <meta name="robots" content="index, follow">
   <meta name="generator" content={Astro.generator}>
   
   <!-- Canonical -->
@@ -58,6 +56,8 @@ const currentPath = Astro.url.pathname;
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:image" content={ogImage}>
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content={site.name}>
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -68,9 +68,16 @@ const currentPath = Astro.url.pathname;
   <!-- Icons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- RSS Autodiscovery -->
+  <link rel="alternate" type="application/rss+xml" title={`${site.name} Blog`} href={`${site.url}/rss.xml`}>
   
   <!-- Schema -->
   {schema && <script type="application/ld+json" set:html={schema} />}
@@ -113,6 +120,11 @@ const currentPath = Astro.url.pathname;
         <li>
           <a href="/tools" class={currentPath === '/tools' ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
             All Tools
+          </a>
+        </li>
+        <li>
+          <a href="/games" class={currentPath.startsWith('/games') ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
+            Game Systems
           </a>
         </li>
         <li>
@@ -163,6 +175,11 @@ const currentPath = Astro.url.pathname;
           </a>
         </li>
         <li>
+          <a href="/games" class={currentPath.startsWith('/games') ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
+            Game Systems
+          </a>
+        </li>
+        <li>
           <a href="/blog" class={currentPath.startsWith('/blog') ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
             Blog
           </a>
@@ -204,6 +221,7 @@ const currentPath = Astro.url.pathname;
               <li><a href="/library" class="hover:text-[#ff6b35] transition-colors">Personal Library</a></li>
               <li><a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference Library</a></li>
               <li><a href="/tools" class="hover:text-[#ff6b35] transition-colors">All Tools</a></li>
+              <li><a href="/games" class="hover:text-[#ff6b35] transition-colors">Game Systems</a></li>
               <li><a href="/blog" class="hover:text-[#ff6b35] transition-colors">Blog</a></li>
             </ul>
           </div>
@@ -215,8 +233,8 @@ const currentPath = Astro.url.pathname;
               <li><a href="/about" class="hover:text-[#ff6b35] transition-colors">About & Methodology</a></li>
               <li><a href="/faq" class="hover:text-[#ff6b35] transition-colors">FAQ</a></li>
               <li><a href="/contact" class="hover:text-[#ff6b35] transition-colors">Contact</a></li>
-              <li><a href="https://github.com/kitsorix-official/stlaccess" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">GitHub Source</a></li>
-              <li><a href="https://github.com/kitsorix-official/stlaccess/issues" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
+              <li><a href={`${site.author.url}/stlaccess`} class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">GitHub Source</a></li>
+              <li><a href={`${site.author.url}/stlaccess/issues`} class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
             </ul>
           </div>
 
@@ -236,11 +254,11 @@ const currentPath = Astro.url.pathname;
       <!-- Bottom bar -->
       <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
         <span>
-          Made by <a href="https://github.com/kitsorix-official" target="_blank" rel="noopener noreferrer" class="hover:text-[#ff6b35] transition-colors">kitsorix</a>
+          Made by <a href={site.author.url} target="_blank" rel="noopener noreferrer" class="hover:text-[#ff6b35] transition-colors">{site.author.name}</a>
         </span>
         <div class="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest">
-          <a href="https://github.com/kitsorix-official/stlaccess" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">View Source on GitHub</a>
-          <span>&copy; 2026 STLACCESS</span>
+          <a href={`${site.author.url}/stlaccess`} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">View Source on GitHub</a>
+          <span>&copy; {new Date().getFullYear()} {site.name}</span>
         </div>
       </div>
 

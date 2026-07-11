@@ -1,40 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import site from '../data/site.json';
+
+const { url, datePublished, dateModified } = site;
 
 const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "ContactPage",
-      "@id": "https://stlaccess.com/contact#webpage",
-      "url": "https://stlaccess.com/contact",
+      "@id": `${url}/contact#webpage`,
+      "url": `${url}/contact`,
       "name": "Contact | 3D Print Miniature Scale Support | STLACCESS",
       "description": "Get in touch about 3D printed miniature scale conversions. Report wrong percentages, request new gaming scales, or suggest features for STLACCESS.",
       "author": {
         "@type": "Person",
-        "name": "kitsorix",
-        "url": "https://stlaccess.com/about",
-        "jobTitle": "3D Printing Hobbyist"
+        "name": site.author.name,
+        "url": site.author.siteUrl,
+        "jobTitle": site.author.jobTitle
       },
       "publisher": {
         "@type": "Person",
-        "name": "kitsorix",
-        "url": "https://stlaccess.com/about"
+        "name": site.author.name,
+        "url": site.author.siteUrl
       },
-      "datePublished": "2026-06-04",
-      "dateModified": "2026-06-05"
+      "datePublished": datePublished,
+      "dateModified": dateModified
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": `${url}/`},
         {"@type": "ListItem", "position": 2, "name": "Contact"}
       ]
     }
   ]
 });
-
-const googleFormUrl = "https://forms.gle/njKi8KgCjUQEM1n96";
 ---
 <Layout
   title="Contact | 3D Print Miniature Scale Support | STLACCESS"
@@ -70,7 +71,7 @@ const googleFormUrl = "https://forms.gle/njKi8KgCjUQEM1n96";
         </p>
       </div>
       <a
-        href={googleFormUrl}
+        href={site.googleFormUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-8 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shrink-0"
@@ -88,7 +89,7 @@ const googleFormUrl = "https://forms.gle/njKi8KgCjUQEM1n96";
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <a
-        href={googleFormUrl}
+        href={site.googleFormUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
@@ -104,7 +105,7 @@ const googleFormUrl = "https://forms.gle/njKi8KgCjUQEM1n96";
         </p>
       </a>
       <a
-        href={googleFormUrl}
+        href={site.googleFormUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
@@ -120,7 +121,7 @@ const googleFormUrl = "https://forms.gle/njKi8KgCjUQEM1n96";
         </p>
       </a>
       <a
-        href={googleFormUrl}
+        href={site.googleFormUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
@@ -136,7 +137,7 @@ const googleFormUrl = "https://forms.gle/njKi8KgCjUQEM1n96";
         </p>
       </a>
       <a
-        href={googleFormUrl}
+        href={site.googleFormUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
@@ -184,7 +185,7 @@ const googleFormUrl = "https://forms.gle/njKi8KgCjUQEM1n96";
         Found a bug in the converter? Open an issue. I do not check social media.
       </p>
       <a
-        href="https://github.com/kitsorix-official/stlaccess"
+        href={`${site.author.url}/stlaccess`}
         target="_blank"
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors"
@@ -198,7 +199,7 @@ const googleFormUrl = "https://forms.gle/njKi8KgCjUQEM1n96";
         <i class="fa-solid fa-user text-[#ff6b35] text-lg"></i>
         <div>
           <h3 class="text-white font-semibold text-sm">Who replies</h3>
-          <p class="text-xs text-slate-500">kitsorix</p>
+          <p class="text-xs text-slate-500">{site.author.name}</p>
         </div>
       </div>
       <p class="text-xs text-slate-400 leading-relaxed">

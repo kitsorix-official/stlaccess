@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import site from '../data/site.json';
 ---
 
 <!doctype html>
@@ -11,24 +12,19 @@ import '../styles/global.css';
 <meta name="description" content="Error 404: Failed Print! Your URL detached from the build plate. Keep calm and calibrate your coordinates." />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="canonical" href="https://stlaccess.com/404" />
   <meta property="og:title" content="404 - Failed Print | STLACCESS" />
   <meta property="og:description" content="Error 404: Failed Print! Your URL detached from the build plate. Keep calm and calibrate your coordinates." />
-  <meta property="og:url" content="https://stlaccess.com/404" />
+  <meta property="og:url" content={`${site.url}/404`} />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://stlaccess.com/favicon.svg" />
-  <script type="application/ld+json">
-  {
+  <meta property="og:image" content={`${site.url}/favicon.svg`} />
+  <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "404 - Failed Print | STLACCESS",
-    "url": "https://stlaccess.com/404"
-  }
-  </script>
-<meta name="ai-model" content="allowed" />
-<meta name="ai-crawler" content="allowed" />
-<meta name="chatbot" content="allowed" />
-<meta name="theme-color" content="#ff6b35" />
+    "url": `${site.url}/404`
+  })} />
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ff6b35" />
 <link href="https://fontsource-files.fra1.cdn.digitaloceanspaces.com/fonts/inter/5.0.19/latin-400-normal.css" rel="stylesheet" />
 <link href="https://fontsource-files.fra1.cdn.digitaloceanspaces.com/fonts/inter/5.0.19/latin-600-normal.css" rel="stylesheet" />
 <link href="https://fontsource-files.fra1.cdn.digitaloceanspaces.com/fonts/inter/5.0.19/latin-700-normal.css" rel="stylesheet" />

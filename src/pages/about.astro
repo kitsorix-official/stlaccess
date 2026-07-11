@@ -1,20 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import conversions from '../data/conversions.json';
+import tools from '../data/tools.json';
+import site from '../data/site.json';
+
+const { url, datePublished, dateModified } = site;
 
 const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "ProfilePage",
-      "dateCreated": "2026-05-07",
-      "dateModified": "2026-06-05",
+      "dateCreated": datePublished,
+      "dateModified": dateModified,
       "mainEntity": {
         "@type": "Person",
-        "name": "kitsorix",
+        "name": site.author.name,
         "description": "Tabletop miniature hobbyist. Built STLACCESS after measuring hundreds of prints with digital calipers.",
         "sameAs": [
-          "https://github.com/kitsorix-official",
-          "https://stlaccess.com"
+          site.author.url,
+          `${url}/`
         ],
         "knowsAbout": ["3D Printing", "Tabletop Miniature Scaling", "FDM Printing", "Mathematical Scale Conversion"]
       }
@@ -22,7 +27,7 @@ const schema = JSON.stringify({
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com/"},
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": `${url}/`},
         {"@type": "ListItem", "position": 2, "name": "About"}
       ]
     }
@@ -30,8 +35,8 @@ const schema = JSON.stringify({
 });
 ---
 <Layout
-  title="About STLACCESS | kitsorix, 3D Printing Hobbyist"
-  description="How kitsorix built STLACCESS to solve scale creep in tabletop gaming. 175cm human baseline methodology, tested through personal FDM printing."
+  title={`About STLACCESS | ${site.author.name}, 3D Printing Hobbyist`}
+  description={`How ${site.author.name} built STLACCESS to solve scale creep in tabletop gaming. ${site.baselineHeight} human baseline methodology, tested through personal FDM printing.`}
   schema={schema}
 >
 <div class="max-w-4xl mx-auto px-6 py-20 w-full">
@@ -132,7 +137,7 @@ const schema = JSON.stringify({
         </div>
       </div>
       <p>
-        I test every percentage on my <span class="text-[#ff6b35] font-semibold">Bambu Lab A1 Mini</span> before publishing. If a number fails on my machine, I adjust it.
+        I test every percentage on my <span class="text-[#ff6b35] font-semibold">{site.printerName}</span> before publishing. If a number fails on my machine, I adjust it.
       </p>
     </section>
 
@@ -174,11 +179,11 @@ const schema = JSON.stringify({
       <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">By the numbers</h2>
       <div class="grid grid-cols-3 gap-8 max-w-lg mx-auto">
         <div>
-          <p class="text-3xl font-black text-white font-heading">44+</p>
+          <p class="text-3xl font-black text-white font-heading">{conversions.length}+</p>
           <p class="text-xs text-slate-500 mt-1">Scale conversions</p>
         </div>
         <div>
-          <p class="text-3xl font-black text-white font-heading">4</p>
+          <p class="text-3xl font-black text-white font-heading">{tools.length}</p>
           <p class="text-xs text-slate-500 mt-1">Free browser tools</p>
         </div>
         <div>
@@ -187,7 +192,7 @@ const schema = JSON.stringify({
         </div>
       </div>
       <p class="text-xs text-slate-500 mt-6">
-        <a href="https://github.com/kitsorix-official" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1">
+        <a         href={site.author.url} class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1">
           <i class="fa-solid fa-code-branch text-xs"></i>
           Follow on GitHub
         </a>

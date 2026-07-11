@@ -13,7 +13,9 @@
     "h1Part2": "1:35",
     "subtext": "Bridging the gap between 15mm wargaming and large scale model kits.",
     "h1Source": "1:100",
-    "h1Target": "1:35"
+    "h1Target": "1:35",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-100-to-28mm",
@@ -29,7 +31,9 @@
     "h1Part2": "28mm True Scale",
     "subtext": "What I use when converting 1:100 scale models to 28mm for my table.",
     "h1Source": "1:100",
-    "h1Target": "28mm"
+    "h1Target": "28mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-100-to-32mm",
@@ -45,7 +49,9 @@
     "h1Part2": "32mm Heroic",
     "subtext": "What I use when converting 1:100 scale models to 32mm for my table.",
     "h1Source": "1:100",
-    "h1Target": "32mm"
+    "h1Target": "32mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-100-to-35mm",
@@ -61,7 +67,9 @@
     "h1Part2": "35mm",
     "subtext": "What I use when converting 1:100 scale models to 35mm for my table.",
     "h1Source": "1:100",
-    "h1Target": "35mm"
+    "h1Target": "35mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-100-to-40mm",
@@ -77,7 +85,9 @@
     "h1Part2": "40mm",
     "subtext": "Scaling 15mm infantry for skirmish-level 40mm games.",
     "h1Source": "1:100",
-    "h1Target": "40mm"
+    "h1Target": "40mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-100-to-75mm",
@@ -93,7 +103,9 @@
     "h1Part2": "75mm",
     "subtext": "Converting 15mm miniatures into high-detail display scale.",
     "h1Source": "1:100",
-    "h1Target": "75mm"
+    "h1Target": "75mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-35-to-28mm",
@@ -109,7 +121,9 @@
     "h1Part2": "28mm True Scale",
     "subtext": "What I use when converting 1:35 scale models to 28mm for my table.",
     "h1Source": "1:35",
-    "h1Target": "28mm"
+    "h1Target": "28mm",
+    "popular": true,
+    "topHeadPercentage": "61.3"
   },
   {
     "slug": "1-35-to-32mm",
@@ -125,7 +139,9 @@
     "h1Part2": "32mm Heroic",
     "subtext": "What I use when converting 1:35 scale models to 32mm for my table.",
     "h1Source": "1:35",
-    "h1Target": "32mm"
+    "h1Target": "32mm",
+    "popular": true,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-35-to-35mm",
@@ -141,7 +157,9 @@
     "h1Part2": "35mm",
     "subtext": "Downscaling large model kit figures for 35mm skirmish systems.",
     "h1Source": "1:35",
-    "h1Target": "35mm"
+    "h1Target": "35mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-35-to-40mm",
@@ -157,7 +175,9 @@
     "h1Part2": "40mm",
     "subtext": "Downscaling 1:35 model kit figures for use in 40mm games.",
     "h1Source": "1:35",
-    "h1Target": "40mm"
+    "h1Target": "40mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-35-to-75mm",
@@ -173,7 +193,9 @@
     "h1Part2": "75mm",
     "subtext": "Upscaling 1:35 models for high-detail display scale.",
     "h1Source": "1:35",
-    "h1Target": "75mm"
+    "h1Target": "75mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-48-to-1-35",
@@ -189,7 +211,9 @@
     "h1Part2": "1:35",
     "subtext": "Converting O scale models for use in 1:35 scale dioramas.",
     "h1Source": "1:48",
-    "h1Target": "1:35"
+    "h1Target": "1:35",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-48-to-28mm",
@@ -205,7 +229,9 @@
     "h1Part2": "28mm True Scale",
     "subtext": "What I use when converting 1:48 scale models to 28mm for my table.",
     "h1Source": "1:48",
-    "h1Target": "28mm"
+    "h1Target": "28mm",
+    "popular": true,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-48-to-32mm",
@@ -221,7 +247,9 @@
     "h1Part2": "32mm Heroic",
     "subtext": "What I use when converting 1:48 scale models to 32mm for my table.",
     "h1Source": "1:48",
-    "h1Target": "32mm"
+    "h1Target": "32mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-48-to-35mm",
@@ -237,7 +265,9 @@
     "h1Part2": "35mm",
     "subtext": "Downscaling 1:48 (O Scale) models for use in 35mm boutique games.",
     "h1Source": "1:48",
-    "h1Target": "35mm"
+    "h1Target": "35mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-48-to-40mm",
@@ -253,7 +283,9 @@
     "h1Part2": "40mm",
     "subtext": "Upscaling O scale models for 40mm wargaming.",
     "h1Source": "1:48",
-    "h1Target": "40mm"
+    "h1Target": "40mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-48-to-75mm",
@@ -269,7 +301,9 @@
     "h1Part2": "75mm",
     "subtext": "Upscaling O scale models for high-detail display scale.",
     "h1Source": "1:48",
-    "h1Target": "75mm"
+    "h1Target": "75mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-56-to-1-35",
@@ -285,7 +319,9 @@
     "h1Part2": "1:35",
     "subtext": "Converting Bolt Action (28mm) models to 1:35 scale dioramas.",
     "h1Source": "1:56",
-    "h1Target": "1:35"
+    "h1Target": "1:35",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-56-to-28mm",
@@ -301,7 +337,9 @@
     "h1Part2": "28mm True Scale",
     "subtext": "What I use when converting 1:56 scale models to 28mm for my table.",
     "h1Source": "1:56",
-    "h1Target": "28mm"
+    "h1Target": "28mm",
+    "popular": true,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-56-to-32mm",
@@ -317,7 +355,9 @@
     "h1Part2": "32mm Heroic",
     "subtext": "What I use when converting 1:56 scale models to 32mm for my table.",
     "h1Source": "1:56",
-    "h1Target": "32mm"
+    "h1Target": "32mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-56-to-35mm",
@@ -333,7 +373,9 @@
     "h1Part2": "35mm",
     "subtext": "Upscaling Bolt Action style models for 35mm systems.",
     "h1Source": "1:56",
-    "h1Target": "35mm"
+    "h1Target": "35mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-56-to-40mm",
@@ -349,7 +391,9 @@
     "h1Part2": "40mm",
     "subtext": "Upscaling historical or 28mm heroic models for large skirmish systems.",
     "h1Source": "1:56",
-    "h1Target": "40mm"
+    "h1Target": "40mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-56-to-75mm",
@@ -365,7 +409,9 @@
     "h1Part2": "75mm",
     "subtext": "Scaling 28mm historical miniatures for high-detail display scale.",
     "h1Source": "1:56",
-    "h1Target": "75mm"
+    "h1Target": "75mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-72-to-1-35",
@@ -381,7 +427,9 @@
     "h1Part2": "1:35",
     "subtext": "Converting 20mm scale figures for 1:35 scale dioramas.",
     "h1Source": "1:72",
-    "h1Target": "1:35"
+    "h1Target": "1:35",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-72-to-28mm",
@@ -397,7 +445,9 @@
     "h1Part2": "28mm True Scale",
     "subtext": "What I use when converting 1:72 scale models to 28mm for my table.",
     "h1Source": "1:72",
-    "h1Target": "28mm"
+    "h1Target": "28mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-72-to-32mm",
@@ -413,7 +463,9 @@
     "h1Part2": "32mm Heroic",
     "subtext": "What I use when converting 1:72 scale models to 32mm for my table.",
     "h1Source": "1:72",
-    "h1Target": "32mm"
+    "h1Target": "32mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-72-to-35mm",
@@ -429,7 +481,9 @@
     "h1Part2": "35mm",
     "subtext": "What I use when converting 1:72 scale models to 35mm for my table.",
     "h1Source": "1:72",
-    "h1Target": "35mm"
+    "h1Target": "35mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-72-to-40mm",
@@ -445,7 +499,9 @@
     "h1Part2": "40mm",
     "subtext": "Converting 20mm scale models for 40mm boutique games.",
     "h1Source": "1:72",
-    "h1Target": "40mm"
+    "h1Target": "40mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "1-72-to-75mm",
@@ -461,7 +517,9 @@
     "h1Part2": "75mm",
     "subtext": "Scaling 20mm infantry for collectors scale (75mm).",
     "h1Source": "1:72",
-    "h1Target": "75mm"
+    "h1Target": "75mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "28mm-to-1-35",
@@ -477,7 +535,9 @@
     "h1Part2": "1:35",
     "subtext": "Converting standard 28mm models for use in 1:35 scale dioramas.",
     "h1Source": "28mm",
-    "h1Target": "1:35"
+    "h1Target": "1:35",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "28mm-to-32mm",
@@ -493,7 +553,9 @@
     "h1Part2": "32mm",
     "subtext": "What I use when converting 28mm scale models to 32mm for my table.",
     "h1Source": "28mm",
-    "h1Target": "32mm"
+    "h1Target": "32mm",
+    "popular": false,
+    "topHeadPercentage": "116.1"
   },
   {
     "slug": "28mm-to-35mm",
@@ -509,7 +571,9 @@
     "h1Part2": "35mm",
     "subtext": "Upscaling standard 28mm models for use in 35mm systems.",
     "h1Source": "28mm",
-    "h1Target": "35mm"
+    "h1Target": "35mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "28mm-to-40mm",
@@ -525,7 +589,9 @@
     "h1Part2": "40mm",
     "subtext": "Upscaling standard 28mm models for use in 40mm large skirmish systems.",
     "h1Source": "28mm",
-    "h1Target": "40mm"
+    "h1Target": "40mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "28mm-to-75mm",
@@ -541,7 +607,9 @@
     "h1Part2": "75mm",
     "subtext": "Upscaling standard 28mm models for high-detail display scale.",
     "h1Source": "28mm",
-    "h1Target": "75mm"
+    "h1Target": "75mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "32mm-to-1-35",
@@ -557,7 +625,9 @@
     "h1Part2": "1:35",
     "subtext": "Converting modern 32mm miniatures for use in 1:35 scale dioramas.",
     "h1Source": "32mm",
-    "h1Target": "1:35"
+    "h1Target": "1:35",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "32mm-to-28mm",
@@ -573,7 +643,9 @@
     "h1Part2": "28mm",
     "subtext": "What I use when converting 32mm scale models to 28mm for my table.",
     "h1Source": "32mm",
-    "h1Target": "28mm"
+    "h1Target": "28mm",
+    "popular": false,
+    "topHeadPercentage": "95.4"
   },
   {
     "slug": "32mm-to-35mm",
@@ -589,7 +661,9 @@
     "h1Part2": "35mm",
     "subtext": "What I use when converting 32mm scale models to 35mm for my table.",
     "h1Source": "32mm",
-    "h1Target": "35mm"
+    "h1Target": "35mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "32mm-to-40mm",
@@ -605,7 +679,9 @@
     "h1Part2": "40mm",
     "subtext": "What I use when converting 32mm scale models to 40mm for my table.",
     "h1Source": "32mm",
-    "h1Target": "40mm"
+    "h1Target": "40mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "32mm-to-75mm",
@@ -621,7 +697,9 @@
     "h1Part2": "75mm",
     "subtext": "What I use when converting 32mm scale models to 75mm for my table.",
     "h1Source": "32mm",
-    "h1Target": "75mm"
+    "h1Target": "75mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "35mm-to-1-35",
@@ -637,7 +715,9 @@
     "h1Part2": "1:35",
     "subtext": "Converting boutique 35mm models for use in 1:35 scale dioramas.",
     "h1Source": "35mm",
-    "h1Target": "1:35"
+    "h1Target": "1:35",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "35mm-to-28mm",
@@ -653,7 +733,9 @@
     "h1Part2": "28mm",
     "subtext": "What I use when converting 35mm scale models to 28mm for my table.",
     "h1Source": "35mm",
-    "h1Target": "28mm"
+    "h1Target": "28mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "35mm-to-32mm",
@@ -669,7 +751,9 @@
     "h1Part2": "32mm",
     "subtext": "What I use when converting 35mm scale models to 32mm for my table.",
     "h1Source": "35mm",
-    "h1Target": "32mm"
+    "h1Target": "32mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "35mm-to-40mm",
@@ -685,7 +769,9 @@
     "h1Part2": "40mm",
     "subtext": "Upscaling 35mm miniatures for use in 40mm skirmish systems.",
     "h1Source": "35mm",
-    "h1Target": "40mm"
+    "h1Target": "40mm",
+    "popular": false,
+    "topHeadPercentage": null
   },
   {
     "slug": "35mm-to-75mm",
@@ -701,6 +787,8 @@
     "h1Part2": "75mm",
     "subtext": "Upscaling 35mm models for high-detail display scale.",
     "h1Source": "35mm",
-    "h1Target": "75mm"
+    "h1Target": "75mm",
+    "popular": false,
+    "topHeadPercentage": null
   }
 ]
