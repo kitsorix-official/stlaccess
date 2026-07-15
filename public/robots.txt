@@ -1,6 +1,16 @@
 User-agent: *
 Allow: /
 
+# Block all Wayback Machine / Internet Archive crawlers
+User-agent: ia_archiver
+Disallow: /
+
+User-agent: archive.org_bot
+Disallow: /
+
+User-agent: ia_archiver-web.archive.org
+Disallow: /
+
 # AI / LLM Crawlers — explicitly allowed
 User-agent: GPTBot
 Allow: /
