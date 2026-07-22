@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tool.name }} | {{ site.name }}{% endblock %}
+{% block description %}{{ tool.description }}{% endblock %}
+{% block canonical %}{{ site.url }}/tools/{{ tool.slug }}/{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ tool.name }}",
+  "description": "{{ tool.description }}",
+  "url": "{{ site.url }}{{ tool.url }}",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}" },
+    { "@type": "ListItem", "position": 2, "name": "All Tools", "item": "{{ site.url }}/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "{{ tool.name }}" }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <a href="/tools/">All Tools</a> <span>/</span>
+  <span aria-current="page">{{ tool.name }}</span>
+</nav>
+<h1>{{ tool.name }}</h1>
+<p class="subtitle">{{ tool.description }}</p>
+{% endblock %}
+
+{% block main %}
+<section class="container">
+  <h2>Features</h2>
+  <ul style="padding-left: 1.5rem; list-style: disc;">
+    {% for feature in tool.features %}
+    <li>{{ feature }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="container">
+  <a href="{{ tool.url }}" class="btn-primary">Launch {{ tool.name }}</a>
+</section>
+{% endblock %}

@@ -1,0 +1,178 @@
+{
+  "28mm": {
+    "shortName": "28mm",
+    "type": "gaming",
+    "eyeLevelMm": 28.0,
+    "topOfHeadMm": 30.5,
+    "ratioEquivalent": "1:56",
+    "games": ["Dungeons & Dragons", "Pathfinder", "Bolt Action infantry", "Mantic Kings of War", "Frostgrave", "Infinity", "Kill Team", "Necromunda"],
+    "note": "The classic tabletop standard. Measures to the eyes (160cm on a 175cm human), not the top of the head.",
+    "printNote": "FDM rarely needs compensation; slight over-extrusion usually cancels any cooling shrinkage.",
+    "commonIssue": "Older sculpts may be closer to 25mm true-scale. Always check the sculptor's baseline before scaling."
+  },
+  "32mm": {
+    "shortName": "32mm",
+    "type": "gaming",
+    "eyeLevelMm": 32.0,
+    "topOfHeadMm": 34.5,
+    "ratioEquivalent": "1:50",
+    "games": ["Warhammer 40,000 (Primaris)", "Age of Sigmar", "Malifaux", "Fallout: Wasteland Warfare", "Grimdark Future", "Kill Team", "Necromunda", "Warcry"],
+    "note": "Games Workshop shifted from 28mm to 32mm between 2014 and 2015 for more facial detail and heroic proportions.",
+    "printNote": "32mm is forgiving on FDM; layer lines are less visible on larger surfaces.",
+    "commonIssue": "Some third-party sculptors label 35mm models as '32mm heroic.' Check eye-level measurement, not total height."
+  },
+  "35mm": {
+    "shortName": "35mm",
+    "type": "gaming",
+    "eyeLevelMm": 35.0,
+    "topOfHeadMm": 38.0,
+    "ratioEquivalent": "1:48",
+    "games": ["Star Wars: Legion", "Kingdom Death"],
+    "note": "Popular with painters who want more canvas for freehand detail without entering true bust territory.",
+    "printNote": "FDM at 35mm benefits from a 0.2mm nozzle at 0.06mm layer height for faces.",
+    "commonIssue": "35mm is sometimes marketed as 'true 35mm' (realistic proportions) vs 'heroic 35mm' (exaggerated). Check before mixing."
+  },
+  "40mm": {
+    "shortName": "40mm",
+    "type": "gaming",
+    "eyeLevelMm": 40.0,
+    "topOfHeadMm": 43.0,
+    "ratioEquivalent": "1:43",
+    "games": ["Star Wars: Shatterpoint", "Marvel: Crisis Protocol", "Inquisitor (GW)", "Display vignettes"],
+    "note": "Used for centerpiece models, display dioramas, or games where individual heroes need to stand out.",
+    "printNote": "FDM works well at 40mm for monsters and vehicles with a 0.4mm nozzle.",
+    "commonIssue": "40mm bases can destabilize on uneven terrain. Consider magnetizing or weighting the base."
+  },
+  "75mm": {
+    "shortName": "75mm",
+    "type": "display",
+    "eyeLevelMm": 75.0,
+    "topOfHeadMm": 80.0,
+    "ratioEquivalent": "1:24",
+    "games": ["Display busts", "Figure painting competitions", "Scale 75 display line"],
+    "note": "Not a tabletop wargaming scale. Designed for contest judging and display cabinets.",
+    "printNote": "75mm on FDM needs a 0.2mm nozzle and very slow print speeds for acceptable surface quality.",
+    "commonIssue": "75mm sculpts often have separate heads or arms for easier painting access."
+  },
+  "1:35": {
+    "shortName": "1:35",
+    "type": "ratio",
+    "eyeLevelMm": 45.7,
+    "topOfHeadMm": 50.0,
+    "ratioEquivalent": "1:35",
+    "games": ["Tamiya", "Trumpeter", "MiniArt", "Military dioramas", "Armor modeling"],
+    "note": "A true ratio scale, not a 'gaming scale.' Vehicles and armor dominate this scale.",
+    "printNote": "1:35 vehicles print beautifully on FDM at 0.2mm layers with a 0.4mm nozzle.",
+    "commonIssue": "1:35 figures from different manufacturers can vary by ±2mm."
+  },
+  "1:27": {
+    "shortName": "1:27",
+    "type": "ratio",
+    "eyeLevelMm": 59.3,
+    "topOfHeadMm": 64.8,
+    "ratioEquivalent": "1:27",
+    "games": ["Star Wars: X-Wing (ships)"],
+    "note": "Ship scale for Star Wars: X-Wing. No infantry-scale miniatures — all models are vehicles/ships.",
+    "printNote": "Ships are large enough for FDM to handle detail well. Use 0.2mm nozzle for cockpit and panel line detail.",
+    "commonIssue": "Ships vary greatly in size — from small fighters to huge capital ships. Plan print time accordingly."
+  },
+  "1:48": {
+    "shortName": "1:48",
+    "type": "ratio",
+    "eyeLevelMm": 33.3,
+    "topOfHeadMm": 36.5,
+    "ratioEquivalent": "1:48",
+    "games": ["US O-gauge trains", "Bandai Star Wars kits", "Aircraft model kits"],
+    "note": "Common for vehicles and aircraft. Figures are usually accessories to vehicle kits.",
+    "printNote": "1:48 aircraft wingspans can be large; plan bed orientation carefully.",
+    "commonIssue": "1:48 figures are often molded in soft vinyl rather than hard plastic."
+  },
+  "1:56": {
+    "shortName": "1:56",
+    "type": "ratio",
+    "eyeLevelMm": 28.6,
+    "topOfHeadMm": 31.3,
+    "ratioEquivalent": "1:56",
+    "games": ["Bolt Action", "Chain of Command", "28mm wargaming vehicle companion"],
+    "note": "Often paired with 28mm infantry. Tanks and vehicles at 1:56 look correct next to 28mm figures.",
+    "printNote": "1:56 tanks are the sweet spot for FDM: large enough for detail, small enough to print quickly.",
+    "commonIssue": "Some manufacturers label 1:48 vehicles as 'compatible with 28mm.' They are slightly oversized."
+  },
+  "1:72": {
+    "shortName": "1:72",
+    "type": "ratio",
+    "eyeLevelMm": 22.2,
+    "topOfHeadMm": 24.3,
+    "ratioEquivalent": "1:72",
+    "games": ["Airfix", "Revell", "Zvezda", "Plastic Soldier Company"],
+    "note": "Popular for large army builds on a budget. Figures are roughly 20-22mm to the eyes.",
+    "printNote": "1:72 figures are challenging on FDM due to rifle barrels and bayonets. A 0.2mm nozzle is recommended.",
+    "commonIssue": "1:72 scale creep exists: modern sculpts are often closer to 1:64."
+  },
+  "6mm": {
+    "shortName": "6mm",
+    "type": "gaming",
+    "eyeLevelMm": 6.0,
+    "topOfHeadMm": 6.5,
+    "ratioEquivalent": "~1:292",
+    "games": ["BattleTech", "Epic 40,000 (classic)", "Micro-Machines"],
+    "note": "Epic-scale wargaming focused on vehicles and mechs rather than individual infantry detail.",
+    "printNote": "6mm Mechs are small but chunky — FDM handles them well. Use 0.2mm nozzle and print multiple at once.",
+    "commonIssue": "6mm infantry is nearly impossible on FDM; resin is required for foot soldiers at this scale."
+  },
+  "8mm": {
+    "shortName": "8mm",
+    "type": "gaming",
+    "eyeLevelMm": 8.0,
+    "topOfHeadMm": 8.8,
+    "ratioEquivalent": "~1:219",
+    "games": ["Legions Imperialis", "Adeptus Titanicus", "Epic-scale Horus Heresy"],
+    "note": "Games Workshop's modern epic scale, successor to classic Epic. Focuses on Titans and massed infantry.",
+    "printNote": "8mm infantry is small but manageable on FDM. Titans and large vehicles are excellent FDM subjects.",
+    "commonIssue": "Legions Imperialis and Adeptus Titanicus use the same scale but different base sizes."
+  },
+  "10mm": {
+    "shortName": "10mm",
+    "type": "gaming",
+    "eyeLevelMm": 10.0,
+    "topOfHeadMm": 10.9,
+    "ratioEquivalent": "~1:175",
+    "games": ["Dropzone Commander", "Warmaster", "Heralds of Ruin"],
+    "note": "A popular epic scale for combined-arms sci-fi wargaming with dropships and urban combat.",
+    "printNote": "10mm vehicles are great FDM subjects. Infantry is very small and benefits from resin.",
+    "commonIssue": "10mm scale is often confused with 6mm or 15mm. Always check the manufacturer's stated scale."
+  },
+  "30mm": {
+    "shortName": "30mm",
+    "type": "gaming",
+    "eyeLevelMm": 30.0,
+    "topOfHeadMm": 32.8,
+    "ratioEquivalent": "~1:58",
+    "games": ["Warmachine & Hordes", "Confrontation (Rackham)", "Dark Age"],
+    "note": "Between 28mm and 32mm. Stockier proportions than 28mm with exaggerated weapons and armor.",
+    "printNote": "30mm Warmachine figures print well on FDM. Warjacks are large steam robots that print at 0.2mm layers.",
+    "commonIssue": "30mm is sometimes labeled as '28mm heroic' or '32mm heroic' by different manufacturers."
+  },
+  "15mm": {
+    "shortName": "15mm",
+    "type": "gaming",
+    "eyeLevelMm": 15.0,
+    "topOfHeadMm": 16.3,
+    "ratioEquivalent": "1:117",
+    "games": ["Flames of War", "Team Yankee", "Epic Armageddon", "DBA", "Warmaster"],
+    "note": "Popular for historical and epic-scale wargaming. Often used interchangeably with 1:100 ratio scale, though 15mm can refer to either eye-level or total height depending on manufacturer.",
+    "printNote": "15mm infantry is challenging on FDM. Use 0.2mm nozzle at 0.08mm layer height. Vehicles and terrain are excellent FDM subjects.",
+    "commonIssue": "15mm and 1:100 are often used interchangeably, but they are not identical. 1:100 at 175cm human = 17.5mm total height, while 15mm can mean 15mm eye-level."
+  },
+  "1:100": {
+    "shortName": "1:100",
+    "type": "ratio",
+    "eyeLevelMm": 16.0,
+    "topOfHeadMm": 17.5,
+    "ratioEquivalent": "1:100",
+    "games": ["Flames of War", "Team Yankee", "15mm wargaming", "Micro-armor"],
+    "note": "Used for large tank battles and regiment-level games where table space is limited.",
+    "printNote": "1:100 vehicles are manageable on FDM. Infantry at this scale is very challenging without a 0.2mm nozzle.",
+    "commonIssue": "1:100 and 15mm are often used interchangeably, but 15mm can mean 15mm to the eyes or 15mm total height."
+  }
+}

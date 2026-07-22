@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% set conv = conversion %}
+{% set source = scales[conv.sourceScale] %}
+{% set target = scales[conv.targetScale] %}
+{% set meta = conv_meta %}
+
+{% block title %}{{ meta.title }} | {{ site.name }}{% endblock %}
+{% block description %}{{ meta.description }}{% endblock %}
+{% block canonical %}{{ site.url }}/reference/{{ conv.slug }}/{% endblock %}
+{% block og_url %}{{ site.url }}/reference/{{ conv.slug }}/{% endblock %}
+{% block og_title %}{{ meta.title }}{% endblock %}
+{% block og_description %}{{ meta.description }}{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ conv.customTitle if conv.customTitle else meta.title }}",
+  "description": "{{ meta.description }}",
+  "author": { "@type": "Person", "name": "{{ site.author.name }}" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.name }}",
+    "logo": { "@type": "ImageObject", "url": "{{ site.url }}/favicon.svg" }
+  },
+  "datePublished": "{{ site.datePublished }}",
+  "dateModified": "{{ site.dateModified }}",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ site.url }}/reference/{{ conv.slug }}/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What percentage do I scale {{ conv.sourceScale }} to {{ conv.targetScale }}?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set your slicer to {{ conv.percentage }}% when converting {{ conv.sourceScale }} miniatures to {{ conv.targetScale }} scale. This is calculated by dividing the target eye-level ({{ target.eyeLevelMm }}mm) by the source eye-level ({{ source.eyeLevelMm }}mm): {{ target.eyeLevelMm }} ÷ {{ source.eyeLevelMm }} = {{ conv.percentage }}%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What games use {{ conv.sourceScale }} scale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ conv.sourceScale }} scale is used by {{ source.games|join(', ') }}."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What games use {{ conv.targetScale }} scale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ conv.targetScale }} scale is used by {{ target.games|join(', ') }}."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}" },
+    { "@type": "ListItem", "position": 2, "name": "Reference Library", "item": "{{ site.url }}/reference/" },
+    { "@type": "ListItem", "position": 3, "name": "{{ conv.sourceScale }} to {{ conv.targetScale }}" }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <a href="/reference/">Reference Library</a> <span>/</span>
+  <span aria-current="page">{{ conv.sourceScale }} to {{ conv.targetScale }}</span>
+</nav>
+<h1>{{ conv.customH1 if conv.customH1 else conv.sourceScale ~ " to " ~ conv.targetScale ~ " Scale Conversion" }}</h1>
+<p class="subtitle">{{ conv.customSubtitle if conv.customSubtitle else "Scale " ~ conv.sourceScale ~ " miniatures to <strong>" ~ conv.percentage ~ "%</strong> when converting to " ~ conv.targetScale ~ " for 3D printed STLs." }}</p>
+{% endblock %}
+
+{% block main %}
+<section class="container">
+  <div class="conversion-hero">
+    <div class="hero-percentage">{{ conv.percentage }}%</div>
+    <button class="btn-secondary" data-copy-pct="{{ conv.percentage }}%" style="align-self:center;">Copy Percentage</button>
+    <a href="/?source={{ conv.sourceScale }}&target={{ conv.targetScale }}&logic=eye" class="btn-secondary" style="align-self:center;">Open in Scale Engine</a>
+    <div class="hero-labels">
+      <span>{{ meta.sourceLabel }} &mdash; {{ meta.sourceValue }}</span>
+      <span class="label-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+      <span>{{ meta.targetLabel }} &mdash; {{ meta.targetValue }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <h2>The Math Behind {{ conv.percentage }}%</h2>
+  <p>To convert {{ conv.sourceScale }} miniatures to {{ conv.targetScale }}, divide the target eye-level measurement by the source eye-level measurement:</p>
+  <div class="math-formula">
+    <span class="math-value">{{ target.eyeLevelMm }}mm</span>
+    <span class="math-operator">&divide;</span>
+    <span class="math-value">{{ source.eyeLevelMm }}mm</span>
+    <span class="math-operator">=</span>
+    <span class="math-result">{{ conv.percentage }}%</span>
+  </div>
+  <p>This means if your {{ conv.sourceScale }} miniature is {{ source.eyeLevelMm }}mm tall (eye level), the same figure at {{ conv.targetScale }} should be approximately {{ (target.eyeLevelMm / source.eyeLevelMm * source.eyeLevelMm)|round(1) }}mm tall. Set your slicer to <strong>{{ conv.percentage }}% uniform scaling</strong> across all axes.</p>
+</section>
+
+<section class="container">
+  <h2>When to Use This Conversion</h2>
+  <p>Use {{ conv.percentage }}% when converting {{ conv.sourceScale }} miniatures (such as {{ source.games|join(', ') }}) to {{ conv.targetScale }} scale (such as {{ target.games|join(', ') }}). {{ source.note }}</p>
+</section>
+
+<section class="container">
+  <h2>Source Scale: {{ source.shortName }}</h2>
+  <p>{{ source.shortName }} miniatures measure {{ source.eyeLevelMm }}mm to the eye level ({{ source.topOfHeadMm }}mm to the top of the head) on a {{ site.baselineHeightCm }}cm human baseline. This is approximately {{ source.ratioEquivalent }} scale. {{ source.note }}</p>
+  <p><strong>3D Printing:</strong> {{ source.printNote }}</p>
+  <p><strong>Common Issue:</strong> {{ source.commonIssue }}</p>
+</section>
+
+<section class="container">
+  <h2>Target Scale: {{ target.shortName }}</h2>
+  <p>{{ target.shortName }} miniatures measure {{ target.eyeLevelMm }}mm to the eye level ({{ target.topOfHeadMm }}mm to the top of the head) on a {{ site.baselineHeightCm }}cm human baseline. This is approximately {{ target.ratioEquivalent }} scale. {{ target.note }}</p>
+  <p><strong>3D Printing:</strong> {{ target.printNote }}</p>
+  <p><strong>Common Issue:</strong> {{ target.commonIssue }}</p>
+</section>
+
+{% if reverse_conv %}
+<section class="container">
+  <h2>Reverse Conversion</h2>
+  <p>To convert in the other direction, see <a href="/reference/{{ reverse_conv.slug }}/">{{ reverse_conv.targetScale }} to {{ reverse_conv.sourceScale }} &mdash; {{ reverse_conv.percentage }}%</a>.</p>
+</section>
+{% endif %}
+
+<script src="/js/reference-copy.js"></script>
+
+<section class="container">
+  <h2>Found an Error?</h2>
+  <p>If any data on this page is incorrect, please submit a correction.</p>
+  <form action="{{ site.gasEndpoint }}" method="POST" class="feedback-form">
+    <input type="hidden" name="page" value="{{ conv.slug }}">
+    <textarea name="message" placeholder="Describe the error..." required></textarea>
+    <button type="submit" class="btn-primary">Submit Correction</button>
+  </form>
+</section>
+{% endblock %}

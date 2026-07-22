@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}All Tools | {{ site.name }}{% endblock %}
+{% block description %}Browse all free tools for 3D printing miniature scale conversion, including calculators and references.{% endblock %}
+{% block canonical %}{{ site.url }}/tools/{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "All Tools",
+  "description": "Free tools for 3D printed miniature scale conversion.",
+  "url": "{{ site.url }}/tools/"
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <span aria-current="page">All Tools</span>
+</nav>
+<h1>All Tools</h1>
+<p class="subtitle">Free tools for 3D printing miniature scale conversion.</p>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="card-grid">
+    {% for tool in tools %}
+    <article class="card" style="{% if tool.featured %}border-color: var(--orange);{% endif %}">
+      <a href="{{ tool.url }}">
+        <div class="tool-icon">
+          {% if tool.icon == "calculator" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+          {% elif tool.icon == "book" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          {% elif tool.icon == "folder" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          {% elif tool.icon == "percentage" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+          {% elif tool.icon == "coins" %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>
+          {% endif %}
+        </div>
+        <h2>{{ tool.name }}</h2>
+        <p>{{ tool.shortDescription }}</p>
+        {% if tool.featured %}<span class="tag" style="font-size:0.7rem;">Featured</span>{% endif %}
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

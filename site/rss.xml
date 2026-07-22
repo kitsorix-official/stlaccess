@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>STLACCESS Blog — 3D Print Miniature Scale Conversion</title>
+  <link>https://stlaccess.com</link>
+  <description>Articles about 3D printed miniature scale conversion, FDM printing tips, and wargaming scale guides.</description>
+  <atom:link href="https://stlaccess.com/rss.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>Terrain Scale Compatibility — What Scale Terrain for Your Miniatures</title>
+    <link>https://stlaccess.com/guides/terrain-scale-compatibility/</link>
+    <description>Complete guide to matching terrain scales with miniature scales. Learn which terrain works with 28mm, 32mm, 35mm, and other gaming scales.</description>
+    <pubDate>2026-07-20</pubDate>
+    <guid>https://stlaccess.com/guides/terrain-scale-compatibility/</guid>
+  </item>
+  <item>
+    <title>FDM Print Settings Per Scale — Layer Height, Nozzle, and Speed Guide</title>
+    <link>https://stlaccess.com/guides/fdm-print-settings-per-scale/</link>
+    <description>Optimal FDM print settings for every miniature scale from 6mm to 75mm. Layer height, nozzle size, speed, and infill recommendations.</description>
+    <pubDate>2026-07-18</pubDate>
+    <guid>https://stlaccess.com/guides/fdm-print-settings-per-scale/</guid>
+  </item>
+  <item>
+    <title>D&D Miniature Size Chart — What Scale Are D&D Minis?</title>
+    <link>https://stlaccess.com/guides/dungeons-and-dragons-miniature-scale/</link>
+    <description>D&D miniatures are 28mm scale. Size chart: Tiny (12-14mm), Small (21-28mm), Medium (28mm), Large (56mm), Huge (112mm), Gargantuan (224mm+).</description>
+    <pubDate>2026-07-13</pubDate>
+    <guid>https://stlaccess.com/guides/dungeons-and-dragons-miniature-scale/</guid>
+  </item>
+  <item>
+    <title>How to Measure Miniature Scale — Eye Level vs Top of Head</title>
+    <link>https://stlaccess.com/guides/how-to-measure-miniature-scale/</link>
+    <description>Step-by-step guide to measuring your miniatures to determine their actual scale using calipers or ruler.</description>
+    <pubDate>2026-07-11</pubDate>
+    <guid>https://stlaccess.com/guides/how-to-measure-miniature-scale/</guid>
+  </item>
+  <item>
+    <title>Warhammer 40K Scale Guide — 32mm Primaris Miniatures</title>
+    <link>https://stlaccess.com/guides/warhammer-40k-scale-guide/</link>
+    <description>Complete guide to Warhammer 40k miniature scales, Primaris vs Firstborn differences, and scaling percentages for 3D printing.</description>
+    <pubDate>2026-07-10</pubDate>
+    <guid>https://stlaccess.com/guides/warhammer-40k-scale-guide/</guid>
+  </item>
+  <item>
+    <title>FDM Miniature Printing Guide — Settings and Techniques</title>
+    <link>https://stlaccess.com/guides/fdm-miniature-printing-guide/</link>
+    <description>Complete FDM printing guide for miniatures covering nozzle sizes, layer heights, orientations, and post-processing.</description>
+    <pubDate>2026-07-09</pubDate>
+    <guid>https://stlaccess.com/guides/fdm-miniature-printing-guide/</guid>
+  </item>
+  <item>
+    <title>STL Scale Conversion Chart — Full Printable Reference</title>
+    <link>https://stlaccess.com/guides/stl-scale-conversion-chart/</link>
+    <description>Complete STL scale conversion chart covering all gaming and ratio scales. Print this reference for your workshop.</description>
+    <pubDate>2026-07-06</pubDate>
+    <guid>https://stlaccess.com/guides/stl-scale-conversion-chart/</guid>
+  </item>
+  <item>
+    <title>Bolt Action Scale Guide — 28mm WWII Miniatures</title>
+    <link>https://stlaccess.com/guides/bolt-action-scale-guide/</link>
+    <description>Scale guide for Bolt Action 28mm WWII miniatures including infantry, vehicle scales, and 3D printing recommendations.</description>
+    <pubDate>2026-06-28</pubDate>
+    <guid>https://stlaccess.com/guides/bolt-action-scale-guide/</guid>
+  </item>
+  <item>
+    <title>Converting Real-World Objects to 32mm Scale</title>
+    <link>https://stlaccess.com/guides/real-world-objects-to-32mm/</link>
+    <description>Formula and reference chart for converting real-world measurements to 32mm miniature scale for terrain and scratch-building.</description>
+    <pubDate>2026-06-28</pubDate>
+    <guid>https://stlaccess.com/guides/real-world-objects-to-32mm/</guid>
+  </item>
+  <item>
+    <title>Upscaling 3D Prints — When Detail Reaches Its Limit</title>
+    <link>https://stlaccess.com/guides/upscaling-3d-prints-detail-limit/</link>
+    <description>Understanding the detail limits when scaling up 3D printed miniatures, and when resin becomes necessary over FDM.</description>
+    <pubDate>2026-06-25</pubDate>
+    <guid>https://stlaccess.com/guides/upscaling-3d-prints-detail-limit/</guid>
+  </item>
+</channel>
+</rss>

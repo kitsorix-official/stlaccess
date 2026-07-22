@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Filament Cost Calculator | {{ site.name }}{% endblock %}
+{% block description %}Estimate filament cost per miniature based on weight, material price, and electricity usage.{% endblock %}
+{% block canonical %}{{ site.url }}/tools/filament-cost-calculator/{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Filament Cost Calculator",
+  "description": "Estimate filament cost per miniature based on weight, material price, and electricity usage.",
+  "url": "{{ site.url }}/tools/filament-cost-calculator/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser"
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <a href="/tools/">All Tools</a> <span>/</span>
+  <span aria-current="page">Filament Cost Calculator</span>
+</nav>
+<h1>Filament Cost Calculator</h1>
+<p class="subtitle">Estimate the filament and electricity cost for your 3D printed miniatures.</p>
+{% endblock %}
+
+{% block main %}
+<section class="container">
+  <div class="calculator">
+    <h3 style="margin-bottom:0.5rem;">Filament</h3>
+    <div class="calc-row">
+      <label for="roll-price">Spool Price ($)</label>
+      <input type="number" id="roll-price" class="calc-input" value="20" min="0" step="0.01">
+    </div>
+    <div class="calc-row">
+      <label for="roll-weight">Spool Weight (g)</label>
+      <input type="number" id="roll-weight" class="calc-input" value="1000" min="1" step="1">
+    </div>
+    <div class="calc-row">
+      <label for="filament-used">Filament Used (g)</label>
+      <input type="number" id="filament-used" class="calc-input" value="12" min="0" step="0.1">
+    </div>
+    <div class="calc-row">
+      <label for="cost-per-gram">Cost per Gram</label>
+      <input type="text" id="cost-per-gram" class="calc-input" value="$0.0200" readonly>
+    </div>
+
+    <h3 style="margin:1rem 0 0.5rem;">Electricity (Optional)</h3>
+    <div class="calc-row">
+      <label for="power-draw">Printer Power (W)</label>
+      <input type="number" id="power-draw" class="calc-input" value="120" min="0" step="1">
+    </div>
+    <div class="calc-row">
+      <label for="electricity-rate">Rate ($/kWh)</label>
+      <input type="number" id="electricity-rate" class="calc-input" value="0.12" min="0" step="0.01">
+    </div>
+    <div class="calc-row">
+      <label for="print-time">Print Time (hours)</label>
+      <input type="number" id="print-time" class="calc-input" value="1.5" min="0" step="0.1">
+    </div>
+
+    <div class="calc-results-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin-top:1rem;">
+      <div class="calc-result-card" style="text-align:center;">
+        <div style="font-size:0.75rem;color:var(--text-3);text-transform:uppercase;">Filament</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--brand);" id="cost-filament">$0.24</div>
+      </div>
+      <div class="calc-result-card" style="text-align:center;">
+        <div style="font-size:0.75rem;color:var(--text-3);text-transform:uppercase;">Electricity</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--brand);" id="cost-electricity">$0.02</div>
+      </div>
+      <div class="calc-result-card" style="text-align:center;">
+        <div style="font-size:0.75rem;color:var(--text-3);text-transform:uppercase;">Total</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--brand);" id="cost-total">$0.26</div>
+      </div>
+      <div class="calc-result-card" style="text-align:center;">
+        <div style="font-size:0.75rem;color:var(--text-3);text-transform:uppercase;">Grams/$</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--brand);" id="cost-gpd">46.2g</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <h2>How It Works</h2>
+  <p>Enter your filament spool price and weight to calculate cost per gram. Then enter how much filament your print uses (check your slicer's preview). Optional: add your printer's power draw, electricity rate, and print time for a total cost estimate.</p>
+</section>
+
+<script src="/js/filament-cost.js"></script>
+{% endblock %}

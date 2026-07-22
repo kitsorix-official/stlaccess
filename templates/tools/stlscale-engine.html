@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}STL Scale Engine — Free Miniature Scale Converter | {{ site.name }}{% endblock %}
+{% block description %}Free STL scale converter — scale STL files online for 3D printed miniatures. 28mm to 32mm = 114.3% with 40+ gaming scale conversions.{% endblock %}
+{% block canonical %}{{ site.url }}/tools/stlscale-engine/{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "STL Scale Engine",
+  "description": "Free browser-based STL scale converter for 3D printed miniatures. Convert between 40+ gaming scales.",
+  "url": "{{ site.url }}/tools/stlscale-engine/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}" },
+    { "@type": "ListItem", "position": 2, "name": "All Tools", "item": "{{ site.url }}/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "STL Scale Engine" }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <a href="/tools/">All Tools</a> <span>/</span>
+  <span aria-current="page">STL Scale Engine</span>
+</nav>
+<h1>STL Scale Converter for 3D Printed Miniatures</h1>
+<p class="subtitle">Convert between 40+ gaming scales with accurate percentages. Built for 3D printing hobbyists who need precise scale conversions.</p>
+{% endblock %}
+
+{% block main %}
+<section class="container" id="calculator">
+  <div class="calculator">
+    <div class="calc-row">
+      <label for="source-scale">Source Scale</label>
+      <select id="source-scale" class="calc-select">
+        <optgroup label="Ratio Scales">
+          {% for opt in select_options.ratio %}
+          <option value="{{ opt.key }}">{{ opt.label }}</option>
+          {% endfor %}
+        </optgroup>
+        <optgroup label="Gaming Scales">
+          {% for opt in select_options.gaming %}
+          <option value="{{ opt.key }}">{{ opt.label }}</option>
+          {% endfor %}
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="calc-row">
+      <label for="target-scale">Target Scale</label>
+      <select id="target-scale" class="calc-select">
+        <optgroup label="Ratio Scales">
+          {% for opt in select_options.ratio %}
+          <option value="{{ opt.key }}">{{ opt.label }}</option>
+          {% endfor %}
+        </optgroup>
+        <optgroup label="Gaming Scales">
+          {% for opt in select_options.gaming %}
+          <option value="{{ opt.key }}">{{ opt.label }}</option>
+          {% endfor %}
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="calc-row calc-toggles">
+      <label class="toggle">
+        <input type="checkbox" id="use-top-head"> Top of Head
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="material-comp"> Material Compensation
+      </label>
+    </div>
+
+    <div class="calc-result" id="result-display">
+      <span class="result-value" id="result-value">114.3</span>
+      <span class="result-percent">%</span>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <h2>How to Use the Scale Converter</h2>
+  <ol class="steps">
+    <li class="step">
+      <span class="step-number">1</span>
+      <h3>Select Your Source Scale</h3>
+      <p>Choose the scale of your original miniature from the dropdown. Supports 15+ scales including 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100.</p>
+    </li>
+    <li class="step">
+      <span class="step-number">2</span>
+      <h3>Select Your Target Scale</h3>
+      <p>Choose the scale you want to convert to. The converter calculates the exact percentage using eye-level measurements from a 175cm human baseline (160cm eye level).</p>
+    </li>
+    <li class="step">
+      <span class="step-number">3</span>
+      <h3>Apply the Percentage</h3>
+      <p>Set your slicer to the calculated percentage using uniform scaling across all axes. For example, 114.3% converts 28mm miniatures to 32mm scale for Warhammer 40,000 Primaris.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="container">
+  <h2>Popular Scale Conversions</h2>
+  <div class="card-grid">
+    {% for conv in reference_previews %}
+    <a href="/reference/{{ conv.slug }}/" class="card">
+      <span class="card-percentage">{{ conv.percentage }}%</span>
+      <span class="card-label">{{ conv.sourceScale }} &rarr; {{ conv.targetScale }}</span>
+      <span class="card-subtext">{{ conv.subtext }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container">
+  <h2>Why I Built {{ site.name }}</h2>
+  <p>I'm kitsorix, a 3D printing hobbyist who got tired of Googling "what percentage to scale 28mm to 32mm" every time I converted miniatures between systems. {{ site.name }} is a free, browser-based tool that does the math for you &mdash; no downloads, no accounts, no ads. The conversion data is verified against community sources.</p>
+  <p>The eye-level measurement baseline uses {{ site.eyeLevelCm }}cm on a {{ site.baselineHeightCm }}cm human, which matches the community convention for gaming scales. Ratio scales (1:35, 1:48, 1:56, 1:72, 1:100) use top-of-head measurements at {{ site.baselineHeightCm }}cm, matching the standard for scale modeling.</p>
+</section>
+
+<section class="container">
+  <h2>Help Improve {{ site.name }}</h2>
+  <p>Found a bug? Have a suggestion? Let me know.</p>
+  <form action="{{ site.gasEndpoint }}" method="POST" class="feedback-form">
+    <textarea name="message" placeholder="Your feedback..." required></textarea>
+    <button type="submit" class="btn-primary">Send Feedback</button>
+  </form>
+</section>
+
+<script>
+  window.STLACCESS_SCALES = {
+    {% for key, s in scales.items() %}
+    "{{ key }}": { "eye": {{ s.eyeLevelMm }}, "top": {{ s.topOfHeadMm }} }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  };
+</script>
+<script src="/js/mathscaler.js"></script>
+{% endblock %}
