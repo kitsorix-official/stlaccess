@@ -1,10 +1,14 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import tools from "../../data/tools.json";
+import scales from "../../data/scales.json";
+import conversions from "../../data/conversions.json";
 import site from "../../data/site.json";
 import categoryLabels from "../../data/toolCategories.json";
 
 const { url, datePublished, dateModified, printerName } = site;
+const scalesCount = Object.keys(scales).length;
+const conversionsCount = conversions.length;
 
 const schema = JSON.stringify({
   "@context": "https://schema.org",
@@ -113,8 +117,8 @@ const categories = [...new Set(tools.map(t => t.category))];
 </nav>
 
 <!-- Hero -->
-<section class="pb-16 px-6 max-w-6xl mx-auto tools-intro">
-  <h1 class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
+<section class="pb-16 px-6 max-w-6xl mx-auto tools-intro" aria-labelledby="tools-hero-heading">
+  <h1 id="tools-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
     3D Print Scale <span class="text-[#ff6b35]">Tools</span>
   </h1>
   <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
@@ -123,7 +127,7 @@ const categories = [...new Set(tools.map(t => t.category))];
 </section>
 
 <!-- Featured: STLScale Converter -->
-<section class="px-6 pb-16 max-w-6xl mx-auto">
+<section class="px-6 pb-16 max-w-6xl mx-auto" aria-labelledby="featured-tool-heading">
   <a
     href="/"
     class="featured-tool-card group block bg-gradient-to-br from-[#ff6b35]/20 to-slate-900/40 rounded-[2.5rem] border border-[#ff6b35]/30 p-8 md:p-12 hover:border-[#ff6b35]/60 transition-all overflow-hidden relative"
@@ -135,7 +139,7 @@ const categories = [...new Set(tools.map(t => t.category))];
       </div>
       <div class="min-w-0 flex-1">
         <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-2 block">Featured tool</span>
-        <h2 class="text-2xl md:text-3xl font-bold font-heading mb-2 group-hover:text-[#ff6b35] transition-colors">
+        <h2 id="featured-tool-heading" class="text-2xl md:text-3xl font-bold font-heading mb-2 group-hover:text-[#ff6b35] transition-colors">
           STLScale Converter
         </h2>
         <p class="text-sm text-slate-400 leading-relaxed max-w-xl">
@@ -148,7 +152,7 @@ const categories = [...new Set(tools.map(t => t.category))];
       </span>
     </div>
     <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-500">
-      <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i> 15+ gaming scales</span>
+      <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i> {scalesCount}+ gaming scales</span>
       <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i> Eye Level & Top of Head</span>
       <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i> FDM-optimized percentages</span>
       <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i> No upload, no login</span>
@@ -198,11 +202,11 @@ const categories = [...new Set(tools.map(t => t.category))];
 ))}
 
 <!-- Featured Tools Highlight -->
-<section class="px-6 pb-16 max-w-6xl mx-auto">
+<section class="px-6 pb-16 max-w-6xl mx-auto" aria-labelledby="tools-highlight-heading">
   <div class="bg-gradient-to-r from-[#ff6b35]/10 to-transparent rounded-[2.5rem] border border-[#ff6b35]/20 p-8 md:p-12">
     <div class="max-w-2xl">
       <span class="text-[10px] font-black uppercase tracking-widest text-[#ff6b35] mb-3 block">All tools included</span>
-      <h2 class="text-3xl font-bold font-heading mb-4">Built for miniature 3D printing</h2>
+      <h2 id="tools-highlight-heading" class="text-3xl font-bold font-heading mb-4">Built for miniature 3D printing</h2>
       <p class="text-slate-400 leading-relaxed mb-6">
         Every tool on STLACCESS is designed around one problem: getting the right scale for 3D printed tabletop miniatures. The calculator and reference library work together so you can convert and share scale percentages — all from your browser, all for free.
       </p>
@@ -213,7 +217,7 @@ const categories = [...new Set(tools.map(t => t.category))];
         </li>
         <li class="flex items-start gap-3">
           <i class="fa-solid fa-check-circle text-[#ff6b35] mt-0.5"></i>
-          <span><strong class="text-white">Scale Reference Library</strong> — 45 verified conversion percentages with print-tested results</span>
+          <span><strong class="text-white">Scale Reference Library</strong> — {conversionsCount} verified conversion percentages with print-tested results</span>
         </li>
       </ul>
     </div>
@@ -230,13 +234,13 @@ const categories = [...new Set(tools.map(t => t.category))];
       <div>
         <h2 class="font-bold text-white text-lg mb-1">How these tools are built</h2>
         <p class="text-sm text-slate-400">
-          By <a href="/about" class="text-[#ff6b35] hover:underline font-semibold" rel="author">kitsorix</a>, 3D printing hobbyist
+          By <a href="/about" class="text-[#ff6b35] hover:underline font-semibold" rel="author">{site.author.name}</a>, 3D printing hobbyist
         </p>
       </div>
     </div>
     <div class="space-y-4 text-sm text-slate-400 leading-relaxed max-w-4xl">
       <p>
-        All tools run entirely in your browser. There is no backend, no database, and no user tracking. The scale calculator uses a <strong class="text-white">175cm human baseline</strong> with eye-level at 160cm — the same reference point used by most of the tabletop miniatures community. Conversion percentages are printed and measured with digital calipers before they are published.
+        All tools run entirely in your browser. There is no backend, no database, and no user tracking. The scale calculator uses a <strong class="text-white">{site.baselineHeight} human baseline</strong> with eye-level at {site.eyeLevelCm}cm — the same reference point used by most of the tabletop miniatures community. Conversion percentages are printed and measured with digital calipers before they are published.
       </p>
       <p>
         New scales are added when wargaming manufacturers release new systems or when enough users submit corrections through the feedback form. Every percentage is tested on my {printerName} before publishing.

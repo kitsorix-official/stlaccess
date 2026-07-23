@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { conv } = Astro.props;
 const ctx = getContextualContent(conv.h1Source, conv.h1Target, conv);
-const { datePublished, dateModified, url, gasEndpoint } = site;
+const { datePublished, dateModified, url } = site;
 
 // Build reverse slug for related conversions
 const reverseSlug = `${conv.h1Target.toLowerCase().replace(/:/g, '-').replace(/\//g, '-').replace(/\s+/g, '-')}-to-${conv.h1Source.toLowerCase().replace(/:/g, '-').replace(/\//g, '-').replace(/\s+/g, '-')}`;
@@ -62,7 +62,7 @@ if (ctx) {
       "author": author,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": `${conv.h1Source} miniatures measure ${conv.sourceValue} on a 175cm human baseline. ${conv.h1Target} miniatures measure ${conv.targetValue}. The ${conv.percentage}% scaling factor bridges this gap.`,
+        "text": `${conv.h1Source} miniatures measure ${conv.sourceValue} on a ${site.baselineHeightCm}cm human baseline. ${conv.h1Target} miniatures measure ${conv.targetValue}. The ${conv.percentage}% scaling factor bridges this gap.`,
         "author": author
       }
     }
@@ -153,7 +153,7 @@ const schema = JSON.stringify({
     {
       "@type": "Table",
       "about": `${conv.h1Source} to ${conv.h1Target} Conversion Data`,
-      "description": `Slicer percentage based on 175cm human baseline with eye-level measurement methodology for converting ${conv.h1Source} miniatures to ${conv.h1Target}.`,
+      "description": `Slicer percentage based on ${site.baselineHeightCm}cm human baseline with eye-level measurement methodology for converting ${conv.h1Source} miniatures to ${conv.h1Target}.`,
       "author": {"@type": "Person", "name": site.author.name}
     },
     ...(faqItems.length > 0 ? [{
@@ -202,40 +202,35 @@ const schema = JSON.stringify({
 
   <!-- Main Percentage Box -->
   <section class="bg-slate-900/50 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-12 mb-16 glow-box percentage-box" aria-label="Conversion result">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
-      <div>
-        <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-2">
-          Slicer Setting
-        </h2>
-        <div class="text-6xl md:text-8xl font-black font-heading text-white tracking-tighter">
-          {conv.percentage}<span class="text-[#ff6b35] text-4xl">%</span>
-        </div>
-        <p class="text-xs text-slate-500 mt-2 font-mono">Uniform scale (XYZ locked)</p>
+    <div>
+      <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-2">
+        Slicer Setting
+      </h2>
+      <div class="text-6xl md:text-8xl font-black font-heading text-white tracking-tighter">
+        {conv.percentage}<span class="text-[#ff6b35] text-4xl">%</span>
       </div>
-      <div class="space-y-4 w-full md:w-auto">
-        <button
-          onclick={`copyPercentage('${conv.percentage}')`}
-          class="w-full md:w-auto bg-[#ff6b35] text-black font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:brightness-110 active:scale-95 transition-all cursor-pointer"
-        >
-          <i class="fa-solid fa-copy"></i>
-          <span id="copy-btn-text">Copy {conv.percentage}%</span>
-        </button>
-        <a
-          rel="nofollow"
-          href={`/?source=${encodeURIComponent(conv.sourceLabel)}&target=${encodeURIComponent(conv.targetLabel)}&logic=eye`}
-          class="w-full md:w-auto bg-white/5 border border-white/10 text-white font-bold px-8 py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-white/10 transition-all"
-        >
-          <i class="fa-solid fa-calculator"></i>
-          Open in stlscale
-        </a>
-      </div>
+      <p class="text-xs text-slate-500 mt-2 font-mono">Uniform scale (XYZ locked)</p>
+      {conv.topHeadPercentage && (
+        <p class="text-sm text-slate-400 mt-4 font-mono">
+          Top of head: <span class="text-white font-bold">{conv.topHeadPercentage}%</span>
+        </p>
+      )}
+    </div>
+    <div class="mt-8 pt-6 border-t border-white/5">
+      <a
+        href="/reference"
+        class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-[#ff6b35] transition-colors"
+      >
+        <i class="fa-solid fa-arrow-left text-xs"></i>
+        Back to all conversions
+      </a>
     </div>
   </section>
 
   <!-- Math & Baselines -->
-  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16" aria-labelledby="math-heading">
     <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5 math-proof">
-      <h3 class="font-bold text-white mb-4 flex items-center gap-2">
+      <h3 id="math-heading" class="font-bold text-white mb-4 flex items-center gap-2">
         <i class="fa-solid fa-microscope text-[#ff6b35]"></i>
         The math
       </h3>
@@ -243,7 +238,7 @@ const schema = JSON.stringify({
         ({conv.math}) × 100 = {conv.percentage}%
       </code>
       <p class="text-xs text-slate-500 mt-3">
-        Based on 175cm human baseline, eye-level measurement (160cm).
+        Based on {site.baselineHeightCm}cm human baseline, eye-level measurement ({site.eyeLevelCm}cm).
       </p>
     </div>
     <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
@@ -283,10 +278,10 @@ const schema = JSON.stringify({
     </div>
     <div class="space-y-4 text-sm text-slate-400 leading-relaxed">
       <p>
-        This percentage comes from a <strong class="text-white">175cm human baseline</strong> with eye-level at 160cm. I print the result and measure with calipers before I post it. If it looks wrong on my table, I adjust it.
+        This percentage comes from a <strong class="text-white">{site.baselineHeight} human baseline</strong> with eye-level at {site.eyeLevelCm}cm. I print the result on my <strong class="text-white">{site.printerName}</strong> and measure with digital calipers before I post it. If it looks wrong on my table, I adjust it.
       </p>
       <p>
-        I test every percentage on an FDM printer before publishing. PLA and PETG cool with minimal dimensional change — typically under 0.5%. If a number fails on my machine, I adjust it.
+        I test every percentage on FDM before publishing. PLA and PETG cool with minimal dimensional change — typically under 0.5%. If a number fails on my machine, I adjust it.
       </p>
       <p>
         <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1" rel="author">
@@ -298,10 +293,10 @@ const schema = JSON.stringify({
 
   <!-- Contextual Content -->
   {ctx && (
-    <section class="space-y-8 mb-16">
+    <section class="space-y-8 mb-16" aria-labelledby="context-heading">
       <!-- When You Need This -->
       <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-        <h3 class="font-bold text-white mb-3 flex items-center gap-2">
+        <h3 id="context-heading" class="font-bold text-white mb-3 flex items-center gap-2">
           <i class="fa-solid fa-chess-knight text-[#ff6b35]"></i>
           When you need this
         </h3>
@@ -351,9 +346,9 @@ const schema = JSON.stringify({
 
   <!-- Related Conversion -->
   {reverseExists && (
-    <section class="mb-16">
+    <section class="mb-16" aria-labelledby="related-heading">
       <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-        <h3 class="font-bold text-white mb-3">Reverse conversion</h3>
+        <h3 id="related-heading" class="font-bold text-white mb-3">Reverse conversion</h3>
         <p class="text-sm text-slate-400 mb-4">
           Going the other way? The reverse calculation might be useful.
         </p>
@@ -368,122 +363,6 @@ const schema = JSON.stringify({
     </section>
   )}
 
-  <!-- Data Correction -->
-  <aside class="my-16 rounded-[2rem] border border-white/5 bg-slate-900/20 p-8 md:p-12 glow-box animate-fade-in text-center" aria-labelledby="slug-feedback-heading">
-    <div id="slug-form-wrapper">
-      <div class="max-w-[550px] mx-auto mb-8">
-        <span class="font-mono inline-block rounded bg-[#ff6b35]/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-3">
-          Data Correction
-        </span>
-        <h2 id="slug-feedback-heading" class="font-heading text-2xl font-bold text-white mb-3 tracking-tight">
-          This number off?
-        </h2>
-        <p class="text-sm leading-relaxed text-slate-400">
-          I update these when enough people tell me something is wrong. If this ratio works differently on your machine, let me know.
-        </p>
-      </div>
-      <form id="slug-feedback-form" action={gasEndpoint} method="POST" class="space-y-6 max-w-xl mx-auto text-left">
-        <input type="hidden" name="page_source" value={`reference_${conv.slug}`} />
-        <input type="hidden" name="type" value="data-correction" />
-        <input type="hidden" name="conversion" value={`${conv.h1Source} to ${conv.h1Target}`} />
-        <div>
-          <label class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-2" for="slug-correction">
-            What is wrong?
-          </label>
-          <textarea
-            id="slug-correction"
-            name="correction"
-            rows="3"
-            placeholder={`e.g. ${conv.h1Source} to ${conv.h1Target} should be ${(parseFloat(conv.percentage) + 0.5).toFixed(1)}% because...`}
-            required
-            class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all resize-none"
-          ></textarea>
-        </div>
-        <div class="flex justify-center pt-2">
-          <button type="submit" id="slug-submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-[#ff6b35] px-8 py-4 text-sm font-bold text-black hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer">
-            Submit Correction
-          </button>
-        </div>
-      </form>
-    </div>
-    <div id="slug-success-msg" class="hidden py-12 animate-fade-in flex flex-col items-center justify-center">
-      <div class="h-14 w-14 rounded-full bg-[#ff6b35]/10 flex items-center justify-center border border-[#ff6b35]/30 mb-4 shadow-[0_0_30px_rgba(255,107,53,0.2)]">
-        <span class="text-[#ff6b35] text-2xl font-bold">🛠️</span>
-      </div>
-      <h3 class="font-heading text-xl font-bold text-white mb-2 tracking-tight">Correction submitted</h3>
-      <p class="text-sm text-slate-400 max-w-sm mx-auto">
-        I will check it against my test data and update the page if it holds up.
-      </p>
-    </div>
-  </aside>
-
-  <!-- Ko-fi Donation Banner -->
-  <section class="mt-16 bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12 text-center" aria-label="Support STLACCESS">
-    <p class="text-lg md:text-xl font-heading font-bold text-white mb-3">
-      If STLACCESS saved you time, consider supporting the Engine.
-    </p>
-    <p class="text-sm text-slate-400 leading-relaxed max-w-xl mx-auto mb-6">
-      Every contribution helps keep STLACCESS free and independent.
-    </p>
-    <a
-      href="https://ko-fi.com/stlaccess"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 bg-[#ff6b35] text-black font-bold px-6 py-3 rounded-2xl hover:brightness-110 active:scale-95 transition-all"
-    >
-      ☕ Support STLACCESS
-    </a>
-  </section>
-
 </article>
-
-<script is:inline>
-  function copyPercentage(value) {
-    navigator.clipboard.writeText(value).then(() => {
-      const btnText = document.getElementById('copy-btn-text');
-      const originalText = btnText.textContent;
-      btnText.textContent = 'Copied!';
-      setTimeout(() => {
-        btnText.textContent = originalText;
-      }, 1500);
-    }).catch(err => {
-      console.error('Failed to copy:', err);
-    });
-  }
-
-  var slugForm = document.getElementById('slug-feedback-form');
-  var slugWrapper = document.getElementById('slug-form-wrapper');
-  var slugSuccessMsg = document.getElementById('slug-success-msg');
-  var slugBtn = document.getElementById('slug-submit-btn');
-
-  if (slugForm) {
-    slugForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      if (slugBtn) {
-        slugBtn.disabled = true;
-        slugBtn.innerText = 'Sending...';
-        slugBtn.style.opacity = '0.7';
-      }
-      var formData = new FormData(slugForm);
-      fetch(slugForm.action, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors'
-      })
-      .then(function() {
-        slugWrapper.classList.add('hidden');
-        slugSuccessMsg.classList.remove('hidden');
-      })
-      .catch(function(err) {
-        console.error('Error submitting form:', err);
-        if (slugBtn) {
-          slugBtn.disabled = false;
-          slugBtn.innerText = 'Submit Correction';
-          slugBtn.style.opacity = '1';
-        }
-      });
-    });
-  }
-</script>
 
 </Layout>

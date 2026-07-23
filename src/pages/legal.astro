@@ -43,7 +43,7 @@ const schema = `{
     <nav class="max-w-6xl mx-auto pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
       <a href="/" class="hover:text-[#ff6b35]">Home</a>
       <span class="mx-2 text-slate-800">/</span>
-      <span class="text-slate-400">Legal</span>
+      <span class="text-slate-400" aria-current="page">Legal</span>
     </nav>
 
     <!-- Header -->
@@ -52,13 +52,13 @@ const schema = `{
       <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">The simple, non-lawyer breakdown of how this site handles privacy, tech, and trademarks.</p>
     </div>
 
-    <section class="space-y-16">
-      <div class="prose prose-invert max-w-none space-y-12 text-slate-300">
+    <section class="space-y-16" aria-labelledby="legal-content">
+      <div class="prose prose-invert max-w-none space-y-12 text-slate-300" id="legal-content">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 not-prose">
           <!-- Accessibility Block -->
-          <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-            <h2 class="text-xl font-bold text-white font-heading mb-4">Accessibility</h2>
+          <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5" aria-labelledby="accessibility-heading">
+            <h2 id="accessibility-heading" class="text-xl font-bold text-white font-heading mb-4">Accessibility</h2>
             <p class="text-sm text-slate-400 leading-relaxed mb-6">
               I built this site to be usable by everyone. It works cleanly with keyboard navigation and screen readers without getting in your way.
             </p>
@@ -70,8 +70,8 @@ const schema = `{
           </div>
 
           <!-- Data Protection Block -->
-          <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-            <h2 class="text-xl font-bold text-white font-heading mb-4">Your Data</h2>
+          <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5" aria-labelledby="data-heading">
+            <h2 id="data-heading" class="text-xl font-bold text-white font-heading mb-4">Your Data</h2>
             <p class="text-sm text-slate-400 leading-relaxed mb-6">
               There are no sneaky tracking scripts, cookie banners, or messy analytics here. I don't collect your personal data because I don't want it or need it.
             </p>

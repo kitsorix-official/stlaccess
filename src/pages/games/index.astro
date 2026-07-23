@@ -119,12 +119,19 @@ const schema = `{
   schema={schema}
 >
 
-  <section class="max-w-5xl mx-auto px-6 py-12 md:py-20">
+  <section class="max-w-5xl mx-auto px-6 py-12 md:py-20" aria-labelledby="games-hero-heading">
+
+    <!-- Breadcrumb -->
+    <nav class="max-w-5xl mx-auto pt-0 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+      <span class="mx-2 text-slate-800">/</span>
+      <span class="text-slate-400" aria-current="page">Game Systems</span>
+    </nav>
 
     <!-- Intro -->
     <div class="games-intro text-center mb-16">
       <span class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-4 block">Programmatic Reference</span>
-      <h1 class="text-4xl md:text-5xl font-bold font-heading text-white mb-4">
+      <h1 id="games-hero-heading" class="text-4xl md:text-5xl font-bold font-heading text-white mb-4">
         Tabletop Game Scale Guide
       </h1>
       <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
@@ -134,9 +141,9 @@ const schema = `{
 
     <!-- Games by Scale -->
     {sortedScales.map((scale) => (
-      <div class="scale-section mb-14">
+      <div class="scale-section mb-14" aria-labelledby={`scale-heading-${scale}`}>
         <div class="flex items-center gap-4 mb-6">
-          <h2 class="text-2xl font-bold font-heading text-white">{scale} Scale</h2>
+          <h2 id={`scale-heading-${scale}`} class="text-2xl font-bold font-heading text-white">{scale} Scale</h2>
           <div class="flex-grow h-px bg-white/10"></div>
           <span class="text-xs text-slate-500 font-mono">{byScale[scale].length} {byScale[scale].length === 1 ? 'system' : 'systems'}</span>
         </div>

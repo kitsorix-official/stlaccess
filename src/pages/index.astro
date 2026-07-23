@@ -4,7 +4,7 @@ import site from "../data/site.json";
 import scales from "../data/scales.json";
 import conversions from "../data/conversions.json";
 
-const { referencePreviews, homepageFaq } = site;
+const { referencePreviews, homepageFaq, baselineHeight, baselineHeightCm, eyeLevelCm } = site;
 
 // Build dropdown labels from scales data
 const dropdownLabels: Record<string, string> = {
@@ -83,6 +83,7 @@ for (const conv of conversions) {
   }
 }
 
+const scalesCount = Object.keys(scales).length;
 const schema =`
 <script type="application/ld+json">
 {
@@ -90,7 +91,7 @@ const schema =`
 "@type":"WebApplication",
 "name":"stlscale — STL Scale Converter",
 "url":"${site.url}/",
-"description":"Browser-based calculator that outputs resize percentages to scale STL files between tabletop gaming systems. Based on a 175cm human baseline with eye-level and top-of-head options.",
+"description":"${site.description}",
 "applicationCategory":"UtilityApplication",
 "operatingSystem":"Web",
 "browserRequirements":"Requires JavaScript. No login required.",
@@ -99,7 +100,7 @@ const schema =`
 "price":"0",
 "priceCurrency":"USD"
 },
-"featureList":"Convert between 15+ gaming scales, Eye Level and Top of Head measurement options, Warhammer and D&D conversions, Browser-based with no file upload",
+"featureList":"${site.schemaFeatureList}",
 "creator":{
 "@type":"Person",
 "name":"${site.author.name}",
@@ -114,7 +115,7 @@ const schema =`
 "@id":"${site.url}/#website",
 "url":"${site.url}/",
 "name":"STLACCESS",
-"description":"Browser-based STL scale converter for 3D printed miniatures. Free calculator for Warhammer, D&D, and tabletop gaming scales.",
+"description":"${site.description}",
 "publisher":{"@id":"${site.url}/#person"},
 "inLanguage":"en"
 }
@@ -125,17 +126,10 @@ const schema =`
 "@type":"Person",
 "@id":"${site.url}/#person",
 "name":"${site.author.name}",
-"alternateName":"stlscale",
+"alternateName":"${site.alternateName}",
 "url":"${site.url}/",
-"jobTitle":"3D Printing Hobbyist",
-"knowsAbout":[
-  "3D printing miniatures",
-  "tabletop wargaming scales",
-  "FDM printing",
-  "Warhammer 40k scale",
-  "D&D miniature scaling",
-  "STL file conversion"
-],
+"jobTitle":"${site.author.jobTitle}",
+"knowsAbout": ${JSON.stringify(site.schemaKnowsAbout)},
 "sameAs":[
 "${site.author.url}/stlaccess"
 ]
@@ -199,16 +193,16 @@ schema={schema}
 </nav>
 
 <!-- Hero Section -->
-<section class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto">
+<section class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
 <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-6">
 STLSCALE Engine v1.0 — Scaling for Miniature Printers
 </p>
-<h1 class="text-4xl md:text-7xl font-bold mb-6 font-heading tracking-tight leading-tight">
+<h1 id="hero-heading" class="text-4xl md:text-7xl font-bold mb-6 font-heading tracking-tight leading-tight">
 STL Scale Converter<br />
 <span class="text-[#ff6b35] italic">for 3D Printed Miniatures</span>
 </h1>
 <p id="hero-description" class="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
-<span class="text-[#ff6b35] font-semibold">stlscale</span> calculates the exact slicer percentage to scale STL files between <span class="text-white font-semibold">15+ tabletop gaming scales</span> — from 28mm to 32mm, 1:35 to 1:48, and more. Built on a <span class="text-white font-semibold">175cm human baseline</span> with eye-level and top-of-head options. No file upload. No login.
+<span class="text-[#ff6b35] font-semibold">stlscale</span> calculates the exact slicer percentage to scale STL files between <span class="text-white font-semibold">{Object.keys(scales).length}+ tabletop gaming scales</span> — from 28mm to 32mm, 1:35 to 1:48, and more. Built on a <span class="text-white font-semibold">{baselineHeight} human baseline</span> with eye-level and top-of-head options. No file upload. No login.
 </p>
 <p class="text-sm text-slate-500">
 Warhammer 40K, D&D, Star Wars Legion, Bolt Action, and a bunch of historical systems.
@@ -303,7 +297,7 @@ Add a small percentage for cooling shrinkage
 </div>
 <div id="shrinkageInputContainer" class="hidden animate-in fade-in slide-in-from-top-2 duration-300">
 <div class="relative">
-<input type="number" id="shrinkageRate" value="1.5" step="0.1" min="0" max="10" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-4 py-3 focus-ring transition-all hover:border-slate-600 text-sm font-bold" />
+<input type="number" id="shrinkageRate" value="1.5" step="0.1" min="0" max="10" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-4 py-3 focus-ring transition-all hover:border-slate-600 text-sm font-bold" aria-label="Shrinkage compensation rate" />
 <div class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-xs font-bold uppercase">
 % Rate
 </div>
@@ -338,7 +332,7 @@ Slicer scale
 </div>
 
 <p class="text-[11px] text-slate-500 text-center leading-relaxed px-4">
-Conversion logic assumes a 175cm human baseline. Eye Level measures to 160cm. Top of Head accounts for hair and helmets at 175cm.
+Conversion logic assumes a {baselineHeightCm} human baseline. Eye Level measures to {eyeLevelCm}cm. Top of Head accounts for hair and helmets at {baselineHeightCm}cm.
 <br />
 <strong class="text-slate-400">Tip:</strong> Always use <span class="text-[#ff6b35] font-semibold">Uniform Scaling</span> (lock X, Y, and Z axes) to avoid distorted models.
 </p>
@@ -378,10 +372,10 @@ How to scale your <span class="text-[#ff6b35]">STL</span>
 </section>
 
 <!-- Reference Section -->
-<section id="reference" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5">
+<section id="reference" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5" aria-labelledby="reference-heading">
 <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
 <div class="max-w-xl">
-<h2 class="text-3xl md:text-5xl font-bold font-heading mb-4">
+<h2 id="reference-heading" class="text-3xl md:text-5xl font-bold font-heading mb-4">
 Popular <span class="text-[#ff6b35] italic">scale conversions</span>
 </h2>
 <p id="reference-intro" class="text-slate-400 text-lg">
@@ -456,7 +450,7 @@ All calculations run in your browser. I never see your STL files, and nothing ge
 </section>
 
 <!-- Feedback -->
-<section class="max-w-3xl mx-auto px-6 py-12 border-t border-white/5">
+<section class="max-w-3xl mx-auto px-6 py-12 border-t border-white/5" aria-labelledby="feedback-heading">
 <aside id="hp-feedback-container" class="my-8 rounded-[2rem] border border-white/5 bg-slate-900/20 p-8 md:p-10 text-center" aria-labelledby="feedback-heading">
 <div id="hp-form-wrapper">
 <div class="max-w-[550px] mx-auto mb-6">
@@ -472,9 +466,10 @@ I build what the community actually uses. Let me know what you need.
 </div>
 <form id="hp-feedback-form" action={site.gasEndpoint} method="POST" class="space-y-4 max-w-xl mx-auto text-left">
 <div>
-<label class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-3">
+<fieldset class="space-y-3">
+<legend class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-3">
 Request type
-</label>
+</legend>
 <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 <label class="relative flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-all hover:border-[#ff6b35]">
 <input type="radio" name="type" value="missing-system" checked class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
@@ -493,6 +488,7 @@ Request type
 <span class="text-sm font-medium text-slate-200">Other</span>
 </label>
 </div>
+</fieldset>
 </div>
 <div>
 <label class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-2" for="hp-details">Details</label>

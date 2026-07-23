@@ -144,7 +144,7 @@ const schema = JSON.stringify({
     </ol>
   </nav>
 
-  <section class="max-w-4xl mx-auto px-6 py-12 md:py-16">
+  <section class="max-w-4xl mx-auto px-6 py-12 md:py-16" aria-labelledby="game-hero-heading">
 
     <!-- Hero -->
     <div class="game-hero mb-12">
@@ -152,7 +152,7 @@ const schema = JSON.stringify({
         <span class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] bg-[#ff6b35]/10 px-3 py-1 rounded-full">{game.genre}</span>
         <span class="text-xs text-slate-500">Est. {game.yearIntroduced}</span>
       </div>
-      <h1 class="text-4xl md:text-5xl font-bold font-heading text-white mb-4">
+      <h1 id="game-hero-heading" class="text-4xl md:text-5xl font-bold font-heading text-white mb-4">
         {game.name}
       </h1>
       <p class="text-lg text-slate-400 leading-relaxed max-w-3xl">
@@ -198,12 +198,13 @@ const schema = JSON.stringify({
         <p class="text-sm text-slate-500 mb-6">Slicer percentages for converting between {game.name} and other common miniature scales.</p>
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
+            <caption class="sr-only">Scale conversions for {game.shortName}</caption>
             <thead>
               <tr class="border-b border-white/10">
-                <th class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Conversion</th>
-                <th class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Description</th>
-                <th class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Slicer %</th>
-                <th class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">Formula</th>
+                <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Conversion</th>
+                <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Description</th>
+                <th scope="col" class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Slicer %</th>
+                <th scope="col" class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">Formula</th>
               </tr>
             </thead>
             <tbody>

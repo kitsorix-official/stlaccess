@@ -92,18 +92,18 @@ from { opacity: 0; transform: translateY(10px); }
 <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand focus:text-black focus:rounded-lg focus:outline-none">
   Skip to main content
 </a>
-<div id="main-content">
+<main id="main-content">
 <div class="max-w-2xl w-full text-center">
-<div class="mb-8 fade-in">
+ <header class="mb-8 fade-in">
 <span class="text-2xl font-semibold tracking-tight">
 <span class="text-white">STL</span>  <span class="text-brand">Access</span>
+</span>
   <nav class="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
     <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
     <span class="mx-2 text-slate-800">/</span>
     <span class="text-slate-400" aria-current="page">404</span>
   </nav>
-</span>
-</div>
+</header>
 <div class="mb-4 fade-in" style="animation-delay: 0.1s;">
 <h1 class="text-8xl md:text-9xl font-bold text-brand tracking-tighter leading-none font-mono">404</h1>
 </div>
@@ -111,7 +111,7 @@ from { opacity: 0; transform: translateY(10px); }
  Error: Failed Print! <span class="text-gray-400">Your URL detached from the build plate.</span>
  </p>
 <div class="relative w-full max-w-md mx-auto mb-10 fade-in" style="animation-delay: 0.3s;">
- <svg viewBox="0 0 400 260" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <svg viewBox="0 0 400 260" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
  <rect x="40" y="210" width="320" height="8" rx="2" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
  <rect x="60" y="218" width="280" height="4" rx="1" fill="#111"/>
 <path class="noodle-1" d="M100 140 Q120 180 140 145 Q160 110 180 150 Q200 190 220 140 Q240 90 260 150 Q280 210 300 140" stroke="#ff6b35" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
@@ -136,16 +136,16 @@ from { opacity: 0; transform: translateY(10px); }
 <div class="max-w-lg mx-auto mb-10 fade-in" style="animation-delay: 0.4s;">
 <p class="text-gray-400 text-base leading-relaxed">
    This URL completely spaghetti'd. You don't need to re-level your bed or dry your filament—I just haven't sliced a layout for this specific link. If you think it's broken, drop a note in the page forms and I'll jump on it.
-  <p class="text-gray-400 text-base leading-relaxed mt-4">
+</p>
+<p class="text-gray-400 text-base leading-relaxed mt-4">
     <a href="/" class="text-brand hover:text-white transition-colors font-semibold">Return to the STL scale engine</a> or try one of the quick links below.
-  </p>
 </p>
 </div>
 <div class="mb-10 fade-in" style="animation-delay: 0.5s;">
 <p class="text-sm font-mono text-gray-500 mb-6">
- Calibrating coordinates... Heading back to the main engine in <span id="countdown" class="text-brand font-bold text-base">10</span> seconds.
+ Calibrating coordinates... Heading back to the main engine in <span id="countdown" class="text-brand font-bold text-base" aria-live="polite" aria-atomic="true">10</span> seconds.
 </p>
-<button id="abortBtn" onclick="abortRedirect()" class="group relative inline-flex items-center justify-center px-8 py-3 bg-brand text-white font-semibold rounded-lg transition-all duration-200 hover:bg-[#e55a28] hover:shadow-lg hover:shadow-brand/25 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:ring-offset-black cursor-pointer">
+<button id="abortBtn" onclick="abortRedirect()" class="group relative inline-flex items-center justify-center px-8 py-3 bg-brand text-white font-semibold rounded-lg transition-all duration-200 hover:bg-[#e55a28] hover:shadow-lg hover:shadow-brand/25 hover:-translate-y-0.5 active:translate-y-0 active:shadow-md focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 focus:ring-offset-black cursor-pointer" aria-label="Cancel automatic redirect and stay on this page">
 <svg class="w-4 h-4 mr-2 transition-transform duration-200 group-hover:-rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l9-9m0 0l7 7m-7-7v18"/>
 </svg>
@@ -156,7 +156,7 @@ from { opacity: 0; transform: translateY(10px); }
 <p class="text-sm text-gray-500 mb-5">
  Or try one of the scale settings I use most often:
 </p>
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md mx-auto" role="list" aria-label="Quick links to popular conversions">
 <a href="/reference/28mm-to-32mm" class="group flex items-center justify-center px-5 py-3.5 bg-surface-2 border border-gray-800 rounded-lg text-sm text-gray-300 font-mono transition-all duration-200 hover:border-brand hover:text-brand hover:shadow-md hover:shadow-brand/10 focus:outline-none focus:ring-1 focus:ring-brand">
 <span class="mr-2 opacity-50 group-hover:opacity-100 transition-opacity">/</span> 28mm to 32mm
 </a>
@@ -172,7 +172,10 @@ from { opacity: 0; transform: translateY(10px); }
 </div>
 </div>
 </div>
-</div>
+</main>
+<footer class="w-full py-8 text-center text-xs text-slate-600">
+  <p>&copy; {new Date().getFullYear()} STLACCESS. <a href="/" class="hover:text-[#ff6b35] transition-colors">Back to the scale engine</a>.</p>
+</footer>
 <script is:inline>
  let secondsLeft = 10;
  let redirectTimer;

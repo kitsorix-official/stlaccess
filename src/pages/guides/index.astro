@@ -76,8 +76,8 @@ const schema = JSON.stringify({
 </nav>
 
 <!-- Hero -->
-<section class="pb-16 px-6 max-w-6xl mx-auto blog-intro">
-  <h1 class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
+<section class="pb-16 px-6 max-w-6xl mx-auto blog-intro" aria-labelledby="guides-hero-heading">
+  <h1 id="guides-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
     3D Print Scale <span class="text-[#ff6b35]">Guides</span>
   </h1>
   <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
@@ -88,23 +88,26 @@ const schema = JSON.stringify({
 <!-- Search / Filter -->
 <div class="px-6 pb-8 max-w-6xl mx-auto">
   <div class="relative max-w-md">
-    <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm pointer-events-none"></i>
+    <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm pointer-events-none" aria-hidden="true"></i>
     <input
       type="text"
       id="blog-search"
       placeholder="Search guides by title, topic, or tag..."
       class="w-full bg-slate-900/30 border border-white/5 rounded-2xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#ff6b35]/40 transition-colors"
+      aria-label="Search guides"
     />
   </div>
 </div>
 
 <!-- Posts Grid -->
 {sortedPosts.length === 0 ? (
-  <section class="px-6 pb-24 max-w-6xl mx-auto">
+  <section class="px-6 pb-24 max-w-6xl mx-auto" aria-labelledby="guides-grid-heading">
+    <h2 id="guides-grid-heading" class="sr-only">All guides</h2>
     <p class="text-slate-500">No guides yet. Check back soon.</p>
   </section>
 ) : (
-  <section class="px-6 pb-24 max-w-6xl mx-auto">
+  <section class="px-6 pb-24 max-w-6xl mx-auto" aria-labelledby="guides-grid-heading">
+    <h2 id="guides-grid-heading" class="sr-only">All guides</h2>
     <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {sortedPosts.map((post) => (
         <a
@@ -147,7 +150,7 @@ const schema = JSON.stringify({
 )}
 
 <!-- Back link -->
-<aside class="max-w-6xl mx-auto px-6 pb-24">
+<aside class="max-w-6xl mx-auto px-6 pb-24" aria-label="Navigation">
   <a href="/" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
     <i class="fa-solid fa-arrow-left text-xs"></i>
     Back to Scale Engine

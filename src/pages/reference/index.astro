@@ -71,6 +71,8 @@ const conversions = rawConversions.map(c => ({
   slug: c.slug,
   popular: c.popular
 }));
+
+const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
 ---
 <Layout
   title="STL Scale Conversion Reference | Percentages for 3D Printing"
@@ -86,8 +88,8 @@ const conversions = rawConversions.map(c => ({
 </nav>
 
 <!-- Header -->
-<section class="pb-16 px-6 max-w-6xl mx-auto">
-  <h1 class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
+<section class="pb-16 px-6 max-w-6xl mx-auto" aria-labelledby="ref-hero-heading">
+  <h1 id="ref-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
     Scale Conversion <span class="text-[#ff6b35]">Reference</span>
   </h1>
   <p class="reference-intro text-lg text-slate-400 max-w-2xl leading-relaxed">
@@ -97,15 +99,17 @@ const conversions = rawConversions.map(c => ({
 </section>
 
 <!-- Search / Filter -->
-<section class="px-6 mb-12 max-w-6xl mx-auto">
+<section class="px-6 mb-12 max-w-6xl mx-auto" aria-labelledby="ref-search-heading">
+  <h2 id="ref-search-heading" class="sr-only">Search conversions</h2>
   <div class="relative group">
-    <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors"></i>
+    <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
     <input
       type="text"
       id="referenceSearch"
       onkeyup="filterCards()"
       placeholder="Search conversions (e.g. 28mm to 32mm, 1:48...)"
       class="w-full bg-slate-900/50 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus:ring-1 focus:ring-[#ff6b35] focus:border-[#ff6b35] focus:outline-none transition-all placeholder:text-slate-600"
+      aria-label="Search scale conversions"
     />
   </div>
   <div id="noResults" class="hidden mt-8 text-center text-slate-500 italic py-12 border border-dashed border-white/5 rounded-3xl">
@@ -114,17 +118,20 @@ const conversions = rawConversions.map(c => ({
 </section>
 
 <!-- Conversion Cards -->
-<section class="px-6 pb-24 max-w-6xl mx-auto" id="conversion-matrix">
+<section class="px-6 pb-24 max-w-6xl mx-auto" id="conversion-matrix" aria-labelledby="matrix-heading">
   <div class="mb-6 flex items-center gap-3">
     <h2 class="text-xl font-bold font-heading">Conversion Matrix</h2>
     <span class="text-xs text-slate-500 font-medium">Eye level measurements</span>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="cards-container">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="cards-container" aria-live="polite">
     {conversions.map(({source, target, eye, topHead, slug, popular}) => (
-      <div
-        class={`searchable-card group rounded-2xl p-6 transition-all ${popular ? 'bg-[#ff6b35] border border-[#ff6b35]' : 'bg-slate-900/30 border border-white/5 hover:border-[#ff6b35]/30'}`}
+      <a
+        href={`/reference/${slug}`}
+        class={`searchable-card group rounded-2xl p-6 transition-all block focus:outline-none focus:ring-2 focus:ring-[#ff6b35] focus:ring-offset-2 focus:ring-offset-slate-900 ${popular ? 'bg-[#ff6b35] border border-[#ff6b35]' : 'bg-slate-900/30 border border-white/5 hover:border-[#ff6b35]/30'}`}
         data-search={`${source} ${target} ${eye}`}
+        aria-label={`View conversion details: ${source} to ${target}, ${eye} scale`}
       >
+        <span class="sr-only">View detailed conversion: {source} to {target}</span>
         <!-- Popular badge -->
         {popular && (
           <div class="mb-4">
@@ -139,7 +146,7 @@ const conversions = rawConversions.map(c => ({
         <div class="mb-5">
           <p class={`text-sm mb-1 ${popular ? 'text-black/70' : 'text-slate-400'}`}>{source}</p>
           <div class="flex items-center gap-2">
-            <i class={`fa-solid fa-arrow-right text-xs ${popular ? 'text-black' : 'text-[#ff6b35]'}`}></i>
+            <i class={`fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1 ${popular ? 'text-black' : 'text-[#ff6b35]'}`}></i>
             <p class={`font-semibold ${popular ? 'text-black' : 'text-white'}`}>{target}</p>
           </div>
         </div>
@@ -154,24 +161,7 @@ const conversions = rawConversions.map(c => ({
           </p>
         )}
 
-        <!-- Actions -->
-        <div class={`flex items-center gap-3 pt-5 border-t ${popular ? 'border-black/10' : 'border-white/5'}`}>
-          <a
-            href={`/reference/${slug}`}
-            class={`inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${popular ? 'bg-black text-white hover:bg-black/80' : 'bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-[#ff6b35]/30'}`}
-          >
-            Details
-          </a>
-          <a
-            rel="nofollow"
-            href={`/?source=${encodeURIComponent(source.split(' ')[0])}&target=${encodeURIComponent(target.split(' ')[0])}&logic=eye`}
-            class={`inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${popular ? 'bg-white text-black hover:bg-white/90' : 'bg-[#ff6b35] text-black hover:brightness-110'}`}
-          >
-            Apply
-            <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
-          </a>
-        </div>
-      </div>
+      </a>
     ))}
   </div>
 </section>
@@ -181,18 +171,18 @@ const conversions = rawConversions.map(c => ({
   <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12">
     <div class="flex items-start gap-4 mb-6">
       <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0">
-        <i class="fa-solid fa-graduation-cap text-[#ff6b35] text-lg"></i>
+        <i class="fa-solid fa-graduation-cap text-[#ff6b35] text-lg" aria-hidden="true"></i>
       </div>
       <div>
         <h3 class="font-bold text-white text-lg mb-1">How these numbers are calculated</h3>
         <p class="text-sm text-slate-400">
-          By <a href="/about" class="text-[#ff6b35] hover:underline font-semibold" rel="author">kitsorix</a>, 3D printing hobbyist
+          By <a href="/about" class="text-[#ff6b35] hover:underline font-semibold" rel="author">{site.author.name}</a>, 3D printing hobbyist
         </p>
       </div>
     </div>
     <div class="space-y-4 text-sm text-slate-400 leading-relaxed max-w-4xl">
       <p>
-        I use a <strong class="text-white">175cm human baseline</strong> with eye-level at 160cm. This is what most of the fantasy and sci-fi miniature hobby uses. Historical kits sometimes measure to top of head, which is why the matrix includes both where it matters.
+        I use a <strong class="text-white">{site.baselineHeight} human baseline</strong> with eye-level at {site.eyeLevelCm}cm. This is what most of the fantasy and sci-fi miniature hobby uses. Historical kits sometimes measure to top of head, which is why the matrix includes both where it matters.
       </p>
       <p>
         The math is simple division. I print the result on my {printerName} before I post it. FDM materials are dimensionally stable within 0.5%, so the percentage you see is the percentage you get. Your mileage will vary.
@@ -383,21 +373,21 @@ const conversions = rawConversions.map(c => ({
           <h4 class="text-sm font-black uppercase tracking-widest text-white mb-4">What I do in practice</h4>
           <div class="space-y-4 mb-8">
             <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
-              <i class="fa-solid fa-calculator text-[#ff6b35] mt-0.5"></i>
+              <i class="fa-solid fa-calculator text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
               <div>
                 <p class="text-white font-semibold text-sm mb-1">28mm true scale to 32mm heroic</p>
-                <p class="text-slate-400 text-sm">I set my slicer to <span class="text-white font-mono">114.3%</span> for eye level, or <span class="text-white font-mono">116.1%</span> for top of head.</p>
+                <p class="text-slate-400 text-sm">I set my slicer to <span class="text-white font-mono">{conv28to32.percentage}%</span> for eye level{conv28to32.topHeadPercentage ? `, or <span class="text-white font-mono">${conv28to32.topHeadPercentage}%</span> for top of head` : ''}.</p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
-              <i class="fa-solid fa-flask text-[#ff6b35] mt-0.5"></i>
+              <i class="fa-solid fa-flask text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
               <div>
                 <p class="text-white font-semibold text-sm mb-1">Material compensation</p>
                 <p class="text-slate-400 text-sm">PLA and PETG shrink under 0.5% during cooling. I do not add compensation for FDM because the effect is smaller than normal print variation.</p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
-              <i class="fa-solid fa-bullseye text-[#ff6b35] mt-0.5"></i>
+              <i class="fa-solid fa-bullseye text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
               <div>
                 <p class="text-white font-semibold text-sm mb-1">The number I actually use</p>
                 <p class="text-slate-400 text-sm">To match a realistic 28mm soldier to a modern heroic system with material cooling accounted for, I land on <span class="text-white font-mono">115.8%</span>. Your printer may want something different.</p>
@@ -437,10 +427,10 @@ const conversions = rawConversions.map(c => ({
 </section>
 
 <!-- CTA to Tool -->
-<section class="max-w-6xl mx-auto px-6 pb-24">
+<section class="max-w-6xl mx-auto px-6 pb-24" aria-labelledby="ref-cta-heading">
   <div class="bg-gradient-to-r from-[#ff6b35]/10 to-transparent p-12 rounded-[2.5rem] border border-[#ff6b35]/20">
     <div class="max-w-2xl">
-      <h2 class="text-3xl font-bold font-heading mb-4">Need a specific conversion?</h2>
+      <h2 id="ref-cta-heading" class="text-3xl font-bold font-heading mb-4">Need a specific conversion?</h2>
       <p class="text-slate-400 mb-8 leading-relaxed">
         The stlscale engine gives you the percentage for any source and target scale. Select your systems, choose eye level or top of head, and get the slicer value instantly.
       </p>

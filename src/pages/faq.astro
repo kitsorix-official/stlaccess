@@ -75,7 +75,7 @@ const quickRef = site.quickRef;
   <!-- Search -->
   <div class="relative w-full max-w-xl mx-auto mb-16">
     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-      <i class="fa-solid fa-magnifying-glass text-slate-500 text-base"></i>
+      <i class="fa-solid fa-magnifying-glass text-slate-500 text-base" aria-hidden="true"></i>
     </div>
     <input
       type="text"
@@ -120,10 +120,11 @@ const quickRef = site.quickRef;
   </section>
 
   <!-- FAQ Accordion -->
-  <div class="mb-12">
-    <h2 class="text-3xl font-bold font-heading text-white mb-8 border-b border-white/5 pb-4">
+  <section class="mb-12" aria-labelledby="all-questions-heading">
+    <h2 id="all-questions-heading" class="text-3xl font-bold font-heading text-white mb-8 border-b border-white/5 pb-4">
       All questions
     </h2>
+    <div aria-live="polite">
     {faqData.map((cat, catIdx) => (
       <section class="category-block mb-12" aria-labelledby={`cat-${catIdx}-title`}>
         <h3
@@ -153,7 +154,8 @@ const quickRef = site.quickRef;
         </div>
       </section>
     ))}
-  </div>
+    </div>
+  </section>
 
   <!-- CTA -->
   <div class="mt-20 pt-12 border-t border-white/5 text-center">

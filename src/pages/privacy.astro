@@ -35,7 +35,7 @@ const schema = `{
     <nav class="max-w-6xl mx-auto pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
       <a href="/" class="hover:text-[#ff6b35]">Home</a>
       <span class="mx-2 text-slate-800">/</span>
-      <span class="text-slate-400">Privacy Policy</span>
+      <span class="text-slate-400" aria-current="page">Privacy Policy</span>
     </nav>
 
     <!-- Header -->
@@ -44,12 +44,12 @@ const schema = `{
       <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">I believe your scale data should stay exactly where it belongs: with you. Here is exactly how I handle your information.</p>
     </div>
 
-    <section class="space-y-16">
+    <section class="space-y-16" aria-labelledby="privacy-content">
       <!-- Key Points Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
           <div class="w-10 h-10 bg-[#ff6b35]/10 rounded-xl flex items-center justify-center mb-6">
-            <i class="fa-solid fa-user-slash text-[#ff6b35]"></i>
+            <i class="fa-solid fa-user-slash text-[#ff6b35]" aria-hidden="true"></i>
           </div>
           <h3 class="font-bold text-white mb-2">No Accounts</h3>
           <p class="text-sm text-slate-400">I don't ask for your name, email, or any personal details to use the tools.</p>
@@ -57,7 +57,7 @@ const schema = `{
         
         <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
           <div class="w-10 h-10 bg-[#ff6b35]/10 rounded-xl flex items-center justify-center mb-6">
-            <i class="fa-solid fa-hard-drive text-[#ff6b35]"></i>
+            <i class="fa-solid fa-hard-drive text-[#ff6b35]" aria-hidden="true"></i>
           </div>
           <h3 class="font-bold text-white mb-2">Local Storage</h3>
           <p class="text-sm text-slate-400">All calculator data is generated from validated JSON files and stays in your browser session.</p>
@@ -65,7 +65,7 @@ const schema = `{
         
         <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
           <div class="w-10 h-10 bg-[#ff6b35]/10 rounded-xl flex items-center justify-center mb-6">
-            <i class="fa-solid fa-eye-slash text-[#ff6b35]"></i>
+            <i class="fa-solid fa-eye-slash text-[#ff6b35]" aria-hidden="true"></i>
           </div>
           <h3 class="font-bold text-white mb-2">No Tracking</h3>
           <p class="text-sm text-slate-400">This site runs entirely clean without any analytic trackers, banners, or cookies.</p>
@@ -73,7 +73,7 @@ const schema = `{
       </div>
 
       <!-- Detailed Sections -->
-      <div class="prose prose-invert max-w-none space-y-12 text-slate-300">
+      <div class="prose prose-invert max-w-none space-y-12 text-slate-300" id="privacy-content">
         
         <div class="space-y-6">
           <h2 class="text-2xl font-bold text-white font-heading">1. Information I Collect & How It's Handled</h2>

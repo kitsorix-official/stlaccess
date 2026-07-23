@@ -52,20 +52,20 @@ const schema = JSON.stringify({
   </nav>
 
   <!-- Header -->
-  <div class="mb-16">
+  <header class="mb-16">
     <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">
       Get in <span class="text-[#ff6b35]">touch</span>
     </h1>
     <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
       Questions about 3D printed miniature scale conversion? If you found a wrong percentage, want a new gaming scale added to the calculator, or have an idea for a new 3D print tool, pick a template below. I reply when I can — usually within a couple of days.
     </p>
-  </div>
+  </header>
 
   <!-- Primary CTA -->
-  <section class="mb-16 bg-slate-900/30 border border-white/5 rounded-[2.5rem] p-8 md:p-12">
+  <section class="mb-16 bg-slate-900/30 border border-white/5 rounded-[2.5rem] p-8 md:p-12" aria-labelledby="contact-cta-heading">
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
       <div>
-        <h2 class="text-2xl font-bold font-heading text-white mb-3">Send me a message</h2>
+        <h2 id="contact-cta-heading" class="text-2xl font-bold font-heading text-white mb-3">Send me a message</h2>
         <p class="text-slate-400">
           Use the Google Form below. No account needed. I read every submission and reply within a couple of days.
         </p>

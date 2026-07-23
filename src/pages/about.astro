@@ -2,9 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import conversions from '../data/conversions.json';
 import tools from '../data/tools.json';
+import filamentPresets from '../data/filamentPresets.json';
 import site from '../data/site.json';
 
 const { url, datePublished, dateModified } = site;
+
+const uniqueFilamentTypes = [...new Set(filamentPresets.map(p => p.type))].length;
+const conv28to32 = conversions.find(c => c.slug === '28mm-to-32mm');
 
 const schema = JSON.stringify({
   "@context": "https://schema.org",
@@ -63,8 +67,8 @@ const schema = JSON.stringify({
   <article class="prose prose-invert max-w-none space-y-16 text-slate-300 leading-relaxed">
 
     <!-- The Problem -->
-    <section class="space-y-6">
-      <h2 class="text-3xl font-bold text-white font-heading">"32mm" means nothing</h2>
+    <section class="space-y-6" aria-labelledby="the-problem">
+      <h2 id="the-problem" class="text-3xl font-bold text-white font-heading">"32mm" means nothing</h2>
       <p>
         If you have been in this hobby for more than a week, you have seen it. You download a "32mm" miniature, print it, and it towers over your "28mm" army. Or it looks like a child next to a tank that was supposedly "1:56."
       </p>
@@ -77,8 +81,8 @@ const schema = JSON.stringify({
     </section>
 
     <!-- The Solution -->
-    <section class="bg-slate-900/40 border border-white/5 p-8 md:p-12 rounded-[2.5rem] glow-box methodology-section">
-      <h2 class="text-3xl font-bold text-white font-heading mb-6">The 175cm baseline</h2>
+    <section class="bg-slate-900/40 border border-white/5 p-8 md:p-12 rounded-[2.5rem] glow-box methodology-section" aria-labelledby="baseline-heading">
+      <h2 id="baseline-heading" class="text-3xl font-bold text-white font-heading mb-6">The 175cm baseline</h2>
       <p class="mb-6">
         I built STLACCESS in a bedroom workshop. I realized that while "28mm" is a marketing term, "1:56" is a mathematical ratio. To bridge the gap, I needed a fixed point.
       </p>
@@ -87,13 +91,13 @@ const schema = JSON.stringify({
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
-          <h3 class="text-[#ff6b35] font-bold mb-2">Eye level (160cm)</h3>
+          <h3 class="text-[#ff6b35] font-bold mb-2">Eye level ({site.eyeLevelCm}cm)</h3>
           <p class="text-sm">
-            The standard for fantasy and sci-fi miniatures. Measures to the eyes, not the crown, because helmets and headgear vary. A 175cm human has eyes at 160cm.
+            The standard for fantasy and sci-fi miniatures. Measures to the eyes, not the crown, because helmets and headgear vary. A {site.baselineHeightCm}cm human has eyes at {site.eyeLevelCm}cm.
           </p>
         </div>
         <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
-          <h3 class="text-[#ff6b35] font-bold mb-2">Top of head (175cm)</h3>
+          <h3 class="text-[#ff6b35] font-bold mb-2">Top of head ({site.baselineHeightCm}cm)</h3>
           <p class="text-sm">
             The standard for historical military kits and display busts where realism matters. Total height from feet to crown.
           </p>
@@ -102,14 +106,14 @@ const schema = JSON.stringify({
       <div class="mt-8 p-6 rounded-2xl bg-white/[0.03] border border-white/5">
         <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">Why this works</h4>
         <p class="text-sm text-slate-400">
-          The <span class="text-[#ff6b35] font-semibold">175cm baseline</span> is arbitrary but consistent. It does not matter if the "average" human is 170cm or 180cm in real life. What matters is that every conversion on this site uses the same starting point, so the ratios between scales are mathematically sound. A 28mm to 32mm conversion is <span class="text-[#ff6b35] font-semibold">114.3%</span> whether your reference human is 175cm or 185cm. The baseline just gives us a common language.
+          The <span class="text-[#ff6b35] font-semibold">{site.baselineHeight} baseline</span> is arbitrary but consistent. It does not matter if the "average" human is 170cm or 180cm in real life. What matters is that every conversion on this site uses the same starting point, so the ratios between scales are mathematically sound. A 28mm to 32mm conversion is <span class="text-[#ff6b35] font-semibold">{conv28to32.percentage}%</span> whether your reference human is {site.baselineHeightCm}cm or 185cm. The baseline just gives us a common language.
         </p>
       </div>
     </section>
 
     <!-- How I Test -->
-    <section class="space-y-6 verification-section">
-      <h2 class="text-3xl font-bold text-white font-heading">How I test the numbers</h2>
+    <section class="space-y-6 verification-section" aria-labelledby="testing-heading">
+      <h2 id="testing-heading" class="text-3xl font-bold text-white font-heading">How I test the numbers</h2>
       <p>
         Math on a spreadsheet is not enough. I print test pieces and measure them with <span class="text-[#ff6b35] font-semibold">digital calipers</span> (0.01mm resolution). Here is what I have learned from my own prints:
       </p>
@@ -142,8 +146,8 @@ const schema = JSON.stringify({
     </section>
 
     <!-- The Journey -->
-    <section class="space-y-6">
-      <h2 class="text-3xl font-bold text-white font-heading">From a 40 euro printer to calipers</h2>
+    <section class="space-y-6" aria-labelledby="the-journey">
+      <h2 id="the-journey" class="text-3xl font-bold text-white font-heading">From a 40 euro printer to calipers</h2>
       <p>
         I started 3D printing back in <strong class="text-white">2017</strong> with an entry-level FDM printer. Prints warped, dimensions were wrong, and I had no idea why. I spent more time troubleshooting than actually printing. That first year was a crash course in extrusion rates, bed leveling, and the painful reality that not all STL files are scaled to anything meaningful.
       </p>
@@ -151,7 +155,7 @@ const schema = JSON.stringify({
         In 2019 I tried turning the hobby into something bigger. I started a local print service in <strong class="text-white">Enschede, Netherlands</strong> with a <span class="text-[#ff6b35] font-semibold">Bambu Lab X1 Carbon</span>. The goal was simple: help other hobbyists get the parts they needed without owning a printer themselves. It did not work out. The margins are brutal, the demand is inconsistent, and running a service business left no time for actually enjoying the hobby. I had to sell the machine and walk away.
       </p>
       <p>
-        It took years to get the finances back in order. Now I print on a <span class="text-[#ff6b35] font-semibold">Bambu Lab A1 Mini</span> — a fraction of the cost, none of the business pressure, and I am happier for it. I print Warhammer models, board game accessories, figures for friends, and the occasional household hack that makes life easier. All FDM, all PLA and PETG, all calibrated the same way.
+        It took years to get the finances back in order. Now I print on a <span class="text-[#ff6b35] font-semibold">{site.printerName}</span> — a fraction of the cost, none of the business pressure, and I am happier for it. I print Warhammer models, board game accessories, figures for friends, and the occasional household hack that makes life easier. All FDM, all PLA and PETG, all calibrated the same way.
       </p>
       <p>
         That failed business taught me something important: most people do not have a room full of printers. They have one machine, a spool of filament, and a desire to print something that looks right. Every percentage on this site is tested on the same kind of setup most hobbyists actually use.
@@ -159,8 +163,8 @@ const schema = JSON.stringify({
     </section>
 
     <!-- What This Is -->
-    <section class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
-      <h2 class="text-3xl font-bold text-white font-heading mb-6">What STLACCESS is</h2>
+    <section class="bg-slate-900/30 p-8 rounded-3xl border border-white/5" aria-labelledby="what-is-heading">
+      <h2 id="what-is-heading" class="text-3xl font-bold text-white font-heading mb-6">What STLACCESS is</h2>
       <div class="space-y-4 text-sm text-slate-400">
         <p>
           <strong class="text-white">It is a tool I built for myself.</strong> I do not sell STL files, filament, or printers. There are no affiliate links. It is free because I needed it and figured others did too.
@@ -175,8 +179,8 @@ const schema = JSON.stringify({
     </section>
 
     <!-- Author Stats -->
-    <section class="bg-slate-900/30 p-8 rounded-3xl border border-white/5 text-center">
-      <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">By the numbers</h2>
+    <section class="bg-slate-900/30 p-8 rounded-3xl border border-white/5 text-center" aria-labelledby="stats-heading">
+      <h2 id="stats-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">By the numbers</h2>
       <div class="grid grid-cols-3 gap-8 max-w-lg mx-auto">
         <div>
           <p class="text-3xl font-black text-white font-heading">{conversions.length}+</p>
@@ -187,7 +191,7 @@ const schema = JSON.stringify({
           <p class="text-xs text-slate-500 mt-1">Free browser tools</p>
         </div>
         <div>
-          <p class="text-3xl font-black text-white font-heading">3</p>
+          <p class="text-3xl font-black text-white font-heading">{uniqueFilamentTypes}</p>
           <p class="text-xs text-slate-500 mt-1">FDM profiles tested</p>
         </div>
       </div>
@@ -199,18 +203,18 @@ const schema = JSON.stringify({
       </p>
     </section>
 
-    <!-- CTA -->
-    <div class="mt-24 pt-12 border-t border-white/5 text-center">
-      <h3 class="text-2xl font-bold font-heading mb-6">Stop guessing. Start printing.</h3>
-      <a
-        href="/"
-        class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-[#ff6b35]/20"
-      >
-        <i class="fa-solid fa-calculator"></i>
-        Launch stlscale
-      </a>
-    </div>
-
   </article>
+
+  <!-- CTA -->
+  <div class="mt-24 pt-12 border-t border-white/5 text-center">
+    <h3 class="text-2xl font-bold font-heading mb-6">Stop guessing. Start printing.</h3>
+    <a
+      href="/"
+      class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:scale-105 hover:shadow-2xl hover:shadow-[#ff6b35]/30 active:scale-95 transition-all duration-200"
+    >
+      <i class="fa-solid fa-calculator"></i>
+      Launch stlscale
+    </a>
+  </div>
 </div>
 </Layout>
