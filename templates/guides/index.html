@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Guides | {{ site.name }}{% endblock %}
+{% block description %}Step-by-step guides for 3D printed miniature scale conversion, FDM printing tips, and wargaming scale references.{% endblock %}
+{% block canonical %}{{ site.url }}/guides/{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Miniature Scale Guides",
+  "url": "{{ site.url }}/guides/"
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <span aria-current="page">Guides</span>
+</nav>
+<h1>Miniature Scale Guides</h1>
+<p class="subtitle">Step-by-step guides for scale conversion, 3D printing, and wargaming.</p>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <input type="search" id="guide-search" placeholder="Search guides..." class="search-input">
+</div>
+
+<div class="container">
+  <div class="card-grid" id="guide-list">
+    {% for post in guides %}
+    <article class="card" data-search="{{ post.title }} {{ post.tags|join(' ') }}">
+      <a href="/guides/{{ post.slug }}/">
+        <div class="post-tags">
+          {% for tag in post.tags %}
+          <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        <time datetime="{{ post.pubDate }}">{{ post.pubDate }}</time>
+        <h2 style="margin: 0.5rem 0; font-size: 1rem;">{{ post.title }}</h2>
+        <p style="margin: 0; font-size: 0.85rem; color: var(--text-3);">{{ post.description }}</p>
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+</div>
+
+<script src="/js/guide-search.js"></script>
+{% endblock %}

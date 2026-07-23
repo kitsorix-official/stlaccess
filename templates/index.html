@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% block title %}STL Scale Converter — 28mm to 32mm & 40+ Gaming Scales | {{ site.name }}{% endblock %}
+{% block description %}Free STL scale converter — scale STL files online for 3D printed miniatures. 28mm to 32mm = 114.3%. 3D print scale calculator with 40+ gaming scale conversions.{% endblock %}
+{% block canonical %}{{ site.url }}{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.name }}",
+  "url": "{{ site.url }}",
+  "description": "Free browser-based STL scale converter for 3D printed miniatures.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site.url }}/reference/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "{{ site.name }} Scale Converter",
+  "url": "{{ site.url }}",
+  "description": "Free STL scale converter for 3D printed miniatures. Convert between 28mm, 32mm, 35mm, 40mm, 1:56, 1:72 and 40+ gaming scales with accurate percentages.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What percentage do I scale 28mm to 32mm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set your slicer to 114.3% when converting 28mm miniatures to 32mm scale. This is calculated by dividing the target eye-level (32mm) by the source eye-level (28mm): 32 ÷ 28 = 1.143, or 114.3%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What scale are D&D miniatures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "D&D miniatures use 28mm scale — 28mm to the eye level, 30.5mm to the top of the head. This is approximately 1:56 ratio scale. Medium creatures are 28mm, Large are 56mm, Huge are 112mm."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the scale conversion for 28mm to 32mm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "28mm to 32mm is a 114.3% scale conversion. This is the most common conversion in tabletop gaming, used when converting D&D or Bolt Action (28mm) miniatures to Warhammer 40K or Age of Sigmar (32mm)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I change a 32mm model to 28mm on a 3D printer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set your slicer to 87.5% uniform scaling to convert 32mm miniatures to 28mm. This is calculated by dividing 28mm by 32mm: 28 ÷ 32 = 0.875, or 87.5%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What scale is 1:56 in mm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1:56 scale equals 28mm to the eye level (31.3mm to top of head) on a 175cm human baseline. This is the standard scale for Bolt Action, D&D miniatures, and 28mm wargaming."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I scale an STL file for miniatures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open your STL in a slicer like Chitubox or Lychee, select the model, go to Scale, and enter the percentage. For example, enter 114.3% to convert 28mm to 32mm. Always use uniform scaling across all axes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I scale an STL file online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use STLACCESS — a free browser-based STL scale converter. Select your source and target scales, read the percentage, and enter it in your slicer (Chitubox, Lychee, Cura) with uniform scaling enabled. No downloads or accounts required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the STL scale conversion chart for 32mm miniatures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most common 32mm conversions: 28mm to 32mm = 114.3%, 32mm to 28mm = 87.5%, 35mm to 32mm = 91.4%, 1:56 to 32mm = 111.9%. Use the conversion chart above or the calculator for exact percentages."
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<h1>28mm to 32mm Scale Conversion — <span class="text-brand">114.3%</span></h1>
+<p class="subtitle">Free STL scale converter for 3D printed miniatures. Set your slicer to 114.3% uniform scaling to convert 28mm to 32mm. 40+ gaming scale conversions, instant results.</p>
+{% endblock %}
+
+{% block main %}
+<section class="container" id="calculator">
+  <div class="calculator">
+    <div class="calc-row">
+      <label for="source-scale">Source Scale</label>
+      <select id="source-scale" class="calc-select">
+        <optgroup label="Gaming Scales">
+          {% for opt in select_options.gaming %}
+          <option value="{{ opt.key }}"{% if opt.key == "28mm" %} selected{% endif %}>{{ opt.label }}</option>
+          {% endfor %}
+        </optgroup>
+        <optgroup label="Ratio Scales">
+          {% for opt in select_options.ratio %}
+          <option value="{{ opt.key }}">{{ opt.label }}</option>
+          {% endfor %}
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="calc-row">
+      <label for="target-scale">Target Scale</label>
+      <select id="target-scale" class="calc-select">
+        <optgroup label="Gaming Scales">
+          {% for opt in select_options.gaming %}
+          <option value="{{ opt.key }}"{% if opt.key == "32mm" %} selected{% endif %}>{{ opt.label }}</option>
+          {% endfor %}
+        </optgroup>
+        <optgroup label="Ratio Scales">
+          {% for opt in select_options.ratio %}
+          <option value="{{ opt.key }}">{{ opt.label }}</option>
+          {% endfor %}
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="calc-row calc-toggles">
+      <label class="toggle">
+        <input type="checkbox" id="use-top-head"> Top of Head
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="material-comp"> Material Compensation
+      </label>
+    </div>
+
+    <div class="calc-result" id="result-display">
+      <span class="result-value" id="result-value">114.3</span>
+      <span class="result-percent">%</span>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <h2>How to Use</h2>
+  <ol class="steps">
+    <li class="step">
+      <span class="step-number">1</span>
+      <h3>Pick your scales</h3>
+      <p>Choose your source miniature scale (what you currently have) and your target scale (what you need). The converter supports 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100.</p>
+    </li>
+    <li class="step">
+      <span class="step-number">2</span>
+      <h3>Read the percentage</h3>
+      <p>The scale converter calculates the exact percentage using eye-level measurements from a 175cm human baseline (160cm eye level for gaming scales, top-of-head for ratio scales).</p>
+    </li>
+    <li class="step">
+      <span class="step-number">3</span>
+      <h3>Set your slicer</h3>
+      <p>Enter the percentage as uniform scaling across all axes in Chitubox, Lychee, or Cura. For example, 114.3% converts 28mm miniatures to 32mm scale. Print, measure, verify.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="container">
+  <h2>Popular Conversions</h2>
+  <div class="card-grid">
+    {% for conv in reference_previews %}
+    <a href="/reference/{{ conv.slug }}/" class="card">
+      <span class="card-percentage">{{ conv.percentage }}%</span>
+      <span class="card-label">{{ conv.sourceScale }} &rarr; {{ conv.targetScale }}</span>
+      <span class="card-subtext">{{ conv.subtext }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="container">
+  <h2>STL Scale Conversion Chart</h2>
+  <div class="scale-grid">
+    <div class="scale-stat"><span class="stat-label">28mm &rarr; 32mm</span><span class="stat-value">114.3%</span></div>
+    <div class="scale-stat"><span class="stat-label">32mm &rarr; 28mm</span><span class="stat-value">87.5%</span></div>
+    <div class="scale-stat"><span class="stat-label">28mm &rarr; 35mm</span><span class="stat-value">125.0%</span></div>
+    <div class="scale-stat"><span class="stat-label">28mm &rarr; 40mm</span><span class="stat-value">142.9%</span></div>
+    <div class="scale-stat"><span class="stat-label">1:56 &rarr; 28mm</span><span class="stat-value">89.6%</span></div>
+    <div class="scale-stat"><span class="stat-label">1:72 &rarr; 28mm</span><span class="stat-value">115.2%</span></div>
+  </div>
+  <p><a href="/reference/">View full STL scale conversion chart — all 44 conversions &rarr;</a></p>
+</section>
+
+<section class="container">
+  <h2>Frequently Asked Questions</h2>
+  <details class="faq-item">
+    <summary>
+      What percentage do I scale 28mm to 32mm?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p><strong>114.3%.</strong> Set your slicer to 114.3% uniform scaling when converting 28mm miniatures (D&D, Bolt Action) to 32mm (Warhammer 40K, Age of Sigmar). Calculated as 32mm ÷ 28mm = 1.143.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      What scale are D&D miniatures?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p><strong>28mm scale</strong> (1:56 ratio). D&D Medium humanoids are 28mm to eye level. Large creatures are ~56mm, Huge are ~112mm, Gargantuan are ~224mm.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      How do I change 32mm to 28mm?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p><strong>87.5%.</strong> Set your slicer to 87.5% uniform scaling to downscale 32mm miniatures to 28mm. Calculated as 28mm ÷ 32mm = 0.875.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      How do I scale an STL file?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Open your STL in Chitubox or Lychee, select the model, go to <strong>Scale</strong>, and enter the percentage with <strong>uniform scaling</strong> enabled. For 28mm to 32mm, enter 114.3%. Measure the result with calipers to verify.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      What is 1:56 scale in mm?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p><strong>28mm to the eye level</strong> (31.3mm to top of head) on a 175cm human baseline. 1:56 is the standard ratio for 28mm wargaming — Bolt Action, D&D, Frostgrave.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      How do I scale an STL file online?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Use <strong>STLACCESS</strong> — a free browser-based STL scale converter. Select your source and target scales, read the percentage, and enter it in your slicer (Chitubox, Lychee, Cura) with uniform scaling enabled. No downloads or accounts required.</p></div>
+  </details>
+  <details class="faq-item">
+    <summary>
+      What is the STL scale conversion chart for 32mm miniatures?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>The most common 32mm conversions: <strong>28mm to 32mm = 114.3%</strong>, 32mm to 28mm = 87.5%, 35mm to 32mm = 91.4%, 1:56 to 32mm = 111.9%. Use the conversion chart above or the calculator for exact percentages.</p></div>
+  </details>
+  <p><a href="/faq/">All FAQs &rarr;</a></p>
+</section>
+
+<section class="container">
+  <h2>Why I Built {{ site.name }}</h2>
+  <p>I'm kitsorix, a 3D printing hobbyist who got tired of Googling "what percentage to scale 28mm to 32mm" every time I converted miniatures between systems. {{ site.name }} does the math for you — no downloads, no accounts, no ads. Every conversion is verified against community sources.</p>
+  <p>The measurement baseline uses {{ site.eyeLevelCm }}cm eye-level on a {{ site.baselineHeightCm }}cm human for gaming scales. Ratio scales use top-of-head at {{ site.baselineHeightCm }}cm, matching standard scale modeling convention.</p>
+</section>
+
+<section class="container">
+  <h2>Help Improve {{ site.name }}</h2>
+  <p>Found a bug? Have a suggestion? Let me know.</p>
+  <form action="{{ site.gasEndpoint }}" method="POST" class="feedback-form">
+    <textarea name="message" placeholder="Your feedback..." required></textarea>
+    <button type="submit" class="btn-primary">Send Feedback</button>
+  </form>
+</section>
+
+<script>
+  window.STLACCESS_SCALES = {
+    {% for key, s in scales.items() %}
+    "{{ key }}": { "eye": {{ s.eyeLevelMm }}, "top": {{ s.topOfHeadMm }} }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  };
+</script>
+<script src="/js/mathscaler.js"></script>
+{% endblock %}

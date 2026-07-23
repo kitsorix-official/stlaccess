@@ -1,0 +1,25 @@
+{
+  "name": "STLACCESS",
+  "alternateName": "stlscale",
+  "url": "https://stlaccess.com",
+  "description": "Free STL scale converter — scale STL files online for 3D printed miniatures. 28mm to 32mm = 114.3% with 40+ gaming scale conversions.",
+  "baselineHeightCm": 175,
+  "eyeLevelCm": 160,
+  "shrinkageRange": "0.8-2%",
+  "printerName": "Bambu Lab A1 Mini",
+  "gasEndpoint": "https://script.google.com/macros/s/AKfycbxgBWP8jUCPC_RSWMSxeajo-aPl1htSt1XNDYU6Rk2mXpUhQLHOssv_4t4mpUWry2PEsw/exec",
+  "googleFormUrl": "https://forms.gle/example",
+  "ogImage": "https://stlaccess.com/og-image.png",
+  "datePublished": "2026-05-07",
+  "dateModified": "2026-07-21",
+  "rssChannelTitle": "STLACCESS Blog — 3D Print Miniature Scale Conversion",
+  "rssChannelDescription": "Articles about 3D printed miniature scale conversion, FDM printing tips, and wargaming scale guides.",
+  "schemaFeatureList": "Convert between 15+ gaming scales including 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100.",
+  "schemaKnowsAbout": ["3D printing miniatures", "tabletop wargaming scales", "FDM printing", "Warhammer 40k scale", "D&D miniature scaling", "STL file conversion"],
+  "author": {
+    "name": "kitsorix",
+    "url": "https://github.com/kitsorix-official",
+    "siteUrl": "https://stlaccess.com/about",
+    "jobTitle": "3D Printing Hobbyist"
+  }
+}

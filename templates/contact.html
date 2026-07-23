@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Contact | {{ site.name }}{% endblock %}
+{% block description %}Get in touch with {{ site.name }} for feedback, bug reports, and feature requests.{% endblock %}
+{% block canonical %}{{ site.url }}/contact/{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <span aria-current="page">Contact</span></nav>
+<h1>Contact</h1>
+<p class="subtitle">Have feedback, found a bug, or want to suggest a feature?</p>
+{% endblock %}
+
+{% block main %}
+<section class="container">
+  <h2>Send Feedback</h2>
+  <form action="{{ site.gasEndpoint }}" method="POST" class="feedback-form">
+    <textarea name="message" placeholder="Your message..." required></textarea>
+    <button type="submit" class="btn-primary">Send Message</button>
+  </form>
+</section>
+
+<section class="container">
+  <h2>Other Ways to Reach Us</h2>
+  <p><strong>GitHub:</strong> <a href="https://github.com/kitsorix/stlaccess">github.com/kitsorix/stlaccess</a> &mdash; Open an issue or start a discussion.</p>
+  <p><strong>Google Form:</strong> <a href="{{ site.googleFormUrl }}">Feedback Form</a></p>
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Legal Notice | {{ site.name }}{% endblock %}
+{% block description %}Legal notice for {{ site.name }}, a free browser-based STL scale converter.{% endblock %}
+{% block canonical %}{{ site.url }}/legal/{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <span aria-current="page">Legal Notice</span></nav>
+<h1>Legal Notice</h1>
+{% endblock %}
+
+{% block main %}
+<article class="container--narrow prose-page prose">
+  <h2>Site Operator</h2>
+  <p>{{ site.name }} is operated by {{ site.author.name }}. For inquiries, open an issue on the project's <a href="https://github.com/kitsorix/stlaccess">GitHub repository</a>.</p>
+  <h2>Disclaimer</h2>
+  <p>This site is a personal project providing educational reference data. It is not affiliated with any game publisher, miniatures manufacturer, or standards organization. All conversion data is calculated from published measurements and verified against community sources.</p>
+  <h2>Accuracy</h2>
+  <p>While every effort is made to ensure accuracy, conversion percentages are based on community-accepted measurements, not official standards. Always verify critical measurements before scaling production prints.</p>
+  <p>Page last updated: {{ site.dateModified }}</p>
+</article>
+{% endblock %}

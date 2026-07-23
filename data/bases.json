@@ -1,0 +1,161 @@
+{
+  "note": "Base sizes are per official game rules. Sizes in millimeters. Round = R, Square = S, Oval = O, Rectangular = Rec.",
+  "games": {
+    "warhammer-40000": {
+      "name": "Warhammer 40,000",
+      "scale": "32mm",
+      "bases": {
+        "infantry": {"25mm": "R", "28mm": "R", "32mm": "R"},
+        "cavalry": {"60mm": "O", "90x52mm": "O"},
+        "monsters": {"40mm": "R", "50mm": "R", "60mm": "R", "80mm": "R", "100mm": "R", "120mm": "R"},
+        "vehicles": {"40x80mm": "Rec", "50x100mm": "Rec", "60x90mm": "Rec"}
+      }
+    },
+    "age-of-sigmar": {
+      "name": "Age of Sigmar",
+      "scale": "32mm",
+      "bases": {
+        "infantry": {"25mm": "R", "28mm": "R", "32mm": "R"},
+        "cavalry": {"50mm": "R", "60mm": "R", "75x42mm": "O", "90x52mm": "O"},
+        "monsters": {"40mm": "R", "50mm": "R", "60mm": "R", "80mm": "R", "100mm": "R", "120mm": "R", "160mm": "R"}
+      }
+    },
+    "warhammer-the-old-world": {
+      "name": "Warhammer: The Old World",
+      "scale": "28mm",
+      "bases": {
+        "infantry": {"20mm": "S", "25mm": "S", "30mm": "S"},
+        "cavalry": {"25x50mm": "Rec", "30x60mm": "Rec", "40x40mm": "S", "50x50mm": "S"},
+        "monsters": {"40mm": "S", "50mm": "S", "60mm": "S"}
+      }
+    },
+    "kill-team": {
+      "name": "Kill Team",
+      "scale": "32mm",
+      "bases": {
+        "infantry": {"25mm": "R", "28mm": "R", "32mm": "R"},
+        "heavy": {"40mm": "R", "50mm": "R"}
+      }
+    },
+    "necromunda": {
+      "name": "Necromunda",
+      "scale": "32mm",
+      "bases": {
+        "gangers": {"25mm": "R", "32mm": "R"},
+        "hangers-on": {"25mm": "R"},
+        "beasts": {"40mm": "R", "50mm": "R", "65mm": "R"}
+      }
+    },
+    "warcry": {
+      "name": "Warcry",
+      "scale": "32mm",
+      "bases": {
+        "infantry": {"25mm": "R", "28mm": "R", "32mm": "R"},
+        "monsters": {"40mm": "R", "50mm": "R", "60mm": "R"}
+      }
+    },
+    "bolt-action": {
+      "name": "Bolt Action",
+      "scale": "28mm",
+      "bases": {
+        "infantry": {"20mm": "R", "25mm": "R"},
+        "weapons": {"30mm": "R", "40mm": "R"},
+        "vehicles": {"50mm": "R", "60mm": "R"}
+      }
+    },
+    "dungeons-and-dragons": {
+      "name": "Dungeons & Dragons",
+      "scale": "28mm",
+      "bases": {
+        "tiny": {"12.5mm": "R"},
+        "small": {"20mm": "R", "25mm": "R"},
+        "medium": {"25mm": "R", "32mm": "R"},
+        "large": {"50mm": "R"},
+        "huge": {"75mm": "R"},
+        "gargantuan": {"100mm": "R"}
+      }
+    },
+    "star-wars-legion": {
+      "name": "Star Wars: Legion",
+      "scale": "35mm",
+      "bases": {
+        "infantry": {"27mm": "R"},
+        "cavalry": {"50mm": "R"},
+        "vehicles": {"80mm": "R", "100mm": "R", "110mm": "R", "120mm": "R"}
+      }
+    },
+    "star-wars-shatterpoint": {
+      "name": "Star Wars: Shatterpoint",
+      "scale": "40mm",
+      "bases": {
+        "infantry": {"32mm": "R", "40mm": "R"},
+        "monsters": {"50mm": "R"}
+      }
+    },
+    "marvel-crisis-protocol": {
+      "name": "Marvel: Crisis Protocol",
+      "scale": "40mm",
+      "bases": {
+        "infantry": {"50mm": "R"},
+        "large": {"65mm": "R"}
+      }
+    },
+    "infinity": {
+      "name": "Infinity",
+      "scale": "28mm",
+      "bases": {
+        "infantry": {"25mm": "R", "40mm": "R"},
+        "tags": {"55mm": "R"}
+      }
+    },
+    "malifaux": {
+      "name": "Malifaux",
+      "scale": "32mm",
+      "bases": {
+        "infantry": {"30mm": "R"},
+        "monsters": {"40mm": "R", "50mm": "R"}
+      }
+    },
+    "frostgrave-stargrave": {
+      "name": "Frostgrave & Stargrave",
+      "scale": "28mm",
+      "bases": {
+        "infantry": {"20mm": "R", "25mm": "R"}
+      }
+    },
+    "kings-of-war": {
+      "name": "Kings of War",
+      "scale": "28mm",
+      "bases": {
+        "infantry": {"20mm": "S", "25mm": "S"},
+        "cavalry": {"25x50mm": "Rec"},
+        "monsters": {"40mm": "S", "50mm": "S", "60mm": "S", "80mm": "S", "100mm": "S", "120mm": "S"}
+      }
+    },
+    "conquest": {
+      "name": "Conquest: Last Argument of Kings",
+      "scale": "35mm",
+      "bases": {
+        "infantry": {"25mm": "R", "32mm": "R"},
+        "cavalry": {"40mm": "R", "50mm": "R"},
+        "monsters": {"60mm": "R", "80mm": "R", "100mm": "R", "120mm": "R"}
+      }
+    },
+    "flames-of-war": {
+      "name": "Flames of War",
+      "scale": "1:100",
+      "bases": {
+        "small-team": {"20x20mm": "S"},
+        "squad": {"40x40mm": "S"},
+        "platoon": {"60x40mm": "S"},
+        "team": {"40x30mm": "S"}
+      }
+    }
+  },
+  "commonBases": {
+    "round": ["25mm", "28mm", "32mm", "40mm", "50mm", "60mm", "80mm", "100mm", "120mm"],
+    "square": ["20mm", "25mm", "30mm", "40mm", "50mm", "60mm"],
+    "oval": ["60x30mm", "75x42mm", "90x52mm", "100x60mm"],
+    "rectangular": ["20x40mm", "25x50mm", "30x60mm", "40x80mm", "50x100mm"]
+  }
+}

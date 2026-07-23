@@ -1,0 +1,114 @@
+[
+  {
+    "id": "what-is-eye-level",
+    "category": "Methodology",
+    "question": "Do you measure miniatures to the eyes or to the top of the head?",
+    "answer": "I measure to the eyes at 160cm on a 175cm human baseline. This matches the community convention for gaming scales (28mm, 32mm, 35mm, 40mm, 75mm). Ratio scales (1:35, 1:48, 1:56, 1:72, 1:100) use top-of-head measurements at 175cm, matching the standard for scale modeling.",
+    "showOn": ["homepage", "reference", "faq"]
+  },
+  {
+    "id": "why-scales-inconsistent",
+    "category": "Methodology",
+    "question": "Why is miniature scale inconsistent across manufacturers?",
+    "answer": "There is no universal standard for '28mm' or '32mm' miniatures. Each manufacturer defines their own scale based on artistic preference, production constraints, and market positioning. Games Workshop's '32mm heroic' differs from Atomic Mass Games' '35mm' even though both are larger than traditional 28mm.",
+    "showOn": ["homepage", "faq"]
+  },
+  {
+    "id": "28mm-vs-32mm-size",
+    "category": "Methodology",
+    "question": "What is the actual size difference between 28mm and 32mm miniatures?",
+    "answer": "28mm miniatures measure 28mm to the eye level (30.5mm to top of head). 32mm miniatures measure 32mm to the eye level (34.5mm to top of head). The difference is 4mm at eye level, which is about 14.3%. To convert between them, scale by 114.3% (28→32) or 87.5% (32→28).",
+    "showOn": ["reference", "faq"]
+  },
+  {
+    "id": "check-scale-without-printing",
+    "category": "Methodology",
+    "question": "How do I check what scale a miniature is without printing it?",
+    "answer": "Load the STL in your slicer and measure the eye-level height using the ruler tool. Compare against known scale benchmarks: 28mm eyes = 28mm, 32mm eyes = 32mm, etc. If the figure is roughly 30mm total height, it is likely 28mm scale.",
+    "showOn": ["faq"]
+  },
+  {
+    "id": "28mm-to-32mm-percentage",
+    "category": "Reference",
+    "question": "What percentage do I scale 28mm to 32mm?",
+    "answer": "Set your slicer to 114.3% when converting 28mm miniatures to 32mm scale. This is calculated by dividing the target eye-level (32mm) by the source eye-level (28mm): 32 ÷ 28 = 1.143.",
+    "showOn": ["reference", "faq"]
+  },
+  {
+    "id": "32mm-to-28mm-percentage",
+    "category": "Reference",
+    "question": "What percentage do I scale 32mm to 28mm?",
+    "answer": "Set your slicer to 87.5% when converting 32mm miniatures down to 28mm scale. This is calculated by dividing the target eye-level (28mm) by the source eye-level (32mm): 28 ÷ 32 = 0.875.",
+    "showOn": ["reference", "faq"]
+  },
+  {
+    "id": "primaris-scale",
+    "category": "Sci-fi and Fantasy",
+    "question": "What scale are Warhammer 40k Primaris Space Marines?",
+    "answer": "Primaris Space Marines are nominally '32mm' scale, but they measure approximately 40mm to helmet top and about 35mm to eye level. The '32mm' label is a community convention from when Games Workshop transitioned from 28mm in 2014-2015. Always check the actual measurements, not just the label.",
+    "showOn": ["faq"]
+  },
+  {
+    "id": "base-vs-model-height",
+    "category": "Sci-fi and Fantasy",
+    "question": "Does the base size affect the miniature scale?",
+    "answer": "No. Base size and miniature scale are independent. A 28mm infantry model can be placed on a 25mm, 32mm, or 40mm base depending on game rules. The scale refers to the figure proportions, not the base diameter.",
+    "showOn": ["faq"]
+  },
+  {
+    "id": "same-stl-different-scales",
+    "category": "Sci-fi and Fantasy",
+    "question": "Can I use the same STL file for different scales?",
+    "answer": "Yes. Any STL can be scaled to any percentage. The math is target eye-level ÷ source eye-level × 100. A 28mm STL scaled to 114.3% becomes a 32mm miniature. The quality depends on the original sculpt detail and your printer resolution.",
+    "showOn": ["homepage", "faq"]
+  },
+  {
+    "id": "mixing-scales",
+    "category": "Sci-fi and Fantasy",
+    "question": "Can I mix miniatures from different scales on the same table?",
+    "answer": "You can, but it may look visually inconsistent. If you want 28mm and 32mm models to look proportional together, scale the 28mm models up to 114.3% or the 32mm models down to 87.5%. Many players mix scales for terrain and vehicles without issue.",
+    "showOn": ["faq"]
+  },
+  {
+    "id": "vehicle-scale-bolt-action",
+    "category": "Historical and Vehicles",
+    "question": "What scale vehicles work with 28mm Bolt Action infantry?",
+    "answer": "1:56 scale vehicles are the standard match for 28mm infantry. 1:48 vehicles are slightly oversized but acceptable. 1:35 vehicles are too large for 28mm infantry but work well as display pieces.",
+    "showOn": ["faq"]
+  },
+  {
+    "id": "1-48-infantry-height",
+    "category": "Historical and Vehicles",
+    "question": "How tall are 1:48 scale human figures?",
+    "answer": "A 1:48 scale human figure (175cm real height) measures approximately 36.5mm to the top of the head, or 33.3mm to eye level. This falls between 32mm and 35mm gaming scales.",
+    "showOn": ["reference", "faq"]
+  },
+  {
+    "id": "bounding-box-scaling",
+    "category": "FDM Printing and Slicers",
+    "question": "Should I scale uniformly or non-uniformly in my slicer?",
+    "answer": "Always use uniform scaling (same percentage on X, Y, and Z) unless you have a specific reason to stretch the model. Non-uniform scaling distorts proportions and can cause fit issues with multi-part models.",
+    "showOn": ["homepage", "faq"]
+  },
+  {
+    "id": "filament-shrinkage",
+    "category": "FDM Printing and Slicers",
+    "question": "Does 3D printing filament shrink? Do I need to compensate?",
+    "answer": "PLA shrinks approximately 0.8-2% as it cools. PETG shrinks 0.2-0.8%. ABS shrinks 0.5-0.8%. For most miniature scaling, this shrinkage is within acceptable tolerance. If precision matters, add 0.5-1% to your calculated scale percentage.",
+    "showOn": ["homepage", "reference", "faq"]
+  },
+  {
+    "id": "fdm-at-28mm-32mm",
+    "category": "FDM Printing and Slicers",
+    "question": "Can FDM printers handle 28mm and 32mm miniatures?",
+    "answer": "Yes, with the right settings. Use a 0.2mm nozzle at 0.06-0.08mm layer height. Print at 20-30mm/s for outer walls. Orient faces upward to minimize visible layer lines. FDM at 28-32mm produces tabletop-quality miniatures, though resin gives cleaner detail.",
+    "showOn": ["faq"]
+  },
+  {
+    "id": "slicer-choice",
+    "category": "FDM Printing and Slicers",
+    "question": "Which slicer should I use for scaling miniatures?",
+    "answer": "Any modern slicer supports percentage scaling. PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer all work. Bambu Studio and OrcaSlicer have the best tree support generation for miniature shapes.",
+    "showOn": ["faq"]
+  }
+]

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}About | {{ site.name }}{% endblock %}
+{% block description %}About {{ site.name }}, a free browser-based STL scale converter for 3D printed miniatures.{% endblock %}
+{% block canonical %}{{ site.url }}/about/{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <span aria-current="page">About</span></nav>
+<h1>About {{ site.name }}</h1>
+{% endblock %}
+
+{% block main %}
+<article class="container--narrow prose-page prose">
+  <p>{{ site.name }} is a free, browser-based STL scale converter for 3D printed miniatures. It converts between 15+ gaming scales with accurate percentages based on verified measurements.</p>
+  <h2>Why I Built This</h2>
+  <p>I'm kitsorix, a 3D printing hobbyist. Every time I converted miniatures between systems, I had to Google the conversion percentage. {{ site.name }} does the math for you &mdash; no downloads, no accounts, no ads.</p>
+  <h2>Measurement Method</h2>
+  <p>All measurements use a {{ site.baselineHeightCm }}cm human baseline. Gaming scales (28mm, 32mm, 35mm, 40mm, 75mm) are measured to the eye level at {{ site.eyeLevelCm }}cm. Ratio scales (1:35, 1:48, 1:56, 1:72, 1:100) are measured to the top of the head at {{ site.baselineHeightCm }}cm.</p>
+  <h2>Data Verification</h2>
+  <p>All conversion percentages and scale measurements are verified against multiple community sources including published standards and community measurement databases.</p>
+  <h2>Open Source</h2>
+  <p>The source code is available on <a href="https://github.com/kitsorix/stlaccess">GitHub</a>. Contributions, bug reports, and feature requests are welcome.</p>
+</article>
+{% endblock %}

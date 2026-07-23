@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% set game_scale = scales[game.scale] %}
+
+{% block title %}{{ game.name }} Scale Guide &mdash; {{ game.scale }} Miniatures | {{ site.name }}{% endblock %}
+{% block description %}{{ game.name }} uses {{ game.scale }} scale ({{ game_scale.ratioEquivalent }} ratio). Includes scale measurements, conversion percentages, and 3D printing tips.{% endblock %}
+{% block canonical %}{{ site.url }}/games/{{ game.slug }}/{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ game.name }} Scale Guide &mdash; {{ game.scale }} Miniatures",
+  "description": "{{ game.name }} uses {{ game.scale }} scale ({{ game_scale.ratioEquivalent }} ratio). Includes measurements, conversions, and printing tips.",
+  "author": { "@type": "Person", "name": "{{ site.author.name }}" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.name }}",
+    "logo": { "@type": "ImageObject", "url": "{{ site.url }}/favicon.svg" }
+  },
+  "datePublished": "{{ site.datePublished }}",
+  "dateModified": "{{ site.dateModified }}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}" },
+    { "@type": "ListItem", "position": 2, "name": "Game Systems", "item": "{{ site.url }}/games/" },
+    { "@type": "ListItem", "position": 3, "name": "{{ game.name }}" }
+  ]
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <a href="/games/">Game Systems</a> <span>/</span>
+  <span aria-current="page">{{ game.name }}</span>
+</nav>
+<span class="genre-tag">{{ game.genre }}</span>
+<h1>{{ game.name }} Scale Guide</h1>
+<p class="subtitle">{{ game.name }} uses <strong>{{ game.scale }} scale</strong> ({{ game_scale.ratioEquivalent }} ratio), published by {{ game.publisher }} since {{ game.yearIntroduced }}.</p>
+{% endblock %}
+
+{% block main %}
+<section class="container">
+  <h2>Scale Overview</h2>
+  <div class="scale-grid">
+    <div class="scale-stat"><span class="stat-label">Miniature Scale</span><span class="stat-value">{{ game.scale }}</span></div>
+    <div class="scale-stat"><span class="stat-label">Ratio Equivalent</span><span class="stat-value">{{ game_scale.ratioEquivalent }}</span></div>
+    <div class="scale-stat"><span class="stat-label">Eye Level</span><span class="stat-value">{{ game_scale.eyeLevelMm }}mm</span></div>
+    <div class="scale-stat"><span class="stat-label">Top of Head</span><span class="stat-value">{{ game_scale.topOfHeadMm }}mm</span></div>
+    <div class="scale-stat"><span class="stat-label">Publisher</span><span class="stat-value">{{ game.publisher }}</span></div>
+  </div>
+  <p>{{ game.scaleNotes }}</p>
+</section>
+
+{% set game_bases = bases.games[game.slug] %}
+{% if game_bases %}
+<section class="container">
+  <h2>Base Sizes for {{ game.name }}</h2>
+  <div class="bases-grid">
+    {% for category, base_list in game_bases.bases.items() %}
+    <div class="bases-category">
+      <h3>{{ category | replace("-", " ") | title }}</h3>
+      <div class="bases-list">
+        {% for size, shape in base_list.items() %}
+        <span class="base-chip"><span class="base-size">{{ size }}</span> <span class="base-shape">({{ shape }})</span></span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <p class="bases-note">R = Round, S = Square, O = Oval, Rec = Rectangular</p>
+</section>
+{% elif game.baseSizes %}
+<section class="container">
+  <h2>Base Sizes</h2>
+  <p>{{ game.baseSizes }}</p>
+</section>
+{% endif %}
+
+<section class="container">
+  <h2>Scale Conversions for {{ game.name }}</h2>
+  {% if related_conversions %}
+  <div class="conversions-table">
+    {% for conv in related_conversions %}
+    <a href="/reference/{{ conv.slug }}/" class="conversion-row">
+      <span>{{ conv.sourceScale }}</span>
+      <span class="row-arrow">&rarr;</span>
+      <span>{{ conv.targetScale }}</span>
+      <span class="row-percent">{{ conv.percentage }}%</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p>No conversion data available for this scale yet.</p>
+  {% endif %}
+</section>
+
+<section class="container">
+  <h2>3D Printing Tips for {{ game.name }}</h2>
+  <p>{{ game.printingTips }}</p>
+  <p>{{ game_scale.printNote }}</p>
+  <a href="/" class="btn-primary mt-2">Open the Scale Engine</a>
+</section>
+
+{% if same_scale_games %}
+<section class="container">
+  <h2>Other Games at {{ game.scale }} Scale</h2>
+  <div class="card-grid">
+    {% for other in same_scale_games %}
+    <a href="/games/{{ other.slug }}/" class="card">
+      <span class="card-name">{{ other.name }}</span>
+      <span class="card-meta">{{ other.publisher }} &middot; {{ other.genre }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}
