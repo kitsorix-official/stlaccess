@@ -6,7 +6,7 @@
   "baselineHeightCm": 175,
   "baselineHeight": "175cm",
   "eyeLevelCm": 160,
-  "shrinkageRange": "0.2-0.5%",
+  "shrinkageRange": "0.8-2%",
   "printerName": "Bambu Lab A1 Mini",
   "gasEndpoint": "https://script.google.com/macros/s/AKfycbxgBWP8jUCPC_RSWMSxeajo-aPl1htSt1XNDYU6Rk2mXpUhQLHOssv_4t4mpUWry2PEsw/exec",
   "googleFormUrl": "https://forms.gle/njKi8KgCjUQEM1n96",
