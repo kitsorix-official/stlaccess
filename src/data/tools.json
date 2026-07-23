@@ -6,7 +6,7 @@
     "description": "The core tool of STLACCESS. Select source and target scales, choose eye-level or top-of-head measurement, and get the exact slicer percentage. Supports Warhammer 40k, D&D, Bolt Action, Star Wars Legion, Shatterpoint, scale model kits, and display pieces. No file upload, no login, no tracking.",
     "icon": "fa-calculator",
     "url": "/",
-    "features": ["15+ gaming scales supported", "Eye Level and Top of Head measurement", "Bed-level calibration guides", "Copy to clipboard and save to library", "Deep-linkable via URL parameters"],
+    "features": ["15+ gaming scales supported", "Eye Level and Top of Head measurement", "Bed-level calibration guides", "Copy to clipboard", "Deep-linkable via URL parameters"],
     "category": "calculators",
     "featured": true
   },
@@ -19,17 +19,6 @@
     "url": "/reference",
     "features": ["45 verified conversion pairs", "Search and filter by scale", "Mathematical proof for each conversion", "Print-tested on FDM", "Community feedback and correction system"],
     "category": "references",
-    "featured": true
-  },
-  {
-    "slug": "personal-library",
-    "name": "Personal Library",
-    "shortDescription": "Client-side storage for saving and organizing your frequently used scale conversions.",
-    "description": "Save conversions directly from the calculator to your browser's localStorage. No account, no password, no server. Your data stays on your device. Quickly access your most-used scale conversions without re-calculating every time.",
-    "icon": "fa-folder-open",
-    "url": "/library",
-    "features": ["Zero-server localStorage storage", "Save and delete conversions", "Quick-copy saved percentages", "Private — data never leaves your browser", "Works offline after first load"],
-    "category": "storage",
     "featured": true
   },
   {

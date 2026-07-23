@@ -1,8 +1,8 @@
-     /**
-         * Live Library Search Functionality
+         /**
+         * Live Reference Search Functionality (unused — reference page uses inline filterCards())
          */
         function filterTable() {
-            const input = document.getElementById('librarySearch');
+            const input = document.getElementById('referenceSearch');
             const filter = input.value.toLowerCase();
             const rows = document.querySelectorAll('.searchable-row');
             const groups = document.querySelectorAll('.conversion-group');

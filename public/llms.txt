@@ -8,7 +8,7 @@
 - [Scale Conversion Reference](https://stlaccess.com/reference) — 45+ verified conversion percentages with print-tested results and methodology article
 - [Conversion FAQ](https://stlaccess.com/faq) — Answers about 28mm, 32mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales
 - [Methodology](https://stlaccess.com/about) — 175cm human baseline, FDM test prints with digital calipers
-- [All Tools](https://stlaccess.com/tools) — stlscale Engine, Personal Library, Scale Reference, Creator Badge
+- [All Tools](https://stlaccess.com/tools) — stlscale Engine, Scale Reference, Filament Cost Calculator
 - [Game Systems](https://stlaccess.com/games) — Scale guides for 20+ tabletop games
 - [Blog](https://stlaccess.com/blog) — Deep-dive articles on miniature scale, 3D printing, and conversion math
 - [Privacy Policy](https://stlaccess.com/privacy) — No cookies, no tracking, no data collection

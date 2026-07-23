@@ -14,7 +14,7 @@ const schema = JSON.stringify({
       "@id": `${url}/tools#webpage`,
       "url": `${url}/tools`,
       "name": "3D Print Scale Tools for Miniatures | STLACCESS",
-      "description": "Free browser-based tools for 3D printing miniature scale conversion. Calculator, reference library, personal library, and creator badge for Warhammer, D&D, and tabletop gaming.",
+      "description": "Free browser-based tools for 3D printing miniature scale conversion. Calculator, reference library, and filament cost estimator for Warhammer, D&D, and tabletop gaming.",
       "isPartOf": { "@id": `${url}/#website` },
       "author": {
         "@type": "Person",
@@ -44,7 +44,7 @@ const schema = JSON.stringify({
     {
       "@type": "ItemList",
       "name": "STLACCESS Tools for 3D Printed Miniatures",
-      "description": "Browser-based utilities for scaling, referencing, and saving STL scale conversions.",
+      "description": "Browser-based utilities for scaling, referencing, and calculating costs for STL scale conversions.",
       "url": `${url}/tools`,
       "numberOfItems": tools.length,
       "itemListElement": tools.map((tool, i) => ({
@@ -87,7 +87,7 @@ const schema = JSON.stringify({
           "author": { "@type": "Person", "name": site.author.name, "url": site.author.url },
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The stlscale Engine and reference library require an internet connection to load. Once loaded, the calculator runs entirely in your browser. Saved conversions persist in localStorage.",
+            "text": "The stlscale Engine and reference library require an internet connection to load. Once loaded, the calculator runs entirely in your browser.",
             "author": { "@type": "Person", "name": site.author.name, "url": site.author.url }
           }
         }
@@ -101,7 +101,7 @@ const categories = [...new Set(tools.map(t => t.category))];
 
 <Layout
   title="3D Print Scale Tools for Miniatures | STLACCESS"
-  description="Free browser-based tools for 3D printing miniature scale conversion. Calculator, reference library, personal library, and creator badge for Warhammer, D&D, and tabletop gaming."
+  description="Free browser-based tools for 3D printing miniature scale conversion. Calculator, reference library, and filament cost estimator for Warhammer, D&D, and tabletop gaming."
   schema={schema}
 >
 
@@ -118,7 +118,7 @@ const categories = [...new Set(tools.map(t => t.category))];
     3D Print Scale <span class="text-[#ff6b35]">Tools</span>
   </h1>
   <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-    Free browser-based tools for scaling, referencing, saving, and sharing STL conversions for tabletop miniatures. All tools run client-side — no uploads, no accounts, no tracking.
+    Free browser-based tools for scaling, referencing, and calculating costs for STL conversions for tabletop miniatures. All tools run client-side — no uploads, no accounts, no tracking.
   </p>
 </section>
 
@@ -204,7 +204,7 @@ const categories = [...new Set(tools.map(t => t.category))];
       <span class="text-[10px] font-black uppercase tracking-widest text-[#ff6b35] mb-3 block">All tools included</span>
       <h2 class="text-3xl font-bold font-heading mb-4">Built for miniature 3D printing</h2>
       <p class="text-slate-400 leading-relaxed mb-6">
-        Every tool on STLACCESS is designed around one problem: getting the right scale for 3D printed tabletop miniatures. The calculator, reference library, and personal library work together so you can convert, save, and share scale percentages — all from your browser, all for free.
+        Every tool on STLACCESS is designed around one problem: getting the right scale for 3D printed tabletop miniatures. The calculator and reference library work together so you can convert and share scale percentages — all from your browser, all for free.
       </p>
       <ul class="space-y-3 text-sm text-slate-400">
         <li class="flex items-start gap-3">
@@ -214,10 +214,6 @@ const categories = [...new Set(tools.map(t => t.category))];
         <li class="flex items-start gap-3">
           <i class="fa-solid fa-check-circle text-[#ff6b35] mt-0.5"></i>
           <span><strong class="text-white">Scale Reference Library</strong> — 45 verified conversion percentages with print-tested results</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <i class="fa-solid fa-check-circle text-[#ff6b35] mt-0.5"></i>
-          <span><strong class="text-white">Personal Library</strong> — Save your most-used conversions in your browser</span>
         </li>
       </ul>
     </div>

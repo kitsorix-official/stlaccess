@@ -102,7 +102,7 @@ const conversions = rawConversions.map(c => ({
     <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors"></i>
     <input
       type="text"
-      id="librarySearch"
+      id="referenceSearch"
       onkeyup="filterCards()"
       placeholder="Search conversions (e.g. 28mm to 32mm, 1:48...)"
       class="w-full bg-slate-900/50 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus:ring-1 focus:ring-[#ff6b35] focus:border-[#ff6b35] focus:outline-none transition-all placeholder:text-slate-600"
@@ -504,7 +504,7 @@ const conversions = rawConversions.map(c => ({
 
 <script is:inline>
   function filterCards() {
-    var input = document.getElementById('librarySearch');
+    var input = document.getElementById('referenceSearch');
     var filter = input.value.toLowerCase();
     var cards = document.querySelectorAll('.searchable-card');
     var visible = 0;

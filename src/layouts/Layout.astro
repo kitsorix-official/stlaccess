@@ -111,12 +111,7 @@ const currentPath = Astro.url.pathname;
             Reference Library
           </a>
         </li>
-        <li>
-          <a href="/library" class={currentPath === '/library' ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
-            Personal Library
-            <span id="libCount" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span>
-          </a>
-        </li>
+
         <li>
           <a href="/tools" class={currentPath === '/tools' ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
             All Tools
@@ -163,12 +158,7 @@ const currentPath = Astro.url.pathname;
             Reference Library
           </a>
         </li>
-        <li>
-          <a href="/library" class={currentPath === '/library' ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
-            Personal Library
-            <span id="libCount-mobile" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span>
-          </a>
-        </li>
+
         <li>
           <a href="/tools" class={currentPath === '/tools' ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
             All Tools
@@ -218,7 +208,6 @@ const currentPath = Astro.url.pathname;
             <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Tools</h4>
             <ul class="space-y-4 text-sm text-slate-500 font-medium">
               <li><a href="/" class="hover:text-[#ff6b35] transition-colors">Scale Engine</a></li>
-              <li><a href="/library" class="hover:text-[#ff6b35] transition-colors">Personal Library</a></li>
               <li><a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference Library</a></li>
               <li><a href="/tools" class="hover:text-[#ff6b35] transition-colors">All Tools</a></li>
               <li><a href="/games" class="hover:text-[#ff6b35] transition-colors">Game Systems</a></li>
