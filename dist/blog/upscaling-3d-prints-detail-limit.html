@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- Primary Meta Tags --><title>Upscaling 3D Prints: How Big Can You Go Before You Lose Detail? | STLACCESS</title><meta name="description" content="How much can you enlarge a 32mm miniature before losing detail? Resin vs FDM limits, layer line visibility, and slicer settings for clean upscaling."><meta name="theme-color" content="#ff6b35"><meta name="robots" content="index, follow"><meta name="generator" content="Astro v6.4.8"><!-- Canonical --><link rel="canonical" href="https://stlaccess.com/blog/upscaling-3d-prints-detail-limit"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:url" content="https://stlaccess.com/blog/upscaling-3d-prints-detail-limit"><meta property="og:title" content="Upscaling 3D Prints: How Big Can You Go Before You Lose Detail? | STLACCESS"><meta property="og:description" content="How much can you enlarge a 32mm miniature before losing detail? Resin vs FDM limits, layer line visibility, and slicer settings for clean upscaling."><meta property="og:image" content="https://stlaccess.com/stlaccess-social-banner.png"><meta property="og:locale" content="en_US"><meta property="og:site_name" content="STLACCESS"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Upscaling 3D Prints: How Big Can You Go Before You Lose Detail? | STLACCESS"><meta name="twitter:description" content="How much can you enlarge a 32mm miniature before losing detail? Resin vs FDM limits, layer line visibility, and slicer settings for clean upscaling."><meta name="twitter:image" content="https://stlaccess.com/stlaccess-social-banner.png"><!-- Icons --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- Preconnect --><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><!-- Font Awesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!-- RSS Autodiscovery --><link rel="alternate" type="application/rss+xml" title="STLACCESS Blog" href="https://stlaccess.com/rss.xml"><!-- Schema --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?","description":"How much can you enlarge a 32mm miniature before losing detail? Resin vs FDM limits, layer line visibility, and slicer settings for clean upscaling.","url":"https://stlaccess.com/blog/upscaling-3d-prints-detail-limit","datePublished":"2026-06-25","dateModified":"2026-06-25","author":[{"@type":"Person","name":"kitsorix","url":"https://stlaccess.com/about"}],"publisher":{"@type":"Person","name":"kitsorix","url":"https://stlaccess.com/about"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://stlaccess.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://stlaccess.com/blog"},{"@type":"ListItem","position":3,"name":"Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?"}]}]}</script><link rel="stylesheet" href="/_astro/global.DoS0WqrJ.css"></head> <body class="min-h-screen flex flex-col bg-black text-white"> <!-- Skip link --> <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#ff6b35] focus:text-black focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold">
+Skip to content
+</a> <!-- Navigation --> <header class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50"> <nav class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center" aria-label="Global navigation"> <!-- Logo --> <a href="/" class="flex items-center gap-3 shrink-0"> <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span> </a> <!-- Desktop nav — !flex to override specificity conflicts --> <ul class="hidden md:!flex gap-8 text-sm font-semibold tracking-wide text-slate-400"> <li> <a href="/" class="hover:text-white transition-colors">
+Scale Engine
+</a> </li> <li> <a href="/reference" class="hover:text-white transition-colors">
+Reference Library
+</a> </li> <li> <a href="/library" class="hover:text-white transition-colors">
+Personal Library
+<span id="libCount" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span> </a> </li> <li> <a href="/tools" class="hover:text-white transition-colors">
+All Tools
+</a> </li> <li> <a href="/games" class="hover:text-white transition-colors">
+Game Systems
+</a> </li> <li> <a href="/blog" class="text-white border-b-2 border-[#ff6b35] pb-1">
+Blog
+</a> </li> </ul> <!-- Mobile menu button --> <button id="mobile-menu-btn" class="md:hidden text-white p-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"> <i class="fa-solid fa-bars-staggered text-xl" id="menu-icon"></i> </button> </nav> <!-- Mobile menu panel — !block to override specificity conflicts --> <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-black/95 backdrop-blur-xl"> <ul class="px-6 py-4 space-y-1"> <li> <a href="/" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+Scale Engine
+</a> </li> <li> <a href="/reference" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+Reference Library
+</a> </li> <li> <a href="/library" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+Personal Library
+<span id="libCount-mobile" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span> </a> </li> <li> <a href="/tools" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+All Tools
+</a> </li> <li> <a href="/games" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+Game Systems
+</a> </li> <li> <a href="/blog" class="block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5">
+Blog
+</a> </li> </ul> </div> </header> <!-- Main content --> <main id="main-content" class="flex-grow">   <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb"> <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a> <span class="mx-2 text-slate-800">/</span> <a href="/blog" class="hover:text-[#ff6b35] transition-colors">Blog</a> <span class="mx-2 text-slate-800">/</span> <span class="text-slate-400" aria-current="page">Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?</span> </nav> <article class="max-w-4xl mx-auto px-6 py-12"> <header class="mb-12"> <div class="flex flex-wrap gap-2 mb-4"> <span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full"> upscaling </span><span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full"> resin printing </span><span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full"> FDM printing </span><span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full"> detail </span> </div> <time datetime="2026-06-25" class="text-sm text-slate-500 mb-4 block"> June 25, 2026 </time> <h1 class="text-4xl md:text-5xl font-bold font-heading tracking-tight mb-6"> Upscaling 3D Prints: How Big Can You Go Before You Lose Detail? </h1> <p class="text-lg text-slate-400 leading-relaxed max-w-2xl"> How much can you enlarge a 32mm miniature before losing detail? Resin vs FDM limits, layer line visibility, and slicer settings for clean upscaling. </p> </header> <div class="prose max-w-none"><p>The short answer: with a resin printer at 0.05mm layer height, you can upscale a 32mm miniature to about <strong>75mm (234%)</strong> before layer lines become distracting. With FDM, the ceiling is closer to <strong>50mm (156%)</strong> before the print quality degrades noticeably.</p>
+<p>But these limits depend on your printer, your resin or filament, and your tolerance for post-processing work.</p>
+<h2>Why Upscaling Makes Layer Lines Visible</h2>
+<p>Imagine a 0.05mm layer line on a 32mm model. At 1:1 scale, that line is 0.05mm thick — essentially invisible to the naked eye at arm's length.</p>
+<p>Now upscale that model to 200mm (625%). That same layer line is now 0.31mm thick — a visible ridge you can feel with your fingernail.</p>
+<p>The math:</p>
+<pre><code>layer_height × (target_height ÷ source_height) = effective_layer_visibility
+</code></pre>
+<p>What happens in practice:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Target</th>
+<th>Scale %</th>
+<th>Layer line at 0.05mm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>32mm</td>
+<td>32mm</td>
+<td>100%</td>
+<td>0.05mm (invisible)</td>
+</tr>
+<tr>
+<td>32mm</td>
+<td>54mm</td>
+<td>169%</td>
+<td>0.08mm (barely visible)</td>
+</tr>
+<tr>
+<td>32mm</td>
+<td>75mm</td>
+<td>234%</td>
+<td>0.12mm (visible)</td>
+</tr>
+<tr>
+<td>32mm</td>
+<td>100mm</td>
+<td>313%</td>
+<td>0.16mm (obvious)</td>
+</tr>
+<tr>
+<td>32mm</td>
+<td>200mm</td>
+<td>625%</td>
+<td>0.31mm (very rough)</td>
+</tr>
+</tbody>
+</table>
+<h2>Mitigation: Lower Your Layer Height</h2>
+<p>The most effective fix is to print at a finer layer height:</p>
+<table>
+<thead>
+<tr>
+<th>Layer Height</th>
+<th>Max upsized height before lines are visible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.05mm (standard)</td>
+<td>~75mm for resin, ~50mm for FDM</td>
+</tr>
+<tr>
+<td>0.03mm (fine)</td>
+<td>~125mm for resin, ~80mm for FDM</td>
+</tr>
+<tr>
+<td>0.01mm (ultra-fine, resin only)</td>
+<td>~200mm+ for resin</td>
+</tr>
+</tbody>
+</table>
+<p>With a resin printer at 0.03mm, you can comfortably upscale a 32mm model to display scale (75mm+) with minimal visible layering. At 0.01mm (available on printers like the Elegoo Saturn 4 Ultra or Anycubic D2), even 200mm prints look smooth.</p>
+<h2>Resin vs FDM: The Real Difference</h2>
+<p><strong>Resin printers</strong> excel at detail because each layer cures from a liquid into a solid with virtually no z-axis wobble. A 32mm → 75mm upscale on a resin printer, printed at 0.03mm, needs minimal sanding.</p>
+<p><strong>FDM printers</strong> introduce two problems when upscaling:</p>
+<ol>
+<li><strong>Z-axis banding</strong> — the mechanical movement of the gantry amplifies slight imperfections, creating visible horizontal bands on tall prints</li>
+<li><strong>Overhang degradation</strong> — details that were crisp at 32mm become stair-stepped at larger sizes because the same angle creates wider steps</li>
+</ol>
+<p>If you must use FDM for upscaled miniatures, print at 0.12mm layer height with a 0.2mm nozzle. This halves the visible layer lines compared to a standard 0.4mm nozzle at 0.2mm layer height.</p>
+<h2>The Practical Limit for Display Pieces</h2>
+<p>For a display-quality 32mm → 75mm upscale on resin:</p>
+<ol>
+<li><strong>Slice at 0.03mm</strong> layer height</li>
+<li><strong>Add 1-2° of tilt</strong> to the model to reduce layer line visibility on faces</li>
+<li><strong>Use a slower lift speed</strong> (40mm/min for the first 5mm) to reduce suction-cup-induced layer shifts</li>
+<li><strong>Wash and cure thoroughly</strong> before sanding</li>
+</ol>
+<p>For FDM display pieces, same scale:</p>
+<ol>
+<li><strong>Use a 0.2mm nozzle</strong></li>
+<li><strong>Slice at 0.08mm</strong> layer height</li>
+<li><strong>Enable variable layer height</strong> in your slicer to use thicker layers on hidden areas and thinner on faces</li>
+<li><strong>Acetone vapour smooth</strong> ABS or ASA prints (do not use on PLA)</li>
+</ol>
+<h2>Beyond 75mm: The Bust Range</h2>
+<p>If you want to go beyond 75mm (say, a 200mm display bust from a 32mm source file), the limiting factor is no longer layer lines — it is the original model's polygon density. A model designed for 32mm printing may have too few polygons to look smooth at 200mm.</p>
+<p>Check the model in Blender or MeshLab before printing. If you can see faceted edges at the target size, apply a subdivision modifier (two iterations is usually enough) to smooth the geometry before slicing.</p>
+<h2>Summary</h2>
+<ul>
+<li><strong>Resin, 32mm → 75mm (234%):</strong> Print at 0.03mm or finer. Layer lines are subtle.</li>
+<li><strong>Resin, 32mm → 200mm+ (625%):</strong> Needs 0.01mm layer height or significant post-processing. Check polygon count.</li>
+<li><strong>FDM, 32mm → 50mm (156%):</strong> Fine with a 0.2mm nozzle at 0.08mm. Manageable lines.</li>
+<li><strong>FDM, 32mm → 75mm (234%):</strong> Visible lines even with optimal settings. Expect sanding.</li>
+</ul>
+<p>For more on how scales relate and the baseline measurements used, see the <a href="/reference">scale reference library</a> or use the <a href="/">STL scale engine</a> to calculate any conversion.</p>
+</div> <footer class="mt-16 pt-8 border-t border-white/5"> <a href="/blog" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors"> <i class="fa-solid fa-arrow-left text-xs"></i>
+Back to all posts
+</a> </footer> </article>  </main> <!-- Footer --> <footer class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-auto"> <div class="max-w-6xl mx-auto"> <!-- Main grid --> <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-12 mb-20"> <!-- Brand block --> <div> <div class="flex items-center gap-3 mb-6"> <span class="text-xl font-bold font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span> </div> <p class="text-slate-500 text-sm max-w-sm leading-relaxed">
+Independent tools for 3D printing scale conversion. Built and maintained by one person who prints test pieces to verify every percentage.
+</p> </div> <!-- Link columns --> <div class="flex flex-wrap gap-x-16 gap-y-8"> <!-- Tools --> <div> <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Tools</h4> <ul class="space-y-4 text-sm text-slate-500 font-medium"> <li><a href="/" class="hover:text-[#ff6b35] transition-colors">Scale Engine</a></li> <li><a href="/library" class="hover:text-[#ff6b35] transition-colors">Personal Library</a></li> <li><a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference Library</a></li> <li><a href="/tools" class="hover:text-[#ff6b35] transition-colors">All Tools</a></li> <li><a href="/games" class="hover:text-[#ff6b35] transition-colors">Game Systems</a></li> <li><a href="/blog" class="hover:text-[#ff6b35] transition-colors">Blog</a></li> </ul> </div> <!-- Project --> <div> <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Project</h4> <ul class="space-y-4 text-sm text-slate-500 font-medium"> <li><a href="/about" class="hover:text-[#ff6b35] transition-colors">About & Methodology</a></li> <li><a href="/faq" class="hover:text-[#ff6b35] transition-colors">FAQ</a></li> <li><a href="/contact" class="hover:text-[#ff6b35] transition-colors">Contact</a></li> <li><a href="https://github.com/kitsorix-official/stlaccess" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">GitHub Source</a></li> <li><a href="https://github.com/kitsorix-official/stlaccess/issues" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">Report an Issue</a></li> </ul> </div> <!-- Legal --> <div> <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Legal</h4> <ul class="space-y-4 text-sm text-slate-500 font-medium"> <li><a href="/privacy" class="hover:text-[#ff6b35] transition-colors">Privacy Policy</a></li> <li><a href="/terms" class="hover:text-[#ff6b35] transition-colors">Terms of Service</a></li> <li><a href="/legal" class="hover:text-[#ff6b35] transition-colors">Global Compliance</a></li> </ul> </div> </div> </div> <!-- Bottom bar --> <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500"> <span>
+Made by <a href="https://github.com/kitsorix-official" target="_blank" rel="noopener noreferrer" class="hover:text-[#ff6b35] transition-colors">kitsorix</a> </span> <div class="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest"> <a href="https://github.com/kitsorix-official/stlaccess" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">View Source on GitHub</a> <span>&copy; 2026 STLACCESS</span> </div> </div> </div> </footer> <!-- Mobile menu toggle --> <script>
+    (function() {
+      var btn = document.getElementById('mobile-menu-btn');
+      var menu = document.getElementById('mobile-menu');
+      var icon = document.getElementById('menu-icon');
+      
+      if (!btn || !menu || !icon) return;
+      
+      btn.addEventListener('click', function() {
+        var isOpen = !menu.classList.contains('hidden');
+        
+        if (isOpen) {
+          menu.classList.add('hidden');
+          menu.classList.remove('!block');
+          btn.setAttribute('aria-expanded', 'false');
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars-staggered');
+        } else {
+          menu.classList.remove('hidden');
+          menu.classList.add('!block');
+          btn.setAttribute('aria-expanded', 'true');
+          icon.classList.remove('fa-bars-staggered');
+          icon.classList.add('fa-xmark');
+        }
+      });
+      
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+          menu.classList.add('hidden');
+          menu.classList.remove('!block');
+          btn.setAttribute('aria-expanded', 'false');
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars-staggered');
+        }
+      });
+      
+      menu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.add('hidden');
+          menu.classList.remove('!block');
+          btn.setAttribute('aria-expanded', 'false');
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars-staggered');
+        });
+      });
+    })();
+  </script> </body> </html>

@@ -2,7 +2,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
-import cloudflare from '@astrojs/cloudflare';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -76,7 +75,5 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()]
-  },
-
-  adapter: cloudflare()
+  }
 });

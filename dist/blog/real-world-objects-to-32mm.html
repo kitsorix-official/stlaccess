@@ -1,0 +1,210 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><!-- Primary Meta Tags --><title>How to Scale Real-World Objects to 32mm Miniatures (The Math Explained) | STLACCESS</title><meta name="description" content="The formula to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for Warhammer, D&amp;D, and Bolt Action."><meta name="theme-color" content="#ff6b35"><meta name="robots" content="index, follow"><meta name="generator" content="Astro v6.4.8"><!-- Canonical --><link rel="canonical" href="https://stlaccess.com/blog/real-world-objects-to-32mm"><!-- Open Graph --><meta property="og:type" content="website"><meta property="og:url" content="https://stlaccess.com/blog/real-world-objects-to-32mm"><meta property="og:title" content="How to Scale Real-World Objects to 32mm Miniatures (The Math Explained) | STLACCESS"><meta property="og:description" content="The formula to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for Warhammer, D&amp;D, and Bolt Action."><meta property="og:image" content="https://stlaccess.com/stlaccess-social-banner.png"><meta property="og:locale" content="en_US"><meta property="og:site_name" content="STLACCESS"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="How to Scale Real-World Objects to 32mm Miniatures (The Math Explained) | STLACCESS"><meta name="twitter:description" content="The formula to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for Warhammer, D&amp;D, and Bolt Action."><meta name="twitter:image" content="https://stlaccess.com/stlaccess-social-banner.png"><!-- Icons --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><!-- Preconnect --><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin><!-- Font Awesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><!-- RSS Autodiscovery --><link rel="alternate" type="application/rss+xml" title="STLACCESS Blog" href="https://stlaccess.com/rss.xml"><!-- Schema --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BlogPosting","headline":"How to Scale Real-World Objects to 32mm Miniatures (The Math Explained)","description":"The formula to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for Warhammer, D&D, and Bolt Action.","url":"https://stlaccess.com/blog/real-world-objects-to-32mm","datePublished":"2026-06-28","dateModified":"2026-06-28","author":[{"@type":"Person","name":"kitsorix","url":"https://stlaccess.com/about"}],"publisher":{"@type":"Person","name":"kitsorix","url":"https://stlaccess.com/about"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://stlaccess.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://stlaccess.com/blog"},{"@type":"ListItem","position":3,"name":"How to Scale Real-World Objects to 32mm Miniatures (The Math Explained)"}]}]}</script><link rel="stylesheet" href="/_astro/global.DoS0WqrJ.css"></head> <body class="min-h-screen flex flex-col bg-black text-white"> <!-- Skip link --> <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#ff6b35] focus:text-black focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold">
+Skip to content
+</a> <!-- Navigation --> <header class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50"> <nav class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center" aria-label="Global navigation"> <!-- Logo --> <a href="/" class="flex items-center gap-3 shrink-0"> <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span> </a> <!-- Desktop nav — !flex to override specificity conflicts --> <ul class="hidden md:!flex gap-8 text-sm font-semibold tracking-wide text-slate-400"> <li> <a href="/" class="hover:text-white transition-colors">
+Scale Engine
+</a> </li> <li> <a href="/reference" class="hover:text-white transition-colors">
+Reference Library
+</a> </li> <li> <a href="/library" class="hover:text-white transition-colors">
+Personal Library
+<span id="libCount" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span> </a> </li> <li> <a href="/tools" class="hover:text-white transition-colors">
+All Tools
+</a> </li> <li> <a href="/games" class="hover:text-white transition-colors">
+Game Systems
+</a> </li> <li> <a href="/blog" class="text-white border-b-2 border-[#ff6b35] pb-1">
+Blog
+</a> </li> </ul> <!-- Mobile menu button --> <button id="mobile-menu-btn" class="md:hidden text-white p-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"> <i class="fa-solid fa-bars-staggered text-xl" id="menu-icon"></i> </button> </nav> <!-- Mobile menu panel — !block to override specificity conflicts --> <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-black/95 backdrop-blur-xl"> <ul class="px-6 py-4 space-y-1"> <li> <a href="/" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+Scale Engine
+</a> </li> <li> <a href="/reference" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+Reference Library
+</a> </li> <li> <a href="/library" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+Personal Library
+<span id="libCount-mobile" class="ml-1 text-xs bg-[#ff6b35] text-black px-2 py-0.5 rounded-full hidden">0</span> </a> </li> <li> <a href="/tools" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+All Tools
+</a> </li> <li> <a href="/games" class="block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors">
+Game Systems
+</a> </li> <li> <a href="/blog" class="block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5">
+Blog
+</a> </li> </ul> </div> </header> <!-- Main content --> <main id="main-content" class="flex-grow">   <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb"> <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a> <span class="mx-2 text-slate-800">/</span> <a href="/blog" class="hover:text-[#ff6b35] transition-colors">Blog</a> <span class="mx-2 text-slate-800">/</span> <span class="text-slate-400" aria-current="page">How to Scale Real-World Objects to 32mm Miniatures (The Math Explained)</span> </nav> <article class="max-w-4xl mx-auto px-6 py-12"> <header class="mb-12"> <div class="flex flex-wrap gap-2 mb-4"> <span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full"> scale theory </span><span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full"> 32mm </span><span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full"> monster scaling </span><span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full"> terrain </span> </div> <time datetime="2026-06-28" class="text-sm text-slate-500 mb-4 block"> June 28, 2026 </time> <h1 class="text-4xl md:text-5xl font-bold font-heading tracking-tight mb-6"> How to Scale Real-World Objects to 32mm Miniatures (The Math Explained) </h1> <p class="text-lg text-slate-400 leading-relaxed max-w-2xl"> The formula to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for Warhammer, D&amp;D, and Bolt Action. </p> </header> <div class="prose max-w-none"><p>If you need to know how big an 18-foot-tall monster should be in 32mm scale, here is the formula:</p>
+<pre><code>(real_world_height_inches ÷ 72) × 32 = height_in_mm
+</code></pre>
+<p>So for an 18-foot monster (216 inches):</p>
+<pre><code>(216 ÷ 72) × 32 = 96mm
+</code></pre>
+<p>A 32mm 18-foot monster should stand approximately <strong>96mm tall</strong> — about the height of a soda can.</p>
+<h2>Why 72?</h2>
+<p>The number 72 is the conversion constant that maps real-world feet to tabletop millimetres for 32mm scale. It comes from:</p>
+<ul>
+<li>1 real-world inch = 25.4mm</li>
+<li>But a 72-inch (6-foot) human should be 32mm on the tabletop</li>
+<li>72 real inches ÷ 32 miniature mm = 2.25 real inches per miniature mm</li>
+<li>25.4mm per inch × 2.25 = 57.15 — the constant</li>
+</ul>
+<p>For practical use, just remember: <strong>(real inches) ÷ 72 × 32 = mm on the tabletop</strong>.</p>
+<h2>Quick Reference Chart</h2>
+<table>
+<thead>
+<tr>
+<th>Real Object</th>
+<th>Height</th>
+<th>In 32mm Scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Goblin / Halfling</td>
+<td>4 ft</td>
+<td><strong>21mm</strong></td>
+</tr>
+<tr>
+<td>Average Human</td>
+<td>5'9&quot;</td>
+<td><strong>31mm</strong></td>
+</tr>
+<tr>
+<td>Space Marine (heroic)</td>
+<td>~7 ft</td>
+<td><strong>37mm</strong></td>
+</tr>
+<tr>
+<td>Horse (to shoulder)</td>
+<td>5 ft</td>
+<td><strong>27mm</strong></td>
+</tr>
+<tr>
+<td>Horse (to head)</td>
+<td>8 ft</td>
+<td><strong>43mm</strong></td>
+</tr>
+<tr>
+<td>Ogre / Troll</td>
+<td>10 ft</td>
+<td><strong>53mm</strong></td>
+</tr>
+<tr>
+<td>Giant</td>
+<td>14 ft</td>
+<td><strong>75mm</strong></td>
+</tr>
+<tr>
+<td>Dragon (to shoulder)</td>
+<td>18 ft</td>
+<td><strong>96mm</strong></td>
+</tr>
+<tr>
+<td>Dragon (total height)</td>
+<td>24 ft</td>
+<td><strong>128mm</strong></td>
+</tr>
+<tr>
+<td>Barn / Shed</td>
+<td>12 ft</td>
+<td><strong>64mm</strong></td>
+</tr>
+<tr>
+<td>Two-story building</td>
+<td>20 ft</td>
+<td><strong>107mm</strong></td>
+</tr>
+<tr>
+<td>Church tower</td>
+<td>60 ft</td>
+<td><strong>320mm</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>Converting Any Scale</h2>
+<p>The formula works for any miniature scale, not just 32mm. Swap the last number:</p>
+<table>
+<thead>
+<tr>
+<th>Scale</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>28mm true</td>
+<td>(inches ÷ 72) × 28</td>
+</tr>
+<tr>
+<td>32mm heroic</td>
+<td>(inches ÷ 72) × 32</td>
+</tr>
+<tr>
+<td>35mm (Star Wars Legion)</td>
+<td>(inches ÷ 72) × 35</td>
+</tr>
+<tr>
+<td>1:56</td>
+<td>(inches ÷ 56) × 25.4 — or just (inches × 0.454)</td>
+</tr>
+<tr>
+<td>1:48</td>
+<td>(inches ÷ 48) × 25.4 — or (inches × 0.529)</td>
+</tr>
+</tbody>
+</table>
+<p>For 28mm scale, the same 18-foot monster becomes:</p>
+<pre><code>(216 ÷ 72) × 28 = 84mm
+</code></pre>
+<h2>Why the 175cm Baseline Matters</h2>
+<p>This formula assumes the 32mm scale is based on the standard 175cm (5'9&quot;) human figure measured to eye level. If your game system uses a different baseline (some older games use 6ft), the monster will come out slightly different.</p>
+<p>STLACCESS uses the 175cm baseline for all conversions. You can read more about <a href="/blog/175cm-baseline">why that number was chosen</a> and how it affects every percentage in the reference library.</p>
+<h2>Terrain and Buildings</h2>
+<p>Terrain is easier to scale than creatures because you don't need to account for heroic proportions. A 20-foot building wall at 32mm scale:</p>
+<pre><code>(240 ÷ 72) × 32 = 107mm
+</code></pre>
+<p>Print a wall that is 107mm tall and place a 32mm miniature next to it — the proportions match a 20-foot wall in real life.</p>
+<p>For a full size reference, check the <a href="/blog/stl-scale-conversion-chart">STL scale conversion chart</a> and the <a href="/reference">scale reference library</a>. To calculate any conversion on the fly, use the <a href="/">STL scale engine</a>.</p>
+</div> <footer class="mt-16 pt-8 border-t border-white/5"> <a href="/blog" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors"> <i class="fa-solid fa-arrow-left text-xs"></i>
+Back to all posts
+</a> </footer> </article>  </main> <!-- Footer --> <footer class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-auto"> <div class="max-w-6xl mx-auto"> <!-- Main grid --> <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-12 mb-20"> <!-- Brand block --> <div> <div class="flex items-center gap-3 mb-6"> <span class="text-xl font-bold font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span> </div> <p class="text-slate-500 text-sm max-w-sm leading-relaxed">
+Independent tools for 3D printing scale conversion. Built and maintained by one person who prints test pieces to verify every percentage.
+</p> </div> <!-- Link columns --> <div class="flex flex-wrap gap-x-16 gap-y-8"> <!-- Tools --> <div> <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Tools</h4> <ul class="space-y-4 text-sm text-slate-500 font-medium"> <li><a href="/" class="hover:text-[#ff6b35] transition-colors">Scale Engine</a></li> <li><a href="/library" class="hover:text-[#ff6b35] transition-colors">Personal Library</a></li> <li><a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference Library</a></li> <li><a href="/tools" class="hover:text-[#ff6b35] transition-colors">All Tools</a></li> <li><a href="/games" class="hover:text-[#ff6b35] transition-colors">Game Systems</a></li> <li><a href="/blog" class="hover:text-[#ff6b35] transition-colors">Blog</a></li> </ul> </div> <!-- Project --> <div> <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Project</h4> <ul class="space-y-4 text-sm text-slate-500 font-medium"> <li><a href="/about" class="hover:text-[#ff6b35] transition-colors">About & Methodology</a></li> <li><a href="/faq" class="hover:text-[#ff6b35] transition-colors">FAQ</a></li> <li><a href="/contact" class="hover:text-[#ff6b35] transition-colors">Contact</a></li> <li><a href="https://github.com/kitsorix-official/stlaccess" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">GitHub Source</a></li> <li><a href="https://github.com/kitsorix-official/stlaccess/issues" class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">Report an Issue</a></li> </ul> </div> <!-- Legal --> <div> <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Legal</h4> <ul class="space-y-4 text-sm text-slate-500 font-medium"> <li><a href="/privacy" class="hover:text-[#ff6b35] transition-colors">Privacy Policy</a></li> <li><a href="/terms" class="hover:text-[#ff6b35] transition-colors">Terms of Service</a></li> <li><a href="/legal" class="hover:text-[#ff6b35] transition-colors">Global Compliance</a></li> </ul> </div> </div> </div> <!-- Bottom bar --> <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500"> <span>
+Made by <a href="https://github.com/kitsorix-official" target="_blank" rel="noopener noreferrer" class="hover:text-[#ff6b35] transition-colors">kitsorix</a> </span> <div class="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest"> <a href="https://github.com/kitsorix-official/stlaccess" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">View Source on GitHub</a> <span>&copy; 2026 STLACCESS</span> </div> </div> </div> </footer> <!-- Mobile menu toggle --> <script>
+    (function() {
+      var btn = document.getElementById('mobile-menu-btn');
+      var menu = document.getElementById('mobile-menu');
+      var icon = document.getElementById('menu-icon');
+      
+      if (!btn || !menu || !icon) return;
+      
+      btn.addEventListener('click', function() {
+        var isOpen = !menu.classList.contains('hidden');
+        
+        if (isOpen) {
+          menu.classList.add('hidden');
+          menu.classList.remove('!block');
+          btn.setAttribute('aria-expanded', 'false');
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars-staggered');
+        } else {
+          menu.classList.remove('hidden');
+          menu.classList.add('!block');
+          btn.setAttribute('aria-expanded', 'true');
+          icon.classList.remove('fa-bars-staggered');
+          icon.classList.add('fa-xmark');
+        }
+      });
+      
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+          menu.classList.add('hidden');
+          menu.classList.remove('!block');
+          btn.setAttribute('aria-expanded', 'false');
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars-staggered');
+        }
+      });
+      
+      menu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.add('hidden');
+          menu.classList.remove('!block');
+          btn.setAttribute('aria-expanded', 'false');
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars-staggered');
+        });
+      });
+    })();
+  </script> </body> </html>
