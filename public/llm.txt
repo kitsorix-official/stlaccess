@@ -10,7 +10,7 @@
 - [Methodology](https://stlaccess.com/about) — 175cm human baseline, FDM test prints with digital calipers
 - [All Tools](https://stlaccess.com/tools) — stlscale Engine, Scale Reference, Filament Cost Calculator
 - [Game Systems](https://stlaccess.com/games) — Scale guides for 20+ tabletop games
-- [Blog](https://stlaccess.com/blog) — Deep-dive articles on miniature scale, 3D printing, and conversion math
+- [Guides](https://stlaccess.com/guides) — Deep-dive guides on miniature scale, 3D printing, and conversion math
 - [Privacy Policy](https://stlaccess.com/privacy) — No cookies, no tracking, no data collection
 - [Contact](https://stlaccess.com/contact) — Report errors, request new scales, suggest features
 
@@ -63,19 +63,19 @@
 | 1:72 | 32mm | 50.8% |
 | 1:100 | 32mm | 36.0% |
 
-## Blog articles
+## Guides
 
-- [D&D Miniature Scale: What Size Are D&D Minis and How to 3D Print Them](https://stlaccess.com/blog/dungeons-and-dragons-miniature-scale) — Covers official D&D minis, third-party alternatives, and how to scale STLs to 28mm for tabletop play
-- [How to Measure a Miniature's Scale: Eye Level vs Top of Head Explained](https://stlaccess.com/blog/how-to-measure-miniature-scale) — The two measurement methods and why they produce different numbers
-- [FDM Miniature Printing: Complete Guide to Layer Height, Nozzles, and Settings](https://stlaccess.com/blog/fdm-miniature-printing-guide) — FDM-specific settings for printing miniatures at various scales
-- [Bolt Action 28mm Scale: The Complete Guide to 3D Printing Historical Miniatures](https://stlaccess.com/blog/bolt-action-scale-guide) — Bolt Action scale, period-accurate sizing, and scaling historical models
-- [How to Scale Warhammer 40k Miniatures for 3D Printing: The Complete Guide](https://stlaccess.com/blog/warhammer-40k-scale-guide) — 40K scale breakdown, Primaris vs Firstborn, and proxy scaling
-- [The Ultimate Printable STL Scale Conversion Chart](https://stlaccess.com/blog/stl-scale-conversion-chart) — Quick-reference conversion table for all major systems
-- [How to Scale Real-World Objects to 32mm Miniatures (The Math Explained)](https://stlaccess.com/blog/real-world-objects-to-32mm) — Formula for converting real-world dimensions to miniature scale
-- [Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?](https://stlaccess.com/blog/upscaling-3d-prints-detail-limit) — Where FDM and resin quality degrades at larger scales
-- [How to Scale Miniatures in Chitubox & Lychee Slicer (Without Messing Up the Base)](https://stlaccess.com/blog/chitubox-lychee-scaling-guide) — Slicer-specific scaling workflow
-- [28mm to 32mm Scale: The Exact Percentage You Need for Your Slicer](https://stlaccess.com/blog/28mm-to-32mm-percentage) — The most common single conversion, fully explained
-- [Why Miniature Scales Use a 175cm Human Baseline](https://stlaccess.com/blog/175cm-baseline) — Origin and reasoning behind the 175cm reference height
+- [D&D Miniature Scale: What Size Are D&D Minis and How to 3D Print Them](https://stlaccess.com/guides/dungeons-and-dragons-miniature-scale) — Covers official D&D minis, third-party alternatives, and how to scale STLs to 28mm for tabletop play
+- [How to Measure a Miniature's Scale: Eye Level vs Top of Head Explained](https://stlaccess.com/guides/how-to-measure-miniature-scale) — The two measurement methods and why they produce different numbers
+- [FDM Miniature Printing: Complete Guide to Layer Height, Nozzles, and Settings](https://stlaccess.com/guides/fdm-miniature-printing-guide) — FDM-specific settings for printing miniatures at various scales
+- [Bolt Action 28mm Scale: The Complete Guide to 3D Printing Historical Miniatures](https://stlaccess.com/guides/bolt-action-scale-guide) — Bolt Action scale, period-accurate sizing, and scaling historical models
+- [How to Scale Warhammer 40k Miniatures for 3D Printing: The Complete Guide](https://stlaccess.com/guides/warhammer-40k-scale-guide) — 40K scale breakdown, Primaris vs Firstborn, and proxy scaling
+- [The Ultimate Printable STL Scale Conversion Chart](https://stlaccess.com/guides/stl-scale-conversion-chart) — Quick-reference conversion table for all major systems
+- [How to Scale Real-World Objects to 32mm Miniatures (The Math Explained)](https://stlaccess.com/guides/real-world-objects-to-32mm) — Formula for converting real-world dimensions to miniature scale
+- [Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?](https://stlaccess.com/guides/upscaling-3d-prints-detail-limit) — Where FDM and resin quality degrades at larger scales
+- [How to Scale Miniatures in Chitubox & Lychee Slicer (Without Messing Up the Base)](https://stlaccess.com/guides/chitubox-lychee-scaling-guide) — Slicer-specific scaling workflow
+- [28mm to 32mm Scale: The Exact Percentage You Need for Your Slicer](https://stlaccess.com/guides/28mm-to-32mm-percentage) — The most common single conversion, fully explained
+- [Why Miniature Scales Use a 175cm Human Baseline](https://stlaccess.com/guides/175cm-baseline) — Origin and reasoning behind the 175cm reference height
 
 ## How it works
 

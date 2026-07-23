@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import tools from "../../data/tools.json";
 import site from "../../data/site.json";
+import filamentPresets from "../../data/filamentPresets.json";
 
 export async function getStaticPaths() {
   return tools.map((tool) => ({
@@ -188,6 +189,38 @@ const schema = JSON.stringify({
     <section class="mb-12">
       <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Calculator</h2>
       <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+        <!-- Scale context banner (shown when arriving via deep-link) -->
+        <div id="scale-context" class="hidden mb-8 bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-6">
+          <div class="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <p class="text-xs text-[#ff6b35] uppercase tracking-widest font-bold mb-1">Scale conversion</p>
+              <p class="text-lg font-bold text-white">
+                <span id="ctx-from"></span>
+                <i class="fa-solid fa-arrow-right text-sm text-slate-500 mx-2"></i>
+                <span id="ctx-to"></span>
+                <span class="text-[#ff6b35] ml-2" id="ctx-percent"></span>
+              </p>
+              <p class="text-xs text-slate-500 mt-1" id="ctx-logic"></p>
+            </div>
+            <a id="ctx-back-link" href="/" class="text-xs text-[#ff6b35] hover:text-white transition-colors font-bold uppercase tracking-widest">
+              <i class="fa-solid fa-arrow-left mr-1"></i>Back to calculator
+            </a>
+          </div>
+          <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+            This is your slicer scale. After importing and scaling your STL, check your slicer's estimated filament weight and enter it below.
+          </p>
+        </div>
+
+        <!-- Filament presets -->
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="text-xs text-slate-500 uppercase tracking-widest mr-1 self-center">Presets:</span>
+          {filamentPresets.map((preset) => (
+            <button class="filament-preset-btn text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-price={preset.price} data-weight={preset.weight} title={preset.brands}>
+              {preset.name}
+            </button>
+          ))}
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div>
             <label for="roll-price" class="block text-sm font-bold text-slate-300 mb-2">Roll Price ($)</label>
@@ -396,6 +429,41 @@ const schema = JSON.stringify({
 
     const inputs = [els.rollPrice, els.rollWeight, els.filamentUsed, els.powerDraw, els.electricityRate, els.printTime];
     inputs.forEach((el) => el.addEventListener("input", update));
+
+    // Filament preset buttons
+    document.querySelectorAll(".filament-preset-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        els.rollPrice.value = btn.dataset.price;
+        els.rollWeight.value = btn.dataset.weight;
+        update();
+      });
+    });
+
+    // URL param support — show scale context banner when arriving from scale engine
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var from = params.get("from");
+      var to = params.get("to");
+      var percent = params.get("percent");
+      var logic = params.get("logic");
+
+      if (from && to && percent) {
+        var ctx = document.getElementById("scale-context");
+        if (ctx) {
+          ctx.classList.remove("hidden");
+          document.getElementById("ctx-from").textContent = from;
+          document.getElementById("ctx-to").textContent = to;
+          document.getElementById("ctx-percent").textContent = percent + "%";
+          document.getElementById("ctx-logic").textContent = logic === "head" ? "Top of Head measurement" : "Eye Level measurement";
+
+          var backLink = document.getElementById("ctx-back-link");
+          if (backLink) {
+            backLink.href = "/?source=" + encodeURIComponent(from) + "&target=" + encodeURIComponent(to) + "&logic=" + encodeURIComponent(logic || "eye");
+          }
+        }
+      }
+    })();
+
     update();
   </script>
 )}

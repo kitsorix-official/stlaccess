@@ -65,34 +65,17 @@ function calculate() {
     // Visual Update
     var display = document.getElementById('resultDisplay');
     display.textContent = result.toFixed(1) + '%';
-}
 
-async function copyToClipboard() {
-    var result = document.getElementById('resultDisplay').textContent.trim();
-    var btn = document.getElementById('copyBtn');
-    var icon = btn.querySelector('i');
-    var text = btn.querySelector('span');
-
-    try {
-        await navigator.clipboard.writeText(result);
-        text.textContent = "Copied to Slicer!";
-        icon.className = "fa-solid fa-check";
-        btn.style.backgroundColor = "#22c55e";
-    } catch (err) {
-        var el = document.createElement('textarea');
-        el.value = result;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        text.textContent = "Copied!";
+    // Update Estimate Cost deep-link
+    var costBtn = document.getElementById('estimateCostBtn');
+    if (costBtn) {
+        var params = new URLSearchParams();
+        params.set('from', source);
+        params.set('to', target);
+        params.set('percent', result.toFixed(1));
+        params.set('logic', logic);
+        costBtn.href = '/tools/filament-cost-calculator?' + params.toString();
     }
-
-    setTimeout(function() {
-        text.textContent = "Copy Percentage";
-        icon.className = "fa-regular fa-copy";
-        btn.style.backgroundColor = "black";
-    }, 2000);
 }
 
 // Attach listeners

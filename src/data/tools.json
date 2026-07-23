@@ -39,7 +39,7 @@
     "description": "Enter your filament roll price and weight, the grams your slicer reports for the print, and optionally the power draw and print time to see the estimated total cost. Works for PLA, PETG, and any filament type.",
     "icon": "fa-dollar-sign",
     "url": "/tools/filament-cost-calculator",
-    "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Cost per gram breakdown", "No account, no tracking"],
+    "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Filament presets with real market data", "Deep-link from scale engine", "No account, no tracking"],
     "category": "calculators",
     "featured": true
   }

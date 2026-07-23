@@ -27,10 +27,10 @@ export const GET: APIRoute = () => {
     .map(
       (post) => `    <item>
       <title>${escapeXml(post.title)}</title>
-      <link>${site.url}/blog/${post.slug}</link>
+      <link>${site.url}/guides/${post.slug}</link>
       <description>${escapeXml(post.description)}</description>
       <pubDate>${formatDate(post.pubDate)}</pubDate>
-      <guid>${site.url}/blog/${post.slug}</guid>
+      <guid>${site.url}/guides/${post.slug}</guid>
     </item>`
     )
     .join('\n');
@@ -39,7 +39,7 @@ export const GET: APIRoute = () => {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${site.rssChannelTitle}</title>
-    <link>${site.url}/blog</link>
+    <link>${site.url}/guides</link>
     <description>${site.rssChannelDescription}</description>
     <language>en</language>
     <lastBuildDate>${formatDate(sorted[0]?.pubDate ?? '2026-07-11')}</lastBuildDate>
