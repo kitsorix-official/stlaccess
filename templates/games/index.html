@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Game Systems | {{ site.name }}{% endblock %}
+{% block description %}Browse all tabletop game systems with scale information, conversion percentages, and 3D printing guides.{% endblock %}
+{% block canonical %}{{ site.url }}/games/{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Game Systems",
+  "description": "Browse all tabletop game systems with scale information and conversion guides.",
+  "url": "{{ site.url }}/games/"
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <span aria-current="page">Game Systems</span>
+</nav>
+<h1>Game Systems</h1>
+<p class="subtitle">Scale information, conversion percentages, and printing guides for every major tabletop game system.</p>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <div class="card-grid">
+    {% for game in all_games %}
+    <article class="card">
+      <a href="/games/{{ game.slug }}/">
+        <span class="card-name">{{ game.name }}</span>
+        <span class="card-meta">{{ game.scale }} &middot; {{ game.publisher }} &middot; {{ game.genre }}</span>
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

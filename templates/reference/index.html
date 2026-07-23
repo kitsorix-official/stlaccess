@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Scale Conversion Reference Library | {{ site.name }}{% endblock %}
+{% block description %}Complete reference library of miniature scale conversions. Convert between 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales.{% endblock %}
+{% block canonical %}{{ site.url }}/reference/{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Scale Conversion Reference Library",
+  "description": "Complete reference library of miniature scale conversions for 3D printing.",
+  "url": "{{ site.url }}/reference/"
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <span aria-current="page">Reference Library</span>
+</nav>
+<h1>Scale Conversion Reference</h1>
+<p class="subtitle">All miniature scale conversions in one place. Search or browse by scale.</p>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+  <input type="search" id="conversion-search" placeholder="Search conversions..." class="search-input">
+</div>
+
+<div class="container">
+  <div class="card-grid" id="conversions-list">
+    {% for conv in conversions %}
+    <article class="card" data-search="{{ conv.sourceScale }} {{ conv.targetScale }} {{ conv.percentage }}">
+      <a href="/reference/{{ conv.slug }}/">
+        <span class="card-percentage">{{ conv.percentage }}%</span>
+        <span class="card-label">{{ conv.sourceScale }} &rarr; {{ conv.targetScale }}</span>
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+</div>
+
+<section class="container">
+  <h2>Reference Questions</h2>
+  {% for item in reference_faq %}
+  <details class="faq-item">
+    <summary>
+      {{ item.question }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>{{ item.answer }}</p></div>
+  </details>
+  {% endfor %}
+</section>
+
+<script src="/js/conversion-filter.js"></script>
+{% endblock %}

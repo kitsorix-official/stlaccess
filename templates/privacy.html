@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy | {{ site.name }}{% endblock %}
+{% block description %}Privacy policy for {{ site.name }}.{% endblock %}
+{% block canonical %}{{ site.url }}/privacy/{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <span aria-current="page">Privacy Policy</span></nav>
+<h1>Privacy Policy</h1>
+{% endblock %}
+
+{% block main %}
+<article class="container--narrow prose-page prose">
+  <h2>What We Collect</h2>
+  <p>{{ site.name }} does not collect personal data. The calculator runs entirely in your browser. Saved conversions are stored in your browser's LocalStorage and never leave your device.</p>
+  <h2>Analytics</h2>
+  <p>We may use privacy-focused analytics that do not use cookies or track individual users across sessions.</p>
+  <h2>Third-Party Services</h2>
+  <p>Feedback forms may submit data to Google Apps Script. This data is used solely to respond to your message and is not shared with third parties.</p>
+  <h2>Your Rights</h2>
+  <p>Since we collect no personal data, there is no personal data to access, correct, or delete. LocalStorage data can be cleared at any time through your browser settings.</p>
+  <h2>Changes</h2>
+  <p>We may update this policy from time to time. Changes will be posted on this page.</p>
+  <p>Last updated: {{ site.dateModified }}</p>
+</article>
+{% endblock %}

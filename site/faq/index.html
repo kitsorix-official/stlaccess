@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions | STLACCESS</title>
+  <meta name="description" content="Answers to common questions about miniature scale conversion, 3D printing scales, and the STLACCESS tool.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ff6b35">
+  <link rel="canonical" href="https://stlaccess.com/faq/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stlaccess.com">
+  <meta property="og:title" content="STLACCESS">
+  <meta property="og:description" content="Free STL scale converter — scale STL files online for 3D printed miniatures. 28mm to 32mm = 114.3% with 40+ gaming scale conversions.">
+  <meta property="og:image" content="https://stlaccess.com/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="STLACCESS">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="STLACCESS">
+  <meta name="twitter:description" content="Free STL scale converter — scale STL files online for 3D printed miniatures. 28mm to 32mm = 114.3% with 40+ gaming scale conversions.">
+  <meta name="twitter:image" content="https://stlaccess.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="STLACCESS Blog — 3D Print Miniature Scale Conversion" href="/rss.xml">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "STLACCESS",
+    "alternateName": "stlscale",
+    "url": "https://stlaccess.com",
+    "logo": "https://stlaccess.com/favicon.svg",
+    "author": {
+      "@type": "Person",
+      "name": "kitsorix",
+      "url": "https://github.com/kitsorix-official",
+      "jobTitle": "3D Printing Hobbyist"
+    },
+    "sameAs": ["https://github.com/kitsorix-official"]
+  }
+  </script>
+
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    
+    {
+      "@type": "Question",
+      "name": "Do you measure miniatures to the eyes or to the top of the head?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "I measure to the eyes at 160cm on a 175cm human baseline. This matches the community convention for gaming scales (28mm, 32mm, 35mm, 40mm, 75mm). Ratio scales (1:35, 1:48, 1:56, 1:72, 1:100) use top-of-head measurements at 175cm, matching the standard for scale modeling."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Why is miniature scale inconsistent across manufacturers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There is no universal standard for &#39;28mm&#39; or &#39;32mm&#39; miniatures. Each manufacturer defines their own scale based on artistic preference, production constraints, and market positioning. Games Workshop&#39;s &#39;32mm heroic&#39; differs from Atomic Mass Games&#39; &#39;35mm&#39; even though both are larger than traditional 28mm."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "What is the actual size difference between 28mm and 32mm miniatures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "28mm miniatures measure 28mm to the eye level (30.5mm to top of head). 32mm miniatures measure 32mm to the eye level (34.5mm to top of head). The difference is 4mm at eye level, which is about 14.3%. To convert between them, scale by 114.3% (28→32) or 87.5% (32→28)."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "How do I check what scale a miniature is without printing it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Load the STL in your slicer and measure the eye-level height using the ruler tool. Compare against known scale benchmarks: 28mm eyes = 28mm, 32mm eyes = 32mm, etc. If the figure is roughly 30mm total height, it is likely 28mm scale."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "What percentage do I scale 28mm to 32mm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set your slicer to 114.3% when converting 28mm miniatures to 32mm scale. This is calculated by dividing the target eye-level (32mm) by the source eye-level (28mm): 32 ÷ 28 = 1.143."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "What percentage do I scale 32mm to 28mm?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set your slicer to 87.5% when converting 32mm miniatures down to 28mm scale. This is calculated by dividing the target eye-level (28mm) by the source eye-level (32mm): 28 ÷ 32 = 0.875."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "What scale are Warhammer 40k Primaris Space Marines?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Primaris Space Marines are nominally &#39;32mm&#39; scale, but they measure approximately 40mm to helmet top and about 35mm to eye level. The &#39;32mm&#39; label is a community convention from when Games Workshop transitioned from 28mm in 2014-2015. Always check the actual measurements, not just the label."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Does the base size affect the miniature scale?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Base size and miniature scale are independent. A 28mm infantry model can be placed on a 25mm, 32mm, or 40mm base depending on game rules. The scale refers to the figure proportions, not the base diameter."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Can I use the same STL file for different scales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Any STL can be scaled to any percentage. The math is target eye-level ÷ source eye-level × 100. A 28mm STL scaled to 114.3% becomes a 32mm miniature. The quality depends on the original sculpt detail and your printer resolution."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Can I mix miniatures from different scales on the same table?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can, but it may look visually inconsistent. If you want 28mm and 32mm models to look proportional together, scale the 28mm models up to 114.3% or the 32mm models down to 87.5%. Many players mix scales for terrain and vehicles without issue."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "What scale vehicles work with 28mm Bolt Action infantry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1:56 scale vehicles are the standard match for 28mm infantry. 1:48 vehicles are slightly oversized but acceptable. 1:35 vehicles are too large for 28mm infantry but work well as display pieces."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "How tall are 1:48 scale human figures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 1:48 scale human figure (175cm real height) measures approximately 36.5mm to the top of the head, or 33.3mm to eye level. This falls between 32mm and 35mm gaming scales."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Should I scale uniformly or non-uniformly in my slicer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Always use uniform scaling (same percentage on X, Y, and Z) unless you have a specific reason to stretch the model. Non-uniform scaling distorts proportions and can cause fit issues with multi-part models."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Does 3D printing filament shrink? Do I need to compensate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PLA shrinks approximately 0.8-2% as it cools. PETG shrinks 0.2-0.8%. ABS shrinks 0.5-0.8%. For most miniature scaling, this shrinkage is within acceptable tolerance. If precision matters, add 0.5-1% to your calculated scale percentage."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Can FDM printers handle 28mm and 32mm miniatures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with the right settings. Use a 0.2mm nozzle at 0.06-0.08mm layer height. Print at 20-30mm/s for outer walls. Orient faces upward to minimize visible layer lines. FDM at 28-32mm produces tabletop-quality miniatures, though resin gives cleaner detail."
+      }
+    },
+    
+    {
+      "@type": "Question",
+      "name": "Which slicer should I use for scaling miniatures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any modern slicer supports percentage scaling. PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer all work. Bambu Studio and OrcaSlicer have the best tree support generation for miniature shapes."
+      }
+    }
+    
+  ]
+}
+</script>
+
+  
+</head>
+<body>
+  <header class="site-header ">
+    <div class="container">
+      
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <span aria-current="page">FAQ</span></nav>
+<h1>Frequently Asked Questions</h1>
+<p class="subtitle">Everything you need to know about miniature scale conversion and 3D printing.</p>
+
+    </div>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="STLACCESS home">
+        <span class="logo-stl">STL</span><span class="logo-access">ACCESS</span>
+      </a>
+
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a href="/tools/stlscale-engine/" role="menuitem" class="">Scale Engine</a></li>
+        <li role="none"><a href="/reference/" role="menuitem" class="">Reference</a></li>
+        <li role="none"><a href="/tools/" role="menuitem" class="">Tools</a></li>
+        <li role="none"><a href="/games/" role="menuitem" class="">Games</a></li>
+        <li role="none"><a href="/guides/" role="menuitem" class="">Guides</a></li>
+      </ul>
+
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<section class="container">
+  <input type="search" id="faq-search" placeholder="Search questions..." class="search-input">
+</section>
+
+<section class="container">
+  
+  
+  <div class="category-block">
+  <h2>Methodology</h2>
+  
+  <details class="faq-item">
+    <summary>
+      Do you measure miniatures to the eyes or to the top of the head?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>I measure to the eyes at 160cm on a 175cm human baseline. This matches the community convention for gaming scales (28mm, 32mm, 35mm, 40mm, 75mm). Ratio scales (1:35, 1:48, 1:56, 1:72, 1:100) use top-of-head measurements at 175cm, matching the standard for scale modeling.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      Why is miniature scale inconsistent across manufacturers?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>There is no universal standard for &#39;28mm&#39; or &#39;32mm&#39; miniatures. Each manufacturer defines their own scale based on artistic preference, production constraints, and market positioning. Games Workshop&#39;s &#39;32mm heroic&#39; differs from Atomic Mass Games&#39; &#39;35mm&#39; even though both are larger than traditional 28mm.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      What is the actual size difference between 28mm and 32mm miniatures?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>28mm miniatures measure 28mm to the eye level (30.5mm to top of head). 32mm miniatures measure 32mm to the eye level (34.5mm to top of head). The difference is 4mm at eye level, which is about 14.3%. To convert between them, scale by 114.3% (28→32) or 87.5% (32→28).</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      How do I check what scale a miniature is without printing it?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Load the STL in your slicer and measure the eye-level height using the ruler tool. Compare against known scale benchmarks: 28mm eyes = 28mm, 32mm eyes = 32mm, etc. If the figure is roughly 30mm total height, it is likely 28mm scale.</p></div>
+  </details>
+  
+  </div>
+  
+  <div class="category-block">
+  <h2>Reference</h2>
+  
+  <details class="faq-item">
+    <summary>
+      What percentage do I scale 28mm to 32mm?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Set your slicer to 114.3% when converting 28mm miniatures to 32mm scale. This is calculated by dividing the target eye-level (32mm) by the source eye-level (28mm): 32 ÷ 28 = 1.143.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      What percentage do I scale 32mm to 28mm?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Set your slicer to 87.5% when converting 32mm miniatures down to 28mm scale. This is calculated by dividing the target eye-level (28mm) by the source eye-level (32mm): 28 ÷ 32 = 0.875.</p></div>
+  </details>
+  
+  </div>
+  
+  <div class="category-block">
+  <h2>Sci-fi and Fantasy</h2>
+  
+  <details class="faq-item">
+    <summary>
+      What scale are Warhammer 40k Primaris Space Marines?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Primaris Space Marines are nominally &#39;32mm&#39; scale, but they measure approximately 40mm to helmet top and about 35mm to eye level. The &#39;32mm&#39; label is a community convention from when Games Workshop transitioned from 28mm in 2014-2015. Always check the actual measurements, not just the label.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      Does the base size affect the miniature scale?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>No. Base size and miniature scale are independent. A 28mm infantry model can be placed on a 25mm, 32mm, or 40mm base depending on game rules. The scale refers to the figure proportions, not the base diameter.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      Can I use the same STL file for different scales?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Yes. Any STL can be scaled to any percentage. The math is target eye-level ÷ source eye-level × 100. A 28mm STL scaled to 114.3% becomes a 32mm miniature. The quality depends on the original sculpt detail and your printer resolution.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      Can I mix miniatures from different scales on the same table?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>You can, but it may look visually inconsistent. If you want 28mm and 32mm models to look proportional together, scale the 28mm models up to 114.3% or the 32mm models down to 87.5%. Many players mix scales for terrain and vehicles without issue.</p></div>
+  </details>
+  
+  </div>
+  
+  <div class="category-block">
+  <h2>Historical and Vehicles</h2>
+  
+  <details class="faq-item">
+    <summary>
+      What scale vehicles work with 28mm Bolt Action infantry?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>1:56 scale vehicles are the standard match for 28mm infantry. 1:48 vehicles are slightly oversized but acceptable. 1:35 vehicles are too large for 28mm infantry but work well as display pieces.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      How tall are 1:48 scale human figures?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>A 1:48 scale human figure (175cm real height) measures approximately 36.5mm to the top of the head, or 33.3mm to eye level. This falls between 32mm and 35mm gaming scales.</p></div>
+  </details>
+  
+  </div>
+  
+  <div class="category-block">
+  <h2>FDM Printing and Slicers</h2>
+  
+  <details class="faq-item">
+    <summary>
+      Should I scale uniformly or non-uniformly in my slicer?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Always use uniform scaling (same percentage on X, Y, and Z) unless you have a specific reason to stretch the model. Non-uniform scaling distorts proportions and can cause fit issues with multi-part models.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      Does 3D printing filament shrink? Do I need to compensate?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>PLA shrinks approximately 0.8-2% as it cools. PETG shrinks 0.2-0.8%. ABS shrinks 0.5-0.8%. For most miniature scaling, this shrinkage is within acceptable tolerance. If precision matters, add 0.5-1% to your calculated scale percentage.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      Can FDM printers handle 28mm and 32mm miniatures?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Yes, with the right settings. Use a 0.2mm nozzle at 0.06-0.08mm layer height. Print at 20-30mm/s for outer walls. Orient faces upward to minimize visible layer lines. FDM at 28-32mm produces tabletop-quality miniatures, though resin gives cleaner detail.</p></div>
+  </details>
+  
+  <details class="faq-item">
+    <summary>
+      Which slicer should I use for scaling miniatures?
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>Any modern slicer supports percentage scaling. PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer all work. Bambu Studio and OrcaSlicer have the best tree support generation for miniature shapes.</p></div>
+  </details>
+  
+  </div>
+  
+</section>
+
+<script src="/js/faq-search.js"></script>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo"><span class="logo-stl">STL</span><span class="logo-access">ACCESS</span></a>
+          <p>Free browser-based STL scale converter for 3D printed miniatures.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Tools</h3>
+          <a href="/tools/stlscale-engine/">Scale Engine</a>
+          <a href="/reference/">Reference Library</a>
+          <a href="/tools/">All Tools</a>
+        </div>
+        <div class="footer-column">
+          <h3>Project</h3>
+          <a href="/about/">About</a>
+          <a href="/guides/">Guides</a>
+          <a href="/games/">Game Systems</a>
+          <a href="/contact/">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <a href="/legal/">Legal Notice</a>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Built with care by <a href="https://github.com/kitsorix-official">kitsorix</a> &middot; <a href="https://github.com/kitsorix/stlaccess">GitHub</a> &middot; &copy; 2026 STLACCESS</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  </script>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="/" class="">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </a>
+    <a href="/reference/" class="">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Reference
+    </a>
+    <a href="/games/" class="">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 10h.01"/><path d="M7 14h.01"/></svg>
+      Games
+    </a>
+    <a href="/guides/" class="">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Guides
+    </a>
+    <a href="/tools/" class="">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Tools
+    </a>
+  </nav>
+</body>
+</html>

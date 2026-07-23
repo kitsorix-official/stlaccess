@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /site/
+
+Sitemap: https://stlaccess.com/sitemap.xml

@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "stlscale-engine",
+    "name": "STL Scale Engine",
+    "shortDescription": "Free browser-based STL scale converter for 3D printed miniatures.",
+    "description": "Convert between 15+ gaming scales with accurate percentages. Supports eye-level and top-of-head measurement modes with material compensation for filament shrinkage.",
+    "icon": "calculator",
+    "url": "/tools/stlscale-engine/",
+    "features": ["15+ scale conversions", "Eye-level and top-of-head modes", "Material shrinkage compensation", "One-click copy to clipboard"],
+    "category": "calculators",
+    "featured": true
+  },
+  {
+    "slug": "scale-reference",
+    "name": "Scale Reference",
+    "shortDescription": "Complete reference of all miniature scale conversions.",
+    "description": "Browse all 44 verified conversion percentages between gaming and ratio scales. Each conversion includes math proof, contextual guidance, and printing tips.",
+    "icon": "book",
+    "url": "/reference/",
+    "features": ["44 verified conversions", "Math proof for every percentage", "Source and target scale context", "Reverse conversion links"],
+    "category": "references",
+    "featured": true
+  },
+  {
+    "slug": "slicer-percentage-calculator",
+    "name": "Slicer Percentage Calculator",
+    "shortDescription": "Calculate exact slicer percentages for custom scale conversions.",
+    "description": "Enter any source and target measurements to calculate the exact scaling percentage for your slicer. Works with any two measurements, not just standard scales.",
+    "icon": "percentage",
+    "url": "/tools/slicer-percentage-calculator/",
+    "features": ["Custom source and target inputs", "Real-time calculation", "Copy result to clipboard", "Works with any measurement"],
+    "category": "calculators",
+    "featured": true
+  },
+  {
+    "slug": "filament-cost-calculator",
+    "name": "Filament Cost Calculator",
+    "shortDescription": "Estimate filament cost per miniature based on weight and material price.",
+    "description": "Calculate the approximate filament cost for your 3D printed miniatures based on filament weight, spool price, and model volume.",
+    "icon": "coins",
+    "url": "/tools/filament-cost-calculator/",
+    "features": ["PLA, PETG, ABS support", "Cost per model estimate", "Spool price calculator", "Volume-based estimation"],
+    "category": "calculators",
+    "featured": false
+  }
+]

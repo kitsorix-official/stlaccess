@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STL Scale Engine — Free Miniature Scale Converter | STLACCESS</title>
+  <meta name="description" content="Free STL scale converter — scale STL files online for 3D printed miniatures. 28mm to 32mm = 114.3% with 40+ gaming scale conversions.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ff6b35">
+  <link rel="canonical" href="https://stlaccess.com/tools/stlscale-engine/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stlaccess.com">
+  <meta property="og:title" content="STLACCESS">
+  <meta property="og:description" content="Free STL scale converter — scale STL files online for 3D printed miniatures. 28mm to 32mm = 114.3% with 40+ gaming scale conversions.">
+  <meta property="og:image" content="https://stlaccess.com/og-image.png">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="STLACCESS">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="STLACCESS">
+  <meta name="twitter:description" content="Free STL scale converter — scale STL files online for 3D printed miniatures. 28mm to 32mm = 114.3% with 40+ gaming scale conversions.">
+  <meta name="twitter:image" content="https://stlaccess.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate" type="application/rss+xml" title="STLACCESS Blog — 3D Print Miniature Scale Conversion" href="/rss.xml">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "STLACCESS",
+    "alternateName": "stlscale",
+    "url": "https://stlaccess.com",
+    "logo": "https://stlaccess.com/favicon.svg",
+    "author": {
+      "@type": "Person",
+      "name": "kitsorix",
+      "url": "https://github.com/kitsorix-official",
+      "jobTitle": "3D Printing Hobbyist"
+    },
+    "sameAs": ["https://github.com/kitsorix-official"]
+  }
+  </script>
+
+  
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "STL Scale Engine",
+  "description": "Free browser-based STL scale converter for 3D printed miniatures. Convert between 40+ gaming scales.",
+  "url": "https://stlaccess.com/tools/stlscale-engine/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://stlaccess.com" },
+    { "@type": "ListItem", "position": 2, "name": "All Tools", "item": "https://stlaccess.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "STL Scale Engine" }
+  ]
+}
+</script>
+
+  
+</head>
+<body>
+  <header class="site-header ">
+    <div class="container">
+      
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="/">Home</a> <span>/</span>
+  <a href="/tools/">All Tools</a> <span>/</span>
+  <span aria-current="page">STL Scale Engine</span>
+</nav>
+<h1>STL Scale Converter for 3D Printed Miniatures</h1>
+<p class="subtitle">Convert between 40+ gaming scales with accurate percentages. Built for 3D printing hobbyists who need precise scale conversions.</p>
+
+    </div>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="STLACCESS home">
+        <span class="logo-stl">STL</span><span class="logo-access">ACCESS</span>
+      </a>
+
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a href="/tools/stlscale-engine/" role="menuitem" class="">Scale Engine</a></li>
+        <li role="none"><a href="/reference/" role="menuitem" class="">Reference</a></li>
+        <li role="none"><a href="/tools/" role="menuitem" class="active">Tools</a></li>
+        <li role="none"><a href="/games/" role="menuitem" class="">Games</a></li>
+        <li role="none"><a href="/guides/" role="menuitem" class="">Guides</a></li>
+      </ul>
+
+      <button class="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    
+<section class="container" id="calculator">
+  <div class="calculator">
+    <div class="calc-row">
+      <label for="source-scale">Source Scale</label>
+      <select id="source-scale" class="calc-select">
+        <optgroup label="Ratio Scales">
+          
+          <option value="1:35">1:35 (1:35)</option>
+          
+          <option value="1:27">1:27 (1:27)</option>
+          
+          <option value="1:48">1:48 (1:48)</option>
+          
+          <option value="1:56">1:56 (1:56)</option>
+          
+          <option value="1:72">1:72 (1:72)</option>
+          
+          <option value="1:100">1:100 (1:100)</option>
+          
+        </optgroup>
+        <optgroup label="Gaming Scales">
+          
+          <option value="28mm">28mm — Dungeons &amp; Dragons</option>
+          
+          <option value="32mm">32mm — Warhammer 40,000 (Primaris)</option>
+          
+          <option value="35mm">35mm — Star Wars: Legion</option>
+          
+          <option value="40mm">40mm — Star Wars: Shatterpoint</option>
+          
+          <option value="75mm">75mm — Display busts</option>
+          
+          <option value="6mm">6mm — BattleTech</option>
+          
+          <option value="8mm">8mm — Legions Imperialis</option>
+          
+          <option value="10mm">10mm — Dropzone Commander</option>
+          
+          <option value="30mm">30mm — Warmachine &amp; Hordes</option>
+          
+          <option value="15mm">15mm — Flames of War</option>
+          
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="calc-row">
+      <label for="target-scale">Target Scale</label>
+      <select id="target-scale" class="calc-select">
+        <optgroup label="Ratio Scales">
+          
+          <option value="1:35">1:35 (1:35)</option>
+          
+          <option value="1:27">1:27 (1:27)</option>
+          
+          <option value="1:48">1:48 (1:48)</option>
+          
+          <option value="1:56">1:56 (1:56)</option>
+          
+          <option value="1:72">1:72 (1:72)</option>
+          
+          <option value="1:100">1:100 (1:100)</option>
+          
+        </optgroup>
+        <optgroup label="Gaming Scales">
+          
+          <option value="28mm">28mm — Dungeons &amp; Dragons</option>
+          
+          <option value="32mm">32mm — Warhammer 40,000 (Primaris)</option>
+          
+          <option value="35mm">35mm — Star Wars: Legion</option>
+          
+          <option value="40mm">40mm — Star Wars: Shatterpoint</option>
+          
+          <option value="75mm">75mm — Display busts</option>
+          
+          <option value="6mm">6mm — BattleTech</option>
+          
+          <option value="8mm">8mm — Legions Imperialis</option>
+          
+          <option value="10mm">10mm — Dropzone Commander</option>
+          
+          <option value="30mm">30mm — Warmachine &amp; Hordes</option>
+          
+          <option value="15mm">15mm — Flames of War</option>
+          
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="calc-row calc-toggles">
+      <label class="toggle">
+        <input type="checkbox" id="use-top-head"> Top of Head
+      </label>
+      <label class="toggle">
+        <input type="checkbox" id="material-comp"> Material Compensation
+      </label>
+    </div>
+
+    <div class="calc-result" id="result-display">
+      <span class="result-value" id="result-value">114.3</span>
+      <span class="result-percent">%</span>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <h2>How to Use the Scale Converter</h2>
+  <ol class="steps">
+    <li class="step">
+      <span class="step-number">1</span>
+      <h3>Select Your Source Scale</h3>
+      <p>Choose the scale of your original miniature from the dropdown. Supports 15+ scales including 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100.</p>
+    </li>
+    <li class="step">
+      <span class="step-number">2</span>
+      <h3>Select Your Target Scale</h3>
+      <p>Choose the scale you want to convert to. The converter calculates the exact percentage using eye-level measurements from a 175cm human baseline (160cm eye level).</p>
+    </li>
+    <li class="step">
+      <span class="step-number">3</span>
+      <h3>Apply the Percentage</h3>
+      <p>Set your slicer to the calculated percentage using uniform scaling across all axes. For example, 114.3% converts 28mm miniatures to 32mm scale for Warhammer 40,000 Primaris.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="container">
+  <h2>Popular Scale Conversions</h2>
+  <div class="card-grid">
+    
+    <a href="/reference/1-35-to-28mm/" class="card">
+      <span class="card-percentage">56.0%</span>
+      <span class="card-label">1:35 &rarr; 28mm</span>
+      <span class="card-subtext">What I use when converting 1:35 scale models to 28mm for my table.</span>
+    </a>
+    
+    <a href="/reference/28mm-to-32mm/" class="card">
+      <span class="card-percentage">114.3%</span>
+      <span class="card-label">28mm &rarr; 32mm</span>
+      <span class="card-subtext">What I use when converting 28mm scale models to 32mm for my table.</span>
+    </a>
+    
+    <a href="/reference/32mm-to-28mm/" class="card">
+      <span class="card-percentage">87.5%</span>
+      <span class="card-label">32mm &rarr; 28mm</span>
+      <span class="card-subtext">What I use when converting 32mm models down to 28mm for my table.</span>
+    </a>
+    
+    <a href="/reference/35mm-to-28mm/" class="card">
+      <span class="card-percentage">80.0%</span>
+      <span class="card-label">35mm &rarr; 28mm</span>
+      <span class="card-subtext">What I use when converting 35mm models down to 28mm for my table.</span>
+    </a>
+    
+  </div>
+</section>
+
+<section class="container">
+  <h2>Why I Built STLACCESS</h2>
+  <p>I'm kitsorix, a 3D printing hobbyist who got tired of Googling "what percentage to scale 28mm to 32mm" every time I converted miniatures between systems. STLACCESS is a free, browser-based tool that does the math for you &mdash; no downloads, no accounts, no ads. The conversion data is verified against community sources.</p>
+  <p>The eye-level measurement baseline uses 160cm on a 175cm human, which matches the community convention for gaming scales. Ratio scales (1:35, 1:48, 1:56, 1:72, 1:100) use top-of-head measurements at 175cm, matching the standard for scale modeling.</p>
+</section>
+
+<section class="container">
+  <h2>Help Improve STLACCESS</h2>
+  <p>Found a bug? Have a suggestion? Let me know.</p>
+  <form action="https://script.google.com/macros/s/AKfycbxgBWP8jUCPC_RSWMSxeajo-aPl1htSt1XNDYU6Rk2mXpUhQLHOssv_4t4mpUWry2PEsw/exec" method="POST" class="feedback-form">
+    <textarea name="message" placeholder="Your feedback..." required></textarea>
+    <button type="submit" class="btn-primary">Send Feedback</button>
+  </form>
+</section>
+
+<script>
+  window.STLACCESS_SCALES = {
+    
+    "28mm": { "eye": 28.0, "top": 30.5 },
+    
+    "32mm": { "eye": 32.0, "top": 34.5 },
+    
+    "35mm": { "eye": 35.0, "top": 38.0 },
+    
+    "40mm": { "eye": 40.0, "top": 43.0 },
+    
+    "75mm": { "eye": 75.0, "top": 80.0 },
+    
+    "1:35": { "eye": 45.7, "top": 50.0 },
+    
+    "1:27": { "eye": 59.3, "top": 64.8 },
+    
+    "1:48": { "eye": 33.3, "top": 36.5 },
+    
+    "1:56": { "eye": 28.6, "top": 31.3 },
+    
+    "1:72": { "eye": 22.2, "top": 24.3 },
+    
+    "6mm": { "eye": 6.0, "top": 6.5 },
+    
+    "8mm": { "eye": 8.0, "top": 8.8 },
+    
+    "10mm": { "eye": 10.0, "top": 10.9 },
+    
+    "30mm": { "eye": 30.0, "top": 32.8 },
+    
+    "15mm": { "eye": 15.0, "top": 16.3 },
+    
+    "1:100": { "eye": 16.0, "top": 17.5 }
+    
+  };
+</script>
+<script src="/js/mathscaler.js"></script>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo"><span class="logo-stl">STL</span><span class="logo-access">ACCESS</span></a>
+          <p>Free browser-based STL scale converter for 3D printed miniatures.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Tools</h3>
+          <a href="/tools/stlscale-engine/">Scale Engine</a>
+          <a href="/reference/">Reference Library</a>
+          <a href="/tools/">All Tools</a>
+        </div>
+        <div class="footer-column">
+          <h3>Project</h3>
+          <a href="/about/">About</a>
+          <a href="/guides/">Guides</a>
+          <a href="/games/">Game Systems</a>
+          <a href="/contact/">Contact</a>
+        </div>
+        <div class="footer-column">
+          <h3>Legal</h3>
+          <a href="/legal/">Legal Notice</a>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/terms/">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Built with care by <a href="https://github.com/kitsorix-official">kitsorix</a> &middot; <a href="https://github.com/kitsorix/stlaccess">GitHub</a> &middot; &copy; 2026 STLACCESS</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  </script>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="/" class="">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </a>
+    <a href="/reference/" class="">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Reference
+    </a>
+    <a href="/games/" class="">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 10h.01"/><path d="M7 14h.01"/></svg>
+      Games
+    </a>
+    <a href="/guides/" class="">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      Guides
+    </a>
+    <a href="/tools/" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Tools
+    </a>
+  </nav>
+</body>
+</html>

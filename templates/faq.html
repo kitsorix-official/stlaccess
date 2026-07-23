@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Frequently Asked Questions | {{ site.name }}{% endblock %}
+{% block description %}Answers to common questions about miniature scale conversion, 3D printing scales, and the {{ site.name }} tool.{% endblock %}
+{% block canonical %}{{ site.url }}/faq/{% endblock %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for item in all_faq %}
+    {
+      "@type": "Question",
+      "name": "{{ item.question }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ item.answer }}"
+      }
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endblock %}
+
+{% block header %}
+<nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <span aria-current="page">FAQ</span></nav>
+<h1>Frequently Asked Questions</h1>
+<p class="subtitle">Everything you need to know about miniature scale conversion and 3D printing.</p>
+{% endblock %}
+
+{% block main %}
+<section class="container">
+  <input type="search" id="faq-search" placeholder="Search questions..." class="search-input">
+</section>
+
+<section class="container">
+  {% set categories = all_faq | map(attribute='category') | unique | list %}
+  {% for category in categories %}
+  <div class="category-block">
+  <h2>{{ category }}</h2>
+  {% for item in all_faq if item.category == category %}
+  <details class="faq-item">
+    <summary>
+      {{ item.question }}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </summary>
+    <div class="faq-answer"><p>{{ item.answer }}</p></div>
+  </details>
+  {% endfor %}
+  </div>
+  {% endfor %}
+</section>
+
+<script src="/js/faq-search.js"></script>
+{% endblock %}

@@ -1,0 +1,48 @@
+{
+  "validated": true,
+  "validatedDate": "2026-07-21",
+  "validatedBy": "kitsorix + opencode/big-pickle",
+  "validationMethod": "Live web searches against official tabletop figure shops and manufacturer sites",
+  "files": {
+    "scales.json": {
+      "validated": true,
+      "lastChecked": "2026-07-21",
+      "notes": "All 13 scale entries verified. Warmachine confirmed at 30mm. BattleTech confirmed at 6mm (1:285). Legions Imperialis confirmed at 8mm (1:175). Fixed typo in Confrontation (Rackham)."
+    },
+    "conversions.json": {
+      "validated": true,
+      "lastChecked": "2026-07-21",
+      "notes": "All 44 conversion percentages verified. Math uses eyeLevelMm for gaming scales and topOfHeadMm for ratio scales per FAQ methodology."
+    },
+    "games.json": {
+      "validated": true,
+      "lastChecked": "2026-07-21",
+      "notes": "All 21 game entries verified. Marvel: Crisis Protocol confirmed at 40mm. Star Wars: Shatterpoint confirmed at 40mm. Infinity confirmed at 28mm."
+    },
+    "faq.json": {
+      "validated": true,
+      "lastChecked": "2026-07-21",
+      "notes": "All 16 FAQ entries verified. Shrinkage ranges, percentage calculations, and scale descriptions match community consensus."
+    },
+    "guides.json": {
+      "validated": true,
+      "lastChecked": "2026-07-21",
+      "notes": "Guide content reviewed for accuracy against validated scale data."
+    },
+    "tools.json": {
+      "validated": true,
+      "lastChecked": "2026-07-21",
+      "notes": "Tool definitions reviewed."
+    },
+    "toolCategories.json": {
+      "validated": true,
+      "lastChecked": "2026-07-21",
+      "notes": "Category definitions reviewed."
+    },
+    "site.json": {
+      "validated": true,
+      "lastChecked": "2026-07-21",
+      "notes": "GAS endpoint updated. ShrinkageRange corrected to 0.8-2%."
+    }
+  }
+}
