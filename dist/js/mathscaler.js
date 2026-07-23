@@ -1,141 +1,140 @@
-    /**
-         * The STLACCESS Scale Engine Core
-         * Logic: Ratio conversion based on a 1750mm (1.75m) human baseline.
-         */
-        const SCALES = {
-            "1:100": 17.5,
-            "1:72": 24.3,
-            "1:56": 31.25,
-            "1:48": 36.45,
-            "1:35": 50.0,
-            "28mm": 28.0,
-            "32mm": 32.0,
-            "35mm": 35.0,
-            "40mm": 40.0,
-            "75mm": 75.0
-        };
+/**
+ * The STLACCESS Scale Engine Core
+ * Dynamic calculator — reads scale data from window.CALCULATOR_SCALES
+ * injected by the Astro page at build time from src/data/scales.json.
+ *
+ * Eye-level mode: percentage = (targetStandard / sourceStandard) × 100
+ *   - Ratio scales use topOfHeadMm as standard (ratio = total height)
+ *   - Gaming/display scales use eyeLevelMm as standard
+ *
+ * Top-of-head mode: checks validated overrides first (from conversions.json),
+ *   then falls back to (targetTopOfHeadMm / sourceStandard) × 100.
+ */
 
-        const STANDARD_OVERRIDES = {
-            "28mm_32mm": 114.3,
-            "32mm_28mm": 87.5,
-            "1:35_28mm": 56.0,
-            "1:48_28mm": 76.8
-        };
+function getScaleData() {
+    var scales = window.CALCULATOR_SCALES || {};
+    var headOverrides = window.CALCULATOR_HEAD_OVERRIDES || {};
+    return { scales: scales, headOverrides: headOverrides };
+}
 
-        function calculate() {
-            const source = document.getElementById('sourceScale').value;
-            const target = document.getElementById('targetScale').value;
-            const logic = document.querySelector('input[name="logic"]:checked').value;
-            
-            // Shrinkage Logic
-            const useShrinkage = document.getElementById('useShrinkage').checked;
-            const shrinkageRate = parseFloat(document.getElementById('shrinkageRate').value) || 0;
-            const shrinkageContainer = document.getElementById('shrinkageInputContainer');
-            
-            if (useShrinkage) {
-                shrinkageContainer.classList.remove('hidden');
-            } else {
-                shrinkageContainer.classList.add('hidden');
-            }
+function calculate() {
+    var data = getScaleData();
+    var scales = data.scales;
+    var headOverrides = data.headOverrides;
 
-            // Get base mm values
-            let sVal = SCALES[source];
-            let tVal = SCALES[target];
+    var source = document.getElementById('sourceScale').value;
+    var target = document.getElementById('targetScale').value;
+    var logic = document.querySelector('input[name="logic"]:checked').value;
 
-            // If user is measuring to "Top of Head", the target height is physically taller
-            // Average eye level is approx 91% of total height.
-            // If the model is marketed as "32mm", that's usually to eye level.
-            // "Top of Head" for that same model would be ~35mm.
-            if (logic === 'head') {
-                tVal = tVal * 1.09; 
-            }
+    // Shrinkage Logic
+    var useShrinkage = document.getElementById('useShrinkage').checked;
+    var shrinkageRate = parseFloat(document.getElementById('shrinkageRate').value) || 0;
+    var shrinkageContainer = document.getElementById('shrinkageInputContainer');
 
-            let result = (tVal / sVal) * 100;
-            
-            // Apply Standard Overrides for specific common pairs (Eye Level only)
-            const overrideKey = `${source}_${target}`;
-            if (STANDARD_OVERRIDES[overrideKey] && logic === 'eye') {
-                result = STANDARD_OVERRIDES[overrideKey];
-            }
+    if (useShrinkage) {
+        shrinkageContainer.classList.remove('hidden');
+    } else {
+        shrinkageContainer.classList.add('hidden');
+    }
 
-            // Apply Shrinkage Offset (Additive as per FAQ documentation)
-            if (useShrinkage && shrinkageRate > 0) {
-                result += shrinkageRate;
-            }
-            
-            // Visual Update
-            const display = document.getElementById('resultDisplay');
-            display.textContent = result.toFixed(1) + '%';
+    var sourceData = scales[source];
+    var targetData = scales[target];
+    if (!sourceData || !targetData) return;
+
+    var result;
+    var overrideKey = source + '_' + target;
+
+    if (logic === 'head') {
+        // Check for validated override from conversions.json
+        if (headOverrides[overrideKey] !== undefined) {
+            result = headOverrides[overrideKey];
+        } else {
+            // Fallback: use target's topOfHeadMm against source's standard
+            result = (targetData.topOfHeadMm / sourceData.standardMm) * 100;
         }
+    } else {
+        // Eye-level mode: standard values (ratio=topOfHeadMm, gaming=eyeLevelMm)
+        result = (targetData.standardMm / sourceData.standardMm) * 100;
+    }
 
-        async function copyToClipboard() {
-            const result = document.getElementById('resultDisplay').textContent.trim();
-            const btn = document.getElementById('copyBtn');
-            const icon = btn.querySelector('i');
-            const text = btn.querySelector('span');
+    // Apply Shrinkage Offset (additive)
+    if (useShrinkage && shrinkageRate > 0) {
+        result += shrinkageRate;
+    }
 
-            try {
-                await navigator.clipboard.writeText(result);
-                text.textContent = "Copied to Slicer!";
-                icon.className = "fa-solid fa-check";
-                btn.style.backgroundColor = "#22c55e"; // Success green
-            } catch (err) {
-                // Fallback for older browsers
-                const el = document.createElement('textarea');
-                el.value = result;
-                document.body.appendChild(el);
-                el.select();
-                document.execCommand('copy');
-                document.body.removeChild(el);
-                text.textContent = "Copied!";
-            }
+    // Visual Update
+    var display = document.getElementById('resultDisplay');
+    display.textContent = result.toFixed(1) + '%';
+}
 
-            setTimeout(() => {
-                text.textContent = "Copy Percentage";
-                icon.className = "fa-regular fa-copy";
-                btn.style.backgroundColor = "black";
-            }, 2000);
+async function copyToClipboard() {
+    var result = document.getElementById('resultDisplay').textContent.trim();
+    var btn = document.getElementById('copyBtn');
+    var icon = btn.querySelector('i');
+    var text = btn.querySelector('span');
+
+    try {
+        await navigator.clipboard.writeText(result);
+        text.textContent = "Copied to Slicer!";
+        icon.className = "fa-solid fa-check";
+        btn.style.backgroundColor = "#22c55e";
+    } catch (err) {
+        var el = document.createElement('textarea');
+        el.value = result;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        text.textContent = "Copied!";
+    }
+
+    setTimeout(function() {
+        text.textContent = "Copy Percentage";
+        icon.className = "fa-regular fa-copy";
+        btn.style.backgroundColor = "black";
+    }, 2000);
+}
+
+// Attach listeners
+document.querySelectorAll('select, input').forEach(function(el) {
+    el.addEventListener('change', calculate);
+    el.addEventListener('input', calculate);
+});
+
+// URL Parameter Support for Deep Linking
+function checkURLParams() {
+    var data = getScaleData();
+    var scales = data.scales;
+    var params = new URLSearchParams(window.location.search);
+    var source = params.get('source');
+    var target = params.get('target');
+    var logic = params.get('logic');
+    var shrinkage = params.get('shrinkage');
+    var rate = params.get('rate');
+
+    if (source && scales[source]) {
+        document.getElementById('sourceScale').value = source;
+    }
+    if (target && scales[target]) {
+        var targetSelect = document.getElementById('targetScale');
+        if ([].slice.call(targetSelect.options).some(function(opt) { return opt.value === target; })) {
+            targetSelect.value = target;
         }
+    }
+    if (logic === 'eye' || logic === 'head') {
+        var radio = document.querySelector('input[name="logic"][value="' + logic + '"]');
+        if (radio) radio.checked = true;
+    }
 
-        // Attach listeners
-        document.querySelectorAll('select, input').forEach(el => {
-            el.addEventListener('change', calculate);
-            el.addEventListener('input', calculate); // Added input event for real-time shrinkage updates
-        });
+    if (shrinkage === 'true') {
+        document.getElementById('useShrinkage').checked = true;
+    }
+    if (rate) {
+        document.getElementById('shrinkageRate').value = rate;
+    }
 
-        // URL Parameter Support for Deep Linking
-        function checkURLParams() {
-            const params = new URLSearchParams(window.location.search);
-            const source = params.get('source');
-            const target = params.get('target');
-            const logic = params.get('logic');
-            const shrinkage = params.get('shrinkage');
-            const rate = params.get('rate');
+    calculate();
+}
 
-            if (source && SCALES[source]) {
-                document.getElementById('sourceScale').value = source;
-            }
-            if (target && SCALES[target]) {
-                const targetSelect = document.getElementById('targetScale');
-                // Check if target value exists in options
-                if ([...targetSelect.options].some(opt => opt.value === target)) {
-                    targetSelect.value = target;
-                }
-            }
-            if (logic === 'eye' || logic === 'head') {
-                const radio = document.querySelector(`input[name="logic"][value="${logic}"]`);
-                if (radio) radio.checked = true;
-            }
-
-            if (shrinkage === 'true') {
-                document.getElementById('useShrinkage').checked = true;
-            }
-            if (rate) {
-                document.getElementById('shrinkageRate').value = rate;
-            }
-            
-            calculate();
-        }
-
-        // Initial Run
-        window.addEventListener('DOMContentLoaded', checkURLParams);
+// Initial Run
+window.addEventListener('DOMContentLoaded', checkURLParams);

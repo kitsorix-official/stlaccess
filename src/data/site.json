@@ -74,26 +74,6 @@
       "description": "True scale to Star Wars Legion"
     }
   ],
-  "selectOptions": {
-    "source": [
-      { "value": "1:100", "label": "1:100 (15mm Team Yankee)", "group": "Ratio Scales" },
-      { "value": "1:72", "label": "1:72 (Plastic Soldiers)", "group": "Ratio Scales" },
-      { "value": "1:56", "label": "1:56 (Bolt Action / 28mm)", "group": "Ratio Scales" },
-      { "value": "1:48", "label": "1:48 (Quarter Scale)", "group": "Ratio Scales" },
-      { "value": "1:35", "label": "1:35 (Military Model Kits)", "group": "Ratio Scales" },
-      { "value": "28mm", "label": "28mm (True Scale)", "group": "System Scales", "default": true },
-      { "value": "32mm", "label": "32mm (Heroic Scale)", "group": "System Scales" },
-      { "value": "35mm", "label": "35mm (Star Wars Legion)", "group": "System Scales" }
-    ],
-    "target": [
-      { "value": "28mm", "label": "D&D / Pathfinder (28mm)" },
-      { "value": "32mm", "label": "Warhammer / 32mm Heroic", "default": true },
-      { "value": "35mm", "label": "Star Wars Legion (35mm)" },
-      { "value": "40mm", "label": "Shatterpoint (40mm)" },
-      { "value": "75mm", "label": "Display Miniatures (75mm)" },
-      { "value": "1:35", "label": "Historical Diorama (1:35)" }
-    ]
-  },
   "homepageFaq": [
     {
       "question": "What scale is <span class=\"text-[#ff6b35]\">Warhammer 40k</span> miniatures?",

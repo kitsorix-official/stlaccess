@@ -1,8 +1,87 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import site from "../data/site.json";
+import scales from "../data/scales.json";
+import conversions from "../data/conversions.json";
 
-const { referencePreviews, selectOptions, homepageFaq } = site;
+const { referencePreviews, homepageFaq } = site;
+
+// Build dropdown labels from scales data
+const dropdownLabels: Record<string, string> = {
+  "28mm": "28mm (D&D / True Scale)",
+  "32mm": "32mm (Heroic Scale)",
+  "35mm": "35mm (Star Wars Legion)",
+  "40mm": "40mm (Shatterpoint)",
+  "75mm": "75mm (Display Miniatures)",
+  "1:35": "1:35 (Military Models)",
+  "1:27": "1:27 (X-Wing Ships)",
+  "1:48": "1:48 (Quarter Scale / Aircraft)",
+  "1:56": "1:56 (Bolt Action)",
+  "1:72": "1:72 (Plastic Soldiers)",
+  "6mm": "6mm (BattleTech / Epic)",
+  "8mm": "8mm (Legions Imperialis)",
+  "10mm": "10mm (Dropzone Commander)",
+  "30mm": "30mm (Warmachine)",
+  "15mm": "15mm (Flames of War)",
+  "1:100": "1:100 (FoW / 15mm)"
+};
+
+// Sort scales into groups by type, then by eyeLevelMm
+const gamingScales = Object.entries(scales)
+  .filter(([, s]) => s.type === "gaming" || s.type === "display")
+  .sort(([, a], [, b]) => a.eyeLevelMm - b.eyeLevelMm);
+const ratioScales = Object.entries(scales)
+  .filter(([, s]) => s.type === "ratio")
+  .sort(([, a], [, b]) => a.eyeLevelMm - b.eyeLevelMm);
+
+const selectOptions = {
+  source: [
+    ...ratioScales.map(([key, s]) => ({
+      value: key,
+      label: dropdownLabels[key] || `${key} (${s.games[0] || ""})`,
+      group: "Ratio Scales",
+      default: key === "28mm"
+    })),
+    ...gamingScales.map(([key, s]) => ({
+      value: key,
+      label: dropdownLabels[key] || `${key} (${s.games[0] || ""})`,
+      group: "Gaming Scales",
+      default: key === "28mm"
+    }))
+  ],
+  target: [
+    ...ratioScales.map(([key, s]) => ({
+      value: key,
+      label: dropdownLabels[key] || `${key} (${s.games[0] || ""})`,
+      group: "Ratio Scales",
+      default: key === "32mm"
+    })),
+    ...gamingScales.map(([key, s]) => ({
+      value: key,
+      label: dropdownLabels[key] || `${key} (${s.games[0] || ""})`,
+      group: "Gaming Scales",
+      default: key === "32mm"
+    }))
+  ]
+};
+
+// Build standard mm values: ratio scales use topOfHeadMm, gaming/display use eyeLevelMm
+const calculatorScales: Record<string, { standardMm: number; topOfHeadMm: number; type: string }> = {};
+for (const [key, s] of Object.entries(scales)) {
+  calculatorScales[key] = {
+    standardMm: s.type === "ratio" ? s.topOfHeadMm : s.eyeLevelMm,
+    topOfHeadMm: s.topOfHeadMm,
+    type: s.type
+  };
+}
+
+// Extract head-mode overrides from conversions.json (topHeadPercentage where non-null)
+const headOverrides: Record<string, number> = {};
+for (const conv of conversions) {
+  if (conv.topHeadPercentage) {
+    headOverrides[`${conv.h1Source}_${conv.h1Target}`] = parseFloat(conv.topHeadPercentage);
+  }
+}
 
 const schema =`
 <script type="application/ld+json">
@@ -486,6 +565,9 @@ btn.style.opacity = '1';
 }
 </script>
 </section>
+
+<!-- Calculator Data Injection -->
+<script is:inline set:html={`window.CALCULATOR_SCALES = ${JSON.stringify(calculatorScales)};window.CALCULATOR_HEAD_OVERRIDES = ${JSON.stringify(headOverrides)};`} />
 
 <!-- Page Specific Scripts -->
 <script is:inline src="/js/mathscaler.js"></script>
