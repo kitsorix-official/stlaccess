@@ -10,7 +10,7 @@ const qaItems = referencePageQA.map((qa, i) => ({
   "name": qa.question.replace(/<[^>]*>/g, ''),
   "text": qa.question.replace(/<[^>]*>/g, ''),
   "answerCount": 1,
-  "datePublished": dateModified,
+  "datePublished": `${dateModified}T00:00:00+00:00`,
   "url": `${url}/reference#qa-${i}`,
   "upvoteCount": 1,
   "author": { "@type": "Person", "name": author.name, "url": author.url },
@@ -51,6 +51,7 @@ const schema = JSON.stringify({
     },
     {
       "@type": "QAPage",
+      "url": `${url}/reference`,
       "mainEntity": qaItems
     },
     {

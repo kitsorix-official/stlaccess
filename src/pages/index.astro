@@ -139,12 +139,13 @@ const schema = JSON.stringify({
     },
     {
       "@type": "QAPage",
+      "url": `${site.url}/`,
       "mainEntity": homepageFaq.map((faq, i) => ({
         "@type": "Question",
         "name": faq.question.replace(/<[^>]*>/g, '').replace(/"/g, '\\"'),
         "text": faq.question.replace(/<[^>]*>/g, '').replace(/"/g, '\\"'),
         "answerCount": 1,
-        "datePublished": site.dateModified,
+        "datePublished": `${site.dateModified}T00:00:00+00:00`,
         "url": `${site.url}/#qa-${i}`,
         "upvoteCount": 1,
         "author": {

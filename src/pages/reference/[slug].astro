@@ -38,7 +38,7 @@ if (ctx) {
       "name": q1,
       "text": q1,
       "answerCount": 1,
-      "datePublished": datePublished,
+      "datePublished": `${datePublished}T00:00:00+00:00`,
       "url": `${url}/reference/${conv.slug}#qa-0`,
       "upvoteCount": 1,
       "author": author,
@@ -53,7 +53,7 @@ if (ctx) {
       "name": q2,
       "text": q2,
       "answerCount": 1,
-      "datePublished": datePublished,
+      "datePublished": `${datePublished}T00:00:00+00:00`,
       "url": `${url}/reference/${conv.slug}#qa-1`,
       "upvoteCount": 1,
       "author": author,
@@ -68,7 +68,7 @@ if (ctx) {
       "name": q3,
       "text": q3,
       "answerCount": 1,
-      "datePublished": datePublished,
+      "datePublished": `${datePublished}T00:00:00+00:00`,
       "url": `${url}/reference/${conv.slug}#qa-2`,
       "upvoteCount": 1,
       "author": author,
@@ -164,6 +164,7 @@ const schema = JSON.stringify({
     },
     ...(faqItems.length > 0 ? [{
       "@type": "QAPage",
+      "url": `${url}/reference/${conv.slug}`,
       "mainEntity": faqItems
     }] : []),
     {

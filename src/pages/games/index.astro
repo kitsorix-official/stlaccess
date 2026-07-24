@@ -46,7 +46,7 @@ const qaItems = gameQA.map((qa, i) => ({
   "name": qa.question,
   "text": qa.question,
   "answerCount": 1,
-  "datePublished": dateModified,
+  "datePublished": `${dateModified}T00:00:00+00:00`,
   "url": `${url}/games#qa-${i}`,
   "upvoteCount": 1,
   "author": { "@type": "Person", "name": site.author.name },
@@ -110,6 +110,7 @@ const schema = JSON.stringify({
     },
     {
       "@type": "QAPage",
+      "url": `${url}/games`,
       "mainEntity": qaItems
     }
   ]

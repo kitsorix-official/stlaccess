@@ -5,7 +5,7 @@ import { faqData } from '../data/faqContent.js';
 
 // Build schema from imported data
 const mainEntity = [];
-const today = site.dateModified;
+const today = `${site.dateModified}T00:00:00+00:00`;
 const authorObj = { "@type": "Person", "name": site.author.name, "url": site.author.url };
 faqData.forEach((cat, catIdx) => {
   cat.questions.forEach((item, qIdx) => {

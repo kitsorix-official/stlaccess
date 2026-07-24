@@ -49,7 +49,7 @@ const faqItems = [
     "name": `What scale is ${game.name}?`,
     "text": `What scale is ${game.name}?`,
     "answerCount": 1,
-    "datePublished": datePublished,
+    "datePublished": `${datePublished}T00:00:00+00:00`,
     "url": `${url}/games/${game.slug}#qa-0`,
     "upvoteCount": 1,
     "author": schemaAuthor,
@@ -64,7 +64,7 @@ const faqItems = [
     "name": `What base sizes does ${game.name} use?`,
     "text": `What base sizes does ${game.name} use?`,
     "answerCount": 1,
-    "datePublished": datePublished,
+    "datePublished": `${datePublished}T00:00:00+00:00`,
     "url": `${url}/games/${game.slug}#qa-1`,
     "upvoteCount": 1,
     "author": schemaAuthor,
@@ -79,7 +79,7 @@ const faqItems = [
     "name": `What nozzle and layer height should I use for ${game.name} miniatures?`,
     "text": `What nozzle and layer height should I use for ${game.name} miniatures?`,
     "answerCount": 1,
-    "datePublished": datePublished,
+    "datePublished": `${datePublished}T00:00:00+00:00`,
     "url": `${url}/games/${game.slug}#qa-2`,
     "upvoteCount": 1,
     "author": schemaAuthor,
@@ -133,6 +133,7 @@ const schema = JSON.stringify({
     },
     {
       "@type": "QAPage",
+      "url": `${url}/games/${game.slug}`,
       "mainEntity": faqItems
     }
   ]
