@@ -35,10 +35,14 @@ const schema = `{
 },
     {
       "@type": "QAPage",
-      "mainEntity": ${JSON.stringify(referencePageQA.map(qa => ({
+      "mainEntity": ${JSON.stringify(referencePageQA.map((qa, i) => ({
   "@type": "Question",
   "name": qa.question.replace(/<[^>]*>/g, ''),
   "text": qa.question.replace(/<[^>]*>/g, ''),
+  "answerCount": 1,
+  "datePublished": dateModified,
+  "url": `${url}/reference#qa-${i}`,
+  "upvoteCount": 1,
   "author": { "@type": "Person", "name": author.name, "url": author.url },
   "acceptedAnswer": {
     "@type": "Answer",

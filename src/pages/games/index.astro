@@ -97,10 +97,14 @@ const schema = `{
     {
       "@type": "QAPage",
       "mainEntity": [
-        ${gameQA.map(qa => `{
+        ${gameQA.map((qa, i) => `{
       "@type": "Question",
       "name": "${qa.question}",
       "text": "${qa.question}",
+      "answerCount": 1,
+      "datePublished": "${dateModified}",
+      "url": "${url}/games#qa-${i}",
+      "upvoteCount": 1,
       "author": { "@type": "Person", "name": "${site.author.name}" },
       "acceptedAnswer": {
         "@type": "Answer",
