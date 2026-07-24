@@ -21,7 +21,9 @@ const schema = JSON.stringify({
       "@type": "BlogPosting",
       "headline": post.title,
       "description": post.description,
+      "mainEntityOfPage": { "@id": `${url}/guides/${post.slug}#webpage` },
       "url": `${url}/guides/${post.slug}`,
+      "image": site.ogImage,
       "datePublished": post.pubDate,
       "dateModified": post.modDate || post.pubDate,
       "author": [{
@@ -30,9 +32,13 @@ const schema = JSON.stringify({
         "url": site.author.siteUrl
       }],
       "publisher": {
-        "@type": "Person",
-        "name": site.author.name,
-        "url": site.author.siteUrl
+        "@type": "Organization",
+        "name": site.name,
+        "url": url,
+        "logo": {
+          "@type": "ImageObject",
+          "url": site.ogImage
+        }
       }
     },
     {

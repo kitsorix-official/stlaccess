@@ -73,7 +73,7 @@ const quickRef = site.quickRef;
   </div>
 
   <!-- Search -->
-  <div class="relative w-full max-w-xl mx-auto mb-16">
+  <form role="search" class="relative w-full max-w-xl mx-auto mb-16" onsubmit="return false">
     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
       <i class="fa-solid fa-magnifying-glass text-slate-500 text-base" aria-hidden="true"></i>
     </div>
@@ -84,7 +84,7 @@ const quickRef = site.quickRef;
       class="w-full bg-[#0a0a0a] border border-white/5 rounded-2xl py-4 pl-13 pr-5 text-white placeholder-slate-600 focus:outline-none focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] transition-all text-sm font-medium"
       aria-label="Search FAQs"
     />
-  </div>
+  </form>
 
   <!-- Quick Reference Table -->
   <section class="mb-20 bg-slate-900/10 border border-white/5 p-6 md:p-10 rounded-[2rem]" aria-labelledby="matrix-heading">

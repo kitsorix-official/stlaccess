@@ -4,41 +4,55 @@ import site from '../data/site.json';
 
 const { url, baselineHeight, shrinkageRange } = site;
 
-const schema = `{
+const schema = JSON.stringify({
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "${url}/legal#webpage",
-      "url": "${url}/legal",
+      "@id": `${url}/legal#webpage`,
+      "url": `${url}/legal`,
       "name": "Legal Stuff & How Things Work",
-      "isPartOf": { "@id": "${url}/#website" }
+      "isPartOf": { "@id": `${url}/#website` }
     },
     {
       "@type": "Article",
-      "@id": "${url}/legal#article",
+      "@id": `${url}/legal#article`,
       "headline": "Privacy, Trademarks, and Math Disclaimers",
-      "author": { "@id": "${url}/#person" },
-      "publisher": { "@id": "${url}/#person" },
-      "datePublished": "${site.datePublished}",
-      "dateModified": "${site.dateModified}"
+      "mainEntityOfPage": { "@id": `${url}/legal#webpage` },
+      "image": site.ogImage,
+      "author": {
+        "@type": "Person",
+        "name": site.author.name,
+        "url": site.author.siteUrl
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": site.name,
+        "url": url,
+        "logo": {
+          "@type": "ImageObject",
+          "url": site.ogImage
+        }
+      },
+      "datePublished": site.datePublished,
+      "dateModified": site.dateModified
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "${url}/" },
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${url}/` },
         { "@type": "ListItem", "position": 2, "name": "Legal" }
       ]
     }
   ]
-}`;
+});
 ---
 <Layout
   title="Legal Stuff & Disclaimers | STLACCESS"
   description="The plain-English breakdown of privacy, copyright stuff, and how I handle scale conversions on STLACCESS."
   schema={schema}
 >
-  <div class="max-w-4xl mx-auto px-6 py-20 w-full">
+  <article class="max-w-4xl mx-auto px-6 py-20 w-full">
     <!-- Breadcrumbs -->
     <nav class="max-w-6xl mx-auto pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
       <a href="/" class="hover:text-[#ff6b35]">Home</a>
@@ -126,5 +140,5 @@ const schema = `{
 
       </div>
     </section>
-  </div>
+  </article>
 </Layout>

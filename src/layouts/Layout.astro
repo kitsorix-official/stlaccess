@@ -146,6 +146,9 @@ const currentPath = Astro.url.pathname;
     <div 
       id="mobile-menu" 
       class="hidden md:hidden border-t border-white/5 bg-black/95 backdrop-blur-xl"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile navigation"
     >
       <ul class="px-6 py-4 space-y-1">
         <li>
@@ -262,42 +265,69 @@ const currentPath = Astro.url.pathname;
       var icon = document.getElementById('menu-icon');
       
       if (!btn || !menu || !icon) return;
+
+      function getFocusableElements() {
+        return menu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
+      }
+
+      function openMenu() {
+        menu.classList.remove('hidden');
+        menu.classList.add('!block');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.setAttribute('aria-label', 'Close menu');
+        icon.classList.remove('fa-bars-staggered');
+        icon.classList.add('fa-xmark');
+        var focusable = getFocusableElements();
+        if (focusable.length > 0) {
+          focusable[0].focus();
+        }
+      }
+
+      function closeMenu() {
+        menu.classList.add('hidden');
+        menu.classList.remove('!block');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open menu');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars-staggered');
+        btn.focus();
+      }
       
       btn.addEventListener('click', function() {
         var isOpen = !menu.classList.contains('hidden');
-        
         if (isOpen) {
-          menu.classList.add('hidden');
-          menu.classList.remove('!block');
-          btn.setAttribute('aria-expanded', 'false');
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars-staggered');
+          closeMenu();
         } else {
-          menu.classList.remove('hidden');
-          menu.classList.add('!block');
-          btn.setAttribute('aria-expanded', 'true');
-          icon.classList.remove('fa-bars-staggered');
-          icon.classList.add('fa-xmark');
+          openMenu();
         }
       });
       
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
-          menu.classList.add('hidden');
-          menu.classList.remove('!block');
-          btn.setAttribute('aria-expanded', 'false');
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars-staggered');
+          closeMenu();
+        }
+        if (e.key === 'Tab' && !menu.classList.contains('hidden')) {
+          var focusable = getFocusableElements();
+          if (focusable.length === 0) return;
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (e.shiftKey) {
+            if (document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            }
+          } else {
+            if (document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
         }
       });
       
       menu.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', function() {
-          menu.classList.add('hidden');
-          menu.classList.remove('!block');
-          btn.setAttribute('aria-expanded', 'false');
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars-staggered');
+          closeMenu();
         });
       });
     })();

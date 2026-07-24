@@ -33,12 +33,6 @@ const schema = `{
 "cssSelector": [".reference-intro", ".faq-question", "#conversion-matrix"]
 }
 },
-{
-"@type": "Table",
-"about": "Miniature Scale Conversion Percentages",
-"description": "Slicer scale percentages for converting between tabletop miniature scales. Based on a 175cm human baseline with eye-level measurement methodology.",
-"author": {"@type": "Person", "name": "${author.name}"}
-},
     {
       "@type": "QAPage",
       "mainEntity": ${JSON.stringify(referencePageQA.map(qa => ({
@@ -99,7 +93,7 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
 </section>
 
 <!-- Search / Filter -->
-<section class="px-6 mb-12 max-w-6xl mx-auto" aria-labelledby="ref-search-heading">
+<form role="search" class="px-6 mb-12 max-w-6xl mx-auto" aria-labelledby="ref-search-heading" onsubmit="return false">
   <h2 id="ref-search-heading" class="sr-only">Search conversions</h2>
   <div class="relative group">
     <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
@@ -115,7 +109,7 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
   <div id="noResults" class="hidden mt-8 text-center text-slate-500 italic py-12 border border-dashed border-white/5 rounded-3xl">
     No conversions found. Try "28mm" or "1:35".
   </div>
-</section>
+</form>
 
 <!-- Conversion Cards -->
 <section class="px-6 pb-24 max-w-6xl mx-auto" id="conversion-matrix" aria-labelledby="matrix-heading">
@@ -201,18 +195,13 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
 
 <!-- Authority Content: Why Scale is a Lie -->
 <section id="pillar-article" class="px-6 pb-24 max-w-6xl mx-auto" aria-labelledby="pillar-heading">
-  <article class="reference-group bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden glow-box" itemscope itemtype="https://schema.org/Article">
-    <meta itemprop="headline" content="Why miniature scale is inconsistent and how to fix it with math" />
-    <meta itemprop="author" content={author.name} />
-    <meta itemprop="datePublished" content={datePublished} />
-    <meta itemprop="publisher" content="STLACCESS" />
-    
+   <article class="reference-group bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden glow-box">
     <div class="p-8 md:p-12 border-b border-white/5">
       <span class="inline-block text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-4">Technical guide</span>
-      <h2 id="pillar-heading" class="text-3xl md:text-5xl font-bold font-heading tracking-tight mb-6" itemprop="name">
+      <h2 id="pillar-heading" class="text-3xl md:text-5xl font-bold font-heading tracking-tight mb-6">
         Why is miniature scale <span class="text-[#ff6b35]">inconsistent</span>?
       </h2>
-      <p class="text-lg text-slate-400 max-w-3xl leading-relaxed" itemprop="description">
+      <p class="text-lg text-slate-400 max-w-3xl leading-relaxed">
         Five things I learned after mixing up miniatures from six manufacturers and measuring them with calipers. The numbers on the box rarely match the model.
       </p>
       <nav aria-label="Article contents" class="mt-10 p-6 md:p-8 rounded-2xl bg-white/[0.03] border border-white/5">
@@ -252,7 +241,7 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
       </nav>
     </div>
     
-    <div class="p-8 md:p-12 text-slate-300 leading-relaxed max-w-4xl" itemprop="articleBody">
+    <div class="p-8 md:p-12 text-slate-300 leading-relaxed max-w-4xl">
       <p class="text-lg mb-10 text-slate-400">
         I have been burned by this enough times that I built a calculator. You buy a box labeled "28mm," paint them up, and they look like teenagers next to your existing squad. One company's 28mm is another's 30mm. The industry ruler is made of rubber.
       </p>
@@ -408,15 +397,15 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
   <h2 id="faq-heading" class="text-3xl font-bold mb-10 font-heading">
     Scale conversion <span class="text-[#ff6b35]">FAQ</span>
   </h2>
-  <div class="bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden divide-y divide-white/5" itemscope itemtype="https://schema.org/FAQPage">
+  <div class="bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden divide-y divide-white/5">
     {referencePageQA.map((item) => (
-      <details class="group searchable-row" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+      <details class="group searchable-row">
         <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
-          <span class="faq-question pr-4" itemprop="name">{item.question}</span>
+          <span class="faq-question pr-4">{item.question}</span>
           <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
         </summary>
-        <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <div itemprop="text" set:html={item.answer} />
+        <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl">
+          <div set:html={item.answer} />
         </div>
       </details>
     ))}

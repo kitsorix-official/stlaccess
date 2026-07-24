@@ -86,7 +86,7 @@ const schema = JSON.stringify({
 </section>
 
 <!-- Search / Filter -->
-<div class="px-6 pb-8 max-w-6xl mx-auto">
+<form role="search" class="px-6 pb-8 max-w-6xl mx-auto" onsubmit="return false">
   <div class="relative max-w-md">
     <i class="fa-solid fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm pointer-events-none" aria-hidden="true"></i>
     <input
@@ -97,7 +97,7 @@ const schema = JSON.stringify({
       aria-label="Search guides"
     />
   </div>
-</div>
+</form>
 
 <!-- Posts Grid -->
 {sortedPosts.length === 0 ? (

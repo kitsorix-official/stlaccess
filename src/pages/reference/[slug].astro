@@ -150,12 +150,6 @@ const schema = JSON.stringify({
         }
       ]
     },
-    {
-      "@type": "Table",
-      "about": `${conv.h1Source} to ${conv.h1Target} Conversion Data`,
-      "description": `Slicer percentage based on ${site.baselineHeightCm}cm human baseline with eye-level measurement methodology for converting ${conv.h1Source} miniatures to ${conv.h1Target}.`,
-      "author": {"@type": "Person", "name": site.author.name}
-    },
     ...(faqItems.length > 0 ? [{
       "@type": "QAPage",
       "mainEntity": faqItems
@@ -186,9 +180,7 @@ const schema = JSON.stringify({
   <span class="text-slate-400" aria-current="page">{conv.h1Source} to {conv.h1Target}</span>
 </nav>
 
-<article class="max-w-4xl mx-auto px-6 py-12" itemscope itemtype="https://schema.org/HowTo">
-  <meta itemprop="name" content={`How to Scale ${conv.sourceLabel} to ${conv.targetLabel}`} />
-  <meta itemprop="description" content={`Convert ${conv.h1Source} miniatures to ${conv.h1Target} scale using ${conv.percentage}% uniform scaling.`} />
+<article class="max-w-4xl mx-auto px-6 py-12">
 
   <!-- Header -->
   <header class="mb-16 conv-header">
