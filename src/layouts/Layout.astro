@@ -5,28 +5,20 @@ import site from '../data/site.json';
 interface Props {
   title: string;
   description: string;
-  canonicalURL?: string | URL;
-  ogImage?: string;
+  noIndex?: boolean;
 }
 
 const {
   title,
   description,
-  canonicalURL = new URL(Astro.url.pathname, Astro.site || `${site.url}/`),
-  ogImage = site.ogImage
+  noIndex = false
 } = Astro.props;
 
-// Format canonical URL
-let formattedCanonical = canonicalURL instanceof URL ? canonicalURL.href : canonicalURL;
-if (formattedCanonical.endsWith('.html')) {
-  formattedCanonical = formattedCanonical.slice(0, -5);
+if (!title || !description) {
+  throw new Error(`BaseHead requires title + description: ${Astro.url.pathname}`);
 }
-if (formattedCanonical.endsWith('/index')) {
-  formattedCanonical = formattedCanonical.slice(0, -5);
-}
-if (formattedCanonical !== `${site.url}/` && formattedCanonical.endsWith('/')) {
-  formattedCanonical = formattedCanonical.slice(0, -1);
-}
+
+const canonical = new URL(Astro.url.pathname, Astro.site || site.url).href;
 
 const currentPath = Astro.url.pathname;
 ---
@@ -42,26 +34,11 @@ const currentPath = Astro.url.pathname;
   <meta name="description" content={description}>
   <meta name="theme-color" content="#ff6b35">
   
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'}>
   <meta name="generator" content={Astro.generator}>
   
   <!-- Canonical -->
-  <link rel="canonical" href={formattedCanonical}>
-  
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content={formattedCanonical}>
-  <meta property="og:title" content={title}>
-  <meta property="og:description" content={description}>
-  <meta property="og:image" content={ogImage}>
-  <meta property="og:locale" content="en_US">
-  <meta property="og:site_name" content={site.name}>
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content={title}>
-  <meta name="twitter:description" content={description}>
-  <meta name="twitter:image" content={ogImage}>
+  <link rel="canonical" href={canonical}>
   
   <!-- Icons -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">

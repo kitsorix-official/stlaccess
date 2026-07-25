@@ -1,0 +1,2 @@
+/library  /reference  301
+/blog/*   /guides/:splat  301
