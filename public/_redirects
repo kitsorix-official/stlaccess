@@ -1,2 +1,4 @@
 /library  /reference  301
-/blog/*   /guides/:splat  301
+/blog  /guides  301
+/blog/*  /guides/:splat  301
+/embed  /  301
