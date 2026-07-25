@@ -18,7 +18,17 @@ if (!title || !description) {
   throw new Error(`BaseHead requires title + description: ${Astro.url.pathname}`);
 }
 
-const canonical = new URL(Astro.url.pathname, Astro.site || site.url).href;
+let pathname = Astro.url.pathname;
+if (pathname.endsWith('.html')) {
+  pathname = pathname.slice(0, -5);
+}
+if (pathname.endsWith('/index')) {
+  pathname = pathname.slice(0, -6);
+}
+if (pathname !== '/' && pathname.endsWith('/')) {
+  pathname = pathname.slice(0, -1);
+}
+const canonical = new URL(pathname, Astro.site || site.url).href;
 
 const currentPath = Astro.url.pathname;
 ---

@@ -7,6 +7,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // A tiny integration to collapse Astro's sitemap-index.xml and sitemap-0.xml into a single sitemap.xml
+// and strip the <meta name="generator"> tag from all HTML output
 const singleSitemap = () => ({
   name: 'single-sitemap',
   hooks: {
@@ -35,11 +36,9 @@ const singleSitemap = () => ({
       const targetSitemapPath = path.join(clientDir, 'sitemap.xml');
 
       try {
-        // Copy sitemap-0.xml to sitemap.xml
         fs.copyFileSync(sitemap0Path, targetSitemapPath);
         console.log(`[single-sitemap] Successfully created single sitemap at: ${targetSitemapPath}`);
 
-        // Delete temporary/index files
         fs.unlinkSync(sitemap0Path);
         if (fs.existsSync(sitemapIndexPath)) {
           fs.unlinkSync(sitemapIndexPath);
@@ -48,6 +47,24 @@ const singleSitemap = () => ({
       } catch (err) {
         console.error('[single-sitemap] Error processing sitemap collapsing:', err);
       }
+
+      // Strip <meta name="generator"> from all HTML files
+      const stripGenerator = (dir) => {
+        for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+          const fullPath = path.join(dir, entry.name);
+          if (entry.isDirectory()) {
+            stripGenerator(fullPath);
+          } else if (entry.name.endsWith('.html')) {
+            let content = fs.readFileSync(fullPath, 'utf8');
+            const cleaned = content.replace(/<meta\s+name="generator"[^>]*>/g, '');
+            if (content !== cleaned) {
+              fs.writeFileSync(fullPath, cleaned);
+            }
+          }
+        }
+      };
+      stripGenerator(clientDir);
+      console.log(`[single-sitemap] Stripped <meta name="generator"> from HTML files.`);
     }
   }
 });
@@ -74,6 +91,14 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [
+      tailwindcss(),
+      {
+        name: 'strip-generator-meta',
+        transformIndexHtml(html) {
+          return html.replace(/<meta\s+name="generator"[^>]*>/g, '');
+        }
+      }
+    ]
   }
 });
