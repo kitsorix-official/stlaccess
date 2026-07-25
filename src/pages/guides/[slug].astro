@@ -1,22 +1,24 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import posts from "../../data/blogPosts.json";
+import { getCollection, render } from "astro:content";
 import site from "../../data/site.json";
 
-export function getStaticPaths() {
+export async function getStaticPaths() {
+  const posts = await getCollection("guides");
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }));
 }
 
 const { post } = Astro.props;
-const pubDate = new Date(post.pubDate);
+const { Content } = await render(post);
+const pubDate = post.data.pubDate;
 ---
 
 <Layout
-  title={`${post.title} | STLACCESS — 3D Print Miniature Scale Guide`}
-  description={post.description}
+  title={`${post.data.title} | STLACCESS — 3D Print Miniature Scale Guide`}
+  description={post.data.description}
 >
 
 <!-- Breadcrumbs -->
@@ -25,15 +27,15 @@ const pubDate = new Date(post.pubDate);
   <span class="mx-2 text-slate-800">/</span>
   <a href="/guides" class="hover:text-[#ff6b35] transition-colors">Guides</a>
   <span class="mx-2 text-slate-800">/</span>
-  <span class="text-slate-400" aria-current="page">{post.title}</span>
+  <span class="text-slate-400" aria-current="page">{post.data.title}</span>
 </nav>
 
 <article class="max-w-4xl mx-auto px-6 py-12">
 
   <header class="mb-12">
-    {post.tags && post.tags.length > 0 && (
+    {post.data.tags && post.data.tags.length > 0 && (
       <div class="flex flex-wrap gap-2 mb-4">
-        {post.tags.map((tag) => (
+        {post.data.tags.map((tag) => (
           <span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full">
             {tag}
           </span>
@@ -41,7 +43,7 @@ const pubDate = new Date(post.pubDate);
       </div>
     )}
 
-    <time datetime={post.pubDate} class="text-sm text-slate-500 mb-4 block">
+    <time datetime={pubDate.toISOString()} class="text-sm text-slate-500 mb-4 block">
       {pubDate.toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
@@ -50,15 +52,17 @@ const pubDate = new Date(post.pubDate);
     </time>
 
     <h1 class="text-4xl md:text-5xl font-bold font-heading tracking-tight mb-6">
-      {post.title}
+      {post.data.title}
     </h1>
 
     <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">
-      {post.description}
+      {post.data.description}
     </p>
   </header>
 
-  <div class="prose max-w-none" set:html={post.html} />
+  <div class="prose max-w-none">
+    <Content />
+  </div>
 
   <footer class="mt-16 pt-8 border-t border-white/5">
     <a href="/guides" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">

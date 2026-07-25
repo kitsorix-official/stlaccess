@@ -1,10 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import posts from "../../data/blogPosts.json";
-import site from "../../data/site.json";
+import { getCollection } from "astro:content";
 
-const sortedPosts = [...posts].sort(
-  (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+const sortedPosts = (await getCollection("guides")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 ---
@@ -57,32 +56,32 @@ const sortedPosts = [...posts].sort(
     <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {sortedPosts.map((post) => (
         <a
-          href={`/guides/${post.slug}`}
+          href={`/guides/${post.id}`}
           class="blog-card group block bg-slate-900/30 rounded-3xl border border-white/5 p-8 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50"
-          data-search={`${post.title} ${post.description} ${post.tags ? post.tags.join(' ') : ''}`.toLowerCase()}
+          data-search={`${post.data.title} ${post.data.description} ${post.data.tags ? post.data.tags.join(' ') : ''}`.toLowerCase()}
         >
           <div class="flex flex-col h-full">
-            {post.tags && post.tags.length > 0 && (
+            {post.data.tags && post.data.tags.length > 0 && (
               <div class="flex flex-wrap gap-2 mb-4">
-                {post.tags.map((tag) => (
+                {post.data.tags.map((tag) => (
                   <span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full">
                     {tag}
                   </span>
                 ))}
               </div>
             )}
-            <time datetime={post.pubDate} class="text-xs text-slate-500 mb-3">
-              {new Date(post.pubDate).toLocaleDateString("en-US", {
+            <time datetime={post.data.pubDate.toISOString()} class="text-xs text-slate-500 mb-3">
+              {post.data.pubDate.toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
             </time>
             <h2 class="text-xl font-bold mb-3 group-hover:text-[#ff6b35] transition-colors">
-              {post.title}
+              {post.data.title}
             </h2>
             <p class="text-sm text-slate-400 leading-relaxed flex-1">
-              {post.description}
+              {post.data.description}
             </p>
             <span class="inline-flex items-center gap-2 text-sm font-semibold text-[#ff6b35] mt-6 group-hover:gap-3 transition-all">
               Read guide

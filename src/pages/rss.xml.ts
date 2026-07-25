@@ -1,13 +1,8 @@
 import type { APIRoute } from 'astro';
-import blogPosts from '../data/blogPosts.json';
+import { getCollection } from 'astro:content';
 import site from '../data/site.json';
 
 export const prerender = true;
-
-function formatDate(dateStr: string): string {
-  const d = new Date(dateStr + 'T00:00:00Z');
-  return d.toUTCString();
-}
 
 function escapeXml(str: string): string {
   return str
@@ -18,22 +13,24 @@ function escapeXml(str: string): string {
     .replace(/'/g, '&apos;');
 }
 
-export const GET: APIRoute = () => {
-  const sorted = [...blogPosts].sort(
-    (a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime()
+export const GET: APIRoute = async () => {
+  const posts = (await getCollection("guides")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
 
-  const items = sorted
+  const items = posts
     .map(
       (post) => `    <item>
-      <title>${escapeXml(post.title)}</title>
-      <link>${site.url}/guides/${post.slug}</link>
-      <description>${escapeXml(post.description)}</description>
-      <pubDate>${formatDate(post.pubDate)}</pubDate>
-      <guid>${site.url}/guides/${post.slug}</guid>
+      <title>${escapeXml(post.data.title)}</title>
+      <link>${site.url}/guides/${post.id}</link>
+      <description>${escapeXml(post.data.description)}</description>
+      <pubDate>${post.data.pubDate.toUTCString()}</pubDate>
+      <guid>${site.url}/guides/${post.id}</guid>
     </item>`
     )
     .join('\n');
+
+  const lastBuildDate = posts[0]?.data.pubDate.toUTCString() ?? new Date().toUTCString();
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -42,7 +39,7 @@ export const GET: APIRoute = () => {
     <link>${site.url}/guides</link>
     <description>${site.rssChannelDescription}</description>
     <language>en</language>
-    <lastBuildDate>${formatDate(sorted[0]?.pubDate ?? '2026-07-11')}</lastBuildDate>
+    <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${site.url}/rss.xml" rel="self" type="application/rss+xml"/>
 ${items}
   </channel>
