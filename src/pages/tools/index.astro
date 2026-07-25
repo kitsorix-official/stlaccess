@@ -6,112 +6,9 @@ import conversions from "../../data/conversions.json";
 import site from "../../data/site.json";
 import categoryLabels from "../../data/toolCategories.json";
 
-const { url, datePublished, dateModified, printerName } = site;
+const { printerName } = site;
 const scalesCount = Object.keys(scales).length;
 const conversionsCount = conversions.length;
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "CollectionPage",
-      "@id": `${url}/tools#webpage`,
-      "url": `${url}/tools`,
-      "name": "3D Print Scale Tools for Miniatures | STLACCESS",
-      "description": "Free browser-based tools for 3D printing miniature scale conversion. Calculator, reference library, and filament cost estimator for Warhammer, D&D, and tabletop gaming.",
-      "isPartOf": { "@id": `${url}/#website` },
-      "author": {
-        "@type": "Person",
-        "name": site.author.name,
-        "url": site.author.siteUrl,
-        "jobTitle": site.author.jobTitle
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": site.author.name,
-        "url": site.author.siteUrl
-      },
-      "datePublished": datePublished,
-      "dateModified": dateModified,
-      "speakable": {
-        "@type": "SpeakableSpecification",
-        "cssSelector": [".tools-intro", ".tool-card h3"]
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${url}/` },
-        { "@type": "ListItem", "position": 2, "name": "Tools" }
-      ]
-    },
-    {
-      "@type": "ItemList",
-      "name": "STLACCESS Tools for 3D Printed Miniatures",
-      "description": "Browser-based utilities for scaling, referencing, and calculating costs for STL scale conversions.",
-      "url": `${url}/tools`,
-      "numberOfItems": tools.length,
-      "itemListElement": tools.map((tool, i) => ({
-        "@type": "ListItem",
-        "position": i + 1,
-        "name": tool.name,
-        "url": `${url}/tools/${tool.slug}`,
-        "description": tool.shortDescription
-      }))
-    },
-    {
-      "@type": "QAPage",
-      "url": `${url}/tools`,
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What tools does STLACCESS offer for 3D printing miniatures?",
-          "text": "What tools does STLACCESS offer for 3D printing miniatures?",
-          "answerCount": 1,
-          "datePublished": `${dateModified}T00:00:00+00:00`,
-          "url": `${url}/tools#qa-0`,
-          "upvoteCount": 1,
-          "author": { "@type": "Person", "name": site.author.name, "url": site.author.url },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "STLACCESS provides browser-based tools for STL scale conversion: " + tools.map(t => t.name).join(", ") + ". All tools run client-side with no uploads or accounts.",
-            "author": { "@type": "Person", "name": site.author.name, "url": site.author.url }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is there a cost to use these STL scale tools?",
-          "text": "Is there a cost to use these STL scale tools?",
-          "answerCount": 1,
-          "datePublished": `${dateModified}T00:00:00+00:00`,
-          "url": `${url}/tools#qa-1`,
-          "upvoteCount": 1,
-          "author": { "@type": "Person", "name": site.author.name, "url": site.author.url },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "All tools on STLACCESS are free. No account, no login, no payment required. The calculator runs entirely in your browser.",
-            "author": { "@type": "Person", "name": site.author.name, "url": site.author.url }
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do these tools work offline?",
-          "text": "Do these tools work offline?",
-          "answerCount": 1,
-          "datePublished": `${dateModified}T00:00:00+00:00`,
-          "url": `${url}/tools#qa-2`,
-          "upvoteCount": 1,
-          "author": { "@type": "Person", "name": site.author.name, "url": site.author.url },
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The stlscale Engine and reference library require an internet connection to load. Once loaded, the calculator runs entirely in your browser.",
-            "author": { "@type": "Person", "name": site.author.name, "url": site.author.url }
-          }
-        }
-      ]
-    }
-  ]
-});
 
 const categories = [...new Set(tools.map(t => t.category))];
 ---
@@ -119,7 +16,6 @@ const categories = [...new Set(tools.map(t => t.category))];
 <Layout
   title="3D Print Scale Tools for Miniatures | STLACCESS"
   description="Free browser-based tools for 3D printing miniature scale conversion. Calculator, reference library, and filament cost estimator for Warhammer, D&D, and tabletop gaming."
-  schema={schema}
 >
 
 <!-- Breadcrumbs -->

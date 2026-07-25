@@ -84,93 +84,10 @@ for (const conv of conversions) {
 }
 
 const scalesCount = Object.keys(scales).length;
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebApplication",
-      "name": "stlscale — STL Scale Converter",
-      "url": `${site.url}/`,
-      "description": site.description,
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Web",
-      "browserRequirements": "Requires JavaScript. No login required.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "featureList": site.schemaFeatureList,
-      "creator": {
-        "@type": "Person",
-        "name": site.author.name,
-        "url": site.author.siteUrl
-      }
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${site.url}/#website`,
-      "url": `${site.url}/`,
-      "name": "STLACCESS",
-      "description": site.description,
-      "publisher": { "@id": `${site.url}/#person` },
-      "inLanguage": "en"
-    },
-    {
-      "@type": "Person",
-      "@id": `${site.url}/#person`,
-      "name": site.author.name,
-      "alternateName": site.alternateName,
-      "url": `${site.url}/`,
-      "jobTitle": site.author.jobTitle,
-      "knowsAbout": site.schemaKnowsAbout,
-      "sameAs": [`${site.author.url}/stlaccess`]
-    },
-    {
-      "@type": "WebPage",
-      "@id": `${site.url}/#webpage`,
-      "name": "STL Scale Converter for 3D Printed Miniatures",
-      "url": `${site.url}/`,
-      "speakable": {
-        "@type": "SpeakableSpecification",
-        "cssSelector": ["#hero-description", "#faq details summary", "#reference-intro"]
-      },
-      "isPartOf": { "@id": `${site.url}/#website` }
-    },
-    {
-      "@type": "QAPage",
-      "url": `${site.url}/`,
-      "mainEntity": homepageFaq.map((faq, i) => ({
-        "@type": "Question",
-        "name": faq.question.replace(/<[^>]*>/g, '').replace(/"/g, '\\"'),
-        "text": faq.question.replace(/<[^>]*>/g, '').replace(/"/g, '\\"'),
-        "answerCount": 1,
-        "datePublished": `${site.dateModified}T00:00:00+00:00`,
-        "url": `${site.url}/#qa-${i}`,
-        "upvoteCount": 1,
-        "author": {
-          "@type": "Person",
-          "name": site.author.name,
-          "url": site.author.url
-        },
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer.replace(/<[^>]*>/g, '').replace(/"/g, '\\"') + (faq.answerExtra ? ' ' + faq.answerExtra.replace(/<[^>]*>/g, '').replace(/"/g, '\\"') : ''),
-          "author": {
-            "@type": "Person",
-            "name": site.author.name,
-            "url": site.author.url
-          }
-        }
-      }))
-    }
-  ]
-});
 ---
 <Layout
 title="STL Scale Converter | 28mm to 32mm, Warhammer & D&D | stlscale"
 description="STL scale converter for 3D printed miniatures. Calculates resize percentages for 28mm to 32mm, 1:35 to 32mm, and other tabletop gaming scales. Runs in your browser. No file upload."
-schema={schema}
 >
 <nav class="sr-only" aria-label="Breadcrumb">
   <span aria-current="page">Home</span>

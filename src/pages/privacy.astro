@@ -1,34 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import site from '../data/site.json';
-
-const { url } = site;
-
-const schema = `{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "PrivacyPolicyPage",
-      "@id": "${url}/privacy#webpage",
-      "url": "${url}/privacy",
-      "name": "Privacy Policy | STLACCESS",
-      "description": "A plain-English breakdown of how I handle your data. 100% cookie-free, no tracking, and zero personal data collection.",
-      "isPartOf": { "@id": "${url}/#website" }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "${url}/" },
-        { "@type": "ListItem", "position": 2, "name": "Privacy" }
-      ]
-    }
-  ]
-}`;
 ---
 <Layout
   title="Privacy Policy | STLACCESS"
   description="Simple, transparent privacy policy for STLACCESS users. No accounts, no tracking, just precision."
-  schema={schema}
 >
   <article class="max-w-4xl mx-auto px-6 py-20 w-full">
     <!-- Breadcrumbs -->

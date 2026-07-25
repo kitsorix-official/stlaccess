@@ -7,15 +7,13 @@ interface Props {
   description: string;
   canonicalURL?: string | URL;
   ogImage?: string;
-  schema?: string;
 }
 
 const {
   title,
   description,
   canonicalURL = new URL(Astro.url.pathname, Astro.site || `${site.url}/`),
-  ogImage = site.ogImage,
-  schema
+  ogImage = site.ogImage
 } = Astro.props;
 
 // Format canonical URL
@@ -79,8 +77,6 @@ const currentPath = Astro.url.pathname;
   <!-- RSS Autodiscovery -->
   <link rel="alternate" type="application/rss+xml" title={`${site.name} Guides`} href={`${site.url}/rss.xml`}>
   
-  <!-- Schema -->
-  {schema && <script type="application/ld+json" set:html={schema} />}
 </head>
 
 <body class="min-h-screen flex flex-col bg-black text-white">

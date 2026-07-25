@@ -3,66 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import site from "../../data/site.json";
 import rawConversions from "../../data/conversions.json";
 
-const { author, datePublished, dateModified, url, referencePageQA, gasEndpoint, printerName } = site;
-
-const qaItems = referencePageQA.map((qa, i) => ({
-  "@type": "Question",
-  "name": qa.question.replace(/<[^>]*>/g, ''),
-  "text": qa.question.replace(/<[^>]*>/g, ''),
-  "answerCount": 1,
-  "datePublished": `${dateModified}T00:00:00+00:00`,
-  "url": `${url}/reference#qa-${i}`,
-  "upvoteCount": 1,
-  "author": { "@type": "Person", "name": author.name, "url": author.url },
-  "acceptedAnswer": {
-    "@type": "Answer",
-    "text": qa.answer.replace(/<[^>]*>/g, ''),
-    "author": { "@type": "Person", "name": author.name, "url": author.url }
-  }
-}));
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": `${url}/reference#webpage`,
-      "url": `${url}/reference`,
-      "name": "STL Scale Conversion Reference | Percentages for 3D Printing",
-      "description": "Slicer percentages for converting tabletop miniatures between scales. 28mm to 32mm, 1:35, 1:48, 1:56, and more. Based on a 175cm human baseline.",
-      "author": {
-        "@type": "Person",
-        "name": author.name,
-        "url": author.siteUrl,
-        "jobTitle": author.jobTitle,
-        "description": "Tabletop miniature hobbyist. Conversion values from my own prints and community feedback."
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": author.name,
-        "url": author.siteUrl
-      },
-      "datePublished": datePublished,
-      "dateModified": dateModified,
-      "speakable": {
-        "@type": "SpeakableSpecification",
-        "cssSelector": [".reference-intro", ".faq-question", "#conversion-matrix"]
-      }
-    },
-    {
-      "@type": "QAPage",
-      "url": `${url}/reference`,
-      "mainEntity": qaItems
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${url}/` },
-        { "@type": "ListItem", "position": 2, "name": "Reference" }
-      ]
-    }
-  ]
-});
+const { dateModified, referencePageQA, gasEndpoint, printerName } = site;
 
 const conversions = rawConversions.map(c => ({
   source: c.sourceLabel,
@@ -78,7 +19,6 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
 <Layout
   title="STL Scale Conversion Reference | Percentages for 3D Printing"
   description="Slicer percentages for converting tabletop miniatures between scales. 28mm to 32mm, 1:35, 1:48, 1:56, and more. Based on a 175cm human baseline."
-  schema={schema}
 >
 
 <!-- Breadcrumbs -->

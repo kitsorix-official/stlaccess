@@ -15,15 +15,6 @@
   "dateModified": "2026-06-05",
   "rssChannelTitle": "STLACCESS Guides — 3D Print Miniature Scale Conversion",
   "rssChannelDescription": "Articles about 3D printed miniature scale conversion, FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.",
-  "schemaFeatureList": "Convert between 15+ gaming scales, Eye Level and Top of Head measurement options, Warhammer and D&D conversions, Browser-based with no file upload",
-  "schemaKnowsAbout": [
-    "3D printing miniatures",
-    "tabletop wargaming scales",
-    "FDM printing",
-    "Warhammer 40k scale",
-    "D&D miniature scaling",
-    "STL file conversion"
-  ],
   "author": {
     "name": "kitsorix",
     "url": "https://github.com/kitsorix-official",

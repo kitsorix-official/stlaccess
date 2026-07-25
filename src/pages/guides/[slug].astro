@@ -12,51 +12,11 @@ export function getStaticPaths() {
 
 const { post } = Astro.props;
 const pubDate = new Date(post.pubDate);
-const { url } = site;
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "BlogPosting",
-      "headline": post.title,
-      "description": post.description,
-      "mainEntityOfPage": { "@id": `${url}/guides/${post.slug}#webpage` },
-      "url": `${url}/guides/${post.slug}`,
-      "image": site.ogImage,
-      "datePublished": post.pubDate,
-      "dateModified": post.modDate || post.pubDate,
-      "author": [{
-        "@type": "Person",
-        "name": site.author.name,
-        "url": site.author.siteUrl
-      }],
-      "publisher": {
-        "@type": "Organization",
-        "name": site.name,
-        "url": url,
-        "logo": {
-          "@type": "ImageObject",
-          "url": site.ogImage
-        }
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {"@type": "ListItem", "position": 1, "name": "Home", "item": `${url}/`},
-        {"@type": "ListItem", "position": 2, "name": "Guides", "item": `${url}/guides`},
-        {"@type": "ListItem", "position": 3, "name": post.title}
-      ]
-    }
-  ]
-});
 ---
 
 <Layout
   title={`${post.title} | STLACCESS`}
   description={post.description}
-  schema={schema}
 >
 
 <!-- Breadcrumbs -->

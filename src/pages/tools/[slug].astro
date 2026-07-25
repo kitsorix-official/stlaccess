@@ -12,77 +12,13 @@ export async function getStaticPaths() {
 }
 
 const { tool } = Astro.props;
-const { url, datePublished, dateModified } = site;
 
 const defaultPreset = filamentPresets.find(p => p.type === 'PLA' && p.name === 'Mid PLA') || filamentPresets[0];
-
-const schema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": `${url}/tools/${tool.slug}#webpage`,
-      "url": `${url}/tools/${tool.slug}`,
-      "name": `${tool.name} | 3D Print Tool for Miniatures | STLACCESS`,
-      "description": tool.shortDescription,
-      "isPartOf": { "@id": `${url}/#website` },
-      "author": {
-        "@type": "Person",
-        "name": site.author.name,
-        "url": site.author.siteUrl,
-        "jobTitle": site.author.jobTitle
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": site.author.name,
-        "url": site.author.siteUrl
-      },
-      "datePublished": datePublished,
-      "dateModified": dateModified
-    },
-    {
-      "@type": "SoftwareApplication",
-      "name": tool.name,
-      "url": `${url}/tools/${tool.slug}`,
-      "description": tool.shortDescription,
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Web",
-      "browserRequirements": "Requires JavaScript. No login required.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "featureList": tool.features.join(", "),
-      "author": {
-        "@type": "Person",
-        "name": site.author.name,
-        "url": site.author.siteUrl
-      },
-      "publisher": {
-        "@type": "Person",
-        "name": site.author.name,
-        "url": site.author.siteUrl
-      },
-      "datePublished": datePublished,
-      "dateModified": dateModified
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${url}/` },
-        { "@type": "ListItem", "position": 2, "name": "Tools", "item": `${url}/tools` },
-        { "@type": "ListItem", "position": 3, "name": tool.name }
-      ]
-    }
-  ]
-});
 ---
 
 <Layout
   title={`${tool.name} | 3D Print Tool for Miniatures | STLACCESS`}
   description={tool.shortDescription}
-  schema={schema}
 >
 
 <!-- Breadcrumbs -->
