@@ -53,20 +53,18 @@ const faqItems = [
 ---
 
 <Layout
-  title={`${game.name} 3D Print Scale Guide | STLACCESS`}
-  description={`${game.description} Slicer percentages for scaling ${game.name} STL files at ${game.scale} scale (${game.ratioScale}).`}
+  title={`${game.name} Miniature Scale Guide for 3D Printing | STLACCESS`}
+  description={`${game.description} Slicer percentages for scaling ${game.name} STL files at ${game.scale} scale (${game.ratioScale}). FDM printing tips included.`}
 >
 
   <article>
   <!-- Breadcrumb -->
-  <nav class="max-w-4xl mx-auto px-6 pt-8" aria-label="Breadcrumb">
-    <ol class="flex items-center gap-2 text-xs font-mono text-slate-500">
-      <li><a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a></li>
-      <li><span class="mx-1">/</span></li>
-      <li><a href="/games" class="hover:text-[#ff6b35] transition-colors">Game Systems</a></li>
-      <li><span class="mx-1">/</span></li>
-      <li class="text-slate-300" aria-current="page">{game.name}</li>
-    </ol>
+  <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <a href="/games" class="hover:text-[#ff6b35] transition-colors">Game Systems</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <span class="text-slate-400" aria-current="page">{game.name}</span>
   </nav>
 
   <section class="max-w-4xl mx-auto px-6 py-12 md:py-16" aria-labelledby="game-hero-heading">
@@ -86,8 +84,8 @@ const faqItems = [
     </div>
 
     <!-- Scale Overview -->
-    <div class="scale-explanation bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 mb-10">
-      <h2 class="text-xl font-bold font-heading text-white mb-4">Scale Details</h2>
+    <div class="scale-explanation bg-slate-900/30 border border-white/5 rounded-2xl p-6 md:p-8 mb-10">
+      <h2 class="text-xl font-bold font-heading text-white mb-4">What scale am I actually printing?</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
         <div>
           <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Miniature Scale</div>
@@ -125,7 +123,7 @@ const faqItems = [
           <table class="w-full text-sm">
             <caption class="sr-only">Scale conversions for {game.shortName}</caption>
             <thead>
-              <tr class="border-b border-white/10">
+              <tr class="border-b border-white/5">
                 <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Conversion</th>
                 <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Description</th>
                 <th scope="col" class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Slicer %</th>
@@ -134,7 +132,7 @@ const faqItems = [
             </thead>
             <tbody>
               {relatedConvData.map((conv) => (
-                <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                <tr class="border-b border-white/5 hover:bg-slate-900/50 transition-colors">
                   <td class="py-3 px-4">
                     <a href={`/reference/${conv.slug}`} class="text-[#ff6b35] hover:text-white transition-colors font-mono font-semibold">
                       {conv.h1Source} → {conv.h1Target}
@@ -158,17 +156,20 @@ const faqItems = [
 
     <!-- 3D Printing Tips -->
     <div class="mb-10">
-      <h2 class="text-xl font-bold font-heading text-white mb-4">3D Printing Tips for {game.shortName}</h2>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+      <h2 class="text-xl font-bold font-heading text-white mb-4">Printing these minis on FDM</h2>
+      <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 md:p-8">
         <p class="text-slate-300 leading-relaxed mb-4">
           {game.printingTips}
         </p>
+        <p class="text-xs text-slate-500 mt-4">
+          All settings tested on my Bambu Lab A1 Mini with PLA. Your printer may want something different — always print a test piece first.
+        </p>
         <div class="flex flex-wrap gap-3 mt-4">
-          <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] hover:bg-[#e55a28] text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all">
+          <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black text-sm font-semibold px-5 py-2.5 rounded-lg hover:brightness-110 active:scale-95 transition-all">
             <i class="fa-solid fa-calculator text-xs"></i>
-            Open Scale Engine
+            Launch stlscale
           </a>
-          <a href="/tools" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 text-sm font-semibold px-5 py-2.5 rounded-lg border border-white/10 transition-all">
+          <a href="/tools" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 text-sm font-semibold px-5 py-2.5 rounded-lg border border-white/5 transition-all">
             <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
             All Tools
           </a>
@@ -180,12 +181,12 @@ const faqItems = [
     {sameScale.length > 0 && (
       <div class="mb-10">
         <h2 class="text-xl font-bold font-heading text-white mb-2">Other Games at {game.scale} Scale</h2>
-        <p class="text-sm text-slate-500 mb-6">These systems use the same miniature scale as {game.name}. Miniatures are generally interchangeable between them.</p>
+        <p class="text-sm text-slate-500 mb-6">These systems use the same miniature scale as {game.name}. In most cases, miniatures are interchangeable between them — though art style and proportions will still vary by manufacturer.</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {sameScale.map((g) => (
             <a
               href={`/games/${g.slug}`}
-              class="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-xl hover:border-[#ff6b35]/30 hover:bg-white/[0.07] transition-all group"
+              class="flex items-center justify-between p-4 bg-slate-900/30 border border-white/5 rounded-xl hover:border-[#ff6b35]/30 hover:bg-slate-900/50 transition-all group"
             >
               <div>
                 <div class="font-semibold text-white group-hover:text-[#ff6b35] transition-colors">{g.name}</div>
@@ -203,8 +204,8 @@ const faqItems = [
       <h2 class="text-xl font-bold font-heading text-white mb-6">Frequently Asked Questions</h2>
       <div class="space-y-4">
         {faqItems.map((faq) => (
-          <details class="bg-white/5 border border-white/10 rounded-xl overflow-hidden group">
-            <summary class="px-6 py-4 cursor-pointer text-white font-semibold hover:bg-white/5 transition-colors flex items-center justify-between">
+          <details class="bg-[#0a0a0a]/50 border border-white/5 hover:bg-[#111]/30 hover:border-white/10 rounded-xl overflow-hidden group transition-all duration-200">
+            <summary class="px-6 py-4 cursor-pointer text-white font-semibold hover:text-[#ff6b35] transition-colors flex items-center justify-between list-none">
               <span>{faq.name}</span>
               <i class="fa-solid fa-chevron-down text-xs text-slate-500 group-open:rotate-180 transition-transform"></i>
             </summary>
@@ -218,10 +219,10 @@ const faqItems = [
 
     <!-- CTA -->
     <div class="text-center py-10 border-t border-white/5">
-      <p class="text-slate-500 text-sm mb-4">Ready to scale your {game.name} STL files?</p>
-      <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] hover:bg-[#e55a28] text-white font-bold px-8 py-3 rounded-xl transition-all hover:shadow-lg hover:shadow-[#ff6b35]/20">
+      <p class="text-slate-500 text-sm mb-4">Time to check the scale before you commit to a long print.</p>
+      <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black font-bold px-8 py-3 rounded-xl hover:brightness-110 active:scale-95 transition-all hover:shadow-lg hover:shadow-[#ff6b35]/20">
         <i class="fa-solid fa-calculator"></i>
-        Open the Scale Engine
+        Launch stlscale
       </a>
     </div>
 

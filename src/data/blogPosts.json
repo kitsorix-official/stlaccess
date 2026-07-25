@@ -2,7 +2,7 @@
   {
     "slug": "dungeons-and-dragons-miniature-scale",
     "title": "D&D Miniature Scale: What Size Are D&D Minis and How to 3D Print Them",
-    "description": "The complete guide to Dungeons & Dragons miniature scale for 3D printing. 28mm true scale explained, FDM settings for D&D minis, and scaling between monster sizes.",
+    "description": "Everything I learned printing D&D minis on FDM — 28mm true scale explained, nozzle and layer settings for each creature size, and how to scale between goblin and dragon.",
     "pubDate": "2026-07-13",
     "modDate": "2026-07-13",
     "tags": [
@@ -77,7 +77,7 @@
   {
     "slug": "stl-scale-conversion-chart",
     "title": "The Ultimate Printable STL Scale Conversion Chart",
-    "description": "Free downloadable and printable STL scale conversion chart for 3D printed miniatures. Covers 28mm, 32mm, 35mm, 40mm, 75mm tabletop, and ratio scales 1:35 through 1:100.",
+    "description": "Print this and stick it to your printing cave wall. Every conversion percentage for 28mm through 1:100 scales, calculated from a 175cm baseline and verified on my A1 Mini.",
     "pubDate": "2026-07-01",
     "modDate": "2026-07-01",
     "tags": [
@@ -105,7 +105,7 @@
   {
     "slug": "upscaling-3d-prints-detail-limit",
     "title": "Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?",
-    "description": "How much can you enlarge a 32mm miniature before losing detail? Resin vs FDM limits, layer line visibility, and slicer settings for clean upscaling.",
+    "description": "How big can you go before layer lines show? Resin vs FDM limits, what happens at each scale percentage, and the slicer settings that keep your prints clean.",
     "pubDate": "2026-06-25",
     "modDate": "2026-06-25",
     "tags": [
@@ -147,7 +147,7 @@
   {
     "slug": "175cm-baseline",
     "title": "Why Miniature Scales Use a 175cm Human Baseline",
-    "description": "Most tabletop miniature scales are built around a 175cm (5'9) human. Here is why that number matters for 3D printing accurate scale conversions.",
+    "description": "Most tabletop miniature scales are built around a 175cm (5'9\") human. Here is why that number matters for 3D printing accurate scale conversions.",
     "pubDate": "2026-06-15",
     "modDate": "2026-06-15",
     "tags": [

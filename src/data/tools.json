@@ -2,30 +2,30 @@
   {
     "slug": "stlscale-engine",
     "name": "stlscale Engine",
-    "shortDescription": "Browser-based STL scale calculator that outputs resize percentages for tabletop gaming miniatures.",
-    "description": "The core tool of STLACCESS. Select source and target scales, choose eye-level or top-of-head measurement, and get the exact slicer percentage. Supports Warhammer 40k, D&D, Bolt Action, Star Wars Legion, Shatterpoint, scale model kits, and display pieces. No file upload, no login, no tracking.",
+    "shortDescription": "The main scale calculator. Pick your source and target scales, and I will give you the exact number to type into your slicer.",
+    "description": "This is the tool I use before every print. Select the scale your STL was designed for, pick the scale you need, and choose between eye-level or top-of-head measurement. Supports 15+ tabletop scales including Warhammer 40k, D&D, Bolt Action, Star Wars Legion, and Shatterpoint. Everything runs in your browser — no uploads, no accounts, no tracking.",
     "icon": "fa-calculator",
     "url": "/",
-    "features": ["15+ gaming scales supported", "Eye Level and Top of Head measurement", "Bed-level calibration guides", "Copy to clipboard", "Deep-linkable via URL parameters"],
+    "features": ["15+ gaming scales supported", "Eye Level and Top of Head measurement", "Shrinkage compensation toggle", "Copy to clipboard", "Bookmarkable URL parameters"],
     "category": "calculators",
     "featured": true
   },
   {
     "slug": "scale-reference",
     "name": "Scale Conversion Reference",
-    "shortDescription": "Searchable database of 45 verified slicer percentages for converting between miniature scales.",
-    "description": "Complete reference library with conversion percentages for 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales. Each entry shows the math, scale baselines, FDM print notes, and links to apply the conversion directly in the calculator. Community-corrected through submit feedback.",
+    "shortDescription": "Every conversion percentage I have verified, all in one searchable list. Print-tested on FDM.",
+    "description": "Every conversion percentage I have verified, all in one searchable list. Covers 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales. Each entry shows the math, the scale baselines, and FDM print notes. You can jump straight to the calculator from any conversion. I update these when the community catches something wrong.",
     "icon": "fa-book-open",
     "url": "/reference",
-    "features": ["45 verified conversion pairs", "Search and filter by scale", "Mathematical proof for each conversion", "Print-tested on FDM", "Community feedback and correction system"],
+    "features": ["45 verified conversion pairs", "Search and filter by scale", "Full math breakdown for each entry", "Print-tested on FDM", "Community feedback and correction system"],
     "category": "references",
     "featured": true
   },
   {
     "slug": "slicer-percentage-calculator",
     "name": "Slicer Percentage Calculator",
-    "shortDescription": "Simple tool to calculate the exact resize percentage needed to scale a miniature from any size to any target size for use in Chitubox, Lychee, or PrusaSlicer.",
-    "description": "The most straightforward tool on STLACCESS. Enter your current model height and your desired target height — the calculator outputs the exact percentage to type into your slicer. Supports any scale combination, from Warhammer base swaps to upscaling display pieces. Shows the math so you can verify the result.",
+    "shortDescription": "Type in two measurements in millimetres, get the exact percentage for your slicer. Works for any scale combination.",
+    "description": "The simplest tool on the site. Enter your current model height and your desired target height, and the calculator gives you the percentage to type into Chitubox, Lychee, or PrusaSlicer. Shows the formula so you can check the math yourself. No account, no tracking, no bloat.",
     "icon": "fa-percent",
     "url": "/tools/slicer-percentage-calculator",
     "features": ["Any source size to any target size", "Real-time calculation as you type", "12 common conversion presets", "Formula breakdown for verification", "Copy result to clipboard", "Zero bloat — no account, no tracking"],
@@ -35,11 +35,11 @@
   {
     "slug": "filament-cost-calculator",
     "name": "Filament Cost Calculator",
-    "shortDescription": "Calculate how much a 3D print costs based on filament roll price, weight used, and print time.",
-    "description": "Enter your filament roll price and weight, the grams your slicer reports for the print, and optionally the power draw and print time to see the estimated total cost. Works for PLA, PETG, and any filament type.",
+    "shortDescription": "Find out how much a print costs before you hit start. Based on filament price, weight used, and optional electricity.",
+    "description": "Enter your roll price, the grams your slicer reports, and optionally your printer power draw and print time. The calculator tells you the filament cost, electricity cost, and total. Works for PLA, PETG, and any filament type. Preset buttons for common rolls so you don't have to type everything manually.",
     "icon": "fa-dollar-sign",
     "url": "/tools/filament-cost-calculator",
-    "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Filament presets with real market data", "Deep-link from scale engine", "No account, no tracking"],
+    "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Filament presets with real market prices", "Deep-link from scale engine", "No account, no tracking"],
     "category": "calculators",
     "featured": true
   }

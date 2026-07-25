@@ -86,8 +86,8 @@ for (const conv of conversions) {
 const scalesCount = Object.keys(scales).length;
 ---
 <Layout
-title="STL Scale Converter | 28mm to 32mm, Warhammer & D&D | stlscale"
-description="STL scale converter for 3D printed miniatures. Calculates resize percentages for 28mm to 32mm, 1:35 to 32mm, and other tabletop gaming scales. Runs in your browser. No file upload."
+  title="STL Scale Calculator | Stop Wasting Filament on Wrong Mini Sizes | STLACCESS"
+  description="Scale your STL files for Warhammer, D&D, Bolt Action, and tabletop gaming. The stlscale calculator gives you exact slicer percentages so you stop wasting filament on wrong mini sizes."
 >
 <nav class="sr-only" aria-label="Breadcrumb">
   <span aria-current="page">Home</span>
@@ -96,17 +96,17 @@ description="STL scale converter for 3D printed miniatures. Calculates resize pe
 <!-- Hero Section -->
 <section class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
 <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-6">
-STLSCALE Engine v1.0 — Scaling for Miniature Printers
+By a hobbyist, for hobbyists
 </p>
 <h1 id="hero-heading" class="text-4xl md:text-7xl font-bold mb-6 font-heading tracking-tight leading-tight">
-STL Scale Converter<br />
-<span class="text-[#ff6b35] italic">for 3D Printed Miniatures</span>
+Get your miniatures the right size<br />
+<span class="text-[#ff6b35] italic">before you waste filament.</span>
 </h1>
 <p id="hero-description" class="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
-<span class="text-[#ff6b35] font-semibold">stlscale</span> calculates the exact slicer percentage to scale STL files between <span class="text-white font-semibold">{Object.keys(scales).length}+ tabletop gaming scales</span> — from 28mm to 32mm, 1:35 to 1:48, and more. Built on a <span class="text-white font-semibold">{baselineHeight} human baseline</span> with eye-level and top-of-head options. No file upload. No login.
+I built this tool because I kept running into scaling problems myself. Use <span class="text-[#ff6b35] font-semibold">stlscale</span> to calculate the exact slicer percentage for <span class="text-white font-semibold">{Object.keys(scales).length}+ tabletop scales</span> so your proxies actually match your army. No guesswork. No file uploads.
 </p>
 <p class="text-sm text-slate-500">
-Warhammer 40K, D&D, Star Wars Legion, Bolt Action, and a bunch of historical systems.
+Perfect for Warhammer, D&D, Star Wars Legion, and historical tabletop terrain.
 </p>
 </section>
 
@@ -119,7 +119,7 @@ Warhammer 40K, D&D, Star Wars Legion, Bolt Action, and a bunch of historical sys
 <!-- Input: Source -->
 <div class="space-y-3">
 <label for="sourceScale" class="block text-xs font-bold uppercase tracking-widest text-slate-500">
-Source scale
+Current STL Scale
 </label>
 <div class="relative">
 <select id="sourceScale" class="w-full bg-slate-900 border border-slate-800 text-white rounded-2xl px-5 py-4 focus-ring appearance-none cursor-pointer transition-all hover:border-slate-600">
@@ -147,7 +147,7 @@ Source scale
 <!-- Input: Target -->
 <div class="space-y-3">
 <label for="targetScale" class="block text-xs font-bold uppercase tracking-widest text-slate-500">
-Target scale
+Scale You Want
 </label>
 <div class="relative">
 <select id="targetScale" class="w-full bg-slate-900 border border-slate-800 text-white rounded-2xl px-5 py-4 focus-ring appearance-none cursor-pointer transition-all hover:border-slate-600">
@@ -168,7 +168,7 @@ Target scale
 <label class="flex-1 text-center py-3 rounded-xl cursor-pointer transition-all font-semibold text-sm relative group">
 <input type="radio" name="logic" value="eye" class="sr-only" checked />
 <div class="bg-transparent border border-transparent py-2 rounded-lg group-has-[:checked]:bg-slate-800 group-has-[:checked]:border-white/10 group-has-[:checked]:text-[#ff6b35]">
-Eye Level
+Eye Level (Standard)
 </div>
 </label>
 <label class="flex-1 text-center py-3 rounded-xl cursor-pointer transition-all font-semibold text-sm relative group">
@@ -188,7 +188,7 @@ Top of Head
 Material compensation
 </h3>
 <p class="text-[10px] text-slate-500">
-Add a small percentage for cooling shrinkage
+Add a slight bump if your PLA or resin shrinks while cooling.
 </p>
 </div>
 <label class="relative inline-flex items-center cursor-pointer">
@@ -213,7 +213,7 @@ Add a small percentage for cooling shrinkage
 <i class="fa-solid fa-print text-6xl -rotate-12"></i>
 </div>
 <span class="text-[10px] font-black uppercase tracking-[0.2em] mb-2 block opacity-80">
-Slicer scale
+Type this into your slicer
 </span>
 <div id="resultDisplay" class="text-6xl md:text-7xl font-black font-heading tracking-tighter leading-none">
 </div>
@@ -225,7 +225,7 @@ Slicer scale
 </div>
 <div class="mt-4 flex items-center justify-center gap-2 text-[10px] text-black/60 font-bold uppercase tracking-widest">
 <i class="fa-solid fa-shield-halved"></i>
-175cm baseline
+Tested logic
 <span class="mx-1">•</span>
 <a href="/about" class="hover:underline">Methodology</a>
 </div>
@@ -235,7 +235,7 @@ Slicer scale
 <p class="text-[11px] text-slate-500 text-center leading-relaxed px-4">
 Conversion logic assumes a {baselineHeightCm} human baseline. Eye Level measures to {eyeLevelCm}cm. Top of Head accounts for hair and helmets at {baselineHeightCm}cm.
 <br />
-<strong class="text-slate-400">Tip:</strong> Always use <span class="text-[#ff6b35] font-semibold">Uniform Scaling</span> (lock X, Y, and Z axes) to avoid distorted models.
+<strong class="text-slate-400">Tip:</strong> Always use <span class="text-[#ff6b35] font-semibold">Uniform Scaling</span> (lock X, Y, and Z axes) in your slicer to avoid distorted models.
 </p>
 
 </div>
@@ -245,28 +245,28 @@ Conversion logic assumes a {baselineHeightCm} human baseline. Eye Level measures
 <!-- How to Use -->
 <section class="max-w-3xl mx-auto px-6 py-12" aria-labelledby="howto-heading">
 <h2 id="howto-heading" class="text-3xl md:text-4xl font-bold font-heading mb-8">
-How to scale your <span class="text-[#ff6b35]">STL</span>
+Make sure your mini is the right size before <span class="text-[#ff6b35]">printing</span>
 </h2>
 <ol class="space-y-6">
 <li class="flex gap-4 items-start">
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">1</span>
 <div>
 <p class="text-slate-200 font-semibold">Select your scales</p>
-<p class="text-slate-400 text-sm">Pick source and target in the calculator above. Choose Eye Level or Top of Head.</p>
+<p class="text-slate-400 text-sm">Pick the size of the STL you downloaded, and the size you need it to be for your army.</p>
 </div>
 </li>
 <li class="flex gap-4 items-start">
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">2</span>
 <div>
-<p class="text-slate-200 font-semibold">Copy the percentage</p>
-<p class="text-slate-400 text-sm">Open your STL in <span class="text-white">Chitubox</span>, <span class="text-white">Lychee</span>, <span class="text-white">PrusaSlicer</span>, or <span class="text-white">Cura</span>.</p>
+<p class="text-slate-200 font-semibold">Grab the percentage</p>
+<p class="text-slate-400 text-sm">Open up your slicer of choice (like <span class="text-white">Lychee</span>, <span class="text-white">Chitubox</span>, or <span class="text-white">Orca</span>).</p>
 </div>
 </li>
 <li class="flex gap-4 items-start">
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">3</span>
 <div>
 <p class="text-slate-200 font-semibold">Paste and lock axes</p>
-<p class="text-slate-400 text-sm">Enter the percentage into the scale tool. Lock <span class="text-[#ff6b35] font-semibold">X, Y, and Z</span> to uniform scaling. Slice and print.</p>
+<p class="text-slate-400 text-sm">Enter the percentage into your scale tool. Lock <span class="text-[#ff6b35] font-semibold">X, Y, and Z</span> to uniform scaling so your proxy doesn't stretch out. Slice and print.</p>
 </div>
 </li>
 </ol>
@@ -277,10 +277,10 @@ How to scale your <span class="text-[#ff6b35]">STL</span>
 <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
 <div class="max-w-xl">
 <h2 id="reference-heading" class="text-3xl md:text-5xl font-bold font-heading mb-4">
-Popular <span class="text-[#ff6b35] italic">scale conversions</span>
+The conversions I use <span class="text-[#ff6b35] italic">most often</span>
 </h2>
 <p id="reference-intro" class="text-slate-400 text-lg">
-Percentages for the most common tabletop wargaming and historical modeling transitions. These are what I use and what the community has landed on, but if something looks off on your printer, <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors">let me know</a>.
+Before starting a 10-hour print, check the scale first. A few seconds now can save a lot of frustration later. These are the percentages I use myself, but if a print comes out looking wrong, <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors">let me know</a>.
 </p>
 </div>
 <a href="/reference" class="text-[#ff6b35] font-bold text-sm uppercase tracking-widest border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-1 transition-all">
@@ -304,10 +304,10 @@ View full scale reference library
 <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
 <div class="max-w-xl">
 <h2 id="faq-heading" class="text-3xl md:text-5xl font-bold font-heading mb-4">
-Scale conversion <span class="text-[#ff6b35] italic">questions</span>
+Tabletop scaling <span class="text-[#ff6b35] italic">questions</span>
 </h2>
 <p class="text-slate-400 text-lg">
-Direct answers to the scaling questions I get asked most. If yours is not here, <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors">send it in</a>.
+Direct answers to the proxy scaling questions I get asked most.
 </p>
 </div>
 </div>
@@ -333,19 +333,19 @@ Direct answers to the scaling questions I get asked most. If yours is not here, 
 Why I built <span class="text-[#ff6b35] italic">stlscale</span>
 </h2>
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
-I got tired of calculating the same percentages manually in <span class="text-white font-semibold">Chitubox</span> every time I resized an STL for my Warhammer or D&D prints. I would forget which baseline I used last time and end up with minis that looked wrong next to my existing army. Sometimes too tall. Sometimes weirdly squat. It annoyed me enough to build this.
+I created these tools for myself because I needed them. I was spending hours printing terrain and proxies, only to find out they didn't fit my army. Getting the right scale shouldn't require guessing. 
 </p>
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
-The conversions here use a <span class="text-[#ff6b35] font-semibold">175cm human baseline</span> — the same one most of the hobby uses, as far as I can tell. I print the numbers before I post them. If a conversion does not look right on my table, I change it. If enough people message me saying a specific system needs different math, I update it. That is the deal.
+Everything here is tested against real-world printing experience. I validate my scale settings by printing them out — mostly PLA on my Bambu Lab A1 Mini. If a 32mm model comes off the plate looking strangely squat next to the rest of the squad, I adjust the math. I'm sharing this so other hobby printers can skip the same trial-and-error and spend more time painting.
 </p>
 <p class="text-slate-400 leading-relaxed">
-All calculations run in your browser. I never see your STL files, and nothing gets uploaded to any server.
+Plus, this calculator runs entirely in your browser. I never see your files.
 </p>
 <div class="mt-12 text-center">
 <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500">
-<a href="/about" class="hover:text-[#ff6b35] transition-colors">Read the full methodology</a>
+<a href="/about" class="hover:text-[#ff6b35] transition-colors">Read my full methodology</a>
 <span class="mx-2 text-slate-700">•</span>
-<a href="/reference" class="hover:text-[#ff6b35] transition-colors">View data sources</a>
+<a href="/reference" class="hover:text-[#ff6b35] transition-colors">View wargaming data sources</a>
 </p>
 </div>
 </section>
@@ -356,13 +356,13 @@ All calculations run in your browser. I never see your STL files, and nothing ge
 <div id="hp-form-wrapper">
 <div class="max-w-[550px] mx-auto mb-6">
 <span class="font-mono inline-block rounded bg-[#ff6b35]/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-3">
-Beta Feedback
+Community Feedback
 </span>
 <h2 id="feedback-heading" class="font-heading text-2xl font-bold text-white mb-2 tracking-tight">
-Missing a feature?
+Need another system added?
 </h2>
 <p class="text-sm leading-relaxed text-slate-400">
-I build what the community actually uses. Let me know what you need.
+I only build things we actually need at the painting desk. Tell me what's missing.
 </p>
 </div>
 <form id="hp-feedback-form" action={site.gasEndpoint} method="POST" class="space-y-4 max-w-xl mx-auto text-left">
@@ -378,11 +378,11 @@ Request type
 </label>
 <label class="relative flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-all hover:border-[#ff6b35]">
 <input type="radio" name="type" value="slicer-feature" class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
-<span class="text-sm font-medium text-slate-200">Slicer feature</span>
+<span class="text-sm font-medium text-slate-200">Scale tool request</span>
 </label>
 <label class="relative flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-all hover:border-[#ff6b35]">
 <input type="radio" name="type" value="bug-report" class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
-<span class="text-sm font-medium text-slate-200">Report a bug</span>
+<span class="text-sm font-medium text-slate-200">The math is wrong</span>
 </label>
 <label class="relative flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-all hover:border-[#ff6b35]">
 <input type="radio" name="type" value="other" class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
@@ -393,7 +393,7 @@ Request type
 </div>
 <div>
 <label class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-2" for="hp-details">Details</label>
-<input type="text" id="hp-details" name="details" placeholder="e.g., Star Wars Shatterpoint" required class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all" />
+<input type="text" id="hp-details" name="details" placeholder="e.g., Star Wars Shatterpoint scales weirdly" required class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all" />
 </div>
 <div class="flex justify-center pt-2">
 <button type="submit" id="hp-submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-[#ff6b35] px-8 py-4 text-sm font-bold text-black hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer">
@@ -406,8 +406,8 @@ Submit
 <div class="h-12 w-12 rounded-full bg-[#ff6b35]/10 flex items-center justify-center border border-[#ff6b35]/30 mb-3">
 <span class="text-[#ff6b35] text-xl font-bold">OK</span>
 </div>
-<h3 class="font-heading text-lg font-bold text-white mb-1 tracking-tight">Thanks. Input received.</h3>
-<p class="text-sm text-slate-400 max-w-sm mx-auto">Your suggestion goes into the development backlog.</p>
+<h3 class="font-heading text-lg font-bold text-white mb-1 tracking-tight">Got it.</h3>
+<p class="text-sm text-slate-400 max-w-sm mx-auto">Thanks. I'll take a look before the next update.</p>
 </div>
 </aside>
 <script is:inline>

@@ -21,7 +21,7 @@ export const scaleInfo = {
     },
     "35mm": {
         shortName: "35mm",
-        games: ["Star Wars: Legion", "Kingdom Death", "Conquest"],
+        games: ["Star Wars: Legion", "Marvel: Crisis Protocol", "Kingdom Death", "Conquest"],
         type: "gaming",
         note: "Popular with painters who want more canvas for freehand detail without entering true bust territory.",
         printNote: "FDM at 35mm benefits from a 0.2mm nozzle at 0.06mm layer height for faces.",
@@ -29,11 +29,11 @@ export const scaleInfo = {
     },
     "40mm": {
         shortName: "40mm",
-        games: ["Star Wars: Shatterpoint", "Marvel: Crisis Protocol", "Inquisitor (GW)", "Display vignettes"],
+        games: ["Star Wars: Shatterpoint", "Inquisitor (GW)", "Display vignettes"],
         type: "gaming",
         note: "Used for centerpiece models, display dioramas, or games where individual heroes need to stand out.",
         printNote: "FDM works well at 40mm for monsters and vehicles with a 0.4mm nozzle.",
-        commonIssue: "40mm bases can destabilize on uneven terrain. Consider magnetizing or weighting the base.",
+        commonIssue: "40mm is sometimes confused with 35mm systems. Always check the manufacturer's stated eye-level measurement.",
     },
     "75mm": {
         shortName: "75mm",
@@ -129,7 +129,7 @@ export const scaleInfo = {
         type: "ratio",
         note: "Used for large tank battles and regiment-level games where table space is limited.",
         printNote: "1:100 vehicles are manageable on FDM. Infantry at this scale is very challenging without a 0.2mm nozzle.",
-        commonIssue: "1:100 and 15mm are often used interchangeably, but 15mm can mean 15mm to the eyes or 15mm total height.",
+        commonIssue: "1:100 figures are roughly 17.5mm total height — slightly taller than 15mm eye-level figures. Check what the manufacturer means.",
     },
 };
 
@@ -147,21 +147,21 @@ export function getContextualContent(h1Source, h1Target, conv) {
     // Physical context based on magnitude
     let physicalContext = "";
     if (magnitude < 10) {
-        physicalContext = `At only ${Math.round(magnitude)}% difference, these scales can mix on the same table without looking wrong. Keep bases consistent and paint styles matched.`;
+        physicalContext = `At only ${Math.round(magnitude)}% difference, these two scales are close enough to mix on the same table. Just keep bases consistent and paint styles matched.`;
     } else if (magnitude < 50) {
-        physicalContext = `This ${direction} is noticeable but manageable. Most painters bridge the gap with basing detail, posture adjustments, or custom base rims.`;
+        physicalContext = `This is a noticeable ${direction}, but you can bridge the gap with basing detail, posture adjustments, or custom base rims.`;
     } else if (magnitude < 150) {
-        physicalContext = `This is a big ${direction}. Models will look like different species next to each other unless you apply the conversion to the entire unit or army.`;
+        physicalContext = `This is a big ${direction}. Models will look like different species next to each other unless you apply the conversion to the whole unit or army.`;
     } else {
-        physicalContext = `This is a dramatic jump—more than double or less than half. The result is essentially a different model category. Use this only for deliberate artistic or display purposes, not mixed armies.`;
+        physicalContext = `This is a huge jump — more than double or less than half. The result is basically a different model category. Only use this for deliberate display purposes, not mixed armies.`;
     }
 
     // Use case
     let useCase = "";
     if (isUp) {
-        useCase = `You need this when bringing older or smaller ${src.shortName} models into a modern ${tgt.shortName} collection. ${physicalContext}`;
+        useCase = `You will need this when bringing older or smaller ${src.shortName} models into a modern ${tgt.shortName} collection. ${physicalContext}`;
     } else {
-        useCase = `You need this when fitting oversized ${src.shortName} heroes or monsters into a smaller ${tgt.shortName} regiment, or when printing ${src.shortName} STL files for a ${tgt.shortName} game system. ${physicalContext}`;
+        useCase = `You will need this when fitting oversized ${src.shortName} heroes or monsters into a smaller ${tgt.shortName} regiment, or when printing ${src.shortName} STL files for a ${tgt.shortName} game system. ${physicalContext}`;
     }
 
     // Print note
@@ -169,8 +169,8 @@ export function getContextualContent(h1Source, h1Target, conv) {
 
     return {
         useCase,
-        sourceContext: `${h1Source} is the ${src.type}. ${src.note} Common systems: ${src.games.slice(0, 3).join(", ")}.`,
-        targetContext: `${h1Target} is used by ${tgt.games.slice(0, 3).join(", ")}. ${tgt.note}`,
+        sourceContext: `${h1Source} is the ${src.type}. ${src.note} You will see it in: ${src.games.slice(0, 3).join(", ")}.`,
+        targetContext: `${h1Target} shows up in: ${tgt.games.slice(0, 3).join(", ")}. ${tgt.note}`,
         physicalContext,
         printNote,
         sourceCaveat: src.commonIssue,
