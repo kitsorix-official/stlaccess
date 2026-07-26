@@ -3,7 +3,7 @@
     "slug": "stlscale-engine",
     "name": "stlscale Engine",
     "shortDescription": "The main scale calculator. Pick your source and target scales, and I will give you the exact number to type into your slicer.",
-    "description": "This is the tool I use before every print. Select the scale your STL was designed for, pick the scale you need, and choose between eye-level or top-of-head measurement. Supports 15+ tabletop scales including Warhammer 40k, D&D, Bolt Action, Star Wars Legion, and Shatterpoint. Everything runs in your browser — no uploads, no accounts, no tracking.",
+    "description": "This is the tool I use before every print. Select the scale your STL was designed for, pick the scale you need, and choose between eye-level or top-of-head measurement. Supports 15+ tabletop scales including Warhammer 40k, D&D, Bolt Action, Star Wars Legion, and Shatterpoint. Everything runs in your browser — no uploads, no accounts, no cookies.",
     "icon": "fa-calculator",
     "url": "/",
     "features": ["15+ gaming scales supported", "Eye Level and Top of Head measurement", "Shrinkage compensation toggle", "Copy to clipboard", "Bookmarkable URL parameters"],
@@ -25,10 +25,10 @@
     "slug": "slicer-percentage-calculator",
     "name": "Slicer Percentage Calculator",
     "shortDescription": "Type in two measurements in millimetres, get the exact percentage for your slicer. Works for any scale combination.",
-    "description": "The simplest tool on the site. Enter your current model height and your desired target height, and the calculator gives you the percentage to type into Chitubox, Lychee, or PrusaSlicer. Shows the formula so you can check the math yourself. No account, no tracking, no bloat.",
+    "description": "The simplest tool on the site. Enter your current model height and your desired target height, and the calculator gives you the percentage to type into Chitubox, Lychee, or PrusaSlicer. Shows the formula so you can check the math yourself. No account, no cookies, no bloat.",
     "icon": "fa-percent",
     "url": "/tools/slicer-percentage-calculator",
-    "features": ["Any source size to any target size", "Real-time calculation as you type", "12 common conversion presets", "Formula breakdown for verification", "Copy result to clipboard", "Zero bloat — no account, no tracking"],
+    "features": ["Any source size to any target size", "Real-time calculation as you type", "12 common conversion presets", "Formula breakdown for verification", "Copy result to clipboard", "Zero bloat — no account, no cookies"],
     "category": "calculators",
     "featured": true
   },
@@ -39,7 +39,7 @@
     "description": "Enter your roll price, the grams your slicer reports, and optionally your printer power draw and print time. The calculator tells you the filament cost, electricity cost, and total. Works for PLA, PETG, and any filament type. Preset buttons for common rolls so you don't have to type everything manually.",
     "icon": "fa-dollar-sign",
     "url": "/tools/filament-cost-calculator",
-    "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Filament presets with real market prices", "Deep-link from scale engine", "No account, no tracking"],
+    "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Filament presets with real market prices", "Deep-link from scale engine", "No account, no cookies"],
     "category": "calculators",
     "featured": true
   }

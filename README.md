@@ -2,7 +2,7 @@
 
 A fast, simple browser tool to scale 3D files between different miniature sizes. I built this specifically to take the guesswork out of sizing up tabletop prints.
 
-No file uploads, no user accounts, and zero tracking. Every calculation runs directly in your browser.
+No file uploads, no user accounts, no cookies. Privacy-first, cookie-free analytics (Umami) for basic pageview stats. Every calculation runs directly in your browser.
 
 ### Why I Built This
 
