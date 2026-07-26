@@ -67,6 +67,9 @@ const currentPath = Astro.url.pathname;
   <!-- Umami Analytics (cookie-free, privacy-first) -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="75846120-6a93-43a7-a1b7-a00476ab83a0"></script>
   
+  <!-- Lytics Analytics -->
+  <script is:inline src="/js/lytics.js"></script>
+  
 </head>
 
 <body class="min-h-screen flex flex-col bg-black text-white">
@@ -318,6 +321,7 @@ const currentPath = Astro.url.pathname;
       });
     })();
   </script>
+
 
 </body>
 </html>
