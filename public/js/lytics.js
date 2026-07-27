@@ -1,29 +1,17 @@
-(function() {
-   // ============================================
+(function () {
+  // ============================================
   // Domein-lock: site werkt alleen op stlaccess.com
   // ============================================
-  
+
   const ALLOWED_DOMAINS = ['stlaccess.com', 'www.stlaccess.com'];
   const currentHost = window.location.hostname;
-  
-  if (!ALLOWED_DOMAINS.includes(currentHost)) {
-    // Wis de hele pagina inhoud
-    document.documentElement.innerHTML = '';
-    document.body.innerHTML = '';
-    
-    // Optioneel: toon een melding (maar meestal is leeg beter)
-    console.warn('This content is only available on stlaccess.com');
-    
-    // Stop alle verdere scripts
-    throw new Error('Domain not authorized');
-  }
 
-  
+
   // ============================================
   // Privacy-first Analytics
   // ============================================
 
-  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbz-HoWX1HqmrBJ2uNUT1K3MnIJj-mMqh-gs5zaV_qHrwEbJwSYxRLxuVMgViT3rzYKL9g/exec'; // <-- Jouw URL hier
+  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbz4WpRCIU3zOuuwqxnxeZr6ym1x7nN1NbkiJZPqmNlQ-nstZbGJZQiaQGdpKngmIt5W/exec'; // <-- Jouw URL hier
 
   // 1. ADMIN OPT-OUT
   // Bezoek eenmalig: https://stlaccess.com/?admin=1
@@ -41,7 +29,7 @@
   // 2. Alleen tracken op productie domein (stlaccess.com)
   const hostname = window.location.hostname;
   const isProduction = hostname === 'stlaccess.com' || hostname === 'www.stlaccess.com';
-  
+
   if (!isProduction) {
     console.log('[Analytics] Local/dev omgeving — tracking uitgeschakeld.');
     return;
@@ -76,22 +64,30 @@
     device = 'tablet';
   }
 
+  let visitorId = localStorage.getItem('visitor_id');
+
+  if (!visitorId) {
+    visitorId = crypto.randomUUID();
+    localStorage.setItem('visitor_id', visitorId);
+  }
+
   // 5. Data object
   const payload = {
     url: window.location.href,
     referrer: document.referrer || 'direct',
     device: device,
-    visitorType: visitorType
+    visitorType: visitorType,
+    visitorId: visitorId
   };
 
   // 6. Verstuur naar Apps Script pas als pagina volledig geladen is
-  window.addEventListener('load', function() {
+  window.addEventListener('load', function () {
     fetch(WEBAPP_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
-    }).catch(function(err) {
+    }).catch(function (err) {
       console.log('Analytics error:', err);
     });
   });

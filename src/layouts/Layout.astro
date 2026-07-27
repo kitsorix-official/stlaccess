@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import site from '../data/site.json';
+import "../styles/global.css";
+import site from "../data/site.json";
 
 interface Props {
   title: string;
@@ -8,24 +8,22 @@ interface Props {
   noIndex?: boolean;
 }
 
-const {
-  title,
-  description,
-  noIndex = false
-} = Astro.props;
+const { title, description, noIndex = false } = Astro.props;
 
 if (!title || !description) {
-  throw new Error(`BaseHead requires title + description: ${Astro.url.pathname}`);
+  throw new Error(
+    `BaseHead requires title + description: ${Astro.url.pathname}`,
+  );
 }
 
 let pathname = Astro.url.pathname;
-if (pathname.endsWith('.html')) {
+if (pathname.endsWith(".html")) {
   pathname = pathname.slice(0, -5);
 }
-if (pathname.endsWith('/index')) {
+if (pathname.endsWith("/index")) {
   pathname = pathname.slice(0, -6);
 }
-if (pathname !== '/' && pathname.endsWith('/')) {
+if (pathname !== "/" && pathname.endsWith("/")) {
   pathname = pathname.slice(0, -1);
 }
 const canonical = new URL(pathname, Astro.site || site.url).href;
@@ -33,295 +31,460 @@ const canonical = new URL(pathname, Astro.site || site.url).href;
 const currentPath = Astro.url.pathname;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <title>{title}</title>
-  <meta name="description" content={description}>
-  <meta name="theme-color" content="#ff6b35">
-  
-  <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'}>
-  <meta name="generator" content={Astro.generator}>
-  
-  <!-- Canonical -->
-  <link rel="canonical" href={canonical}>
-  
-  <!-- Icons -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  
-  <!-- Preconnect -->
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- RSS Autodiscovery -->
-  <link rel="alternate" type="application/rss+xml" title={`${site.name} Guides`} href={`${site.url}/rss.xml`}>
-  
-  <!-- Umami Analytics (cookie-free, privacy-first) -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="75846120-6a93-43a7-a1b7-a00476ab83a0"></script>
-  
-  <!-- Lytics Analytics -->
-  <script is:inline src="/js/lytics.js"></script>
-  
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<body class="min-h-screen flex flex-col bg-black text-white">
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ff6b35" />
 
-  <!-- Skip link -->
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#ff6b35] focus:text-black focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold">
-    Skip to content
-  </a>
+    <meta
+      name="robots"
+      content={noIndex
+        ? "noindex, nofollow"
+        : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"}
+    />
+    <meta name="generator" content={Astro.generator} />
 
-  <!-- Navigation -->
-  <header class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50">
-    <nav class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center" aria-label="Global navigation">
-      
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-3 shrink-0">
-        <span class="text-2xl font-bold tracking-tight font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
-      </a>
+    <!-- Canonical -->
+    <link rel="canonical" href={canonical} />
 
-      <!-- Desktop nav — !flex to override specificity conflicts -->
-      <ul class="hidden md:!flex gap-8 text-sm font-semibold tracking-wide text-slate-400">
-        <li>
-          <a href="/" class={currentPath === '/' ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
-            Scale Engine
-          </a>
-        </li>
-        <li>
-          <a href="/reference" class={currentPath === '/reference' ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
-            Reference Library
-          </a>
-        </li>
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-        <li>
-          <a href="/tools" class={currentPath === '/tools' ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
-            All Tools
-          </a>
-        </li>
-        <li>
-          <a href="/games" class={currentPath.startsWith('/games') ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
-            Game Systems
-          </a>
-        </li>
-        <li>
-          <a href="/guides" class={currentPath.startsWith('/guides') ? 'text-white border-b-2 border-[#ff6b35] pb-1' : 'hover:text-white transition-colors'}>
-            Guides
-          </a>
-        </li>
-      </ul>
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
-      <!-- Mobile menu button -->
-      <button 
-        id="mobile-menu-btn"
-        class="md:hidden text-white p-2" 
-        aria-label="Open menu"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <i class="fa-solid fa-bars-staggered text-xl" id="menu-icon"></i>
-      </button>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
-    </nav>
+    <!-- RSS Autodiscovery -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${site.name} Guides`}
+      href={`${site.url}/rss.xml`}
+    />
 
-    <!-- Mobile menu panel — !block to override specificity conflicts -->
-    <div 
-      id="mobile-menu" 
-      class="hidden md:hidden border-t border-white/5 bg-black/95 backdrop-blur-xl"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Mobile navigation"
+    <!-- Umami Analytics (cookie-free, privacy-first) -->
+    <script
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="75846120-6a93-43a7-a1b7-a00476ab83a0"></script>
+
+    <!-- Lytics Analytics -->
+    <script is:inline defer src="/js/lytics.js"></script>
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-black text-white">
+    <!-- Skip link -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#ff6b35] focus:text-black focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
     >
-      <ul class="px-6 py-4 space-y-1">
-        <li>
-          <a href="/" class={currentPath === '/' ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
-            Scale Engine
-          </a>
-        </li>
-        <li>
-          <a href="/reference" class={currentPath === '/reference' ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
-            Reference Library
-          </a>
-        </li>
+      Skip to content
+    </a>
 
-        <li>
-          <a href="/tools" class={currentPath === '/tools' ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
-            All Tools
-          </a>
-        </li>
-        <li>
-          <a href="/games" class={currentPath.startsWith('/games') ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
-            Game Systems
-          </a>
-        </li>
-        <li>
-          <a href="/guides" class={currentPath.startsWith('/guides') ? 'block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5' : 'block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors'}>
-            Guides
-          </a>
-        </li>
-      </ul>
-    </div>
-  </header>
+    <!-- Navigation -->
+    <header
+      class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50"
+    >
+      <nav
+        class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center"
+        aria-label="Global navigation"
+      >
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-3 shrink-0">
+          <span class="text-2xl font-bold tracking-tight font-heading"
+            >STL<span class="text-[#ff6b35]">ACCESS</span></span
+          >
+        </a>
 
-  <!-- Main content -->
-  <main id="main-content" class="flex-grow">
-    <slot />
-  </main>
+        <!-- Desktop nav — !flex to override specificity conflicts -->
+        <ul
+          class="hidden md:!flex gap-8 text-sm font-semibold tracking-wide text-slate-400"
+        >
+          <li>
+            <a
+              href="/"
+              class={currentPath === "/"
+                ? "text-white border-b-2 border-[#ff6b35] pb-1"
+                : "hover:text-white transition-colors"}
+            >
+              Scale Engine
+            </a>
+          </li>
+          <li>
+            <a
+              href="/reference"
+              class={currentPath === "/reference"
+                ? "text-white border-b-2 border-[#ff6b35] pb-1"
+                : "hover:text-white transition-colors"}
+            >
+              Reference Library
+            </a>
+          </li>
 
-  <!-- Footer -->
-  <footer class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-auto">
-    <div class="max-w-6xl mx-auto">
-      
-      <!-- Main grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-12 mb-20">
-        
-        <!-- Brand block -->
-        <div>
-          <div class="flex items-center gap-3 mb-6">
-            <span class="text-xl font-bold font-heading">STL<span class="text-[#ff6b35]">ACCESS</span></span>
+          <li>
+            <a
+              href="/tools"
+              class={currentPath === "/tools"
+                ? "text-white border-b-2 border-[#ff6b35] pb-1"
+                : "hover:text-white transition-colors"}
+            >
+              All Tools
+            </a>
+          </li>
+          <li>
+            <a
+              href="/games"
+              class={currentPath.startsWith("/games")
+                ? "text-white border-b-2 border-[#ff6b35] pb-1"
+                : "hover:text-white transition-colors"}
+            >
+              Game Systems
+            </a>
+          </li>
+          <li>
+            <a
+              href="/guides"
+              class={currentPath.startsWith("/guides")
+                ? "text-white border-b-2 border-[#ff6b35] pb-1"
+                : "hover:text-white transition-colors"}
+            >
+              Guides
+            </a>
+          </li>
+        </ul>
+
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden text-white p-2"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <i class="fa-solid fa-bars-staggered text-xl" id="menu-icon"></i>
+        </button>
+      </nav>
+
+      <!-- Mobile menu panel — !block to override specificity conflicts -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden border-t border-white/5 bg-black/95 backdrop-blur-xl"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
+      >
+        <ul class="px-6 py-4 space-y-1">
+          <li>
+            <a
+              href="/"
+              class={currentPath === "/"
+                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
+                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
+            >
+              Scale Engine
+            </a>
+          </li>
+          <li>
+            <a
+              href="/reference"
+              class={currentPath === "/reference"
+                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
+                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
+            >
+              Reference Library
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="/tools"
+              class={currentPath === "/tools"
+                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
+                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
+            >
+              All Tools
+            </a>
+          </li>
+          <li>
+            <a
+              href="/games"
+              class={currentPath.startsWith("/games")
+                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
+                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
+            >
+              Game Systems
+            </a>
+          </li>
+          <li>
+            <a
+              href="/guides"
+              class={currentPath.startsWith("/guides")
+                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
+                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
+            >
+              Guides
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-auto"
+    >
+      <div class="max-w-6xl mx-auto">
+        <!-- Main grid -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 justify-between items-start gap-12 mb-20"
+        >
+          <!-- Brand block -->
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <span class="text-xl font-bold font-heading"
+                >STL<span class="text-[#ff6b35]">ACCESS</span></span
+              >
+            </div>
+            <p class="text-slate-500 text-sm max-w-sm leading-relaxed">
+              Independent tools for 3D printing scale conversion. Built and
+              maintained by one person who prints test pieces to verify every
+              percentage.
+            </p>
           </div>
-          <p class="text-slate-500 text-sm max-w-sm leading-relaxed">
-            Independent tools for 3D printing scale conversion. Built and maintained by one person who prints test pieces to verify every percentage.
-          </p>
+
+          <!-- Link columns -->
+          <div class="flex flex-wrap gap-x-16 gap-y-8">
+            <!-- Tools -->
+            <div>
+              <h4
+                class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6"
+              >
+                Tools
+              </h4>
+              <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                <li>
+                  <a href="/" class="hover:text-[#ff6b35] transition-colors"
+                    >Scale Engine</a>
+                </li>
+                <li>
+                  <a
+                    href="/reference"
+                    class="hover:text-[#ff6b35] transition-colors"
+                    >Reference Library</a>
+                </li>
+                <li>
+                  <a
+                    href="/tools"
+                    class="hover:text-[#ff6b35] transition-colors">All Tools</a>
+                </li>
+                <li>
+                  <a
+                    href="/games"
+                    class="hover:text-[#ff6b35] transition-colors"
+                    >Game Systems</a>
+                </li>
+                <li>
+                  <a
+                    href="/guides"
+                    class="hover:text-[#ff6b35] transition-colors">Guides</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Project -->
+            <div>
+              <h4
+                class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6"
+              >
+                Project
+              </h4>
+              <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                <li>
+                  <a
+                    href="/about"
+                    class="hover:text-[#ff6b35] transition-colors"
+                    >About & Methodology</a>
+                </li>
+                <li>
+                  <a href="/faq" class="hover:text-[#ff6b35] transition-colors"
+                    >FAQ</a>
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    class="hover:text-[#ff6b35] transition-colors">Contact</a>
+                </li>
+                <li>
+                  <a
+                    href={`${site.author.url}/stlaccess`}
+                    class="hover:text-[#ff6b35] transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer">GitHub Source</a>
+                </li>
+                <li>
+                  <a
+                    href={`${site.author.url}/stlaccess/issues`}
+                    class="hover:text-[#ff6b35] transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer">Report an Issue</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Legal -->
+            <div>
+              <h4
+                class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6"
+              >
+                Legal
+              </h4>
+              <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                <li>
+                  <a
+                    href="/privacy"
+                    class="hover:text-[#ff6b35] transition-colors"
+                    >Privacy Policy</a>
+                </li>
+                <li>
+                  <a
+                    href="/terms"
+                    class="hover:text-[#ff6b35] transition-colors"
+                    >Terms of Service</a>
+                </li>
+                <li>
+                  <a
+                    href="/legal"
+                    class="hover:text-[#ff6b35] transition-colors"
+                    >Global Compliance</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <!-- Link columns -->
-        <div class="flex flex-wrap gap-x-16 gap-y-8">
-          
-          <!-- Tools -->
-          <div>
-            <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Tools</h4>
-            <ul class="space-y-4 text-sm text-slate-500 font-medium">
-              <li><a href="/" class="hover:text-[#ff6b35] transition-colors">Scale Engine</a></li>
-              <li><a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference Library</a></li>
-              <li><a href="/tools" class="hover:text-[#ff6b35] transition-colors">All Tools</a></li>
-              <li><a href="/games" class="hover:text-[#ff6b35] transition-colors">Game Systems</a></li>
-              <li><a href="/guides" class="hover:text-[#ff6b35] transition-colors">Guides</a></li>
-            </ul>
+        <!-- Bottom bar -->
+        <div
+          class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500"
+        >
+          <span>
+            Made by <a
+              href={site.author.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-[#ff6b35] transition-colors"
+              >{site.author.name}</a
+            >
+          </span>
+          <div
+            class="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest"
+          >
+            <a
+              href={`${site.author.url}/stlaccess`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-white transition-colors"
+              >View Source on GitHub</a
+            >
+            <span>&copy; {new Date().getFullYear()} {site.name}</span>
           </div>
-
-          <!-- Project -->
-          <div>
-            <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Project</h4>
-            <ul class="space-y-4 text-sm text-slate-500 font-medium">
-              <li><a href="/about" class="hover:text-[#ff6b35] transition-colors">About & Methodology</a></li>
-              <li><a href="/faq" class="hover:text-[#ff6b35] transition-colors">FAQ</a></li>
-              <li><a href="/contact" class="hover:text-[#ff6b35] transition-colors">Contact</a></li>
-              <li><a href={`${site.author.url}/stlaccess`} class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">GitHub Source</a></li>
-              <li><a href={`${site.author.url}/stlaccess/issues`} class="hover:text-[#ff6b35] transition-colors" target="_blank" rel="noopener noreferrer">Report an Issue</a></li>
-            </ul>
-          </div>
-
-          <!-- Legal -->
-          <div>
-            <h4 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6">Legal</h4>
-            <ul class="space-y-4 text-sm text-slate-500 font-medium">
-              <li><a href="/privacy" class="hover:text-[#ff6b35] transition-colors">Privacy Policy</a></li>
-              <li><a href="/terms" class="hover:text-[#ff6b35] transition-colors">Terms of Service</a></li>
-              <li><a href="/legal" class="hover:text-[#ff6b35] transition-colors">Global Compliance</a></li>
-            </ul>
-          </div>
-
         </div>
       </div>
+    </footer>
 
-      <!-- Bottom bar -->
-      <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-        <span>
-          Made by <a href={site.author.url} target="_blank" rel="noopener noreferrer" class="hover:text-[#ff6b35] transition-colors">{site.author.name}</a>
-        </span>
-        <div class="flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest">
-          <a href={`${site.author.url}/stlaccess`} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">View Source on GitHub</a>
-          <span>&copy; {new Date().getFullYear()} {site.name}</span>
-        </div>
-      </div>
+    <!-- Mobile menu toggle -->
+    <script is:inline>
+      (function () {
+        var btn = document.getElementById("mobile-menu-btn");
+        var menu = document.getElementById("mobile-menu");
+        var icon = document.getElementById("menu-icon");
 
-    </div>
-  </footer>
+        if (!btn || !menu || !icon) return;
 
-  <!-- Mobile menu toggle -->
-  <script is:inline>
-    (function() {
-      var btn = document.getElementById('mobile-menu-btn');
-      var menu = document.getElementById('mobile-menu');
-      var icon = document.getElementById('menu-icon');
-      
-      if (!btn || !menu || !icon) return;
-
-      function getFocusableElements() {
-        return menu.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
-      }
-
-      function openMenu() {
-        menu.classList.remove('hidden');
-        menu.classList.add('!block');
-        btn.setAttribute('aria-expanded', 'true');
-        btn.setAttribute('aria-label', 'Close menu');
-        icon.classList.remove('fa-bars-staggered');
-        icon.classList.add('fa-xmark');
-        var focusable = getFocusableElements();
-        if (focusable.length > 0) {
-          focusable[0].focus();
+        function getFocusableElements() {
+          return menu.querySelectorAll(
+            'a, button, [tabindex]:not([tabindex="-1"])',
+          );
         }
-      }
 
-      function closeMenu() {
-        menu.classList.add('hidden');
-        menu.classList.remove('!block');
-        btn.setAttribute('aria-expanded', 'false');
-        btn.setAttribute('aria-label', 'Open menu');
-        icon.classList.remove('fa-xmark');
-        icon.classList.add('fa-bars-staggered');
-        btn.focus();
-      }
-      
-      btn.addEventListener('click', function() {
-        var isOpen = !menu.classList.contains('hidden');
-        if (isOpen) {
-          closeMenu();
-        } else {
-          openMenu();
-        }
-      });
-      
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
-          closeMenu();
-        }
-        if (e.key === 'Tab' && !menu.classList.contains('hidden')) {
+        function openMenu() {
+          menu.classList.remove("hidden");
+          menu.classList.add("!block");
+          btn.setAttribute("aria-expanded", "true");
+          btn.setAttribute("aria-label", "Close menu");
+          icon.classList.remove("fa-bars-staggered");
+          icon.classList.add("fa-xmark");
           var focusable = getFocusableElements();
-          if (focusable.length === 0) return;
-          var first = focusable[0];
-          var last = focusable[focusable.length - 1];
-          if (e.shiftKey) {
-            if (document.activeElement === first) {
-              e.preventDefault();
-              last.focus();
-            }
-          } else {
-            if (document.activeElement === last) {
-              e.preventDefault();
-              first.focus();
-            }
+          if (focusable.length > 0) {
+            focusable[0].focus();
           }
         }
-      });
-      
-      menu.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          closeMenu();
+
+        function closeMenu() {
+          menu.classList.add("hidden");
+          menu.classList.remove("!block");
+          btn.setAttribute("aria-expanded", "false");
+          btn.setAttribute("aria-label", "Open menu");
+          icon.classList.remove("fa-xmark");
+          icon.classList.add("fa-bars-staggered");
+          btn.focus();
+        }
+
+        btn.addEventListener("click", function () {
+          var isOpen = !menu.classList.contains("hidden");
+          if (isOpen) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
         });
-      });
-    })();
-  </script>
 
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && !menu.classList.contains("hidden")) {
+            closeMenu();
+          }
+          if (e.key === "Tab" && !menu.classList.contains("hidden")) {
+            var focusable = getFocusableElements();
+            if (focusable.length === 0) return;
+            var first = focusable[0];
+            var last = focusable[focusable.length - 1];
+            if (e.shiftKey) {
+              if (document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+              }
+            } else {
+              if (document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+              }
+            }
+          }
+        });
 
-</body>
+        menu.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            closeMenu();
+          });
+        });
+      })();
+    </script>
+  </body>
 </html>
