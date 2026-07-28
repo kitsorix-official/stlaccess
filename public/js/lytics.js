@@ -1,94 +1,239 @@
 (function () {
-  // ============================================
-  // Domein-lock: site werkt alleen op stlaccess.com
-  // ============================================
-
-  const ALLOWED_DOMAINS = ['stlaccess.com', 'www.stlaccess.com'];
-  const currentHost = window.location.hostname;
-
 
   // ============================================
-  // Privacy-first Analytics
+  // Privacy-first Website Observability
+  // Configuration
   // ============================================
 
-  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbz4WpRCIU3zOuuwqxnxeZr6ym1x7nN1NbkiJZPqmNlQ-nstZbGJZQiaQGdpKngmIt5W/exec'; // <-- Jouw URL hier
 
-  // 1. ADMIN OPT-OUT
-  // Bezoek eenmalig: https://stlaccess.com/?admin=1
-  // Daarna word je nooit meer getrackt in deze browser.
-  if (window.location.search.includes('admin=1')) {
-    localStorage.setItem('analytics_admin', '1');
-    console.log('[Analytics] Admin opt-out ingesteld voor deze browser.');
-  }
+  // Google Apps Script Web App endpoint
+  // Change this when deploying a new collector  
+  const CONFIG = {
+    endpoint: '  https://script.google.com/macros/s/AKfycbyifKtpHK5p2omRijiz1ey3kToNCX8UygkjnG4b9d3j3RDozUnWWYjt9P81FhEasogMng/exec77',
 
-  if (localStorage.getItem('analytics_admin') === '1') {
-    console.log('[Analytics] Admin mode — tracking uitgeschakeld.');
-    return; // Stop hier, stuur niets naar Google Sheets
-  }
+    allowedDomains: [
+      'stlaccess.com',
+      'www.stlaccess.com'
+    ],
 
-  // 2. Alleen tracken op productie domein (stlaccess.com)
+    adminParameter: 'admin'
+  };
+
+
+  // ============================================
+  // Domain protection
+  // ============================================
+
   const hostname = window.location.hostname;
-  const isProduction = hostname === 'stlaccess.com' || hostname === 'www.stlaccess.com';
 
-  if (!isProduction) {
-    console.log('[Analytics] Local/dev omgeving — tracking uitgeschakeld.');
+  if (!CONFIG.allowedDomains.includes(hostname)) {
+    console.log('[Observability] Domain not allowed');
     return;
   }
 
-  // 3. Visitor type (sessionStorage = privacy-friendly, geen cookies)
-  let visitorType = 'return';
-  if (!sessionStorage.getItem('analytics_session')) {
-    sessionStorage.setItem('analytics_session', '1');
-    visitorType = 'new';
+
+  // ============================================
+  // Admin opt-out
+  // ============================================
+
+  if (window.location.search.includes(CONFIG.adminParameter + '=1')) {
+
+    localStorage.setItem(
+      'observability_admin',
+      '1'
+    );
+
+    console.log('[Observability] Admin disabled');
+
   }
 
-  // 4. Device detectie — combinatie van viewport + user agent + touch
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  const minDimension = Math.min(width, height);
-  const ua = navigator.userAgent.toLowerCase();
 
-  const isMobileUA = /iphone|ipod|android.*mobile|windows phone/i.test(ua);
-  const isTabletUA = /ipad|android(?!.*mobile)|tablet|kindle|silk/i.test(ua);
-  const isTouch = navigator.maxTouchPoints > 1;
-
-  let device = 'desktop';
-
-  if (isMobileUA || (isTouch && minDimension <= 480)) {
-    device = 'mobile';
-  } else if (isTabletUA || (isTouch && minDimension <= 1024)) {
-    device = 'tablet';
-  } else if (minDimension <= 480) {
-    device = 'mobile';
-  } else if (minDimension <= 1024) {
-    device = 'tablet';
+  if (localStorage.getItem('observability_admin') === '1') {
+    return;
   }
+
+
+  // ============================================
+  // Session ID
+  // ============================================
+
+  let sessionId = sessionStorage.getItem('session_id');
+
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    sessionStorage.setItem(
+      'session_id',
+      sessionId
+    );
+  }
+
+
+  // ============================================
+  // Visitor ID
+  // ============================================
 
   let visitorId = localStorage.getItem('visitor_id');
 
   if (!visitorId) {
+
     visitorId = crypto.randomUUID();
-    localStorage.setItem('visitor_id', visitorId);
+
+    localStorage.setItem(
+      'visitor_id',
+      visitorId
+    );
   }
 
-  // 5. Data object
+
+  // ============================================
+  // Visitor type
+  // ============================================
+
+  let visitorType = 'return';
+
+  if (!sessionStorage.getItem('visited')) {
+
+    sessionStorage.setItem(
+      'visited',
+      '1'
+    );
+
+    visitorType = 'new';
+  }
+
+
+  // ============================================
+  // Device detection
+  // ============================================
+
+  function getDevice() {
+
+    const width = window.innerWidth;
+    const touch = navigator.maxTouchPoints > 1;
+
+    const ua = navigator.userAgent.toLowerCase();
+
+
+    if (/iphone|ipod|android.*mobile/.test(ua)) {
+      return 'mobile';
+    }
+
+
+    if (
+      /ipad|tablet/.test(ua) ||
+      (touch && width <= 1024)
+    ) {
+      return 'tablet';
+    }
+
+
+    if (width <= 480) {
+      return 'mobile';
+    }
+
+
+    if (width <= 1024) {
+      return 'tablet';
+    }
+
+
+    return 'desktop';
+  }
+
+
+  // ============================================
+  // Viewport category
+  // ============================================
+
+  function getViewport() {
+
+    const width = window.innerWidth;
+
+    if (width < 640) return 'xs';
+    if (width < 768) return 'sm';
+    if (width < 1024) return 'md';
+    if (width < 1280) return 'lg';
+    if (width < 1536) return 'xl';
+
+    return '2xl';
+  }
+
+
+  // ============================================
+  // Browser family only
+  // ============================================
+
+  function getBrowser() {
+
+    const ua = navigator.userAgent;
+
+
+    if (ua.includes('Firefox')) return 'Firefox';
+    if (ua.includes('Edg')) return 'Edge';
+    if (ua.includes('Chrome')) return 'Chrome';
+    if (ua.includes('Safari')) return 'Safari';
+
+    return 'Other';
+  }
+
+
+  // ============================================
+  // Event payload
+  // ============================================
+
   const payload = {
-    url: window.location.href,
-    referrer: document.referrer || 'direct',
-    device: device,
-    visitorType: visitorType,
-    visitorId: visitorId
+
+    timestamp_utc: new Date().toISOString(),
+
+    page: window.location.pathname,
+
+    event: 'page_view',
+
+    event_value: '',
+
+    referrer:
+      document.referrer || 'direct',
+
+    device:
+      getDevice(),
+
+    viewport:
+      getViewport(),
+
+    browser:
+      getBrowser(),
+
+    visitor_id:
+      visitorId,
+
+    session_id:
+      sessionId
   };
 
-  // 6. Verstuur naar Apps Script pas als pagina volledig geladen is
-  window.addEventListener('load', function () {
-    fetch(WEBAPP_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(function (err) {
-      console.log('Analytics error:', err);
-    });
-  });
+
+  // ============================================
+  // Send
+  // ============================================
+
+  window.addEventListener(
+    'load',
+    function () {
+
+      fetch(
+        CONFIG.endpoint,
+        {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body:
+            JSON.stringify(payload)
+        }
+      );
+
+    }
+  );
+
+
 })();
