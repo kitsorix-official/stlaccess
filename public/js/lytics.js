@@ -69,36 +69,20 @@
 
 
   // ============================================
-  // Visitor ID
+  // Client ID
+  // Anonieme browser instance
   // ============================================
 
-  let visitorId = localStorage.getItem('visitor_id');
+  let clientId = localStorage.getItem('client_id');
 
-  if (!visitorId) {
+  if (!clientId) {
 
-    visitorId = crypto.randomUUID();
+    clientId = crypto.randomUUID();
 
     localStorage.setItem(
-      'visitor_id',
-      visitorId
+      'client_id',
+      clientId
     );
-  }
-
-
-  // ============================================
-  // Visitor type
-  // ============================================
-
-  let visitorType = 'return';
-
-  if (!sessionStorage.getItem('visited')) {
-
-    sessionStorage.setItem(
-      'visited',
-      '1'
-    );
-
-    visitorType = 'new';
   }
 
 
@@ -185,11 +169,14 @@
 
     timestamp_utc: new Date().toISOString(),
 
-    page: window.location.pathname,
+    page:
+      window.location.pathname,
 
-    event: 'page_view',
+    event:
+      'page_view',
 
-    event_value: '',
+    event_value:
+      '',
 
     referrer:
       document.referrer || 'direct',
@@ -203,8 +190,8 @@
     browser:
       getBrowser(),
 
-    visitor_id:
-      visitorId,
+    client_id:
+      clientId,
 
     session_id:
       sessionId
@@ -230,7 +217,15 @@
           body:
             JSON.stringify(payload)
         }
-      );
+      )
+        .catch(function (error) {
+
+          console.log(
+            '[Observability] Error:',
+            error
+          );
+
+        });
 
     }
   );
