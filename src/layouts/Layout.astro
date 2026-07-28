@@ -75,12 +75,6 @@ const currentPath = Astro.url.pathname;
       href={`${site.url}/rss.xml`}
     />
 
-    <!-- Umami Analytics (cookie-free, privacy-first) -->
-    <script
-      defer
-      src="https://cloud.umami.is/script.js"
-      data-website-id="75846120-6a93-43a7-a1b7-a00476ab83a0"></script>
-
     <!-- Lytics Analytics -->
     <script is:inline defer src="/js/lytics.js"></script>
   </head>
@@ -282,29 +276,34 @@ const currentPath = Astro.url.pathname;
               <ul class="space-y-4 text-sm text-slate-500 font-medium">
                 <li>
                   <a href="/" class="hover:text-[#ff6b35] transition-colors"
-                    >Scale Engine</a>
+                    >Scale Engine</a
+                  >
                 </li>
                 <li>
                   <a
                     href="/reference"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Reference Library</a>
+                    >Reference Library</a
+                  >
                 </li>
                 <li>
                   <a
                     href="/tools"
-                    class="hover:text-[#ff6b35] transition-colors">All Tools</a>
+                    class="hover:text-[#ff6b35] transition-colors">All Tools</a
+                  >
                 </li>
                 <li>
                   <a
                     href="/games"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Game Systems</a>
+                    >Game Systems</a
+                  >
                 </li>
                 <li>
                   <a
                     href="/guides"
-                    class="hover:text-[#ff6b35] transition-colors">Guides</a>
+                    class="hover:text-[#ff6b35] transition-colors">Guides</a
+                  >
                 </li>
               </ul>
             </div>
@@ -321,30 +320,35 @@ const currentPath = Astro.url.pathname;
                   <a
                     href="/about"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >About & Methodology</a>
+                    >About & Methodology</a
+                  >
                 </li>
                 <li>
                   <a href="/faq" class="hover:text-[#ff6b35] transition-colors"
-                    >FAQ</a>
+                    >FAQ</a
+                  >
                 </li>
                 <li>
                   <a
                     href="/contact"
-                    class="hover:text-[#ff6b35] transition-colors">Contact</a>
+                    class="hover:text-[#ff6b35] transition-colors">Contact</a
+                  >
                 </li>
                 <li>
                   <a
                     href={`${site.author.url}/stlaccess`}
                     class="hover:text-[#ff6b35] transition-colors"
                     target="_blank"
-                    rel="noopener noreferrer">GitHub Source</a>
+                    rel="noopener noreferrer">GitHub Source</a
+                  >
                 </li>
                 <li>
                   <a
                     href={`${site.author.url}/stlaccess/issues`}
                     class="hover:text-[#ff6b35] transition-colors"
                     target="_blank"
-                    rel="noopener noreferrer">Report an Issue</a>
+                    rel="noopener noreferrer">Report an Issue</a
+                  >
                 </li>
               </ul>
             </div>
@@ -361,19 +365,22 @@ const currentPath = Astro.url.pathname;
                   <a
                     href="/privacy"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Privacy Policy</a>
+                    >Privacy Policy</a
+                  >
                 </li>
                 <li>
                   <a
                     href="/terms"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Terms of Service</a>
+                    >Terms of Service</a
+                  >
                 </li>
                 <li>
                   <a
                     href="/legal"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Global Compliance</a>
+                    >Global Compliance</a
+                  >
                 </li>
               </ul>
             </div>
