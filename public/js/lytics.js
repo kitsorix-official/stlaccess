@@ -9,7 +9,7 @@
   // Google Apps Script Web App endpoint
   // Change this when deploying a new collector  
   const CONFIG = {
-    endpoint: 'https://script.google.com/macros/s/AKfycbzvpWdxRvUF_IU_0EOoCiLBfk_e0sv-jvX_s0xGcubXhrp3cvvrPQuznJQJoZ3ExJYXkg/exec',
+    endpoint: 'https://script.google.com/macros/s/AKfycbxlcuMoxmCkBBcCrd0CVhJDvQzqjPv8LK_RuvXjAJEBnx44vK-igF3KUwFpwILEk0EwOw/exec',
 
     allowedDomains: [
       'stlaccess.com',
