@@ -1,6 +1,7 @@
 ---
 title: "FDM Miniature Printing: Complete Guide to Layer Height, Nozzles, and Settings"
-description: "How to get the best results printing tabletop miniatures on an FDM printer. Nozzle sizes, layer heights, orientation tips, and post-processing for 28mm and 32mm models."
+description: "Best FDM settings for tabletop miniatures — nozzles, layer heights, orientation tips, and post-processing for 28mm and 32mm models."
+tldr: "You do not need a resin printer. 0.2mm nozzle at 0.06mm layers for characters; 0.4mm at 0.08mm for rank-and-file. PLA, 100% fan, tilt 15-20°, tree supports, filler primer."
 pubDate: "2026-07-09"
 modDate: "2026-07-09"
 tags: ["FDM printing", "slicer settings", "miniature printing", "layer height", "nozzle size"]

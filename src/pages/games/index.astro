@@ -22,27 +22,28 @@ const sortedScales = scaleOrder.filter((s) => byScale[s]);
   description="Scale conversion guides for every tabletop wargame and RPG — Warhammer 40k, D&D, Bolt Action, Star Wars Legion, and 20+ systems. Get the exact slicer percentage for 3D printing miniatures at the right scale."
 >
 
-  <section class="max-w-6xl mx-auto px-6 py-12 md:py-20" aria-labelledby="games-hero-heading">
+<div slot="masthead">
+  <!-- Breadcrumb -->
+  <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <span class="text-slate-400" aria-current="page">Game Systems</span>
+  </nav>
 
-    <!-- Breadcrumb -->
-    <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
-      <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
-      <span class="mx-2 text-slate-800">/</span>
-      <span class="text-slate-400" aria-current="page">Game Systems</span>
-    </nav>
+  <!-- Intro -->
+  <div class="games-intro text-center mb-16 max-w-6xl mx-auto px-6">
+    <span class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-4 block">Every system, every scale</span>
+    <h1 id="games-hero-heading" class="text-4xl md:text-6xl font-bold font-heading text-white mb-4 tracking-tight">
+      Tabletop Game Scale Guide
+    </h1>
+    <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+      Every tabletop game scales its minis differently, and figuring out the right slicer percentage for your army should not take hours of searching. Find your game below and I will show you the exact percentage, printing settings, and conversion data for scaling those STL files on your FDM printer.
+    </p>
+  </div>
+</div>
 
-    <!-- Intro -->
-    <div class="games-intro text-center mb-16">
-      <span class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-4 block">Every system, every scale</span>
-      <h1 id="games-hero-heading" class="text-4xl md:text-6xl font-bold font-heading text-white mb-4 tracking-tight">
-        Tabletop Game Scale Guide
-      </h1>
-      <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-        Every tabletop game scales its minis differently, and figuring out the right slicer percentage for your army should not take hours of searching. Find your game below and I will show you the exact percentage, printing settings, and conversion data for scaling those STL files on your FDM printer.
-      </p>
-    </div>
-
-    <!-- Games by Scale -->
+  <!-- Games by Scale -->
+  <section class="max-w-6xl mx-auto px-6 pb-12 md:pb-20">
     {sortedScales.map((scale) => (
       <div class="scale-section mb-14" aria-labelledby={`scale-heading-${scale}`}>
         <div class="flex items-center gap-4 mb-6">
@@ -81,7 +82,7 @@ const sortedScales = scaleOrder.filter((s) => byScale[s]);
     <div class="text-center py-12 border-t border-white/5 mt-10">
       <h2 class="text-xl font-bold font-heading text-white mb-3">Not finding your game?</h2>
       <p class="text-sm text-slate-500 mb-6 max-w-lg mx-auto">
-        The stlscale engine handles any source-to-target conversion, even if your exact system is not listed yet. I add new game systems when I get enough requests from the community. Pick your scales and I will calculate the percentage.
+        The STL scale engine handles any source-to-target conversion, even if your exact system is not listed yet. I add new game systems when I get enough requests from the community. Pick your scales and I will calculate the percentage.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black font-bold px-6 py-3 rounded-xl hover:brightness-110 active:scale-95 transition-all">

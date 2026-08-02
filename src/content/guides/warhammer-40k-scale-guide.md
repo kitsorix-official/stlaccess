@@ -1,6 +1,7 @@
 ---
 title: "How to Scale Warhammer 40k Miniatures for 3D Printing: The Complete Guide"
 description: "Everything you need to scale 3D printed Warhammer 40k miniatures. Primaris to Firstborn, 32mm heroic conversions, and slicer settings for FDM printers."
+tldr: "Primaris (2017+) are 32mm heroic — print at 100%. Firstborn are 28mm true scale — scale up 114.3% to match. Print rank-and-file at 0.08mm layers with a 0.4mm nozzle."
 pubDate: "2026-07-05"
 modDate: "2026-07-05"
 tags: ["Warhammer 40k", "scale conversion", "32mm", "FDM printing", "slicer settings"]

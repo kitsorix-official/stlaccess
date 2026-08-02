@@ -30,6 +30,10 @@
 /reference/32mm-to-35mm.html  /reference/32mm-to-35mm  301
 /reference/35mm-to-32mm.html  /reference/35mm-to-32mm  301
 
+
+/reference/flames-of-war-scale/  /games/flames-of-war 301
+/reference/warhammer-40k-scale/  /games/warhammer-40000 301
+
 # Missing slash in path
 /reference32mm-to-40mm  /reference/32mm-to-40mm  301
 /reference35mm-to-28mm  /reference/35mm-to-28mm  301
@@ -37,6 +41,7 @@
 
 # Old tool paths
 /tools/stlscaler/  /  301
+/tools/stlscale-engine  /tools/stl-scale-engine  301
 /tools/personal-library  /tools  301
 /tools/scale-reference  /reference  301
 

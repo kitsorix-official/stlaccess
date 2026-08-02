@@ -1,6 +1,7 @@
 ---
 title: "Why Miniature Scales Use a 175cm Human Baseline"
 description: "Most tabletop miniature scales are built around a 175cm (5'9) human. Here is why that number matters for 3D printing accurate scale conversions."
+tldr: "All STLACCESS scale conversions start from a 175cm (5'9) human with eyes at 160cm — the same baseline the tabletop industry uses. Gaming scales like 28mm and 32mm measure to eye level; ratio scales like 1:35 and 1:56 measure to the top of the head. Same baseline = consistent slicer percentages."
 pubDate: 2026-06-15
 tags: ["scale theory", "methodology", "reference"]
 ---

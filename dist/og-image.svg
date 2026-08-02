@@ -17,7 +17,7 @@
   <text x="80" y="340" font-family="Arial, sans-serif" font-size="32" fill="#94a3b8" font-weight="600">3D Printed Miniatures</text>
   <text x="80" y="420" font-family="Arial, sans-serif" font-size="20" fill="#64748b">Browser-based. Free. No upload. No login.</text>
   <rect x="80" y="470" width="240" height="50" rx="10" fill="#ff6b35"/>
-  <text x="200" y="502" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#000000" text-anchor="middle">stlscale.com</text>
+  <text x="200" y="502" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#000000" text-anchor="middle">stlaccess.com</text>
   <rect x="1040" y="80" width="80" height="80" rx="16" fill="#ff6b35" opacity="0.15"/>
   <text x="1080" y="128" font-family="Arial, sans-serif" font-size="32" fill="#ff6b35" text-anchor="middle">3D</text>
 </svg>

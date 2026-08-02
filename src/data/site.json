@@ -1,6 +1,5 @@
 {
   "name": "STLACCESS",
-  "alternateName": "stlscale",
   "url": "https://stlaccess.com",
   "description": "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on my Bambu Lab A1 Mini.",
   "baselineHeightCm": 175,
@@ -84,7 +83,7 @@
     },
     {
       "question": "How do I scale an <span class=\"text-[#ff6b35]\">STL file</span> in my slicer?",
-      "answer": "Import the STL into your slicer (<span class=\"text-white\">Chitubox</span>, <span class=\"text-white\">Lychee</span>, <span class=\"text-white\">PrusaSlicer</span>, or <span class=\"text-white\">Cura</span>). Select the model, open the scale tool, and enter the percentage from stlscale. Lock the <span class=\"text-[#ff6b35] font-semibold\">X, Y, and Z</span> axes to uniform scaling. Apply the change and slice as normal."
+      "answer": "Import the STL into your slicer (<span class=\"text-white\">Chitubox</span>, <span class=\"text-white\">Lychee</span>, <span class=\"text-white\">PrusaSlicer</span>, or <span class=\"text-white\">Cura</span>). Select the model, open the scale tool, and enter the percentage from the STL scale calculator. Lock the <span class=\"text-[#ff6b35] font-semibold\">X, Y, and Z</span> axes to uniform scaling. Apply the change and slice as normal."
     },
     {
       "question": "What does <span class=\"text-[#ff6b35]\">1:56 scale</span> mean in miniature gaming?",
@@ -126,11 +125,11 @@
     },
     {
       "question": "What does \"Eye Level\" vs \"Top of Head\" mean in miniature scale?",
-      "answer": "Eye level means measuring from the foot to the centre of the eye — 160cm on a 175cm human. Top of head means measuring to the crown at 175cm. That 15cm gap creates a <span class=\"text-white font-semibold\">5-10% difference</span> in your scale calculations. Fantasy and sci-fi miniatures usually use eye level because helmets and top-knots vary. Historical kits tend to use top of head. The stlscale converter supports both."
+      "answer": "Eye level means measuring from the foot to the centre of the eye — 160cm on a 175cm human. Top of head means measuring to the crown at 175cm. That 15cm gap creates a <span class=\"text-white font-semibold\">5-10% difference</span> in your scale calculations. Fantasy and sci-fi miniatures usually use eye level because helmets and top-knots vary. Historical kits tend to use top of head. The STL scale converter supports both."
     },
     {
       "question": "How do I scale STL files for different tabletop games?",
-      "answer": "Find your source and target scales in the <a href=\"#conversion-matrix\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">conversion matrix</a> above, type the percentage into your slicer, and lock the XYZ axes to uniform scaling. Always print a test piece before committing to a full batch. The <a href=\"/\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">stlscale converter</a> on the homepage does this automatically — pick your scales, copy the number, done."
+      "answer": "Find your source and target scales in the <a href=\"#conversion-matrix\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">conversion matrix</a> above, type the percentage into your slicer, and lock the XYZ axes to uniform scaling. Always print a test piece before committing to a full batch. The <a href=\"/\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">STL scale calculator</a> on the homepage does this automatically — pick your scales, copy the number, done."
     }
   ]
 }

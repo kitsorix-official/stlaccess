@@ -1,6 +1,7 @@
 ---
 title: "The Ultimate Printable STL Scale Conversion Chart"
-description: "Free downloadable and printable STL scale conversion chart for 3D printed miniatures. Covers 28mm, 32mm, 35mm, 40mm, 75mm tabletop, and ratio scales 1:35 through 1:100."
+description: "Free printable STL scale conversion chart for 3D printed miniatures — 28mm, 32mm, 35mm, 40mm, 75mm tabletop, and ratio scales 1:35 to 1:100."
+tldr: "Find your source scale in the left column and target across the top; the intersection is the exact slicer percentage. 28mm→32mm = 114.3%, 32mm→75mm = 234.4%, 1:35→1:56 = 62.5%."
 pubDate: 2026-07-01
 tags: ["conversion chart", "reference", "printable", "downloadable"]
 ---

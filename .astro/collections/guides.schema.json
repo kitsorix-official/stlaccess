@@ -8,6 +8,9 @@
     "description": {
       "type": "string"
     },
+    "tldr": {
+      "type": "string"
+    },
     "pubDate": {
       "type": "string",
       "format": "date-time"

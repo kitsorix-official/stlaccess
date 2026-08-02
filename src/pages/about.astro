@@ -12,8 +12,7 @@ const conv28to32 = conversions.find(c => c.slug === '28mm-to-32mm');
   title={`About STLACCESS | Built by a Warhammer & 3D Printing Hobbyist`}
   description={`Why I built STLACCESS to stop wasted filament and solve scale creep in tabletop 3D printing. Tested on a Bambu Lab A1 Mini with real PLA prints.`}
 >
-<div class="max-w-4xl mx-auto px-6 py-20 w-full">
-
+<div slot="masthead">
   <!-- Breadcrumbs -->
   <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
     <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
@@ -22,7 +21,7 @@ const conv28to32 = conversions.find(c => c.slug === '28mm-to-32mm');
   </nav>
 
   <!-- Hero -->
-  <div class="mb-20 text-center about-hero">
+  <div class="max-w-4xl mx-auto px-6 mb-20 text-center about-hero">
     <span class="text-xs font-black uppercase tracking-[0.3em] text-[#ff6b35] mb-4 block">By a hobbyist, for hobbyists</span>
     <h1 class="text-5xl md:text-7xl font-bold font-heading mb-6 tracking-tight">
       Stop guessing mini scale. <span class="text-[#ff6b35]">Stop wasting filament.</span>
@@ -31,6 +30,9 @@ const conv28to32 = conversions.find(c => c.slug === '28mm-to-32mm');
       I built STLACCESS because I kept printing proxies that didn't match the rest of my army. Getting your STL files to table-ready scale shouldn't require guesswork or failed 10-hour prints.
     </p>
   </div>
+</div>
+
+<div class="max-w-4xl mx-auto px-6 pb-20 w-full">
 
   <!-- Story Content -->
   <article class="prose prose-invert max-w-none space-y-16 text-slate-300 leading-relaxed">

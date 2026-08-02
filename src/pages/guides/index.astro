@@ -13,6 +13,7 @@ const sortedPosts = (await getCollection("guides")).sort(
   description="Everything I've learned about 3D printing miniature scale conversion, scale theory, and FDM printing tips — from a fellow hobbyist who prints on a Bambu Lab A1 Mini."
 >
 
+<div slot="masthead">
 <!-- Breadcrumbs -->
 <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
@@ -21,14 +22,15 @@ const sortedPosts = (await getCollection("guides")).sort(
 </nav>
 
 <!-- Hero -->
-<section class="pb-16 px-6 max-w-6xl mx-auto blog-intro" aria-labelledby="guides-hero-heading">
+<div class="pb-16 px-6 max-w-6xl mx-auto blog-intro" aria-labelledby="guides-hero-heading">
   <h1 id="guides-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
     3D Print Scale <span class="text-[#ff6b35]">Guides</span>
   </h1>
   <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
     In-depth guides on miniature scale theory, FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.     Everything here is based on what I've learned from printing hundreds of tabletop miniatures on my own build plate.
   </p>
-</section>
+</div>
+</div>
 
 <!-- Search / Filter -->
 <form role="search" class="px-6 pb-8 max-w-6xl mx-auto" onsubmit="return false">

@@ -87,28 +87,30 @@ const scalesCount = Object.keys(scales).length;
 ---
 <Layout
   title="STL Scale Calculator | Stop Wasting Filament on Wrong Mini Sizes | STLACCESS"
-  description="Scale your STL files for Warhammer, D&D, Bolt Action, and tabletop gaming. The stlscale calculator gives you exact slicer percentages so you stop wasting filament on wrong mini sizes."
+  description="Scale your STL files for Warhammer, D&D, Bolt Action, and tabletop gaming. The STL scale calculator gives you exact slicer percentages so you stop wasting filament on wrong mini sizes."
 >
 <nav class="sr-only" aria-label="Breadcrumb">
   <span aria-current="page">Home</span>
 </nav>
 
 <!-- Hero Section -->
-<section class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
+<div slot="masthead">
+<div class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
 <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-6">
 By a hobbyist, for hobbyists
 </p>
 <h1 id="hero-heading" class="text-4xl md:text-7xl font-bold mb-6 font-heading tracking-tight leading-tight">
-Get your miniatures the right size<br />
-<span class="text-[#ff6b35] italic">before you waste filament.</span>
+The STL scale calculator that gets your miniatures<br />
+<span class="text-[#ff6b35] italic">the right size before you waste filament.</span>
 </h1>
 <p id="hero-description" class="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
-I built this tool because I kept running into scaling problems myself. Use <span class="text-[#ff6b35] font-semibold">stlscale</span> to calculate the exact slicer percentage for <span class="text-white font-semibold">{Object.keys(scales).length}+ tabletop scales</span> so your proxies actually match your army. No guesswork. No file uploads.
+I built this tool because I kept running into scaling problems myself. Use the <span class="text-[#ff6b35] font-semibold">STL scale calculator</span> to get the exact slicer percentage for <span class="text-white font-semibold">{Object.keys(scales).length}+ tabletop scales</span> so your proxies actually match your army. No guesswork. No file uploads.
 </p>
 <p class="text-sm text-slate-500">
 Perfect for Warhammer, D&D, Star Wars Legion, and historical tabletop terrain.
 </p>
-</section>
+</div>
+</div>
 
 <!-- Engine App Container -->
 <section id="engine" class="px-6 pb-16" aria-labelledby="engine-heading">
@@ -330,7 +332,7 @@ Direct answers to the proxy scaling questions I get asked most.
 <!-- About / EEAT Section -->
 <section class="max-w-3xl mx-auto px-6 py-16 border-t border-white/5" aria-label="About STLACCESS">
 <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6">
-Why I built <span class="text-[#ff6b35] italic">stlscale</span>
+Why I built the <span class="text-[#ff6b35] italic">STL scale calculator</span>
 </h2>
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
 I created these tools for myself because I needed them. I was spending hours printing terrain and proxies, only to find out they didn't fit my army. Getting the right scale shouldn't require guessing. 

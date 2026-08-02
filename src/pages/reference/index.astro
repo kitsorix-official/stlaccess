@@ -17,10 +17,11 @@ const conversions = rawConversions.map(c => ({
 const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
 ---
 <Layout
-  title="STL Scale Conversion Reference | Percentages for 3D Printing"
+  title="STL Scale Conversion Reference | Percentages for 3D Printing | STLACCESS"
   description="Every conversion percentage for tabletop miniature scales — 28mm to 32mm, 1:35, 1:48, 1:56, and more. All calculated from a 175cm human baseline and verified on physical test prints."
 >
 
+<div slot="masthead">
 <!-- Breadcrumbs -->
 <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
@@ -29,7 +30,7 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
 </nav>
 
 <!-- Header -->
-<section class="pb-16 px-6 max-w-6xl mx-auto" aria-labelledby="ref-hero-heading">
+<div class="pb-16 px-6 max-w-6xl mx-auto" aria-labelledby="ref-hero-heading">
   <h1 id="ref-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
     Scale Conversion <span class="text-[#ff6b35]">Reference</span>
   </h1>
@@ -37,7 +38,8 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
     Slicer percentages for converting miniatures between tabletop systems — Warhammer, D&D, Bolt Action, Star Wars Legion, and more. These are the numbers I use myself, based on a 175cm human baseline with eye-level measurement. I print on a {printerName}. Your mileage may vary.
   </p>
   <p class="text-xs text-slate-600 mt-3">Last updated: {dateModified}</p>
-</section>
+</div>
+</div>
 
 <!-- Search / Filter -->
 <form role="search" class="px-6 mb-12 max-w-6xl mx-auto" aria-labelledby="ref-search-heading" onsubmit="return false">
@@ -368,10 +370,10 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
     <div class="max-w-2xl">
       <h2 id="ref-cta-heading" class="text-3xl font-bold font-heading mb-4">Need a specific conversion?</h2>
       <p class="text-slate-400 mb-8 leading-relaxed">
-        The stlscale engine gives you the percentage for any source and target scale. Select your systems, choose eye level or top of head, and get the slicer value instantly.
+        The STL scale engine gives you the percentage for any source and target scale. Select your systems, choose eye level or top of head, and get the slicer value instantly.
       </p>
       <a href="/" class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform">
-        Launch stlscale
+        Launch the STL scale calculator
         <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>

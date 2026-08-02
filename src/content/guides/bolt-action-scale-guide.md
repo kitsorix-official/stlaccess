@@ -1,6 +1,7 @@
 ---
 title: "Bolt Action 28mm Scale: The Complete Guide to 3D Printing Historical Miniatures"
 description: "How to 3D print historical miniatures for Bolt Action at true 28mm scale. Infantry, vehicles, terrain, and the 1:56 ratio explained for FDM printers."
+tldr: "Bolt Action infantry are 28mm true scale (eye level); vehicles are 1:56. Convert a 1:35 vehicle with 62.5%, a 1:48 with 85.7%. Print infantry at 0.1mm layers, vehicles at 0.2mm."
 pubDate: "2026-07-07"
 modDate: "2026-07-07"
 tags: ["Bolt Action", "28mm", "historical wargaming", "vehicle scale", "FDM printing"]

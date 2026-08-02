@@ -8,7 +8,7 @@ const { baselineHeight, shrinkageRange } = site;
   title="Legal & Disclaimers | 3D Print Miniature Scale Tool | STLACCESS"
   description="How I handle your data, scale conversion accuracy, and the legal fine print for STLACCESS — written in plain English, not lawyer-speak."
 >
-  <article class="max-w-4xl mx-auto px-6 py-20 w-full">
+<div slot="masthead">
     <!-- Breadcrumbs -->
     <nav class="max-w-6xl mx-auto pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
       <a href="/" class="hover:text-[#ff6b35]">Home</a>
@@ -17,10 +17,13 @@ const { baselineHeight, shrinkageRange } = site;
     </nav>
 
     <!-- Header -->
-    <div class="mb-16">
+    <div class="max-w-4xl mx-auto px-6 mb-16">
       <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">Legal <span class="text-[#ff6b35]">Stuff</span></h1>
       <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">The simple, non-lawyer breakdown of how this site handles privacy, tech, and trademarks.</p>
     </div>
+</div>
+
+  <article class="max-w-4xl mx-auto px-6 pb-20 w-full">
 
     <section class="space-y-16" aria-labelledby="legal-content">
       <div class="prose prose-invert max-w-none space-y-12 text-slate-300" id="legal-content">

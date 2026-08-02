@@ -7,7 +7,7 @@ export const faqData = [
     questions: [
       {
         q: "Do you measure miniatures to the eyes or to the top of the head?",
-        a: `I measure to the <span class="text-[#ff6b35] font-semibold">eyes at 160cm</span> on a 175cm human baseline. This is what most of the fantasy and sci-fi hobby uses because helmets, top-knots, and headgear vary. Historical military kits often use top-of-head (175cm). The stlscale converter lets you pick either method.`,
+        a: `I measure to the <span class="text-[#ff6b35] font-semibold">eyes at 160cm</span> on a 175cm human baseline. This is what most of the fantasy and sci-fi hobby uses because helmets, top-knots, and headgear vary. Historical military kits often use top-of-head (175cm). The STL scale converter lets you pick either method.`,
       },
       {
         q: "Why is scale so inconsistent between manufacturers?",
@@ -32,7 +32,7 @@ export const faqData = [
       },
       {
         q: "Does '32mm' mean model height or base diameter?",
-        a: `It usually means model height, but Games Workshop also uses 32mm as a <span class="text-[#ff6b35] font-semibold">base diameter</span> for newer models. Do not confuse the two. A 32mm base is a plastic disc. A 32mm model is the figure standing on it. The stlscale converter handles height, not base size.`,
+        a: `It usually means model height, but Games Workshop also uses 32mm as a <span class="text-[#ff6b35] font-semibold">base diameter</span> for newer models. Do not confuse the two. A 32mm base is a plastic disc. A 32mm model is the figure standing on it. The STL scale converter handles height, not base size.`,
       },
       {
         q: "Can I use the same STL file for both 28mm and 32mm games?",
@@ -66,7 +66,7 @@ export const faqData = [
     questions: [
       {
         q: "Should I scale by bounding box height?",
-        a: `No. A model with a raised sword or horn will have a tall bounding box that has nothing to do with the figure's actual scale. Always measure from <span class="text-[#ff6b35] font-semibold">foot contact point to eye level</span>. Ignore weapons, banners, and dynamic poses. The stlscale converter uses this foot-to-eye method automatically.`,
+        a: `No. A model with a raised sword or horn will have a tall bounding box that has nothing to do with the figure's actual scale. Always measure from <span class="text-[#ff6b35] font-semibold">foot contact point to eye level</span>. Ignore weapons, banners, and dynamic poses. The STL scale converter uses this foot-to-eye method automatically.`,
       },
       {
         q: "Does FDM filament shrink and affect scale?",
@@ -78,7 +78,7 @@ export const faqData = [
       },
       {
         q: "Which slicer should I use for scale conversions?",
-        a: `<span class="text-[#ff6b35] font-semibold">Bambu Studio</span>, <span class="text-[#ff6b35] font-semibold">PrusaSlicer</span>, and <span class="text-[#ff6b35] font-semibold">Cura</span> all have a uniform scale field. Enter the percentage from stlscale, lock the XYZ proportions, and slice. The math is the same in every slicer. For FDM, check the preview before slicing — supports can add a few millimeters to the bounding box.`,
+        a: `<span class="text-[#ff6b35] font-semibold">Bambu Studio</span>, <span class="text-[#ff6b35] font-semibold">PrusaSlicer</span>, and <span class="text-[#ff6b35] font-semibold">Cura</span> all have a uniform scale field. Enter the percentage from the STL scale calculator, lock the XYZ proportions, and slice. The math is the same in every slicer. For FDM, check the preview before slicing — supports can add a few millimeters to the bounding box.`,
       },
     ]
   },

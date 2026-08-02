@@ -1,6 +1,7 @@
 ---
 title: "D&D Miniature Scale: What Size Are D&D Minis and How to 3D Print Them"
-description: "The complete guide to Dungeons & Dragons miniature scale for 3D printing. 28mm true scale explained, FDM settings for D&D minis, and scaling between monster sizes."
+description: "The complete D&D miniature scale guide for 3D printing. 28mm true scale explained, FDM settings for D&D minis, and scaling between monster sizes."
+tldr: "A Medium D&D creature is 28mm true scale. Tiny 10-15mm, Small 20-24mm, Medium 28-32mm, Large 50-60mm, Huge 80-120mm, Gargantuan 150mm+. Use a 0.2mm nozzle for anything Small or smaller."
 pubDate: "2026-07-13"
 modDate: "2026-07-13"
 tags: ["Dungeons & Dragons", "28mm", "miniature scale", "FDM printing", "monster scaling"]

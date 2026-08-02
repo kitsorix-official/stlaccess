@@ -17,10 +17,11 @@ const defaultPreset = filamentPresets.find(p => p.type === 'PLA' && p.name === '
 ---
 
 <Layout
-  title={`${tool.name} | 3D Print Scale Tool for Miniatures | STLACCESS`}
+  title={tool.metaTitle || `${tool.name} | 3D Print Scale Tool for Miniatures | STLACCESS`}
   description={tool.shortDescription}
 >
 
+<div slot="masthead">
 <!-- Breadcrumbs -->
 <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
@@ -30,25 +31,26 @@ const defaultPreset = filamentPresets.find(p => p.type === 'PLA' && p.name === '
   <span class="text-slate-400" aria-current="page">{tool.name}</span>
 </nav>
 
-<article class="max-w-4xl mx-auto px-6 py-12">
-
-  <!-- Header -->
-  <header class="mb-12">
-    <div class="flex items-center gap-4 mb-6">
-      <div class="w-14 h-14 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center">
-        <i class={`fa-solid ${tool.icon} text-[#ff6b35] text-2xl`}></i>
-      </div>
-      <div>
-        <h1 class="text-4xl md:text-5xl font-bold font-heading tracking-tight">
-          {tool.name}
-        </h1>
-        <p class="text-sm text-slate-500 mt-1">Another tool I built because I needed it myself</p>
-      </div>
+<!-- Header -->
+<div class="max-w-4xl mx-auto px-6 mb-12">
+  <div class="flex items-center gap-4 mb-6">
+    <div class="w-14 h-14 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center">
+      <i class={`fa-solid ${tool.icon} text-[#ff6b35] text-2xl`}></i>
     </div>
-    <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">
-      {tool.description}
-    </p>
-  </header>
+    <div>
+      <h1 class="text-4xl md:text-5xl font-bold font-heading tracking-tight">
+        {tool.h1 || tool.name}
+      </h1>
+      <p class="text-sm text-slate-500 mt-1">Another tool I built because I needed it myself</p>
+    </div>
+  </div>
+  <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">
+    {tool.description}
+  </p>
+</div>
+</div>
+
+<article class="max-w-4xl mx-auto px-6 pb-12">
 
   <!-- Features -->
   {tool.features && (

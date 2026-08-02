@@ -12,6 +12,7 @@
     "yearIntroduced": 1987,
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 60mm, 80mm, 100mm, 120mm",
     "description": "Warhammer 40,000 is the biggest sci-fi tabletop wargame out there — Space Marines, Chaos forces, Orks, Eldar, and dozens of other factions fighting it out in the 41st millennium. Modern kits since 2017 (Primaris range) sit squarely at 32mm heroic scale, while older Firstborn models measure closer to 28mm true scale.",
+    "metaDescription": "Warhammer 40k miniatures are 32mm heroic scale. Exact slicer percentages to scale STL proxies from 28mm to 32mm and beyond. FDM printing tips.",
     "scaleNotes": "Games Workshop uses heroic proportions — heads, hands, and weapons are intentionally oversized so details read at arm's length. A Primaris Space Marine stands roughly 32mm to eye level, while a Firstborn Marine measures about 28mm. Mixing the two on the same table is noticeable but acceptable for casual play.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Firstborn to Primaris", "percentage": "114.3" },
@@ -35,6 +36,7 @@
     "yearIntroduced": 2015,
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 60mm, 80mm, 100mm, 120mm",
     "description": "Age of Sigmar replaced Warhammer Fantasy Battle in 2015, shifting from ranked infantry blocks to hero-focused skirmish and mass battle in a high-fantasy setting. The miniature scale matches modern Warhammer 40k — all new GW fantasy releases since 2015 are 32mm heroic.",
+    "metaDescription": "Age of Sigmar miniatures are 32mm heroic scale. Get the exact slicer percentages to scale old 28mm Fantasy STL proxies up to match modern AoS. FDM tips.",
     "scaleNotes": "AoS uses the same 32mm heroic scale as Warhammer 40k Primaris. Older Warhammer Fantasy miniatures (pre-2015) were 28mm heroic and remain usable in Age of Sigmar and The Old World, though they sit slightly shorter than modern sculpts.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Old Fantasy to Modern AoS", "percentage": "114.3" },
@@ -58,6 +60,7 @@
     "yearIntroduced": 2024,
     "baseSizes": "20mm, 25mm, 30mm, 40mm, 50mm",
     "description": "The Old World revives the classic Warhammer Fantasy setting with ranked regiments, tile-based movement, and the Old World map. It uses the legacy 28mm fantasy scale, making it compatible with decades of classic Citadel miniatures alongside new releases.",
+    "metaDescription": "Warhammer: The Old World uses the classic 28mm fantasy scale. Convert STL proxies between 28mm and AoS 32mm with exact slicer percentages.",
     "scaleNotes": "The Old World deliberately returns to 28mm scale for its new plastic kits, matching the original Warhammer Fantasy range. This is smaller than Age of Sigmar's 32mm, so mixing the two ranges on the same table produces a visible size difference.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Old World to AoS Scale", "percentage": "114.3" },
@@ -81,6 +84,7 @@
     "yearIntroduced": 2001,
     "baseSizes": "20mm, 25mm, 40mm, 50mm, 60mm, 80mm",
     "description": "Based on The Lord of the Rings and The Hobbit films, MESBG is a skirmish-focused wargame where individual heroes matter as much as armies. The range spans from 25mm (older metal sculpts from the early 2000s) to modern 28mm plastic kits, all designed to match the film actors' proportions.",
+    "metaDescription": "MESBG miniatures are 28mm scale, older metals closer to 25mm. Exact slicer percentages for scaling Lord of the Rings STL proxies to match.",
     "scaleNotes": "MESBG occupies a unique position — older metal miniatures from the original Lord of the Rings range measure closer to 25mm, while newer plastic releases are 28mm. Both are used in the same game, and the size difference is accepted as part of the range's history.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "MESBG to Modern GW Scale", "percentage": "114.3" },
@@ -104,6 +108,7 @@
     "yearIntroduced": 2012,
     "baseSizes": "25mm, 40mm, 60mm, 80mm, 100mm",
     "description": "Bolt Action is one of the most widely played WWII tabletop wargames, covering platoon-level engagements from 1939-1945. Infantry are 28mm true scale (1:56), and vehicle kits from Warlord and other manufacturers follow the same ratio, making 1:35 model kit vehicles usable after slight downsizing.",
+    "metaDescription": "Bolt Action is 28mm true scale (1:56). Exact slicer percentages for scaling WWII STL infantry and vehicles, including 1:35 model kit conversions.",
     "scaleNotes": "Bolt Action uses 28mm true scale — realistic human proportions with no heroic exaggeration. A standard infantryman measures 28mm from foot to eye level. Vehicle scale is 1:56, which aligns naturally with 28mm figures. Historical accuracy matters more here than in fantasy games.",
     "relatedConversions": [
       { "slug": "28mm-to-1-35", "label": "Infantry to Model Kit Vehicle", "percentage": "178.6" },
@@ -127,6 +132,7 @@
     "yearIntroduced": 1974,
     "baseSizes": "25mm, 32mm",
     "description": "Dungeons & Dragons is the original tabletop roleplaying game — players create characters and go on collaborative storytelling adventures. Miniatures are optional but widely used for combat encounters, with a Medium creature (human-sized) typically measuring 28mm to eye level on a 175cm baseline.",
+    "metaDescription": "D&D miniatures are 28mm scale for a Medium creature. Exact slicer percentages to scale STL monsters and heroes between 28mm and 32mm.",
     "scaleNotes": "D&D miniatures span an enormous range — a Tiny rat might be 10mm while a Gargantuan ancient dragon can exceed 150mm. The baseline for a Medium humanoid is 28mm true scale. Official WotC miniatures from the Nolzur's and Icons lines are 28mm, though many 3D printed alternatives are designed at 32mm for better detail.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Standard D&D to Detailed Scale", "percentage": "114.3" },
@@ -150,6 +156,7 @@
     "yearIntroduced": 2018,
     "baseSizes": "27mm, 50mm",
     "description": "Star Wars: Legion is a rank-and-file mass battle game set in the Star Wars universe, covering the Original Trilogy and beyond. Miniatures are measured at 35mm eye level (1:47 scale), making them noticeably larger than Warhammer 40k but smaller than Shatterpoint.",
+    "metaDescription": "Star Wars: Legion is 35mm eye-level scale (1:47). Exact slicer percentages to convert Legion STL proxies to 32mm, 40mm, or classic 28mm.",
     "scaleNotes": "Legion's 35mm designation refers to eye-level measurement — a Stormtrooper's eyes sit 35.7mm above the base. The full figure (top of helmet) reaches about 40mm. This is 1:47 scale based on a 1678mm eye-height reference. Bandai and Revell sell compatible Star Wars kits at 1:48 scale.",
     "relatedConversions": [
       { "slug": "32mm-to-35mm", "label": "GW Scale to Legion", "percentage": "109.4" },
@@ -173,6 +180,7 @@
     "yearIntroduced": 2023,
     "baseSizes": "32mm, 40mm, 50mm",
     "description": "Shatterpoint is a squad-based skirmish game where each player commands a small team of named Star Wars characters. The 40mm scale was chosen specifically to capture high-resolution detail while providing large, smooth surfaces ideal for painters practicing blending techniques.",
+    "metaDescription": "Shatterpoint is 40mm scale — the largest standard Star Wars game scale. Exact slicer percentages to scale 32mm or 35mm STL proxies up to match.",
     "scaleNotes": "At 40mm, Shatterpoint miniatures are the largest standard Star Wars game scale. Atomic Mass Games chose this size to give painters expansive surfaces for blending and highlighting — a deliberate departure from the smaller scales used in Legion and MCP. Characters like Dooku measure approximately 42.75mm total height.",
     "relatedConversions": [
       { "slug": "35mm-to-40mm", "label": "Legion to Shatterpoint", "percentage": "114.3" },
@@ -196,6 +204,7 @@
     "yearIntroduced": 2019,
     "baseSizes": "35mm, 40mm, 50mm",
     "description": "Marvel: Crisis Protocol pits Marvel superheroes and villains against each other in cinematic tabletop battles. The game uses 35mm true scale with realistic proportions — no heroic exaggeration — making the miniatures notably larger and more detailed than Warhammer-scale equivalents.",
+    "metaDescription": "Marvel: Crisis Protocol uses 35mm true scale with realistic proportions. Exact slicer percentages for scaling superhero STL proxies to and from 35mm.",
     "scaleNotes": "MCP uses true-scale 35mm proportions, meaning characters look like realistic humans at that size rather than the exaggerated heroic proportions of 32mm GW miniatures. Larger characters (Hulk, Thanos) come on bigger bases but maintain consistent scale with standard characters.",
     "relatedConversions": [
       { "slug": "32mm-to-35mm", "label": "GW Scale to MCP", "percentage": "109.4" },
@@ -219,6 +228,7 @@
     "yearIntroduced": 2009,
     "baseSizes": "30mm, 40mm, 50mm",
     "description": "Malifaux is a card-driven skirmish game set in a gothic steampunk alternate Earth where magic and technology collide. Miniatures are 32mm heroic scale, produced in high-quality plastic since the 4th Edition relaunch, with a distinctive artistic style that blends horror, western, and Victorian aesthetics.",
+    "metaDescription": "Malifaux miniatures are 32mm heroic scale, compatible with modern Warhammer. Exact slicer percentages for scaling STL proxies to and from 32mm.",
     "scaleNotes": "Malifaux miniatures are 32mm heroic scale — compatible in size with modern Warhammer 40k and Age of Sigmar. The artistic style is more exaggerated than GW, with larger heads and more expressive faces designed to convey character personality at tabletop distance.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Classic to Malifaux Scale", "percentage": "114.3" },
@@ -242,6 +252,7 @@
     "yearIntroduced": 2005,
     "baseSizes": "25mm, 40mm, 55mm, 60mm",
     "description": "Infinity is a Japanese-anime-influenced sci-fi skirmish game set in a far-future human sphere. Corvus Belli's metal miniatures are renowned for their dynamic poses and intricate detail, with slimmer proportions than heroic-scale games despite the 28mm designation.",
+    "metaDescription": "Infinity miniatures are 28mm with slim anime proportions. Exact slicer percentages to scale STL proxies up to match Corvus Belli metal minis.",
     "scaleNotes": "Infinity models are nominally 28mm but measure closer to 29-30mm in practice due to scale creep across the range. The proportions are leaner and more realistic than heroic 28mm — heads and hands are smaller relative to body size. This gives Infinity a distinctly different visual feel from Warhammer despite the overlapping scale numbers.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Infinity to Heroic Scale", "percentage": "114.3" },
@@ -265,6 +276,7 @@
     "yearIntroduced": 2003,
     "baseSizes": "30mm, 40mm, 50mm",
     "description": "Warmachine and its companion game Hordes — steam-powered warjacks and magical beasts clashing in a fantasy world of industrial warfare. Originally labelled 28mm, Privateer Press shifted to calling the scale 30mm as the range evolved through scale creep.",
+    "metaDescription": "Warmachine & Hordes is 30mm scale, originally labelled 28mm. Exact slicer percentages for scaling STL proxies to match Privateer Press minis.",
     "scaleNotes": "Warmachine was originally marketed as 28mm but was reclassified to 30mm around the time Hordes launched. The miniatures are compatible in size with 28mm heroic ranges — the difference is subtle enough that mixing on the same table is common in casual play.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Classic to Heroic Scale", "percentage": "114.3" },
@@ -288,6 +300,7 @@
     "yearIntroduced": 2014,
     "baseSizes": "25mm, 40mm, 50mm",
     "description": "Frostgrave is a fantasy skirmish game about wizards exploring a frozen ruined city, while Stargrave applies the same system to a sci-fi setting. Both are miniature-agnostic — you can use any 28mm fantasy or sci-fi figures, making them ideal for 3D printing custom warbands.",
+    "metaDescription": "Frostgrave & Stargrave are miniature-agnostic — any 28mm or 32mm figures work. Exact slicer percentages for scaling your STL warbands.",
     "scaleNotes": "Frostgrave official miniatures (produced by Warlord Games) are 28mm true scale. The game is explicitly miniature-agnostic, so any 28mm or 32mm figures work. Stargrave leans toward 28mm sci-fi but accepts the same range. This flexibility makes both games a natural fit for 3D printed collections.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Frostgrave to Modern Scale", "percentage": "114.3" },
@@ -311,6 +324,7 @@
     "yearIntroduced": 2010,
     "baseSizes": "20mm, 25mm, 50mm, 100mm, 120mm",
     "description": "Kings of War is Mantic Games' rank-and-flank fantasy wargame, designed as an alternative to Warhammer Fantasy with streamlined rules and regiment-based play. The entire range is 28mm scale, and the game actively encourages using miniatures from any fantasy range.",
+    "metaDescription": "Kings of War is 28mm fantasy scale and accepts any miniature range. Exact slicer percentages for scaling STL proxies to match Mantic regiments.",
     "scaleNotes": "Kings of War uses standard 28mm fantasy scale. Mantic's own miniatures are slightly smaller than Games Workshop's heroic 28mm, but the difference is minimal on the table. The game's regiment-based movement system means individual miniature scale matters less than unit footprint.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "KoW to AoS Scale", "percentage": "114.3" },
@@ -334,6 +348,7 @@
     "yearIntroduced": 1984,
     "baseSizes": "Hex-based (no traditional bases)",
     "description": "BattleTech is a tactical wargame where players control giant robotic war machines called BattleMechs. Miniatures are 6mm scale (approximately 1:285), with 'mechs ranging from 30mm to 55mm tall depending on weight class. The game uses hex-movement rather than measuring tapes.",
+    "metaDescription": "BattleTech 'mechs are 6mm scale (1:285), roughly 30-55mm tall. Exact slicer percentages for scaling STL mechs to match Catalyst miniatures.",
     "scaleNotes": "BattleTech 'mechs represent machines 9-15 meters tall. At 1:285 scale, a 12-meter 'mech should be about 42mm tall, but actual miniatures vary widely — Catalyst's modern sculpts are closer to 1:265 (slightly larger than true 1:285). Older Iron Wind Metals miniatures are smaller and closer to the original ratio. Scale consistency within the range matters more than mathematical accuracy.",
     "relatedConversions": [
       { "slug": "1-100-to-1-35", "label": "Micro Scale Up", "percentage": "285.7" },
@@ -355,6 +370,7 @@
     "yearIntroduced": 2002,
     "baseSizes": "Small (40x40mm), Medium (60x40mm), Large (80x40mm), Artillery (varies)",
     "description": "Flames of War is one of the most widely played 15mm WWII wargames, covering company-level engagements across all major theaters. Miniatures are 1:100 scale, allowing entire companies with supporting armor to fit on a standard gaming table. Team Yankee extends the system to Cold War-era conflicts.",
+    "metaDescription": "Flames of War is 15mm (1:100) scale. Exact slicer percentages to scale WWII STL infantry and tanks, including conversions to 28mm or 1:35.",
     "scaleNotes": "At 15mm (1:100), Flames of War miniatures are small enough to field dozens of vehicles and hundreds of infantry on a single table. The scale is close to but not identical to 1:100 model kits — Battlefront's figures are slightly larger than strict ratio scale to improve tabletop readability.",
     "relatedConversions": [
       { "slug": "1-100-to-1-35", "label": "15mm to Model Kit Scale", "percentage": "285.7" },
@@ -378,6 +394,7 @@
     "yearIntroduced": 2012,
     "baseSizes": "Acrylic bases (various)",
     "description": "Dropzone Commander is a 10mm sci-fi wargame depicting massive 27th-century battles with infantry, tanks, and dropships. The small scale allows entire companies with transport vehicles to be fielded in a single game, emphasizing combined-arms tactics over individual heroics.",
+    "metaDescription": "Dropzone Commander is 10mm (1:160) sci-fi scale. Exact slicer percentages for scaling STL infantry, tanks, and dropships to match.",
     "scaleNotes": "At 10mm, individual infantry figures are barely larger than a grain of rice. The game's visual impact comes from vehicle mass and formation density rather than individual detail. TTCombat's range is consistent within itself, making cross-faction mixing straightforward.",
     "relatedConversions": [
       { "slug": "1-100-to-1-35", "label": "Scale Up Reference", "percentage": "285.7" },
@@ -399,6 +416,7 @@
     "yearIntroduced": 2023,
     "baseSizes": "Hex and movement-tray based",
     "description": "Legions Imperialis is Games Workshop's return to epic-scale warfare, covering the Horus Heresy with hundreds of miniatures on a single table. At 8mm, individual Space Marines are tiny but recognizable, and Titans loom over entire formations.",
+    "metaDescription": "Legions Imperialis is 8mm epic scale. Exact slicer percentages for scaling STL Space Marines and Titans to match GW's epic range.",
     "scaleNotes": "Legions Imperialis uses 8mm scale, matching the older Adeptus Titanicus range. The scale is designed so that a Titan miniature is roughly the same physical size as a 28mm infantry model, creating an intentionally dramatic size contrast on the table.",
     "relatedConversions": [
       { "slug": "1-100-to-1-35", "label": "Scale Up Reference", "percentage": "285.7" },
@@ -420,6 +438,7 @@
     "yearIntroduced": 2018,
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 60mm, 80mm, 100mm, 120mm",
     "description": "Grimdark Future is One Page Rules' free, miniature-agnostic sci-fi wargame — a streamlined alternative to Warhammer 40k that works with any 28-32mm miniatures. The rules fit on a single page, and the game explicitly encourages using 3D printed, proxy, or converted models.",
+    "metaDescription": "Grimdark Future works with any 28-32mm miniatures — perfect for 3D printing. Exact slicer percentages for scaling your STL proxy armies.",
     "scaleNotes": "Grimdark Future has no official miniature range — it is designed to work with whatever you own. The 32mm recommendation aligns with modern Games Workshop and the majority of 3D printed STL files. The game's flexibility makes it the most accessible entry point for players with custom-printed collections.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Classic to GDF Standard", "percentage": "114.3" },
@@ -443,6 +462,7 @@
     "yearIntroduced": 2018,
     "baseSizes": "32mm, 40mm, 50mm, 80mm",
     "description": "Fallout: Wasteland Warfare brings the Fallout video game universe to the tabletop with 32mm miniatures covering factions like the Brotherhood of Steel, NCR, Raiders, and Super Mutants. The game supports both PvP and solo/cooperative play against AI-driven encounters.",
+    "metaDescription": "Fallout: Wasteland Warfare is 32mm scale. Exact slicer percentages for scaling STL proxies for Brotherhood of Steel, NCR, Raiders, and more.",
     "scaleNotes": "All Fallout: Wasteland Warfare miniatures are 32mm scale, matching modern Warhammer and Malifaux. The range includes both pre-assembled PVC miniatures (starter sets) and multi-part resin kits for hobbyists. Creature models like Deathclaws are significantly larger but maintain consistent scale.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Classic to Fallout Scale", "percentage": "114.3" },
@@ -466,6 +486,7 @@
     "yearIntroduced": 2017,
     "baseSizes": "N/A (uses die-cast car bases)",
     "description": "Gaslands is a post-apocalyptic vehicular combat game that uses modified Hot Wheels and Matchbox cars as miniatures. At 1:56 scale, these die-cast cars are compatible with 28mm infantry, making it easy to add foot soldiers, terrain, and custom 3D printed accessories.",
+    "metaDescription": "Gaslands uses 1:56 die-cast cars, compatible with 28mm infantry. Exact slicer percentages for scaling 3D printed weapon mounts and accessories.",
     "scaleNotes": "Gaslands vehicles are 1:56 scale die-cast cars — the same ratio as 28mm infantry. This natural compatibility means 3D printed weapon mounts, armor plates, and terrain pieces designed for 28mm work perfectly. The game uses template-based movement rather than measuring tape.",
     "relatedConversions": [
       { "slug": "1-56-to-28mm", "label": "Vehicle to Infantry Scale", "percentage": "89.6" },
@@ -488,6 +509,7 @@
     "yearIntroduced": 2018,
     "baseSizes": "25mm, 28mm, 32mm, 40mm, 50mm",
     "description": "Kill Team is Games Workshop's sci-fi skirmish game set in the Warhammer 40,000 universe. Instead of massive army battles, you field a small squad of specialists — a sniper, a medic, a heavy weapons trooper — each with unique abilities. The game uses the same 32mm scale as 40k, so every Kill Team model is fully usable in a standard 40k army and vice versa.",
+    "metaDescription": "Kill Team is 32mm heroic scale, the same as Warhammer 40k. Exact slicer percentages for scaling STL operatives to match your squad.",
     "scaleNotes": "Kill Team uses the same 32mm heroic scale as Warhammer 40,000. Models are fully interchangeable between the two games at the same base size. The main difference is squad composition — Kill Team emphasizes individual operatives with custom loadouts rather than massed infantry blocks.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Classic to Kill Team Scale", "percentage": "114.3" },
@@ -511,6 +533,7 @@
     "yearIntroduced": 2018,
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 65mm",
     "description": "Necromunda is a gang warfare skirmish game set in the underhive of a grimdark megacity, where rival gangs fight for territory, resources, and survival. Each gang — Goliath, Escher, Orlock, Delaque, Cawdor, and Van Saar — has its own playstyle and aesthetic. The game uses the same 32mm scale as Warhammer 40,000, and the industrial terrain is a major part of the experience.",
+    "metaDescription": "Necromunda is 32mm heroic scale, the same as Warhammer 40k. Exact slicer percentages for scaling STL gangers to match GW's underhive gangs.",
     "scaleNotes": "Necromunda uses the same 32mm heroic scale as Warhammer 40,000. Gangers, hangers-on, and hired guns are all 32mm. The game features distinctive gang aesthetics — Goliaths are massive hulking brutes, Eschers are lean and fast, Van Saars are tech-heavy. Terrain (platforms, walkways, industrial machinery) is as important as the minis themselves.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Classic to Necromunda Scale", "percentage": "114.3" },
@@ -534,6 +557,7 @@
     "yearIntroduced": 2019,
     "baseSizes": "25mm, 28mm, 32mm, 40mm, 50mm, 60mm",
     "description": "Warcry is a fast-paced fantasy skirmish game set in the Age of Sigmar universe, where warbands from the eight realms clash in brutal, quick-resolving combat. Each warband — Ironjawz, Stormcast Eternals, Untamed Beasts, Corvus Cabal, and more — has a distinct visual identity and playstyle. Games are quick, lethal, and packed with cinematic moments.",
+    "metaDescription": "Warcry is 32mm heroic scale, the same as Age of Sigmar. Exact slicer percentages for scaling STL warbands to match GW's eight-realm fighters.",
     "scaleNotes": "Warcry uses the same 32mm heroic scale as Age of Sigmar. Models are fully interchangeable between Warcry and AoS at the same base size. The warband-focused design means you need fewer models than a full AoS army, making it an excellent entry point for 3D printing a complete collection.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Classic to Warcry Scale", "percentage": "114.3" },
@@ -557,6 +581,7 @@
     "yearIntroduced": 2012,
     "baseSizes": "Small (80mm), Medium (100mm), Large (140mm)",
     "description": "Star Wars: X-Wing is a miniatures game of space combat where players pilot iconic Star Wars ships in fast-paced dogfights. The game uses pre-painted plastic ships at 1:27 ratio scale, covering everything from tiny A-Wings to the Millennium Falcon. There are no infantry-scale miniatures — every model is a vehicle or ship.",
+    "metaDescription": "X-Wing is 1:27 ratio scale. Exact slicer percentages for scaling STL Star Wars ships to match the pre-painted X-Wing miniatures.",
     "scaleNotes": "X-Wing uses 1:27 ratio scale, which works out to roughly 59.3mm eye-level and 64.8mm top-of-head for a human-sized reference. Ships vary dramatically in size — a TIE Fighter is small enough to hold in your palm, while a Rebel Transport fills most of the table. Bandai and Revell sell compatible Star Wars model kits at 1:48 scale, which are slightly smaller but work for casual play.",
     "relatedConversions": [
       { "slug": "1-35-to-1-35", "label": "Reference Scale", "percentage": "100.0" },
@@ -578,6 +603,7 @@
     "yearIntroduced": 2019,
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 60mm, 80mm, 100mm, 120mm",
     "description": "Conquest: Last Argument of Kings is a mass-battle fantasy wargame with a unique alternating activation system that keeps both players engaged throughout the game. The setting features the 100 Kingdoms, Nords, Dweghom, and other factions in a grim, low-fantasy world. The game uses 35mm scale, making it slightly larger than Warhammer's 32mm and closer to Star Wars: Legion.",
+    "metaDescription": "Conquest is 35mm scale, matching Star Wars: Legion. Exact slicer percentages for scaling STL proxies — including down to 32mm at 91.4%.",
     "scaleNotes": "Conquest uses 35mm scale, the same as Star Wars: Legion. That is slightly larger than Warhammer's 32mm heroic — Conquest minis have more realistic proportions and stand noticeably taller next to GW models. If you are mixing Conquest with 32mm games, scale the Conquest models down to 91.4% to match.",
     "relatedConversions": [
       { "slug": "32mm-to-35mm", "label": "GW Scale to Conquest", "percentage": "109.4" },

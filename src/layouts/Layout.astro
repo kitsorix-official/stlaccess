@@ -80,20 +80,29 @@ const currentPath = Astro.url.pathname;
   </head>
 
   <body class="min-h-screen flex flex-col bg-black text-white">
-    <!-- Skip link -->
-    <a
-      href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#ff6b35] focus:text-black focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
-    >
-      Skip to content
-    </a>
+    <!-- Navigation + masthead. The header uses display:contents so its
+         children are flex items of <body>. DOM order is masthead, skip link,
+         navbar; the `order-*` utilities keep the navbar visually on top. -->
+    <header class="contents">
+      <!-- Page masthead (H1 + intro) -->
+      <div class="order-2">
+        <slot name="masthead" />
+      </div>
 
-    <!-- Navigation -->
-    <header
-      class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50"
-    >
+      <!-- Skip link -->
+      <a
+        href="#main-content"
+        class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-[#ff6b35] focus:text-black focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold"
+      >
+        Skip to content
+      </a>
+
+      <!-- Sticky navbar -->
+      <div
+        class="w-full border-b border-white/5 bg-black/60 backdrop-blur-xl sticky top-0 z-50 order-1"
+      >
       <nav
-        class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center"
+        class="max-w-6xl mx-auto px-6 h-20 flex justify-center md:justify-between items-center"
         aria-label="Global navigation"
       >
         <!-- Logo -->
@@ -124,7 +133,7 @@ const currentPath = Astro.url.pathname;
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Reference Library
+              Reference
             </a>
           </li>
 
@@ -135,7 +144,7 @@ const currentPath = Astro.url.pathname;
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              All Tools
+              Tools
             </a>
           </li>
           <li>
@@ -159,91 +168,19 @@ const currentPath = Astro.url.pathname;
             </a>
           </li>
         </ul>
-
-        <!-- Mobile menu button -->
-        <button
-          id="mobile-menu-btn"
-          class="md:hidden text-white p-2"
-          aria-label="Open menu"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-        >
-          <i class="fa-solid fa-bars-staggered text-xl" id="menu-icon"></i>
-        </button>
       </nav>
 
-      <!-- Mobile menu panel — !block to override specificity conflicts -->
-      <div
-        id="mobile-menu"
-        class="hidden md:hidden border-t border-white/5 bg-black/95 backdrop-blur-xl"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Mobile navigation"
-      >
-        <ul class="px-6 py-4 space-y-1">
-          <li>
-            <a
-              href="/"
-              class={currentPath === "/"
-                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
-                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
-            >
-              Scale Engine
-            </a>
-          </li>
-          <li>
-            <a
-              href="/reference"
-              class={currentPath === "/reference"
-                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
-                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
-            >
-              Reference Library
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="/tools"
-              class={currentPath === "/tools"
-                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
-                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
-            >
-              All Tools
-            </a>
-          </li>
-          <li>
-            <a
-              href="/games"
-              class={currentPath.startsWith("/games")
-                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
-                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
-            >
-              Game Systems
-            </a>
-          </li>
-          <li>
-            <a
-              href="/guides"
-              class={currentPath.startsWith("/guides")
-                ? "block py-3 px-4 rounded-xl text-sm font-semibold text-white bg-white/5"
-                : "block py-3 px-4 rounded-xl text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-colors"}
-            >
-              Guides
-            </a>
-          </li>
-        </ul>
       </div>
     </header>
 
     <!-- Main content -->
-    <main id="main-content" class="flex-grow">
+    <main id="main-content" class="flex-grow order-3">
       <slot />
     </main>
 
     <!-- Footer -->
     <footer
-      class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-auto"
+      class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-auto order-4"
     >
       <div class="max-w-6xl mx-auto">
         <!-- Main grid -->
@@ -416,82 +353,60 @@ const currentPath = Astro.url.pathname;
       </div>
     </footer>
 
-    <!-- Mobile menu toggle -->
-    <script is:inline>
-      (function () {
-        var btn = document.getElementById("mobile-menu-btn");
-        var menu = document.getElementById("mobile-menu");
-        var icon = document.getElementById("menu-icon");
+    <!-- Mobile bottom navigation — sticky bottom bar, mobile only. Placed
+         after the footer in the DOM so it never overlaps it: it sits below
+         the footer once the page is scrolled to the end. -->
+    <nav
+      class="md:hidden sticky bottom-0 z-50 order-5 border-t border-white/5 bg-black/95 backdrop-blur-xl pb-[env(safe-area-inset-bottom)]"
+      aria-label="Mobile navigation"
+    >
+      <ul class="grid grid-cols-4 h-16 max-w-6xl mx-auto">
+        <li class="h-full">
+          <a
+            href="/"
+            class={currentPath === "/"
+              ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
+              : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
+          >
+            <i class="fa-solid fa-calculator text-base" aria-hidden="true"></i>
+            <span>Scaler</span>
+          </a>
+        </li>
+        <li class="h-full">
+          <a
+            href="/tools/filament-cost-calculator"
+            class={currentPath === "/tools/filament-cost-calculator"
+              ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
+              : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
+          >
+            <i class="fa-solid fa-dollar-sign text-base" aria-hidden="true"></i>
+            <span>Filament Cost</span>
+          </a>
+        </li>
+        <li class="h-full">
+          <a
+            href="/tools"
+            class={currentPath === "/tools"
+              ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
+              : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
+          >
+            <i class="fa-solid fa-screwdriver-wrench text-base" aria-hidden="true"></i>
+            <span>Tools</span>
+          </a>
+        </li>
+        <li class="h-full">
+          <a
+            href="/reference"
+            class={currentPath === "/reference"
+              ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
+              : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
+          >
+            <i class="fa-solid fa-book-open text-base" aria-hidden="true"></i>
+            <span>Reference</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
-        if (!btn || !menu || !icon) return;
-
-        function getFocusableElements() {
-          return menu.querySelectorAll(
-            'a, button, [tabindex]:not([tabindex="-1"])',
-          );
-        }
-
-        function openMenu() {
-          menu.classList.remove("hidden");
-          menu.classList.add("!block");
-          btn.setAttribute("aria-expanded", "true");
-          btn.setAttribute("aria-label", "Close menu");
-          icon.classList.remove("fa-bars-staggered");
-          icon.classList.add("fa-xmark");
-          var focusable = getFocusableElements();
-          if (focusable.length > 0) {
-            focusable[0].focus();
-          }
-        }
-
-        function closeMenu() {
-          menu.classList.add("hidden");
-          menu.classList.remove("!block");
-          btn.setAttribute("aria-expanded", "false");
-          btn.setAttribute("aria-label", "Open menu");
-          icon.classList.remove("fa-xmark");
-          icon.classList.add("fa-bars-staggered");
-          btn.focus();
-        }
-
-        btn.addEventListener("click", function () {
-          var isOpen = !menu.classList.contains("hidden");
-          if (isOpen) {
-            closeMenu();
-          } else {
-            openMenu();
-          }
-        });
-
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && !menu.classList.contains("hidden")) {
-            closeMenu();
-          }
-          if (e.key === "Tab" && !menu.classList.contains("hidden")) {
-            var focusable = getFocusableElements();
-            if (focusable.length === 0) return;
-            var first = focusable[0];
-            var last = focusable[focusable.length - 1];
-            if (e.shiftKey) {
-              if (document.activeElement === first) {
-                e.preventDefault();
-                last.focus();
-              }
-            } else {
-              if (document.activeElement === last) {
-                e.preventDefault();
-                first.focus();
-              }
-            }
-          }
-        });
-
-        menu.querySelectorAll("a").forEach(function (link) {
-          link.addEventListener("click", function () {
-            closeMenu();
-          });
-        });
-      })();
-    </script>
   </body>
 </html>

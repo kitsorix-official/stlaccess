@@ -1,6 +1,7 @@
 ---
 title: "28mm to 32mm Scale: The Exact Percentage You Need for Your Slicer"
 description: "The exact slicer percentage to scale 28mm miniatures to 32mm heroic scale: 114.3%. Plus a cheat sheet for 28mm to 35mm, 32mm to 35mm, and more."
+tldr: "Type 114.3% into your slicer: 32 ÷ 28 × 100. Both scales share the 175cm eye-level baseline. For resin, add 1-3% shrinkage — 115.8% is typical."
 pubDate: 2026-06-20
 tags: ["scale conversion", "28mm", "32mm", "slicer settings"]
 ---
@@ -57,7 +58,7 @@ If you are printing with resin, add 1-3% to account for UV curing shrinkage. The
 
 So for 28mm to 32mm with a typical resin: **115.8%** (114.3% + 1.5%).
 
-The STLACCESS scale engine has a built-in [resin shrinkage toggle](/tools/stlscale-engine) that handles this automatically.
+The STL scale calculator has a built-in [resin shrinkage toggle](/tools/stl-scale-engine) that handles this automatically.
 
 ## Related Conversions
 

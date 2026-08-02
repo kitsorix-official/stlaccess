@@ -18,6 +18,7 @@ const categories = [...new Set(tools.map(t => t.category))];
   description="The tools I use before every print — scale calculator, conversion reference, and filament cost estimator for Warhammer, D&D, Bolt Action, and tabletop gaming."
 >
 
+<div slot="masthead">
 <!-- Breadcrumbs -->
 <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
@@ -26,16 +27,17 @@ const categories = [...new Set(tools.map(t => t.category))];
 </nav>
 
 <!-- Hero -->
-<section class="pb-16 px-6 max-w-6xl mx-auto tools-intro" aria-labelledby="tools-hero-heading">
+<div class="pb-16 px-6 max-w-6xl mx-auto tools-intro" aria-labelledby="tools-hero-heading">
   <h1 id="tools-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
     3D Print Scale <span class="text-[#ff6b35]">Tools</span>
   </h1>
   <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
     Free browser-based tools for scaling, referencing, and calculating costs for STL conversions for tabletop miniatures. Whether you are printing Warhammer proxies, D&D monsters, or Bolt Action infantry, these tools help you avoid wasted filament. All tools run client-side — no uploads, no accounts, no cookies.
   </p>
-</section>
+</div>
+</div>
 
-<!-- Featured: STLScale Converter -->
+<!-- Featured: STL Scale Converter -->
 <section class="px-6 pb-16 max-w-6xl mx-auto" aria-labelledby="featured-tool-heading">
   <a
     href="/"
@@ -49,7 +51,7 @@ const categories = [...new Set(tools.map(t => t.category))];
       <div class="min-w-0 flex-1">
         <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-2 block">Featured tool</span>
         <h2 id="featured-tool-heading" class="text-2xl md:text-3xl font-bold font-heading mb-2 group-hover:text-[#ff6b35] transition-colors">
-          STLScale Converter
+          STL Scale Converter
         </h2>
         <p class="text-sm text-slate-400 leading-relaxed max-w-xl">
           The main STL scale calculator I use before every print. Select source and target scales, choose eye-level or top-of-head, and get the exact slicer percentage for Warhammer, D&D, Bolt Action, Star Wars Legion, and more.
@@ -122,7 +124,7 @@ const categories = [...new Set(tools.map(t => t.category))];
       <ul class="space-y-3 text-sm text-slate-400">
         <li class="flex items-start gap-3">
           <i class="fa-solid fa-check-circle text-[#ff6b35] mt-0.5"></i>
-          <span><strong class="text-white">stlscale Engine</strong> — The main calculator for converting between any supported scales</span>
+          <span><strong class="text-white">STL Scale Engine</strong> — The main calculator for converting between any supported scales</span>
         </li>
         <li class="flex items-start gap-3">
           <i class="fa-solid fa-check-circle text-[#ff6b35] mt-0.5"></i>

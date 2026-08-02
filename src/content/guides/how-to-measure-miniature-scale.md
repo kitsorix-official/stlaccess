@@ -1,6 +1,7 @@
 ---
 title: "How to Measure a Miniature's Scale: Eye Level vs Top of Head Explained"
-description: "The right way to measure miniature scale for 3D printing. Eye level vs top of head, what digital calipers tell you, and why the 175cm baseline gives consistent results."
+description: "How to measure miniature scale for 3D printing — eye level vs top of head, using digital calipers, and why the 175cm baseline works."
+tldr: "Measure from the foot to eye level, not the top of the head. A 28mm mini is about 31-32mm to the top of the head. Use calipers and ignore weapons, horns, and dynamic-pose extensions."
 pubDate: "2026-07-11"
 modDate: "2026-07-11"
 tags: ["scale theory", "measurement", "eye level", "methodology", "175cm baseline"]
@@ -20,7 +21,7 @@ There are two ways to define a miniature's scale, and they give different number
 
 A 28mm miniature measured to the eyes is actually about 31-32mm tall to the top of the head once you account for the forehead and skull. If you measure that same model by its total height and treat it as a 32mm miniature, you will scale it incorrectly.
 
-The stlscale converter uses eye-level measurement by default because that is what the tabletop industry uses for gaming scales. The top-of-head option is available for ratio-scale conversions.
+The STL scale converter uses eye-level measurement by default because that is what the tabletop industry uses for gaming scales. The top-of-head option is available for ratio-scale conversions.
 
 ## How to Measure with Digital Calipers
 

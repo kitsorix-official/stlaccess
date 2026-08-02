@@ -1,7 +1,9 @@
 [
   {
-    "slug": "stlscale-engine",
-    "name": "stlscale Engine",
+    "slug": "stl-scale-engine",
+    "name": "STL Scale Engine",
+    "h1": "STL Scale Calculator",
+    "metaTitle": "STL Scale Calculator for Tabletop Miniatures | Slicer Percentages | STLACCESS",
     "shortDescription": "The main scale calculator. Pick your source and target scales, and I will give you the exact number to type into your slicer.",
     "description": "This is the tool I use before every print. Select the scale your STL was designed for, pick the scale you need, and choose between eye-level or top-of-head measurement. Supports 15+ tabletop scales including Warhammer 40k, D&D, Bolt Action, Star Wars Legion, and Shatterpoint. Everything runs in your browser — no uploads, no accounts, no cookies.",
     "icon": "fa-calculator",
@@ -13,11 +15,11 @@
   {
     "slug": "scale-reference",
     "name": "Scale Conversion Reference",
-    "shortDescription": "Every conversion percentage I have verified, all in one searchable list. Print-tested on FDM.",
+    "shortDescription": "Every conversion percentage I've verified for scaling 3D printed miniatures, all in one searchable list. Print-tested on FDM.",
     "description": "Every conversion percentage I have verified, all in one searchable list. Covers 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales. Each entry shows the math, the scale baselines, and FDM print notes. You can jump straight to the calculator from any conversion. I update these when the community catches something wrong.",
     "icon": "fa-book-open",
     "url": "/reference",
-    "features": ["45 verified conversion pairs", "Search and filter by scale", "Full math breakdown for each entry", "Print-tested on FDM", "Community feedback and correction system"],
+    "features": ["44 verified conversion pairs", "Search and filter by scale", "Full math breakdown for each entry", "Print-tested on FDM", "Community feedback and correction system"],
     "category": "references",
     "featured": true
   },
@@ -35,7 +37,7 @@
   {
     "slug": "filament-cost-calculator",
     "name": "Filament Cost Calculator",
-    "shortDescription": "Find out how much a print costs before you hit start. Based on filament price, weight used, and optional electricity.",
+    "shortDescription": "Know your print cost before you start. Enter filament price, weight used, and optional electricity to estimate the true cost of 3D printing miniatures.",
     "description": "Enter your roll price, the grams your slicer reports, and optionally your printer power draw and print time. The calculator tells you the filament cost, electricity cost, and total. Works for PLA, PETG, and any filament type. Preset buttons for common rolls so you don't have to type everything manually.",
     "icon": "fa-dollar-sign",
     "url": "/tools/filament-cost-calculator",

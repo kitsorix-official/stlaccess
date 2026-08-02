@@ -25,6 +25,7 @@ const reverseExists = conversions.some(c => c.slug === reverseSlug);
   description={conv.description}
 >
 
+<div slot="masthead">
 <!-- Breadcrumbs -->
 <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
@@ -34,17 +35,18 @@ const reverseExists = conversions.some(c => c.slug === reverseSlug);
   <span class="text-slate-400" aria-current="page">{conv.h1Source} to {conv.h1Target}</span>
 </nav>
 
-<article class="max-w-4xl mx-auto px-6 py-12">
+<!-- Header -->
+<div class="max-w-4xl mx-auto px-6 mb-16 conv-header">
+  <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">
+    {conv.h1Source} to <span class="text-[#ff6b35]">{conv.h1Target}</span> Miniature Scale for 3D Printing
+  </h1>
+  <p class="text-xl text-slate-400 leading-relaxed max-w-2xl">
+    The exact slicer percentage to go from {conv.h1Source} to {conv.h1Target}. I calculated this from a 175cm human baseline and printed it myself before posting.
+  </p>
+</div>
+</div>
 
-  <!-- Header -->
-  <header class="mb-16 conv-header">
-    <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">
-      {conv.h1Source} to <span class="text-[#ff6b35]">{conv.h1Target}</span> Miniature Scale for 3D Printing
-    </h1>
-    <p class="text-xl text-slate-400 leading-relaxed max-w-2xl">
-      The exact slicer percentage to go from {conv.h1Source} to {conv.h1Target}. I calculated this from a 175cm human baseline and printed it myself before posting.
-    </p>
-  </header>
+<article class="max-w-4xl mx-auto px-6 pb-12">
 
   <!-- Main Percentage Box -->
   <section class="bg-slate-900/50 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-12 mb-16 glow-box percentage-box" aria-label="Conversion result">
