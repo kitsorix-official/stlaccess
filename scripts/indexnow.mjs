@@ -72,6 +72,13 @@ async function submitBatch(payload) {
 }
 
 async function main() {
+  const productionBranch = process.env.INDEXNOW_PRODUCTION_BRANCH || 'main';
+  const branch = process.env.CF_PAGES_BRANCH;
+  if (branch && branch !== productionBranch) {
+    console.log(`Skipping IndexNow: preview branch "${branch}" (production branch is "${productionBranch}").`);
+    return;
+  }
+
   const siteUrl = loadSiteUrl();
   const { key, host, keyLocation } = resolveKey(siteUrl);
   const urls = readSitemapUrls();

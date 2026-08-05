@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:indexnow": "npm run build && npm run indexnow",
     "preview": "astro preview",
     "indexnow": "node scripts/indexnow.mjs",
     "astro": "astro"
