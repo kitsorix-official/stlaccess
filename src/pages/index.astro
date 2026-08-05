@@ -86,8 +86,8 @@ for (const conv of conversions) {
 const scalesCount = Object.keys(scales).length;
 ---
 <Layout
-  title="STL Scale Calculator | Stop Wasting Filament on Wrong Mini Sizes | STLACCESS"
-  description="Scale your STL files for Warhammer, D&D, Bolt Action, and tabletop gaming. The STL scale calculator gives you exact slicer percentages so you stop wasting filament on wrong mini sizes."
+  title="3D Print Scale Calculator for Miniatures | STLACCESS"
+  description="Free 3D print scale calculator for miniatures. Get exact slicer percentages for Warhammer 40K, D&D, Bolt Action, and more — tested so your miniatures print the right size."
 >
 <nav class="sr-only" aria-label="Breadcrumb">
   <span aria-current="page">Home</span>
@@ -100,21 +100,21 @@ const scalesCount = Object.keys(scales).length;
 By a hobbyist, for hobbyists
 </p>
 <h1 id="hero-heading" class="text-4xl md:text-7xl font-bold mb-6 font-heading tracking-tight leading-tight">
-The STL scale calculator that gets your miniatures<br />
-<span class="text-[#ff6b35] italic">the right size before you waste filament.</span>
+3D Print Scale Calculator for tabletop miniatures<br />
+<span class="text-[#ff6b35] italic">like warhammer 40K, D&D & More.</span>
 </h1>
 <p id="hero-description" class="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
-I built this tool because I kept running into scaling problems myself. Use the <span class="text-[#ff6b35] font-semibold">STL scale calculator</span> to get the exact slicer percentage for <span class="text-white font-semibold">{Object.keys(scales).length}+ tabletop scales</span> so your proxies actually match your army. No guesswork. No file uploads.
+I built this tool because I kept running into scaling problems myself. Use the <span class="text-[#ff6b35] font-semibold">3D scale calculator</span> to get the slicer percentage for <span class="text-white font-semibold">{Object.keys(scales).length}+ tabletop games</span> so they actually match your army. No guesswork. No file uploads.
 </p>
 <p class="text-sm text-slate-500">
-Perfect for Warhammer, D&D, Star Wars Legion, and historical tabletop terrain.
+Perfect for Warhammer, D&D, Star Wars Legion, and historical wargaming miniatures.
 </p>
 </div>
 </div>
 
 <!-- Engine App Container -->
 <section id="engine" class="px-6 pb-16" aria-labelledby="engine-heading">
-<h2 id="engine-heading" class="sr-only">Scale Calculator</h2>
+<h2 id="engine-heading" class="sr-only">3D Print Scale Calculator</h2>
 <div class="max-w-xl mx-auto bg-slate-900/40 p-1 rounded-[2.5rem] border border-white/10 glow-box">
 <div class="bg-[#0a0a0a] p-8 md:p-10 rounded-[2.2rem] space-y-8 relative">
 
@@ -247,28 +247,28 @@ Conversion logic assumes a {baselineHeightCm} human baseline. Eye Level measures
 <!-- How to Use -->
 <section class="max-w-3xl mx-auto px-6 py-12" aria-labelledby="howto-heading">
 <h2 id="howto-heading" class="text-3xl md:text-4xl font-bold font-heading mb-8">
-Make sure your mini is the right size before <span class="text-[#ff6b35]">printing</span>
+Use the 3D print scale calculator <span class="text-[#ff6b35]">in 3 steps</span>
 </h2>
 <ol class="space-y-6">
 <li class="flex gap-4 items-start">
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">1</span>
 <div>
 <p class="text-slate-200 font-semibold">Select your scales</p>
-<p class="text-slate-400 text-sm">Pick the size of the STL you downloaded, and the size you need it to be for your army.</p>
+<p class="text-slate-400 text-sm">Pick the scale your STL was modeled in, then the scale your miniatures need to be for your army or display shelf.</p>
 </div>
 </li>
 <li class="flex gap-4 items-start">
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">2</span>
 <div>
 <p class="text-slate-200 font-semibold">Grab the percentage</p>
-<p class="text-slate-400 text-sm">Open up your slicer of choice (like <span class="text-white">Lychee</span>, <span class="text-white">Chitubox</span>, or <span class="text-white">Orca</span>).</p>
+<p class="text-slate-400 text-sm">Copy the slicer percentage the calculator gives you. It works with <span class="text-white">Lychee</span>, <span class="text-white">Chitubox</span>, <span class="text-white">Orca</span>, and more.</p>
 </div>
 </li>
 <li class="flex gap-4 items-start">
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">3</span>
 <div>
 <p class="text-slate-200 font-semibold">Paste and lock axes</p>
-<p class="text-slate-400 text-sm">Enter the percentage into your scale tool. Lock <span class="text-[#ff6b35] font-semibold">X, Y, and Z</span> to uniform scaling so your proxy doesn't stretch out. Slice and print.</p>
+<p class="text-slate-400 text-sm">Enter the percentage into your slicer's scale tool. Lock <span class="text-[#ff6b35] font-semibold">X, Y, and Z</span> to uniform scaling so your miniature doesn't stretch out. Slice and print.</p>
 </div>
 </li>
 </ol>
@@ -282,7 +282,7 @@ Make sure your mini is the right size before <span class="text-[#ff6b35]">printi
 The conversions I use <span class="text-[#ff6b35] italic">most often</span>
 </h2>
 <p id="reference-intro" class="text-slate-400 text-lg">
-Before starting a 10-hour print, check the scale first. A few seconds now can save a lot of frustration later. These are the percentages I use myself, but if a print comes out looking wrong, <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors">let me know</a>.
+Before committing a miniature to a long print, check the scale first. A few seconds now can save a lot of frustration later. These are the percentages I use myself, but if one of your prints comes out looking wrong, <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors">let me know</a>.
 </p>
 </div>
 <a href="/reference" class="text-[#ff6b35] font-bold text-sm uppercase tracking-widest border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-1 transition-all">
@@ -309,7 +309,7 @@ View full scale reference library
 Tabletop scaling <span class="text-[#ff6b35] italic">questions</span>
 </h2>
 <p class="text-slate-400 text-lg">
-Direct answers to the proxy scaling questions I get asked most.
+Straight answers to the miniature scale questions I get asked most.
 </p>
 </div>
 </div>
@@ -332,10 +332,10 @@ Direct answers to the proxy scaling questions I get asked most.
 <!-- About / EEAT Section -->
 <section class="max-w-3xl mx-auto px-6 py-16 border-t border-white/5" aria-label="About STLACCESS">
 <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6">
-Why I built the <span class="text-[#ff6b35] italic">STL scale calculator</span>
+Why I built the <span class="text-[#ff6b35] italic">3D print scale calculator</span>
 </h2>
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
-I created these tools for myself because I needed them. I was spending hours printing terrain and proxies, only to find out they didn't fit my army. Getting the right scale shouldn't require guessing. 
+I created these tools for myself because I needed them. I was spending hours printing terrain and miniatures, only to find out they didn't fit my army. Getting the right scale for a 3D printed miniature shouldn't require guessing.
 </p>
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
 Everything here is tested against real-world printing experience. I validate my scale settings by printing them out — mostly PLA on my Bambu Lab A1 Mini. If a 32mm model comes off the plate looking strangely squat next to the rest of the squad, I adjust the math. I'm sharing this so other hobby printers can skip the same trial-and-error and spend more time painting.

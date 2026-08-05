@@ -4,7 +4,7 @@
 <h2 id="eye-level-vs-top-of-head">Eye Level vs Top of Head</h2>
 <p>There are two ways to define a miniature’s scale, and they give different numbers:</p>
 <p><strong>Eye level (160cm on a 175cm human).</strong> You measure from the bottom of the foot (or the base contact point) to the centre of the eye. This is the standard for fantasy and sci-fi miniatures—Warhammer, D&amp;D, Star Wars Legion. It ignores helmets, top-knots, and decorative headgear.</p>
-<p><strong>Top of head (175cm).</strong> You measure from the foot to the highest point of the head. This is used for historical miniatures, display busts, and ratio scales like 1:35 and 1:56. The full height of the figure matters because historical accuracy demands it.</p>
+<p><strong>Top of head (175cm).</strong> You measure from the foot to the highest point of the head. This is used for historical miniatures, display busts, and ratio scales like 1:35 and 1:56. The full height of the miniature matters because historical accuracy demands it.</p>
 <h2 id="why-this-matters-for-3d-printing">Why This Matters for 3D Printing</h2>
 <p>A 28mm miniature measured to the eyes is actually about 31-32mm tall to the top of the head once you account for the forehead and skull. If you measure that same model by its total height and treat it as a 32mm miniature, you will scale it incorrectly.</p>
 <p>The STL scale converter uses eye-level measurement by default because that is what the tabletop industry uses for gaming scales. The top-of-head option is available for ratio-scale conversions.</p>
@@ -18,7 +18,7 @@
 </ol>
 <p>If you do not have calipers, most slicers have a measurement tool. Import the STL and measure the Z-axis distance from the lowest point of the foot to the eye.</p>
 <h2 id="what-about-dynamic-poses">What About Dynamic Poses?</h2>
-<p>A miniature with a raised sword, a lunging pose, or a flying base cannot be measured by bounding box alone. The bounding box might be 45mm tall because of the sword, but the figure itself might only be 28mm to the eyes.</p>
+<p>A miniature with a raised sword, a lunging pose, or a flying base cannot be measured by bounding box alone. The bounding box might be 45mm tall because of the sword, but the miniature itself might only be 28mm to the eyes.</p>
 <p>To measure a dynamic pose:</p>
 <ol>
 <li>Find the foot contact point—the part of the model that touches the base.</li>

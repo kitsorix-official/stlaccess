@@ -15,11 +15,11 @@ export const faqData = [
       },
       {
         q: "Can a 28mm and 32mm miniature be the same physical size?",
-        a: `Sometimes. A 28mm miniature measured to the eyes is roughly 30-32mm to the top of the head once you add the forehead and a helmet. So a "28mm" figure can stand 32mm tall. This is why labels are unreliable. Measure the eye level with <span class="text-[#ff6b35] font-semibold">digital calipers</span> if you want to know what you actually have.`,
+        a: `Sometimes. A 28mm miniature measured to the eyes is roughly 30-32mm to the top of the head once you add the forehead and a helmet. So a "28mm" miniature can stand 32mm tall. This is why labels are unreliable. Measure the eye level with <span class="text-[#ff6b35] font-semibold">digital calipers</span> if you want to know what you actually have.`,
       },
       {
         q: "How do I check scale without printing the whole model?",
-        a: `Import the STL into your slicer and measure the eye height against the 175cm baseline. For a 28mm figure, the eyes should sit at <span class="text-[#ff6b35] font-semibold">28mm above the base</span>. For 32mm, 32mm. If the model has a dynamic pose with a raised weapon, measure from the foot contact point to the eyes, not from the lowest point of the bounding box.`,
+        a: `Import the STL into your slicer and measure the eye height against the 175cm baseline. For a 28mm miniature, the eyes should sit at <span class="text-[#ff6b35] font-semibold">28mm above the base</span>. For 32mm, 32mm. If the model has a dynamic pose with a raised weapon, measure from the foot contact point to the eyes, not from the lowest point of the bounding box.`,
       },
     ]
   },
@@ -32,11 +32,11 @@ export const faqData = [
       },
       {
         q: "Does '32mm' mean model height or base diameter?",
-        a: `It usually means model height, but Games Workshop also uses 32mm as a <span class="text-[#ff6b35] font-semibold">base diameter</span> for newer models. Do not confuse the two. A 32mm base is a plastic disc. A 32mm model is the figure standing on it. The STL scale converter handles height, not base size.`,
+        a: `It usually means model height, but Games Workshop also uses 32mm as a <span class="text-[#ff6b35] font-semibold">base diameter</span> for newer models. Do not confuse the two. A 32mm base is a plastic disc. A 32mm model is the miniature standing on it. The STL scale converter handles height, not base size.`,
       },
       {
         q: "Can I use the same STL file for both 28mm and 32mm games?",
-        a: `No. A file designed for 28mm will look like a child next to 32mm figures, and a 32mm file will tower over 28mm ones. You need to scale it. Use <span class="text-[#ff6b35] font-semibold">114.3%</span> to go from 28mm to 32mm, or <span class="text-[#ff6b35] font-semibold">87.5%</span> to go the other way. The proportions also change: 32mm heroic has bigger heads and hands relative to the body.`,
+        a: `No. A file designed for 28mm will look like a child next to 32mm miniatures, and a 32mm file will tower over 28mm ones. You need to scale it. Use <span class="text-[#ff6b35] font-semibold">114.3%</span> to go from 28mm to 32mm, or <span class="text-[#ff6b35] font-semibold">87.5%</span> to go the other way. The proportions also change: 32mm heroic has bigger heads and hands relative to the body.`,
       },
       {
         q: "How do I mix Necromunda models (32-35mm) with standard 28mm?",
@@ -52,8 +52,8 @@ export const faqData = [
         a: `Officially 1:56. In practice, <span class="text-[#ff6b35] font-semibold">1:48 Tamiya kits</span> often look better because modern Bolt Action plastics are closer to 30-32mm than true 28mm. A true 1:56 tank looks small next to chunky heroic infantry. Try both if you have them. I use 1:48 for my Bolt Action motor pool and nobody has complained at tournaments.`,
       },
       {
-        q: "Will 1:48 infantry look too tall next to 28mm figures?",
-        a: `Yes. True 1:48 figures are about 35mm tall. They will tower over 28mm tabletop miniatures. If you have 1:48 figures you want to use, scale them down to <span class="text-[#ff6b35] font-semibold">76.8%</span> to match 28mm eye level. Or just use them as officers and heroes who are supposed to be tall.`,
+        q: "Will 1:48 infantry look too tall next to 28mm miniatures?",
+        a: `Yes. True 1:48 miniatures are about 35mm tall. They will tower over 28mm tabletop miniatures. If you have 1:48 miniatures you want to use, scale them down to <span class="text-[#ff6b35] font-semibold">76.8%</span> to match 28mm eye level. Or just use them as officers and heroes who are supposed to be tall.`,
       },
       {
         q: "Why are there so few 1:56 vehicle STLs available?",
@@ -66,7 +66,7 @@ export const faqData = [
     questions: [
       {
         q: "Should I scale by bounding box height?",
-        a: `No. A model with a raised sword or horn will have a tall bounding box that has nothing to do with the figure's actual scale. Always measure from <span class="text-[#ff6b35] font-semibold">foot contact point to eye level</span>. Ignore weapons, banners, and dynamic poses. The STL scale converter uses this foot-to-eye method automatically.`,
+        a: `No. A model with a raised sword or horn will have a tall bounding box that has nothing to do with the miniature's actual scale. Always measure from <span class="text-[#ff6b35] font-semibold">foot contact point to eye level</span>. Ignore weapons, banners, and dynamic poses. The STL scale converter uses this foot-to-eye method automatically.`,
       },
       {
         q: "Does FDM filament shrink and affect scale?",

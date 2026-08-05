@@ -109,7 +109,7 @@
     "baseSizes": "25mm, 40mm, 60mm, 80mm, 100mm",
     "description": "Bolt Action is one of the most widely played WWII tabletop wargames, covering platoon-level engagements from 1939-1945. Infantry are 28mm true scale (1:56), and vehicle kits from Warlord and other manufacturers follow the same ratio, making 1:35 model kit vehicles usable after slight downsizing.",
     "metaDescription": "Bolt Action is 28mm true scale (1:56). Exact slicer percentages for scaling WWII STL infantry and vehicles, including 1:35 model kit conversions.",
-    "scaleNotes": "Bolt Action uses 28mm true scale — realistic human proportions with no heroic exaggeration. A standard infantryman measures 28mm from foot to eye level. Vehicle scale is 1:56, which aligns naturally with 28mm figures. Historical accuracy matters more here than in fantasy games.",
+    "scaleNotes": "Bolt Action uses 28mm true scale — realistic human proportions with no heroic exaggeration. A standard infantryman measures 28mm from foot to eye level. Vehicle scale is 1:56, which aligns naturally with 28mm miniatures. Historical accuracy matters more here than in fantasy games.",
     "relatedConversions": [
       { "slug": "28mm-to-1-35", "label": "Infantry to Model Kit Vehicle", "percentage": "178.6" },
       { "slug": "1-35-to-28mm", "label": "Model Kit to Tabletop", "percentage": "56.0" },
@@ -157,7 +157,7 @@
     "baseSizes": "27mm, 50mm",
     "description": "Star Wars: Legion is a rank-and-file mass battle game set in the Star Wars universe, covering the Original Trilogy and beyond. Miniatures are measured at 35mm eye level (1:47 scale), making them noticeably larger than Warhammer 40k but smaller than Shatterpoint.",
     "metaDescription": "Star Wars: Legion is 35mm eye-level scale (1:47). Exact slicer percentages to convert Legion STL proxies to 32mm, 40mm, or classic 28mm.",
-    "scaleNotes": "Legion's 35mm designation refers to eye-level measurement — a Stormtrooper's eyes sit 35.7mm above the base. The full figure (top of helmet) reaches about 40mm. This is 1:47 scale based on a 1678mm eye-height reference. Bandai and Revell sell compatible Star Wars kits at 1:48 scale.",
+    "scaleNotes": "Legion's 35mm designation refers to eye-level measurement — a Stormtrooper's eyes sit 35.7mm above the base. The full miniature (top of helmet) reaches about 40mm. This is 1:47 scale based on a 1678mm eye-height reference. Bandai and Revell sell compatible Star Wars kits at 1:48 scale.",
     "relatedConversions": [
       { "slug": "32mm-to-35mm", "label": "GW Scale to Legion", "percentage": "109.4" },
       { "slug": "35mm-to-32mm", "label": "Legion to GW Scale", "percentage": "91.4" },
@@ -299,9 +299,9 @@
     "genre": "Fantasy/Sci-fi Skirmish Wargame",
     "yearIntroduced": 2014,
     "baseSizes": "25mm, 40mm, 50mm",
-    "description": "Frostgrave is a fantasy skirmish game about wizards exploring a frozen ruined city, while Stargrave applies the same system to a sci-fi setting. Both are miniature-agnostic — you can use any 28mm fantasy or sci-fi figures, making them ideal for 3D printing custom warbands.",
-    "metaDescription": "Frostgrave & Stargrave are miniature-agnostic — any 28mm or 32mm figures work. Exact slicer percentages for scaling your STL warbands.",
-    "scaleNotes": "Frostgrave official miniatures (produced by Warlord Games) are 28mm true scale. The game is explicitly miniature-agnostic, so any 28mm or 32mm figures work. Stargrave leans toward 28mm sci-fi but accepts the same range. This flexibility makes both games a natural fit for 3D printed collections.",
+    "description": "Frostgrave is a fantasy skirmish game about wizards exploring a frozen ruined city, while Stargrave applies the same system to a sci-fi setting. Both are miniature-agnostic — you can use any 28mm fantasy or sci-fi miniatures, making them ideal for 3D printing custom warbands.",
+    "metaDescription": "Frostgrave & Stargrave are miniature-agnostic — any 28mm or 32mm miniatures work. Exact slicer percentages for scaling your STL warbands.",
+    "scaleNotes": "Frostgrave official miniatures (produced by Warlord Games) are 28mm true scale. The game is explicitly miniature-agnostic, so any 28mm or 32mm miniatures work. Stargrave leans toward 28mm sci-fi but accepts the same range. This flexibility makes both games a natural fit for 3D printed collections.",
     "relatedConversions": [
       { "slug": "28mm-to-32mm", "label": "Frostgrave to Modern Scale", "percentage": "114.3" },
       { "slug": "32mm-to-28mm", "label": "Modern Scale to Frostgrave", "percentage": "87.5" },
@@ -371,7 +371,7 @@
     "baseSizes": "Small (40x40mm), Medium (60x40mm), Large (80x40mm), Artillery (varies)",
     "description": "Flames of War is one of the most widely played 15mm WWII wargames, covering company-level engagements across all major theaters. Miniatures are 1:100 scale, allowing entire companies with supporting armor to fit on a standard gaming table. Team Yankee extends the system to Cold War-era conflicts.",
     "metaDescription": "Flames of War is 15mm (1:100) scale. Exact slicer percentages to scale WWII STL infantry and tanks, including conversions to 28mm or 1:35.",
-    "scaleNotes": "At 15mm (1:100), Flames of War miniatures are small enough to field dozens of vehicles and hundreds of infantry on a single table. The scale is close to but not identical to 1:100 model kits — Battlefront's figures are slightly larger than strict ratio scale to improve tabletop readability.",
+    "scaleNotes": "At 15mm (1:100), Flames of War miniatures are small enough to field dozens of vehicles and hundreds of infantry on a single table. The scale is close to but not identical to 1:100 model kits — Battlefront's miniatures are slightly larger than strict ratio scale to improve tabletop readability.",
     "relatedConversions": [
       { "slug": "1-100-to-1-35", "label": "15mm to Model Kit Scale", "percentage": "285.7" },
       { "slug": "1-100-to-28mm", "label": "15mm to Tabletop Scale", "percentage": "160.0" },
@@ -395,7 +395,7 @@
     "baseSizes": "Acrylic bases (various)",
     "description": "Dropzone Commander is a 10mm sci-fi wargame depicting massive 27th-century battles with infantry, tanks, and dropships. The small scale allows entire companies with transport vehicles to be fielded in a single game, emphasizing combined-arms tactics over individual heroics.",
     "metaDescription": "Dropzone Commander is 10mm (1:160) sci-fi scale. Exact slicer percentages for scaling STL infantry, tanks, and dropships to match.",
-    "scaleNotes": "At 10mm, individual infantry figures are barely larger than a grain of rice. The game's visual impact comes from vehicle mass and formation density rather than individual detail. TTCombat's range is consistent within itself, making cross-faction mixing straightforward.",
+    "scaleNotes": "At 10mm, individual infantry miniatures are barely larger than a grain of rice. The game's visual impact comes from vehicle mass and formation density rather than individual detail. TTCombat's range is consistent within itself, making cross-faction mixing straightforward.",
     "relatedConversions": [
       { "slug": "1-100-to-1-35", "label": "Scale Up Reference", "percentage": "285.7" },
       { "slug": "1-72-to-1-35", "label": "Small Scale Reference", "percentage": "205.7" }

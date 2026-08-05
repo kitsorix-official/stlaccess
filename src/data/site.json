@@ -105,7 +105,7 @@
     },
     {
       "question": "How big is a 28mm miniature in real measurements?",
-      "answer": "A 28mm miniature represents a 175cm human at roughly 1:56 to 1:60 ratio scale. The figure stands about 30-32mm to the top of the head, with the eye level at 28mm. Add 2-5mm for the base thickness and you have the total height sitting on your table."
+      "answer": "A 28mm miniature represents a 175cm human at roughly 1:56 to 1:60 ratio scale. The miniature stands about 30-32mm to the top of the head, with the eye level at 28mm. Add 2-5mm for the base thickness and you have the total height sitting on your table."
     },
     {
       "question": "What is the difference between 28mm and 32mm scale?",
@@ -113,7 +113,7 @@
     },
     {
       "question": "What scale is 1:35 in mm for miniatures?",
-      "answer": "At 1:35, a 175cm human works out to about 50mm to the eyes. That is significantly bigger than 28mm tabletop miniatures — most 1:35 kits are Tamiya-style military models, not wargaming figures. If you want to mix a 1:35 tank with 28mm infantry, scale it down to <span class=\"text-[#ff6b35] font-bold\">62.5%</span> in your slicer."
+      "answer": "At 1:35, a 175cm human works out to about 50mm to the eyes. That is significantly bigger than 28mm tabletop miniatures — most 1:35 kits are Tamiya-style military models, not wargaming miniatures. If you want to mix a 1:35 tank with 28mm infantry, scale it down to <span class=\"text-[#ff6b35] font-bold\">62.5%</span> in your slicer."
     },
     {
       "question": "Does PLA or PETG shrink after printing?",

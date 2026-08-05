@@ -15,7 +15,7 @@ There are two ways to define a miniature's scale, and they give different number
 
 **Eye level (160cm on a 175cm human).** You measure from the bottom of the foot (or the base contact point) to the centre of the eye. This is the standard for fantasy and sci-fi miniatures—Warhammer, D&D, Star Wars Legion. It ignores helmets, top-knots, and decorative headgear.
 
-**Top of head (175cm).** You measure from the foot to the highest point of the head. This is used for historical miniatures, display busts, and ratio scales like 1:35 and 1:56. The full height of the figure matters because historical accuracy demands it.
+**Top of head (175cm).** You measure from the foot to the highest point of the head. This is used for historical miniatures, display busts, and ratio scales like 1:35 and 1:56. The full height of the miniature matters because historical accuracy demands it.
 
 ## Why This Matters for 3D Printing
 
@@ -36,7 +36,7 @@ If you do not have calipers, most slicers have a measurement tool. Import the ST
 
 ## What About Dynamic Poses?
 
-A miniature with a raised sword, a lunging pose, or a flying base cannot be measured by bounding box alone. The bounding box might be 45mm tall because of the sword, but the figure itself might only be 28mm to the eyes.
+A miniature with a raised sword, a lunging pose, or a flying base cannot be measured by bounding box alone. The bounding box might be 45mm tall because of the sword, but the miniature itself might only be 28mm to the eyes.
 
 To measure a dynamic pose:
 

@@ -12,12 +12,12 @@ This isn't arbitrary. It's the baseline used by most of the tabletop miniatures 
 
 ## Where 175cm Comes From
 
-Historical wargaming scales like 28mm and 32mm didn't start as precise measurements. A "28mm miniature" was loosely defined as a figure whose height (from sole to eye level) measured approximately 28mm. Over time, the community converged on a standard reference height to make cross-system scaling predictable.
+Historical wargaming scales like 28mm and 32mm didn't start as precise measurements. A "28mm miniature" was loosely defined as a miniature whose height (from sole to eye level) measured approximately 28mm. Over time, the community converged on a standard reference height to make cross-system scaling predictable.
 
 The 175cm baseline emerged because:
 
 - It represents a realistic average human height across global populations
-- It aligns with the reference figures used by manufacturers like Games Workshop, Warlord Games, and Atomic Mass Games
+- It aligns with the reference miniatures used by manufacturers like Games Workshop, Warlord Games, and Atomic Mass Games
 - It produces clean conversion percentages between the most popular gaming scales
 
 ## Eye Level vs Top of Head

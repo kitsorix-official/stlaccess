@@ -37,7 +37,7 @@ export const scaleInfo = {
     },
     "75mm": {
         shortName: "75mm",
-        games: ["Display busts", "Figure painting competitions", "Scale 75 display line"],
+        games: ["Display busts", "Miniature painting competitions", "Scale 75 display line"],
         type: "display",
         note: "Not a tabletop wargaming scale. Designed for contest judging and display cabinets.",
         printNote: "75mm on FDM needs a 0.2mm nozzle and very slow print speeds for acceptable surface quality.",
@@ -49,7 +49,7 @@ export const scaleInfo = {
         type: "ratio",
         note: "A true ratio scale, not a 'gaming scale.' Vehicles and armor dominate this scale.",
         printNote: "1:35 vehicles print beautifully on FDM at 0.2mm layers with a 0.4mm nozzle.",
-        commonIssue: "1:35 figures from different manufacturers can vary by ±2mm.",
+        commonIssue: "1:35 miniatures from different manufacturers can vary by ±2mm.",
     },
     "1:27": {
         shortName: "1:27",
@@ -63,15 +63,15 @@ export const scaleInfo = {
         shortName: "1:48",
         games: ["US O-gauge trains", "Bandai Star Wars kits", "Aircraft model kits"],
         type: "ratio",
-        note: "Common for vehicles and aircraft. Figures are usually accessories to vehicle kits.",
+        note: "Common for vehicles and aircraft. Miniatures are usually accessories to vehicle kits.",
         printNote: "1:48 aircraft wingspans can be large; plan bed orientation carefully.",
-        commonIssue: "1:48 figures are often molded in soft vinyl rather than hard plastic.",
+        commonIssue: "1:48 miniatures are often molded in soft vinyl rather than hard plastic.",
     },
     "1:56": {
         shortName: "1:56",
         games: ["Bolt Action", "Chain of Command", "Gaslands", "28mm wargaming vehicle companion"],
         type: "ratio",
-        note: "Often paired with 28mm infantry. Tanks and vehicles at 1:56 look correct next to 28mm figures.",
+        note: "Often paired with 28mm infantry. Tanks and vehicles at 1:56 look correct next to 28mm miniatures.",
         printNote: "1:56 tanks are the sweet spot for FDM: large enough for detail, small enough to print quickly.",
         commonIssue: "Some manufacturers label 1:48 vehicles as 'compatible with 28mm.' They are slightly oversized.",
     },
@@ -79,8 +79,8 @@ export const scaleInfo = {
         shortName: "1:72",
         games: ["Airfix", "Revell", "Zvezda", "Plastic Soldier Company"],
         type: "ratio",
-        note: "Popular for large army builds on a budget. Figures are roughly 20-22mm to the eyes.",
-        printNote: "1:72 figures are challenging on FDM due to rifle barrels and bayonets. A 0.2mm nozzle is recommended.",
+        note: "Popular for large army builds on a budget. Miniatures are roughly 20-22mm to the eyes.",
+        printNote: "1:72 miniatures are challenging on FDM due to rifle barrels and bayonets. A 0.2mm nozzle is recommended.",
         commonIssue: "1:72 scale creep exists: modern sculpts are often closer to 1:64.",
     },
     "6mm": {
@@ -112,7 +112,7 @@ export const scaleInfo = {
         games: ["Warmachine & Hordes", "Confrontation (Rackham)", "Dark Age"],
         type: "gaming",
         note: "Between 28mm and 32mm. Stockier proportions than 28mm with exaggerated weapons and armor.",
-        printNote: "30mm Warmachine figures print well on FDM. Warjacks are large steam robots that print at 0.2mm layers.",
+        printNote: "30mm Warmachine miniatures print well on FDM. Warjacks are large steam robots that print at 0.2mm layers.",
         commonIssue: "30mm is sometimes labeled as '28mm heroic' or '32mm heroic' by different manufacturers.",
     },
     "15mm": {
@@ -129,7 +129,7 @@ export const scaleInfo = {
         type: "ratio",
         note: "Used for large tank battles and regiment-level games where table space is limited.",
         printNote: "1:100 vehicles are manageable on FDM. Infantry at this scale is very challenging without a 0.2mm nozzle.",
-        commonIssue: "1:100 figures are roughly 17.5mm total height — slightly taller than 15mm eye-level figures. Check what the manufacturer means.",
+        commonIssue: "1:100 miniatures are roughly 17.5mm total height — slightly taller than 15mm eye-level miniatures. Check what the manufacturer means.",
     },
 };
 

@@ -55,7 +55,7 @@ Lychee also shows you the real-world dimensions of the model in mm, so you can s
 
 Slicers display model dimensions in millimetres by default. If your STL was exported in inches, it will import looking either tiny (an inch-miniature showing as 1.2mm tall) or enormous (a mm-miniature showing as 25 feet tall).
 
-**Quick rule of thumb:** A 28-32mm figure should be roughly the height of your thumb. If it comes in looking like a grain of rice, it was likely exported in inches. Scale everything up by 2540% (25.4 × 100) to convert inches to millimetres.
+**Quick rule of thumb:** A 28-32mm miniature should be roughly the height of your thumb. If it comes in looking like a grain of rice, it was likely exported in inches. Scale everything up by 2540% (25.4 × 100) to convert inches to millimetres.
 
 ## Chitubox Unit Conversion Helper
 
