@@ -1,10 +1,26 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
 import { getCollection } from "astro:content";
+import { graph, breadcrumb, itemList } from "../../lib/schema";
 
 const sortedPosts = (await getCollection("guides")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const guidesSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Guides", path: "/guides" },
+  ]),
+  itemList(sortedPosts.map((post) => ({
+    type: "Article",
+    name: post.data.title,
+    url: `/guides/${post.id}`,
+    description: post.data.description,
+    datePublished: post.data.pubDate.toISOString(),
+  }))),
+]);
 
 ---
 
@@ -12,6 +28,8 @@ const sortedPosts = (await getCollection("guides")).sort(
   title="3D Print Miniature Scale Guides | STLACCESS"
   description="Everything I've learned about 3D printing miniature scale conversion, scale theory, and FDM printing tips — from a fellow hobbyist who prints on a Bambu Lab A1 Mini."
 >
+
+<JsonLd slot="head" data={guidesSchema} />
 
 <div slot="page-header">
 <!-- Breadcrumbs -->

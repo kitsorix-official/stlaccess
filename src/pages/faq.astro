@@ -1,14 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
 import site from '../data/site.json';
 import { faqData } from '../data/faqContent.js';
+import { graph, breadcrumb, faqPage } from '../lib/schema';
 
 const quickRef = site.quickRef;
+
+const allFaqItems = faqData.flatMap((cat) =>
+  cat.questions.map((item) => ({ question: item.q, answer: item.a }))
+);
+
+const faqSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "FAQ", path: "/faq" },
+  ]),
+  faqPage(allFaqItems),
+]);
 ---
 <Layout
   title="STL Scale FAQ | 3D Printing Miniature Conversion Questions | STLACCESS"
   description="Answers to the scale conversion questions I get most — 28mm to 32mm, vehicle scales, FDM slicer settings, and how to stop wasting filament on the wrong miniature sizes."
 >
+<JsonLd slot="head" data={faqSchema} />
 <div slot="page-header">
   <!-- Breadcrumbs -->
   <nav class="max-w-6xl mx-auto pt-4 pb-12 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">

@@ -77,6 +77,9 @@ const currentPath = Astro.url.pathname;
 
     <!-- observatory -->
     <script is:inline defer src="/js/observatory.js"></script>
+
+    <!-- JSON-LD structured data injected by pages -->
+    <slot name="head" />
   </head>
 
   <body class="min-h-screen flex flex-col bg-black text-white">

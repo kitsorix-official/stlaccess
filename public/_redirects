@@ -43,9 +43,12 @@
 
 # Old tool paths
 /tools/stlscaler/  /  301
-/tools/stlscale-engine  /tools/stl-scale-engine  301
+/tools/stl-scale-engine  /  301
+/tools/stl-scale-engine/  /  301
+/tools/stlscale-engine  /  301
 /tools/personal-library  /tools  301
 /tools/scale-reference  /reference  301
+/tools/scale-reference/  /reference  301
 
 # Non-existent pages
 /cookies/  /privacy  301

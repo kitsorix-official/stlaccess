@@ -1,22 +1,46 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
 import tools from "../../data/tools.json";
 import scales from "../../data/scales.json";
 import conversions from "../../data/conversions.json";
 import site from "../../data/site.json";
 import categoryLabels from "../../data/toolCategories.json";
+import { graph, breadcrumb, itemList } from "../../lib/schema";
 
 const { printerName } = site;
 const scalesCount = Object.keys(scales).length;
 const conversionsCount = conversions.length;
 
-const categories = [...new Set(tools.map(t => t.category))];
+// stl-scale-engine lives on the homepage (/) and scale-reference lives at
+// /reference; both are featured there, so they are excluded from the tools
+// index cards and no /tools/* page is built for them.
+const visibleTools = tools.filter(
+  (t) => t.slug !== "stl-scale-engine" && t.slug !== "scale-reference"
+);
+
+const categories = [...new Set(visibleTools.map(t => t.category))];
+
+const toolsSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Tools", path: "/tools" },
+  ]),
+  itemList(visibleTools.map(t => ({
+    type: "SoftwareApplication",
+    name: t.name,
+    url: t.url,
+    description: t.shortDescription,
+  }))),
+]);
 ---
 
 <Layout
   title="3D Print Tools for Miniatures | STLACCESS"
   description="Free 3D print tools for miniatures — the scale calculator, conversion reference, and filament cost estimator I use before every Warhammer, D&D, and Bolt Action print."
 >
+
+<JsonLd slot="head" data={toolsSchema} />
 
 <div slot="page-header">
 <!-- Breadcrumbs -->
@@ -78,7 +102,7 @@ const categories = [...new Set(tools.map(t => t.category))];
       {categoryLabels[cat] || cat}
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {tools.filter(t => t.category === cat).map(tool => (
+      {visibleTools.filter(t => t.category === cat).map(tool => (
         <a
           href={`/tools/${tool.slug}`}
           class="tool-card group block bg-slate-900/30 rounded-3xl border border-white/5 p-8 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50"
@@ -143,7 +167,7 @@ const categories = [...new Set(tools.map(t => t.category))];
         <i class="fa-solid fa-screwdriver-wrench text-[#ff6b35] text-lg"></i>
       </div>
       <div>
-        <h2 class="font-bold text-white text-lg mb-1">How these tools are built</h2>
+        <h2 class="font-bold text-white text-lg mb-1">I build these tools like this</h2>
         <p class="text-sm text-slate-400">
           By <a href="/about" class="text-[#ff6b35] hover:underline font-semibold" rel="author">{site.author.name}</a>, 3D printing hobbyist
         </p>
@@ -151,14 +175,14 @@ const categories = [...new Set(tools.map(t => t.category))];
     </div>
     <div class="space-y-4 text-sm text-slate-400 leading-relaxed max-w-4xl">
       <p>
-        All tools run entirely in your browser. There is no backend, no database, and no cookies. The scale calculator uses a <strong class="text-white">{site.baselineHeight} human baseline</strong> with eye-level at {site.eyeLevelCm}cm — the same reference point used by most of the tabletop miniatures community. Conversion percentages are printed and measured with digital calipers before they are published.
+        All of these tools run entirely in your browser — no backend, no database, no cookies. I built the scale calculator around a <strong class="text-white">{site.baselineHeight} human baseline</strong> with eye-level at {site.eyeLevelCm}cm, the same reference point most of the tabletop miniatures community uses. And I don't publish a conversion percentage until I've printed it myself and measured it with my digital calipers.
       </p>
       <p>
-        New scales are added when wargaming manufacturers release new systems or when enough users submit corrections through the feedback form. Every percentage is tested on my {printerName} before publishing.
+        I add new scales when wargaming manufacturers release a new system, or when enough of you catch a wrong number through the feedback form. Every percentage is tested on my {printerName} before publishing — if a test print comes off the build plate looking out of proportion with my own army, I tweak the numbers first. I built these tools for my own workflow and put them online so other tabletop printers can save time and filament.
       </p>
       <p>
         <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1" rel="author">
-          Full methodology and testing data <span aria-hidden="true">→</span>
+          Read how I test every percentage <span aria-hidden="true">→</span>
         </a>
       </p>
     </div>

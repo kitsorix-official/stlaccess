@@ -19,7 +19,9 @@ export const GET: APIRoute = async () => {
     ...guides.map((g) => `${base}/guides/${g.id}`),
     `${base}/reference`,
     `${base}/tools`,
-    ...tools.map((t) => `${base}/tools/${t.slug}`),
+    ...tools
+      .filter((t) => t.slug !== "stl-scale-engine" && t.slug !== "scale-reference")
+      .map((t) => `${base}/tools/${t.slug}`),
   ];
 
   return new Response(urls.join('\n') + '\n', {

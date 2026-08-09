@@ -75,4 +75,4 @@ Use the [STLACCESS scale engine](/) to calculate any conversion, or browse the [
 - **Forgetting to lock the aspect ratio** — results in a squashed or stretched miniature
 - **Scaling the base with the model** — makes the base look wrong for the game system
 - **Distinguishing between eye-level and top-of-head** — 28mm refers to eye level; ratio scales like 1:56 are top-of-head. The [scale reference](/reference) has notes for each
-- **Ignoring resin shrinkage** — always add 1-3% if printing with resin. The STL scale calculator has a [shrinkage compensation toggle](/tools/stl-scale-engine) built in
+- **Ignoring resin shrinkage** — always add 1-3% if printing with resin. The STL scale calculator has a [shrinkage compensation toggle](/) built in

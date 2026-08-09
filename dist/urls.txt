@@ -15,7 +15,5 @@ https://stlaccess.com/guides/real-world-objects-to-32mm
 https://stlaccess.com/guides/upscaling-3d-prints-detail-limit
 https://stlaccess.com/reference
 https://stlaccess.com/tools
-https://stlaccess.com/tools/stl-scale-engine
-https://stlaccess.com/tools/scale-reference
 https://stlaccess.com/tools/slicer-percentage-calculator
 https://stlaccess.com/tools/filament-cost-calculator

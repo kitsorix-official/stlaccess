@@ -1,10 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import JsonLd from "../components/JsonLd.astro";
 import site from "../data/site.json";
 import scales from "../data/scales.json";
 import conversions from "../data/conversions.json";
+import tools from "../data/tools.json";
+import { graph, organization, webSite, softwareApplication, faqPage } from "../lib/schema";
 
 const { referencePreviews, homepageFaq, baselineHeight, baselineHeightCm, eyeLevelCm } = site;
+
+const engineTool = tools.find((t) => t.slug === "stl-scale-engine");
+
+const homeFaqItems = homepageFaq.map((item) => ({
+  question: item.question,
+  answer: item.answerExtra ? `${item.answer} ${item.answerExtra}` : item.answer,
+}));
+
+const homeSchema = graph([
+  organization(),
+  webSite(),
+  ...(engineTool
+    ? [softwareApplication({ name: "STL Scale Calculator", description: engineTool.description, url: "/" })]
+    : []),
+  faqPage(homeFaqItems),
+]);
 
 // Build dropdown labels from scales data
 const dropdownLabels: Record<string, string> = {
@@ -84,11 +103,24 @@ for (const conv of conversions) {
 }
 
 const scalesCount = Object.keys(scales).length;
+
+// Pre-rendered default result (28mm -> 32mm, Eye Level) so the result is
+// visible without JavaScript. Math mirrors mathscaler.js calculate().
+const defaultSource = "28mm";
+const defaultTarget = "32mm";
+const defaultSourceData = calculatorScales[defaultSource];
+const defaultTargetData = calculatorScales[defaultTarget];
+const defaultResultText = ((defaultTargetData.standardMm / defaultSourceData.standardMm) * 100).toFixed(1) + "%";
+const defaultFormula = `${defaultTargetData.standardMm.toFixed(1)} ÷ ${defaultSourceData.standardMm.toFixed(1)} × 100`;
+const defaultContext = `${defaultSource} → ${defaultTarget} · Eye Level`;
 ---
 <Layout
   title="STLACCESS — My 3D Print Scale Calculator for Miniatures"
   description="I built this free scale calculator after wasting too much filament on mis-sized prints. Tested on my Bambu Lab A1 Mini with digital calipers."
 >
+
+<JsonLd slot="head" data={homeSchema} />
+
 <nav class="sr-only" aria-label="Breadcrumb">
   <span aria-current="page">Home</span>
 </nav>
@@ -218,12 +250,27 @@ I add a slight bump when my PLA or resin shrinks while cooling.
 Type this into your slicer
 </span>
 <div id="resultDisplay" class="text-6xl md:text-7xl font-black font-heading tracking-tighter leading-none">
+{defaultResultText}
 </div>
-<div class="mt-6 flex gap-3">
+<p id="resultContext" class="text-xs font-black uppercase tracking-[0.15em] text-black/70 mt-2">
+{defaultContext}
+</p>
+<p id="resultFormula" class="text-[10px] font-bold text-black/50 uppercase tracking-widest mt-1">
+{defaultFormula}
+</p>
+<div class="mt-6 flex flex-wrap gap-3">
 <a href="/tools/filament-cost-calculator" id="estimateCostBtn" class="flex-1 py-4 bg-black text-white rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-black/80 transition-all flex items-center justify-center gap-2 focus-ring">
 <i class="fa-solid fa-dollar-sign"></i>
 <span>Estimate Cost</span>
 </a>
+<button id="copyPctBtn" type="button" class="flex-1 py-4 bg-black/10 text-black rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-black/20 transition-all flex items-center justify-center gap-2 focus-ring cursor-pointer" aria-label="Copy percentage to clipboard">
+<i class="fa-solid fa-copy"></i>
+<span>Copy</span>
+</button>
+<button id="swapScaleBtn" type="button" class="flex-1 py-4 bg-black/10 text-black rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-black/20 transition-all flex items-center justify-center gap-2 focus-ring cursor-pointer" aria-label="Swap source and target scales">
+<i class="fa-solid fa-arrow-right-arrow-left"></i>
+<span>Swap</span>
+</button>
 </div>
 <div class="mt-4 flex items-center justify-center gap-2 text-[10px] text-black/60 font-bold uppercase tracking-widest">
 <i class="fa-solid fa-shield-halved"></i>

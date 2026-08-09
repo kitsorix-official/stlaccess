@@ -1,11 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
 import site from '../data/site.json';
+import { graph, breadcrumb, webPage } from '../lib/schema';
+
+const contactSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ]),
+  webPage({
+    type: "ContactPage",
+    name: "Contact | 3D Print Miniature Scale Support | STLACCESS",
+    description: "Wrong percentage on a conversion? Need a game system added? Drop me a line — I read every message and fix errors when the community catches them.",
+    url: "/contact",
+  }),
+]);
 ---
 <Layout
   title="Contact | 3D Print Miniature Scale Support | STLACCESS"
   description="Wrong percentage on a conversion? Need a game system added? Drop me a line — I read every message and fix errors when the community catches them."
 >
+<JsonLd slot="head" data={contactSchema} />
 <div slot="page-header">
   <!-- Breadcrumbs -->
   <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
@@ -20,7 +36,7 @@ import site from '../data/site.json';
       Get in <span class="text-[#ff6b35]">touch</span>
     </h1>
     <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-      Questions about 3D printed miniature scale conversion? If you found a wrong percentage, want a new gaming scale added, or have an idea for a new tool, pick a template below. I reply when I can — usually within a couple of days.
+      Questions about 3D printed miniature scale conversion? Found a wrong percentage, want a new gaming scale added, or have an idea for a new tool? Drop me a message below — I read every submission and reply when I can, usually within a couple of days.
     </p>
   </div>
 </div>
@@ -33,7 +49,7 @@ import site from '../data/site.json';
       <div>
         <h2 id="contact-cta-heading" class="text-2xl font-bold font-heading text-white mb-3">Send me a message</h2>
         <p class="text-slate-400">
-          Use the Google Form below. No account needed. I read every submission and reply within a couple of days.
+          The button takes you off-site to my Google Form. It asks for your name and email so I can reply — I keep your message only until the matter is resolved, then delete it. <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Privacy details</a>
         </p>
       </div>
       <a
@@ -44,79 +60,6 @@ import site from '../data/site.json';
       >
         <i class="fa-solid fa-pen"></i>
         Open form
-      </a>
-    </div>
-  </section>
-
-  <!-- Quick Links -->
-  <section class="mb-16" aria-labelledby="quick-links-heading">
-    <h2 id="quick-links-heading" class="text-sm font-black uppercase tracking-[0.15em] text-slate-500 mb-5 border-l-2 border-[#ff6b35] pl-3 font-heading">
-      Pick a topic
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <a
-        href={site.googleFormUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-lg bg-[#ff6b35]/10 flex items-center justify-center">
-            <i class="fa-solid fa-triangle-exclamation text-[#ff6b35] text-sm"></i>
-          </div>
-          <h3 class="text-white font-semibold text-sm">Report a wrong percentage</h3>
-        </div>
-        <p class="text-xs text-slate-500">
-          Source scale, target scale, and what you think the correct value is.
-        </p>
-      </a>
-      <a
-        href={site.googleFormUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-lg bg-[#ff6b35]/10 flex items-center justify-center">
-            <i class="fa-solid fa-ruler-combined text-[#ff6b35] text-sm"></i>
-          </div>
-          <h3 class="text-white font-semibold text-sm">Request a new scale</h3>
-        </div>
-        <p class="text-xs text-slate-500">
-          Scale name, games that use it, and how it is measured.
-        </p>
-      </a>
-      <a
-        href={site.googleFormUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-lg bg-[#ff6b35]/10 flex items-center justify-center">
-            <i class="fa-solid fa-lightbulb text-[#ff6b35] text-sm"></i>
-          </div>
-          <h3 class="text-white font-semibold text-sm">Suggest a feature</h3>
-        </div>
-        <p class="text-xs text-slate-500">
-          What it does and why it would help. I read every idea.
-        </p>
-      </a>
-      <a
-        href={site.googleFormUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="group bg-slate-900/30 border border-white/5 rounded-2xl p-6 hover:border-[#ff6b35]/30 hover:bg-[#ff6b35]/5 transition-all block"
-      >
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-8 h-8 rounded-lg bg-[#ff6b35]/10 flex items-center justify-center">
-            <i class="fa-solid fa-rocket text-[#ff6b35] text-sm"></i>
-          </div>
-          <h3 class="text-white font-semibold text-sm">Request early access</h3>
-        </div>
-        <p class="text-xs text-slate-500">
-          For the STL File Manager. Tell me what you would use it for.
-        </p>
       </a>
     </div>
   </section>

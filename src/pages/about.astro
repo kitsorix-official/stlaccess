@@ -1,17 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import JsonLd from '../components/JsonLd.astro';
 import conversions from '../data/conversions.json';
 import tools from '../data/tools.json';
 import filamentPresets from '../data/filamentPresets.json';
 import site from '../data/site.json';
+import { graph, organization, person, breadcrumb, webPage } from '../lib/schema';
 
 const uniqueFilamentTypes = [...new Set(filamentPresets.map(p => p.type))].length;
 const conv28to32 = conversions.find(c => c.slug === '28mm-to-32mm');
+
+const aboutSchema = graph([
+  organization(),
+  person(),
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "About & Methodology", path: "/about" },
+  ]),
+  webPage({
+    type: "ProfilePage",
+    name: "About STLACCESS — Built by a Warhammer & 3D Printing Hobbyist",
+    description: site.description,
+    url: "/about",
+  }),
+]);
 ---
 <Layout
   title={`About STLACCESS | Built by a Warhammer & 3D Printing Hobbyist`}
   description={`Why I built the STLACCESS 3D print scale calculator to stop wasted filament and solve scale creep in tabletop 3D printing. Tested on a Bambu Lab A1 Mini with real PLA prints.`}
 >
+
+<JsonLd slot="head" data={aboutSchema} />
 <div slot="page-header">
   <!-- Breadcrumbs -->
   <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">

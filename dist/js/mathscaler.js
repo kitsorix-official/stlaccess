@@ -66,6 +66,29 @@ function calculate() {
     var display = document.getElementById('resultDisplay');
     display.textContent = result.toFixed(1) + '%';
 
+    // Context line: source -> target · measurement logic (+ shrink when enabled)
+    var contextEl = document.getElementById('resultContext');
+    if (contextEl) {
+        var logicLabel = logic === 'head' ? 'Top of Head' : 'Eye Level';
+        var ctxText = source + ' \u2192 ' + target + ' \u00B7 ' + logicLabel;
+        if (useShrinkage && shrinkageRate > 0) {
+            ctxText += ' \u00B7 +' + shrinkageRate + '% shrink';
+        }
+        contextEl.textContent = ctxText;
+    }
+
+    // Formula line (only shown when it matches the actual math)
+    var formulaEl = document.getElementById('resultFormula');
+    if (formulaEl) {
+        if (logic === 'eye') {
+            formulaEl.textContent = targetData.standardMm.toFixed(1) + ' \u00F7 ' + sourceData.standardMm.toFixed(1) + ' \u00D7 100';
+        } else if (headOverrides[overrideKey] !== undefined) {
+            formulaEl.textContent = 'Validated by my test prints';
+        } else {
+            formulaEl.textContent = targetData.topOfHeadMm.toFixed(1) + ' \u00F7 ' + sourceData.standardMm.toFixed(1) + ' \u00D7 100';
+        }
+    }
+
     // Update Estimate Cost deep-link
     var costBtn = document.getElementById('estimateCostBtn');
     if (costBtn) {
@@ -83,6 +106,36 @@ document.querySelectorAll('select, input').forEach(function(el) {
     el.addEventListener('change', calculate);
     el.addEventListener('input', calculate);
 });
+
+// Swap source and target scales
+var swapBtn = document.getElementById('swapScaleBtn');
+if (swapBtn) {
+    swapBtn.addEventListener('click', function() {
+        var sourceScale = document.getElementById('sourceScale');
+        var targetScale = document.getElementById('targetScale');
+        var tmp = sourceScale.value;
+        sourceScale.value = targetScale.value;
+        targetScale.value = tmp;
+        calculate();
+    });
+}
+
+// Copy percentage to clipboard
+var copyBtn = document.getElementById('copyPctBtn');
+if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+        var display = document.getElementById('resultDisplay');
+        var text = display ? display.textContent : '';
+        if (!text) return;
+        navigator.clipboard.writeText(text).then(function() {
+            var original = copyBtn.innerHTML;
+            copyBtn.innerHTML = '<i class="fa-solid fa-check"></i><span>Copied!</span>';
+            setTimeout(function() {
+                copyBtn.innerHTML = original;
+            }, 1500);
+        }).catch(function() {});
+    });
+}
 
 // URL Parameter Support for Deep Linking
 function checkURLParams() {

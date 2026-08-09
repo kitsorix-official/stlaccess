@@ -1,25 +1,44 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
 import tools from "../../data/tools.json";
 import site from "../../data/site.json";
 import filamentPresets from "../../data/filamentPresets.json";
+import { graph, breadcrumb, softwareApplication } from "../../lib/schema";
 
 export async function getStaticPaths() {
-  return tools.map((tool) => ({
-    params: { slug: tool.slug },
-    props: { tool },
-  }));
+  return tools
+    .filter((tool) => tool.slug !== "stl-scale-engine" && tool.slug !== "scale-reference")
+    .map((tool) => ({
+      params: { slug: tool.slug },
+      props: { tool },
+    }));
 }
 
 const { tool } = Astro.props;
 
 const defaultPreset = filamentPresets.find(p => p.type === 'PLA' && p.name === 'Mid PLA') || filamentPresets[0];
+
+const toolSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Tools", path: "/tools" },
+    { name: tool.name, path: tool.url },
+  ]),
+  softwareApplication({
+    name: tool.h1 || tool.name,
+    description: tool.description,
+    url: tool.url,
+  }),
+]);
 ---
 
 <Layout
   title={tool.metaTitle || `${tool.name} | 3D Print Scale Tool for Miniatures | STLACCESS`}
   description={tool.shortDescription}
 >
+
+<JsonLd slot="head" data={toolSchema} />
 
 <div slot="page-header">
 <!-- Breadcrumbs -->

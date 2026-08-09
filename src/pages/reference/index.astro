@@ -1,8 +1,10 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
 import site from "../../data/site.json";
 import rawConversions from "../../data/conversions.json";
 import { getContextualContent } from "../../data/referenceContent.js";
+import { graph, breadcrumb, faqPage } from "../../lib/schema";
 
 const { dateModified, referencePageQA, gasEndpoint, printerName } = site;
 
@@ -14,11 +16,21 @@ const referenceSections = rawConversions.map(c => {
   const reverseExists = rawConversions.some(x => x.slug === reverseSlug);
   return { conv: c, ctx, reverseSlug: reverseExists ? reverseSlug : null };
 });
+
+const referenceSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Reference", path: "/reference" },
+  ]),
+  faqPage(referencePageQA),
+]);
 ---
 <Layout
   title="3D Scale Conversion Reference | Percentages for 3D Minitures | STLACCESS"
   description="Every conversion percentage for tabletop miniature scales — 28mm to 32mm, 1:35, 1:48, 1:56, and more. All calculated from a 175cm human baseline and verified on physical test prints."
 >
+
+<JsonLd slot="head" data={referenceSchema} />
 
 <div slot="page-header">
 <!-- Breadcrumbs -->
@@ -333,7 +345,7 @@ const referenceSections = rawConversions.map(c => {
             There is also a fiscal reality: 1:48 Tamiya kits are widely available at hobby shops and often cost <strong class="text-white">half the price</strong> of official wargaming-branded 1:56 kits.
           </p>
           <p>
-            For the technical hobbyist, 1:48 is a rare win-win: better visual proportions and lower cost. Use our <a rel="nofollow" href="/?source=1:48&target=32mm&logic=eye" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">1:48 to 32mm conversion</a> and see how it looks on your table.
+            For the technical hobbyist, 1:48 is a rare win-win: better visual proportions and lower cost. Use my <a rel="nofollow" href="/?source=1:48&target=32mm&logic=eye" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">1:48 to 32mm conversion</a> and see how it looks on your table.
           </p>
         </div>
       </div>
@@ -359,7 +371,7 @@ const referenceSections = rawConversions.map(c => {
             You can see this in the new plastic German Veteran and US Airborne kits. They are so puffy that they are incompatible with older true-scale kits. A new-style arm on an old-style body looks like a prosthetic from a different species.
           </p>
           <p>
-            Before you commit to a conversion, cross-reference the source scales in our <a href="#conversion-details" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">conversion details</a> below.
+            Before you commit to a conversion, cross-reference the source scales in my <a href="#conversion-details" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">conversion details</a> below.
           </p>
         </div>
       </div>
@@ -381,7 +393,7 @@ const referenceSections = rawConversions.map(c => {
             This gap is why official scales feel wrong. The base raises the infantry's effective scale while the vehicle stays grounded.
           </p>
           <p>
-            3D printing is the <strong class="text-white">equalizer</strong>. You no longer have to accept the manufacturer's fixed height. You can scale digitally to compensate for base thickness and ensure infantry and armor share the same visual horizon. Our <a href="/" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Scale Engine</a> accounts for both eye level and top of head methodologies.
+            3D printing is the <strong class="text-white">equalizer</strong>. You no longer have to accept the manufacturer's fixed height. You can scale digitally to compensate for base thickness and ensure infantry and armor share the same visual horizon. My <a href="/" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Scale Engine</a> accounts for both eye level and top of head methodologies.
           </p>
         </div>
       </div>

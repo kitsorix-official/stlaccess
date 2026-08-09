@@ -1,7 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
 import { getCollection, render } from "astro:content";
 import site from "../../data/site.json";
+import { graph, organization, person, breadcrumb, article } from "../../lib/schema";
 
 export async function getStaticPaths() {
   const posts = await getCollection("guides");
@@ -15,12 +17,33 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 const pubDate = post.data.pubDate;
 const readMinutes = Math.max(1, Math.round((post.body ?? "").trim().split(/\s+/).filter(Boolean).length / 200));
+
+const modDate = post.data.modDate ?? pubDate;
+
+const guideSchema = graph([
+  organization(),
+  person(),
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Guides", path: "/guides" },
+    { name: post.data.title, path: `/guides/${post.id}` },
+  ]),
+  article({
+    title: post.data.title,
+    description: post.data.description,
+    url: `/guides/${post.id}`,
+    datePublished: pubDate.toISOString(),
+    dateModified: modDate.toISOString(),
+  }),
+]);
 ---
 
 <Layout
   title={`${post.data.title} | STLACCESS — 3D Print Miniature Scale Guide`}
   description={post.data.description}
 >
+
+<JsonLd slot="head" data={guideSchema} />
 
 <div slot="page-header">
 <!-- Breadcrumbs -->
