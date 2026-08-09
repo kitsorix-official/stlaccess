@@ -80,15 +80,10 @@ const currentPath = Astro.url.pathname;
   </head>
 
   <body class="min-h-screen flex flex-col bg-black text-white">
-    <!-- Navigation + masthead. The header uses display:contents so its
-         children are flex items of <body>. DOM order is masthead, skip link,
-         navbar; the `order-*` utilities keep the navbar visually on top. -->
+    <!-- Header: skip link + sticky navbar. The header uses display:contents
+         so its children stay flex items of <body> (required for the navbar's
+         sticky positioning). -->
     <header class="contents">
-      <!-- Page masthead (H1 + intro) -->
-      <div class="order-2">
-        <slot name="masthead" />
-      </div>
-
       <!-- Skip link -->
       <a
         href="#main-content"
@@ -175,6 +170,7 @@ const currentPath = Astro.url.pathname;
 
     <!-- Main content -->
     <main id="main-content" class="flex-grow order-3">
+      <slot name="page-header" />
       <slot />
     </main>
 
