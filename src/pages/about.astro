@@ -44,7 +44,7 @@ const conv28to32 = conversions.find(c => c.slug === '28mm-to-32mm');
         If you've been 3D printing tabletop miniatures for more than a week, you've experienced the frustration. You download an incredible proxy STL, slice it, hit print, and 8 hours later discover your new character towers over your Warhammer squad—or looks like a child standing next to your terrain.
       </p>
       <p>
-        We call it <strong class="text-white">scale creep</strong>, but the root cause is sculptor inconsistency. Some creators measure to eye level, others to the crown of the head. Some account for base thickness, others don't. For anyone trying to build a cohesive army or gaming table, it leads to a pile of failed prints and wasted filament.
+        <strong class="text-white">I call it scale creep</strong> — because that's exactly what happens to my army when one sculptor measures to the eye and another measures to the crown. I've learned the hard way that no two creators agree on what "32mm" actually means. Some account for base thickness, others don't. For anyone trying to build a cohesive army or gaming table, it leads to a pile of failed prints and wasted filament.
       </p>
       <p>
         I threw away enough mis-scaled models to get sick of the guesswork. So I broke out my <span class="text-[#ff6b35] font-semibold">digital calipers</span> and started working out the actual math.
@@ -112,7 +112,10 @@ const conv28to32 = conversions.find(c => c.slug === '28mm-to-32mm');
         </div>
       </div>
       <p>
-        I test my scaling logic on my <span class="text-[#ff6b35] font-semibold">{site.printerName}</span> primarily using PLA. If a converted proxy comes off the build plate looking out of proportion with the rest of the unit, I tweak the calculations.
+        My worst mistake? I once eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." My Space Marine came out looking like a bobblehead — correct height, wrong proportions. That's why I now measure every conversion with calipers before I publish the percentage.
+      </p>
+      <p>
+        I test <strong class="text-white">every conversion</strong> on my <span class="text-[#ff6b35] font-semibold">{site.printerName}</span> — mostly PLA and PETG. If a converted proxy comes off the build plate looking out of proportion with the rest of my unit, I adjust the numbers before they go live. <strong class="text-white">I don't publish percentages I haven't personally verified.</strong>
       </p>
     </section>
 
