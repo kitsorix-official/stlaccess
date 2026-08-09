@@ -184,9 +184,9 @@
     "scaleNotes": "At 40mm, Shatterpoint miniatures are the largest standard Star Wars game scale. Atomic Mass Games chose this size to give painters expansive surfaces for blending and highlighting — a deliberate departure from the smaller scales used in Legion and MCP. Characters like Dooku measure approximately 42.75mm total height.",
     "relatedConversions": [
       { "slug": "35mm-to-40mm", "label": "Legion to Shatterpoint", "percentage": "114.3" },
-      { "slug": "40mm-to-35mm", "label": "Shatterpoint to Legion", "percentage": "87.5" },
+      { "slug": "28mm-to-40mm", "label": "Classic to Shatterpoint", "percentage": "142.9" },
       { "slug": "32mm-to-40mm", "label": "GW Scale to Shatterpoint", "percentage": "125.0" },
-      { "slug": "40mm-to-75mm", "label": "Tabletop to Display", "percentage": "187.5" }
+      { "slug": "1-48-to-40mm", "label": "Model Kit to Shatterpoint", "percentage": "109.7" }
     ],
     "printingTips": "The large, smooth surfaces of Shatterpoint minis reward fine layer heights — print at 0.04-0.06mm on resin for best results. FDM at 0.08mm is acceptable for terrain pieces. The bigger scale means more material per model, so factor resin usage into your cost calculations. Orient helmets and faces carefully to minimize support marks on visible areas.",
     "popularWith": "Star Wars painters who want larger canvases, skirmish gamers, and collectors building diorama-style displays."
@@ -282,7 +282,7 @@
       { "slug": "28mm-to-32mm", "label": "Classic to Heroic Scale", "percentage": "114.3" },
       { "slug": "32mm-to-28mm", "label": "Heroic to Classic Scale", "percentage": "87.5" },
       { "slug": "28mm-to-35mm", "label": "Warmachine to Legion/MCP", "percentage": "125.0" },
-      { "slug": "30mm-to-32mm", "label": "Warmachine to Modern GW", "percentage": "106.7" }
+      { "slug": "32mm-to-75mm", "label": "Tabletop to Display", "percentage": "234.4" }
     ],
     "printingTips": "Warmachine models feature bulky, mechanical designs — warjacks and heavy beasts have flat armor panels that show layer lines. Print at 0.06mm layers on resin or 0.08mm on FDM. The chunky proportions are forgiving for FDM printing. Metal originals are heavy, so printed resin alternatives are significantly lighter and easier to transport.",
     "popularWith": "Competitive tournament players, steampunk enthusiasts, and gamers who enjoy complex army synergies and control-point mechanics."
@@ -584,8 +584,8 @@
     "metaDescription": "X-Wing is 1:27 ratio scale. Exact slicer percentages for scaling STL Star Wars ships to match the pre-painted X-Wing miniatures.",
     "scaleNotes": "X-Wing uses 1:27 ratio scale, which works out to roughly 59.3mm eye-level and 64.8mm top-of-head for a human-sized reference. Ships vary dramatically in size — a TIE Fighter is small enough to hold in your palm, while a Rebel Transport fills most of the table. Bandai and Revell sell compatible Star Wars model kits at 1:48 scale, which are slightly smaller but work for casual play.",
     "relatedConversions": [
-      { "slug": "1-35-to-1-35", "label": "Reference Scale", "percentage": "100.0" },
-      { "slug": "1-48-to-1-35", "label": "Quarter Scale Up", "percentage": "137.1" }
+      { "slug": "1-48-to-1-35", "label": "Quarter Scale Up", "percentage": "137.1" },
+      { "slug": "1-72-to-1-35", "label": "Small Scale Up", "percentage": "205.7" }
     ],
     "printingTips": "1:27 ships are large enough for FDM to handle detail well. Use 0.2mm nozzle at 0.08mm layers for cockpit glass, panel lines, and engine details. Large ships like the Millennium Falcon benefit from 0.4mm nozzle at 0.12mm layers for speed. The smooth hull surfaces of Star Wars ships show layer lines easily, so print at the finest layer height you have patience for. Orient engines and cockpits upward to keep support marks on hidden undersides.",
     "popularWith": "Star Wars fans who want to fly X-Wings and TIE Fighters on the tabletop, space combat enthusiasts who enjoy fast-resolving dogfights, and model builders who enjoy painting iconic film ships."

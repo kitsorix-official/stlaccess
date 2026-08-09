@@ -1,10 +1,45 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import gameSystems from "../../data/gameSystems.json";
+import conversions from "../../data/conversions.json";
 import site from "../../data/site.json";
+import { gameGuides, gameGuideSearch } from "../../data/gameGuides.js";
+
+// Enrich each game with its related conversions, same-scale siblings, and FAQ
+const gamesWithData = gameSystems.map((game) => {
+  const relatedConvData = game.relatedConversions
+    .map((rc) => {
+      const full = conversions.find((c) => c.slug === rc.slug);
+      return full ? { ...rc, ...full } : null;
+    })
+    .filter(Boolean);
+
+  const sameScale = gameSystems.filter(
+    (g) => g.slug !== game.slug && g.scale === game.scale
+  );
+
+  const faqItems = [
+    {
+      name: `What scale is ${game.name}?`,
+      text: `${game.name} miniatures are ${game.scale} scale (${game.ratioScale} ratio), measured ${game.measurementMethod}. ${game.scaleNotes}`
+    },
+    {
+      name: `What base sizes does ${game.name} use?`,
+      text: `${game.name} uses the following base sizes: ${game.baseSizes}.`
+    },
+    {
+      name: `What nozzle and layer height should I use for ${game.name} miniatures?`,
+      text: game.printingTips
+    }
+  ];
+
+  return { game, relatedConvData, sameScale, faqItems };
+});
+
+const dataBySlug = Object.fromEntries(gamesWithData.map((d) => [d.game.slug, d]));
 
 // Group games by scale
-const byScale: Record<string, typeof gameSystems> = {};
+const byScale = {};
 for (const game of gameSystems) {
   if (!byScale[game.scale]) byScale[game.scale] = [];
   byScale[game.scale].push(game);
@@ -31,7 +66,7 @@ const sortedScales = scaleOrder.filter((s) => byScale[s]);
   </nav>
 
   <!-- Intro -->
-  <div class="games-intro text-center mb-16 max-w-6xl mx-auto px-6">
+  <div class="games-intro text-center mb-12 max-w-6xl mx-auto px-6">
     <span class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-4 block">Every system, every scale</span>
     <h1 id="games-hero-heading" class="text-4xl md:text-6xl font-bold font-heading text-white mb-4 tracking-tight">
       Tabletop Game Scale Guide
@@ -42,38 +77,213 @@ const sortedScales = scaleOrder.filter((s) => byScale[s]);
   </div>
 </div>
 
-  <!-- Games by Scale -->
-  <section class="max-w-6xl mx-auto px-6 pb-12 md:pb-20">
+  <!-- Search / Filter -->
+  <form role="search" class="px-6 mb-12 max-w-6xl mx-auto" aria-labelledby="games-search-heading" onsubmit="return false">
+    <h2 id="games-search-heading" class="sr-only">Search game systems</h2>
+    <div class="relative group">
+      <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
+      <input
+        type="text"
+        id="gamesSearch"
+        placeholder="Search games (e.g. Warhammer 40k, D&D, Bolt Action...)"
+        class="w-full bg-slate-900/50 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus:ring-1 focus:ring-[#ff6b35] focus:border-[#ff6b35] focus:outline-none transition-all placeholder:text-slate-600"
+        aria-label="Search tabletop game systems"
+      />
+    </div>
+    <div id="noResults" class="hidden mt-8 text-center text-slate-500 italic py-12 border border-dashed border-white/5 rounded-3xl">
+      No game systems found. Try "Warhammer" or "Bolt Action".
+    </div>
+  </form>
+
+  <!-- Game Systems by Scale -->
+  <section class="max-w-6xl mx-auto px-6 pb-12 md:pb-20" id="game-systems" aria-labelledby="systems-heading">
     {sortedScales.map((scale) => (
-      <div class="scale-section mb-14" aria-labelledby={`scale-heading-${scale}`}>
+      <div class="scale-group mb-14" aria-labelledby={`scale-heading-${scale}`}>
         <div class="flex items-center gap-4 mb-6">
           <h2 id={`scale-heading-${scale}`} class="text-2xl font-bold font-heading text-white">{scale} Scale</h2>
           <div class="flex-grow h-px bg-white/10"></div>
           <span class="text-xs text-slate-500 font-mono">{byScale[scale].length} {byScale[scale].length === 1 ? 'system' : 'systems'}</span>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {byScale[scale].map((game) => (
-            <a
-              href={`/games/${game.slug}`}
-              class="group block bg-slate-900/30 border border-white/5 rounded-2xl p-5 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all"
-            >
-              <div class="flex items-start justify-between mb-3">
-                <div>
-                  <h3 class="font-bold text-white group-hover:text-[#ff6b35] transition-colors text-lg">{game.name}</h3>
-                  <div class="text-xs text-slate-500 mt-0.5">{game.publisher}</div>
+        <div class="space-y-8">
+          {byScale[scale].map((game) => {
+            const { relatedConvData, sameScale, faqItems } = dataBySlug[game.slug];
+            return (
+              <article
+                id={game.slug}
+                class="searchable-section scroll-mt-28 bg-slate-900/20 rounded-3xl border border-white/5 p-6 md:p-8"
+                data-search={`${game.name} ${game.shortName} ${game.scale} ${game.ratioScale} ${game.genre} ${game.publisher} ${game.relatedConversions.map(rc => rc.slug).join(' ')} ${game.description} ${game.scaleNotes} ${game.printingTips} ${gameGuideSearch(game.slug)}`}
+              >
+                <!-- Header: game + scale -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2">
+                      <span class="text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] bg-[#ff6b35]/10 px-3 py-1 rounded-full">{game.genre}</span>
+                      <span class="text-xs text-slate-500">Est. {game.yearIntroduced}</span>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold font-heading text-white mb-2 tracking-tight">{game.name}</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed max-w-2xl">{game.description}</p>
+                    <a href={`/games#${game.slug}`} class="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-slate-500 hover:text-[#ff6b35] transition-colors" aria-label={`Permalink to ${game.name}`}>
+                      <i class="fa-solid fa-link text-[10px]" aria-hidden="true"></i>
+                      {game.slug}
+                    </a>
+                  </div>
+                  <div class="shrink-0 bg-slate-900/50 border border-[#ff6b35]/20 rounded-2xl px-6 py-5 glow-box">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-[#ff6b35] mb-1">Miniature scale</p>
+                    <p class="text-3xl md:text-4xl font-black font-heading text-white tracking-tighter">{game.scale}</p>
+                    <p class="text-xs text-slate-400 mt-1 font-mono">{game.ratioScale} ratio</p>
+                  </div>
                 </div>
-                <span class="text-xs font-mono text-[#ff6b35] bg-[#ff6b35]/10 px-2 py-1 rounded shrink-0">{game.ratioScale}</span>
-              </div>
-              <p class="text-sm text-slate-400 leading-relaxed mb-3 line-clamp-2">{game.description}</p>
-              <div class="flex items-center justify-between">
-                <span class="text-xs text-slate-500">{game.genre}</span>
-                <div class="flex items-center gap-1 text-xs text-slate-500 group-hover:text-[#ff6b35] transition-colors">
-                  <span>{game.relatedConversions.length} conversions</span>
-                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+
+                <!-- Scale explanation -->
+                <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 md:p-8 mb-8">
+                  <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-4">What scale am I actually printing?</h4>
+                  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+                    <div>
+                      <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Miniature Scale</div>
+                      <div class="text-2xl font-bold text-[#ff6b35] font-mono">{game.scale}</div>
+                    </div>
+                    <div>
+                      <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Ratio Equivalent</div>
+                      <div class="text-2xl font-bold text-white font-mono">{game.ratioScale}</div>
+                    </div>
+                    <div>
+                      <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Measurement</div>
+                      <div class="text-lg font-semibold text-slate-300 capitalize">{game.measurementMethod}</div>
+                    </div>
+                    <div>
+                      <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Eye Level Height</div>
+                      <div class="text-lg font-semibold text-white font-mono">{game.eyeLevelMm}</div>
+                    </div>
+                  </div>
+                  <p class="text-slate-400 text-sm leading-relaxed">
+                    {game.scaleNotes}
+                  </p>
+                  <div class="mt-4 text-xs text-slate-500">
+                    <span class="font-semibold text-slate-400">Publisher:</span> {game.publisher}
+                    <span class="mx-2">·</span>
+                    <span class="font-semibold text-slate-400">Base Sizes:</span> {game.baseSizes}
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+
+                <!-- Deep Dive (merged game guide) -->
+                {gameGuides[game.slug] && (
+                  <div class="bg-slate-900/30 border border-[#ff6b35]/20 rounded-2xl p-6 md:p-8 mb-8">
+                    <div class="flex items-center gap-2 mb-2">
+                      <i class="fa-solid fa-book-open text-[#ff6b35] text-xs" aria-hidden="true"></i>
+                      <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35]">Deep Dive: {gameGuides[game.slug].title}</h4>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-6 leading-relaxed">{gameGuides[game.slug].intro}</p>
+                    {gameGuides[game.slug].blocks.map((block) => (
+                      <div class="mb-8 last:mb-0">
+                        <h5 class="text-base font-bold font-heading text-white mb-3">{block.heading}</h5>
+                        <div set:html={block.html}></div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <!-- Conversion Table -->
+                {relatedConvData.length > 0 && (
+                  <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 md:p-8 mb-8">
+                    <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-1">Scale Conversions for {game.shortName}</h4>
+                    <p class="text-sm text-slate-500 mb-6">Slicer percentages for converting between {game.name} and other common miniature scales.</p>
+                    <div class="overflow-x-auto">
+                      <table class="w-full text-sm">
+                        <caption class="sr-only">Scale conversions for {game.shortName}</caption>
+                        <thead>
+                          <tr class="border-b border-white/5">
+                            <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Conversion</th>
+                            <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Description</th>
+                            <th scope="col" class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Slicer %</th>
+                            <th scope="col" class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">Formula</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {relatedConvData.map((conv) => (
+                            <tr class="border-b border-white/5 hover:bg-slate-900/50 transition-colors">
+                              <td class="py-3 px-4">
+                                <a href={`/reference#${conv.slug}`} class="text-[#ff6b35] hover:text-white transition-colors font-mono font-semibold">
+                                  {conv.h1Source} → {conv.h1Target}
+                                </a>
+                              </td>
+                              <td class="py-3 px-4 text-slate-400">{conv.label}</td>
+                              <td class="py-3 px-4 text-right font-mono font-bold text-white">{conv.percentage}%</td>
+                              <td class="py-3 px-4 text-right font-mono text-slate-500 hidden md:table-cell">{conv.math}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="mt-4">
+                      <a href="/reference" class="text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
+                        View all conversion reference →
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+                <!-- 3D Printing Tips -->
+                <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 md:p-8 mb-8">
+                  <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-4">Printing these minis on FDM</h4>
+                  <p class="text-slate-300 leading-relaxed mb-4">
+                    {game.printingTips}
+                  </p>
+                  <p class="text-xs text-slate-500 mt-4">
+                    All settings tested on my Bambu Lab A1 Mini with PLA. Your printer may want something different — always print a test piece first.
+                  </p>
+                </div>
+
+                <!-- Same Scale Games -->
+                {sameScale.length > 0 && (
+                  <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 md:p-8 mb-8">
+                    <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-4">Other Games at {game.scale} Scale</h4>
+                    <p class="text-sm text-slate-500 mb-6">These systems use the same miniature scale as {game.name}. In most cases, miniatures are interchangeable between them — though art style and proportions will still vary by manufacturer.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {sameScale.map((g) => (
+                        <a
+                          href={`/games#${g.slug}`}
+                          class="flex items-center justify-between p-4 bg-slate-900/30 border border-white/5 rounded-xl hover:border-[#ff6b35]/30 hover:bg-slate-900/50 transition-all group"
+                        >
+                          <div>
+                            <div class="font-semibold text-white group-hover:text-[#ff6b35] transition-colors">{g.name}</div>
+                            <div class="text-xs text-slate-500">{g.genre} · {g.publisher}</div>
+                          </div>
+                          <i class="fa-solid fa-arrow-right text-xs text-slate-600 group-hover:text-[#ff6b35] transition-colors"></i>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <!-- FAQ -->
+                <div class="mb-8">
+                  <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-4">Frequently Asked Questions</h4>
+                  <div class="space-y-4">
+                    {faqItems.map((faq) => (
+                      <details class="bg-[#0a0a0a]/50 border border-white/5 hover:bg-[#111]/30 hover:border-white/10 rounded-xl overflow-hidden group transition-all duration-200">
+                        <summary class="px-6 py-4 cursor-pointer text-white font-semibold hover:text-[#ff6b35] transition-colors flex items-center justify-between list-none">
+                          <span>{faq.name}</span>
+                          <i class="fa-solid fa-chevron-down text-xs text-slate-500 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="px-6 pb-4 text-sm text-slate-400 leading-relaxed">
+                          {faq.text}
+                        </div>
+                      </details>
+                    ))}
+                  </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center py-8 border-t border-white/5">
+                  <p class="text-slate-500 text-sm mb-4">Time to check the scale before you commit to a long print.</p>
+                  <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black font-bold px-8 py-3 rounded-xl hover:brightness-110 active:scale-95 transition-all hover:shadow-lg hover:shadow-[#ff6b35]/20">
+                    <i class="fa-solid fa-calculator"></i>
+                    Launch the STL scale calculator
+                  </a>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     ))}
@@ -97,5 +307,41 @@ const sortedScales = scaleOrder.filter((s) => byScale[s]);
     </div>
 
   </section>
+
+<script is:inline>
+  function filterGames() {
+    var input = document.getElementById('gamesSearch');
+    var filter = input.value.toLowerCase().trim();
+    var sections = document.querySelectorAll('.searchable-section');
+    var groups = document.querySelectorAll('.scale-group');
+    var visible = 0;
+    sections.forEach(function(section) {
+      var haystack = section.getAttribute('data-search').toLowerCase();
+      if (haystack.includes(filter)) {
+        section.style.display = '';
+        visible++;
+      } else {
+        section.style.display = 'none';
+      }
+    });
+    groups.forEach(function(group) {
+      var hasVisible = Array.prototype.some.call(group.querySelectorAll('.searchable-section'), function(s) {
+        return s.style.display !== 'none';
+      });
+      group.style.display = hasVisible ? '' : 'none';
+    });
+    var noResults = document.getElementById('noResults');
+    if (visible === 0 && filter.length > 0) {
+      noResults.classList.remove('hidden');
+    } else {
+      noResults.classList.add('hidden');
+    }
+  }
+
+  var gamesSearchInput = document.getElementById('gamesSearch');
+  if (gamesSearchInput) {
+    gamesSearchInput.addEventListener('input', filterGames);
+  }
+</script>
 
 </Layout>

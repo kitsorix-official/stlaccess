@@ -5,15 +5,8 @@
     <link>https://stlaccess.com/guides</link>
     <description>Articles about 3D printed miniature scale conversion, FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 13 Jul 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 11 Jul 2026 00:00:00 GMT</lastBuildDate>
     <atom:link href="https://stlaccess.com/rss.xml" rel="self" type="application/rss+xml"/>
-    <item>
-      <title>D&amp;D Miniature Scale: What Size Are D&amp;D Minis and How to 3D Print Them</title>
-      <link>https://stlaccess.com/guides/dungeons-and-dragons-miniature-scale</link>
-      <description>The complete D&amp;D miniature scale guide for 3D printing. 28mm true scale explained, FDM settings for D&amp;D minis, and scaling between monster sizes.</description>
-      <pubDate>Mon, 13 Jul 2026 00:00:00 GMT</pubDate>
-      <guid>https://stlaccess.com/guides/dungeons-and-dragons-miniature-scale</guid>
-    </item>
     <item>
       <title>How to Measure a Miniature&apos;s Scale: Eye Level vs Top of Head Explained</title>
       <link>https://stlaccess.com/guides/how-to-measure-miniature-scale</link>
@@ -27,27 +20,6 @@
       <description>Best FDM settings for tabletop miniatures — nozzles, layer heights, orientation tips, and post-processing for 28mm and 32mm models.</description>
       <pubDate>Thu, 09 Jul 2026 00:00:00 GMT</pubDate>
       <guid>https://stlaccess.com/guides/fdm-miniature-printing-guide</guid>
-    </item>
-    <item>
-      <title>Bolt Action 28mm Scale: The Complete Guide to 3D Printing Historical Miniatures</title>
-      <link>https://stlaccess.com/guides/bolt-action-scale-guide</link>
-      <description>How to 3D print historical miniatures for Bolt Action at true 28mm scale. Infantry, vehicles, terrain, and the 1:56 ratio explained for FDM printers.</description>
-      <pubDate>Tue, 07 Jul 2026 00:00:00 GMT</pubDate>
-      <guid>https://stlaccess.com/guides/bolt-action-scale-guide</guid>
-    </item>
-    <item>
-      <title>How to Scale Warhammer 40k Miniatures for 3D Printing: The Complete Guide</title>
-      <link>https://stlaccess.com/guides/warhammer-40k-scale-guide</link>
-      <description>Everything you need to scale 3D printed Warhammer 40k miniatures. Primaris to Firstborn, 32mm heroic conversions, and slicer settings for FDM printers.</description>
-      <pubDate>Sun, 05 Jul 2026 00:00:00 GMT</pubDate>
-      <guid>https://stlaccess.com/guides/warhammer-40k-scale-guide</guid>
-    </item>
-    <item>
-      <title>The Ultimate Printable STL Scale Conversion Chart</title>
-      <link>https://stlaccess.com/guides/stl-scale-conversion-chart</link>
-      <description>Free printable STL scale conversion chart for 3D printed miniatures — 28mm, 32mm, 35mm, 40mm, 75mm tabletop, and ratio scales 1:35 to 1:100.</description>
-      <pubDate>Wed, 01 Jul 2026 00:00:00 GMT</pubDate>
-      <guid>https://stlaccess.com/guides/stl-scale-conversion-chart</guid>
     </item>
     <item>
       <title>How to Scale Real-World Objects to 32mm Miniatures (The Math Explained)</title>
@@ -69,13 +41,6 @@
       <description>Step-by-step guide to scaling STL files in Chitubox and Lychee. Lock aspect ratios, scale without stretching the base, and understand the unit conversion.</description>
       <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
       <guid>https://stlaccess.com/guides/chitubox-lychee-scaling-guide</guid>
-    </item>
-    <item>
-      <title>28mm to 32mm Scale: The Exact Percentage You Need for Your Slicer</title>
-      <link>https://stlaccess.com/guides/28mm-to-32mm-percentage</link>
-      <description>The exact slicer percentage to scale 28mm miniatures to 32mm heroic scale: 114.3%. Plus a cheat sheet for 28mm to 35mm, 32mm to 35mm, and more.</description>
-      <pubDate>Sat, 20 Jun 2026 00:00:00 GMT</pubDate>
-      <guid>https://stlaccess.com/guides/28mm-to-32mm-percentage</guid>
     </item>
     <item>
       <title>Why Miniature Scales Use a 175cm Human Baseline</title>

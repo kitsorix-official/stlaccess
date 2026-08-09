@@ -14,30 +14,32 @@
 /index.html  /  301
 /reference.html  /reference  301
 /faq.html  /faq  301
-/reference/1-48-to-40mm.html  /reference/1-48-to-40mm  301
-/reference/1-56-to-40mm.html  /reference/1-56-to-40mm  301
-/reference/1-56-to-32mm.html  /reference/1-56-to-32mm  301
-/reference/28mm-to-40mm.html  /reference/28mm-to-40mm  301
-/reference/1-48-to-32mm.html  /reference/1-48-to-32mm  301
-/reference/1-35-to-40mm.html  /reference/1-35-to-40mm  301
-/reference/1-56-to-1-35.html  /reference/1-56-to-1-35  301
-/reference/1-100-to-1-35.html  /reference/1-100-to-1-35  301
-/reference/1-72-to-1-35.html  /reference/1-72-to-1-35  301
-/reference/32mm-to-40mm.html  /reference/32mm-to-40mm  301
-/reference/1-100-to-35mm.html  /reference/1-100-to-35mm  301
-/reference/1-35-to-28mm.html  /reference/1-35-to-28mm  301
-/reference/1-72-to-75mm.html  /reference/1-72-to-75mm  301
-/reference/32mm-to-35mm.html  /reference/32mm-to-35mm  301
-/reference/35mm-to-32mm.html  /reference/35mm-to-32mm  301
 
+# Reference sub-pages consolidated into a single page
+/reference/flames-of-war-scale/  /games  301
+/reference/warhammer-40k-scale/  /games  301
+/reference/*  /reference  301
 
-/reference/flames-of-war-scale/  /games/flames-of-war 301
-/reference/warhammer-40k-scale/  /games/warhammer-40000 301
+# Game System sub-pages consolidated into a single page
+/games/  /games  301
+/games/*  /games  301
+
+# Guides consolidated into reference and games
+/guides/stl-scale-conversion-chart  /reference  301
+/guides/stl-scale-conversion-chart/  /reference  301
+/guides/28mm-to-32mm-percentage  /reference#28mm-to-32mm  301
+/guides/28mm-to-32mm-percentage/  /reference#28mm-to-32mm  301
+/guides/warhammer-40k-scale-guide  /games#warhammer-40000  301
+/guides/warhammer-40k-scale-guide/  /games#warhammer-40000  301
+/guides/bolt-action-scale-guide  /games#bolt-action  301
+/guides/bolt-action-scale-guide/  /games#bolt-action  301
+/guides/dungeons-and-dragons-miniature-scale  /games#dungeons-and-dragons  301
+/guides/dungeons-and-dragons-miniature-scale/  /games#dungeons-and-dragons  301
 
 # Missing slash in path
-/reference32mm-to-40mm  /reference/32mm-to-40mm  301
-/reference35mm-to-28mm  /reference/35mm-to-28mm  301
-/reference1-48-to-75mm  /reference/1-48-to-75mm  301
+/reference32mm-to-40mm  /reference  301
+/reference35mm-to-28mm  /reference  301
+/reference1-48-to-75mm  /reference  301
 
 # Old tool paths
 /tools/stlscaler/  /  301
