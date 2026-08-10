@@ -78,6 +78,16 @@ export default function pwa() {
           navMap[pretty + '/'] = f;
         }
 
+        // --- Cross-origin assets precached at install so the site stays ---
+        // --- fully styled offline (Font Awesome CSS + webfonts the site ---
+        // --- actually uses). cdnjs serves these with CORS enabled, so ---
+        // --- cache.add() works from the service worker. ---
+        const externalPrecache = [
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2',
+          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2',
+        ];
+
         // --- Version = hash of the manifest contents, so ANY content change ---
         // --- produces new sw.js bytes and triggers the update prompt. ---
         const hash = crypto.createHash('sha256');
@@ -90,7 +100,10 @@ export default function pwa() {
           hash.update(fileHash);
         }
         hash.update(JSON.stringify(navMap));
+        hash.update(JSON.stringify(externalPrecache));
         const version = hash.digest('hex').slice(0, 12);
+
+        const precacheList = precacheUrls.concat(externalPrecache);
 
         // --- Render the service worker ---
         const template = fs.readFileSync(
@@ -99,12 +112,12 @@ export default function pwa() {
         );
         const sw = template
           .replaceAll('__SW_VERSION__', version)
-          .replaceAll('__MANIFEST__', JSON.stringify(precacheUrls))
+          .replaceAll('__MANIFEST__', JSON.stringify(precacheList))
           .replaceAll('__NAV_MAP__', JSON.stringify(navMap));
         fs.writeFileSync(path.join(distPath, 'sw.js'), sw);
 
         console.log(
-          `[pwa] Wrote sw.js (v${version}, ${precacheUrls.length} precached files)`,
+          `[pwa] Wrote sw.js (v${version}, ${precacheList.length} precached files)`,
         );
       },
     },

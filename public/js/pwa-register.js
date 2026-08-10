@@ -16,8 +16,15 @@
   }
 
   var refreshing = false;
+  var hadController = !!navigator.serviceWorker.controller;
   navigator.serviceWorker.addEventListener('controllerchange', function () {
     if (refreshing) return;
+    // The first controllerchange on a first visit is just clients.claim()
+    // taking control of the page — not an update, so don't reload.
+    if (!hadController) {
+      hadController = true;
+      return;
+    }
     refreshing = true;
     window.location.reload();
   });
@@ -25,6 +32,19 @@
   navigator.serviceWorker
     .register('/sw.js')
     .then(function (registration) {
+      // Keep checking while the tab stays open so long sessions still learn
+      // about a staged update without needing a fresh page load.
+      function startPeriodicChecks() {
+        function update() {
+          if (document.visibilityState === 'visible') {
+            registration.update().catch(function () {});
+          }
+        }
+        document.addEventListener('visibilitychange', update);
+        setInterval(update, 60 * 60 * 1000);
+      }
+      startPeriodicChecks();
+
       // No existing controller = first visit; nothing to prompt about yet.
       if (!navigator.serviceWorker.controller) return;
 
