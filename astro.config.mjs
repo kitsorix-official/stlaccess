@@ -85,6 +85,7 @@ export default defineConfig({
         if (item.url !== 'https://stlaccess.com/' && item.url.endsWith('/')) {
           item.url = item.url.slice(0, -1);
         }
+        item.lastmod = new Date().toISOString();
         return item;
       }
     }),

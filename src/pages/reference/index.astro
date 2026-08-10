@@ -5,8 +5,9 @@ import site from "../../data/site.json";
 import rawConversions from "../../data/conversions.json";
 import { getContextualContent } from "../../data/referenceContent.js";
 import { graph, breadcrumb, faqPage } from "../../lib/schema";
+import { lastModifiedDate, formatLongDate } from "../../lib/freshness";
 
-const { dateModified, referencePageQA, gasEndpoint, printerName } = site;
+const { referencePageQA, gasEndpoint, printerName } = site;
 
 const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
 
@@ -48,7 +49,7 @@ const referenceSchema = graph([
   <p class="reference-intro text-lg text-slate-400 max-w-2xl leading-relaxed">
     Slicer percentages for converting miniatures between tabletop systems — Warhammer, D&D, Bolt Action, Star Wars Legion, and more. These are the numbers I use myself, based on a 175cm human baseline with eye-level measurement. I print on a {printerName}. Your mileage may vary.
   </p>
-  <p class="text-xs text-slate-600 mt-3">Last updated: {dateModified}</p>
+  <p class="text-xs text-slate-600 mt-3">Last updated: {formatLongDate(lastModifiedDate())}</p>
 </div>
 </div>
 
@@ -556,6 +557,11 @@ const referenceSchema = graph([
   var refSearchInput = document.getElementById('referenceSearch');
   if (refSearchInput) {
     refSearchInput.addEventListener('input', filterCards);
+    var q = new URLSearchParams(window.location.search).get('q');
+    if (q) {
+      refSearchInput.value = q;
+      filterCards();
+    }
   }
 
   var refForm = document.getElementById('ref-feedback-form');

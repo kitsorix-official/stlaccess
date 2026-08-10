@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import site from "../data/site.json";
+import { lastModifiedDate, formatLongDate } from "../lib/freshness";
 
 interface Props {
   title: string;
@@ -353,6 +354,7 @@ const currentPath = Astro.url.pathname;
               >View Source on GitHub</a
             >
             <span>&copy; {new Date().getFullYear()} {site.name}</span>
+            <span title="Build date">Last updated: {formatLongDate(lastModifiedDate())}</span>
           </div>
         </div>
       </div>
