@@ -4,6 +4,27 @@ description: "Best FDM settings for tabletop miniatures — nozzles, layer heigh
 tldr: "You do not need a resin printer. 0.2mm nozzle at 0.06mm layers for characters; 0.4mm at 0.08mm for rank-and-file. PLA, 100% fan, tilt 15-20°, tree supports, filler primer."
 pubDate: "2026-07-09"
 modDate: "2026-07-09"
+faq:
+  - question: What are the best FDM settings for printing tabletop miniatures?
+    answer: >-
+      Use a 0.2mm nozzle at 0.06mm layer height for character models and a
+      0.4mm nozzle at 0.08mm for rank-and-file infantry. PLA or PLA+, 100% fan
+      from layer 3, and tree supports give the best results.
+  - question: Do I need a resin printer to get good-looking miniatures?
+    answer: >-
+      No. With a 0.2mm nozzle, 0.06mm layers, and a coat of filler primer,
+      FDM miniatures look great at arm's length and survive normal tabletop
+      handling.
+  - question: How do I fix stringing on FDM miniature prints?
+    answer: >-
+      Enable retraction — 5mm at 40mm/s for Bowden, 1mm at 30mm/s for direct
+      drive — and raise travel speed to 200mm/s so the nozzle crosses gaps
+      quickly.
+  - question: How do I stop supports from fusing to the model?
+    answer: >-
+      Reduce support interface density to 50% and increase the support Z
+      distance to 0.2mm. The supports still hold the model but break away
+      cleanly instead of scarring the surface.
 tags: ["FDM printing", "slicer settings", "miniature printing", "layer height", "nozzle size"]
 ---
 

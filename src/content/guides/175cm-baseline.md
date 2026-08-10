@@ -3,6 +3,29 @@ title: "Why Miniature Scales Use a 175cm Human Baseline"
 description: "Most tabletop miniature scales are built around a 175cm (5'9) human. Here is why that number matters for 3D printing accurate scale conversions."
 tldr: "All STLACCESS scale conversions start from a 175cm (5'9) human with eyes at 160cm — the same baseline the tabletop industry uses. Gaming scales like 28mm and 32mm measure to eye level; ratio scales like 1:35 and 1:56 measure to the top of the head. Same baseline = consistent slicer percentages."
 pubDate: 2026-06-15
+faq:
+  - question: Why does STLACCESS use a 175cm human baseline for every scale conversion?
+    answer: >-
+      A 175cm (5'9") human with eyes at 160cm is the reference point used across
+      the tabletop industry. Because every gaming and ratio scale is measured
+      against the same baseline, the ratios between scales stay mathematically
+      consistent — which is what makes the slicer percentages reliable.
+  - question: What is the difference between eye level and top of head in miniature scale?
+    answer: >-
+      Eye level measures a 175cm figure at 160cm and is used for gaming scales
+      like 28mm, 32mm, and 35mm. Top of head measures the full 175cm and is used
+      for ratio scales like 1:35 and 1:56. The 15cm gap creates a 5-10%
+      difference in the calculated percentage.
+  - question: Why is scaling 32mm down to 28mm exactly 87.5%?
+    answer: >-
+      Both scales reference the same 175cm baseline, so the conversion is a pure
+      ratio: 28 divided by 32 equals 0.875, or 87.5%. Consistent baselines are
+      what make these percentages exact.
+  - question: Are the STLACCESS conversion percentages tested in real prints?
+    answer: >-
+      Yes. Every published percentage has been physically printed and measured
+      with digital calipers across hundreds of test prints on FDM and resin
+      printers.
 tags: ["scale theory", "methodology", "reference"]
 ---
 

@@ -4,6 +4,25 @@ description: "The formula to convert real-world heights to 32mm miniature scale.
 tldr: "(real height in inches × scale ÷ 63 = height in mm). An 18-foot dragon at 32mm scale stands about 110mm tall — roughly the height of a soda can."
 pubDate: 2026-06-28
 modDate: 2026-08-10
+faq:
+  - question: How do I convert a real-world height into 32mm miniature scale?
+    answer: >-
+      Use the formula (real height in inches x 32) divided by 63 = height in mm.
+      An 18-foot dragon (216 inches) works out to approximately 110mm — about
+      the height of a soda can.
+  - question: How tall should an average human be at 32mm scale?
+    answer: >-
+      About 35mm. At 32mm scale the eyes sit at 32mm on a 175cm human, so the
+      full figure including the skull and hair stands closer to 35mm.
+  - question: Why is 28mm scale the same as 1:56 scale?
+    answer: >-
+      A 28mm eye-level measurement maps to roughly 1:56 top-of-head on the same
+      175cm baseline, which is why Bolt Action treats the two as equivalent.
+  - question: How do I scale terrain to match my miniatures?
+    answer: >-
+      Apply the same formula: a 20-foot building wall (240 inches) at 32mm
+      scale is 122mm tall. Terrain needs no heroic-proportion adjustment, so
+      the math is direct.
 tags: ["scale theory", "32mm", "monster scaling", "terrain"]
 ---
 

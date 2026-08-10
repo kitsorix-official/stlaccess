@@ -3,6 +3,21 @@ title: "Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?"
 description: "How much can you enlarge a 32mm miniature before losing detail? Resin vs FDM limits, layer line visibility, and slicer settings for clean upscaling."
 tldr: "Resin: a 32mm model upscales to about 75mm (234%) before layer lines distract; 0.03mm layers push it past 125mm. FDM: about 50mm (156%) is the practical ceiling."
 pubDate: 2026-06-25
+faq:
+  - question: How much can I upscale a 32mm miniature before losing detail?
+    answer: >-
+      On resin at 0.05mm layers, about 75mm (234%) before layer lines become
+      distracting. On FDM the practical ceiling is closer to 50mm (156%) before
+      quality visibly degrades.
+  - question: How do I reduce visible layer lines when upscaling a print?
+    answer: >-
+      Print at a finer layer height: 0.03mm on resin pushes the comfortable
+      upscale past 125mm, and a 0.2mm nozzle with 0.08mm layers helps on FDM.
+  - question: What limits upscaling beyond about 75mm?
+    answer: >-
+      The original model's polygon density. A model designed for 32mm may have
+      too few polygons to look smooth at 200mm — apply a subdivision modifier
+      (two iterations) in Blender or MeshLab before slicing.
 tags: ["upscaling", "resin printing", "FDM printing", "detail"]
 ---
 

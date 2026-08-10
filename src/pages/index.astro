@@ -8,6 +8,8 @@ import tools from "../data/tools.json";
 import { graph, organization, webSite, softwareApplication, faqPage } from "../lib/schema";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
 
+const siteUpdated = lastModifiedDate();
+
 const { referencePreviews, homepageFaq, baselineHeight, baselineHeightCm, eyeLevelCm } = site;
 
 const engineTool = tools.find((t) => t.slug === "stl-scale-engine");
@@ -379,7 +381,7 @@ Straight answers from my own experience at the painting desk.
 <div class="flex flex-col md:flex-row gap-8 items-start mb-8">
   <div>
     <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-2">
-      Last updated: {formatLongDate(lastModifiedDate())}
+      {siteUpdated && `Last updated: ${formatLongDate(siteUpdated)}`}
     </p>
     <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6">
       Why I Built <span class="text-[#ff6b35] italic">STLACCESS</span>

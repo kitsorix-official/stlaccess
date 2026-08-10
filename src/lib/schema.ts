@@ -21,6 +21,8 @@ export function organization() {
     "@id": ORG_ID,
     name: "STLACCESS",
     url: SITE_URL,
+    description:
+      "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on a Bambu Lab A1 Mini.",
     logo: LOGO_URL,
     image: IMAGE_URL,
     founder: { "@id": PERSON_ID },
@@ -44,6 +46,9 @@ export function webSite() {
     "@id": `${SITE_URL}/#website`,
     name: "STLACCESS",
     url: SITE_URL,
+    description:
+      "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on a Bambu Lab A1 Mini.",
+    inLanguage: "en",
     publisher: { "@id": ORG_ID },
     potentialAction: [
       {
@@ -125,9 +130,10 @@ export interface ArticleOptions {
   datePublished: string;
   dateModified: string;
   image?: string;
+  keywords?: string[];
 }
 
-export function article({ title, description, url, datePublished, dateModified, image }: ArticleOptions) {
+export function article({ title, description, url, datePublished, dateModified, image, keywords }: ArticleOptions) {
   return {
     "@type": "Article",
     headline: title,
@@ -135,6 +141,7 @@ export function article({ title, description, url, datePublished, dateModified, 
     url: `${SITE_URL}${url}`,
     datePublished,
     dateModified,
+    ...(keywords && keywords.length > 0 ? { keywords: keywords.join(", ") } : {}),
     image: image || IMAGE_URL,
     author: { "@id": PERSON_ID },
     publisher: { "@id": ORG_ID },

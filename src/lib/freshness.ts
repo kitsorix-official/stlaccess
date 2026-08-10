@@ -1,18 +1,40 @@
 // src/lib/freshness.ts
-// Build-time freshness stamps. Astro evaluates these once when the site is
-// built, so every deploy carries today's date as the "last updated" signal —
-// even when the content itself hasn't changed. This keeps the pages (and the
-// dateModified/lastmod signals in JSON-LD, RSS, and the sitemap) fresh for
-// Google and Bing on every push.
+// Single-source freshness control.
+//
+// The site's "last updated" signals come from an EXPLICIT content-review date
+// in site.json (`lastContentReview`), never from the build clock. Bump that
+// field only when you actually review or update the content.
+//
+// Why: Google and Bing both now treat a fresh date with no fresh substance as
+// a trust problem. Bing's grounding layer can actively EXCLUDE content that
+// misrepresents freshness or contradicts its own timestamps, and Google's
+// March 2026 guidance calls "a date change without fresh substance" a quality
+// problem. Real review dates keep dateModified, visible dates, and sitemap
+// lastmod honest — and therefore groundable.
 
-const buildTime = new Date();
+import site from "../data/site.json";
 
-export function lastModifiedDate(): Date {
-  return buildTime;
+function parseReviewDate(): Date | null {
+  const raw = site.lastContentReview;
+  if (!raw) return null;
+  const d = new Date(raw);
+  return Number.isNaN(d.valueOf()) ? null : d;
 }
 
-export function lastModifiedISO(): string {
-  return buildTime.toISOString();
+const reviewDate = parseReviewDate();
+
+export function contentReviewDate(): Date | null {
+  return reviewDate;
+}
+
+/** null when no explicit content review has been recorded. */
+export function lastModifiedDate(): Date | null {
+  return reviewDate;
+}
+
+/** ISO string, or null when no explicit content review has been recorded. */
+export function lastModifiedISO(): string | null {
+  return reviewDate ? reviewDate.toISOString() : null;
 }
 
 export function formatLongDate(date: Date): string {

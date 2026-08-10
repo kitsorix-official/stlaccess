@@ -3,6 +3,26 @@ title: "How to Scale Miniatures in Chitubox & Lychee Slicer (Without Messing Up 
 description: "Step-by-step guide to scaling STL files in Chitubox and Lychee. Lock aspect ratios, scale without stretching the base, and understand the unit conversion."
 tldr: "Click the chain-link to lock the aspect ratio, then type your percentage into any scale field. Chitubox: press T then Transform. Lychee: Transform then uniform scaling. If a model imports tiny, it was exported in inches — scale up 2540%."
 pubDate: 2026-06-22
+faq:
+  - question: How do I scale a miniature in Chitubox?
+    answer: >-
+      Select the model, open the Transform panel (press T), click the chain
+      icon to lock the aspect ratio, type your percentage into the Scale X
+      field (114.3 for a 28mm to 32mm conversion), then click Apply.
+  - question: Why does my STL import looking tiny in the slicer?
+    answer: >-
+      The file was almost certainly exported in inches instead of millimetres.
+      Scale everything up by 2540% (25.4 x 100) to convert inches to millimetres.
+  - question: How do I scale a miniature without scaling its integral base?
+    answer: >-
+      Separate the base from the model in MeshLab or Blender before importing,
+      then scale only the miniature body and leave the base at 100%. Print them
+      as separate pieces and glue after.
+  - question: How does uniform scaling work in Lychee Slicer?
+    answer: >-
+      Enable the uniform scaling toggle, then enter your percentage either as
+      114.3% or as the multiplier 1.143. Lychee applies the change automatically
+      and shows the resulting dimensions in millimetres.
 tags: ["slicer settings", "chitubox", "lychee", "tutorial"]
 ---
 
