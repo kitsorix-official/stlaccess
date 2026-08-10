@@ -58,6 +58,9 @@ const currentPath = Astro.url.pathname;
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
     <!-- Preconnect -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
@@ -77,6 +80,9 @@ const currentPath = Astro.url.pathname;
 
     <!-- observatory -->
     <script is:inline defer src="/js/observatory.js"></script>
+
+    <!-- PWA: service worker registration + update prompt -->
+    <script is:inline defer src="/js/pwa-register.js"></script>
 
     <!-- JSON-LD structured data injected by pages -->
     <slot name="head" />

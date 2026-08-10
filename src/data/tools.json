@@ -44,5 +44,31 @@
     "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Filament presets with real market prices", "Deep-link from scale engine", "No account, no cookies"],
     "category": "calculators",
     "featured": true
+  },
+  {
+    "slug": "real-world-scale-converter",
+    "name": "Real-World Scale Converter",
+    "h1": "Real-World Object to Miniature Scale Converter",
+    "metaTitle": "Real-World to Miniature Scale Converter — Feet to mm | STLACCESS",
+    "shortDescription": "How tall is a 12-foot wall in 32mm scale? Enter any real-world height in feet, inches, or centimetres and get the exact miniature size in millimetres.",
+    "description": "The reverse of my scale engine. Instead of converting between two miniature scales, it takes a real-world measurement — a wall, a dragon, a building — and converts it to the exact millimetre height at any tabletop scale. It uses the same 175cm human baseline with eyes at 160cm that powers every conversion on this site, so the numbers match the reference library and the scale engine exactly. No uploads, no accounts, no cookies.",
+    "icon": "fa-ruler",
+    "url": "/tools/real-world-scale-converter",
+    "features": ["Feet, inches, or centimetres input", "All 16 tabletop scales supported", "Eye-level and ratio measurement logic", "Same 175cm baseline as the rest of the site", "Deep-link straight to the scale engine", "Runs entirely in your browser"],
+    "category": "calculators",
+    "featured": false
+  },
+  {
+    "slug": "reference-bar-generator",
+    "name": "Scale Reference Bar Generator",
+    "h1": "STL Scale Reference Bar Generator",
+    "metaTitle": "STL Scale Reference Bar Generator — Calibration Bar for Lychee & Chitubox | STLACCESS",
+    "shortDescription": "Generate a printable ruler bar at any tabletop scale and import it into Lychee or Chitubox to measure unknown STLs. Download the STL right in your browser.",
+    "description": "The tool behind those 'cubes to import into lychee for scaling' searches. Pick a scale and a bar length, and I generate an STL ruler bar you can download instantly. It has 5mm tick marks along its length plus an end tab exactly as tall as a figure at that scale. Import it next to any model of unknown scale, measure the model against the ruler in your slicer, and you instantly know what percentage to type in. Generated in your browser — nothing uploaded.",
+    "icon": "fa-cube",
+    "url": "/tools/reference-bar-generator",
+    "features": ["Downloadable STL, generated in your browser", "All 16 tabletop scales supported", "5mm tick marks plus a figure-height end tab", "Ruler lengths from 30 to 100mm", "No uploads, no accounts, no cookies"],
+    "category": "references",
+    "featured": false
   }
 ]

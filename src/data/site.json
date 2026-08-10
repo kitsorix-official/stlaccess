@@ -5,6 +5,8 @@
   "baselineHeightCm": 175,
   "baselineHeight": "175cm",
   "eyeLevelCm": 160,
+  "themeColor": "#ff6b35",
+  "backgroundColor": "#050505",
   "shrinkageRange": "0.2-0.5%",
   "printerName": "Bambu Lab A1 Mini",
   "gasEndpoint": "https://script.google.com/macros/s/AKfycbxgBWP8jUCPC_RSWMSxeajo-aPl1htSt1XNDYU6Rk2mXpUhQLHOssv_4t4mpUWry2PEsw/exec",

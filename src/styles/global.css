@@ -323,6 +323,51 @@ button:focus-visible, a:focus-visible {
     margin: 1.5rem 0;
 }
 
+/* PWA update toast */
+.pwa-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 5.5rem;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: calc(100vw - 2rem);
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    border-radius: 0.75rem;
+    background: #141414;
+    color: #f8fafc;
+    font-size: 0.875rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+.pwa-toast[hidden] { display: none; }
+.pwa-toast p { margin: 0; }
+.pwa-toast button {
+    padding: 0.4rem 0.85rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #ff6b35;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+.pwa-toast button:hover { filter: brightness(1.1); }
+.pwa-toast button:focus-visible { outline: 2px solid #ff6b35; outline-offset: 2px; }
+.pwa-toast .pwa-dismiss {
+    background: transparent;
+    color: #94a3b8;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+}
+.pwa-toast .pwa-refresh:disabled { opacity: 0.6; cursor: default; }
+
+@media (min-width: 768px) {
+    .pwa-toast { bottom: 1.5rem; }
+}
+
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {

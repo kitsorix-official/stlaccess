@@ -4,6 +4,7 @@ import JsonLd from "../../components/JsonLd.astro";
 import tools from "../../data/tools.json";
 import site from "../../data/site.json";
 import filamentPresets from "../../data/filamentPresets.json";
+import scales from "../../data/scales.json";
 import { graph, breadcrumb, softwareApplication } from "../../lib/schema";
 
 export async function getStaticPaths() {
@@ -18,6 +19,17 @@ export async function getStaticPaths() {
 const { tool } = Astro.props;
 
 const defaultPreset = filamentPresets.find(p => p.type === 'PLA' && p.name === 'Mid PLA') || filamentPresets[0];
+
+// Real-world converter: sorted scale list with the same measurement logic as the scale engine
+const scaleOptions = Object.entries(scales)
+  .map(([key, s]) => ({
+    key,
+    shortName: s.shortName,
+    type: s.type,
+    standardMm: s.type === "ratio" ? s.topOfHeadMm : s.eyeLevelMm,
+    topOfHeadMm: s.topOfHeadMm,
+  }))
+  .sort((a, b) => a.standardMm - b.standardMm);
 
 const toolSchema = graph([
   breadcrumb([
@@ -265,6 +277,100 @@ const toolSchema = graph([
         </div>
       </div>
     </section>
+  ) : tool.slug === "real-world-scale-converter" ? (
+    <section class="mb-12" aria-labelledby="calculator-heading">
+      <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Converter</h2>
+      <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div>
+            <label for="rw-feet" class="block text-sm font-bold text-slate-300 mb-2">Height — Feet</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">ft</span>
+              <input id="rw-feet" type="number" value="12" step="0.1" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label for="rw-inches" class="block text-sm font-bold text-slate-300 mb-2">Height — Inches</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">in</span>
+              <input id="rw-inches" type="number" value="0" step="0.5" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label for="rw-cm" class="block text-sm font-bold text-slate-300 mb-2">…or Centimetres</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">cm</span>
+              <input id="rw-cm" type="number" value="365.8" step="0.1" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <label for="rw-scale" class="block text-sm font-bold text-slate-300 mb-2">Scale</label>
+          <select id="rw-scale" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+            {scaleOptions.map(s => (
+              <option value={s.key} data-type={s.type} data-standard={s.standardMm} data-tophead={s.topOfHeadMm} selected={s.key === "32mm"}>{s.shortName}</option>
+            ))}
+          </select>
+        </div>
+
+        <div id="rw-result" class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-6 mb-6 text-center" aria-live="polite">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">Height at your chosen scale</p>
+          <p class="text-5xl md:text-6xl font-black text-[#ff6b35] font-heading tracking-tight" id="rw-mm">73.2 mm</p>
+          <p class="text-slate-400 text-sm mt-3" id="rw-formula">3658 mm real × (32.0 ÷ 1600)</p>
+        </div>
+
+        <p class="text-sm text-slate-400 leading-relaxed mb-6" id="rw-method"></p>
+
+        <div class="mt-8 pt-6 border-t border-white/5">
+          <p class="text-xs text-slate-500">
+            Formula: real height (mm) × (scale ÷ 1600) for eye-level scales, or real height (mm) ÷ ratio for 1:x scales. Same 175cm baseline with eyes at 160cm as every other conversion on this site. All calculations happen locally in your browser.
+          </p>
+        </div>
+      </div>
+    </section>
+  ) : tool.slug === "reference-bar-generator" ? (
+    <section class="mb-12" aria-labelledby="calculator-heading">
+      <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Generator</h2>
+      <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <label for="rb-scale" class="block text-sm font-bold text-slate-300 mb-2">Scale</label>
+            <select id="rb-scale" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+              {scaleOptions.map(s => (
+                <option value={s.key} data-type={s.type} data-standard={s.standardMm} data-tophead={s.topOfHeadMm} selected={s.key === "32mm"}>{s.shortName}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label for="rb-length" class="block text-sm font-bold text-slate-300 mb-2">Bar Length</label>
+            <select id="rb-length" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+              {[30, 50, 75, 100].map(l => (
+                <option value={l} selected={l === 50}>{l} mm</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <button id="rb-generate" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black px-6 py-4 rounded-xl text-sm font-bold uppercase tracking-widest hover:scale-105 transition-transform cursor-pointer mb-8">
+          <i class="fa-solid fa-download text-sm"></i>
+          Generate &amp; Download STL
+        </button>
+
+        <div id="rb-info" class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-6 mb-6 text-center" aria-live="polite">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">What you get</p>
+          <p class="text-white text-sm leading-relaxed" id="rb-desc">A 50mm ruler bar with 5mm ticks and a 32.0mm eye-level end tab. Import it into Lychee or Chitubox and measure your STL against the ticks.</p>
+        </div>
+
+        <div class="rounded-2xl border border-white/5 bg-slate-950 p-4 mb-6 overflow-hidden">
+          <svg id="rb-preview" viewBox="0 0 560 260" class="w-full h-auto" role="img" aria-label="Preview of the reference bar profile"></svg>
+        </div>
+
+        <p class="text-xs text-slate-500">
+          How to use it: import the STL next to your model in Lychee or Chitubox, then measure the model's height in millimetres against the ruler ticks. Match a figure's eye level to the end tab — or just read the ticks directly — then head to the scale engine to work out your percentage. The STL is generated entirely in your browser and never touches a server.
+        </p>
+      </div>
+    </section>
   ) : (
     <section class="bg-gradient-to-r from-[#ff6b35]/10 to-transparent rounded-[2.5rem] border border-[#ff6b35]/20 p-8 md:p-12">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -424,6 +530,180 @@ const toolSchema = graph([
     })();
 
     update();
+  </script>
+)}
+
+{tool.slug === "real-world-scale-converter" && (
+  <script>
+    const feetEl = document.getElementById("rw-feet");
+    const inchEl = document.getElementById("rw-inches");
+    const cmEl = document.getElementById("rw-cm");
+    const scaleEl = document.getElementById("rw-scale");
+    const mmEl = document.getElementById("rw-mm");
+    const formulaEl = document.getElementById("rw-formula");
+    const methodEl = document.getElementById("rw-method");
+
+    function rwOpt() {
+      const o = scaleEl.selectedOptions[0];
+      return {
+        shortName: o.textContent,
+        type: o.dataset.type,
+        standard: parseFloat(o.dataset.standard),
+        topHead: parseFloat(o.dataset.tophead)
+      };
+    }
+
+    function rwFmt(n) {
+      return n >= 10 ? n.toFixed(1) : n.toFixed(2);
+    }
+
+    function rwUpdate(fromCm) {
+      const scale = rwOpt();
+      let totalMm;
+      if (fromCm) {
+        totalMm = (parseFloat(cmEl.value) || 0) * 10;
+      } else {
+        totalMm = ((parseFloat(feetEl.value) || 0) * 12 + (parseFloat(inchEl.value) || 0)) * 25.4;
+      }
+      if (!totalMm || totalMm <= 0) {
+        mmEl.textContent = "\u2014";
+        formulaEl.textContent = "Enter a height above";
+        return;
+      }
+      if (fromCm) {
+        const totalIn = totalMm / 25.4;
+        const ft = Math.floor(totalIn / 12);
+        feetEl.value = ft;
+        inchEl.value = Math.round((totalIn - ft * 12) * 10) / 10;
+      } else {
+        cmEl.value = Math.round(totalMm / 10) / 10;
+      }
+      const mm = totalMm * scale.standard / (scale.type === "ratio" ? 1750 : 1600);
+      mmEl.textContent = rwFmt(mm) + " mm";
+      const divisor = scale.type === "ratio" ? "1750" : "1600";
+      formulaEl.textContent = Math.round(totalMm) + " mm real \u00D7 (" + scale.standard.toFixed(1) + " \u00F7 " + divisor + ")";
+      methodEl.textContent = scale.type === "ratio"
+        ? scale.shortName + " measures to the top of the head on the 175cm baseline, so it scales like a strict ratio."
+        : scale.shortName + " measures to eye level (160cm on a 175cm human). A full 175cm figure at this scale stands about " + scale.topHead.toFixed(1) + " mm tall.";
+    }
+
+    feetEl.addEventListener("input", () => rwUpdate(false));
+    inchEl.addEventListener("input", () => rwUpdate(false));
+    cmEl.addEventListener("input", () => rwUpdate(true));
+    scaleEl.addEventListener("change", () => rwUpdate(false));
+
+    rwUpdate(false);
+  </script>
+)}
+
+{tool.slug === "reference-bar-generator" && (
+  <script>
+    const barScaleEl = document.getElementById("rb-scale");
+    const barLenEl = document.getElementById("rb-length");
+    const barBtn = document.getElementById("rb-generate");
+    const barDesc = document.getElementById("rb-desc");
+    const barSvg = document.getElementById("rb-preview");
+
+    function rbOpt() {
+      const o = barScaleEl.selectedOptions[0];
+      return {
+        key: o.value,
+        shortName: o.textContent,
+        type: o.dataset.type,
+        standard: parseFloat(o.dataset.standard)
+      };
+    }
+
+    function rbRound(n) {
+      return Math.round(n * 1000) / 1000;
+    }
+
+    function triString(t) {
+      const a = t[0], b = t[1], c = t[2];
+      const ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2];
+      const vx = c[0] - a[0], vy = c[1] - a[1], vz = c[2] - a[2];
+      let nx = uy * vz - uz * vy;
+      let ny = uz * vx - ux * vz;
+      let nz = ux * vy - uy * vx;
+      const len = Math.sqrt(nx * nx + ny * ny + nz * nz) || 1;
+      nx = rbRound(nx / len);
+      ny = rbRound(ny / len);
+      nz = rbRound(nz / len);
+      return "facet normal " + nx + " " + ny + " " + nz + "\n" +
+        "  outer loop\n" +
+        "    vertex " + rbRound(a[0]) + " " + rbRound(a[1]) + " " + rbRound(a[2]) + "\n" +
+        "    vertex " + rbRound(b[0]) + " " + rbRound(b[1]) + " " + rbRound(b[2]) + "\n" +
+        "    vertex " + rbRound(c[0]) + " " + rbRound(c[1]) + " " + rbRound(c[2]) + "\n" +
+        "  endloop\n" +
+        "endfacet";
+    }
+
+    function box(x, y, z, lx, ly, lz, out) {
+      const v = [
+        [x, y, z], [x + lx, y, z], [x + lx, y + ly, z], [x, y + ly, z],
+        [x, y, z + lz], [x + lx, y, z + lz], [x + lx, y + ly, z + lz], [x, y + ly, z + lz]
+      ];
+      const idx = [
+        [1, 5, 6], [1, 6, 2],
+        [0, 4, 7], [0, 7, 3],
+        [3, 7, 6], [3, 6, 2],
+        [0, 1, 5], [0, 5, 4],
+        [4, 5, 6], [4, 6, 7],
+        [0, 3, 2], [0, 2, 1]
+      ];
+      for (const t of idx) out.push([v[t[0]], v[t[1]], v[t[2]]]);
+    }
+
+    function rbGenerate() {
+      const scale = rbOpt();
+      const L = parseInt(barLenEl.value, 10) || 50;
+      const W = 8, H = 4;
+      const tri = [];
+      box(0, 0, 0, L, W, H, tri);
+      for (let t = 5; t < L; t += 5) {
+        const major = t % 10 === 0;
+        box(t - 0.4, 0, H, 0.8, W, major ? 2 : 1.2, tri);
+      }
+      const tabH = scale.standard;
+      box(0, W / 2 - 1, 0, 2, 2, tabH, tri);
+
+      let stl = "solid stlaccess-reference-bar\n";
+      for (const t of tri) stl += triString(t) + "\n";
+      stl += "endsolid stlaccess-reference-bar\n";
+
+      const blob = new Blob([stl], { type: "model/stl" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = scale.key.replace(":", "_") + "-reference-bar-" + L + "mm.stl";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      const method = scale.type === "ratio" ? "top-of-head" : "eye-level";
+      barDesc.textContent = "A " + L + "mm ruler bar with 5mm ticks and a " + scale.standard.toFixed(1) + "mm " + method + " end tab. Import it into Lychee or Chitubox and measure your STL against the ticks.";
+      rbDraw(L, scale.standard);
+    }
+
+    function rbDraw(L, tabH) {
+      const scaleX = 500 / L;
+      const scaleY = 200 / Math.max(tabH, 40);
+      const baseY = 230;
+      let s = "";
+      s += '<rect x="0" y="' + rbRound(baseY - tabH * scaleY) + '" width="' + rbRound(2 * scaleX) + '" height="' + rbRound(tabH * scaleY) + '" fill="#ff6b35"/>';
+      s += '<rect x="0" y="' + rbRound(baseY - 4 * scaleY) + '" width="' + rbRound(L * scaleX) + '" height="' + rbRound(4 * scaleY) + '" fill="#1e293b" stroke="#334155"/>';
+      for (let t = 5; t < L; t += 5) {
+        const major = t % 10 === 0;
+        const th = (major ? 2 : 1.2) * scaleY;
+        s += '<rect x="' + rbRound(t * scaleX - 1) + '" y="' + rbRound(baseY - 4 * scaleY - th) + '" width="2" height="' + rbRound(th) + '" fill="#ff6b35"/>';
+      }
+      s += '<text x="0" y="' + (baseY + 18) + '" fill="#64748b" font-size="12" font-family="monospace">' + L + 'mm ruler \u2014 figure tab ' + tabH.toFixed(1) + 'mm (' + rbOpt().shortName + ')</text>';
+      barSvg.innerHTML = s;
+    }
+
+    barBtn.addEventListener("click", rbGenerate);
+    rbDraw(50, 32);
   </script>
 )}
 
