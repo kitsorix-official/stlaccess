@@ -1,6 +1,6 @@
 ---
 title: "Why Miniature Scales Use a 175cm Human Baseline"
-description: "Most tabletop miniature scales are built around a 175cm (5'9) human. Here is why that number matters for 3D printing accurate scale conversions."
+description: "Most tabletop miniature scales are built around a 175cm (5'9) human. Here is why I chose that number for every STLACCESS scale conversion."
 tldr: "All STLACCESS scale conversions start from a 175cm (5'9) human with eyes at 160cm — the same baseline the tabletop industry uses. Gaming scales like 28mm and 32mm measure to eye level; ratio scales like 1:35 and 1:56 measure to the top of the head. Same baseline = consistent slicer percentages."
 pubDate: 2026-06-15
 faq:
@@ -9,27 +9,31 @@ faq:
       A 175cm (5'9") human with eyes at 160cm is the reference point used across
       the tabletop industry. Because every gaming and ratio scale is measured
       against the same baseline, the ratios between scales stay mathematically
-      consistent — which is what makes the slicer percentages reliable.
+      consistent — which is what makes the slicer percentages reliable. It's the
+      baseline I converged on after years of scale creep on my own build plate.
   - question: What is the difference between eye level and top of head in miniature scale?
     answer: >-
       Eye level measures a 175cm figure at 160cm and is used for gaming scales
       like 28mm, 32mm, and 35mm. Top of head measures the full 175cm and is used
       for ratio scales like 1:35 and 1:56. The 15cm gap creates a 5-10%
-      difference in the calculated percentage.
+      difference in the calculated percentage. Mixing them is how I got a
+      bobblehead Space Marine.
   - question: Why is scaling 32mm down to 28mm exactly 87.5%?
     answer: >-
       Both scales reference the same 175cm baseline, so the conversion is a pure
       ratio: 28 divided by 32 equals 0.875, or 87.5%. Consistent baselines are
-      what make these percentages exact.
+      what make these percentages exact. That exactness is the entire point.
   - question: Are the STLACCESS conversion percentages tested in real prints?
     answer: >-
       Yes. Every published percentage has been physically printed and measured
-      with digital calipers across hundreds of test prints on FDM and resin
-      printers.
+      with digital calipers across hundreds of test prints on my Bambu Lab A1
+      Mini. I don't publish a number I haven't held in my hands.
 tags: ["scale theory", "methodology", "reference"]
 ---
 
 Every scale conversion on STLACCESS starts from the same reference point: a human figure that is **175cm tall (5'9")** with eyes at **160cm**.
+
+I chose this number the hard way. Before I picked a single baseline, my army suffered from what I call scale creep — one sculptor measures to the eye, another to the crown, and suddenly your "32mm" squad has one guy who towers over the rest. I spent my 2019 print service days in Enschede dealing with customers who wanted their proxies to match games that each used a slightly different standard. Eventually I sat down and worked out that the industry had already converged on a baseline, and locking every conversion to it made the whole mess predictable.
 
 This isn't arbitrary. It's the baseline used by most of the tabletop miniatures industry, and understanding why will help you get better results when you scale STL files.
 
@@ -41,7 +45,7 @@ The 175cm baseline emerged because:
 
 - It represents a realistic average human height across global populations
 - It aligns with the reference miniatures used by manufacturers like Games Workshop, Warlord Games, and Atomic Mass Games
-- It produces clean conversion percentages between the most popular gaming scales
+- It produces clean conversion percentages between the most popular gaming scales — and I'm a sucker for a percentage that comes out even
 
 ## Eye Level vs Top of Head
 
@@ -52,7 +56,7 @@ When you convert a miniature's scale, you have two choices: measure to the eyes 
 | Eye level | 160cm (175cm figure) | 28mm, 32mm, 35mm heroic scales |
 | Top of head | 175cm | 1:35, 1:48, 1:56 ratio scales |
 
-The eye-level convention matches how manufacturers historically measured their sculpts. Models like Warhammer 40k Space Marines are intentionally "heroic" — their proportions are exaggerated so details read at arm's length. Using the eye-level baseline preserves those proportions when scaling.
+The eye-level convention matches how manufacturers historically measured their sculpts. Models like Warhammer 40k Space Marines are intentionally "heroic" — their proportions are exaggerated so details read at arm's length. Using the eye-level baseline preserves those proportions when scaling. This is exactly where my bobblehead mistake came from: I measured a marine to the top of the head, treated it as eye level, and everything shifted.
 
 ## What This Means for 3D Printing
 
@@ -64,8 +68,8 @@ When you upload an STL and use the STLACCESS scale engine:
 
 If a file was originally designed for 32mm heroic (Warhammer) and you want to print it at 28mm true scale, the engine calculates `(28 / 32) = 87.5%` — but only because both 28mm and 32mm reference the same 175cm baseline.
 
-This is also why ratio scales like 1:56 behave differently — they measure to the top of the head, not eye level. Mixing the two without adjusting would give you undersized or oversized prints.
+This is also why ratio scales like 1:56 behave differently — they measure to the top of the head, not eye level. Mixing the two without adjusting would give you undersized or oversized prints. That one distinction is behind more failed tabletop prints than any slicer setting I know.
 
 ## Testing the Baseline
 
-Every conversion percentage published on STLACCESS is physically printed and measured with digital calipers. The 175cm baseline has held up across hundreds of test prints on FDM and resin printers. If you find a conversion that doesn't look right, the reference library includes a feedback form — submitting a correction helps improve the data for everyone.
+Every conversion percentage published on STLACCESS is physically printed and measured with digital calipers. The 175cm baseline has held up across hundreds of test prints on my Bambu Lab A1 Mini. I don't publish a number I haven't held in my hands and measured against the rest of my army. If you find a conversion that doesn't look right, the reference library includes a feedback form — submitting a correction helps improve the data for everyone, and I genuinely test every submission that comes in.

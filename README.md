@@ -36,8 +36,9 @@ with physical test prints on a Bambu Lab A1 Mini, measured with calipers.
 
 ## What's Inside
 
-- **Scale Engine** (`/`) — 16 tabletop scales, eye-level/top-of-head measurement modes, resin shrinkage
-  compensation (1–3%), copy-to-clipboard, and bookmarkable URL params. Powered by the community's most-asked
+- **Scale Engine** (`/`) — 16 tabletop scales, eye-level/top-of-head measurement modes, adjustable shrinkage
+  compensation (for PETG and other cooling-shrink materials), copy-to-clipboard, and bookmarkable URL params.
+  Powered by the community's most-asked
   conversion, 28mm → 32mm.
 - **Scale Conversion Reference** (`/reference`) — 44 verified conversion pairs with full math breakdowns and
   FDM printing notes.

@@ -494,7 +494,7 @@ export const gameGuides = {
       {
         heading: "Why 40mm",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Atomic Mass Games chose 40mm for Shatterpoint so painters get large, smooth surfaces for blending and highlighting — a real departure from the smaller scales used in Legion and MCP. Characters like Dooku measure roughly 42.75mm in total height. The tradeoff is real: bigger scale means more resin or filament per model, so I factor material cost before I commit to a full squad.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Atomic Mass Games chose 40mm for Shatterpoint so painters get large, smooth surfaces for blending and highlighting — a real departure from the smaller scales used in Legion and MCP. Characters like Dooku measure roughly 42.75mm in total height. The tradeoff is real: bigger scale means more filament per model, so I factor material cost before I commit to a full squad.</p>
         `
       },
       {
@@ -526,7 +526,7 @@ export const gameGuides = {
       {
         heading: "FDM at 40mm",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Shatterpoint's big smooth surfaces reward fine layer heights — 0.04-0.06mm on resin for the best finish. On FDM, 0.08mm is acceptable for the characters and the terrain pieces. I orient helmets and faces carefully so support marks never land on visible panels.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Shatterpoint's big smooth surfaces reward fine layer heights — 0.04-0.06mm with a 0.2mm nozzle for the best finish. 0.08mm is acceptable for the characters and the terrain pieces. I orient helmets and faces carefully so support marks never land on visible panels.</p>
         `
       },
       {
@@ -628,7 +628,7 @@ export const gameGuides = {
       {
         heading: "Faces and Expression Detail",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Malifaux is known for expressive faces and intricate clothing detail. I use a 0.2mm nozzle at 0.06mm layers for the best results on character models, and I strongly recommend resin for this range — the fine detail on accessories and weapons is exactly what FDM softens first. The 4th Edition plastic range is also well suited to kitbashing with printed alternative parts.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Malifaux is known for expressive faces and intricate clothing detail. I use a 0.2mm nozzle at 0.06mm layers for the best results on character models — the fine detail on accessories and weapons is exactly what FDM softens first, so those thin layers matter. The 4th Edition plastic range is also well suited to kitbashing with printed alternative parts.</p>
         `
       },
       {
@@ -642,7 +642,7 @@ export const gameGuides = {
         html: `
           <ul class="space-y-3 text-sm text-slate-300">
             <li><strong class="text-white">Buying "28mm heroic" proxies and printing them at full size.</strong> They will sit short next to official 32mm Malifaux sculpts — use the 114.3% step.</li>
-            <li><strong class="text-white">Running a 0.4mm nozzle on faces.</strong> Wyrd's whole identity is in the expressions. Use a 0.2mm nozzle or resin.</li>
+            <li><strong class="text-white">Running a 0.4mm nozzle on faces.</strong> Wyrd's whole identity is in the expressions. Use a 0.2mm nozzle.</li>
             <li><strong class="text-white">Assuming "32mm" on a label means 32mm eye level.</strong> Measure it in the slicer — third-party "32mm heroic" files vary.</li>
           </ul>
         `
@@ -689,7 +689,7 @@ export const gameGuides = {
       {
         heading: "FDM Reality Check",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Infinity models are famous for thin rifle barrels, flowing hair, and delicate equipment — all of it a struggle on FDM. I strongly recommend resin for this range. If you do print on FDM, use a 0.2mm nozzle at 0.04-0.06mm layers and attach supports to undersides and backs so nothing touches the hair or the weapon.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Infinity models are famous for thin rifle barrels, flowing hair, and delicate equipment — all of it a struggle on FDM. Use a 0.2mm nozzle at 0.04-0.06mm layers and attach supports to undersides and backs so nothing touches the hair or the weapon.</p>
         `
       },
       {
@@ -697,7 +697,7 @@ export const gameGuides = {
         html: `
           <ul class="space-y-3 text-sm text-slate-300">
             <li><strong class="text-white">Scaling to the 28mm label instead of the actual model.</strong> Measure eye level against a reference mini before slicing.</li>
-            <li><strong class="text-white">FDM on thin weapons and hair.</strong> They break and soften at this scale. Resin is the right tool.</li>
+            <li><strong class="text-white">FDM on thin weapons and hair.</strong> They break and soften at this scale. Use a 0.2mm nozzle and plan the orientation.</li>
             <li><strong class="text-white">Mixing with heroic 28mm ranges.</strong> The bulk difference reads immediately. Keep Infinity armies in the slim lane.</li>
           </ul>
         `
@@ -745,7 +745,7 @@ export const gameGuides = {
       {
         heading: "FDM Settings for 'Jacks",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Warmachine's bulky mechanical designs are forgiving on FDM — flat armor panels hide layer lines, and warjacks are big enough that I run a 0.4mm nozzle at 0.1mm layers for the machines. Heavy infantry and characters get a 0.2mm nozzle at 0.06mm. The metal originals are heavy, so printed resin alternatives are noticeably lighter and easier to transport.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Warmachine's bulky mechanical designs are forgiving on FDM — flat armor panels hide layer lines, and warjacks are big enough that I run a 0.4mm nozzle at 0.1mm layers for the machines. Heavy infantry and characters get a 0.2mm nozzle at 0.06mm. The metal originals are heavy, so printed alternatives are noticeably lighter and easier to transport.</p>
         `
       },
       {
@@ -754,7 +754,7 @@ export const gameGuides = {
           <ul class="space-y-3 text-sm text-slate-300">
             <li><strong class="text-white">Forcing a 30mm army to strict 32mm scale.</strong> Your proxies will read oversized next to the range — stay in the 28mm heroic lane.</li>
             <li><strong class="text-white">Measuring to the top of a 'jack's cab.</strong> Eye level is the reference even on machines; the cab is usually a raised detail, not the scale point.</li>
-            <li><strong class="text-white">FDM for infantry when resin is available.</strong> The heavy troops have a lot of small trim that FDM softens first.</li>
+            <li><strong class="text-white">FDM on heavy-troop trim.</strong> The heavy troops have a lot of small trim that FDM softens first.</li>
           </ul>
         `
       }
@@ -887,9 +887,9 @@ export const gameGuides = {
         `
       },
       {
-        heading: "FDM vs Resin at This Size",
+        heading: "FDM Limits at This Size",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">'Mechs are small but dense with detail — cockpit glass, weapon barrels, and antennas all need to read. I print the machines on resin at 0.2mm nozzle and 0.04-0.06mm layers, and save FDM for terrain and hex tiles. Magnetizing bases makes transport easier, since small models shift around in a case.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">'Mechs are small but dense with detail — cockpit glass, weapon barrels, and antennas all need to read. I print the machines at 0.2mm nozzle and 0.04-0.06mm layers, and print terrain and hex tiles with a 0.4mm nozzle. Magnetizing bases makes transport easier, since small models shift around in a case.</p>
         `
       },
       {
@@ -919,7 +919,7 @@ export const gameGuides = {
           <ul class="space-y-3 text-sm text-slate-300">
             <li><strong class="text-white">Scaling a Light and an Assault to the same height.</strong> Weight class differences are real and add to the game's readability.</li>
             <li><strong class="text-white">Scaling to strict 1:285 math.</strong> You will undersize modern Catalyst sculpts — match the range instead.</li>
-            <li><strong class="text-white">FDM on cockpits and antennas.</strong> At 6mm those details need resin, or they come out as blobs.</li>
+            <li><strong class="text-white">FDM on cockpits and antennas.</strong> At 6mm those details need a 0.2mm nozzle, or they come out as blobs.</li>
           </ul>
         `
       }
@@ -965,7 +965,7 @@ export const gameGuides = {
       {
         heading: "FDM Reality at 15mm",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">15mm miniatures reward batch printing — you need entire platoons. I print infantry on resin at 0.2mm nozzle and 0.06mm layers, and vehicles on FDM at 0.08mm. Magnetizing vehicle bases helps with transport. At this scale, basing has a proportionally huge visual impact, so flocking and static grass do more work than your print settings.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">15mm miniatures reward batch printing — you need entire platoons. I print infantry at 0.2mm nozzle and 0.06mm layers, and vehicles at 0.08mm. Magnetizing vehicle bases helps with transport. At this scale, basing has a proportionally huge visual impact, so flocking and static grass do more work than your print settings.</p>
         `
       },
       {
@@ -973,7 +973,7 @@ export const gameGuides = {
         html: `
           <ul class="space-y-3 text-sm text-slate-300">
             <li><strong class="text-white">Treating "15mm" and "1:100" as identical.</strong> They are close but not the same — confirm which convention your STL uses before converting.</li>
-            <li><strong class="text-white">FDM infantry at this scale.</strong> The rifles and webbing are too fine. Resin is the tool for 15mm men.</li>
+            <li><strong class="text-white">FDM infantry at this scale.</strong> The rifles and webbing are too fine — keep it to vehicles and terrain.</li>
             <li><strong class="text-white">Mixing in 20mm (1:72) ranges.</strong> They read noticeably larger next to 15mm. Keep a platoon in one scale.</li>
           </ul>
         `
@@ -982,7 +982,7 @@ export const gameGuides = {
   },
   "dropzone-commander": {
     title: "10mm combined arms — print the machines",
-    intro: "Dropzone Commander is 10mm, where infantry are barely bigger than a grain of rice and the game is won by tanks and dropships. The printing strategy is simple: resin the infantry, FDM the vehicles.",
+    intro: "Dropzone Commander is 10mm, where infantry are barely bigger than a grain of rice and the game is won by tanks and dropships. The printing strategy is simple: focus on the vehicles.",
     blocks: [
       {
         heading: "The 10mm Scale",
@@ -991,9 +991,9 @@ export const gameGuides = {
         `
       },
       {
-        heading: "Print the Vehicles, Resin the Infantry",
+        heading: "Print the Vehicles, Skip the Infantry",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">FDM genuinely struggles with 10mm infantry — the bodies, weapons, and details are too fine. I print infantry on resin at 0.2mm nozzle and 0.04mm layers. The vehicles are the stars of this game, and they print well on FDM at 0.06mm layers with a 0.4mm nozzle.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">FDM genuinely struggles with 10mm infantry — the bodies, weapons, and details are too fine. I skip printing the infantry and focus on the vehicles. They are the stars of this game, and they print well on FDM at 0.06mm layers with a 0.4mm nozzle.</p>
         `
       },
       {
@@ -1027,7 +1027,7 @@ export const gameGuides = {
         heading: "Common Dropzone Mistakes",
         html: `
           <ul class="space-y-3 text-sm text-slate-300">
-            <li><strong class="text-white">FDM on infantry.</strong> At 10mm it is a waste of filament — resin or stick to official infantry.</li>
+            <li><strong class="text-white">FDM on infantry.</strong> At 10mm it is a waste of filament — stick to official infantry.</li>
             <li><strong class="text-white">Mixing 10mm with 15mm Flames of War models.</strong> They are close enough to feel wrong together and different enough to notice.</li>
             <li><strong class="text-white">Over-detailing single models.</strong> The table reads as formations. Spend time on the vehicles, not one soldier.</li>
           </ul>
@@ -1052,9 +1052,9 @@ export const gameGuides = {
         `
       },
       {
-        heading: "Resin for Infantry, FDM for the Big Stuff",
+        heading: "FDM for the Big Stuff, Skip the Infantry",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">At 8mm, resin printing is essential for infantry — FDM cannot reliably produce the detail. I print infantry at 0.2mm nozzle and 0.04mm layers. Vehicles and Titans are larger and more forgiving, and FDM handles them fine. For painting at this size, contrast paints and washes beat layer-by-layer highlighting every time.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">At 8mm, infantry is beyond what FDM can reliably produce — the minis come out as blobs. Vehicles and Titans are larger and more forgiving, and FDM handles them fine. I print the machines at 0.2mm nozzle and 0.04mm layers. For painting at this size, contrast paints and washes beat layer-by-layer highlighting every time.</p>
         `
       },
       {
@@ -1081,7 +1081,7 @@ export const gameGuides = {
         heading: "Common Legions Imperialis Mistakes",
         html: `
           <ul class="space-y-3 text-sm text-slate-300">
-            <li><strong class="text-white">FDM on the infantry.</strong> 8mm Marines need resin or they come out as blobs.</li>
+            <li><strong class="text-white">FDM on the infantry.</strong> 8mm Marines come out as blobs — print the vehicles and Titans instead.</li>
             <li><strong class="text-white">Scaling Titans up for drama.</strong> The scale contrast is the design. Leave the numbers alone.</li>
             <li><strong class="text-white">Confusing Legions Imperialis and Adeptus Titanicus bases.</strong> Same scale, different base sizes — print to the right one for the game you play.</li>
           </ul>
@@ -1238,7 +1238,7 @@ export const gameGuides = {
       {
         heading: "Printing the Kitbash Parts",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Weapon mounts and spikes are small and get handled constantly, so I print accessories at 0.2mm nozzle and 0.06mm layers, and I lean on resin for the small parts so they survive the game. Terrain scatter is a FDM job at 0.1mm layers. The game rewards creative kitbashing over precision painting, so print liberally.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Weapon mounts and spikes are small and get handled constantly, so I print accessories at 0.2mm nozzle and 0.06mm layers with plenty of perimeters so they survive the game. Terrain scatter is a FDM job at 0.1mm layers. The game rewards creative kitbashing over precision painting, so print liberally.</p>
         `
       },
       {
@@ -1247,7 +1247,7 @@ export const gameGuides = {
           <ul class="space-y-3 text-sm text-slate-300">
             <li><strong class="text-white">Treating every die-cast car as exactly 1:56.</strong> Hot Wheels vary. Check the car against your 28mm infantry before you build around it.</li>
             <li><strong class="text-white">Scaling infantry to the car instead of 28mm.</strong> The 1:56 mapping is the convention — infantry stay at 28mm.</li>
-            <li><strong class="text-white">Printing the armor plates in brittle PLA.</strong> Parts that glue to die-cast bodies take knocks. Resin or PETG holds up better.</li>
+            <li><strong class="text-white">Printing the armor plates in brittle PLA.</strong> Parts that glue to die-cast bodies take knocks. PETG holds up better.</li>
           </ul>
         `
       }
@@ -1266,7 +1266,7 @@ export const gameGuides = {
       {
         heading: "Detail Per Operative",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Fewer models means you can afford higher quality per model. Resin is ideal for specialist operatives with fine weapons and accessories. On FDM, a 0.2mm nozzle at 0.06mm layers gets you most of the way there — sniper scopes, cables, and grenades all read cleanly.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Fewer models means you can afford higher quality per model. A 0.2mm nozzle at 0.06mm layers gets you most of the way there on FDM — sniper scopes, cables, and grenades all read cleanly.</p>
         `
       },
       {
@@ -1300,7 +1300,7 @@ export const gameGuides = {
         html: `
           <ul class="space-y-3 text-sm text-slate-300">
             <li><strong class="text-white">Printing "28mm true scale" operatives at full size.</strong> They will sit short next to official 32mm Kill Team models — use the 114.3% step.</li>
-            <li><strong class="text-white">A 0.4mm nozzle on specialist faces.</strong> These are character models. Use a 0.2mm nozzle or resin.</li>
+            <li><strong class="text-white">A 0.4mm nozzle on specialist faces.</strong> These are character models. Use a 0.2mm nozzle.</li>
             <li><strong class="text-white">Forgetting your Kill Team doubles as a 40k force.</strong> Match the scale you play in both games or you will reprint everything.</li>
           </ul>
         `
@@ -1340,13 +1340,13 @@ export const gameGuides = {
       {
         heading: "Faces and Individual Characters",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Every ganger is a character — Necromunda campaigns build stories around individual models. I print gangers at 0.2mm nozzle and 0.06mm layers so the faces read, and I recommend resin for the gangers themselves. The models have distinctive silhouettes and a lot of small gear detail that FDM softens.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Every ganger is a character — Necromunda campaigns build stories around individual models. I print gangers at 0.2mm nozzle and 0.06mm layers so the faces read. The models have distinctive silhouettes and a lot of small gear detail that FDM softens.</p>
         `
       },
       {
         heading: "Vertical Terrain",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Necromunda is a vertical game. Sector Mechanicus platforms, pipe networks, and walkways dominate the board — and you need a lot of it. This is where FDM shines: 0.4mm nozzle at 0.1mm layers and you can build out a multi-level board in reasonable time. FDM for the board, resin for the gangers is the split I use.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Necromunda is a vertical game. Sector Mechanicus platforms, pipe networks, and walkways dominate the board — and you need a lot of it. This is where FDM shines: 0.4mm nozzle at 0.1mm layers and you can build out a multi-level board in reasonable time. FDM for the board, FDM for the gangers at 0.06mm — that's the split I use.</p>
         `
       },
       {
@@ -1354,7 +1354,7 @@ export const gameGuides = {
         html: `
           <ul class="space-y-3 text-sm text-slate-300">
             <li><strong class="text-white">Printing different gangs at different scales.</strong> The whole game lives in the underhive together — keep every gang at 32mm.</li>
-            <li><strong class="text-white">FDM for the gangers.</strong> The gear and faces are the selling point. Resin them.</li>
+            <li><strong class="text-white">FDM for the gangers.</strong> The gear and faces are the selling point — give them the 0.2mm nozzle.</li>
             <li><strong class="text-white">Underestimating terrain volume.</strong> The board is half the game and eats plastic by the plateful. Budget for it.</li>
           </ul>
         `
@@ -1400,7 +1400,7 @@ export const gameGuides = {
       {
         heading: "Dramatic Terrain",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Warcry boards are terrain-heavy and dramatic — ruined temples, chaos shrines, and rocky outcrops are as much a part of the game as the fighters. All of it is excellent FDM territory at 0.4mm nozzle and 0.1mm layers. Build the battlefield on FDM and resin the warband.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Warcry boards are terrain-heavy and dramatic — ruined temples, chaos shrines, and rocky outcrops are as much a part of the game as the fighters. All of it is excellent FDM territory at 0.4mm nozzle and 0.1mm layers. Build the battlefield on FDM at 0.1mm layers and the warband at 0.06mm.</p>
         `
       },
       {

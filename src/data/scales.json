@@ -118,7 +118,7 @@
     "games": ["BattleTech", "Epic 40,000 (classic)", "Micro-Machines"],
     "note": "Epic-scale wargaming focused on vehicles and mechs rather than individual infantry detail.",
     "printNote": "6mm Mechs are small but chunky — FDM handles them well. Use 0.2mm nozzle and print multiple at once.",
-    "commonIssue": "6mm infantry is nearly impossible on FDM; resin is required for foot soldiers at this scale."
+    "commonIssue": "6mm infantry is nearly impossible on FDM; foot soldiers at this scale are too fine for a hobby FDM printer."
   },
   "8mm": {
     "shortName": "8mm",
@@ -139,7 +139,7 @@
     "ratioEquivalent": "~1:175",
     "games": ["Dropzone Commander", "Warmaster", "Heralds of Ruin"],
     "note": "A popular epic scale for combined-arms sci-fi wargaming with dropships and urban combat.",
-    "printNote": "10mm vehicles are great FDM subjects. Infantry is very small and benefits from resin.",
+    "printNote": "10mm vehicles are great FDM subjects. Infantry is very small and comes out rough on FDM.",
     "commonIssue": "10mm scale is often confused with 6mm or 15mm. Always check the manufacturer's stated scale."
   },
   "30mm": {

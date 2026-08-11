@@ -70,5 +70,18 @@
     "features": ["Downloadable STL, generated in your browser", "All 16 tabletop scales supported", "5mm tick marks plus a figure-height end tab", "Ruler lengths from 30 to 100mm", "No uploads, no accounts, no cookies"],
     "category": "references",
     "featured": false
+  },
+  {
+    "slug": "miniature-scale-identifier",
+    "name": "Miniature Scale Identifier",
+    "h1": "What Scale Is My Miniature?",
+    "metaTitle": "What Scale Is My Miniature? | Identify STL & Print Scale | STLACCESS",
+    "shortDescription": "Type in your model's height in mm and find out what scale it is — 28mm, 32mm, 35mm, 1:35, and more. The laziest way to identify a miniature scale.",
+    "description": "Downloaded an STL with no scale listed, or printed a model that looks wrong next to your army? Measure its height in millimetres — from your slicer's bounding box or a ruler on the printed figure — and this tool tells you which tabletop scale it matches: 28mm, 32mm heroic, 35mm Legion, 40mm Shatterpoint, 1:35 model kits, and everything in between. It compares your measurement against the same 175cm human baseline (eyes at 160cm) that powers every conversion on this site, then hands you a ready-made link to scale it to any game you play. No uploads, no accounts, no cookies.",
+    "icon": "fa-magnifying-glass",
+    "url": "/tools/miniature-scale-identifier",
+    "features": ["Identifies all 16 supported scales", "Works from slicer height or a ruler", "Eye level, top of head, or 'not sure' measurement", "1-click deep link to the scale calculator", "Shows which games each match belongs to", "No uploads, no accounts, no cookies"],
+    "category": "references",
+    "featured": true
   }
 ]

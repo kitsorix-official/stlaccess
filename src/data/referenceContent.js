@@ -90,7 +90,7 @@ export const scaleInfo = {
         type: "gaming",
         note: "Epic-scale wargaming for vehicles and mechs rather than individual infantry. Great for big battles on small tables.",
         printNote: "6mm Mechs are small but chunky, so my FDM printer handles them fine — I print several at once.",
-        commonIssue: "6mm infantry is a no-go on FDM for me; that's resin territory.",
+        commonIssue: "6mm infantry is a no-go on FDM for me — that's smaller than anything I'll print.",
     },
     "8mm": {
         shortName: "8mm",
@@ -105,7 +105,7 @@ export const scaleInfo = {
         games: ["Dropzone Commander", "Warmaster", "Heralds of Ruin"],
         type: "gaming",
         note: "My favorite epic scale for combined-arms sci-fi — dropships, urban combat, whole sectors of the table.",
-        printNote: "10mm vehicles are great FDM subjects. The infantry is tiny enough that I switch to resin for it.",
+        printNote: "10mm vehicles are great FDM subjects. The infantry is tiny enough that I stick with official models for it.",
         commonIssue: "10mm gets confused with 6mm or 15mm constantly. I verify the maker's stated scale every time.",
     },
     "30mm": {
@@ -129,7 +129,7 @@ export const scaleInfo = {
         games: ["Flames of War", "Team Yankee", "15mm wargaming", "Micro-armor"],
         type: "ratio",
         note: "My scale for big tank battles and regiment-level games where table space is the enemy.",
-        printNote: "1:100 vehicles are manageable on FDM. Infantry at this size needs a 0.2mm nozzle — or resin.",
+        printNote: "1:100 vehicles are manageable on FDM. Infantry at this size needs a 0.2mm nozzle and a lot of patience.",
         commonIssue: "1:100 minis land around 17.5mm total — taller than 15mm eye-level figures. I always confirm what the maker means.",
     },
 };

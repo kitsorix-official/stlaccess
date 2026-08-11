@@ -44,7 +44,7 @@
       { "slug": "32mm-to-35mm", "label": "Tabletop to Legion Scale", "percentage": "109.4" },
       { "slug": "32mm-to-75mm", "label": "Tabletop to Display", "percentage": "234.4" }
     ],
-    "printingTips": "AoS models tend to have dramatic poses with flowing cloaks and extended weapons. Print character models with 0.2mm nozzle for crisp edges on armor and chainmail. Large centerpiece models (Morrknul, Nagash) benefit from 0.04-0.06mm layers on resin. FDM works well for terrain and monsters at 0.1mm layers.",
+    "printingTips": "AoS models tend to have dramatic poses with flowing cloaks and extended weapons. Print character models with 0.2mm nozzle for crisp edges on armor and chainmail. Large centerpiece models (Morrknul, Nagash) benefit from 0.04-0.06mm layers with a 0.2mm nozzle. FDM works well for terrain and monsters at 0.1mm layers.",
     "popularWith": "Fantasy painters, narrative gamers, centerpiece collectors, and players who enjoy assembling painted armies for display."
   },
   {
@@ -140,7 +140,7 @@
       { "slug": "28mm-to-75mm", "label": "Tabletop to Boss Monster", "percentage": "267.9" },
       { "slug": "28mm-to-40mm", "label": "Medium to Large Creature", "percentage": "142.9" }
     ],
-    "printingTips": "D&D demands variety — a single session might need goblins, dragons, and dungeon tiles. Print monsters at 0.4mm nozzle and 0.1mm layers for speed, hero characters at 0.2mm and 0.06mm for detail. FDM is excellent for terrain and large monsters; resin shines for character models with fine details like spell effects and flowing robes.",
+    "printingTips": "D&D demands variety — a single session might need goblins, dragons, and dungeon tiles. Print monsters at 0.4mm nozzle and 0.1mm layers for speed, hero characters at 0.2mm and 0.06mm for detail. FDM is excellent for terrain and large monsters; hero characters get the 0.2mm nozzle at 0.06mm layers for fine details like spell effects and flowing robes.",
     "popularWith": "Dungeon Masters building encounter collections, players wanting personalized hero minis, and the biggest group of people printing minis for tabletop."
   },
   {
@@ -188,7 +188,7 @@
       { "slug": "32mm-to-40mm", "label": "GW Scale to Shatterpoint", "percentage": "125.0" },
       { "slug": "1-48-to-40mm", "label": "Model Kit to Shatterpoint", "percentage": "109.7" }
     ],
-    "printingTips": "The large, smooth surfaces of Shatterpoint minis reward fine layer heights — print at 0.04-0.06mm on resin for best results. FDM at 0.08mm is acceptable for terrain pieces. The bigger scale means more material per model, so factor resin usage into your cost calculations. Orient helmets and faces carefully to minimize support marks on visible areas.",
+    "printingTips": "The large, smooth surfaces of Shatterpoint minis reward fine layer heights — print at 0.04-0.06mm layers with a 0.2mm nozzle for best results. FDM at 0.08mm is acceptable for terrain pieces. The bigger scale means more material per model, so factor the cost into your calculations. Orient helmets and faces carefully to minimize support marks on visible areas.",
     "popularWith": "Star Wars painters who want larger canvases, skirmish gamers, and collectors building diorama-style displays."
   },
   {
@@ -236,7 +236,7 @@
       { "slug": "32mm-to-35mm", "label": "Malifaux to MCP/Legion", "percentage": "109.4" },
       { "slug": "32mm-to-75mm", "label": "Tabletop to Display", "percentage": "234.4" }
     ],
-    "printingTips": "Malifaux miniatures are known for expressive faces and intricate clothing details. Use 0.2mm nozzle at 0.06mm layers for the best results on character models. The 4th Edition plastic range is well-suited for kitbashing with 3D printed alternative parts. Resin printing is strongly recommended for this range due to the fine detail on accessories and weapons.",
+    "printingTips": "Malifaux miniatures are known for expressive faces and intricate clothing details. Use 0.2mm nozzle at 0.06mm layers for the best results on character models. The 4th Edition plastic range is well-suited for kitbashing with 3D printed alternative parts. The fine detail on accessories and weapons is exactly what FDM softens first, so those thin layers matter.",
     "popularWith": "Gothic aesthetic enthusiasts, competitive skirmish players, and painters who enjoy dramatic color palettes and weathering effects."
   },
   {
@@ -260,7 +260,7 @@
       { "slug": "28mm-to-35mm", "label": "Infinity to Legion/MCP", "percentage": "125.0" },
       { "slug": "28mm-to-1-35", "label": "Infinity to Model Kit", "percentage": "178.6" }
     ],
-    "printingTips": "Infinity models are famous for thin weapons, flowing hair, and delicate equipment — all challenging for FDM. Resin printing is strongly recommended. Use 0.2mm nozzle at 0.04-0.06mm layers for best results. Support placement is critical — attach supports to hidden areas like undersides and backs. Printed alternatives often need to be scaled up 5-10% to match official Corvus Belli metal minis.",
+    "printingTips": "Infinity models are famous for thin weapons, flowing hair, and delicate equipment — all challenging for FDM. Use a 0.2mm nozzle at 0.04-0.06mm layers for best results. Support placement is critical — attach supports to hidden areas like undersides and backs. Printed alternatives often need to be scaled up 5-10% to match official Corvus Belli metal minis.",
     "popularWith": "Tactical skirmish players, anime aesthetic fans, and painters who enjoy NMM (non-metallic metal) techniques on sci-fi armor."
   },
   {
@@ -284,7 +284,7 @@
       { "slug": "28mm-to-35mm", "label": "Warmachine to Legion/MCP", "percentage": "125.0" },
       { "slug": "32mm-to-75mm", "label": "Tabletop to Display", "percentage": "234.4" }
     ],
-    "printingTips": "Warmachine models feature bulky, mechanical designs — warjacks and heavy beasts have flat armor panels that show layer lines. Print at 0.06mm layers on resin or 0.08mm on FDM. The chunky proportions are forgiving for FDM printing. Metal originals are heavy, so printed resin alternatives are significantly lighter and easier to transport.",
+    "printingTips": "Warmachine models feature bulky, mechanical designs — warjacks and heavy beasts have flat armor panels that show layer lines. Print at 0.06mm layers with a 0.2mm nozzle or 0.08mm on FDM. The chunky proportions are forgiving for FDM printing. Metal originals are heavy, so printed alternatives are significantly lighter and easier to transport.",
     "popularWith": "Competitive tournament players, steampunk enthusiasts, and gamers who enjoy complex army synergies and control-point mechanics."
   },
   {
@@ -354,7 +354,7 @@
       { "slug": "1-100-to-1-35", "label": "Micro Scale Up", "percentage": "285.7" },
       { "slug": "1-72-to-1-35", "label": "Small Scale to Model Kit", "percentage": "205.7" }
     ],
-    "printingTips": "BattleTech miniatures are small but detailed — cockpit glass, weapon barrels, and antenna all need to read clearly. Print at 0.2mm nozzle and 0.04-0.06mm layers on resin for best results. FDM struggles at this scale; use it only for terrain and hex tiles. Magnetize bases for transport — small models shift easily in cases.",
+    "printingTips": "BattleTech miniatures are small but detailed — cockpit glass, weapon barrels, and antenna all need to read clearly. Print at 0.2mm nozzle and 0.04-0.06mm layers for the best FDM results. FDM still struggles at this scale; it's best for terrain and hex tiles. Magnetize bases for transport — small models shift easily in cases.",
     "popularWith": "Tactical wargamers, mech enthusiasts, retro sci-fi fans, and players who enjoy deep customization of individual units."
   },
   {
@@ -378,7 +378,7 @@
       { "slug": "1-100-to-32mm", "label": "15mm to Heroic Scale", "percentage": "182.9" },
       { "slug": "1-72-to-1-35", "label": "20mm to Model Kit", "percentage": "205.7" }
     ],
-    "printingTips": "15mm miniatures reward batch printing — you need entire platoons. Print at 0.2mm nozzle and 0.06mm layers on resin for infantry; FDM at 0.08mm works for vehicles and terrain. Magnetize vehicle bases for transport. The small scale means painting is faster but basing (flocking, static grass) has a proportionally larger visual impact.",
+    "printingTips": "15mm miniatures reward batch printing — you need entire platoons. Print infantry at 0.2mm nozzle and 0.06mm layers; FDM at 0.08mm works for vehicles and terrain. Magnetize vehicle bases for transport. The small scale means painting is faster but basing (flocking, static grass) has a proportionally larger visual impact.",
     "popularWith": "WWII history enthusiasts, company-level tactical gamers, and players who enjoy painting large collections of vehicles and infantry."
   },
   {
@@ -400,7 +400,7 @@
       { "slug": "1-100-to-1-35", "label": "Scale Up Reference", "percentage": "285.7" },
       { "slug": "1-72-to-1-35", "label": "Small Scale Reference", "percentage": "205.7" }
     ],
-    "printingTips": "10mm miniatures are small enough that FDM struggles with infantry — resin is strongly recommended. Print at 0.2mm nozzle and 0.04mm layers. Vehicles are the stars of this game and print well on FDM at 0.06mm layers. Use a single base color for infantry to maintain visual cohesion across the table.",
+    "printingTips": "10mm miniatures are small enough that FDM struggles with infantry — expect soft details. Print at 0.2mm nozzle and 0.04mm layers. Vehicles are the stars of this game and print well on FDM at 0.06mm layers. Use a single base color for infantry to maintain visual cohesion across the table.",
     "popularWith": "Mass battle sci-fi gamers, combined-arms tacticians, and players who prefer vehicle-heavy armies over individual character focus."
   },
   {
@@ -422,7 +422,7 @@
       { "slug": "1-100-to-1-35", "label": "Scale Up Reference", "percentage": "285.7" },
       { "slug": "1-72-to-1-35", "label": "Small Scale Reference", "percentage": "205.7" }
     ],
-    "printingTips": "At 8mm, resin printing is essential for infantry — FDM cannot reliably produce details at this scale. Print at 0.2mm nozzle and 0.04mm layers. Vehicles and Titans are larger and more forgiving. Use contrast paints or washes heavily — at this scale, speed-painting techniques are more practical than layering.",
+    "printingTips": "At 8mm, infantry is nearly impossible on FDM — the details are too fine to produce reliably. Print at 0.2mm nozzle and 0.04mm layers. Vehicles and Titans are larger and more forgiving. Use contrast paints or washes heavily — at this scale, speed-painting techniques are more practical than layering.",
     "popularWith": "Epic-scale enthusiasts, Horus Heresy lore fans, and players who enjoy commanding massive formations rather than individual squads."
   },
   {
@@ -493,7 +493,7 @@
       { "slug": "1-56-to-32mm", "label": "Vehicle to Heroic Scale", "percentage": "102.4" },
       { "slug": "28mm-to-1-35", "label": "Infantry to Model Kit", "percentage": "178.6" }
     ],
-    "printingTips": "Gaslands is a 3D printing playground — weapon mounts, roll cages, spike strips, and terrain scatter all print beautifully. Use 0.2mm nozzle at 0.06mm layers for weapon details. Print accessories in resin for durability, terrain in FDM for speed. The game encourages creative kitbashing over precision painting.",
+    "printingTips": "Gaslands is a 3D printing playground — weapon mounts, roll cages, spike strips, and terrain scatter all print beautifully. Use 0.2mm nozzle at 0.06mm layers for weapon details. Print accessories with plenty of perimeters for durability, terrain in FDM for speed. The game encourages creative kitbashing over precision painting.",
     "popularWith": "Kitbashers, die-cast car modifiers, post-apocalyptic enthusiasts, and players who enjoy creative modeling over strict historical accuracy."
   },
   {
@@ -517,7 +517,7 @@
       { "slug": "32mm-to-40mm", "label": "Standard to Large Specialist", "percentage": "125.0" },
       { "slug": "32mm-to-75mm", "label": "Tabletop to Display", "percentage": "234.4" }
     ],
-    "printingTips": "Kill Team features fewer models with more detail per operative — resin is ideal for specialist characters with fine weapons and accessories. FDM at 0.2mm nozzle and 0.06mm layers works well for the operatives. Print terrain separately at 0.4mm nozzle and 0.1mm layers — Kill Team boards are terrain-heavy and FDM handles ruined walls, walkways, and scatter terrain perfectly.",
+    "printingTips": "Kill Team features fewer models with more detail per operative. A 0.2mm nozzle at 0.06mm layers works well for specialist characters with fine weapons and accessories. Print terrain separately at 0.4mm nozzle and 0.1mm layers — Kill Team boards are terrain-heavy and FDM handles ruined walls, walkways, and scatter terrain perfectly.",
     "popularWith": "Skirmish gamers who want deep tactical play without painting 100+ models, 40k players looking for a faster game night, and narrative gamers who enjoy building individual character stories."
   },
   {
@@ -541,7 +541,7 @@
       { "slug": "32mm-to-35mm", "label": "Necromunda to Legion/MCP", "percentage": "109.4" },
       { "slug": "32mm-to-75mm", "label": "Tabletop to Display", "percentage": "234.4" }
     ],
-    "printingTips": "32mm gangers benefit from 0.2mm nozzle at 0.06mm layers for facial detail — Necromunda characters are individualistic and faces matter. Industrial terrain (gang hideouts, sector mechanicus platforms, pipe networks) prints beautifully on FDM at 0.1mm layers. The game's vertical terrain means you need a lot of it, so FDM is the practical choice for the board while resin handles the gangers.",
+    "printingTips": "32mm gangers benefit from 0.2mm nozzle at 0.06mm layers for facial detail — Necromunda characters are individualistic and faces matter. Industrial terrain (gang hideouts, sector mechanicus platforms, pipe networks) prints beautifully on FDM at 0.1mm layers. The game's vertical terrain means you need a lot of it, so FDM is the practical choice for the board and the gangers.",
     "popularWith": "Narrative gamers who love gang warfare stories, terrain builders who enjoy creating vertical industrial boards, and Necromunda lore fans who want to paint each gang a completely different color palette."
   },
   {
@@ -565,7 +565,7 @@
       { "slug": "32mm-to-35mm", "label": "Warcry to Legion/MCP", "percentage": "109.4" },
       { "slug": "32mm-to-75mm", "label": "Tabletop to Display", "percentage": "234.4" }
     ],
-    "printingTips": "32mm warband models print well on FDM at 0.2mm nozzle and 0.06mm layers for characters. Rank-and-file fighters tolerate 0.4mm nozzle at 0.08mm layers. Terrain pieces like ruined temples, chaos shrines, and rocky outcrops are excellent FDM subjects at 0.1mm layers. Warcry boards are terrain-heavy, so FDM is the practical choice for the battlefield while resin handles the warband.",
+    "printingTips": "32mm warband models print well on FDM at 0.2mm nozzle and 0.06mm layers for characters. Rank-and-file fighters tolerate 0.4mm nozzle at 0.08mm layers. Terrain pieces like ruined temples, chaos shrines, and rocky outcrops are excellent FDM subjects at 0.1mm layers. Warcry boards are terrain-heavy, so FDM is the practical choice for the battlefield and the warband.",
     "popularWith": "Skirmish gamers who want fast, cinematic fantasy battles, AoS players looking for a smaller-scale entry point, and terrain builders who enjoy creating dramatic ruin-scattered boards."
   },
   {

@@ -5,7 +5,7 @@ import tools from "../../data/tools.json";
 import site from "../../data/site.json";
 import filamentPresets from "../../data/filamentPresets.json";
 import scales from "../../data/scales.json";
-import { graph, breadcrumb, softwareApplication } from "../../lib/schema";
+import { graph, breadcrumb, softwareApplication, faqPage } from "../../lib/schema";
 
 export async function getStaticPaths() {
   return tools
@@ -31,6 +31,180 @@ const scaleOptions = Object.entries(scales)
   }))
   .sort((a, b) => a.standardMm - b.standardMm);
 
+// Identifier tool: full eye/top-of-head data for scale matching
+const identifierScales = Object.entries(scales).map(([key, s]) => ({
+  key,
+  shortName: s.shortName,
+  type: s.type,
+  eyeLevelMm: s.eyeLevelMm,
+  topOfHeadMm: s.topOfHeadMm,
+  ratioEquivalent: s.ratioEquivalent,
+  games: s.games || [],
+}));
+
+const identifierFaq = [
+  {
+    question: "How do I find out what scale a miniature is?",
+    answer: "Measure from the bottom of the feet to eye level in millimetres — that number is the gaming scale. A 28mm miniature measures 28mm to the eyes, a 32mm heroic model measures 32mm. If you can only measure total height, subtract roughly 8-10% for the forehead, helmet, and hair."
+  },
+  {
+    question: "What scale is a 35mm tall miniature?",
+    answer: "If 35mm is measured to eye level, it is 35mm scale — used by Star Wars: Legion and Marvel: Crisis Protocol. If 35mm is the total height, it is most likely a 32mm heroic model, because top-of-head runs about 10% above eye level and 32mm models usually stand 34-35mm total."
+  },
+  {
+    question: "What scale is a 25mm miniature?",
+    answer: "25mm is the classic vintage true scale used by older metal ranges before scale creep pushed the hobby to 28mm. To mix it with a modern 28mm collection, scale it up to about 112% in your slicer."
+  },
+  {
+    question: "What scale is a 40mm miniature?",
+    answer: "40mm to eye level is the biggest common skirmish scale, used by Star Wars: Shatterpoint and Marvel: Crisis Protocol characters. It is noticeably larger than Warhammer's 32mm heroic."
+  },
+  {
+    question: "Why can't I tell the scale from an STL file?",
+    answer: "STL files are unitless — they store 3D geometry coordinates but no inches, millimetres, or scale label. Your slicer assumes the units are millimetres, which is why a downloaded file can come out looking like a giant or a grain of rice. Measuring the imported model in the slicer is the only reliable way to identify it."
+  },
+  {
+    question: "How do I measure a miniature's scale without digital calipers?",
+    answer: "A plain ruler works for most miniatures. Hold it against the model's eye line (not the helmet) and read the millimetres from the base of the feet. For printed models still in the slicer, the bounding-box height readout is even easier — no measuring at all."
+  }
+];
+
+const slicerFaq = [
+  {
+    question: "What percentage do I type for 28mm to 32mm?",
+    answer: "114.3%. That is 32mm (target) divided by 28mm (source) times 100. It is the single most common conversion on this site — the jump from true 28mm to the heroic 32mm scale used by Warhammer 40k and Age of Sigmar."
+  },
+  {
+    question: "How does the percentage formula work?",
+    answer: "(Target Height \u00F7 Source Height) \u00D7 100 = Percentage. A 32mm model scaled down to 28mm needs 28 \u00F7 32 \u00D7 100 = 87.5%. Enter that number as a uniform scale factor in your slicer and the math is done."
+  },
+  {
+    question: "Should I measure to eye level or top of head?",
+    answer: "Eye level, unless you are working with a historical kit. Gaming scales like 28mm and 32mm measure a 175cm human to the eyes at 160cm. Top of head adds roughly 8-10% for the forehead, helmet, and hair, and is mostly used by ratio model kits."
+  },
+  {
+    question: "Do I need to lock the X, Y, and Z axes?",
+    answer: "Yes. Enter the percentage as a uniform scale factor in Chitubox, Lychee, PrusaSlicer, or Cura and make sure all three axes scale together. Scaling one axis alone stretches the model and ruins the proportions."
+  },
+  {
+    question: "Does material shrinkage affect the percentage?",
+    answer: "Barely. PLA and PETG shrink about 0.2-0.5% as they cool, which is smaller than normal print variation, so I do not add compensation on FDM. If you want maximum accuracy, print a test piece and measure it with calipers first."
+  },
+  {
+    question: "What is the easiest way to convert scales in my slicer?",
+    answer: "Import the STL, select the model, open the scale tool, and type the percentage. Always confirm the model's source scale first — if the STL was designed for 32mm and you want 28mm, the number to type is 87.5%, not 114.3%."
+  }
+];
+
+const filamentFaq = [
+  {
+    question: "How much does one gram of filament cost?",
+    answer: "Divide the roll price by the roll weight. A $19.99, 1000g roll of mid-range PLA costs about $0.020 per gram. A typical 32mm miniature uses 5-15g of PLA, so the filament for one mini usually costs well under $0.50."
+  },
+  {
+    question: "Why is premium filament so much more expensive per gram?",
+    answer: "Premium and specialty filaments — like Bambu Lab PLA-CF at roughly $0.032/g — cost more because of the additives, tighter tolerances, and finishing. For a single tabletop miniature the difference is only a few cents."
+  },
+  {
+    question: "How many grams does a typical miniature print use?",
+    answer: "Most 28-40mm miniatures use 5-15g of filament including supports, depending on size and infill. Vehicles and terrain can jump to 50-200g. Your slicer shows the exact estimate, so check the weight readout before you slice."
+  },
+  {
+    question: "Should I include electricity in my cost estimate?",
+    answer: "It depends on your rate and printer. A 60W printer running 3 hours at $0.15/kWh adds about $0.03. That is noise on a single mini but adds up on a long, high-wattage print, so the calculator gives you the option."
+  },
+  {
+    question: "How do I find out how much filament a print uses?",
+    answer: "Look at your slicer's estimated filament usage — Chitubox, Lychee, and PrusaSlicer all report grams before you slice. Add the purge tower and support material to that number, then enter it into the calculator."
+  },
+  {
+    question: "Is PETG worth the extra cost over PLA?",
+    answer: "For miniatures, PLA is usually the better value — it is cheaper and prints crisper detail, and the strength difference rarely matters on a tabletop model. PETG shines for terrain and functional parts that take abuse."
+  }
+];
+
+const realWorldFaq = [
+  {
+    question: "How tall is a 6-foot human in 28mm scale?",
+    answer: "32mm. A 6-foot person is 1828.8mm tall; at 28mm scale on the 175cm baseline that converts to 1828.8 \u00D7 (28 \u00F7 1600) = 32mm — the same height a 32mm heroic miniature would be if it were true scale."
+  },
+  {
+    question: "How do I convert feet and inches to millimetres?",
+    answer: "One foot is exactly 304.8mm and one inch is 25.4mm. Multiply the total height in millimetres by (scale \u00F7 1600) for gaming scales, or divide by the ratio for 1:x scales. The converter does this for you."
+  },
+  {
+    question: "What baseline does this converter use?",
+    answer: "A 175cm human with the eyes at 160cm — the same baseline as every conversion on this site. Gaming scales measure to eye level, ratio scales measure to the top of the head, and the converter handles both automatically."
+  },
+  {
+    question: "How tall is a 12-foot wall in 32mm scale?",
+    answer: "73.2mm. A 12-foot wall is 3658mm tall, and 3658 \u00D7 (32 \u00F7 1600) = 73.2mm — the default example the converter opens with. That is roughly a 3.7-inch wall for a skirmish table."
+  },
+  {
+    question: "What is the difference between gaming scales and ratio scales?",
+    answer: "Gaming scales like 28mm, 32mm, and 40mm are measured to eye level. Ratio scales like 1:35, 1:48, and 1:56 are a strict division of the 175cm human and measure to the top of the head."
+  },
+  {
+    question: "How tall is a 2.1m door at tabletop scale?",
+    answer: "At 28mm scale a 2100mm door is about 36.8mm — noticeably taller than a miniature, which is why terrain doorways are often oversized. At 32mm scale the same door is 42mm."
+  }
+];
+
+const referenceBarFaq = [
+  {
+    question: "How do I use the reference bar in Lychee or Chitubox?",
+    answer: "Import the STL bar next to your model of unknown scale, then measure the model's height against the 5mm tick marks. Match a figure's eye level to the end tab — or just read the ticks directly — and you have the height in millimetres."
+  },
+  {
+    question: "What is the end tab on the bar for?",
+    answer: "The end tab is exactly as tall as a figure at your chosen scale, measured to eye level. Stand it next to an infantry model and if the model lines up with the tab, it matches that scale."
+  },
+  {
+    question: "Why can't I tell the scale from the STL file itself?",
+    answer: "STL files store geometry without units — no inches, millimetres, or scale label. Your slicer assumes millimetres, which is why an unknown file can come out any size. Measuring the imported model against the bar is the reliable fix."
+  },
+  {
+    question: "What percentage do I type after I measure my model?",
+    answer: "Once you know the model's height, use the Miniature Scale Identifier to name the scale, then open the Scale Calculator for the exact percentage between your source and target scales. This tool is step one of that chain."
+  },
+  {
+    question: "Why doesn't my model match any scale cleanly?",
+    answer: "Heroic-proportioned sculpts, creatures, and models between two standards often sit off the classic numbers. Treat a match within about 5% as strong, and anything further out as a sign the sculpt is stylised rather than strict."
+  },
+  {
+    question: "Which bar length should I download?",
+    answer: "50mm covers most infantry and vehicle work. Pick 30mm for small epic-scale models, and 75-100mm if you are measuring terrain, large monsters, or 75mm display pieces."
+  }
+];
+
+const toolFaqs = {
+  "slicer-percentage-calculator": slicerFaq,
+  "filament-cost-calculator": filamentFaq,
+  "real-world-scale-converter": realWorldFaq,
+  "reference-bar-generator": referenceBarFaq,
+  "miniature-scale-identifier": identifierFaq,
+};
+
+// Filament presets with computed per-gram cost for the reference table
+const filamentPresetsWithCost = filamentPresets.map((p) => ({
+  name: p.name,
+  brands: p.brands,
+  price: p.price,
+  weight: p.weight,
+  perGram: p.price / p.weight,
+}));
+
+// Real-world objects and their height at common scales for the reference table
+const realWorldObjects = [
+  { label: "Standard door", mm: 2100 },
+  { label: "175cm human", mm: 1750 },
+  { label: "12ft wall", mm: 3658 },
+  { label: "3m ceiling height", mm: 3000 },
+  { label: "4m car", mm: 4000 },
+  { label: "10m dragon / building", mm: 10000 },
+];
+const rwScale = (mm, divisor, isRatio) => isRatio ? mm / divisor : mm * (divisor / 1600);
+
 const toolSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
@@ -42,6 +216,7 @@ const toolSchema = graph([
     description: tool.description,
     url: tool.url,
   }),
+  ...(toolFaqs[tool.slug] ? [faqPage(toolFaqs[tool.slug])] : []),
 ]);
 ---
 
@@ -325,8 +500,64 @@ const toolSchema = graph([
         <div class="mt-8 pt-6 border-t border-white/5">
           <p class="text-xs text-slate-500">
             Formula: real height (mm) × (scale ÷ 1600) for eye-level scales, or real height (mm) ÷ ratio for 1:x scales. Same 175cm baseline with eyes at 160cm as every other conversion on this site. All calculations happen locally in your browser.
+            <br />
+            Going the other way? If you already know the model's height in millimetres and want to name its scale, use the <a href="/tools/miniature-scale-identifier" class="text-[#ff6b35] hover:underline font-semibold">Miniature Scale Identifier</a>.
           </p>
         </div>
+      </div>
+    </section>
+  ) : tool.slug === "miniature-scale-identifier" ? (
+    <section class="mb-12" aria-labelledby="calculator-heading">
+      <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Identifier</h2>
+      <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div>
+            <label for="si-height" class="block text-sm font-bold text-slate-300 mb-2">Measured Height (mm)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mm</span>
+              <input id="si-height" type="number" value="34.5" step="0.1" min="1" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Slicer bounding-box height, or a ruler on the printed model</p>
+          </div>
+          <div>
+            <label for="si-method" class="block text-sm font-bold text-slate-300 mb-2">How Did You Measure?</label>
+            <select id="si-method" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+              <option value="unsure">Just measured it — not sure what I hit</option>
+              <option value="eye">Eye level (feet to eyes)</option>
+              <option value="head">Top of head (total height)</option>
+            </select>
+            <p class="text-xs text-slate-500 mt-1">Eye level is how most gaming scales are measured</p>
+          </div>
+        </div>
+
+        <div id="si-result" class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-6 md:p-8 mb-8" aria-live="polite">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">Best guess</p>
+          <p class="text-4xl md:text-5xl font-black text-[#ff6b35] font-heading tracking-tight mb-4" id="si-headline">32mm (Heroic)</p>
+          <div id="si-candidates" class="space-y-3"></div>
+        </div>
+
+        <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6 mb-6">
+          <div class="flex items-start gap-3">
+            <i class="fa-solid fa-wand-magic-sparkles text-[#ff6b35] mt-1 shrink-0"></i>
+            <div class="min-w-0 flex-1">
+              <label for="si-target" class="block text-sm font-bold text-slate-300 mb-2">Now scale it to another game:</label>
+              <select id="si-target" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer mb-4">
+                {identifierScales.map(s => (
+                  <option value={s.key} selected={s.key === "32mm"} data-short={s.shortName} data-eye={s.eyeLevelMm} data-top={s.topOfHeadMm} data-ratio={s.ratioEquivalent} data-games={s.games.join("|")}>{s.shortName} — {s.ratioEquivalent}</option>
+                ))}
+              </select>
+              <a id="si-link" href="/?source=32mm&target=32mm&logic=head" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black px-6 py-4 rounded-xl text-sm font-bold uppercase tracking-widest hover:scale-105 transition-transform">
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+                Open in Scale Calculator
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-500">
+          Matches use the same 175cm human baseline (eyes at 160cm) as every conversion on this site. A match within ~5% is a strong signal; anything further out is usually a heroic-proportioned sculpt, a creature, or a scale that fell between two standards. All calculations run locally — nothing is uploaded.
+        </p>
       </div>
     </section>
   ) : tool.slug === "reference-bar-generator" ? (
@@ -367,7 +598,7 @@ const toolSchema = graph([
         </div>
 
         <p class="text-xs text-slate-500">
-          How to use it: import the STL next to your model in Lychee or Chitubox, then measure the model's height in millimetres against the ruler ticks. Match a figure's eye level to the end tab — or just read the ticks directly — then head to the scale engine to work out your percentage. The STL is generated entirely in your browser and never touches a server.
+          How to use it: import the STL next to your model in Lychee or Chitubox, then measure the model's height in millimetres against the ruler ticks. Match a figure's eye level to the end tab — or just read the ticks directly — then <a href="/tools/miniature-scale-identifier" class="text-[#ff6b35] hover:underline font-semibold">let the Scale Identifier name it</a> and head to the scale engine to work out your percentage. The STL is generated entirely in your browser and never touches a server.
         </p>
       </div>
     </section>
@@ -400,6 +631,462 @@ const toolSchema = graph([
   </div>
 
 </article>
+
+{tool.slug === "slicer-percentage-calculator" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="spc-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="spc-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">The percentage formula, plain and simple</h2>
+      <p class="text-slate-300 leading-relaxed">
+        Take your <strong class="text-white">target height in millimetres</strong>, divide it by your <strong class="text-white">source height</strong>, and multiply by 100. That number is exactly what you type into your slicer. Going from 32mm to 28mm? <em class="text-[#ff6b35] font-semibold not-italic">28 \u00F7 32 \u00D7 100 = 87.5%</em>. Going from 28mm to 32mm? <em class="text-[#ff6b35] font-semibold not-italic">114.3%</em>. No mystery, no guesswork — just one division.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="spc-ref-heading">
+    <h2 id="spc-ref-heading" class="text-2xl font-bold font-heading mb-6">Common Conversion Quick Reference</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">From</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">To</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Slicer %</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {site.quickRef.map(q => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white">{q.from}</td>
+              <td class="px-5 py-3 text-white">{q.to}</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{q.pct}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      All percentages use the same {site.baselineHeightCm}cm human baseline with eyes at {site.eyeLevelCm}cm. The calculator above works for any pair — these are just the six I reach for most.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="spc-steps-heading">
+    <h2 id="spc-steps-heading" class="text-2xl font-bold font-heading mb-6">How to scale an STL in your slicer</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Confirm the model's source scale first</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Check the STL listing for the intended scale. If it's not labelled, measure the imported model and let the <a href="/tools/miniature-scale-identifier" class="text-[#ff6b35] hover:underline font-semibold">Scale Identifier</a> name it before you touch the scale tool.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Type the percentage with uniform scaling</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">In Chitubox, Lychee, PrusaSlicer, or Cura, open the scale tool and enter the percentage from above. <strong class="text-white">Lock the X, Y, and Z axes</strong> so the model scales evenly and the proportions stay intact.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Slice a test piece, not the whole army</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Print one model and hold it against the rest of your collection before committing to a batch. Over-extrusion and cooling shrinkage drift by 0.2-0.5%, which is usually invisible but worth confirming.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="spc-faq-heading">
+    <h2 id="spc-faq-heading" class="text-2xl font-bold font-heading mb-6">Slicer Percentage FAQ</h2>
+    <div class="space-y-4">
+      {slicerFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+{tool.slug === "filament-cost-calculator" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fcc-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="fcc-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">How to estimate a print's cost</h2>
+      <p class="text-slate-300 leading-relaxed">
+        Divide the <strong class="text-white">roll price by the roll weight</strong> to get your cost per gram, then multiply by the grams your slicer reports. A $19.99, 1000g roll comes to about <em class="text-[#ff6b35] font-semibold not-italic">$0.02/g</em>, so a 10g miniature costs roughly <em class="text-[#ff6b35] font-semibold not-italic">$0.20</em> in filament. Add electricity if you want the full picture — the calculator handles both.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fcc-ref-heading">
+    <h2 id="fcc-ref-heading" class="text-2xl font-bold font-heading mb-6">Filament Preset Price Per Gram</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Preset</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Brands</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Roll Price</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Per Gram</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {filamentPresetsWithCost.map(p => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white">{p.name}</td>
+              <td class="px-5 py-3 text-slate-400">{p.brands}</td>
+              <td class="px-5 py-3 font-mono text-white">${p.price.toFixed(2)} / {p.weight}g</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">${p.perGram.toFixed(4)}/g</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      These are the exact presets loaded into the calculator. A mid-range PLA roll at $0.02/g is the sweet spot for most tabletop printing.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fcc-steps-heading">
+    <h2 id="fcc-steps-heading" class="text-2xl font-bold font-heading mb-6">How to get an accurate cost</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Read the grams from your slicer</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Chitubox, Lychee, and PrusaSlicer all estimate filament weight before you slice. Include the purge tower and supports — they're real material, so they belong in the number.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Enter your roll price and weight</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">The preset buttons load real market prices for you — or type your own. The cost per gram updates instantly so you can see the math behind the number.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Add electricity only when it matters</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">A short mini print at 60W costs cents. A 10-hour terrain print at 120W adds real money. Fill in the optional fields when you're planning something big.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="fcc-faq-heading">
+    <h2 id="fcc-faq-heading" class="text-2xl font-bold font-heading mb-6">Filament Cost FAQ</h2>
+    <div class="space-y-4">
+      {filamentFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+{tool.slug === "real-world-scale-converter" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="rwc-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="rwc-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">Real-world height to miniature size</h2>
+      <p class="text-slate-300 leading-relaxed">
+        Convert the real measurement to millimetres, then multiply by <em class="text-[#ff6b35] font-semibold not-italic">(scale \u00F7 1600)</em> for eye-level gaming scales, or divide by the ratio for 1:x scales. A 12-foot wall (3658mm) at 32mm scale is <strong class="text-white">73.2mm</strong>; at 1:56 it's <strong class="text-white">65.3mm</strong>. Same baseline as every other tool here — a 175cm human with eyes at 160cm.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="rwc-ref-heading">
+    <h2 id="rwc-ref-heading" class="text-2xl font-bold font-heading mb-6">Real Objects at Tabletop Scale</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Real object</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Real height</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">At 28mm</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">At 32mm</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">At 1:56</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {realWorldObjects.map(o => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white">{o.label}</td>
+              <td class="px-5 py-3 font-mono text-slate-400">{o.mm.toLocaleString()}mm</td>
+              <td class="px-5 py-3 font-mono text-white">{rwScale(o.mm, 28, false).toFixed(1)}mm</td>
+              <td class="px-5 py-3 font-mono text-white">{rwScale(o.mm, 32, false).toFixed(1)}mm</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{rwScale(o.mm, 56, true).toFixed(1)}mm</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      A 28mm or 32mm column measures to eye level on the 175cm baseline; the 1:56 column is a strict ratio to the top of the head.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="rwc-steps-heading">
+    <h2 id="rwc-steps-heading" class="text-2xl font-bold font-heading mb-6">How to use the converter</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Measure the real thing</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Feet, inches, or centimetres — the converter accepts all three and syncs them as you type. For terrain and buildings, a tape measure on the real object is all you need.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Pick the scale you're printing</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">All {scaleOptions.length} scales from the scale engine are here. Ratio scales measure to the top of the head; gaming scales measure to eye level — the converter switches automatically.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Read the height and scale your STL</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">The result is the height your print should be. If you already have a model, drop that number into the <a href="/tools/slicer-percentage-calculator" class="text-[#ff6b35] hover:underline font-semibold">Slicer Percentage Calculator</a> to get the exact percentage.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="rwc-faq-heading">
+    <h2 id="rwc-faq-heading" class="text-2xl font-bold font-heading mb-6">Real-World Scale Conversion FAQ</h2>
+    <div class="space-y-4">
+      {realWorldFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+{tool.slug === "reference-bar-generator" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="rbg-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="rbg-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">What the reference bar does</h2>
+      <p class="text-slate-300 leading-relaxed">
+        It's a printable ruler with <strong class="text-white">5mm tick marks</strong> and an end tab that's exactly a figure's height at your chosen scale. Import it into Lychee or Chitubox next to a model of unknown scale, read the model's height off the ticks, and you instantly know what percentage to scale it to any game. Everything generates in your browser — nothing is uploaded.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="rbg-ref-heading">
+    <h2 id="rbg-ref-heading" class="text-2xl font-bold font-heading mb-6">Figure Heights at Every Supported Scale</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Scale</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Type</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Standard Measurement</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Top of Head</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {scaleOptions.map(s => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white font-semibold">{s.shortName}</td>
+              <td class="px-5 py-3 text-slate-400 capitalize">{s.type}</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{s.standardMm.toFixed(1)}mm</td>
+              <td class="px-5 py-3 font-mono text-white">{s.topOfHeadMm.toFixed(1)}mm</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      The "Standard Measurement" column is the height the end tab uses: eye level for gaming and display scales, top of head for ratio scales — the same 175cm baseline as the rest of the site.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="rbg-steps-heading">
+    <h2 id="rbg-steps-heading" class="text-2xl font-bold font-heading mb-6">How to identify a model's scale with the bar</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Download the bar at any scale</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Pick your scale and bar length, then hit generate. The STL is built in your browser and downloads instantly — no account, no upload.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Import it next to your unknown model</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">In Lychee or Chitubox, drop both STLs on the plate. Read the model's height in millimetres against the 5mm ticks, or stand the model beside the end tab to compare against a known figure height.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Name the scale and convert it</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Feed your measurement into the <a href="/tools/miniature-scale-identifier" class="text-[#ff6b35] hover:underline font-semibold">Scale Identifier</a> to name the scale, then head to the scale engine for the exact percentage into any game.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="rbg-faq-heading">
+    <h2 id="rbg-faq-heading" class="text-2xl font-bold font-heading mb-6">Reference Bar FAQ</h2>
+    <div class="space-y-4">
+      {referenceBarFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+{tool.slug === "miniature-scale-identifier" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="si-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="si-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">How to tell what scale a miniature is</h2>
+      <p class="text-slate-300 leading-relaxed">
+        Measure from the bottom of the feet to <strong class="text-white">eye level</strong> in millimetres. That number <em class="text-[#ff6b35] font-semibold not-italic">is</em> the gaming scale: a model that measures 28mm to the eyes is 28mm scale, 32mm to the eyes is 32mm heroic, 35mm is Legion, 40mm is Shatterpoint. If you only have the total height, subtract about 8-10% for the forehead, helmet, and hair before comparing.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="si-lookup-heading">
+    <h2 id="si-lookup-heading" class="text-2xl font-bold font-heading mb-6">Height to Scale Lookup Table</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Measured Height</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">To Eye Level</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Total Height (Top of Head)</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          <tr class="bg-slate-900/20">
+            <td class="px-5 py-3 font-mono text-slate-400">~25mm</td>
+            <td class="px-5 py-3 text-white">25mm — vintage true scale</td>
+            <td class="px-5 py-3 text-white">~27mm</td>
+          </tr>
+          <tr class="bg-slate-900/20">
+            <td class="px-5 py-3 font-mono text-slate-400">28mm</td>
+            <td class="px-5 py-3 text-white">28mm — D&D, Bolt Action, Infinity</td>
+            <td class="px-5 py-3 text-white">~30.5mm</td>
+          </tr>
+          <tr class="bg-slate-900/20">
+            <td class="px-5 py-3 font-mono text-slate-400">30mm</td>
+            <td class="px-5 py-3 text-white">30mm — Warmachine &amp; Hordes</td>
+            <td class="px-5 py-3 text-white">~32.8mm</td>
+          </tr>
+          <tr class="bg-slate-900/20">
+            <td class="px-5 py-3 font-mono text-slate-400">32mm</td>
+            <td class="px-5 py-3 text-white">32mm — Warhammer 40k, AoS, Malifaux</td>
+            <td class="px-5 py-3 text-white">~34.5mm</td>
+          </tr>
+          <tr class="bg-slate-900/20">
+            <td class="px-5 py-3 font-mono text-slate-400">35mm</td>
+            <td class="px-5 py-3 text-white">35mm — Star Wars: Legion, MCP</td>
+            <td class="px-5 py-3 text-white">~38mm</td>
+          </tr>
+          <tr class="bg-slate-900/20">
+            <td class="px-5 py-3 font-mono text-slate-400">40mm</td>
+            <td class="px-5 py-3 text-white">40mm — Shatterpoint</td>
+            <td class="px-5 py-3 text-white">~43mm</td>
+          </tr>
+          <tr class="bg-slate-900/20">
+            <td class="px-5 py-3 font-mono text-slate-400">~45-50mm</td>
+            <td class="px-5 py-3 text-white">1:35 — model kits (Tamiya)</td>
+            <td class="px-5 py-3 text-white">50mm</td>
+          </tr>
+          <tr class="bg-slate-900/20">
+            <td class="px-5 py-3 font-mono text-slate-400">75mm</td>
+            <td class="px-5 py-3 text-white">75mm — display / busts</td>
+            <td class="px-5 py-3 text-white">~80mm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      Same 175cm human baseline as the rest of the site — eyes at 160cm. Ratio scales (1:35, 1:56, 1:48…) measure to the top of the head, gaming scales measure to the eyes.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="si-steps-heading">
+    <h2 id="si-steps-heading" class="text-2xl font-bold font-heading mb-6">How to measure your model</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">If it's still in your slicer — no measuring needed</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Import the STL and read the bounding-box height in millimetres. That's your measurement. STL files carry no units, so this readout is the ground truth for a digital model.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">If it's already printed — use the eye line</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">A ruler or caliper from the bottom of the feet to eye level gives the most reliable answer for gaming scales. Measure to the top of the head if that's easier, then pick the "Top of head" option and the tool adjusts for the ~8-10% difference.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Stuck with an unknown STL? Use the reference bar</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Print the <a href="/tools/reference-bar-generator" class="text-[#ff6b35] hover:underline font-semibold">scale reference bar</a>, import it next to your model in Lychee or Chitubox, and read the height off the 5mm ticks. Then come back here to name the scale.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="si-faq-heading">
+    <h2 id="si-faq-heading" class="text-2xl font-bold font-heading mb-6">Scale Identification FAQ</h2>
+    <div class="space-y-4">
+      {identifierFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
 
 {tool.slug === "slicer-percentage-calculator" && (
   <script>
@@ -593,6 +1280,102 @@ const toolSchema = graph([
     scaleEl.addEventListener("change", () => rwUpdate(false));
 
     rwUpdate(false);
+  </script>
+)}
+
+{tool.slug === "miniature-scale-identifier" && (
+  <script>
+    const siHeight = document.getElementById("si-height");
+    const siMethod = document.getElementById("si-method");
+    const siHeadline = document.getElementById("si-headline");
+    const siCandidates = document.getElementById("si-candidates");
+    const siTarget = document.getElementById("si-target");
+    const siLink = document.getElementById("si-link");
+
+    // Read scale data from the target dropdown options
+    function siScales() {
+      const list = [];
+      for (const opt of siTarget.options) {
+        list.push({
+          key: opt.value,
+          shortName: opt.dataset.short,
+          eyeLevelMm: parseFloat(opt.dataset.eye),
+          topOfHeadMm: parseFloat(opt.dataset.top),
+          ratioEquivalent: opt.dataset.ratio,
+          games: (opt.dataset.games || "").split("|").filter(Boolean)
+        });
+      }
+      return list;
+    }
+
+    function siFmt(n) {
+      return (Math.round(n * 10) / 10).toFixed(1);
+    }
+
+    function siCard(c, tag, isBest) {
+      const g = c.s.games.length ? c.s.games.slice(0, 3).join(", ") : "";
+      const logicLabel = c.logic === "eye" ? "eye level" : "top of head";
+      return '<div class="' + (isBest ? "bg-[#ff6b35]/10 border border-[#ff6b35]/30" : "bg-slate-950/50 border border-white/5") + ' rounded-xl p-4">'
+        + '<div class="flex items-center justify-between gap-3 flex-wrap">'
+        + '<div class="font-bold text-white">' + c.s.shortName + ' <span class="text-slate-500 font-normal text-xs">(' + c.s.ratioEquivalent + ')</span></div>'
+        + '<span class="text-[10px] font-black uppercase tracking-widest ' + (isBest ? "text-[#ff6b35]" : "text-slate-500") + '">' + tag + ' \u00B7 ' + siFmt(c.expected) + 'mm ' + logicLabel + ' \u00B7 off by ' + Math.round(c.diff) + '%</span>'
+        + '</div>'
+        + (g ? '<p class="text-xs text-slate-400 mt-1">' + g + '</p>' : "")
+        + '</div>';
+    }
+
+    function siUpdate() {
+      const h = parseFloat(siHeight.value);
+      if (!h || h <= 0) {
+        siHeadline.textContent = "Enter a height above";
+        siCandidates.innerHTML = "";
+        siLink.setAttribute("href", "/");
+        return;
+      }
+      const method = siMethod.value;
+      const scored = siScales().map((s) => {
+        let expected, logic;
+        if (method === "unsure") {
+          const dEye = Math.abs(h - s.eyeLevelMm) / s.eyeLevelMm;
+          const dHead = Math.abs(h - s.topOfHeadMm) / s.topOfHeadMm;
+          if (dEye <= dHead) { expected = s.eyeLevelMm; logic = "eye"; }
+          else { expected = s.topOfHeadMm; logic = "head"; }
+        } else if (method === "eye") {
+          expected = s.eyeLevelMm; logic = "eye";
+        } else {
+          expected = s.topOfHeadMm; logic = "head";
+        }
+        const diff = (Math.abs(h - expected) / expected) * 100;
+        return { s, expected, logic, diff };
+      }).sort((a, b) => a.diff - b.diff);
+
+      const best = scored[0];
+      const strong = best.diff <= 12;
+      const close = scored.filter((x, i) => i < 3 && x.diff <= 25);
+
+      let html = "";
+      if (strong) {
+        siHeadline.textContent = best.s.shortName + " scale";
+        html += siCard(best, "Best match", true);
+        close.slice(1).forEach((c) => { html += siCard(c, "Close", false); });
+      } else {
+        siHeadline.textContent = "No strong match";
+        close.forEach((c) => { html += siCard(c, "Nearest", false); });
+        html += '<p class="text-xs text-slate-400 leading-relaxed mt-3">Your height does not line up cleanly with any standard scale. This is common with heroic-proportioned sculpts, creatures, or 1:64-style models that sit between the big standards. Print a test piece and compare it to the game you are targeting.</p>';
+      }
+      siCandidates.innerHTML = html;
+
+      siLink.setAttribute(
+        "href",
+        "/?source=" + encodeURIComponent(best.s.key) + "&target=" + encodeURIComponent(siTarget.value) + "&logic=" + encodeURIComponent(best.logic)
+      );
+    }
+
+    siHeight.addEventListener("input", siUpdate);
+    siMethod.addEventListener("change", siUpdate);
+    siTarget.addEventListener("change", siUpdate);
+
+    siUpdate();
   </script>
 )}
 
