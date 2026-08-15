@@ -3,6 +3,7 @@ title: "How to Scale Miniatures in Chitubox & Lychee Slicer (Without Messing Up 
 description: "Step-by-step guide to scaling STL files in Chitubox and Lychee. Lock aspect ratios, scale without stretching the base, and understand the unit conversion — from my own slicer."
 tldr: "Click the chain-link to lock the aspect ratio, then type your percentage into any scale field. Chitubox: press T then Transform. Lychee: Transform then uniform scaling. If a model imports tiny, it was exported in inches — scale up 2540%."
 pubDate: 2026-06-22
+modDate: 2026-08-15
 faq:
   - question: How do I scale a miniature in Chitubox?
     answer: >-
@@ -67,6 +68,20 @@ If your miniature has an integral base that you do not want to scale, listen clo
 
 This is a common ask in the miniature printing community — a 32mm hero should not end up standing on a comically oversized 40mm base just because you scaled the whole model up. Trust me, nothing kills a good print faster than a base that dwarfs the model standing on it.
 
+## How to Measure Models in Chitubox
+
+Before you type a single percentage, you need to know what you're starting from. Measuring a model in Chitubox takes about three seconds:
+
+1. **Select the model** in the viewport
+2. **Open the Transform panel** (press `T`)
+3. **Read the X/Y/Z fields** — Chitubox shows the current dimensions in millimetres, and those same fields double as the scale inputs
+
+The number that matters for scale is the **Z-axis** — that's the height. Select your model, look at the Z field, and you instantly know its current height in mm. That's the source number for every conversion you type in.
+
+Here is the catch I hit constantly: **which height counts depends on how the sculptor measured it.** Gaming scales like 28mm and 32mm measure to eye level, so a true 32mm model usually reads 34-35mm on the Z-axis once you include the forehead, hair, or helmet. If you measure a "32mm" model and see 34.5mm, that is not a mistake — that is eye level plus skull. If you have an unlabeled sculpt, the [miniature scale identifier](/tools/miniature-scale-identifier) will name it for you, and the [reference library](/reference) notes which measurement each scale uses.
+
+A quick sanity check before you scale: a 28-32mm miniature should be roughly the height of your thumb. If the Z-axis shows a grain of rice instead, the file was exported in inches — jump down to the Lychee units section for the fix.
+
 ## Scaling in Lychee Slicer
 
 Lychee is my go-to for bigger batch prints because the interface feels faster. The steps mirror Chitubox:
@@ -79,6 +94,16 @@ Lychee is my go-to for bigger batch prints because the interface feels faster. T
 6. **Confirm** — Lychee applies changes automatically
 
 Lychee also shows you the real-world dimensions of the model in mm, so you can sanity-check your scale. A 32mm model should measure approximately 32mm in the Z-axis (plus or minus the base thickness). I always glance at that Z value before slicing — it has caught more mistakes than I care to admit.
+
+## How to Change Units in Lychee Slicer
+
+Lychee works in millimetres out of the box, and most of the time you never need to touch the unit setting — model dimensions, the Transform panel, and the print bed all display in mm. But when you import STLs from a sculptor who exported in inches, you have two options:
+
+**Option 1: Change the display unit.** Open **Settings** (or Preferences, depending on your Lychee version) and look for the unit selector next to the measurement readout. Switching it to inches only changes how Lychee *displays* dimensions — it does not rescale your model. I leave mine on millimetres and never think about it.
+
+**Option 2: Fix an inch-exported model — the one that actually matters.** An inch file imports looking tiny because Lychee reads each inch as a millimetre. Don't hunt for a hidden "import unit" toggle; just select the model, open Transform, enable uniform scaling, and enter **2540%** (25.4 × 100). That converts inches to millimetres in a single step. Once it's scaled, the Transform panel shows the real dimensions in mm so you can confirm the height before slicing.
+
+Unit confusion is exactly why I check the Z-axis after every import: if a "32mm" hero imports at 32mm it's good to go, and if it lands at 1.2mm you know precisely what happened.
 
 ## When to Use mm vs Inches
 

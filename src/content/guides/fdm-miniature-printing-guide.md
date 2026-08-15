@@ -3,7 +3,7 @@ title: "FDM Miniature Printing: Complete Guide to Layer Height, Nozzles, and Set
 description: "Best FDM settings for tabletop miniatures — nozzles, layer heights, orientation tips, and post-processing for 28mm and 32mm models. Tested on my Bambu Lab A1 Mini."
 tldr: "You do not need a resin printer. 0.2mm nozzle at 0.06mm layers for characters; 0.4mm at 0.08mm for rank-and-file. PLA, 100% fan, tilt 15-20°, tree supports, filler primer."
 pubDate: "2026-07-09"
-modDate: "2026-07-09"
+modDate: "2026-08-15"
 faq:
   - question: What are the best FDM settings for printing tabletop miniatures?
     answer: >-
@@ -49,7 +49,24 @@ After hundreds of miniatures on my A1 Mini, here is the setup I keep coming back
 
 I used to run everything through a 0.4mm nozzle because swapping nozzles felt like a hassle. Then I printed a Space Marine hero with a 0.4mm nozzle at 0.08mm and squinted at the visible faceting on the helmet. The same model with a 0.2mm nozzle at 0.06mm layers looked like a different sculpt entirely. Now the 0.2mm nozzle only comes off for terrain and batch infantry.
 
-## Layer Height and Detail
+## Bambu Lab A1/Mini Settings for Miniatures
+
+Every number in this guide was dialed in on my Bambu Lab A1 Mini, so here is the whole machine-specific setup in one place. Nozzle, layer height, filament, and cooling come from the setup table above — these are the settings particular to the A1 and A1 Mini:
+
+| Setting | Value | Why |
+|---|---|---|
+| Retraction | 1mm at 30mm/s | Direct drive, so short retraction is all it needs |
+| Travel speed | 200mm/s | Crosses open gaps fast so stringing never gets a chance |
+| Model tilt | 15-20 degrees backward | Hides layer lines on the face and chest |
+| Supports | Tree (organic) | Touch the model at fewer points, leave less scarring |
+| Flat bases | 5mm brim | Stops the corners from lifting on the textured plate |
+| Plate prep | Clean plate, dry filament | Auto leveling only helps if the plate is clean |
+
+Bambu Studio's built-in profiles are a solid base, but do not trust the default 0.4mm nozzle layer heights for miniatures — the defaults assume big parts, not 32mm soldiers. I always swap to the 0.2mm nozzle for characters and let the print run long. The A1 Mini's automatic leveling and vibration compensation handle the rest; my only job is to keep the plate clean and the filament dry.
+
+If you're on a different printer, the layer heights and cooling advice in this guide transfer over fine — the retraction numbers are the direct-drive-specific part.
+
+## Best Layer Heights for Detail
 
 The single most important setting for miniature quality is layer height. Here is what I've learned at each range:
 

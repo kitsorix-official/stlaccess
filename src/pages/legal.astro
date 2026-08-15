@@ -97,16 +97,19 @@ const legalSchema = graph([
           <p>In plain words, that means:</p>
           <ul class="list-disc pl-6 space-y-3">
             <li>Which page you looked at (<span class="font-mono text-slate-400">page</span>).</li>
-            <li>Which website or link brought you here, when your browser shares it (<span class="font-mono text-slate-400">referrer</span>, <span class="font-mono text-slate-400">traffic_source</span>).</li>
+            <li>Which website or link brought you here — reduced to its address and page path, with any tracking parameters removed — plus a coarse label for how you arrived (<span class="font-mono text-slate-400">referrer</span>, <span class="font-mono text-slate-400">traffic_source</span>: direct, search, social, or referral).</li>
             <li>What kind of device and screen you used — phone, tablet, or computer (<span class="font-mono text-slate-400">device</span>, <span class="font-mono text-slate-400">viewport</span>).</li>
-            <li>Which browser family is recorded; your operating system and language are also columns, but most visits arrive with those left blank (<span class="font-mono text-slate-400">browser</span>, <span class="font-mono text-slate-400">os</span>, <span class="font-mono text-slate-400">language</span>).</li>
-            <li>How far down the page you scrolled — captured sometimes, empty on most visits (<span class="font-mono text-slate-400">scroll_depth</span>).</li>
+            <li>Which browser family, a coarse operating system label, and your browser's language (<span class="font-mono text-slate-400">browser</span>, <span class="font-mono text-slate-400">os</span>, <span class="font-mono text-slate-400">language</span>).</li>
+            <li>How far down the page you scrolled — recorded on a rolling basis as you read, empty on pages you don't scroll (<span class="font-mono text-slate-400">scroll_depth</span>).</li>
             <li>Time stamps so I can see when people visit (<span class="font-mono text-slate-400">timestamp_utc</span>, <span class="font-mono text-slate-400">received_utc</span>, <span class="font-mono text-slate-400">date</span>, <span class="font-mono text-slate-400">time</span>).</li>
-            <li>A random visit ID so two visits aren't counted as one (<span class="font-mono text-slate-400">session_id</span>).</li>
-            <li>A few small labels (<span class="font-mono text-slate-400">event</span>, <span class="font-mono text-slate-400">event_value</span>, <span class="font-mono text-slate-400">ai_source</span>, <span class="font-mono text-slate-400">visitor_type</span>) — these are reserved columns, but most visits leave them empty too.</li>
+            <li>A random visit ID so two visits aren't counted as one (<span class="font-mono text-slate-400">session_id</span>), and a simple <em>new</em> or <em>returning</em> label (<span class="font-mono text-slate-400">visitor_type</span>) — worked out on your device from a locally stored random ID that never leaves your browser.</li>
+            <li>A few small reserved labels (<span class="font-mono text-slate-400">event</span>, <span class="font-mono text-slate-400">event_value</span>, <span class="font-mono text-slate-400">ai_source</span>) — these stay empty for now.</li>
           </ul>
           <p>
-            None of these can be used to find out who you are, and I never sell or share any of this with anyone. I use it for one thing: to know which pages people actually find useful so I can spend my hobby time on the right ones. The <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> explains this in more detail.
+            Like Cloudflare, the Google servers that run the collector briefly see standard network data — such as your IP address — purely to deliver the request to their cloud; none of it is stored in the sheet.
+          </p>
+          <p>
+            None of these can be used to find out who you are, and I never sell or share any of this with anyone. I use it for one thing: to know which pages people actually find useful so I can spend my hobby time on the right ones. You can switch the observer off for your browser permanently by visiting any page with <span class="font-mono text-slate-400">?admin=1</span> appended to the address. The <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> explains this in more detail.
           </p>
         </div>
 

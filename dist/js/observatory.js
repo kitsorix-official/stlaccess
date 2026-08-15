@@ -1,15 +1,17 @@
 (function () {
 
   // ============================================
-  // Privacy-first Website Observability
+  // Privacy-first Website Observability (v2)
   // Configuration
   // ============================================
 
-
   // Google Apps Script Web App endpoint
-  // Change this when deploying a new collector  
+  // Change this when deploying a new collector
   const CONFIG = {
     endpoint: 'https://script.google.com/macros/s/AKfycbzXouXSP0cg5Ac5bF8-poyxzU5vWYrazItRifJivRT3zB-C2CCuU2q6CfYdAbbjAtBpCg/exec',
+
+    // Must match the SITE_KEY in the Apps Script collector
+    siteKey: 'obs_stlaccess_2026_9vXk2Q7mP4wZc8Lt',
 
     allowedDomains: [
       'stlaccess.com',
@@ -33,20 +35,15 @@
 
 
   // ============================================
-  // Admin opt-out
+  // Admin opt-out (?admin=1)
   // ============================================
 
-  if (window.location.search.includes(CONFIG.adminParameter + '=1')) {
+  const params = new URLSearchParams(window.location.search);
 
-    localStorage.setItem(
-      'observability_admin',
-      '1'
-    );
-
+  if (params.get(CONFIG.adminParameter) === '1') {
+    localStorage.setItem('observability_admin', '1');
     console.log('[Observability] Admin disabled');
-
   }
-
 
   if (localStorage.getItem('observability_admin') === '1') {
     return;
@@ -54,36 +51,59 @@
 
 
   // ============================================
+  // UUID helper
+  // ============================================
+
+  function makeUuid() {
+
+    if (window.crypto && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+
+    // Fallback for older browsers
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+
+      const r = Math.random() * 16 | 0;
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
+
+      return v.toString(16);
+    });
+  }
+
+
+  // ============================================
   // Session ID
+  // Temporary, per-tab session only
   // ============================================
 
   let sessionId = sessionStorage.getItem('session_id');
 
   if (!sessionId) {
-    sessionId = crypto.randomUUID();
-    sessionStorage.setItem(
-      'session_id',
-      sessionId
-    );
+    sessionId = makeUuid();
+    sessionStorage.setItem('session_id', sessionId);
+  }
+
+  const isSessionStart = sessionStorage.getItem('session_started') !== '1';
+
+  if (isSessionStart) {
+    sessionStorage.setItem('session_started', '1');
   }
 
 
   // ============================================
-  // Client ID
-  // Anonieme browser instance
+  // New vs returning visitor
+  // The persistent ID stays in localStorage and is
+  // NEVER transmitted. Only the boolean label leaves
+  // this browser.
   // ============================================
 
-  let clientId = localStorage.getItem('client_id');
+  const isNewVisitor = !localStorage.getItem('client_id');
 
-  if (!clientId) {
-
-    clientId = crypto.randomUUID();
-
-    localStorage.setItem(
-      'client_id',
-      clientId
-    );
+  if (isNewVisitor) {
+    localStorage.setItem('client_id', makeUuid());
   }
+
+  const visitorType = isNewVisitor ? 'new' : 'returning';
 
 
   // ============================================
@@ -97,11 +117,9 @@
 
     const ua = navigator.userAgent.toLowerCase();
 
-
     if (/iphone|ipod|android.*mobile/.test(ua)) {
       return 'mobile';
     }
-
 
     if (
       /ipad|tablet/.test(ua) ||
@@ -110,16 +128,13 @@
       return 'tablet';
     }
 
-
     if (width <= 480) {
       return 'mobile';
     }
 
-
     if (width <= 1024) {
       return 'tablet';
     }
-
 
     return 'desktop';
   }
@@ -151,13 +166,85 @@
 
     const ua = navigator.userAgent;
 
-
-    if (ua.includes('Firefox')) return 'Firefox';
-    if (ua.includes('Edg')) return 'Edge';
-    if (ua.includes('Chrome')) return 'Chrome';
-    if (ua.includes('Safari')) return 'Safari';
+    if (/Edg\//.test(ua)) return 'Edge';
+    if (/OPR|Opera/.test(ua)) return 'Opera';
+    if (/SamsungBrowser/.test(ua)) return 'Samsung';
+    if (/Firefox|FxiOS/.test(ua)) return 'Firefox';
+    if (/CriOS/.test(ua)) return 'Chrome';
+    if (/Chrome/.test(ua)) return 'Chrome';
+    if (/Safari/.test(ua)) return 'Safari';
 
     return 'Other';
+  }
+
+
+  // ============================================
+  // Operating system (coarse)
+  // ============================================
+
+  function getOs() {
+
+    const ua = navigator.userAgent.toLowerCase();
+
+    if (/iphone|ipad|ipod/.test(ua)) return 'iOS';
+    if (/android/.test(ua)) return 'Android';
+    if (/windows|win/.test(ua)) return 'Windows';
+    if (/mac os x|macintosh/.test(ua)) return 'macOS';
+    if (/linux|crOS/.test(ua)) return 'Linux';
+
+    return 'Other';
+  }
+
+
+  // ============================================
+  // Traffic source
+  // ============================================
+
+  function getTrafficSource() {
+
+    const ref = document.referrer;
+
+    if (!ref) return 'direct';
+
+    try {
+
+      const host = new URL(ref).hostname.toLowerCase();
+
+      if (/google\.|bing\.|duckduckgo\.|yahoo\.|startpage\.|ecosia\.|qwant\.|brave\.|search\./.test(host)) {
+        return 'search';
+      }
+
+      if (/(^|\.)(facebook\.|twitter\.|x\.|reddit\.|instagram\.|linkedin\.|youtube\.|discord\.|pinterest\.|t\.co|m\.me|whatsapp\.)/.test(host)) {
+        return 'social';
+      }
+
+      return 'referral';
+
+    } catch (error) {
+      return 'referral';
+    }
+  }
+
+
+  // ============================================
+  // Referrer, stripped of query strings & hash
+  // ============================================
+
+  function getReferrer() {
+
+    const ref = document.referrer;
+
+    if (!ref) return 'direct';
+
+    try {
+
+      const u = new URL(ref);
+
+      return u.hostname + u.pathname;
+
+    } catch (error) {
+      return ref.split('?')[0].split('#')[0];
+    }
   }
 
 
@@ -165,70 +252,154 @@
   // Event payload
   // ============================================
 
-  const payload = {
+  function send(eventName, eventValue, extra) {
 
-    timestamp_utc: new Date().toISOString(),
+    const payload = {
 
-    page:
-      window.location.pathname,
+      timestamp_utc:
+        new Date().toISOString(),
 
-    event:
-      'page_view',
+      page:
+        window.location.pathname,
 
-    event_value:
-      '',
+      event:
+        eventName,
 
-    referrer:
-      document.referrer || 'direct',
+      event_value:
+        eventValue || '',
 
-    device:
-      getDevice(),
+      referrer:
+        getReferrer(),
 
-    viewport:
-      getViewport(),
+      traffic_source:
+        getTrafficSource(),
 
-    browser:
-      getBrowser(),
+      device:
+        getDevice(),
 
-    client_id:
-      clientId,
+      viewport:
+        getViewport(),
 
-    session_id:
-      sessionId
-  };
+      browser:
+        getBrowser(),
 
+      os:
+        getOs(),
 
-  // ============================================
-  // Send
-  // ============================================
+      language:
+        navigator.language || '',
 
-  window.addEventListener(
-    'load',
-    function () {
+      visitor_type:
+        visitorType,
+
+      scroll_depth:
+        '',
+
+      session_id:
+        sessionId,
+
+      site_key:
+        CONFIG.siteKey
+    };
+
+    if (extra) {
+      for (const key in extra) {
+        if (extra.hasOwnProperty(key)) {
+          payload[key] = extra[key];
+        }
+      }
+    }
+
+    const body = JSON.stringify(payload);
+
+    if (navigator.sendBeacon) {
+
+      navigator.sendBeacon(
+        CONFIG.endpoint,
+        body
+      );
+
+    } else {
 
       fetch(
         CONFIG.endpoint,
         {
           method: 'POST',
           mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body:
-            JSON.stringify(payload)
+          keepalive: true,
+          body: body
         }
       )
-        .catch(function (error) {
-
-          console.log(
-            '[Observability] Error:',
-            error
-          );
-
-        });
+        .catch(function () {});
 
     }
+  }
+
+
+  // ============================================
+  // Scroll depth (throttled, sent once on leave)
+  // ============================================
+
+  let maxScrollDepth = 0;
+  let scrollScheduled = false;
+  let scrollSent = false;
+
+  function readScrollDepth() {
+
+    scrollScheduled = false;
+
+    const doc = document.documentElement;
+    const total = doc.scrollHeight - doc.clientHeight;
+
+    if (total <= 0) return;
+
+    const depth = Math.round((window.scrollY / total) * 100);
+
+    if (depth > maxScrollDepth) {
+      maxScrollDepth = depth;
+    }
+  }
+
+  document.addEventListener(
+    'scroll',
+    function () {
+      if (scrollScheduled) return;
+      scrollScheduled = true;
+      setTimeout(readScrollDepth, 500);
+    },
+    { passive: true }
   );
+
+  function sendScrollDepth() {
+
+    if (scrollSent) return;
+    scrollSent = true;
+
+    if (maxScrollDepth > 0) {
+      send('page_scroll', '', {
+        scroll_depth: String(maxScrollDepth)
+      });
+    }
+  }
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') {
+      sendScrollDepth();
+    }
+  });
+
+  window.addEventListener('pagehide', sendScrollDepth);
+
+
+  // ============================================
+  // Send page_view (immediately, script is defer)
+  // ============================================
+
+  send('page_view');
+
+  if (isSessionStart) {
+    send('session_start');
+  }
 
 
 })();

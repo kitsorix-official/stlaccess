@@ -3,7 +3,7 @@ title: "How to Scale Real-World Objects to Miniature Scale (The Math Explained)"
 description: "The formula I use to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for Warhammer, D&D, and Bolt Action."
 tldr: "(real height in inches × scale ÷ 63 = height in mm). An 18-foot dragon at 32mm scale stands about 110mm tall — roughly the height of a soda can."
 pubDate: 2026-06-28
-modDate: 2026-08-10
+modDate: 2026-08-15
 faq:
   - question: How do I convert a real-world height into 32mm miniature scale?
     answer: >-
@@ -94,6 +94,18 @@ For 28mm scale, the same 18-foot monster becomes:
 ```
 
 Notice 28mm and 1:56 come out almost identical (96mm vs 98mm). That is no accident — 28mm eye level maps to roughly 1:56 top of head on the 175cm baseline, which is exactly why Bolt Action treats the two as the same thing.
+
+## Prefer 28mm Scale?
+
+Everything in this guide is worked out at 32mm scale because that is the modern heroic standard — Warhammer, Age of Sigmar, and most current skirmish games. A big chunk of the hobby still runs on true 28mm though: classic D&D, Bolt Action, historical wargaming, and a lot of older sculpt ranges. The math is identical — you just swap the scale number in the formula:
+
+```
+(real_height_inches × 28) ÷ 63 = height_in_mm
+```
+
+Run the same 18-foot dragon through it and it comes out at 96mm instead of 110mm. And because 28mm eye level maps to roughly 1:56 top of head, everything in this guide converts to Bolt Action vehicles and terrain without re-rolling the numbers.
+
+I'm building a dedicated [28mm scale guide](/guides/real-world-objects-to-28mm) with a full set of 28mm charts for humans, monsters, vehicles, and terrain — same formula, 28mm-specific numbers, and how to mix 28mm and 32mm armies on one table. Until it ships, the "Converting Any Scale" table above has everything you need: plug 28 into the formula and you're there.
 
 ## Why the 175cm Baseline Matters
 

@@ -5,8 +5,36 @@
     <link>https://stlaccess.com/guides</link>
     <description>Articles about 3D printed miniature scale conversion, FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.</description>
     <language>en</language>
-    <lastBuildDate>Tue, 11 Aug 2026 12:03:43 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 15 Aug 2026 22:20:58 GMT</lastBuildDate>
     <atom:link href="https://stlaccess.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>How to Scale 28mm to 32mm (114.3% Slicer Percentage, Explained)</title>
+      <link>https://stlaccess.com/guides/28mm-to-32mm-scale-conversion</link>
+      <description>What percent for 28mm to 32mm? 114.3% with XYZ locked. The math behind the conversion, the exact slicer steps for Chitubox, Lychee, Cura, and PrusaSlicer, and how to verify it on a test print.</description>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/28mm-to-32mm-scale-conversion</guid>
+    </item>
+    <item>
+      <title>How to Downscale 32mm to 28mm (87.5% Slicer Percentage, Explained)</title>
+      <link>https://stlaccess.com/guides/32mm-to-28mm-scale-conversion</link>
+      <description>Shrink 32mm miniatures down to true 28mm scale with an 87.5% slicer percentage. Fits more minis on a resin plate and mixes D&amp;D proxies into true-scale armies.</description>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/32mm-to-28mm-scale-conversion</guid>
+    </item>
+    <item>
+      <title>D&amp;D Miniature Scale Guide — What Size Are D&amp;D Minis?</title>
+      <link>https://stlaccess.com/guides/dnd-miniature-scale-guide</link>
+      <description>What scale is D&amp;D? Medium humanoids are 28mm to the eyes on the 175cm baseline. The full D&amp;D size chart: Tiny, Small, Medium, Large, Huge, Gargantuan with mini heights and base sizes.</description>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/dnd-miniature-scale-guide</guid>
+    </item>
+    <item>
+      <title>Star Wars: Legion Scale Guide — What Scale Are Legion Miniatures?</title>
+      <link>https://stlaccess.com/guides/star-wars-legion-scale-guide</link>
+      <description>Star Wars: Legion miniatures are 35mm scale (1:47), measured to eye level at 35.7mm. Full height about 40mm. Exact slicer percentages to convert Legion STLs and proxies.</description>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/star-wars-legion-scale-guide</guid>
+    </item>
     <item>
       <title>How to Measure a Miniature&apos;s Scale: Eye Level vs Top of Head Explained</title>
       <link>https://stlaccess.com/guides/how-to-measure-miniature-scale</link>

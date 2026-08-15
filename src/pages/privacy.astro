@@ -149,7 +149,7 @@ const privacySchema = graph([
             The only analytics on this site is a self-hosted <strong class="text-white">web observer</strong> — an anonymous, cookie-free visitor counter. Imagine a click-counter at a shop door: it counts people coming in and notes roughly how they arrived, and nothing more. It does <strong class="text-white">not</strong> store your name, email, IP address, or anything that can be used to identify you.
           </p>
           <p>
-            When a visit happens, the observer sends a few non-personal details to a <strong class="text-white">Google Apps Script</strong> (a small program running in Google's cloud), which writes them into a <strong class="text-white">Google Sheet</strong> that only I can open. The exact fields stored are:
+            When a visit happens, the observer sends a few non-personal details to a <strong class="text-white">Google Apps Script</strong> (a small program running in Google's cloud), which writes them into a <strong class="text-white">Google Sheet</strong> that only I can open. Like Cloudflare, the Google servers that run this script briefly see standard network data — such as your IP address — purely to deliver the request to their cloud; none of it is stored in my sheet. The exact fields stored are:
           </p>
           <div class="rounded-2xl border border-white/5 bg-black/40 p-6">
             <p class="font-mono text-xs text-slate-400 leading-loose break-words">
@@ -158,13 +158,13 @@ const privacySchema = graph([
           </div>
           <p>In plain words, that means:</p>
           <ul class="list-disc pl-6 space-y-4">
-            <li><strong>Which page you viewed</strong> (<span class="font-mono text-slate-400">page</span>); how far you scrolled is a column too, but it's captured only sometimes and is empty on most visits (<span class="font-mono text-slate-400">scroll_depth</span>).</li>
-            <li><strong>Where you came from</strong> — the link or website that brought you here, when your browser shares it (<span class="font-mono text-slate-400">referrer</span>, <span class="font-mono text-slate-400">traffic_source</span>).</li>
+            <li><strong>Which page you viewed</strong> (<span class="font-mono text-slate-400">page</span>); how far down you scrolled is recorded on a rolling basis as you read, and stays empty on pages you don't scroll (<span class="font-mono text-slate-400">scroll_depth</span>).</li>
+            <li><strong>Where you came from</strong> — the site that brought you here, reduced to its address and page path with any tracking parameters removed, plus a coarse label for how you arrived (<span class="font-mono text-slate-400">referrer</span>, <span class="font-mono text-slate-400">traffic_source</span>: direct, search, social, or referral).</li>
             <li><strong>Broad device info</strong> — phone, tablet, or desktop, and approximate screen size (<span class="font-mono text-slate-400">device</span>, <span class="font-mono text-slate-400">viewport</span>).</li>
-            <li><strong>Browser family</strong> (<span class="font-mono text-slate-400">browser</span>); operating system and language are also columns, but most visits arrive with those left blank (<span class="font-mono text-slate-400">os</span>, <span class="font-mono text-slate-400">language</span>).</li>
+            <li><strong>Browser family</strong>, a coarse operating system label, and your browser's language (<span class="font-mono text-slate-400">browser</span>, <span class="font-mono text-slate-400">os</span>, <span class="font-mono text-slate-400">language</span>).</li>
             <li><strong>Timestamps</strong> so I can see when visits happen (<span class="font-mono text-slate-400">timestamp_utc</span>, <span class="font-mono text-slate-400">received_utc</span>, <span class="font-mono text-slate-400">date</span>, <span class="font-mono text-slate-400">time</span>).</li>
-            <li><strong>An anonymous session ID</strong> so separate visits aren't counted as one (<span class="font-mono text-slate-400">session_id</span>).</li>
-            <li><strong>A few reserved labels</strong> about the visit type (<span class="font-mono text-slate-400">event</span>, <span class="font-mono text-slate-400">event_value</span>, <span class="font-mono text-slate-400">ai_source</span>, <span class="font-mono text-slate-400">visitor_type</span>) — these are mostly empty too.</li>
+            <li><strong>An anonymous session ID</strong> so separate visits aren't counted as one, and a simple <span class="font-mono text-slate-400">visitor_type</span> label — <em>new</em> or <em>returning</em> — worked out on your device from a locally stored random ID that <strong class="text-white">never leaves your browser</strong>.</li>
+            <li><strong>A few reserved labels</strong> for future use (<span class="font-mono text-slate-400">event</span>, <span class="font-mono text-slate-400">event_value</span>, <span class="font-mono text-slate-400">ai_source</span>) — these stay empty for now.</li>
           </ul>
           <p>
             None of these fields can be used to work out who you are, and I never sell or share them. I use them for a single purpose: to understand which pages are useful so I can spend my time improving the right things. The full explanation also lives on the <a href="/legal" class="text-[#ff6b35] hover:text-white transition-colors">Legal page</a>.
@@ -206,6 +206,15 @@ const privacySchema = graph([
               <strong>Wiping Info:</strong> You can completely clear your saved numbers
               instantly by clicking "Clear All" in your layout panel or by wiping
               your local browser site cache.
+            </li>
+            <li>
+              <strong>Turning off the observer:</strong> Visit any page with
+              <span class="font-mono text-slate-400">?admin=1</span> appended to the
+              address (for example
+              <span class="font-mono text-slate-400">/tools?admin=1</span>) and the
+              web observer switches off permanently for your browser — no page views
+              or scroll activity will be recorded from it again. You can switch it
+              back on at any time by clearing your browser's site data.
             </li>
           </ul>
         </div>
