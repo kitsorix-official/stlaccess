@@ -1,5 +1,5 @@
 ---
-title: "How to Scale Real-World Objects to Miniature Scale (The Math Explained)"
+title: "Real-World Objects to 32mm Scale: Feet to MM Conversion (The Math Explained)"
 description: "The formula I use to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for Warhammer, D&D, and Bolt Action."
 tldr: "(real height in inches × scale ÷ 63 = height in mm). An 18-foot dragon at 32mm scale stands about 110mm tall — roughly the height of a soda can."
 pubDate: 2026-06-28

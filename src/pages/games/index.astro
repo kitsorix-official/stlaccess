@@ -40,6 +40,11 @@ const gamesWithData = gameSystems.map((game) => {
 
 const dataBySlug = Object.fromEntries(gamesWithData.map((d) => [d.game.slug, d]));
 
+// Dedicated full guides that expand on a game's scale section
+const dedicatedGuides = {
+  "star-wars-legion": { title: "Star Wars: Legion Scale Guide", href: "/guides/star-wars-legion-scale-guide" },
+};
+
 // Group games by scale
 const byScale = {};
 for (const game of gameSystems) {
@@ -73,7 +78,7 @@ const gamesSchema = graph([
 ---
 
 <Layout
-  title="Tabletop Game Scale Guide for 3D Printing Miniatures | STLACCESS"
+  title="Miniature Scale Guide for Tabletop Games | Warhammer, D&D, Star Wars Legion | STLACCESS"
   description="Scale conversion guides for every tabletop wargame and RPG — Warhammer 40k, D&D, Bolt Action, Star Wars Legion, and 20+ systems. Get the exact slicer percentage for 3D printing miniatures at the right scale."
 >
 
@@ -148,6 +153,12 @@ const gamesSchema = graph([
                       <i class="fa-solid fa-link text-[10px]" aria-hidden="true"></i>
                       {game.slug}
                     </a>
+                    {dedicatedGuides[game.slug] && (
+                      <a href={dedicatedGuides[game.slug].href} class="inline-flex items-center gap-2 mt-3 ml-4 text-xs font-semibold text-[#ff6b35] hover:text-white transition-colors" aria-label={dedicatedGuides[game.slug].title}>
+                        <i class="fa-solid fa-book-open text-[10px]" aria-hidden="true"></i>
+                        {dedicatedGuides[game.slug].title}
+                      </a>
+                    )}
                   </div>
                   <div class="shrink-0 bg-slate-900/50 border border-[#ff6b35]/20 rounded-2xl px-6 py-5 glow-box">
                     <p class="text-[10px] font-black uppercase tracking-widest text-[#ff6b35] mb-1">Miniature scale</p>

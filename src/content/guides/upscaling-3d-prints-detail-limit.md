@@ -1,5 +1,5 @@
 ---
-title: "Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?"
+title: "Upscaling 3D Prints: How Big Can You Enlarge a 32mm Miniature Before Losing Detail?"
 description: "How much can you enlarge a 32mm miniature on FDM before losing detail? Layer line visibility, nozzle settings, and slicer tips for clean upscaling on my Bambu Lab A1 Mini."
 tldr: "On FDM, a 32mm model upscales to about 50mm (156%) before layer lines get distracting. A 0.2mm nozzle at 0.08mm layers pushes the comfortable ceiling to about 80mm. Check the polygon count before going past that."
 pubDate: 2026-06-25
