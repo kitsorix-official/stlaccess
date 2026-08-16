@@ -5,7 +5,7 @@ export const SITE_URL = "https://stlaccess.com";
 export const ORG_ID = `${SITE_URL}/#organization`;
 export const PERSON_ID = `${SITE_URL}/#person`;
 export const AUTHOR_URL = "https://github.com/kitsorix-official";
-export const LOGO_URL = `${SITE_URL}/favicon.svg`;
+export const LOGO_URL = `${SITE_URL}/pwa-512x512.png`;
 export const IMAGE_URL = `${SITE_URL}/og-image.svg`;
 
 export function stripHtml(text: string): string {

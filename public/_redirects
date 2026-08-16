@@ -1,4 +1,5 @@
 /library  /reference  301
+/library.html  /reference  301
 /blog  /guides  301
 /blog/*  /guides/:splat  301
 /embed  /  301
@@ -52,3 +53,6 @@
 
 # Non-existent pages
 /cookies/  /privacy  301
+
+# llms.txt (renamed from llm.txt)
+/llm.txt  /llms.txt  301

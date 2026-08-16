@@ -1,0 +1,19 @@
+# Known old URLs that search engines (Bing, etc.) still have indexed.
+# Each one 301-redirects via public/_redirects to its consolidated target,
+# but crawlers won't re-fetch them unless we tell IndexNow. Submitting them
+# forces a recrawl so the redirect is followed and the stale entry drops out.
+#
+# One URL (absolute or root-relative) per line. Lines starting with # are ignored.
+/blog/chitubox-lychee-scaling-guide
+/blog/175cm-baseline
+/games/star-wars-legion
+/games/gaslands
+/games/battletech
+/games/malifaux
+/games/age-of-sigmar
+/games/bolt-action
+/reference/35mm-to-32mm
+/reference/32mm-to-28mm
+/reference/28mm-to-35mm
+/reference/35mm-to-40mm
+/reference/1-72-to-28mm

@@ -8,7 +8,7 @@
   // Google Apps Script Web App endpoint
   // Change this when deploying a new collector
   const CONFIG = {
-    endpoint: 'https://script.google.com/macros/s/AKfycbzXouXSP0cg5Ac5bF8-poyxzU5vWYrazItRifJivRT3zB-C2CCuU2q6CfYdAbbjAtBpCg/exec',
+    endpoint: 'https://script.google.com/macros/s/AKfycbwTAVgPQUjJ83Q_RWJHBygXpgREuIY53eRdRQtSvXREMxZuZ2bGDBL-QQ1K72Ep_Fn3pQ/exec',
 
     // Must match the SITE_KEY in the Apps Script collector
     siteKey: 'obs_stlaccess_2026_9vXk2Q7mP4wZc8Lt',
@@ -227,6 +227,38 @@
 
 
   // ============================================
+  // Search engine, parsed from referrer host
+  // ============================================
+
+  function getEngine() {
+
+    const ref = document.referrer;
+
+    if (!ref) return '';
+
+    try {
+
+      const host = new URL(ref).hostname.toLowerCase();
+
+      if (/google\./.test(host)) return 'google';
+      if (/bing\./.test(host)) return 'bing';
+      if (/duckduckgo\./.test(host)) return 'duckduckgo';
+      if (/brave\./.test(host)) return 'brave';
+      if (/yahoo\./.test(host)) return 'yahoo';
+      if (/ecosia\./.test(host)) return 'ecosia';
+      if (/qwant\./.test(host)) return 'qwant';
+      if (/startpage\./.test(host)) return 'startpage';
+      if (/search\./.test(host)) return 'other';
+
+      return '';
+
+    } catch (error) {
+      return '';
+    }
+  }
+
+
+  // ============================================
   // Referrer, stripped of query strings & hash
   // ============================================
 
@@ -273,6 +305,9 @@
 
       traffic_source:
         getTrafficSource(),
+
+      engine:
+        getEngine(),
 
       device:
         getDevice(),

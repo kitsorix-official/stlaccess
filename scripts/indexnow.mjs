@@ -8,6 +8,8 @@ const repoRoot = path.resolve(__dirname, '..');
 
 const ENDPOINT = 'https://api.indexnow.org/indexnow';
 const SITEMAP_PATH = path.join(repoRoot, 'dist', 'sitemap.xml');
+const REDIRECTS_PATH = path.join(repoRoot, 'public', '_redirects');
+const RETIRE_URLS_PATH = path.join(repoRoot, '.indexnow', 'retire-urls.txt');
 const KEY_DIR = path.join(repoRoot, 'public');
 const MANIFEST_PATH = path.join(repoRoot, '.indexnow', 'last-submitted.json');
 
@@ -52,6 +54,32 @@ function readSitemapUrls() {
   return [...new Set(urls)];
 }
 
+function readRedirectUrls(siteUrl) {
+  if (!fs.existsSync(REDIRECTS_PATH)) return [];
+  const lines = fs.readFileSync(REDIRECTS_PATH, 'utf8').split('\n');
+  const sources = [];
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (!line || line.startsWith('#')) continue;
+    const source = line.split(/\s+/)[0];
+    if (!source || source.includes('*')) continue;
+    sources.push(source);
+  }
+  return [...new Set(sources)].map((p) => `${siteUrl}${p}`);
+}
+
+function readRetireUrls(siteUrl) {
+  if (!fs.existsSync(RETIRE_URLS_PATH)) return [];
+  const lines = fs.readFileSync(RETIRE_URLS_PATH, 'utf8').split('\n');
+  const urls = [];
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (!line || line.startsWith('#')) continue;
+    urls.push(line.startsWith('http') ? line : `${siteUrl}${line}`);
+  }
+  return [...new Set(urls)];
+}
+
 function loadManifest() {
   if (fs.existsSync(MANIFEST_PATH)) {
     return JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
@@ -81,7 +109,10 @@ async function main() {
 
   const siteUrl = loadSiteUrl();
   const { key, host, keyLocation } = resolveKey(siteUrl);
-  const urls = readSitemapUrls();
+  const sitemapUrls = readSitemapUrls();
+  const redirectUrls = readRedirectUrls(siteUrl);
+  const retireUrls = readRetireUrls(siteUrl);
+  const urls = [...new Set([...sitemapUrls, ...redirectUrls, ...retireUrls])];
   const manifest = loadManifest();
 
   const current = new Set(urls);
@@ -91,8 +122,11 @@ async function main() {
 
   console.log(`Host:        ${host}`);
   console.log(`Key file:    ${keyLocation}`);
-  console.log(`Sitemap URLs: ${urls.length}`);
-  console.log(`To submit:   ${toSubmit.length}${force ? ' (--force: all URLs)' : ' (new/changed only)'}`);
+  console.log(`Sitemap URLs: ${sitemapUrls.length}`);
+  console.log(`Redirect URLs: ${redirectUrls.length}`);
+  console.log(`Retire URLs:   ${retireUrls.length}`);
+  console.log(`Total unique:  ${urls.length}`);
+  console.log(`To submit:     ${toSubmit.length}${force ? ' (--force: all URLs)' : ' (new/changed only)'}`);
   if (removed.length) console.log(`Removed from manifest: ${removed.length}`);
 
   if (dryRun) {

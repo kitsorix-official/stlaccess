@@ -227,6 +227,38 @@
 
 
   // ============================================
+  // Search engine, parsed from referrer host
+  // ============================================
+
+  function getEngine() {
+
+    const ref = document.referrer;
+
+    if (!ref) return '';
+
+    try {
+
+      const host = new URL(ref).hostname.toLowerCase();
+
+      if (/google\./.test(host)) return 'google';
+      if (/bing\./.test(host)) return 'bing';
+      if (/duckduckgo\./.test(host)) return 'duckduckgo';
+      if (/brave\./.test(host)) return 'brave';
+      if (/yahoo\./.test(host)) return 'yahoo';
+      if (/ecosia\./.test(host)) return 'ecosia';
+      if (/qwant\./.test(host)) return 'qwant';
+      if (/startpage\./.test(host)) return 'startpage';
+      if (/search\./.test(host)) return 'other';
+
+      return '';
+
+    } catch (error) {
+      return '';
+    }
+  }
+
+
+  // ============================================
   // Referrer, stripped of query strings & hash
   // ============================================
 
@@ -273,6 +305,9 @@
 
       traffic_source:
         getTrafficSource(),
+
+      engine:
+        getEngine(),
 
       device:
         getDevice(),
