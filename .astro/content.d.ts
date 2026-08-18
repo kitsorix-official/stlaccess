@@ -131,6 +131,7 @@ declare module 'astro:content' {
   data: InferEntrySchema<"guides">;
   rendered?: RenderedContent;
   filePath?: string;
+  digest?: string | number;
 }>;
 
 	};

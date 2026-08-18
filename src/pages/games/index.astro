@@ -67,7 +67,7 @@ const gamesSchema = graph([
     { name: "Home", path: "/" },
     { name: "Game Systems", path: "/games" },
   ]),
-  faqPage(gamesFaq),
+  faqPage(gamesFaq, "/games"),
   itemList(gameSystems.map((game) => ({
     type: "Game",
     name: game.name,
@@ -84,7 +84,7 @@ const gamesSchema = graph([
 
 <JsonLd slot="head" data={gamesSchema} />
 
-<div slot="page-header">
+<div slot="hero">
   <!-- Breadcrumb -->
   <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
     <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>

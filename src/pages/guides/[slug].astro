@@ -37,7 +37,7 @@ const guideSchema = graph([
     dateModified: modDate.toISOString(),
     keywords: post.data.tags,
   }),
-  ...(post.data.faq ? [faqPage(post.data.faq)] : []),
+  ...(post.data.faq ? [faqPage(post.data.faq, `/guides/${post.id}`)] : []),
 ]);
 ---
 
@@ -48,7 +48,7 @@ const guideSchema = graph([
 
 <JsonLd slot="head" data={guideSchema} />
 
-<div slot="page-header">
+<div slot="hero">
 <!-- Breadcrumbs -->
 <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>

@@ -216,7 +216,7 @@ const toolSchema = graph([
     description: tool.description,
     url: tool.url,
   }),
-  ...(toolFaqs[tool.slug] ? [faqPage(toolFaqs[tool.slug])] : []),
+  ...(toolFaqs[tool.slug] ? [faqPage(toolFaqs[tool.slug], tool.url)] : []),
 ]);
 ---
 
@@ -227,7 +227,7 @@ const toolSchema = graph([
 
 <JsonLd slot="head" data={toolSchema} />
 
-<div slot="page-header">
+<div slot="hero">
 <!-- Breadcrumbs -->
 <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>

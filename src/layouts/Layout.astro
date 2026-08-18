@@ -96,6 +96,11 @@ const currentPath = Astro.url.pathname;
          so its children stay flex items of <body> (required for the navbar's
          sticky positioning). -->
     <header class="contents">
+      <!-- Hero (homepage only) — first in DOM, visually below navbar via order -->
+      <div class="order-2">
+        <slot name="hero" />
+      </div>
+
       <!-- Skip link -->
       <a
         href="#main-content"
@@ -182,7 +187,6 @@ const currentPath = Astro.url.pathname;
 
     <!-- Main content -->
     <main id="main-content" class="flex-grow order-3">
-      <slot name="page-header" />
       <slot />
     </main>
 

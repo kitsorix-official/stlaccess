@@ -107,17 +107,29 @@ export function softwareApplication({ name, description, url }: SoftwareAppOptio
 export interface FaqItem {
   question: string;
   answer: string;
+  url?: string;
 }
 
-export function faqPage(items: FaqItem[]) {
+export function faqPage(items: FaqItem[], pageUrl?: string) {
   return {
     "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
+    mainEntity: items.map((item, i) => ({
       "@type": "Question",
       name: stripHtml(item.question),
+      answerCount: 1,
+      datePublished: new Date().toISOString().split("T")[0],
+      ...(item.url || pageUrl ? { url: item.url || `${SITE_URL}${pageUrl}#qa-${i}` } : {}),
       acceptedAnswer: {
         "@type": "Answer",
         text: stripHtml(item.answer),
+        datePublished: new Date().toISOString().split("T")[0],
+        upvoteCount: 0,
+        author: {
+          "@type": "Person",
+          name: "kitsorix",
+          url: AUTHOR_URL,
+        },
+        url: item.url || (pageUrl ? `${SITE_URL}${pageUrl}#qa-${i}` : undefined),
       },
     })),
   };
@@ -179,15 +191,17 @@ export interface WebPageOptions {
   name: string;
   description: string;
   url: string;
+  mainEntity?: string;
 }
 
-export function webPage({ type = "WebPage", name, description, url }: WebPageOptions) {
+export function webPage({ type = "WebPage", name, description, url, mainEntity }: WebPageOptions) {
   return {
     "@type": type,
     name,
     description,
     url: `${SITE_URL}${url}`,
     isPartOf: { "@id": SITE_URL },
+    ...(mainEntity ? { mainEntity: { "@id": mainEntity } } : {}),
   };
 }
 

@@ -5,7 +5,7 @@ import conversions from '../data/conversions.json';
 import tools from '../data/tools.json';
 import filamentPresets from '../data/filamentPresets.json';
 import site from '../data/site.json';
-import { graph, organization, person, breadcrumb, webPage } from '../lib/schema';
+import { graph, organization, person, breadcrumb, webPage, PERSON_ID } from '../lib/schema';
 
 const uniqueFilamentTypes = [...new Set(filamentPresets.map(p => p.type))].length;
 const conv28to32 = conversions.find(c => c.slug === '28mm-to-32mm');
@@ -22,6 +22,7 @@ const aboutSchema = graph([
     name: "About STLACCESS — Built by a Warhammer & 3D Printing Hobbyist",
     description: site.description,
     url: "/about",
+    mainEntity: PERSON_ID,
   }),
 ]);
 ---
@@ -31,7 +32,7 @@ const aboutSchema = graph([
 >
 
 <JsonLd slot="head" data={aboutSchema} />
-<div slot="page-header">
+<div slot="hero">
   <!-- Breadcrumbs -->
   <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
     <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>

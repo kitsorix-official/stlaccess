@@ -16,7 +16,7 @@ const faqSchema = graph([
     { name: "Home", path: "/" },
     { name: "FAQ", path: "/faq" },
   ]),
-  faqPage(allFaqItems),
+  faqPage(allFaqItems, "/faq"),
 ]);
 ---
 <Layout
@@ -24,7 +24,7 @@ const faqSchema = graph([
   description="Answers to the scale conversion questions I get most — 28mm to 32mm, vehicle scales, FDM slicer settings, and how to stop wasting filament on the wrong miniature sizes."
 >
 <JsonLd slot="head" data={faqSchema} />
-<div slot="page-header">
+<div slot="hero">
   <!-- Breadcrumbs -->
   <nav class="max-w-6xl mx-auto pt-4 pb-12 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
     <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>

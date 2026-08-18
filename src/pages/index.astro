@@ -25,7 +25,7 @@ const homeSchema = graph([
   ...(engineTool
     ? [softwareApplication({ name: "STL Scale Calculator", description: engineTool.description, url: "/" })]
     : []),
-  faqPage(homeFaqItems),
+  faqPage(homeFaqItems, "/"),
 ]);
 
 // Build dropdown labels from scales data
@@ -129,7 +129,7 @@ const defaultContext = `${defaultSource} → ${defaultTarget} · Eye Level`;
 </nav>
 
 <!-- Hero Section -->
-<div slot="page-header">
+<div slot="hero">
 <div class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
 <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-6">
 By a hobbyist, for hobbyists
