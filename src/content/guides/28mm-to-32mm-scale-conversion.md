@@ -1,7 +1,7 @@
 ---
 title: "How to Scale 28mm to 32mm (114.3% Slicer Percentage, Explained)"
 description: "What percent for 28mm to 32mm? 114.3% with XYZ locked. The math behind the conversion, the exact slicer steps for Chitubox, Lychee, Cura, and PrusaSlicer, and how to verify it on a test print."
-tldr: "Type 114.3% into your slicer with X, Y, and Z locked. That's 32mm ÷ 28mm × 100, measured to eye level on a 175cm baseline. Measured to the top of the head the number is 116.1%. Print one test piece and check it with calipers before you commit to a full squad."
+tldr: "Type 114.3% into your slicer with X, Y, and Z locked. That's 32mm ÷ 28mm × 100, measured to eye level on a 175cm baseline. Measured to the top of the head the number is 116.1%. Print one test piece and check it with calipers (a PARKSIDE with 0.01mm resolution costs under 15 euro) before you commit to a full squad."
 pubDate: 2026-08-15
 modDate: 2026-08-15
 faq:

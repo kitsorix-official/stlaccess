@@ -131,4 +131,4 @@ These are the mistakes I've personally made, so you don't have to:
 - **Forgetting to lock the aspect ratio** — results in a squashed or stretched miniature. My hydraulic-press print was the teacher here.
 - **Scaling the base with the model** — makes the base look wrong for the game system. Separate it first.
 - **Distinguishing between eye-level and top-of-head** — 28mm refers to eye level; ratio scales like 1:56 are top-of-head. The [scale reference](/reference) has notes for each
-- **Skipping the test print** — I always print one test piece and measure it with calipers before committing to a full squad. The STL scale calculator has a [shrinkage compensation toggle](/) for filaments that shrink more than the usual 0.2-0.5%
+- **Skipping the test print** — I always print one test piece and measure it with my PARKSIDE calipers before committing to a full squad. The STL scale calculator has a [shrinkage compensation toggle](/) for filaments that shrink more than the usual 0.2-0.5%

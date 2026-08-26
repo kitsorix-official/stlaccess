@@ -15,7 +15,7 @@ export const faqData = [
       },
       {
         q: "Can a 28mm and 32mm miniature be the same physical size?",
-        a: `Sometimes. A 28mm miniature measured to the eyes is roughly 30-32mm to the top of the head once you add the forehead and a helmet. So a "28mm" miniature can stand 32mm tall. This is why labels are unreliable. Measure the eye level with <span class="text-[#ff6b35] font-semibold">digital calipers</span> if you want to know what you actually have.`,
+        a: `Sometimes. A 28mm miniature measured to the eyes is roughly 30-32mm to the top of the head once you add the forehead and a helmet. So a "28mm" miniature can stand 32mm tall. This is why labels are unreliable. Measure the eye level with <span class="text-[#ff6b35] font-semibold">digital calipers</span> — a PARKSIDE caliper with 0.01mm resolution costs under 15 euro and gives you everything you need to know what you actually have.`,
       },
       {
         q: "How do I check scale without printing the whole model?",

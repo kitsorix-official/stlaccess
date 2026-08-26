@@ -71,7 +71,7 @@ Lock the axes, type 87.5, apply. Then the steps that actually matter when you're
 1. **Re-generate supports.** Supports generated for the original size won't scale sensibly — gaps get too tight and contact points get too small. Deleting and re-supporting takes two minutes and saves a failed print.
 2. **Check the layer height.** Detail that printed cleanly at 32mm is 12.5% smaller now. On resin I drop to a finer layer height for the batch; on FDM I switch to a 0.2mm nozzle if the model has faces worth saving.
 3. **Re-check orientation.** A 12.5% smaller footprint changes the balance of the model, and thin blades or antennae that survived at 32mm may need a tilt to survive at 28mm.
-4. **Print one test piece** and measure it with calipers before committing to a full squad — same rule as every conversion on this site.
+4. **Print one test piece** and measure it with my PARKSIDE calipers before committing to a full squad — same rule as every conversion on this site.
 
 ### What gets lost when you shrink a miniature
 

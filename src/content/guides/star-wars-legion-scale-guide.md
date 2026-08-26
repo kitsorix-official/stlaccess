@@ -34,7 +34,7 @@ tags: ["star wars legion", "35mm", "scale guide", "proxy", "slicer settings"]
 
 Every time I build a Legion proxy army, someone asks the same two questions: how big are these guys, and what percentage do I type in? Legion sits in an awkward spot between the two big fantasy scales — bigger than Warhammer, smaller than Shatterpoint — so the conversions never feel obvious.
 
-I measured my own Stormtrooper core set with calipers, cross-checked against my [Warhammer scale notes](/games/warhammer-40000), and here's the honest version of what I found.
+I measured my own Stormtrooper core set with my PARKSIDE calipers, cross-checked against my [Warhammer scale notes](/games/warhammer-40000), and here's the honest version of what I found.
 
 ## What Scale Are Star Wars: Legion Miniatures?
 

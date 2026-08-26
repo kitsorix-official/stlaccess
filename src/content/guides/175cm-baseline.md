@@ -26,7 +26,7 @@ faq:
   - question: Are the STLACCESS conversion percentages tested in real prints?
     answer: >-
       Yes. Every published percentage has been physically printed and measured
-      with digital calipers across hundreds of test prints on my Bambu Lab A1
+      with my PARKSIDE digital calipers across hundreds of test prints on my Bambu Lab A1
       Mini. I don't publish a number I haven't held in my hands.
 tags: ["scale theory", "methodology", "reference"]
 ---
@@ -72,4 +72,4 @@ This is also why ratio scales like 1:56 behave differently — they measure to t
 
 ## Testing the Baseline
 
-Every conversion percentage published on STLACCESS is physically printed and measured with digital calipers. The 175cm baseline has held up across hundreds of test prints on my Bambu Lab A1 Mini. I don't publish a number I haven't held in my hands and measured against the rest of my army. If you find a conversion that doesn't look right, the reference library includes a feedback form — submitting a correction helps improve the data for everyone, and I genuinely test every submission that comes in.
+Every conversion percentage published on STLACCESS is physically printed and measured with my PARKSIDE digital calipers (0.01mm resolution, all-metal construction). The 175cm baseline has held up across hundreds of test prints on my Bambu Lab A1 Mini. I don't publish a number I haven't held in my hands and measured against the rest of my army. If you find a conversion that doesn't look right, the reference library includes a feedback form — submitting a correction helps improve the data for everyone, and I genuinely test every submission that comes in.

@@ -14,7 +14,7 @@ faq:
     answer: >-
       PLA and PETG shrink roughly 0.2%-0.5% during cooling. For terrain and
       proxy hulls this variance is negligible. If exact tolerance is needed for
-      interlocking parts, run a test cube and verify with digital calipers.
+      interlocking parts, run a test cube and verify with a PARKSIDE digital caliper (0.01mm resolution, under 15 euro).
 tags: ["FDM printing", "3D printers", "wargaming", "terrain printing", "budget printers", "Sovol SV06", "Creality Ender", "Bambu Lab", "Elegoo"]
 ---
 
@@ -39,7 +39,7 @@ A budget FDM secondary sits beside your resin setup and handles the jobs resin i
 
 ## No-Caliper Scaling Hacks for Beginners
 
-Slicing without calipers is risky, but you don't need a €10 metal display to avoid print disasters. If you're starting out, waiting on shipping, or your battery just died mid-session, you can calibrate scale using objects already sitting on your painting desk.
+Slicing without calipers is risky, but you don't need a €10 metal display to avoid print disasters. If you're starting out, waiting on shipping for your PARKSIDE caliper, or your battery just died mid-session, you can calibrate scale using objects already sitting on your painting desk.
 
 ### Hack 1: The Wargamer's Base-Match Trick
 

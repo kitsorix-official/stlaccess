@@ -1,6 +1,6 @@
 ---
 title: "How to Measure a Miniature's Scale: Eye Level vs Top of Head Explained"
-description: "How I measure miniature scale for 3D printing — eye level vs top of head, digital calipers, and why the 175cm baseline works."
+description: "How I measure miniature scale for 3D printing — eye level vs top of head, PARKSIDE digital calipers, and why the 175cm baseline works."
 tldr: "Measure from the foot to eye level, not the top of the head. A 28mm mini is about 31-32mm to the top of the head. Use calipers and ignore weapons, horns, and dynamic-pose extensions."
 pubDate: "2026-07-11"
 modDate: "2026-07-11"
@@ -8,7 +8,7 @@ faq:
   - question: How do I measure a miniature's scale correctly?
     answer: >-
       Place the miniature flat on the table and measure from the surface to the
-      centre of the eye with digital calipers. A 28mm miniature should read
+      centre of the eye with digital calipers (I use a PARKSIDE with 0.01mm resolution). A 28mm miniature should read
       approximately 28mm to the eyes — about 31-32mm to the top of the head.
       This is the exact routine I use before I publish any percentage.
   - question: Should I measure to eye level or the top of the head?
@@ -25,14 +25,14 @@ faq:
   - question: What is the total height of a 28mm miniature?
     answer: >-
       About 31-32mm to the top of the head. The eyes sit at 28mm and the
-      forehead and skull add roughly 3-4mm. I've confirmed this with calipers on
+      forehead and skull add roughly 3-4mm. I've confirmed this with my PARKSIDE calipers on
       countless prints.
 tags: ["scale theory", "measurement", "eye level", "methodology", "175cm baseline"]
 ---
 
 If you have ever printed a miniature and it looked wrong next to your other models, the problem is probably not the percentage you typed into your slicer. I know because it happened to me. The problem is probably how you measured the scale in the first place.
 
-My moment of clarity came from a Space Marine that looked like a bobblehead. I'd eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." The print came out the correct height, but the proportions were all wrong — a head too big for the body, everything slightly off. I took out my digital calipers and found the real problem: I'd been measuring to the top of the head the whole time, not the eyes. The model wasn't wrong. My measurement was.
+My moment of clarity came from a Space Marine that looked like a bobblehead. I'd eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." The print came out the correct height, but the proportions were all wrong — a head too big for the body, everything slightly off. I took out my PARKSIDE digital calipers and found the real problem: I'd been measuring to the top of the head the whole time, not the eyes. The model wasn't wrong. My measurement was.
 
 ## Eye Level vs Top of Head
 
@@ -50,7 +50,7 @@ The STL scale converter uses eye-level measurement by default because that is wh
 
 ## How to Measure with Digital Calipers
 
-Digital calipers are the best tool for checking a miniature's actual scale. They are cheap, and they ended my guessing for good. Here is the process I follow on every test print:
+A good digital caliper is the best tool for checking a miniature's actual scale. I use a PARKSIDE caliper — all-metal construction, 0.01mm resolution, 0–150mm range, and it costs under 15 euro. It ended my guessing for good. Here is the process I follow on every test print:
 
 1. **Zero the calipers** with the jaws closed.
 2. **Place the miniature on a flat surface.** The base should sit flat on the table.
@@ -97,7 +97,7 @@ This is the chart I use when a sculptor's label is vague:
 ## Summary
 
 - Measure to the eyes, not the top of the head
-- Use digital calipers or your slicer's measurement tool
+- Use digital calipers (a PARKSIDE with 0.01mm resolution works perfectly) or your slicer's measurement tool
 - Ignore weapons, banners, and dynamic pose extensions when measuring
 - The 175cm baseline keeps ratios consistent between any two scales
 - If your print looks wrong, measure the eye level first — before you change anything else

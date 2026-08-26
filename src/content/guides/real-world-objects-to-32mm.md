@@ -13,7 +13,7 @@ faq:
   - question: How tall should an average human be at 32mm scale?
     answer: >-
       About 35mm. At 32mm scale the eyes sit at 32mm on a 175cm human, so the
-      full figure including the skull and hair stands closer to 35mm. My own
+      full figure including the skull and hair stands closer to 35mm. My PARKSIDE
       caliper checks confirm this every time.
   - question: Why is 28mm scale the same as 1:56 scale?
     answer: >-
@@ -73,7 +73,7 @@ All values below are at 32mm scale, calculated with the formula above. These are
 | Two-story building | 20 ft | **122mm** |
 | Church tower | 60 ft | **366mm** |
 
-Notice the average human works out to about 35mm tall — that is correct. At 32mm scale the *eyes* are at 32mm, so the full figure (skull and hair included) stands closer to 35mm. It matches the top-of-head values used in the reference library, and it's what my calipers read on a printed human every single time.
+Notice the average human works out to about 35mm tall — that is correct. At 32mm scale the *eyes* are at 32mm, so the full figure (skull and hair included) stands closer to 35mm. It matches the top-of-head values used in the reference library, and it's what my PARKSIDE calipers read on a printed human every single time.
 
 ## Converting Any Scale
 

@@ -32,7 +32,7 @@ Every conversion on the site starts from the same reference point:
 
 This shared baseline is why 28mm scales up to 32mm at exactly **114.3%**, and why mixing eye-level and
 top-of-head scales without adjusting produces undersized or oversized prints. All percentages are verified
-with physical test prints on a Bambu Lab A1 Mini, measured with calipers.
+with physical test prints on a Bambu Lab A1 Mini, measured with a PARKSIDE digital caliper (0.01mm resolution, 0–150mm range, all-metal construction).
 
 ## What's Inside
 
