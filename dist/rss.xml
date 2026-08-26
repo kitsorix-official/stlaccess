@@ -5,8 +5,15 @@
     <link>https://stlaccess.com/guides</link>
     <description>Articles about 3D printed miniature scale conversion, FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 26 Aug 2026 14:53:41 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2026 21:20:27 GMT</lastBuildDate>
     <atom:link href="https://stlaccess.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Best Budget 3D Printers for Tabletop Wargaming — FDM Terrrain &amp; Vehicle Guide</title>
+      <link>https://stlaccess.com/guides/best-budget-3d-printers-wargaming</link>
+      <description>Top budget FDM 3D printers for wargaming terrain, vehicles, and scatter. Sovol SV06 ACE, Creality Ender-3 V3 SE, Bambu Lab A1 Mini, and Elegoo Centauri Carbon compared.</description>
+      <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/best-budget-3d-printers-wargaming</guid>
+    </item>
     <item>
       <title>How to Scale 28mm to 32mm (114.3% Slicer Percentage, Explained)</title>
       <link>https://stlaccess.com/guides/28mm-to-32mm-scale-conversion</link>
