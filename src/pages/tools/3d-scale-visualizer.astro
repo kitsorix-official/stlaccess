@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import ScaleVisualizerApp from "../../components/visualizer/ScaleVisualizerApp.tsx";
+import { graph, breadcrumb, softwareApplication } from "../../lib/schema";
+
+const schema = graph([
+  breadcrumb([
+    { name: "Home", url: "/" },
+    { name: "3D Scale Visualizer", url: "/tools/3d-scale-visualizer" },
+  ]),
+  softwareApplication({
+    name: "3D Scale Visualizer",
+    description: "Interactive 3D comparison tool for visualizing miniature scale differences between 28mm, 32mm, 35mm, and ratio scales on a calibrated 10mm grid.",
+    url: "/tools/3d-scale-visualizer",
+  }),
+]);
+---
+
+<Layout
+  title="STL Scale Converter & 3D Visualizer | Miniature Scale Calculator | STLACCESS"
+  description="Convert 28mm to 32mm, 1:35 to 28mm, and 15+ tabletop scales. Interactive 3D visualizer compares your minis side-by-side on a calibrated grid."
+>
+  <JsonLd slot="head" data={schema} />
+
+  <nav class="sr-only" aria-label="Breadcrumb">
+    <a href="/">Home</a> / <span aria-current="page">3D Scale Visualizer</span>
+  </nav>
+
+  <div slot="hero">
+    <div class="pt-20 pb-8 px-6 max-w-7xl mx-auto">
+      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-4">
+        Interactive 3D comparison tool
+      </p>
+      <h1 class="text-3xl md:text-5xl font-bold font-heading mb-4 tracking-tight">
+        STL Scale Converter<br />
+        <span class="text-[#ff6b35] italic">& 3D Visualizer</span>
+      </h1>
+      <p class="text-slate-400 max-w-2xl leading-relaxed">
+        Compare miniature scales side-by-side in an interactive 3D environment.
+        Rotate, zoom, and measure against a calibrated 10mm grid. Works with
+        Warhammer 40k, D&amp;D, Bolt Action, Star Wars Legion, and 15+ tabletop scales.
+      </p>
+    </div>
+  </div>
+
+  <div class="h-[75vh] w-full">
+    <ScaleVisualizerApp client:only="react" />
+  </div>
+</Layout>

@@ -24,3 +24,4 @@ https://stlaccess.com/tools/filament-cost-calculator
 https://stlaccess.com/tools/real-world-scale-converter
 https://stlaccess.com/tools/reference-bar-generator
 https://stlaccess.com/tools/miniature-scale-identifier
+https://stlaccess.com/tools/3d-scale-visualizer

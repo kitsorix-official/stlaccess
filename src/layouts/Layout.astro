@@ -32,6 +32,9 @@ if (pathname !== "/" && pathname.endsWith("/")) {
 const canonical = new URL(pathname, Astro.site || site.url).href;
 
 const currentPath = Astro.url.pathname;
+const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
+  ? site.banner
+  : { enabled: false };
 ---
 
 <!doctype html>
@@ -96,6 +99,67 @@ const currentPath = Astro.url.pathname;
          so its children stay flex items of <body> (required for the navbar's
          sticky positioning). -->
     <header class="contents">
+      {/* Global announcement banner — order-0 renders above the order-1 navbar */}
+      {banner.enabled && (
+        <div class="order-0">
+          <div
+            id="site-banner"
+            role="status"
+            aria-live="polite"
+            class="hidden mx-auto max-w-6xl xl:mx-auto px-6 pt-3 pb-0"
+          >
+            <div class="rounded-2xl border border-[#ff6b35]/30 bg-gradient-to-r from-[#ff6b35]/15 via-[#ff6b35]/5 to-transparent px-5 py-3.5">
+              <div class="flex items-center justify-between gap-4">
+                <a href={banner.url} class="flex items-center gap-3 min-w-0 group">
+                  <span class="shrink-0 w-8 h-8 rounded-lg bg-[#ff6b35]/20 flex items-center justify-center">
+                    <i class={`fa-solid ${banner.icon} text-[#ff6b35] text-sm`}></i>
+                  </span>
+                  <span class="min-w-0 text-sm text-slate-300">
+                    <span class="font-semibold text-white group-hover:text-[#ff6b35] transition-colors">
+                      {banner.message}
+                    </span>
+                  </span>
+                  <span class="shrink-0 hidden sm:inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#ff6b35] group-hover:translate-x-0.5 transition-transform">
+                    {banner.urlLabel}
+                    <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                  </span>
+                </a>
+                <button
+                  id="dismiss-banner"
+                  type="button"
+                  aria-label="Dismiss announcement"
+                  class="shrink-0 w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-slate-500 hover:text-slate-300"
+                >
+                  <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <script is:inline data-ttl-days={banner.ttlDays || 14}>
+        (function () {
+          var KEY = "stla-banner";
+          var TTL_MS = parseInt(document.currentScript.dataset.ttlDays, 10) * 86400000;
+          try {
+            var raw = localStorage.getItem(KEY);
+            if (raw) {
+              var d = JSON.parse(raw);
+              if (Date.now() - d.ts < TTL_MS) return;
+            }
+          } catch (e) {}
+          var banner = document.getElementById("site-banner");
+          var btn = document.getElementById("dismiss-banner");
+          if (!banner || !btn) return;
+          banner.classList.remove("hidden");
+          btn.addEventListener("click", function () {
+            banner.classList.add("hidden");
+            try { localStorage.setItem(KEY, JSON.stringify({ ts: Date.now() })); } catch (e) {}
+          });
+        })();
+      </script>
+
       <!-- Hero (homepage only) — first in DOM, visually below navbar via order -->
       <div class="order-2">
         <slot name="hero" />

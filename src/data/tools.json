@@ -83,5 +83,18 @@
     "features": ["Identifies all 16 supported scales", "Works from slicer height or a ruler", "Eye level, top of head, or 'not sure' measurement", "1-click deep link to the scale calculator", "Shows which games each match belongs to", "No uploads, no accounts, no cookies"],
     "category": "references",
     "featured": true
+  },
+  {
+    "slug": "3d-scale-visualizer",
+    "name": "3D Scale Visualizer",
+    "h1": "STL Scale Converter with 3D Visualizer",
+    "metaTitle": "STL Scale Converter & 3D Visualizer | Miniature Scale Calculator | STLACCESS",
+    "shortDescription": "Compare miniature scales side-by-side in an interactive 3D environment. Rotate, zoom, and measure against a calibrated 10mm grid.",
+    "description": "Interactive 3D comparison tool for visualizing miniature scale differences. Select two scales from Warhammer 40k, D&D, Bolt Action, and 15+ tabletop systems, then see them side-by-side in a rotatable 3D viewport. Includes eye-level vs top-of-head measurement, shrinkage compensation, print bed overlay, and a calibrated 10mm grid. Upload your own STL to compare at any scale. Everything runs in your browser — no uploads, no accounts, no cookies.",
+    "icon": "fa-cubes",
+    "url": "/tools/3d-scale-visualizer",
+    "features": ["Interactive 3D viewport with orbit controls", "15+ tabletop scales supported", "Eye-level and top-of-head measurement", "Print bed volume overlay", "Custom STL upload", "Calibrated 10mm grid", "Screenshot export", "Bookmarkable URL parameters", "No uploads, no accounts, no cookies"],
+    "category": "visualizers",
+    "featured": true
   }
 ]

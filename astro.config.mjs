@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import pwa from './scripts/pwa-integration.mjs';
 import fs from 'node:fs';
@@ -103,6 +104,7 @@ export default defineConfig({
       }
     }),
     singleSitemap(),
+    react(),
     pwa()
   ],
 
