@@ -3,6 +3,10 @@ name: indexnow
 on:
   push:
     branches: [main]
+  schedule:
+    # Re-submit the full sitemap every 3 days at 06:00 UTC to help IndexNow
+    # pick up URLs it may have missed on the initial push-triggered run.
+    - cron: "0 6 */3 * *"
 
 concurrency:
   group: indexnow
@@ -19,6 +23,9 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Wait for Cloudflare Pages deployment
+        # Only wait for a fresh deploy on push builds. On scheduled cron runs
+        # there is no new deployment, so skip straight to submitting.
+        if: github.event_name == 'push'
         run: node .github/scripts/wait-for-deploy.mjs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
