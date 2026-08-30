@@ -39,19 +39,24 @@ with physical test prints on a Bambu Lab A1 Mini, measured with a PARKSIDE digit
 - **Scale Engine** (`/`) — 16 tabletop scales, eye-level/top-of-head measurement modes, adjustable shrinkage
   compensation (for PETG and other cooling-shrink materials), copy-to-clipboard, and bookmarkable URL params.
   Powered by the community's most-asked
-  conversion, 28mm → 32mm.
-- **Scale Conversion Reference** (`/reference`) — 44 verified conversion pairs with full math breakdowns and
+  conversion, 28mm → 32mm. This is the **fast-numbers** option.
+- **3D Scale Visualizer** (`/tools/3d-scale-visualizer`) — the premium visual option: compare 28mm, 32mm, 35mm,
+  and ratio scales side-by-side in interactive 3D, rotate, zoom, and measure against a calibrated 10mm grid.
+  For when you want to *see* the size difference, not just read a number.
+- **Scale Conversion Reference** (`/reference`) — 46 verified conversion pairs with full math breakdowns and
   FDM printing notes.
 - **Tabletop Game Scale Guide** (`/games`) — 26 game systems (Warhammer 40k, Age of Sigmar, D&D, Bolt Action,
   Legion, Shatterpoint, BattleTech, Flames of War, and more), each with its scale, base sizes, conversion
   table, and FDM printing tips.
-- **Guides** (`/guides`) — 11 in-depth articles on scale theory, measurement, slicer workflow, and FDM
+- **Guides** (`/guides`) — 16 in-depth articles on scale theory, measurement, slicer workflow, and FDM
   settings. Every guide opens with a **Direct Answer box** so you get the number immediately, before the deep
   dive.
 - **Filament Cost Calculator** (`/tools/filament-cost-calculator`) — know what a print costs (filament +
   electricity) before you start.
 - **Slicer Percentage Calculator** (`/tools/slicer-percentage-calculator`) — two measurements in, one exact
   percentage out.
+- **Miniature Scale Identifier** (`/tools/miniature-scale-identifier`) — measure a model's height and it tells
+  you which scale it matches, with matched game systems and a deep-link into the engine.
 
 ## Privacy
 
@@ -101,6 +106,12 @@ repository.
 
 ## Recent Updates
 
+- **3D Scale Visualizer** — new premium `/tools/3d-scale-visualizer` page: compare 28mm/32mm/35mm and ratio
+  scales side-by-side in interactive 3D on a calibrated 10mm grid. Now there are two ways to work out a scale —
+  the fast-numbers engine on the homepage, or this visual option.
+- **Guides expansion** — grew the guide library from 6 to 16, adding the 28mm real-world conversion companion,
+  FDM vs Resin, Arachne vs Classic wall generator, Cura tree support settings, Resin2FDM workflow,
+  budget-printer picks, D&D and Star Wars Legion scale deep-dives, and the 28mm→32mm / 32mm→28mm walkthroughs.
 - **Guide redesign** — Direct Answer boxes with jump-to-section navigation, reading time, H1-first reading
   order, and restyled prose (card-style tables, accent-bar headings, custom list markers).
 - **SEO pass** — keyword-first titles, all 26 game meta descriptions rewritten to ≤155 characters, and a
