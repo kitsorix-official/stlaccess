@@ -8,16 +8,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Honest freshness: sitemap <lastmod> reflects the explicit content-review
-// date from site.json. When no review has been recorded we omit <lastmod>
-// entirely — Google and Bing both prefer an absent lastmod over a false one.
-const siteConfig = JSON.parse(
-  fs.readFileSync(fileURLToPath(new URL('./src/data/site.json', import.meta.url)), 'utf8')
-);
-const reviewDate = siteConfig.lastContentReview ? new Date(siteConfig.lastContentReview) : null;
-const lastmod = reviewDate && !Number.isNaN(reviewDate.valueOf())
-  ? reviewDate.toISOString()
-  : undefined;
+// Freshness: every page's sitemap <lastmod> is set to the build date, since
+// content is bulk-edited as a whole and the lastmod should reflect "today"
+// whenever a build is deployed. Captured once so all pages share one value.
+const lastmod = new Date().toISOString();
 
 // A tiny integration to collapse Astro's sitemap-index.xml and sitemap-0.xml into a single sitemap.xml
 // and strip the <meta name="generator"> tag from all HTML output

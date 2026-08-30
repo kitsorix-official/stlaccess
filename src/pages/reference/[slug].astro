@@ -1,0 +1,239 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import conversions from "../../data/conversions.json";
+import gameSystems from "../../data/gameSystems.json";
+import site from "../../data/site.json";
+import { conversionDetailContent } from "../../data/conversionDetailContent.js";
+import { graph, breadcrumb, article, person, organization, faqPage, itemList } from "../../lib/schema";
+import { lastModifiedDate } from "../../lib/freshness";
+
+export async function getStaticPaths() {
+  return conversions.map((conv) => ({
+    params: { slug: conv.slug },
+    props: { conv },
+  }));
+}
+
+const { conv } = Astro.props;
+const detail = conversionDetailContent[conv.slug] || {};
+
+// Reverse conversion slug (e.g. 28mm-to-32mm -> 32mm-to-28mm)
+const reverseSlug = `${conv.h1Target.toLowerCase().replace(/:/g, '-').replace(/\//g, '-').replace(/\s+/g, '-')}-to-${conv.h1Source.toLowerCase().replace(/:/g, '-').replace(/\//g, '-').replace(/\s+/g, '-')}`;
+const reverseExists = conversions.some((c) => c.slug === reverseSlug);
+
+// Games whose relatedConversions include this conversion
+const relatedGames = gameSystems.filter((g) =>
+  g.relatedConversions.some((rc) => rc.slug === conv.slug)
+);
+
+const faq = detail.faq || [];
+const modDate = lastModifiedDate();
+
+const pageSchema = graph([
+  organization(),
+  person(),
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Reference", path: "/reference" },
+    { name: `${conv.h1Source} to ${conv.h1Target}`, path: `/reference/${conv.slug}` },
+  ]),
+  article({
+    title: `${conv.h1Source} to ${conv.h1Target} miniature scale for 3D printing`,
+    description: detail.metaDescription || conv.description,
+    url: `/reference/${conv.slug}`,
+    datePublished: modDate?.toISOString?.() ?? new Date().toISOString().split("T")[0],
+    dateModified: modDate?.toISOString?.() ?? new Date().toISOString().split("T")[0],
+    keywords: [conv.h1Source, conv.h1Target, "3D printing", "miniature scale", "slicer percentage", "STL"],
+  }),
+  ...(faq.length > 0 ? [faqPage(faq.map((f) => ({ question: f.question, answer: f.answer })), `/reference/${conv.slug}`)] : []),
+]);
+---
+
+<Layout
+  title={`${detail.title || `${conv.h1Source} to ${conv.h1Target} Miniature Scale for 3D Printing`} | STLACCESS`}
+  description={detail.metaDescription || conv.description}
+>
+
+<JsonLd slot="head" data={pageSchema} />
+
+<div slot="hero">
+  <!-- Breadcrumbs -->
+  <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <span class="text-slate-400" aria-current="page">{conv.h1Source} to {conv.h1Target}</span>
+  </nav>
+
+  <!-- Header -->
+  <div class="max-w-4xl mx-auto px-6 mb-12 conv-header" aria-labelledby="conv-hero-heading">
+    <h1 id="conv-hero-heading" class="text-4xl md:text-5xl font-bold font-heading tracking-tight mb-4 mt-8">
+      {detail.h1 || `${conv.h1Source} to <span class="text-[#ff6b35]">${conv.h1Target}</span> Miniature Scale for 3D Printing`}
+    </h1>
+    <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">
+      {detail.intro || conv.subtext || conv.description}
+    </p>
+  </div>
+</div>
+
+<article class="max-w-4xl mx-auto px-6 pb-12">
+
+  <!-- Main Percentage Box -->
+  <section class="bg-slate-900/50 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-12 mb-16 glow-box percentage-box" aria-label="Conversion result">
+    <div>
+      <h2 class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-2">Slicer Setting</h2>
+      <div class="text-6xl md:text-8xl font-black font-heading text-white tracking-tighter">
+        {conv.percentage}<span class="text-[#ff6b35] text-4xl">%</span>
+      </div>
+      <p class="text-xs text-slate-500 mt-2 font-mono">Uniform scale (XYZ locked)</p>
+      {conv.topHeadPercentage && (
+        <p class="text-sm text-slate-400 mt-4 font-mono">
+          Top of head: <span class="text-white font-bold">{conv.topHeadPercentage}%</span>
+        </p>
+      )}
+    </div>
+    <div class="mt-8 pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-3">
+      <a href="/reference" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-[#ff6b35] transition-colors">
+        <i class="fa-solid fa-arrow-left text-xs"></i>
+        Back to all conversions
+      </a>
+      {reverseExists && (
+        <a href={`/reference/${reverseSlug}`} class="inline-flex items-center gap-2 text-sm font-semibold text-[#ff6b35] hover:text-white transition-colors">
+          {conv.h1Target} to {conv.h1Source}
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      )}
+    </div>
+  </section>
+
+  <!-- Math & Baselines -->
+  <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16" aria-labelledby="math-heading">
+    <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5 math-proof">
+      <h3 id="math-heading" class="font-bold text-white mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-microscope text-[#ff6b35]"></i>
+        The math
+      </h3>
+      <code class="block bg-black/50 p-4 rounded-xl text-xs font-mono text-[#ff6b35] overflow-x-auto">
+        ({conv.math}) × 100 = {conv.percentage}%
+      </code>
+      <p class="text-xs text-slate-500 mt-3">
+        Based on {site.baselineHeightCm}cm human baseline, eye-level measurement ({site.eyeLevelCm}cm).
+      </p>
+    </div>
+    <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+      <h3 class="font-bold text-white mb-4 flex items-center gap-2">
+        <i class="fa-solid fa-circle-info text-[#ff6b35]"></i>
+        Scale baselines
+      </h3>
+      <ul class="space-y-3 text-sm text-slate-400">
+        <li class="flex justify-between">
+          <span>Source eye level</span>
+          <span class="text-white font-mono">{conv.sourceValue}</span>
+        </li>
+        <li class="flex justify-between">
+          <span>Target eye level</span>
+          <span class="text-white font-mono">{conv.targetValue}</span>
+        </li>
+        <li class="flex justify-between border-t border-white/5 pt-3">
+          <span>Scale factor</span>
+          <span class="text-[#ff6b35] font-mono font-bold">{conv.percentage}%</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Authored body -->
+  {detail.sections && detail.sections.length > 0 && (
+    <section class="space-y-8 mb-16" aria-labelledby="guide-heading">
+      {detail.sections.map((s) => (
+        <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+          <h3 class="font-bold text-white mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-chess-knight text-[#ff6b35]"></i>
+            {s.heading}
+          </h3>
+          <p class="text-sm text-slate-400 leading-relaxed whitespace-pre-line">
+            {s.body}
+          </p>
+        </div>
+      ))}
+    </section>
+  )}
+
+  <!-- EEAT block -->
+  <aside class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12 mb-16" aria-label="Calculation methodology and author expertise">
+    <div class="flex items-start gap-4 mb-6">
+      <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0">
+        <i class="fa-solid fa-graduation-cap text-[#ff6b35] text-lg"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-white text-lg mb-1">How I got this number</h3>
+        <p class="text-sm text-slate-400">
+          By <a href="/about" class="text-[#ff6b35] hover:underline font-semibold" rel="author">kitsorix</a>, 3D printing hobbyist
+        </p>
+      </div>
+    </div>
+    <div class="space-y-4 text-sm text-slate-400 leading-relaxed">
+      <p>
+        This percentage comes from a <strong class="text-white">{site.baselineHeight} human baseline</strong> with eye-level at {site.eyeLevelCm}cm. I print the result on my <strong class="text-white">{site.printerName}</strong> and measure with digital calipers before I post it.
+      </p>
+      <p>
+        I test every percentage on FDM before publishing. PLA and PETG cool with minimal dimensional change — typically under 0.5%. If a number fails on my machine, I adjust it.
+      </p>
+      <p>
+        <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1" rel="author">
+          Full methodology <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </div>
+  </aside>
+
+  <!-- Related games that use this conversion -->
+  {relatedGames.length > 0 && (
+    <section class="mb-16" aria-labelledby="related-games-heading">
+      <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
+        <h3 id="related-games-heading" class="font-bold text-white mb-3">Games that use this conversion</h3>
+        <p class="text-sm text-slate-400 mb-4">These tabletop systems commonly need this scale change when you print proxies.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {relatedGames.map((g) => (
+            <a href={`/games/${g.slug}`} class="flex items-center justify-between p-4 bg-black/20 border border-white/5 rounded-xl hover:border-[#ff6b35]/30 transition-all group">
+              <div>
+                <div class="font-semibold text-white group-hover:text-[#ff6b35] transition-colors">{g.name}</div>
+                <div class="text-xs text-slate-500">{g.scale} · {g.genre}</div>
+              </div>
+              <i class="fa-solid fa-arrow-right text-xs text-slate-600 group-hover:text-[#ff6b35] transition-colors"></i>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ -->
+  {faq.length > 0 && (
+    <section class="mb-16" aria-labelledby="faq-heading">
+      <h2 id="faq-heading" class="text-2xl font-bold font-heading tracking-tight mb-6 text-white">Quick Answers</h2>
+      <div class="space-y-6">
+        {faq.map((item) => (
+          <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+            <h3 class="font-semibold text-[#ff6b35] mb-1.5">{item.question}</h3>
+            <p class="text-slate-400 leading-relaxed text-sm">{item.answer}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <div class="text-center py-10 border-t border-white/5">
+    <p class="text-slate-500 text-sm mb-4">Want a live calculation for another pair?</p>
+    <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black font-bold px-8 py-3 rounded-xl hover:brightness-110 active:scale-95 transition-all hover:shadow-lg hover:shadow-[#ff6b35]/20">
+      <i class="fa-solid fa-calculator"></i>
+      Launch the STL scale calculator
+    </a>
+  </div>
+
+</article>
+
+</Layout>

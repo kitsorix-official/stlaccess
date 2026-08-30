@@ -341,7 +341,7 @@ View my full scale reference
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 {referencePreviews.map((card, i) => (
-  <a href={`/reference#${card.slug}`} class="group block bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50">
+  <a href={`/reference/${card.slug}`} class="group block bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50">
     <span class={`text-[10px] font-bold uppercase tracking-widest block mb-4 ${i === 0 ? 'text-[#ff6b35]' : 'text-slate-500'}`}>{card.category}</span>
     <h3 class="text-xl font-bold mb-2 group-hover:text-[#ff6b35] transition-colors">{card.label}</h3>
     <p class="text-sm text-slate-500 mb-6">{card.description}</p>

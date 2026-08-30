@@ -119,7 +119,7 @@
     },
     {
       "question": "What is the difference between 28mm and 32mm scale?",
-      "answer": "28mm is the classic tabletop standard — measured to eye level on a 175cm human with realistic proportions. 32mm heroic scale uses the same baseline but exaggerates heads, hands, and weapons so details read at arm's length. The height difference is only 14.3%, but the added bulk makes them feel a lot bigger on the table. <a href=\"/reference#28mm-to-32mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">Full conversion guide</a>"
+      "answer": "28mm is the classic tabletop standard — measured to eye level on a 175cm human with realistic proportions. 32mm heroic scale uses the same baseline but exaggerates heads, hands, and weapons so details read at arm's length. The height difference is only 14.3%, but the added bulk makes them feel a lot bigger on the table. <a href=\"/reference/28mm-to-32mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">Full conversion guide</a>"
     },
     {
       "question": "What scale is 1:35 in mm for miniatures?",
@@ -131,7 +131,7 @@
     },
     {
       "question": "Why do 1:48 tanks look better with 28mm infantry than 1:56?",
-      "answer": "Here is the thing — most modern 28mm plastics from Warlord Games and similar manufacturers actually measure closer to 30-32mm. A true 1:56 tank looks undersized next to them. 1:48 Tamiya kits match the heroic proportions better, and they are often cheaper than official wargaming vehicles. I use 1:48 for my Bolt Action motor pool and nobody has complained at tournaments. Use my <a href=\"/reference#1-48-to-28mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">1:48 to 28mm guide</a> and see how it looks on your table."
+      "answer": "Here is the thing — most modern 28mm plastics from Warlord Games and similar manufacturers actually measure closer to 30-32mm. A true 1:56 tank looks undersized next to them. 1:48 Tamiya kits match the heroic proportions better, and they are often cheaper than official wargaming vehicles. I use 1:48 for my Bolt Action motor pool and nobody has complained at tournaments. Use my <a href=\"/reference/1-48-to-28mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">1:48 to 28mm guide</a> and see how it looks on your table."
     },
     {
       "question": "What does \"Eye Level\" vs \"Top of Head\" mean in miniature scale?",

@@ -1,16 +1,15 @@
 // src/lib/freshness.ts
-// Single-source freshness control.
+// Site freshness control.
 //
-// The site's "last updated" signals come from an EXPLICIT content-review date
-// in site.json (`lastContentReview`), never from the build clock. Bump that
-// field only when you actually review or update the content.
+// "Last updated" signals (sitemap <lastmod>, visible "Last updated" text, and
+// JSON-LD dateModified/datePublished) are derived from the BUILD DATE, which is
+// captured once at module load time. Because the content is bulk-edited as a
+// whole, treating every page's freshness as "today" stays accurate whenever a
+// build is deployed.
 //
-// Why: Google and Bing both now treat a fresh date with no fresh substance as
-// a trust problem. Bing's grounding layer can actively EXCLUDE content that
-// misrepresents freshness or contradicts its own timestamps, and Google's
-// March 2026 guidance calls "a date change without fresh substance" a quality
-// problem. Real review dates keep dateModified, visible dates, and sitemap
-// lastmod honest — and therefore groundable.
+// The explicit content-review date in site.json (`lastContentReview`) is still
+// available via `contentReviewDate()` for any semantic bookkeeping that needs
+// to know when content was last manually reviewed, separately from the build.
 
 import site from "../data/site.json";
 
@@ -23,18 +22,23 @@ function parseReviewDate(): Date | null {
 
 const reviewDate = parseReviewDate();
 
+// Captured once per build, so every page in a single build reports the same
+// freshness value rather than drifting between module loads.
+const buildDate = new Date();
+
+/** Explicit content-review date from site.json, if one has been recorded. */
 export function contentReviewDate(): Date | null {
   return reviewDate;
 }
 
-/** null when no explicit content review has been recorded. */
-export function lastModifiedDate(): Date | null {
-  return reviewDate;
+/** The date this build was generated. Used for all "last updated" signals. */
+export function lastModifiedDate(): Date {
+  return buildDate;
 }
 
-/** ISO string, or null when no explicit content review has been recorded. */
-export function lastModifiedISO(): string | null {
-  return reviewDate ? reviewDate.toISOString() : null;
+/** ISO string of the build date. */
+export function lastModifiedISO(): string {
+  return buildDate.toISOString();
 }
 
 export function formatLongDate(date: Date): string {

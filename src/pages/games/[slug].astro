@@ -1,0 +1,285 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import gameSystems from "../../data/gameSystems.json";
+import conversions from "../../data/conversions.json";
+import site from "../../data/site.json";
+import { gameGuides } from "../../data/gameGuides.js";
+import { gameDetailContent } from "../../data/gameDetailContent.js";
+import { graph, breadcrumb, article, person, organization, faqPage, itemList } from "../../lib/schema";
+import { lastModifiedDate } from "../../lib/freshness";
+
+export async function getStaticPaths() {
+  return gameSystems.map((game) => ({
+    params: { slug: game.slug },
+    props: { game },
+  }));
+}
+
+const { game } = Astro.props;
+const detail = gameDetailContent[game.slug] || {};
+const guide = gameGuides[game.slug];
+
+// Related conversions from the main conversions data
+const relatedConvData = game.relatedConversions
+  .map((rc) => {
+    const full = conversions.find((c) => c.slug === rc.slug);
+    return full ? { ...rc, ...full } : null;
+  })
+  .filter(Boolean);
+
+// Other games at the same scale
+const sameScale = gameSystems.filter(
+  (g) => g.slug !== game.slug && g.scale === game.scale
+);
+
+// Reverse conversions for this game (other games that convert to/from this game's scale)
+const convSource = game.relatedConversions
+  .map((rc) => conversions.find((c) => c.slug === rc.slug))
+  .filter(Boolean)
+  .map((c) => c.slug);
+
+// Hand-authored FAQ, falls back to structured defaults per game
+const faq = detail.faq || [
+  {
+    name: `What scale is ${game.name}?`,
+    text: `${game.name} miniatures are ${game.scale} scale (${game.ratioScale} ratio), measured ${game.measurementMethod}. ${game.scaleNotes}`
+  },
+  {
+    name: `What base sizes does ${game.name} use?`,
+    text: `${game.name} uses the following base sizes: ${game.baseSizes}.`
+  },
+  {
+    name: `What nozzle and layer height should I use for ${game.name} miniatures?`,
+    text: game.printingTips
+  }
+];
+
+const modDate = lastModifiedDate();
+
+const pageSchema = graph([
+  organization(),
+  person(),
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Game Systems", path: "/games" },
+    { name: game.name, path: `/games/${game.slug}` },
+  ]),
+  article({
+    title: `${game.name} miniature scale for 3D printing`,
+    description: game.metaDescription,
+    url: `/games/${game.slug}`,
+    datePublished: modDate?.toISOString?.() ?? new Date().toISOString().split("T")[0],
+    dateModified: modDate?.toISOString?.() ?? new Date().toISOString().split("T")[0],
+    keywords: [game.name, game.scale, "3D printing", "miniature scale"],
+  }),
+  faqPage(faq.map((f) => ({ question: f.name, answer: f.text })), `/games/${game.slug}`),
+]);
+---
+
+<Layout
+  title={`${detail.title || `${game.name} Miniature Scale for 3D Printing`} | STLACCESS`}
+  description={detail.metaDescription || game.metaDescription}
+>
+
+<JsonLd slot="head" data={pageSchema} />
+
+<div slot="hero">
+  <!-- Breadcrumb -->
+  <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <a href="/games" class="hover:text-[#ff6b35] transition-colors">Game Systems</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <span class="text-slate-400" aria-current="page">{game.name}</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="max-w-4xl mx-auto px-6 py-12 md:py-16" aria-labelledby="game-hero-heading">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] bg-[#ff6b35]/10 px-3 py-1 rounded-full">{game.genre}</span>
+      <span class="text-xs text-slate-500">Est. {game.yearIntroduced}</span>
+    </div>
+    <h1 id="game-hero-heading" class="text-4xl md:text-5xl font-bold font-heading text-white mb-4 tracking-tight">
+      {detail.h1 || `${game.name} Miniature Scale Guide`}
+    </h1>
+    <p class="text-lg text-slate-400 leading-relaxed max-w-3xl">
+      {detail.intro || game.description}
+    </p>
+  </div>
+</div>
+
+<article class="max-w-4xl mx-auto px-6 pb-12 md:pb-16">
+
+  <!-- Scale at a glance -->
+  <div class="scale-explanation bg-slate-900/30 border border-white/5 rounded-2xl p-6 md:p-8 mb-10">
+    <h2 class="text-xl font-bold font-heading text-white mb-4">What scale am I actually printing?</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+      <div>
+        <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Miniature Scale</div>
+        <div class="text-2xl font-bold text-[#ff6b35] font-mono">{game.scale}</div>
+      </div>
+      <div>
+        <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Ratio Equivalent</div>
+        <div class="text-2xl font-bold text-white font-mono">{game.ratioScale}</div>
+      </div>
+      <div>
+        <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Measurement</div>
+        <div class="text-lg font-semibold text-slate-300 capitalize">{game.measurementMethod}</div>
+      </div>
+      <div>
+        <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Eye Level Height</div>
+        <div class="text-lg font-semibold text-white font-mono">{game.eyeLevelMm}</div>
+      </div>
+    </div>
+    <p class="text-slate-400 text-sm leading-relaxed">
+      {game.scaleNotes}
+    </p>
+    <div class="mt-4 text-xs text-slate-500">
+      <span class="font-semibold text-slate-400">Publisher:</span> {game.publisher}
+      <span class="mx-2">·</span>
+      <span class="font-semibold text-slate-400">Base Sizes:</span> {game.baseSizes}
+    </div>
+  </div>
+
+  <!-- Authored body: why scaling this game matters -->
+  {detail.body && detail.body.length > 0 && (
+    <div class="mb-10 prose max-w-none">
+      {detail.body.map((p) => (
+        <p class="text-slate-400 leading-relaxed mb-4">{p}</p>
+      ))}
+    </div>
+  )}
+
+  <!-- Deep Dive -->
+  {guide && (
+    <div class="bg-slate-900/30 border border-[#ff6b35]/20 rounded-2xl p-6 md:p-8 mb-10">
+      <div class="flex items-center gap-2 mb-2">
+        <i class="fa-solid fa-book-open text-[#ff6b35] text-xs" aria-hidden="true"></i>
+        <h2 class="text-xs font-black uppercase tracking-widest text-[#ff6b35]">Deep Dive: {guide.title}</h2>
+      </div>
+      <p class="text-sm text-slate-500 mb-6 leading-relaxed">{guide.intro}</p>
+      {guide.blocks.map((block, i) => (
+        <div id={`deep-dive-${i}`} class="mb-8 last:mb-0 scroll-mt-28">
+          <h3 class="text-base font-bold font-heading text-white mb-3">{block.heading}</h3>
+          <div set:html={block.html}></div>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <!-- Conversion Table -->
+  {relatedConvData.length > 0 && (
+    <div class="conversion-list mb-10">
+      <h2 class="text-xl font-bold font-heading text-white mb-2">Scale Conversions for {game.shortName}</h2>
+      <p class="text-sm text-slate-500 mb-6">Slicer percentages for converting between {game.name} and other common miniature scales.</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <caption class="sr-only">Scale conversions for {game.shortName}</caption>
+          <thead>
+            <tr class="border-b border-white/5">
+              <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Conversion</th>
+              <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Description</th>
+              <th scope="col" class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Slicer %</th>
+              <th scope="col" class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">Formula</th>
+            </tr>
+          </thead>
+          <tbody>
+            {relatedConvData.map((conv) => (
+              <tr class="border-b border-white/5 hover:bg-slate-900/50 transition-colors">
+                <td class="py-3 px-4">
+                  <a href={`/reference/${conv.slug}`} class="text-[#ff6b35] hover:text-white transition-colors font-mono font-semibold">
+                    {conv.h1Source} → {conv.h1Target}
+                  </a>
+                </td>
+                <td class="py-3 px-4 text-slate-400">{conv.label}</td>
+                <td class="py-3 px-4 text-right font-mono font-bold text-white">{conv.percentage}%</td>
+                <td class="py-3 px-4 text-right font-mono text-slate-500 hidden md:table-cell">{conv.math}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-4">
+        <a href="/reference" class="text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
+          View all conversion reference →
+        </a>
+      </div>
+    </div>
+  )}
+
+  <!-- 3D Printing Tips -->
+  <div class="mb-10">
+    <h2 class="text-xl font-bold font-heading text-white mb-4">Printing these minis on FDM</h2>
+    <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 md:p-8">
+      <p class="text-slate-300 leading-relaxed mb-4">
+        {detail.printingIntro || game.printingTips}
+      </p>
+      <p class="text-xs text-slate-500 mt-4">
+        All settings tested on my {site.printerName} with PLA. Your printer may want something different — always print a test piece first.
+      </p>
+      <div class="flex flex-wrap gap-3 mt-4">
+        <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black text-sm font-semibold px-5 py-2.5 rounded-lg hover:brightness-110 active:scale-95 transition-all">
+          <i class="fa-solid fa-calculator text-xs"></i>
+          Launch the 3D print scale calculator
+        </a>
+        <a href="/tools" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 text-sm font-semibold px-5 py-2.5 rounded-lg border border-white/5 transition-all">
+          <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+          All Tools
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Same Scale Games -->
+  {sameScale.length > 0 && (
+    <div class="mb-10">
+      <h2 class="text-xl font-bold font-heading text-white mb-2">Other Games at {game.scale} Scale</h2>
+      <p class="text-sm text-slate-500 mb-6">These systems use the same miniature scale as {game.name}. In most cases, miniatures are interchangeable between them — though art style and proportions will still vary by manufacturer.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {sameScale.map((g) => (
+          <a
+            href={`/games/${g.slug}`}
+            class="flex items-center justify-between p-4 bg-slate-900/30 border border-white/5 rounded-xl hover:border-[#ff6b35]/30 hover:bg-slate-900/50 transition-all group"
+          >
+            <div>
+              <div class="font-semibold text-white group-hover:text-[#ff6b35] transition-colors">{g.name}</div>
+              <div class="text-xs text-slate-500">{g.genre} · {g.publisher}</div>
+            </div>
+            <i class="fa-solid fa-arrow-right text-xs text-slate-600 group-hover:text-[#ff6b35] transition-colors"></i>
+          </a>
+        ))}
+      </div>
+    </div>
+  )}
+
+  <!-- FAQ -->
+  <div class="mb-10">
+    <h2 class="text-xl font-bold font-heading text-white mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      {faq.map((item) => (
+        <details class="bg-[#0a0a0a]/50 border border-white/5 hover:bg-[#111]/30 hover:border-white/10 rounded-xl overflow-hidden group transition-all duration-200">
+          <summary class="px-6 py-4 cursor-pointer text-white font-semibold hover:text-[#ff6b35] transition-colors flex items-center justify-between list-none">
+            <span>{item.name || item.question}</span>
+            <i class="fa-solid fa-chevron-down text-xs text-slate-500 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="px-6 pb-4 text-sm text-slate-400 leading-relaxed">
+            {item.text || item.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="text-center py-10 border-t border-white/5">
+    <p class="text-slate-500 text-sm mb-4">Time to check the scale before you commit to a long print.</p>
+    <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black font-bold px-8 py-3 rounded-xl hover:brightness-110 active:scale-95 transition-all hover:shadow-lg hover:shadow-[#ff6b35]/20">
+      <i class="fa-solid fa-calculator"></i>
+      Launch the STL scale calculator
+    </a>
+  </div>
+
+</article>
+
+</Layout>

@@ -16,14 +16,8 @@
 /reference.html  /reference  301
 /faq.html  /faq  301
 
-# Reference sub-pages consolidated into a single page
-/reference/flames-of-war-scale/  /games  301
-/reference/warhammer-40k-scale/  /games  301
-/reference/*  /reference  301
-
-# Game System sub-pages consolidated into a single page
-/games/  /games  301
-/games/*  /games  301
+# Reference and Game System sub-pages now live at their own URLs
+# (/reference/{slug} and /games/{slug}) instead of collapsing into the hubs.
 
 # Guides consolidated into reference and games
 /guides/stl-scale-conversion-chart  /reference  301

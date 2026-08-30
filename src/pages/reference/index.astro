@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import site from "../../data/site.json";
 import rawConversions from "../../data/conversions.json";
-import { getContextualContent } from "../../data/referenceContent.js";
 import { graph, breadcrumb, faqPage } from "../../lib/schema";
 import { lastModifiedDate, formatLongDate } from "../../lib/freshness";
 
@@ -11,13 +10,6 @@ const { referencePageQA, gasEndpoint, printerName } = site;
 const siteUpdated = lastModifiedDate();
 
 const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
-
-const referenceSections = rawConversions.map(c => {
-  const ctx = getContextualContent(c.h1Source, c.h1Target, c);
-  const reverseSlug = `${c.h1Target.toLowerCase().replace(/:/g, '-').replace(/\//g, '-').replace(/\s+/g, '-')}-to-${c.h1Source.toLowerCase().replace(/:/g, '-').replace(/\//g, '-').replace(/\s+/g, '-')}`;
-  const reverseExists = rawConversions.some(x => x.slug === reverseSlug);
-  return { conv: c, ctx, reverseSlug: reverseExists ? reverseSlug : null };
-});
 
 const referenceSchema = graph([
   breadcrumb([
@@ -75,141 +67,34 @@ const referenceSchema = graph([
   </div>
 </form>
 
-<!-- Conversion Details -->
+<!-- Conversion Card Matrix -->
 <section class="px-6 pb-24 max-w-6xl mx-auto" id="conversion-details" aria-labelledby="details-heading">
   <div class="mb-6 flex items-center gap-3">
-    <h2 id="details-heading" class="text-xl font-bold font-heading">Conversion Details</h2>
-    <span class="text-xs text-slate-500 font-medium">Full breakdowns for every pair</span>
+    <h2 id="details-heading" class="text-xl font-bold font-heading">All Conversions</h2>
+    <span class="text-xs text-slate-500 font-medium">Each links to a full breakdown</span>
   </div>
-  <div class="space-y-8">
-    {referenceSections.map(({conv, ctx, reverseSlug}) => (
-      <article
-        id={conv.slug}
-        class="searchable-section scroll-mt-28 bg-slate-900/20 rounded-3xl border border-white/5 p-6 md:p-8"
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {rawConversions.map((conv) => (
+      <a
+        href={`/reference/${conv.slug}`}
+        class="searchable-section group block bg-slate-900/20 border border-white/5 rounded-2xl p-5 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all"
         data-search={`${conv.h1Source} ${conv.h1Target} ${conv.sourceLabel} ${conv.targetLabel} ${conv.percentage} ${conv.title} ${conv.description} ${conv.subtext}`}
       >
-        <!-- Header: pair + percentage -->
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
-          <div>
-            <h3 class="text-xl md:text-2xl font-bold font-heading text-white mb-2 tracking-tight">
-              {conv.h1Source} to <span class="text-[#ff6b35]">{conv.h1Target}</span>
-            </h3>
-            <p class="text-sm text-slate-400 leading-relaxed max-w-2xl">
-              {conv.subtext}
-            </p>
-            <a href={`/reference#${conv.slug}`} class="inline-flex items-center gap-2 mt-3 text-xs font-semibold text-slate-500 hover:text-[#ff6b35] transition-colors" aria-label={`Permalink to ${conv.h1Source} to ${conv.h1Target}`}>
-              <i class="fa-solid fa-link text-[10px]" aria-hidden="true"></i>
-              {conv.slug}
-            </a>
-          </div>
-          <div class="shrink-0 bg-slate-900/50 border border-[#ff6b35]/20 rounded-2xl px-6 py-5 glow-box">
-            <p class="text-[10px] font-black uppercase tracking-widest text-[#ff6b35] mb-1">Slicer setting</p>
-            <p class="text-4xl md:text-5xl font-black font-heading text-white tracking-tighter">
-              {conv.percentage}<span class="text-[#ff6b35] text-2xl">%</span>
-            </p>
-            {conv.topHeadPercentage && (
-              <p class="text-xs text-slate-400 mt-2 font-mono">
-                Top of head: <span class="text-white font-bold">{conv.topHeadPercentage}%</span>
-              </p>
-            )}
+        <div class="flex items-start justify-between mb-3">
+          <h3 class="font-bold text-white group-hover:text-[#ff6b35] transition-colors text-lg leading-tight">
+            {conv.h1Source} <span class="text-slate-500 text-sm">to</span> {conv.h1Target}
+          </h3>
+          <span class="text-xs font-mono text-[#ff6b35] bg-[#ff6b35]/10 px-2 py-1 rounded shrink-0 ml-2">{conv.percentage}%</span>
+        </div>
+        <p class="text-sm text-slate-400 leading-relaxed mb-3 line-clamp-2">{conv.subtext}</p>
+        <div class="flex items-center justify-between text-xs text-slate-500">
+          <span class="font-mono">{conv.math}</span>
+          <div class="flex items-center gap-1 group-hover:text-[#ff6b35] transition-colors">
+            <span>Details</span>
+            <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
           </div>
         </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <!-- Math + baselines -->
-          <div class="space-y-6">
-            <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-              <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-microscope" aria-hidden="true"></i>
-                The math
-              </h4>
-              <code class="block bg-black/50 p-4 rounded-xl text-xs font-mono text-[#ff6b35] overflow-x-auto">
-                ({conv.math}) × 100 = {conv.percentage}%
-              </code>
-              <p class="text-xs text-slate-500 mt-3">
-                Based on {site.baselineHeightCm}cm human baseline, eye-level measurement ({site.eyeLevelCm}cm).
-              </p>
-            </div>
-            <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-              <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-                Scale baselines
-              </h4>
-              <ul class="space-y-3 text-sm text-slate-400">
-                <li class="flex justify-between gap-4">
-                  <span>Source eye level</span>
-                  <span class="text-white font-mono">{conv.sourceValue}</span>
-                </li>
-                <li class="flex justify-between gap-4">
-                  <span>Target eye level</span>
-                  <span class="text-white font-mono">{conv.targetValue}</span>
-                </li>
-                <li class="flex justify-between gap-4 border-t border-white/5 pt-3">
-                  <span>Scale factor</span>
-                  <span class="text-[#ff6b35] font-mono font-bold">{conv.percentage}%</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Contextual content -->
-          {ctx && (
-            <div class="lg:col-span-2 space-y-6">
-              <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-                <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3 flex items-center gap-2">
-                  <i class="fa-solid fa-chess-knight" aria-hidden="true"></i>
-                  When you need this
-                </h4>
-                <p class="text-sm text-slate-400 leading-relaxed">{ctx.useCase}</p>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-                  <h5 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">Source: {conv.h1Source}</h5>
-                  <p class="text-sm text-slate-400 leading-relaxed">{ctx.sourceContext}</p>
-                  {ctx.sourceCaveat && (
-                    <p class="text-xs text-slate-500 mt-4 border-l-2 border-[#ff6b35]/30 pl-3">
-                      <strong class="text-slate-400">Note:</strong> {ctx.sourceCaveat}
-                    </p>
-                  )}
-                </div>
-                <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-                  <h5 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3">Target: {conv.h1Target}</h5>
-                  <p class="text-sm text-slate-400 leading-relaxed">{ctx.targetContext}</p>
-                  {ctx.targetCaveat && (
-                    <p class="text-xs text-slate-500 mt-4 border-l-2 border-[#ff6b35]/30 pl-3">
-                      <strong class="text-slate-400">Note:</strong> {ctx.targetCaveat}
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-                <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35] mb-3 flex items-center gap-2">
-                  <i class="fa-solid fa-sliders" aria-hidden="true"></i>
-                  Print notes
-                </h4>
-                <p class="text-sm text-slate-400 leading-relaxed">{ctx.printNote}</p>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <!-- Reverse conversion -->
-        {reverseSlug && (
-          <div class="mt-8 pt-6 border-t border-white/5 flex items-center justify-between flex-wrap gap-4">
-            <div>
-              <p class="text-xs font-black uppercase tracking-widest text-slate-500 mb-1">Reverse conversion</p>
-              <p class="text-sm text-slate-400">Going the other way? The reverse calculation might be useful.</p>
-            </div>
-            <a
-              href={`/reference#${reverseSlug}`}
-              class="inline-flex items-center gap-2 text-[#ff6b35] font-semibold text-sm hover:text-white transition-colors"
-            >
-              {conv.h1Target} to {conv.h1Source}
-              <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
-            </a>
-          </div>
-        )}
-      </article>
+      </a>
     ))}
   </div>
 </section>
@@ -376,7 +261,7 @@ const referenceSchema = graph([
             You can see this in the new plastic German Veteran and US Airborne kits. They are so puffy that they are incompatible with older true-scale kits. A new-style arm on an old-style body looks like a prosthetic from a different species.
           </p>
           <p>
-            Before you commit to a conversion, cross-reference the source scales in my <a href="#conversion-details" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">conversion details</a> below.
+            Before you commit to a conversion, cross-reference the source scales in my <a href="#conversion-details" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">conversion matrix</a> above.
           </p>
         </div>
       </div>
