@@ -37,14 +37,9 @@ jobs:
       - name: Submit URLs to IndexNow
         run: npm run indexnow
 
-      - name: Commit updated manifest
-        run: |
-          git config user.name "indexnow[bot]"
-          git config user.email "actions@users.noreply.github.com"
-          if git diff --quiet .indexnow/last-submitted.json; then
-            echo "No manifest changes; nothing to commit."
-            exit 0
-          fi
-          git add .indexnow/last-submitted.json
-          git commit -m "indexnow: record submitted URLs"
-          git push
+      # The submitted-URLs manifest (.indexnow/last-submitted.json) is a local
+      # build/runtime record and is gitignored. We deliberately do NOT commit it
+      # back to the repo — committing it each run caused divergent history and
+      # noisy "indexnow: record submitted URLs" commits that fought with local
+      # pushes. The manifest still persists across the site's own deploy hook
+      # runs; see the IndexNow deploy script.

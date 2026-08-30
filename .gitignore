@@ -1,1 +1,3 @@
 node_modules
+.astro/dev.json
+.indexnow/last-submitted.json
