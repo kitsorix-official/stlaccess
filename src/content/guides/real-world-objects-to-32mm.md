@@ -105,7 +105,7 @@ Everything in this guide is worked out at 32mm scale because that is the modern 
 
 Run the same 18-foot dragon through it and it comes out at 96mm instead of 110mm. And because 28mm eye level maps to roughly 1:56 top of head, everything in this guide converts to Bolt Action vehicles and terrain without re-rolling the numbers.
 
-I'm building a dedicated [28mm scale guide](/guides/real-world-objects-to-28mm) with a full set of 28mm charts for humans, monsters, vehicles, and terrain — same formula, 28mm-specific numbers, and how to mix 28mm and 32mm armies on one table. Until it ships, the "Converting Any Scale" table above has everything you need: plug 28 into the formula and you're there.
+I built a dedicated [28mm scale guide](/guides/real-world-objects-to-28mm) with a full set of 28mm charts for humans, monsters, vehicles, and terrain — same formula, 28mm-specific numbers, and how to mix 28mm and 32mm armies on one table. For quick 32mm work, the "Converting Any Scale" table above has everything you need.
 
 ## Why the 175cm Baseline Matters
 

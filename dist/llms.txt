@@ -22,7 +22,7 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 - [STL Scale Converter (homepage)](https://stlaccess.com/) — Main calculator (the STL Scale Engine): 16 tabletop scales, eye-level and top-of-head measurement, shrinkage compensation toggle, copy-to-clipboard, deep-linkable URL params
 - [Scale Conversion Reference](https://stlaccess.com/reference) — 46 verified conversion percentages with my math breakdowns, print-tested results, and community feedback system
 - [Conversion FAQ](https://stlaccess.com/faq) — Answers I wrote about 28mm, 32mm, 35mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales
-- [Methodology / About](https://stlaccess.com/about) — My 175cm human baseline, FDM test prints with digital calipers, and the story behind why I started this project
+- [Methodology / About](https://stlaccess.com/about) — My 175cm human baseline, FDM test prints with a PARKSIDE digital caliper, and the story behind why I started this project
 - [All Tools](https://stlaccess.com/tools) — STL Scale Engine, Scale Conversion Reference, Slicer Percentage Calculator, Filament Cost Calculator, Real-World to Miniature Scale Converter, STL Scale Reference Bar Generator, and Miniature Scale Identifier
 - [Game Systems](https://stlaccess.com/games) — Scale guides I wrote for 26 tabletop games with related conversions, printing tips, and base sizes
 - [Guides](https://stlaccess.com/guides) — 6 deep-dive guides I wrote on miniature scale, 3D printing, and conversion math
@@ -211,7 +211,7 @@ For ratio scales, the calculator converts ratio-to-mm using the 175cm baseline (
 - Eye level: 160cm (default measurement method for fantasy and sci-fi)
 - Top of head: 175cm (used for historical kits, display busts, and ratio scales)
 - All percentages verified with FDM test prints on my Bambu Lab A1 Mini
-- Digital caliper measurements at 0.01mm precision
+- PARKSIDE digital caliper measurements at 0.01mm resolution (0–150mm range, all-metal construction)
 - FDM accuracy: over-extrusion can add 0.3%-0.5% to dimensions
 - Thermal shrinkage: PLA and PETG shrink 0.2%-0.5% during cooling (not compensated, tends to cancel with over-extrusion)
 - Layer height bias: 0.1-0.2mm stair-step error on curved surfaces at 0.08mm layers

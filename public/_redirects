@@ -19,17 +19,19 @@
 # Reference and Game System sub-pages now live at their own URLs
 # (/reference/{slug} and /games/{slug}) instead of collapsing into the hubs.
 
-# Guides consolidated into reference and games
 /guides/stl-scale-conversion-chart  /reference  301
 /guides/stl-scale-conversion-chart/  /reference  301
-/guides/28mm-to-32mm-percentage  /reference#28mm-to-32mm  301
-/guides/28mm-to-32mm-percentage/  /reference#28mm-to-32mm  301
-/guides/warhammer-40k-scale-guide  /games#warhammer-40000  301
-/guides/warhammer-40k-scale-guide/  /games#warhammer-40000  301
-/guides/bolt-action-scale-guide  /games#bolt-action  301
-/guides/bolt-action-scale-guide/  /games#bolt-action  301
-/guides/dungeons-and-dragons-miniature-scale  /games#dungeons-and-dragons  301
-/guides/dungeons-and-dragons-miniature-scale/  /games#dungeons-and-dragons  301
+
+# Legacy guide redirects → now point to their dedicated detail pages
+# (/reference/{slug} and /games/{slug}) instead of hub anchors.
+/guides/28mm-to-32mm-percentage  /reference/28mm-to-32mm  301
+/guides/28mm-to-32mm-percentage/  /reference/28mm-to-32mm  301
+/guides/warhammer-40k-scale-guide  /games/warhammer-40000  301
+/guides/warhammer-40k-scale-guide/  /games/warhammer-40000  301
+/guides/bolt-action-scale-guide  /games/bolt-action  301
+/guides/bolt-action-scale-guide/  /games/bolt-action  301
+/guides/dungeons-and-dragons-miniature-scale  /games/dungeons-and-dragons  301
+/guides/dungeons-and-dragons-miniature-scale/  /games/dungeons-and-dragons  301
 
 # Missing slash in path
 /reference32mm-to-40mm  /reference  301

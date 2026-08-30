@@ -5,8 +5,43 @@
     <link>https://stlaccess.com/guides</link>
     <description>Articles about 3D printed miniature scale conversion, FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Aug 2026 12:01:28 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2026 12:50:03 GMT</lastBuildDate>
     <atom:link href="https://stlaccess.com/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Arachne vs Classic Wall Generator: Which Is Sharper for Miniatures?</title>
+      <link>https://stlaccess.com/guides/arachne-vs-classic-wall-generator-miniatures</link>
+      <description>Arachne is supposed to make tighter details than the classic wall generator, but on test miniatures classic often prints fine detail sharper. A practical comparison for 28-32mm FDM prints.</description>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/arachne-vs-classic-wall-generator-miniatures</guid>
+    </item>
+    <item>
+      <title>Cura Tree Support Settings: How to Make Supports Easy to Remove</title>
+      <link>https://stlaccess.com/guides/cura-tree-support-settings-miniatures</link>
+      <description>The exact Cura tree (organic) support settings for 3D printing miniatures that come off clean — Z distance, interface layers, branch distance and angle, and painting supports on manually.</description>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/cura-tree-support-settings-miniatures</guid>
+    </item>
+    <item>
+      <title>FDM vs Resin 3D Printing for Miniatures: When to Switch</title>
+      <link>https://stlaccess.com/guides/fdm-vs-resin-miniatures</link>
+      <description>The honest resin vs FDM comparison for tabletop miniatures — detail, support removal, toxicity, speed, and which kinds of models each printer genuinely does better.</description>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/fdm-vs-resin-miniatures</guid>
+    </item>
+    <item>
+      <title>Real-World Objects to 28mm Scale: Feet to MM Conversion for Bolt Action, D&amp;D &amp; Historical</title>
+      <link>https://stlaccess.com/guides/real-world-objects-to-28mm</link>
+      <description>The formula I use to convert real-world heights to true 28mm miniature scale. Charts for humans, monsters, vehicles, and terrain for Bolt Action, classic D&amp;D, and historical wargaming.</description>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/real-world-objects-to-28mm</guid>
+    </item>
+    <item>
+      <title>Resin2FDM: Convert Resin-Supported STLs to FDM-Ready in Blender</title>
+      <link>https://stlaccess.com/guides/resin2fdm-convert-stl-to-fdm-ready</link>
+      <description>How to take a resin-presupported STL from any sculptor and make it print clean on an FDM printer using the Resin2FDM Blender add-on — split, assign, thicken supports, and slice for cleanup.</description>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
+      <guid>https://stlaccess.com/guides/resin2fdm-convert-stl-to-fdm-ready</guid>
+    </item>
     <item>
       <title>Best Budget 3D Printers for Tabletop Wargaming — FDM Terrrain &amp; Vehicle Guide</title>
       <link>https://stlaccess.com/guides/best-budget-3d-printers-wargaming</link>
@@ -45,7 +80,7 @@
     <item>
       <title>How to Measure a Miniature&apos;s Scale: Eye Level vs Top of Head Explained</title>
       <link>https://stlaccess.com/guides/how-to-measure-miniature-scale</link>
-      <description>How I measure miniature scale for 3D printing — eye level vs top of head, digital calipers, and why the 175cm baseline works.</description>
+      <description>How I measure miniature scale for 3D printing — eye level vs top of head, PARKSIDE digital calipers, and why the 175cm baseline works.</description>
       <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
       <guid>https://stlaccess.com/guides/how-to-measure-miniature-scale</guid>
     </item>

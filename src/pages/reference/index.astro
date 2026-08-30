@@ -3,8 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import site from "../../data/site.json";
 import rawConversions from "../../data/conversions.json";
-import { graph, breadcrumb, faqPage } from "../../lib/schema";
-import { lastModifiedDate, formatLongDate } from "../../lib/freshness";
+import { graph, breadcrumb, faqPage, article } from "../../lib/schema";
+import { lastModifiedDate, formatLongDate, lastModifiedISO } from "../../lib/freshness";
 
 const { referencePageQA, gasEndpoint, printerName } = site;
 const siteUpdated = lastModifiedDate();
@@ -16,6 +16,14 @@ const referenceSchema = graph([
     { name: "Home", path: "/" },
     { name: "Reference", path: "/reference" },
   ]),
+  article({
+    title: "Why is Miniature Scale Inconsistent?",
+    description: "Five things I learned mixing miniatures from six manufacturers and measuring them with calipers. The scale on the box rarely matches the model.",
+    url: "/reference",
+    datePublished: lastModifiedISO(),
+    dateModified: lastModifiedISO(),
+    keywords: ["miniature scale", "scale creep", "28mm", "32mm", "1:48", "3D printing"],
+  }),
   faqPage(referencePageQA, "/reference"),
 ]);
 ---
