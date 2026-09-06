@@ -1,7 +1,7 @@
 ---
-title: "Real-World Objects to 28mm Scale: Feet to MM Conversion for Bolt Action, D&D & Historical"
-description: "The formula I use to convert real-world heights to true 28mm miniature scale. Charts for humans, monsters, vehicles, and terrain for Bolt Action, classic D&D, and historical wargaming."
-tldr: "(real height in inches × 28 ÷ 63 = height in mm). An 18-foot dragon at 28mm scale stands about 96mm tall. Because 28mm eye level maps to roughly 1:56 top of head, the same numbers double as Bolt Action vehicle and terrain sizes."
+title: "Real-World Objects to 28mm Scale: Feet to MM Conversion for 28mm WWII Platoon Wargames, the Classic Fantasy RPG & Historical"
+description: "The formula I use to convert real-world heights to true 28mm miniature scale. Charts for humans, monsters, vehicles, and terrain for 28mm WWII platoon wargames, the classic fantasy RPG, and historical wargaming."
+tldr: "(real height in inches × 28 ÷ 63 = height in mm). An 18-foot dragon at 28mm scale stands about 96mm tall. Because 28mm eye level maps to roughly 1:56 top of head, the same numbers double as 28mm WWII platoon wargame vehicle and terrain sizes."
 pubDate: "2026-08-30"
 faq:
   - question: How do I convert a real-world height into 28mm miniature scale?
@@ -17,7 +17,8 @@ faq:
   - question: Why is 28mm the same as 1:56 scale?
     answer: >-
       A 28mm eye-level measurement maps to roughly 1:56 top-of-head on the same
-      175cm baseline — which is exactly why Bolt Action treats 28mm infantry and
+      175cm baseline — which is exactly why 28mm WWII platoon wargames
+      treat 28mm infantry and
       1:56 vehicles as the same scale. That overlap makes this chart double as a
       vehicle and terrain reference for WWII games.
   - question: How do I mix 28mm and 32mm armies on one table?
@@ -26,12 +27,12 @@ faq:
       model is about 12.5% smaller than an equivalent 32mm one. On the tabletop
       the two read fine together at arm's length. Just keep bases consistent and
       don't scale one faction down to match the other — that's where it gets
-      visually wrong. Bolt Action players commonly use 1:48 tanks with 28mm
+      visually wrong. 28mm WWII platoon wargame players commonly use 1:48 tanks with 28mm
       infantry because the extra bulk reads better.
-tags: ["scale theory", "28mm", "monster scaling", "terrain", "Bolt Action"]
+tags: ["scale theory", "28mm", "monster scaling", "terrain", "WWII platoon wargame"]
 ---
 
-I build armies across both modern heroic 32mm and true 28mm — Bolt Action, classic D&D, and historical ranges — and every time I imported a real-world creature or vehicle I was doing the same calc by hand. So I wrote myself a proper 28mm chart and taped it above the printer. This is that chart, and the math behind it.
+I build armies across both modern heroic 32mm and true 28mm — 28mm WWII platoon wargames, the classic fantasy RPG, and historical ranges — and every time I imported a real-world creature or vehicle I was doing the same calc by hand. So I wrote myself a proper 28mm chart and taped it above the printer. This is that chart, and the math behind it.
 
 The formula is identical to the 32mm version, just with 28 substituted for the eye-level:
 
@@ -91,7 +92,7 @@ Because 28mm eye level maps to roughly 1:56 top-of-head, real vehicle dimensions
 | Half-track | 6 m (19.7 ft) | **107mm** |
 | Field gun + crew | 2 m + crew | ~36mm gun, crew = infantry |
 
-The vehicle numbers match what Bolt Action players field every week. A 1:56 tank at around 107mm sits correctly next to 28mm infantry, which is why the 1:56 to 28mm conversion in the reference library works so cleanly.
+The vehicle numbers match what 28mm WWII platoon wargame players field every week. A 1:56 tank at around 107mm sits correctly next to 28mm infantry, which is why the 1:56 to 28mm conversion in the reference library works so cleanly.
 
 ## Terrain and Buildings
 
@@ -109,7 +110,7 @@ Terrain needs no heroic-proportion adjustment — the math is direct:
 | Two-storey building | 20 ft | **107mm** |
 | Church tower | 60 ft | **320mm** |
 
-Print a single-storey wall at 43mm and place a 28mm miniature next to it — it reads as a believable 8-foot wall. My Bolt Action board's ruins all follow these numbers.
+Print a single-storey wall at 43mm and place a 28mm miniature next to it — it reads as a believable 8-foot wall. My 28mm WWII platoon wargame board's ruins all follow these numbers.
 
 ## Mixing 28mm and 32mm on One Table
 
@@ -119,7 +120,7 @@ Three rules that keep a mixed table coherent:
 
 1. **Don't scale factions to match.** A 28mm platoon fighting a 32mm force reads fine at arm's length. Shrinking one army to match is where everything starts to look wrong.
 2. **Keep bases consistent.** Mixing base sizes reads far worse than mixing figure heights. Pick one base standard for infantry and stick to it.
-3. **Use slightly oversize vehicles for 28mm.** Bolt Action players commonly run 1:48 tanks with 28mm infantry because the extra bulk reads better than a true 1:56, which can look toy-like next to bulkier sculpts.
+3. **Use slightly oversize vehicles for 28mm.** 28mm WWII platoon wargame players commonly run 1:48 tanks with 28mm infantry because the extra bulk reads better than a true 1:56, which can look toy-like next to bulkier sculpts.
 
 ## Summary
 

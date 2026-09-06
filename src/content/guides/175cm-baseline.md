@@ -17,7 +17,7 @@ faq:
       like 28mm, 32mm, and 35mm. Top of head measures the full 175cm and is used
       for ratio scales like 1:35 and 1:56. The 15cm gap creates a 5-10%
       difference in the calculated percentage. Mixing them is how I got a
-      bobblehead Space Marine.
+      bobblehead power-armoured soldier.
   - question: Why is scaling 32mm down to 28mm exactly 87.5%?
     answer: >-
       Both scales reference the same 175cm baseline, so the conversion is a pure
@@ -44,7 +44,7 @@ Historical wargaming scales like 28mm and 32mm didn't start as precise measureme
 The 175cm baseline emerged because:
 
 - It represents a realistic average human height across global populations
-- It aligns with the reference miniatures used by manufacturers like Games Workshop, Warlord Games, and Atomic Mass Games
+- It aligns with the reference miniatures used by manufacturers across the tabletop industry
 - It produces clean conversion percentages between the most popular gaming scales — and I'm a sucker for a percentage that comes out even
 
 ## Eye Level vs Top of Head
@@ -56,7 +56,7 @@ When you convert a miniature's scale, you have two choices: measure to the eyes 
 | Eye level | 160cm (175cm figure) | 28mm, 32mm, 35mm heroic scales |
 | Top of head | 175cm | 1:35, 1:48, 1:56 ratio scales |
 
-The eye-level convention matches how manufacturers historically measured their sculpts. Models like Warhammer 40k Space Marines are intentionally "heroic" — their proportions are exaggerated so details read at arm's length. Using the eye-level baseline preserves those proportions when scaling. This is exactly where my bobblehead mistake came from: I measured a marine to the top of the head, treated it as eye level, and everything shifted.
+The eye-level convention matches how manufacturers historically measured their sculpts. Models like the modern sci-fi epic wargame's power-armoured soldiers are intentionally "heroic" — their proportions are exaggerated so details read at arm's length. Using the eye-level baseline preserves those proportions when scaling. This is exactly where my bobblehead mistake came from: I measured a power-armoured soldier to the top of the head, treated it as eye level, and everything shifted.
 
 ## What This Means for 3D Printing
 
@@ -66,7 +66,7 @@ When you upload an STL and use the STLACCESS scale engine:
 2. It calculates the ratio between the source and target eye-level or top-of-head measurements
 3. The resulting percentage compensates for the difference
 
-If a file was originally designed for 32mm heroic (Warhammer) and you want to print it at 28mm true scale, the engine calculates `(28 / 32) = 87.5%` — but only because both 28mm and 32mm reference the same 175cm baseline.
+If a file was originally designed for 32mm heroic (the modern sci-fi epic wargame) and you want to print it at 28mm true scale, the engine calculates `(28 / 32) = 87.5%` — but only because both 28mm and 32mm reference the same 175cm baseline.
 
 This is also why ratio scales like 1:56 behave differently — they measure to the top of the head, not eye level. Mixing the two without adjusting would give you undersized or oversized prints. That one distinction is behind more failed tabletop prints than any slicer setting I know.
 

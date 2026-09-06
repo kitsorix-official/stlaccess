@@ -33,8 +33,8 @@ const gamesSchema = graph([
 ---
 
 <Layout
-  title="Miniature Scale Guide for Tabletop Games | Warhammer, D&D, Star Wars Legion | STLACCESS"
-  description="Scale conversion guides for every tabletop wargame and RPG — Warhammer 40k, D&D, Bolt Action, Star Wars Legion, and 20+ systems. Get the exact slicer percentage for 3D printing miniatures at the right scale."
+  title="Miniature Scale Guide for Tabletop Games | STLACCESS"
+  description="Scale conversion guides for every tabletop wargame and RPG — 32mm heroic, 28mm true scale, 35mm eye level, 6mm epic, and 20+ scales. Get the exact slicer percentage for 3D printing miniatures at the right scale."
 >
 
 <JsonLd slot="head" data={gamesSchema} />
@@ -67,13 +67,13 @@ const gamesSchema = graph([
       <input
         type="text"
         id="gamesSearch"
-        placeholder="Search games (e.g. Warhammer 40k, D&D, Bolt Action...)"
+        placeholder="Search games (e.g. 32mm heroic, 28mm true scale...)"
         class="w-full bg-slate-900/50 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus:ring-1 focus:ring-[#ff6b35] focus:border-[#ff6b35] focus:outline-none transition-all placeholder:text-slate-600"
         aria-label="Search tabletop game systems"
       />
     </div>
     <div id="noResults" class="hidden mt-8 text-center text-slate-500 italic py-12 border border-dashed border-white/5 rounded-3xl">
-      No game systems found. Try "Warhammer" or "Bolt Action".
+      No game systems found. Try "32mm heroic" or "35mm eye level".
     </div>
   </form>
 

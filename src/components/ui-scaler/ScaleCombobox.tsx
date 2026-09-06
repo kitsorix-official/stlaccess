@@ -128,7 +128,7 @@ export const ScaleCombobox: React.FC<ScaleComboboxProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search scale (e.g. 28mm, Bolt Action, 1:100)..."
+                placeholder="Search scale (e.g. 28mm, 1:100, heroic)..."
                 className="w-full bg-[#0A0A0B] border border-[#333338] rounded pl-8 pr-3 py-1.5 text-xs text-white placeholder-[#666666] font-mono focus:outline-none focus:border-[#FF6321]"
                 autoFocus
               />

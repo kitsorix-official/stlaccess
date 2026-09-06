@@ -120,4 +120,4 @@ A few notes from my own prints:
 - Print the supports at 0.16mm with 2 walls and 50mm/s so they're fast and durable.
 - FDM-ready files (Artisan Guild) skip the thickening step.
 
-The first time I converted a pre-supported file I expected a mess. Instead I got a Space Marine that came off the plate clean, with supports that snapped off in seconds and left almost no trace. Those resin files aren't a dead end on an FDM printer — they just need a minute in Blender first.
+The first time I converted a pre-supported file I expected a mess. Instead I got a power-armoured soldier that came off the plate clean, with supports that snapped off in seconds and left almost no trace. Those resin files aren't a dead end on an FDM printer — they just need a minute in Blender first.

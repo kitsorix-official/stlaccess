@@ -27,20 +27,20 @@ export const faqData = [
     category: "Sci-fi and fantasy",
     questions: [
       {
-        q: "Are Primaris Space Marines 32mm or 28mm?",
-        a: `Primaris models are <span class="text-[#ff6b35] font-semibold">32mm to the top of the head</span>, which is roughly 28mm to the eyes. This matches the standard 1:56 ratio. They are taller than older "Firstborn" Marines because the legs and torsos are proportioned like a real human, not compressed.`,
+        q: "Are modern heroic (32mm) power-armoured soldiers really 32mm or 28mm?",
+        a: `Modern heroic (32mm) models are <span class="text-[#ff6b35] font-semibold">32mm to the top of the head</span>, which is roughly 28mm to the eyes. This matches the standard 1:56 ratio. They are taller than older classic true-scale (28mm) power-armoured soldiers because the legs and torsos are proportioned like a real human, not compressed.`,
       },
       {
         q: "Does '32mm' mean model height or base diameter?",
-        a: `It usually means model height, but Games Workshop also uses 32mm as a <span class="text-[#ff6b35] font-semibold">base diameter</span> for newer models. Do not confuse the two. A 32mm base is a plastic disc. A 32mm model is the miniature standing on it. The STL scale converter handles height, not base size.`,
+        a: `It usually means model height, but the publisher also uses 32mm as a <span class="text-[#ff6b35] font-semibold">base diameter</span> for newer models. Do not confuse the two. A 32mm base is a plastic disc. A 32mm model is the miniature standing on it. The STL scale converter handles height, not base size.`,
       },
       {
         q: "Can I use the same STL file for both 28mm and 32mm games?",
         a: `No. A file designed for 28mm will look like a child next to 32mm miniatures, and a 32mm file will tower over 28mm ones. You need to scale it. Use <span class="text-[#ff6b35] font-semibold">114.3%</span> to go from 28mm to 32mm, or <span class="text-[#ff6b35] font-semibold">87.5%</span> to go the other way. The proportions also change: 32mm heroic has bigger heads and hands relative to the body.`,
       },
       {
-        q: "How do I mix Necromunda models (32-35mm) with standard 28mm?",
-        a: `Scale the Necromunda models down to 87.5% to match 28mm, or scale your 28mm collection up to 114.3% to match 32mm. Do not mix them without scaling. A 35mm Necromunda ganger next to a 28mm Guardsman looks like a giant. I have made this mistake. It is fixable, but you need to commit to one baseline for the whole force.`,
+        q: "How do I mix gang-warfare skirmish models (32-35mm) with standard 28mm?",
+        a: `Scale the gang-warfare skirmish models down to 87.5% to match 28mm, or scale your 28mm collection up to 114.3% to match 32mm. Do not mix them without scaling. A 35mm gang-warfare skirmish ganger next to a 28mm Guardsman looks like a giant. I have made this mistake. It is fixable, but you need to commit to one baseline for the whole force.`,
       },
     ]
   },
@@ -48,8 +48,8 @@ export const faqData = [
     category: "Historical and vehicles",
     questions: [
       {
-        q: "What vehicle scale works with 28mm Bolt Action infantry?",
-        a: `Officially 1:56. In practice, <span class="text-[#ff6b35] font-semibold">1:48 Tamiya kits</span> often look better because modern Bolt Action plastics are closer to 30-32mm than true 28mm. A true 1:56 tank looks small next to chunky heroic infantry. Try both if you have them. I use 1:48 for my Bolt Action motor pool and nobody has complained at tournaments.`,
+        q: "What vehicle scale works with 28mm WWII platoon wargame (28mm) infantry?",
+        a: `Officially 1:56. In practice, <span class="text-[#ff6b35] font-semibold">1:48 Tamiya kits</span> often look better because modern WWII platoon wargame plastics are closer to 30-32mm than true 28mm. A true 1:56 tank looks small next to chunky heroic infantry. Try both if you have them. I use 1:48 for my WWII platoon wargame motor pool and nobody has complained at tournaments.`,
       },
       {
         q: "Will 1:48 infantry look too tall next to 28mm miniatures?",

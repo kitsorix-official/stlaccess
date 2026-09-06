@@ -5,7 +5,7 @@
     <link>https://stlaccess.com/guides</link>
     <description>Articles about 3D printed miniature scale conversion, FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.</description>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Aug 2026 12:57:48 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 06 Sep 2026 21:44:46 GMT</lastBuildDate>
     <atom:link href="https://stlaccess.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Arachne vs Classic Wall Generator: Which Is Sharper for Miniatures?</title>
@@ -29,9 +29,9 @@
       <guid>https://stlaccess.com/guides/fdm-vs-resin-miniatures</guid>
     </item>
     <item>
-      <title>Real-World Objects to 28mm Scale: Feet to MM Conversion for Bolt Action, D&amp;D &amp; Historical</title>
+      <title>Real-World Objects to 28mm Scale: Feet to MM Conversion for 28mm WWII Platoon Wargames, the Classic Fantasy RPG &amp; Historical</title>
       <link>https://stlaccess.com/guides/real-world-objects-to-28mm</link>
-      <description>The formula I use to convert real-world heights to true 28mm miniature scale. Charts for humans, monsters, vehicles, and terrain for Bolt Action, classic D&amp;D, and historical wargaming.</description>
+      <description>The formula I use to convert real-world heights to true 28mm miniature scale. Charts for humans, monsters, vehicles, and terrain for 28mm WWII platoon wargames, the classic fantasy RPG, and historical wargaming.</description>
       <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
       <guid>https://stlaccess.com/guides/real-world-objects-to-28mm</guid>
     </item>
@@ -59,23 +59,23 @@
     <item>
       <title>How to Downscale 32mm to 28mm (87.5% Slicer Percentage, Explained)</title>
       <link>https://stlaccess.com/guides/32mm-to-28mm-scale-conversion</link>
-      <description>Shrink 32mm miniatures down to true 28mm scale with an 87.5% slicer percentage. Fits more minis on a resin plate and mixes D&amp;D proxies into true-scale armies.</description>
+      <description>Shrink 32mm miniatures down to true 28mm scale with an 87.5% slicer percentage. Fits more minis on a resin plate and mixes classic fantasy RPG proxies into true-scale armies.</description>
       <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
       <guid>https://stlaccess.com/guides/32mm-to-28mm-scale-conversion</guid>
     </item>
     <item>
-      <title>D&amp;D Miniature Scale Guide — What Size Are D&amp;D Minis?</title>
-      <link>https://stlaccess.com/guides/dnd-miniature-scale-guide</link>
-      <description>What scale is D&amp;D? Medium humanoids are 28mm to the eyes on the 175cm baseline. The full D&amp;D size chart: Tiny, Small, Medium, Large, Huge, Gargantuan with mini heights and base sizes.</description>
+      <title>Classic Fantasy RPG Miniature Scale Guide — What Size Are Classic Fantasy RPG Minis?</title>
+      <link>https://stlaccess.com/guides/classic-fantasy-rpg-miniature-scale-guide</link>
+      <description>What scale is the classic fantasy RPG? Medium humanoids are 28mm to the eyes on the 175cm baseline. The full classic fantasy RPG size chart: Tiny, Small, Medium, Large, Huge, Gargantuan with mini heights and base sizes.</description>
       <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
-      <guid>https://stlaccess.com/guides/dnd-miniature-scale-guide</guid>
+      <guid>https://stlaccess.com/guides/classic-fantasy-rpg-miniature-scale-guide</guid>
     </item>
     <item>
-      <title>Star Wars: Legion Scale Guide — What Scale Are Legion Miniatures?</title>
-      <link>https://stlaccess.com/guides/star-wars-legion-scale-guide</link>
-      <description>Star Wars: Legion miniatures are 35mm scale (1:47), measured to eye level at 35.7mm. Full height about 40mm. Exact slicer percentages to convert Legion STLs and proxies.</description>
+      <title>35mm Sci-Fi Mass-Battle Game Scale Guide — What Scale Are Its Miniatures?</title>
+      <link>https://stlaccess.com/guides/sci-fi-mass-battle-35mm-scale-guide</link>
+      <description>Miniatures for the 35mm sci-fi mass-battle game are 35mm scale (1:47), measured to eye level at 35.7mm. Full height about 40mm. Exact slicer percentages to convert its STLs and proxies for space opera armies.</description>
       <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
-      <guid>https://stlaccess.com/guides/star-wars-legion-scale-guide</guid>
+      <guid>https://stlaccess.com/guides/sci-fi-mass-battle-35mm-scale-guide</guid>
     </item>
     <item>
       <title>How to Measure a Miniature&apos;s Scale: Eye Level vs Top of Head Explained</title>
@@ -94,7 +94,7 @@
     <item>
       <title>Real-World Objects to 32mm Scale: Feet to MM Conversion (The Math Explained)</title>
       <link>https://stlaccess.com/guides/real-world-objects-to-32mm</link>
-      <description>The formula I use to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for Warhammer, D&amp;D, and Bolt Action.</description>
+      <description>The formula I use to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for the modern sci-fi epic wargame, the classic fantasy RPG, and 28mm WWII platoon wargames.</description>
       <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
       <guid>https://stlaccess.com/guides/real-world-objects-to-32mm</guid>
     </item>

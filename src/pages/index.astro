@@ -30,22 +30,22 @@ const homeSchema = graph([
 
 // Build dropdown labels from scales data
 const dropdownLabels: Record<string, string> = {
-  "28mm": "28mm (D&D / True Scale)",
+  "28mm": "28mm (Classic True Scale)",
   "32mm": "32mm (Heroic Scale)",
-  "35mm": "35mm (Star Wars Legion)",
-  "40mm": "40mm (Shatterpoint)",
+  "35mm": "35mm (Eye Level)",
+  "40mm": "40mm (Big Skirmish)",
   "75mm": "75mm (Display Miniatures)",
   "1:35": "1:35 (Military Models)",
-  "1:27": "1:27 (X-Wing Ships)",
+  "1:27": "1:27 (Dogfight Ships)",
   "1:48": "1:48 (Quarter Scale / Aircraft)",
-  "1:56": "1:56 (Bolt Action)",
+  "1:56": "1:56 (Vehicle Scale)",
   "1:72": "1:72 (Plastic Soldiers)",
-  "6mm": "6mm (BattleTech / Epic)",
-  "8mm": "8mm (Legions Imperialis)",
-  "10mm": "10mm (Dropzone Commander)",
-  "30mm": "30mm (Warmachine)",
-  "15mm": "15mm (Flames of War)",
-  "1:100": "1:100 (FoW / 15mm)"
+  "6mm": "6mm (Epic Scale)",
+  "8mm": "8mm (Epic Sci-Fi)",
+  "10mm": "10mm (Sci-Fi Mass Battle)",
+  "30mm": "30mm (Modern Heroic)",
+  "15mm": "15mm (WWII Company)",
+  "1:100": "1:100 (WWII / 15mm)"
 };
 
 // Sort scales into groups by type, then by eyeLevelMm
@@ -139,7 +139,7 @@ By a hobbyist, for hobbyists
   <span class="text-[#ff6b35] italic">Exact Slicer Percentages for Miniatures</span>
 </h1>
 <p id="hero-description" class="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
-  I wasted months printing proxies that towered over my Warhammer squad or looked like children next to my terrain. So I bought digital calipers, printed test cubes at every scale, and built this calculator to save you the same headache. Everything is tested on my <span class="text-white font-semibold">Bambu Lab A1 Mini</span> before it goes live.
+  I wasted months printing models that towered over my existing miniatures or looked like children next to my terrain. So I bought digital calipers, printed test cubes at every scale, and built this calculator to save you the same headache. Everything is tested on my <span class="text-white font-semibold">Bambu Lab A1 Mini</span> before it goes live.
 </p>
 <p class="text-sm text-slate-500">
   I use these exact percentages in my own slicer. No guesswork. No file uploads.
@@ -304,14 +304,14 @@ How I use the calculator <span class="text-[#ff6b35]">for every print</span>
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">1</span>
 <div>
 <p class="text-slate-200 font-semibold">Pick the scales</p>
-<p class="text-slate-400 text-sm">I check what scale the sculptor modeled in — usually listed on Patreon or MyMiniFactory — then pick the scale my army actually uses. For my Warhammer proxies, that's almost always 32mm heroic.</p>
+<p class="text-slate-400 text-sm">I check what scale the sculptor modeled in — usually listed on Patreon or MyMiniFactory — then pick the scale my army actually uses. For modern heroic sci-fi, that's almost always 32mm.</p>
 </div>
 </li>
 <li class="flex gap-4 items-start">
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">2</span>
 <div>
 <p class="text-slate-200 font-semibold">Copy the exact percentage</p>
-<p class="text-slate-400 text-sm">I once eyeballed 115% for a 28mm→32mm conversion and my Space Marine looked like a bobblehead. The calculator gives me <span class="text-white font-semibold">114.3%</span> — the number I verified with calipers on actual prints.</p>
+<p class="text-slate-400 text-sm">I once eyeballed 115% for a 28mm→32mm conversion and my armoured soldier mini looked like a bobblehead. The calculator gives me <span class="text-white font-semibold">114.3%</span> — the number I verified with calipers on actual prints.</p>
 </div>
 </li>
 <li class="flex gap-4 items-start">
@@ -394,11 +394,11 @@ Straight answers from my own experience at the painting desk.
 </p>
 
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
-  When I returned to 3D printing, I kept it strictly about the hobby. Now I print on a <span class="text-white font-semibold">Bambu Lab A1 Mini</span> — mostly PLA and PETG — focusing on Warhammer proxies, tabletop terrain, board game upgrades, and the occasional practical print. Zero commercial pressure, just enjoying the process.
+  When I returned to 3D printing, I kept it strictly about the hobby. Now I print on a <span class="text-white font-semibold">Bambu Lab A1 Mini</span> — mostly PLA and PETG — focusing on sci-fi and fantasy miniatures, tabletop terrain, board game upgrades, and the occasional practical print. Zero commercial pressure, just enjoying the process.
 </p>
 
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
-  The one thing that never stopped frustrating me? Scale. I would download an incredible proxy STL, slice it, print for 8 hours, and discover my new character towered over my Warhammer squad or looked like a child standing next to my terrain. I threw away enough mis-scaled models that I finally broke out my <span class="text-white font-semibold">digital calipers</span> and started working out the actual math.
+  The one thing that never stopped frustrating me? Scale. I would download an incredible STL, slice it, print for 8 hours, and discover my new character towered over my existing miniatures or looked like a child standing next to my terrain. I threw away enough mis-scaled models that I finally broke out my <span class="text-white font-semibold">digital calipers</span> and started working out the actual math.
 </p>
 
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
@@ -461,7 +461,7 @@ Request type
 </div>
 <div>
 <label class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-2" for="hp-details">Details</label>
-<input type="text" id="hp-details" name="details" placeholder="e.g., Star Wars Shatterpoint scales weirdly on my prints" required class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all" />
+<input type="text" id="hp-details" name="details" placeholder="e.g., my 40mm skirmish miniatures come out oversized" required class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all" />
 </div>
 <div class="flex justify-center pt-2">
 <button type="submit" id="hp-submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-[#ff6b35] px-8 py-4 text-sm font-bold text-black hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer">

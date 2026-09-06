@@ -5,7 +5,7 @@ tldr: "You do not need an $800+ printer for tabletop terrain. The Sovol SV06 ACE
 pubDate: "2026-08-26"
 modDate: "2026-08-26"
 faq:
-  - question: Can I print 28mm Warhammer miniatures on a budget FDM printer?
+  - question: Can I print 28mm modern sci-fi epic wargame miniatures on a budget FDM printer?
     answer: >-
       You can, but FDM layer lines will be visible on small details like faces
       and insignias. Keep resin for infantry and use budget FDM for terrain,
@@ -43,7 +43,7 @@ Slicing without calipers is risky, but you don't need a €10 metal display to a
 
 ### Hack 1: The Wargamer's Base-Match Trick
 
-Games Workshop and other wargame manufacturers use standardized base sizes. Import a simple primitive cylinder into your slicer — a 32.0mm diameter cylinder for Space Marines, for example — and place it next to your proxy model. If your proxy's feet spill over the cylinder edges or look tiny inside it, adjust your scaling percentage until it fits cleanly before hitting print.
+The publisher and other wargame manufacturers use standardized base sizes. Import a simple primitive cylinder into your slicer — a 32.0mm diameter cylinder for power-armoured soldiers, for example — and place it next to your proxy model. If your proxy's feet spill over the cylinder edges or look tiny inside it, adjust your scaling percentage until it fits cleanly before hitting print.
 
 ### Hack 2: The Pocket Change Reference Scale
 

@@ -1,7 +1,7 @@
 {
   "name": "STLACCESS",
   "short_name": "STLACCESS",
-  "description": "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on my Bambu Lab A1 Mini.",
+  "description": "STL scale converter for 3D printed miniatures. Slicer percentages for modern sci-fi epic wargames, classic fantasy RPGs, WWII platoon wargames, and tabletop gaming — tested on my Bambu Lab A1 Mini.",
   "id": "/",
   "start_url": "/",
   "scope": "/",

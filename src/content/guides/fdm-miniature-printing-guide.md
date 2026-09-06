@@ -47,7 +47,7 @@ After hundreds of miniatures on my A1 Mini, here is the setup I keep coming back
 | Filament | PLA or PLA+ | Easy to print, low shrinkage, good layer adhesion |
 | Cooling | 100% fan from layer 3 | Sharp overhangs need maximum cooling at small layer heights |
 
-I used to run everything through a 0.4mm nozzle because swapping nozzles felt like a hassle. Then I printed a Space Marine hero with a 0.4mm nozzle at 0.08mm and squinted at the visible faceting on the helmet. The same model with a 0.2mm nozzle at 0.06mm layers looked like a different sculpt entirely. Now the 0.2mm nozzle only comes off for terrain and batch infantry.
+I used to run everything through a 0.4mm nozzle because swapping nozzles felt like a hassle. Then I printed a power-armoured soldier with a 0.4mm nozzle at 0.08mm and squinted at the visible faceting on the helmet. The same model with a 0.2mm nozzle at 0.06mm layers looked like a different sculpt entirely. Now the 0.2mm nozzle only comes off for terrain and batch infantry.
 
 ## Bambu Lab A1/Mini Settings for Miniatures
 

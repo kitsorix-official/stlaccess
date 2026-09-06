@@ -13,15 +13,15 @@ https://stlaccess.com/guides/32mm-to-28mm-scale-conversion
 https://stlaccess.com/guides/arachne-vs-classic-wall-generator-miniatures
 https://stlaccess.com/guides/best-budget-3d-printers-wargaming
 https://stlaccess.com/guides/chitubox-lychee-scaling-guide
+https://stlaccess.com/guides/classic-fantasy-rpg-miniature-scale-guide
 https://stlaccess.com/guides/cura-tree-support-settings-miniatures
-https://stlaccess.com/guides/dnd-miniature-scale-guide
 https://stlaccess.com/guides/fdm-miniature-printing-guide
 https://stlaccess.com/guides/fdm-vs-resin-miniatures
 https://stlaccess.com/guides/how-to-measure-miniature-scale
 https://stlaccess.com/guides/real-world-objects-to-28mm
 https://stlaccess.com/guides/real-world-objects-to-32mm
 https://stlaccess.com/guides/resin2fdm-convert-stl-to-fdm-ready
-https://stlaccess.com/guides/star-wars-legion-scale-guide
+https://stlaccess.com/guides/sci-fi-mass-battle-35mm-scale-guide
 https://stlaccess.com/guides/upscaling-3d-prints-detail-limit
 https://stlaccess.com/reference
 https://stlaccess.com/tools

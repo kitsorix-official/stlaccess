@@ -59,6 +59,20 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
     <!-- Canonical -->
     <link rel="canonical" href={canonical} />
 
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={`${site.url}/pwa-512x512.png`} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site.url}/pwa-512x512.png`} />
+
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -431,6 +445,13 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
             )}
           </div>
         </div>
+        <p class="max-w-6xl mx-auto px-6 py-4 text-[11px] leading-relaxed text-slate-600 border-t border-white/5">
+          STLACCESS is independent. Game and system names appearing on this site
+          (including any registered trademarks) belong to their respective
+          owners and are used only to describe miniature scale and proportions.
+          STLACCESS is not affiliated with, endorsed by, or connected to any of
+          those owners.
+        </p>
       </div>
     </footer>
 

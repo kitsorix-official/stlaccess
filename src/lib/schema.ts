@@ -6,7 +6,7 @@ export const ORG_ID = `${SITE_URL}/#organization`;
 export const PERSON_ID = `${SITE_URL}/#person`;
 export const AUTHOR_URL = "https://github.com/kitsorix-official";
 export const LOGO_URL = `${SITE_URL}/pwa-512x512.png`;
-export const IMAGE_URL = `${SITE_URL}/og-image.svg`;
+export const IMAGE_URL = `${SITE_URL}/pwa-512x512.png`;
 
 export function stripHtml(text: string): string {
   return text
@@ -22,7 +22,7 @@ export function organization() {
     name: "STLACCESS",
     url: SITE_URL,
     description:
-      "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on a Bambu Lab A1 Mini.",
+      "STL scale converter for 3D printed miniatures. Exact slicer percentages for every tabletop scale, from 6mm epic to 32mm heroic and beyond — tested on a Bambu Lab A1 Mini.",
     logo: LOGO_URL,
     image: IMAGE_URL,
     founder: { "@id": PERSON_ID },
@@ -47,7 +47,7 @@ export function webSite() {
     name: "STLACCESS",
     url: SITE_URL,
     description:
-      "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on a Bambu Lab A1 Mini.",
+      "STL scale converter for 3D printed miniatures. Exact slicer percentages for every tabletop scale, from 6mm epic to 32mm heroic and beyond — tested on a Bambu Lab A1 Mini.",
     inLanguage: "en",
     publisher: { "@id": ORG_ID },
     potentialAction: [

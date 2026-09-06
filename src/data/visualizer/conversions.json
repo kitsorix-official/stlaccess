@@ -2,11 +2,11 @@
   "headOverrides": {
     "28mm_heroic_to_32mm_heroic": {
       "scaleFactor": 1.142857,
-      "reason": "Games Workshop classic 28mm heroic to modern 32mm heroic base transition"
+      "reason": "the publisher's classic 28mm heroic to modern 32mm heroic base transition"
     },
     "28mm_true_to_32mm_heroic": {
       "scaleFactor": 1.1803,
-      "reason": "Historical 1:56 True scale to GW 32mm Heroic requires bulk and height compensation"
+      "reason": "Historical 1:56 True scale to the publisher's 32mm Heroic requires bulk and height compensation"
     },
     "15mm_to_28mm_heroic": {
       "scaleFactor": 1.8666,
@@ -14,7 +14,7 @@
     },
     "28mm_heroic_to_15mm": {
       "scaleFactor": 0.5357,
-      "reason": "28mm Heroic downscale to 15mm (Flames of War)"
+      "reason": "28mm Heroic downscale to 15mm (WWII company wargame)"
     },
     "28mm_heroic_to_6mm": {
       "scaleFactor": 0.21428,

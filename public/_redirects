@@ -26,12 +26,72 @@
 # (/reference/{slug} and /games/{slug}) instead of hub anchors.
 /guides/28mm-to-32mm-percentage  /reference/28mm-to-32mm  301
 /guides/28mm-to-32mm-percentage/  /reference/28mm-to-32mm  301
-/guides/warhammer-40k-scale-guide  /games/warhammer-40000  301
-/guides/warhammer-40k-scale-guide/  /games/warhammer-40000  301
-/guides/bolt-action-scale-guide  /games/bolt-action  301
-/guides/bolt-action-scale-guide/  /games/bolt-action  301
-/guides/dungeons-and-dragons-miniature-scale  /games/dungeons-and-dragons  301
-/guides/dungeons-and-dragons-miniature-scale/  /games/dungeons-and-dragons  301
+/guides/warhammer-40k-scale-guide  /games/sci-fi-epic-32mm  301
+/guides/warhammer-40k-scale-guide/  /games/sci-fi-epic-32mm  301
+/guides/bolt-action-scale-guide  /games/ww2-platoon-28mm  301
+/guides/bolt-action-scale-guide/  /games/ww2-platoon-28mm  301
+/guides/dungeons-and-dragons-miniature-scale  /games/classic-fantasy-rpg-28mm  301
+/guides/dungeons-and-dragons-miniature-scale/  /games/classic-fantasy-rpg-28mm  301
+
+# Guide slugs renamed to generic scale-first descriptors (trademark rebrand)
+/guides/dnd-miniature-scale-guide  /guides/classic-fantasy-rpg-miniature-scale-guide  301
+/guides/dnd-miniature-scale-guide/  /guides/classic-fantasy-rpg-miniature-scale-guide  301
+/guides/star-wars-legion-scale-guide  /guides/sci-fi-mass-battle-35mm-scale-guide  301
+/guides/star-wars-legion-scale-guide/  /guides/sci-fi-mass-battle-35mm-scale-guide  301
+
+# Game system slugs renamed to generic scale-first descriptors (trademark rebrand)
+/games/warhammer-40000  /games/sci-fi-epic-32mm  301
+/games/warhammer-40000/  /games/sci-fi-epic-32mm  301
+/games/age-of-sigmar  /games/fantasy-epic-32mm  301
+/games/age-of-sigmar/  /games/fantasy-epic-32mm  301
+/games/warhammer-the-old-world  /games/classic-fantasy-28mm  301
+/games/warhammer-the-old-world/  /games/classic-fantasy-28mm  301
+/games/middle-earth-strategy-battle-game  /games/fantasy-skirmish-25-28mm  301
+/games/middle-earth-strategy-battle-game/  /games/fantasy-skirmish-25-28mm  301
+/games/bolt-action  /games/ww2-platoon-28mm  301
+/games/bolt-action/  /games/ww2-platoon-28mm  301
+/games/dungeons-and-dragons  /games/classic-fantasy-rpg-28mm  301
+/games/dungeons-and-dragons/  /games/classic-fantasy-rpg-28mm  301
+/games/star-wars-legion  /games/sci-fi-mass-battle-35mm  301
+/games/star-wars-legion/  /games/sci-fi-mass-battle-35mm  301
+/games/star-wars-shatterpoint  /games/sci-fi-skirmish-40mm  301
+/games/star-wars-shatterpoint/  /games/sci-fi-skirmish-40mm  301
+/games/star-wars-x-wing  /games/sci-fi-dogfight-1-27  301
+/games/star-wars-x-wing/  /games/sci-fi-dogfight-1-27  301
+/games/marvel-crisis-protocol  /games/superhero-skirmish-35mm  301
+/games/marvel-crisis-protocol/  /games/superhero-skirmish-35mm  301
+/games/malifaux  /games/gothic-pulp-skirmish-32mm  301
+/games/malifaux/  /games/gothic-pulp-skirmish-32mm  301
+/games/infinity  /games/anime-sci-fi-skirmish-28mm  301
+/games/infinity/  /games/anime-sci-fi-skirmish-28mm  301
+/games/warmachine-hordes  /games/steampunk-fantasy-wargame-30mm  301
+/games/warmachine-hordes/  /games/steampunk-fantasy-wargame-30mm  301
+/games/frostgrave-stargrave  /games/miniature-agnostic-skirmish-28mm  301
+/games/frostgrave-stargrave/  /games/miniature-agnostic-skirmish-28mm  301
+/games/kings-of-war  /games/ranked-fantasy-mass-battle-28mm  301
+/games/kings-of-war/  /games/ranked-fantasy-mass-battle-28mm  301
+/games/battletech  /games/mech-tactical-6mm  301
+/games/battletech/  /games/mech-tactical-6mm  301
+/games/flames-of-war  /games/ww2-company-15mm  301
+/games/flames-of-war/  /games/ww2-company-15mm  301
+/games/dropzone-commander  /games/sci-fi-mass-battle-10mm  301
+/games/dropzone-commander/  /games/sci-fi-mass-battle-10mm  301
+/games/legions-imperialis  /games/epic-sci-fi-8mm  301
+/games/legions-imperialis/  /games/epic-sci-fi-8mm  301
+/games/one-page-rules-grimdark-future  /games/miniature-agnostic-sci-fi-32mm  301
+/games/one-page-rules-grimdark-future/  /games/miniature-agnostic-sci-fi-32mm  301
+/games/fallout-wasteland-warfare  /games/post-apocalyptic-32mm  301
+/games/fallout-wasteland-warfare/  /games/post-apocalyptic-32mm  301
+/games/gaslands  /games/vehicular-combat-1-56  301
+/games/gaslands/  /games/vehicular-combat-1-56  301
+/games/kill-team  /games/sci-fi-skirmish-32mm  301
+/games/kill-team/  /games/sci-fi-skirmish-32mm  301
+/games/necromunda  /games/gang-skirmish-32mm  301
+/games/necromunda/  /games/gang-skirmish-32mm  301
+/games/warcry  /games/fantasy-skirmish-32mm  301
+/games/warcry/  /games/fantasy-skirmish-32mm  301
+/games/conquest  /games/fantasy-mass-battle-35mm  301
+/games/conquest/  /games/fantasy-mass-battle-35mm  301
 
 # Missing slash in path
 /reference32mm-to-40mm  /reference  301

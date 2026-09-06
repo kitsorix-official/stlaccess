@@ -11,15 +11,15 @@
 
 export const conversionDetailContent = {
   // ---------------------------------------------------------------
-  // 1:100 (Flames of War / 15mm) conversions
+  // 1:100 (15mm) conversions
   // ---------------------------------------------------------------
   "1-100-to-1-35": {
     title: "1:100 to 1:35 Scale for 3D Printing Miniatures",
-    h1: "1:100 to 1:35: Converting Flames of War to Model Kit Scale",
-    metaDescription: "Scale 1:100 Flames of War STLs up to 1:35 model kit size for 3D printing. Use 285.7% in your slicer with uniform XYZ scaling.",
+    h1: "1:100 to 1:35: Converting 15mm WWII company wargame to Model Kit Scale",
+    metaDescription: "Scale 1:100 15mm WWII company wargame STLs up to 1:35 model kit size for 3D printing. Use 285.7% in your slicer with uniform XYZ scaling.",
     intro: "This is a big jump from 15mm wargaming into large model-kit territory, and it is usually motivated by wanting a single heroic display piece rather than a battalion.",
     sections: [
-      { heading: "When you would actually do this", body: "Moving a whole Flames of War force up to 1:35 would be absurd — the models would dominate a tournament table. The realistic reason to reach for this percentage is a centerpiece: one tank or one vignette that you want to paint at a scale with generous surface area. The 15mm source was never meant for this, so expect obvious detail scaling, but the chunky model-kit surfaces take the upscale well." },
+      { heading: "When you would actually do this", body: "Moving a whole 15mm WWII company wargame force up to 1:35 would be absurd — the models would dominate a tournament table. The realistic reason to reach for this percentage is a centerpiece: one tank or one vignette that you want to paint at a scale with generous surface area. The 15mm source was never meant for this, so expect obvious detail scaling, but the chunky model-kit surfaces take the upscale well." },
       { heading: "What I watch for", body: "At 285.7% the build volume becomes the real constraint. A small 1:100 tank can grow into a multi-part build at 1:35, so I plan supports and orientation before slicing. The 15mm source detail — antennas, thin gear — upscales into thicker, more forgiving shape, which is a pleasant surprise." },
     ],
     faq: [
@@ -29,10 +29,10 @@ export const conversionDetailContent = {
   "1-100-to-28mm": {
     title: "1:100 to 28mm Scale for 3D Printing Miniatures",
     h1: "1:100 to 28mm: Small Wargaming to True Tabletop Scale",
-    metaDescription: "Convert 1:100 historical STLs to 28mm tabletop scale for D&D or Bolt Action. Apply 160.0% in your slicer with uniform scaling.",
+    metaDescription: "Convert 1:100 historical STLs to 28mm tabletop scale for classic fantasy RPG or WWII platoon wargame. Apply 160.0% in your slicer with uniform scaling.",
     intro: "This brings the cheapest big-battle scale up to the everyday tabletop standard. The percentage is modest enough that the models stay recognisable, which keeps the conversion practical.",
     sections: [
-      { heading: "Why people bridge 15mm to 28mm", body: "I see this most when someone wants a Flames of War tank as a bit of terrain or a display piece on a 28mm board. 160% is small enough that the vehicle reads as a 28mm-scale prop rather than an obviously-upscaled toy. Infantry at this jump get coarse, but vehicles and mechs hold up well." },
+      { heading: "Why people bridge 15mm to 28mm", body: "I see this most when someone wants a 15mm WWII company wargame tank as a bit of terrain or a display piece on a 28mm board. 160% is small enough that the vehicle reads as a 28mm-scale prop rather than an obviously-upscaled toy. Infantry at this jump get coarse, but vehicles and mechs hold up well." },
       { heading: "What to keep in mind", body: "At 160% the detail scales up cleanly, which is the advantage of starting small. The main thing I check is whether the upscaled model matches the proportions of its 28mm neighbours — a 1:100 era vehicle usually does, since the ratios are close enough in practice." },
     ],
     faq: [
@@ -41,9 +41,9 @@ export const conversionDetailContent = {
   },
   "1-100-to-32mm": {
     title: "1:100 to 32mm Scale for 3D Printing Miniatures",
-    h1: "1:100 to 32mm Heroic: Wargaming to Warhammer Scale",
-    metaDescription: "Upscale 1:100 Flames of War STLs to 32mm Warhammer heroic scale for 3D printing. Set 182.9% with uniform scaling.",
-    intro: "When you want those cheap 15mm tanks to sit alongside a Warhammer-scale army as terrain or atmosphere pieces, 182.9% is the bridge.",
+    h1: "1:100 to 32mm Heroic: Wargaming to Modern Sci-Fi Epic Scale",
+    metaDescription: "Upscale 1:100 15mm WWII company wargame STLs to 32mm heroic sci-fi wargame scale for 3D printing. Set 182.9% with uniform scaling.",
+    intro: "When you want those cheap 15mm tanks to sit alongside a modern sci-fi epic wargame army as terrain or atmosphere pieces, 182.9% is the bridge.",
     sections: [
       { heading: "The realistic use", body: "Honestly, nobody paints a whole battalion at this jump. The practical job is converting one or two iconic vehicles — a particular tank or APC — so they can appear on a 32mm board as wreckage, objectives, or scenery. At 182.9% the hull scales up into a solid, printable shape and the extra size hides layer lines comfortably." },
       { heading: "A note on era", body: "32mm is a heroic scale with exaggerated proportions, so a historical 1:100 vehicle can look a touch undersized or too simple next to heroic infantry. I treat these as scenery rather than trying to match them figure-for-figure." },
@@ -54,9 +54,9 @@ export const conversionDetailContent = {
   },
   "1-100-to-35mm": {
     title: "1:100 to 35mm Scale for 3D Printing Miniatures",
-    h1: "1:100 to 35mm: Flames of War to Legion-Style Scale",
-    metaDescription: "Scale 1:100 miniatures up to 35mm for Star Wars Legion or Conquest. Use 200.0% slicer scaling with locked axes.",
-    intro: "A clean double-size jump that lifts 15mm wargaming models up to the 35mm band used by Legion and Conquest — useful for turning cheap small-scale vehicles into display props.",
+    h1: "1:100 to 35mm: 15mm WWII company wargame to Mass-Battle Scale",
+    metaDescription: "Scale 1:100 miniatures up to 35mm for sci-fi or fantasy mass-battle play. Use 200.0% slicer scaling with locked axes.",
+    intro: "A clean double-size jump that lifts 15mm wargaming models up to the 35mm band used by sci-fi and fantasy mass-battle games — useful for turning cheap small-scale vehicles into display props.",
     sections: [
       { heading: "Why the double is handy", body: "200% is one of the easiest numbers to type because the muscle memory is simple: anything above 100% doubles the linear size. For a single vehicle or vignette destined to sit on a 35mm board, it is a practical, predictable conversion." },
       { heading: "Detail expectations", body: "Starting from 15mm means the upscaled plastic (or resin) reads smooth and slightly simplified, which suits 35mm models well. I check the footprint after scaling, because a small-scale vehicle doubled can still be bigger than expected on the plate." },
@@ -67,8 +67,8 @@ export const conversionDetailContent = {
   },
   "1-100-to-40mm": {
     title: "1:100 to 40mm Scale for 3D Printing Miniatures",
-    h1: "1:100 to 40mm: Wargaming to Shatterpoint-Style Scale",
-    metaDescription: "Convert 15mm Flames of War infantry to 40mm Shatterpoint or MCP scale. Apply 228.6% with uniform XYZ scaling.",
+    h1: "1:100 to 40mm: Wargaming to Sci-Fi Skirmish Scale",
+    metaDescription: "Convert 15mm 15mm WWII company wargame infantry to 40mm sci-fi or superhero skirmish game scale. Apply 228.6% with uniform XYZ scaling.",
     intro: "This carries small-scale models all the way up to the biggest standard game scale. It is strictly a display or study-piece move rather than a practical army conversion.",
     sections: [
       { heading: "The honest answer", body: "Nothing in 15mm wargaming belongs at 40mm as a playable figure. This jump is for study — understanding how a sculpt reads at display scale — or for turning a small-scale vehicle into a centrepiece. At 228.6% the extra size hides FDM layer lines well, which is the upside." },
@@ -98,7 +98,7 @@ export const conversionDetailContent = {
   "1-35-to-28mm": {
     title: "1:35 to 28mm Scale for 3D Printing Miniatures",
     h1: "1:35 to 28mm: Model Kits Down to True Tabletop Scale",
-    metaDescription: "Downscale 1:35 model kits to 28mm Bolt Action or D&D scale. Type 56.0% and lock XYZ axes in your slicer.",
+    metaDescription: "Downscale 1:35 model kits to 28mm WWII platoon wargame or classic fantasy RPG scale. Type 56.0% and lock XYZ axes in your slicer.",
     intro: "Turning a big 1:35 model-kit tank into a 28mm wargaming vehicle is one of the most useful conversions in the hobby — and one of the friendliest, because you only ever shrink.",
     sections: [
       { heading: "The classic motor-pool trick", body: "1:35 kits are everywhere and often cheaper than wargaming-branded 1:56 vehicles. Scaling to 56% brings a plastic Tiger or Sherman down to sit properly beside 28mm infantry. I lock XYZ to keep proportions true, then weather the hull to blend the glossy kit plastic with matte infantry." },
@@ -106,7 +106,7 @@ export const conversionDetailContent = {
     ],
     faq: [
       { question: "Is 56% the right shrink for 1:35 to 28mm?", answer: "Yes. 28mm of a 175cm baseline maps to 50mm for 1:35 eye level, so 28 ÷ 50 = 56.0%." },
-      { question: "Why use 1:35 kits for Bolt Action?", answer: "They are cheap and abundant, and at 56% they match 28mm infantry well — which is why players run Tamiya kits despite the nominal 1:56 rules scale." },
+      { question: "Why use 1:35 kits for WWII platoon wargame?", answer: "They are cheap and abundant, and at 56% they match 28mm infantry well — which is why players run Tamiya kits despite the nominal 1:56 rules scale." },
     ],
   },
   "1-35-to-32mm": {
@@ -124,21 +124,21 @@ export const conversionDetailContent = {
   },
   "1-35-to-35mm": {
     title: "1:35 to 35mm Scale for 3D Printing Miniatures",
-    h1: "1:35 to 35mm: Model Kits to Legion-Style Scale",
-    metaDescription: "Scale 1:35 model kits to 35mm Legion or Conquest scale. Use 70.0% uniform scaling in your slicer.",
-    intro: "Bringing a 1:35 kit down to 35mm is a comfortable 70% shrink that keeps the model chunky and sturdy for a display on a Legion-style board.",
+    h1: "1:35 to 35mm: Model Kits to Mass-Battle Scale",
+    metaDescription: "Scale 1:35 model kits to 35mm sci-fi or fantasy mass-battle scale. Use 70.0% uniform scaling in your slicer.",
+    intro: "Bringing a 1:35 kit down to 35mm is a comfortable 70% shrink that keeps the model chunky and sturdy for a display on a mass-battle-style board.",
     sections: [
       { heading: "A good terrain or vehicle scale", body: "At 70% the kit keeps most of its heft, making it a great choice for a legio-style vehicle or objective piece. The reduction is gentle enough that I rarely worry about fragile parts becoming too thin." },
       { heading: "Proportions vs 35mm infantry", body: "35mm figures have heroic bulk too, so I test the shrunk hull against my infantry. If the toy look persists, 70% is still the right linear step — I just diversify the weathering and base work to sell the scale." },
     ],
     faq: [
-      { question: "Does 1:35 to 35mm make a good Legion vehicle?", answer: "Yes, at 70% the model keeps heft and reads well next to 35mm infantry as a display or objective piece." },
+      { question: "Does 1:35 to 35mm make a good mass-battle vehicle?", answer: "Yes, at 70% the model keeps heft and reads well next to 35mm infantry as a display or objective piece." },
     ],
   },
   "1-35-to-40mm": {
     title: "1:35 to 40mm Scale for 3D Printing Miniatures",
-    h1: "1:35 to 40mm: Model Kits for Shatterpoint-Style Boards",
-    metaDescription: "Convert 1:35 model kits to 40mm Shatterpoint or MCP scale. Apply 80.0% with uniform XYZ scaling.",
+    h1: "1:35 to 40mm: Model Kits for Sci-Fi Skirmish Boards",
+    metaDescription: "Convert 1:35 model kits to 40mm sci-fi or superhero skirmish game scale. Apply 80.0% with uniform XYZ scaling.",
     intro: "A light 80% shrink that turns a 1:35 kit into something that works as scenery or a large character piece on a 40mm board.",
     sections: [
       { heading: "Mainly a scenery conversion", body: "At 80% the 1:35 vehicle is close to its original sturdy size, which suits 40mm board furniture. It is not a playable 40mm figure so much as a prop that grounds a scene, and the light shrink means few print complications." },
@@ -182,13 +182,13 @@ export const conversionDetailContent = {
     title: "1:48 to 28mm Scale for 3D Printing Miniatures",
     h1: "1:48 to 28mm: Quarter Scale Down to True Tabletop",
     metaDescription: "Convert 1:48 quarter-scale models to 28mm true scale. Use 76.8% uniform scaling in your slicer.",
-    intro: "This is the famous 1:48-into-28mm conversion that powers so many Bolt Action motor pools, taking a quarter-scale kit down to sit correctly beside true-scale infantry.",
+    intro: "This is the famous 1:48-into-28mm conversion that powers so many WWII platoon wargame motor pools, taking a quarter-scale kit down to sit correctly beside true-scale infantry.",
     sections: [
-      { heading: "The 1:48 for Bolt Action favour", body: "Players favour 1:48 over the official 1:56 because modern plastic infantry have grown bulkier, and the slightly larger 1:48 hull reads better under them. At 76.8% the kit becomes a robust 28mm vehicle. I shrink it, then park a printed infantryman next to it to check the visual match before doing the details." },
+      { heading: "The 1:48 for WWII platoon wargame favour", body: "Players favour 1:48 over the official 1:56 because modern plastic infantry have grown bulkier, and the slightly larger 1:48 hull reads better under them. At 76.8% the kit becomes a robust 28mm vehicle. I shrink it, then park a printed infantryman next to it to check the visual match before doing the details." },
       { heading: "Fragility reversal", body: "Shrinking to 76.8% thins barrels and stowage. I look for the most delicate elements (barrels, antennas, thin armour plate) and may reinforce or re-orient them so the model survives alongside its 28mm mates." },
     ],
     faq: [
-      { question: "Why do players prefer 1:48 over 1:56 for Bolt Action?", answer: "Modern 28mm plastic infantry are bulkier, so the larger 1:48 hull (76.8% shrink) reads better under them than a true 1:56." },
+      { question: "Why do players prefer 1:48 over 1:56 for WWII platoon wargame?", answer: "Modern 28mm plastic infantry are bulkier, so the larger 1:48 hull (76.8% shrink) reads better under them than a true 1:56." },
       { question: "Is 76.8% the right 1:48 to 28mm number?", answer: "Yes, based on a 175cm baseline where 1:48 is 33.3mm to the eyes and 28mm true is 28mm — 28 ÷ 33.3 = 76.8%." },
     ],
   },
@@ -196,7 +196,7 @@ export const conversionDetailContent = {
     title: "1:48 to 32mm Scale for 3D Printing Miniatures",
     h1: "1:48 to 32mm: Quarter Scale to Heroic Tabletop",
     metaDescription: "Scale 1:48 models down to 32mm heroic scale. Set 87.8% in your slicer with locked axes.",
-    intro: "A gentle 87.8% shrink that takes a quarter-scale vehicle and matches it to the larger heroic 32mm band used by Warhammer-scale sets.",
+    intro: "A gentle 87.8% shrink that takes a quarter-scale vehicle and matches it to the larger heroic 32mm band used by modern sci-fi epic wargame sets.",
     sections: [
       { heading: "Bigger infantry, smaller shrink", body: "Because 32mm heroic infantry are bigger than 28mm true-scale ones, the shrink from 1:48 is milder — 87.8% versus 76.8%. That keeps the kit close to its original size, which is convenient for preserving detail while still matching heroic soldiers." },
       { heading: "Closer to 1:1 means easier printing", body: "The small reduction means most parts print nearly at native size, so this is a reliable conversion with fewer fragility surprises than a deeper shrink." },
@@ -207,8 +207,8 @@ export const conversionDetailContent = {
   },
   "1-48-to-35mm": {
     title: "1:48 to 35mm Scale for 3D Printing Miniatures",
-    h1: "1:48 to 35mm: Quarter Scale to Legion-Style Scale",
-    metaDescription: "Scale 1:48 models to 35mm Legion or Conquest scale. Apply 96.0% uniform scaling.",
+    h1: "1:48 to 35mm: Quarter Scale to Mass-Battle Scale",
+    metaDescription: "Scale 1:48 models to 35mm sci-fi or fantasy mass-battle scale. Apply 96.0% uniform scaling.",
     intro: "A nearly one-to-one conversion — 96% — that lets a 1:48 kit stand in on a 35mm board with almost no size change at all.",
     sections: [
       { heading: "Almost native size", body: "Because 1:48 (33.3mm) is so close to 35mm, this is essentially a tiny nudge. It is the least disruptive 1:48 conversion and great when you want a vehicle or aircraft piece that already looks about right on a 35mm scene. Detail is preserved almost perfectly." },
@@ -220,8 +220,8 @@ export const conversionDetailContent = {
   },
   "1-48-to-40mm": {
     title: "1:48 to 40mm Scale for 3D Printing Miniatures",
-    h1: "1:48 to 40mm: Quarter Scale Up to Shatterpoint-Style",
-    metaDescription: "Upscale 1:48 models to 40mm Shatterpoint or MCP scale. Use 109.7% in your slicer.",
+    h1: "1:48 to 40mm: Quarter Scale Up to Sci-Fi Skirmish",
+    metaDescription: "Upscale 1:48 models to 40mm sci-fi or superhero skirmish game scale. Use 109.7% in your slicer.",
     intro: "A modest 109.7% upscale that lifts a quarter-scale model up to the larger 40mm band, useful for pulling a 1:48 vehicle into a bigger scene.",
     sections: [
       { heading: "A gentle step up", body: "The jump from 33.3mm to 40mm is only about 10%, so the 1:48 kit grows into a slightly heftier piece that reads well on a 40mm board. Detail enlarges cleanly and the model stays sturdy." },
@@ -246,25 +246,25 @@ export const conversionDetailContent = {
   },
   "1-48-to-1-56": {
     title: "1:48 to 1:56 Scale for 3D Printing Miniatures",
-    h1: "1:48 to 1:56: Quarter Scale Down to Bolt Action",
-    metaDescription: "Downscale 1:48 models to 1:56 Bolt Action scale. Set 85.7% in your slicer.",
-    intro: "Shrinking a 1:48 vehicle to the official 1:56 Bolt Action scale is a clean 85.7% reduction — the by-the-book way to run store-bought kits with your 28mm infantry.",
+    h1: "1:48 to 1:56: Quarter Scale Down to WWII platoon wargame",
+    metaDescription: "Downscale 1:48 models to 1:56 (28mm WWII wargame) scale. Set 85.7% in your slicer.",
+    intro: "Shrinking a 1:48 vehicle to the official 1:56 (28mm WWII wargame) scale is a clean 85.7% reduction — the by-the-book way to run store-bought kits with your 28mm infantry.",
     sections: [
       { heading: "The rules-correct route", body: "If you want strict 1:56 compliance rather than the common 1:48 compromise, this is the number. It takes a quarter-scale hull down to the official vehicle scale, which sits slightly smaller under infantry than the 1:48 alternative." },
       { heading: "Weighing the look", body: "I offer both routes depending on taste: strict 1:56 (85.7%) or the chunkier 1:48 (76.8% to 28mm). Most players land somewhere in between after parking an infantryman next to each. This page documents the formal 1:56 version." },
     ],
     faq: [
-      { question: "What is the difference between 1:48 and 1:56 for Bolt Action?", answer: "1:56 is the official vehicle scale (85.7% from 1:48), but many players keep 1:48 hulls because they look more substantial under bulky modern infantry." },
+      { question: "What is the difference between 1:48 and 1:56 for WWII platoon wargame?", answer: "1:56 is the official vehicle scale (85.7% from 1:48), but many players keep 1:48 hulls because they look more substantial under bulky modern infantry." },
     ],
   },
 
   // ---------------------------------------------------------------
-  // 1:56 (Bolt Action) conversions
+  // 1:56 (28mm WWII wargame) conversions
   // ---------------------------------------------------------------
   "1-56-to-1-35": {
     title: "1:56 to 1:35 Scale for 3D Printing Miniatures",
-    h1: "1:56 to 1:35: Bolt Action Vehicle Scale Up to Model Kits",
-    metaDescription: "Scale 1:56 Bolt Action vehicles up to 1:35 model kit size. Apply 160.0% in your slicer.",
+    h1: "1:56 to 1:35: WWII platoon wargame Vehicle Scale Up to Model Kits",
+    metaDescription: "Scale 1:56 (28mm WWII wargame) vehicles up to 1:35 model kit size. Apply 160.0% in your slicer.",
     intro: "A 1.6x upscale that carries a 1:56 vehicle up into the larger 1:35 model-kit world, usually for display or to pair with a bigger kit scene.",
     sections: [
       { heading: "Display and pairing use", body: "This is a hobbyist leap: turning a wargaming vehicle into a larger model-kit-scale piece. At 160% the 1:56 hull picks up much-needed mass and reads well in a 1:35 display context, though the wargaming simplification becomes visible if you look closely." },
@@ -276,8 +276,8 @@ export const conversionDetailContent = {
   },
   "1-56-to-1-48": {
     title: "1:56 to 1:48 Scale for 3D Printing Miniatures",
-    h1: "1:56 to 1:48: Bolt Action Vehicle Scale Up",
-    metaDescription: "Upscale 1:56 Bolt Action vehicles to 1:48 quarter scale. Set 116.7% in your slicer.",
+    h1: "1:56 to 1:48: WWII platoon wargame Vehicle Scale Up",
+    metaDescription: "Upscale 1:56 (28mm WWII wargame) vehicles to 1:48 quarter scale. Set 116.7% in your slicer.",
     intro: "Growing a 1:56 vehicle by 116.7% lands it at the more substantial quarter scale many wargamers prefer for pure visual presence.",
     sections: [
       { heading: "The presence upgrade", body: "Players who find 1:56 tanks a touch small under bulky infantry often bump to 1:48 for a chunkier hull. This conversion is the reverse of that preference: take a 1:56 model and enlarge it to 1:48. It's a mild 16.7% step that meaningfully increases visual mass." },
@@ -289,12 +289,12 @@ export const conversionDetailContent = {
   },
   "1-56-to-28mm": {
     title: "1:56 to 28mm Scale for 3D Printing Miniatures",
-    h1: "1:56 to 28mm: Bolt Action Vehicle Scale to True Scale",
-    metaDescription: "Convert 1:56 Bolt Action vehicles to 28mm true scale. Use 89.6% uniform scaling.",
+    h1: "1:56 to 28mm: WWII platoon wargame Vehicle Scale to True Scale",
+    metaDescription: "Convert 1:56 (28mm WWII wargame) vehicles to 28mm true scale. Use 89.6% uniform scaling.",
     intro: "This maps the 1:56 vehicle scale to the 28mm true-scale infantry it is officially paired with — a subtle 89.6% adjustment that most players can barely see.",
     sections: [
       { heading: "A subtle correction", body: "By eye, 1:56 and 28mm are extremely close. The 89.6% figure is the mathematically correct link between the 28.6mm of 1:56 and the 28mm true-scale infantry. It is close enough that many prints work either way; the percentage just dials the vehicles into perfect alignment." },
-      { heading: "When exactness matters", body: "I use this when I'm building a coherent Bolt Action force and want every hull to sit precisely under my 28mm infantry. It is a small number with a big effect on cohesion." },
+      { heading: "When exactness matters", body: "I use this when I'm building a coherent WWII platoon wargame force and want every hull to sit precisely under my 28mm infantry. It is a small number with a big effect on cohesion." },
     ],
     faq: [
       { question: "Is 1:56 basically 28mm?", answer: "They are very close — 1:56 is 28.6mm to the eyes, so a 89.6% scale maps it to 28mm true scale." },
@@ -303,10 +303,10 @@ export const conversionDetailContent = {
   "1-56-to-32mm": {
     title: "1:56 to 32mm Scale for 3D Printing Miniatures",
     h1: "1:56 to 32mm: Vehicle Scale Up to Heroic",
-    metaDescription: "Upscale 1:56 Bolt Action vehicles to 32mm heroic scale. Apply 102.4% in your slicer.",
-    intro: "A hair over 100% that lifts a 1:56 vehicle to match the bulkier heroic 32mm infantry — a neat trick for mixing Bolt Action and Warhammer-scale pieces.",
+    metaDescription: "Upscale 1:56 (28mm WWII wargame) vehicles to 32mm heroic scale. Apply 102.4% in your slicer.",
+    intro: "A hair over 100% that lifts a 1:56 vehicle to match the bulkier heroic 32mm infantry — a neat trick for mixing WWII platoon wargame and modern sci-fi epic wargame-scale pieces.",
     sections: [
-      { heading: "Bridging game systems", body: "When you want a 1:56 vehicle to stand next to heroic 32mm soldiers, 102.4% is the bridge. It is a tiny nudge, reflecting how close the vehicle and heroic scales actually are. I use it when combining models across Bolt Action and Warhammer-themed sets." },
+      { heading: "Bridging game systems", body: "When you want a 1:56 vehicle to stand next to heroic 32mm soldiers, 102.4% is the bridge. It is a tiny nudge, reflecting how close the vehicle and heroic scales actually are. I use it when combining models across WWII platoon wargame and modern sci-fi epic wargame-themed sets." },
       { heading: "The margins are small", body: "Because the jump is just 2.4%, the conversion is forgiving and detail-perfect. It is really about intent — naming the exact target so your hull and infantry read as one scale." },
     ],
     faq: [
@@ -315,9 +315,9 @@ export const conversionDetailContent = {
   },
   "1-56-to-35mm": {
     title: "1:56 to 35mm Scale for 3D Printing Miniatures",
-    h1: "1:56 to 35mm: Vehicle Scale Up to Legion-Style",
-    metaDescription: "Upscale 1:56 Bolt Action vehicles to 35mm Legion scale. Set 112.0% in your slicer.",
-    intro: "A 112% upscale that lifts a 1:56 vehicle up to the 35mm band, giving a mutation-friendly match for Legion- or Conquest-style scenes.",
+    h1: "1:56 to 35mm: Vehicle Scale Up to Mass-Battle",
+    metaDescription: "Upscale 1:56 (28mm WWII wargame) vehicles to 35mm mass-battle scale. Set 112.0% in your slicer.",
+    intro: "A 112% upscale that lifts a 1:56 vehicle up to the 35mm band, giving a mutation-friendly match for sci-fi or fantasy mass-battle-style scenes.",
     sections: [
       { heading: "A noticeable but clean bump", body: "Going from 28.6mm to 35mm is a 12% increase, enough to matter but gentle on the model. I use it when a 1:56 vehicle would otherwise read too small in a 35mm context. Detail and part strength survive the modest enlargement well." },
       { heading: "Watch the footprint", body: "The 12% bump nudges hulls and wings a little larger on the bed, which is trivial unless you were already tight on plate space. I check bed fit before slicing." },
@@ -328,8 +328,8 @@ export const conversionDetailContent = {
   },
   "1-56-to-40mm": {
     title: "1:56 to 40mm Scale for 3D Printing Miniatures",
-    h1: "1:56 to 40mm: Vehicle Scale Up to Shatterpoint-Style",
-    metaDescription: "Upscale 1:56 Bolt Action vehicles to 40mm Shatterpoint scale. Apply 128.0% in your slicer.",
+    h1: "1:56 to 40mm: Vehicle Scale Up to Sci-Fi Skirmish",
+    metaDescription: "Upscale 1:56 (28mm WWII wargame) vehicles to 40mm sci-fi skirmish scale. Apply 128.0% in your slicer.",
     intro: "A 128% upscale that lifts a 1:56 vehicle well into the largest standard game scale, suiting it to display or 40mm-themed board pieces.",
     sections: [
       { heading: "Up the scale ladder", body: "For someone building a 40mm-themed scene or display, growing a 1:56 hull by 28% gives it proper presence. It is more of an upsize than a rescale, and the wargaming simplification becomes more visible the further you climb." },
@@ -342,7 +342,7 @@ export const conversionDetailContent = {
   "1-56-to-75mm": {
     title: "1:56 to 75mm Scale for 3D Printing Miniatures",
     h1: "1:56 to 75mm: Vehicle Scale Up to Display",
-    metaDescription: "Upscale 1:56 Bolt Action vehicles to 75mm display scale. Set 240.0% in your slicer.",
+    metaDescription: "Upscale 1:56 (28mm WWII wargame) vehicles to 75mm display scale. Set 240.0% in your slicer.",
     intro: "A 2.4x upscale that turns a small wargaming vehicle into a substantial display piece, smoothing the surface for painting practice.",
     sections: [
       { heading: "Display repurposing", body: "At 240% a 1:56 tank becomes a large, smooth-canvas showpiece. The source's wargaming simplification works in its favour here — broad, flat panels perfect for blending and weathering practice." },
@@ -386,7 +386,7 @@ export const conversionDetailContent = {
     title: "1:72 to 32mm Scale for 3D Printing Miniatures",
     h1: "1:72 to 32mm: Small Scale Up to Heroic",
     metaDescription: "Upscale 1:72 models to 32mm heroic scale. Apply 131.7% in your slicer.",
-    intro: "A 131.7% upscale that lifts a 1:72 model up to the heroic 32mm band — a solid choice for terrain and vehicles on a Warhammer-scale board.",
+    intro: "A 131.7% upscale that lifts a 1:72 model up to the heroic 32mm band — a solid choice for terrain and vehicles on a modern sci-fi epic wargame board.",
     sections: [
       { heading: "Bridging to heroic", body: "Going from 22.2mm to 32mm is a 32% increase, enough to make a 1:72 model read as heroic-scale scenery. I use it when I want small-scale aircraft or vehicles to add atmosphere to a 32mm battlefield." },
       { heading: "Detail gains at the top", body: "The 31.7% enlargement smooths and strengthens thin parts. Barrels and wings, delicate at 1:72, become tougher — a welcome reliability boost." },
@@ -397,9 +397,9 @@ export const conversionDetailContent = {
   },
   "1-72-to-35mm": {
     title: "1:72 to 35mm Scale for 3D Printing Miniatures",
-    h1: "1:72 to 35mm: Small Scale Up to Legion-Style",
-    metaDescription: "Upscale 1:72 models to 35mm Legion or Conquest scale. Set 144.0% in your slicer.",
-    intro: "A 144% upscale that carries a 1:72 model up to the 35mm band, producing a chunkier and more present piece for a Legion-style board.",
+    h1: "1:72 to 35mm: Small Scale Up to Mass-Battle",
+    metaDescription: "Upscale 1:72 models to 35mm sci-fi or fantasy mass-battle scale. Set 144.0% in your slicer.",
+    intro: "A 144% upscale that carries a 1:72 model up to the 35mm band, producing a chunkier and more present piece for a mass-battle-style board.",
     sections: [
       { heading: "Enlargement with intent", body: "The 44% increase from 22.2mm to 35mm gives a small-scale kit real presence. It is more than a tweak, so I treat the model as a proper 35mm prop rather than a miniature. Detail survives the upscale well." },
       { heading: "Bed space planning", body: "At 144% a 1:72 model grows noticeably. I check the build volume early for wings or hulls, and orient to avoid tall, support-heavy single builds." },
@@ -410,8 +410,8 @@ export const conversionDetailContent = {
   },
   "1-72-to-40mm": {
     title: "1:72 to 40mm Scale for 3D Printing Miniatures",
-    h1: "1:72 to 40mm: Small Scale Up to Shatterpoint-Style",
-    metaDescription: "Upscale 1:72 models to 40mm Shatterpoint or MCP scale. Apply 164.6% in your slicer.",
+    h1: "1:72 to 40mm: Small Scale Up to Sci-Fi Skirmish",
+    metaDescription: "Upscale 1:72 models to 40mm sci-fi or superhero skirmish game scale. Apply 164.6% in your slicer.",
     intro: "A 164.6% upscale that lifts a 1:72 model well into the largest game scale, suiting it to display or 40mm-themed scenery.",
     sections: [
       { heading: "A clean climb", body: "Jumping 22.2mm to 40mm is a 65% enlargement. The small source becomes a big, smooth piece that works as display-scale scenery on a 40mm board. The simplification of 1:72 detail becomes a feature at this size." },
@@ -444,7 +444,7 @@ export const conversionDetailContent = {
     metaDescription: "Scale 28mm miniatures up to 1:35 model kit size. Use 178.6% in your slicer with uniform scaling.",
     intro: "Taking a 28mm infantry figure and growing it to 1:35 model-kit scale is a big jump, and honestly it is a display move because a 1:35 human stands about 50mm tall.",
     sections: [
-      { heading: "Why you'd go big", body: "A 28mm D&D figure grown to 178.6% becomes a ~1:35 human, which suits large dioramas or pairing with 1:35 kits. I do this when I want a spotlight hero in a model-kit-scale scene. The 78.6% enlargement smooths detail and gives a big paint surface." },
+      { heading: "Why you'd go big", body: "A 28mm classic fantasy RPG figure grown to 178.6% becomes a ~1:35 human, which suits large dioramas or pairing with 1:35 kits. I do this when I want a spotlight hero in a model-kit-scale scene. The 78.6% enlargement smooths detail and gives a big paint surface." },
       { heading: "Watch the proportions", body: "28mm true-scale figures carry realistic proportions, so enlarging them reads correctly in a 1:35 context. Heroic figures enlarge into a chunky look — fine if the scene is heroic, odd if it is meant to be a realistic kit." },
     ],
     faq: [
@@ -455,34 +455,34 @@ export const conversionDetailContent = {
     title: "28mm to 32mm Scale for 3D Printing Miniatures",
     h1: "28mm to 32mm: The Most-Calculated Tabletop Conversion",
     metaDescription: "Convert 28mm minis to 32mm hero ic scale for 3D printing. Type 114.3% into your slicer and lock XYZ axes.",
-    intro: "This is the conversion I'm asked about more than any other: bringing a true-scale 28mm figure up to heroic 32mm — the difference between a 40k Firstborn and a Primaris, or a classic D&D mini and a modern heroic one.",
+    intro: "This is the conversion I'm asked about more than any other: bringing a true-scale 28mm figure up to heroic 32mm — the difference between a classic true-scale (28mm) sculpt and a modern heroic (32mm) one, or between a classic fantasy RPG mini and a modern heroic figure.",
     sections: [
-      { heading: "Why 114.3% is the number", body: "On a 175cm baseline, a 28mm true-scale figure is 28mm to the eyes and a 32mm heroic is 32mm, so 32 ÷ 28 = 114.3%. It is the single most useful percentage for anyone printing proxies for Warhammer 40k, Age of Sigmar, or modern D&D." },
+      { heading: "Why 114.3% is the number", body: "On a 175cm baseline, a 28mm true-scale figure is 28mm to the eyes and a 32mm heroic is 32mm, so 32 ÷ 28 = 114.3%. It is the single most useful percentage for anyone printing proxies for modern sci-fi epic wargames, modern fantasy wargames, or classic fantasy RPGs." },
       { heading: "What actually changes", body: "At 114.3% the figure grows ~14%, which matters most in armies where the two scales meet. I measure the eye line before scaling — a '28mm' sculpt that reads 30mm needs a different treatment. After the uniform upscale, check that the model still fits its base, since a 32mm figure on a 28mm hero base can crowd the footprint." },
     ],
     faq: [
       { question: "What percentage is 28mm to 32mm?", answer: "114.3% on a 175cm baseline, measured to the eyes. This matches a true-scale 28mm figure to heroic 32mm.", },
-      { question: "Does 28mm to 32mm work for 40k and D&D?", answer: "Yes — it is the standard bridge between Firstborn/Primaris 40k sculpts and between true-scale and heroic D&D figures." },
+      { question: "Does 28mm to 32mm work for modern sci-fi epic wargame and classic fantasy RPG?", answer: "Yes — it is the standard bridge between classic true-scale (28mm) and modern heroic (32mm) sci-fi sculpts, and between true-scale and heroic classic fantasy RPG figures." },
     ],
   },
   "28mm-to-35mm": {
     title: "28mm to 35mm Scale for 3D Printing Miniatures",
-    h1: "28mm to 35mm: Tabletop True Scale to Legion Scale",
-    metaDescription: "Upscale 28mm minis to 35mm Legion or Conquest scale. Apply 125.0% in your slicer.",
-    intro: "Growing a 28mm true-scale figure by 25% to reach the 35mm band used by Star Wars Legion and Conquest — a crisp increase that reads clearly on the table.",
+    h1: "28mm to 35mm: Tabletop True Scale to Mass-Battle Scale",
+    metaDescription: "Upscale 28mm minis to 35mm sci-fi or fantasy mass-battle scale. Apply 125.0% in your slicer.",
+    intro: "Growing a 28mm true-scale figure by 25% to reach the 35mm band used by 35mm sci-fi mass-battle game and fantasy mass-battle game — a crisp increase that reads clearly on the table.",
     sections: [
       { heading: "The +25% step", body: "35 ÷ 28 = 125%, a clean quarter-size increase that noticeably enlarges infantry. It is the bridge when you want a 28mm design to hold its own among bulkier 35mm figures. Detail smooths slightly but remains strong." },
       { heading: "When it feels right", body: "35mm figures are chunkier, so a 125% upscaled 28mm sculpt will still read slightly slimmer than a native 35mm one. I use it when adding a 28mm-typical hero or vehicle into a 35mm scene and want it to stand tall." },
     ],
     faq: [
-      { question: "Is 28mm to 35mm a big difference?", answer: "It's a clear 25% increase (125%), enough to matter but gentle on detail — good for adding figures to a 35mm Legion-style scene." },
+      { question: "Is 28mm to 35mm a big difference?", answer: "It's a clear 25% increase (125%), enough to matter but gentle on detail — good for adding figures to a 35mm mass-battle-style scene." },
     ],
   },
   "28mm-to-40mm": {
     title: "28mm to 40mm Scale for 3D Printing Miniatures",
-    h1: "28mm to 40mm: True Scale Up to Shatterpoint-Style",
-    metaDescription: "Upscale 28mm minis to 40mm Shatterpoint or MCP scale. Use 142.9% in your slicer.",
-    intro: "A 142.9% upscale that lifts a 28mm figure well up into the 40mm band, giving it center-stage presence on a Shatterpoint- or MCP-themed board.",
+    h1: "28mm to 40mm: True Scale Up to Sci-Fi Skirmish",
+    metaDescription: "Upscale 28mm minis to 40mm sci-fi or superhero skirmish game scale. Use 142.9% in your slicer.",
+    intro: "A 142.9% upscale that lifts a 28mm figure well up into the 40mm band, giving it center-stage presence on a sci-fi or superhero skirmish-themed board.",
     sections: [
       { heading: "A commanding increase", body: "Going from 28mm to 40mm is a 43% enlargement — enough to turn a standard figure into a hero-scale piece. The bigger canvas hides layer lines and gives ample painting space. I use it when I want a 28mm design to lead a scene at 40mm." },
       { heading: "Proportion expectations", body: "A 28mm true-scale figure upscaled keeps realistic proportions, so it may look slender next to heroic 40mm sculpts. That is fine for a display or an accent piece; just don't expect it to pass entirely as a native heroic 40mm model." },
@@ -525,7 +525,7 @@ export const conversionDetailContent = {
     title: "32mm to 28mm Scale for 3D Printing Miniatures",
     h1: "32mm to 28mm: Heroic Down to True Tabletop Scale",
     metaDescription: "Downscale 32mm minis to 28mm true scale. Type 87.5% into your slicer and lock axes.",
-    intro: "The reverse of the most-asked question: shrinking a heroic 32mm figure to true 28mm scale, as when you bring a modern sculpt down to sit with classic Firstborn or 28mm D&D comrades.",
+    intro: "The reverse of the most-asked question: shrinking a heroic 32mm figure to true 28mm scale, as when you bring a modern sculpt down to sit with classic true-scale (28mm) or 28mm fantasy RPG comrades.",
     sections: [
       { heading: "Why shrink at all", body: "Players occasionally want a heroic model to join a 28mm-led force. At 87.5% the figure loses its heroic presence and reads as a 28mm true-scale model — the proportions slim down with the size, which is exactly what you want when balancing an army." },
       { heading: "Watch the slimming", body: "Shrinking 32mm heroic to 28mm (87.5%) makes heads and weapons proportionally smaller, matching the target scale's realism. I confirm the eye line lands at 28mm after scaling rather than trusting the number alone." },
@@ -536,9 +536,9 @@ export const conversionDetailContent = {
   },
   "32mm-to-35mm": {
     title: "32mm to 35mm Scale for 3D Printing Miniatures",
-    h1: "32mm to 35mm: Heroic Scale Up to Legion",
-    metaDescription: "Upscale 32mm heroic minis to 35mm Legion scale. Use 109.4% in your slicer.",
-    intro: "A gentle 109.4% upscale from the heroic 32mm band up to 35mm — the step I reach for when adding Warhammer-style models to a Legion- or Conquest-scale project.",
+    h1: "32mm to 35mm: Heroic Scale Up to Mass-Battle",
+    metaDescription: "Upscale 32mm heroic minis to 35mm mass-battle scale. Use 109.4% in your slicer.",
+    intro: "A gentle 109.4% upscale from the heroic 32mm band up to 35mm — the step I reach for when adding modern sci-fi epic wargame-style models to a sci-fi or fantasy mass-battle game-scale project.",
     sections: [
       { heading: "A mild, clean step", body: "35 ÷ 32 = 109.4%, a light increase that gives heroic figures just enough presence for a 35mm board. Detail stays essentially untouched, and parts remain strong since the jump is small." },
       { heading: "Good across sci-fi lines", body: "This is a practical bridge between the 32mm gaming mainstream and 35mm systems. I use it for a hero or vehicle that needs to hold its own among bulkier 35mm figures without a drastic size change." },
@@ -549,8 +549,8 @@ export const conversionDetailContent = {
   },
   "32mm-to-40mm": {
     title: "32mm to 40mm Scale for 3D Printing Miniatures",
-    h1: "32mm to 40mm: Heroic Scale Up to Shatterpoint",
-    metaDescription: "Upscale 32mm heroic minis to 40mm Shatterpoint scale. Apply 125.0% in your slicer.",
+    h1: "32mm to 40mm: Heroic Scale Up to Sci-Fi Skirmish",
+    metaDescription: "Upscale 32mm heroic minis to 40mm sci-fi skirmish scale. Apply 125.0% in your slicer.",
     intro: "A clean 125% upscale that grows a heroic 32mm figure by a quarter to reach the larger 40mm band — adding real presence while keeping the heroic look.",
     sections: [
       { heading: "The +25% hero step", body: "40 ÷ 32 = 125%. I use this when a heroic 32mm design deserves more scale presence — for a centerpiece on a 40mm board or a display piece. The enlargement smooths detail and gives a larger, more paint-friendly canvas." },
@@ -579,9 +579,9 @@ export const conversionDetailContent = {
   // ---------------------------------------------------------------
   "35mm-to-1-35": {
     title: "35mm to 1:35 Scale for 3D Printing Miniatures",
-    h1: "35mm to 1:35: Legion Scale Up to Model Kits",
-    metaDescription: "Upscale 35mm Legion minis to 1:35 model kit scale. Apply 142.9% in your slicer.",
-    intro: "A 142.9% upscale that carries a 35mm figure to model-kit scale, a display move for pairing Legion-style figures with 1:35 vehicles and dioramas.",
+    h1: "35mm to 1:35: Mass-Battle Scale Up to Model Kits",
+    metaDescription: "Upscale 35mm mass-battle minis to 1:35 model kit scale. Apply 142.9% in your slicer.",
+    intro: "A 142.9% upscale that carries a 35mm figure to model-kit scale, a display move for pairing mass-battle-style figures with 1:35 vehicles and dioramas.",
     sections: [
       { heading: "Building a larger scene", body: "Growing a 35mm figure to 142.9% lands it at roughly 1:35 human scale, useful for assembling a large kit-and-figure scene. The enlargement gives the figure real mass and a big paint surface." },
       { heading: "Choose the style", body: "35mm figures often carry heroic bulk, which suits stylized dioramas. In a strict 1:35 realistic kit scene that bulk can look exaggerated, so I decide the flavour of the scene first." },
@@ -592,11 +592,11 @@ export const conversionDetailContent = {
   },
   "35mm-to-28mm": {
     title: "35mm to 28mm Scale for 3D Printing Miniatures",
-    h1: "35mm to 28mm: Legion Scale Down to True Scale",
-    metaDescription: "Downscale 35mm Legion minis to 28mm true scale. Use 80.0% in your slicer.",
+    h1: "35mm to 28mm: Mass-Battle Scale Down to True Scale",
+    metaDescription: "Downscale 35mm mass-battle minis to 28mm true scale. Use 80.0% in your slicer.",
     intro: "The reverse of the popular upscale: shrinking a 35mm figure down to true 28mm scale at an 80% reduction, with proportions that slim alongside the size.",
     sections: [
-      { heading: "Slimming a 35mm figure", body: "At 80% a 35mm figure becomes a 28mm true-scale model. Because the source is usually heroic, the shrink hands you slimmer, more realistic proportions — ideal if you want a Legion-inspired character to blend into a 28mm-led force." },
+      { heading: "Slimming a 35mm figure", body: "At 80% a 35mm figure becomes a 28mm true-scale model. Because the source is usually heroic, the shrink hands you slimmer, more realistic proportions — ideal if you want a mass-battle-inspired character to blend into a 28mm-led force." },
       { heading: "Delicate after downsizing", body: "The 20% reduction thins weapons and thin parts. I check the most fragile elements and orient or reinforce them so the model survives at its new, smaller size." },
     ],
     faq: [
@@ -605,12 +605,12 @@ export const conversionDetailContent = {
   },
   "35mm-to-32mm": {
     title: "35mm to 32mm Scale for 3D Printing Miniatures",
-    h1: "35mm to 32mm: Legion Down to Heroic Scale",
-    metaDescription: "Downscale 35mm Legion minis to 32mm heroic scale. Set 91.4% in your slicer.",
-    intro: "A light 91.4% reduction that brings a 35mm figure down to the heroic 32mm band — the bridge when you want Legion-scale models to join a Warhammer-scale force.",
+    h1: "35mm to 32mm: Mass-Battle Down to Heroic Scale",
+    metaDescription: "Downscale 35mm mass-battle minis to 32mm heroic scale. Set 91.4% in your slicer.",
+    intro: "A light 91.4% reduction that brings a 35mm figure down to the heroic 32mm band — the bridge when you want 35mm mass-battle models to join a modern sci-fi epic wargame force.",
     sections: [
       { heading: "A practical scale bridge", body: "32 ÷ 35 = 91.4%, a mild shrink that lets a 35mm figure pass smoothly into a 32mm army. The change is subtle enough to keep detail intact while correcting the size gap between systems." },
-      { heading: "Low risk, pleasant result", body: "The 8.6% reduction is gentle, so part fragility is rarely an issue. I use this when mixing Legion and Warhammer-style sets and want them to cohere on one table." },
+      { heading: "Low risk, pleasant result", body: "The 8.6% reduction is gentle, so part fragility is rarely an issue. I use this when mixing 35mm mass-battle game and modern sci-fi epic wargame-style sets and want them to cohere on one table." },
     ],
     faq: [
       { question: "Is 35mm to 32mm a big change?", answer: "No — a modest 91.4% reduction. It's a subtle bridge that keeps detail while letting 35mm models join a 32mm force." },
@@ -618,21 +618,21 @@ export const conversionDetailContent = {
   },
   "35mm-to-40mm": {
     title: "35mm to 40mm Scale for 3D Printing Miniatures",
-    h1: "35mm to 40mm: Legion Scale Up to Shatterpoint",
-    metaDescription: "Upscale 35mm Legion minis to 40mm Shatterpoint scale. Apply 114.3% in your slicer.",
-    intro: "A 114.3% upscale that lifts a 35mm Legion figure up to the larger 40mm Shatterpoint band — the cleanest way to bring Legion-style models into a bigger game.",
+    h1: "35mm to 40mm: Mass-Battle Scale Up to Sci-Fi Skirmish",
+    metaDescription: "Upscale 35mm mass-battle minis to 40mm sci-fi skirmish scale. Apply 114.3% in your slicer.",
+    intro: "A 114.3% upscale that lifts a 35mm mass-battle figure up to the larger 40mm sci-fi skirmish band — the cleanest way to bring mass-battle-style models into a bigger game.",
     sections: [
-      { heading: "The standard Legion-to-Shatterpoint step", body: "40 ÷ 35 = 114.3%, the exact figure Atomic Mass Games players use when pressing Legion proxies into Shatterpoint. Both lines share a heroic style, so the 14.3% increase preserves proportions seamlessly." },
-      { heading: "Smooth and reliable", body: "Because the two scales are stylistically aligned, this conversion looks clean with minimal effort. I nudge a Legion model up and it reads naturally at 40mm." },
+      { heading: "The standard 35mm-to-40mm scale bridge", body: "40 ÷ 35 = 114.3%, the exact figure players use when pressing 35mm mass-battle proxies into 40mm sci-fi skirmish games. Both scales share a heroic style, so the 14.3% increase preserves proportions seamlessly." },
+      { heading: "Smooth and reliable", body: "Because the two scales are stylistically aligned, this conversion looks clean with minimal effort. I nudge a mass-battle model up and it reads naturally at 40mm." },
     ],
     faq: [
-      { question: "Does 35mm to 40mm work for Shatterpoint?", answer: "Yes — 114.3% is the standard step from Legion to Shatterpoint, and the shared heroic style makes it look seamless." },
+      { question: "Does 35mm to 40mm work for sci-fi skirmish game?", answer: "Yes — 114.3% is the standard step from 35mm mass-battle game to sci-fi skirmish game, and the shared heroic style makes it look seamless." },
     ],
   },
   "35mm-to-75mm": {
     title: "35mm to 75mm Scale for 3D Printing Miniatures",
-    h1: "35mm to 75mm: Legion Scale Up to Display",
-    metaDescription: "Upscale 35mm Legion minis to 75mm display scale. Apply 214.3% in your slicer.",
+    h1: "35mm to 75mm: Mass-Battle Scale Up to Display",
+    metaDescription: "Upscale 35mm mass-battle minis to 75mm display scale. Apply 214.3% in your slicer.",
     intro: "A 214.3% upscale that turns a 35mm figure into a 75mm display piece, with heroic proportions that hold up beautifully at large scale.",
     sections: [
       { heading: "Display from a strong base", body: "35mm heroic figures already have presence and bold proportions, so 214.3% takes them to a satisfying display size without losing their character. It is among the nicest display conversions for recognizable sci-fi subjects." },

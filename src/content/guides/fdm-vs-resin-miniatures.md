@@ -62,7 +62,7 @@ Resin also nails the very smallest detail at 28mm and below, where FDM layer lin
 
 FDM is the pragmatic choice for most wargaming armies. It's faster, cheaper, and you can run it in your house without a dedicated, ventilated setup. PLA filament is a fraction of the cost of resin plus wash and cleanup supplies.
 
-It's also genuinely fine for the models most people actually print. Big, angular armor plates read great on FDM — a Space Marine or a mech has large flat surfaces where layers just look like part of the build. Monsters and vehicles with chunky geometry do well too.
+It's also genuinely fine for the models most people actually print. Big, angular armor plates read great on FDM — a power-armoured soldier or a mech has large flat surfaces where layers just look like part of the build. Monsters and vehicles with chunky geometry do well too.
 
 ## Painted and on the Table, They Meet in the Middle
 

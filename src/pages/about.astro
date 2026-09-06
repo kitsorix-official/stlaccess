@@ -19,7 +19,7 @@ const aboutSchema = graph([
   ]),
   webPage({
     type: "ProfilePage",
-    name: "About STLACCESS — Built by a Warhammer & 3D Printing Hobbyist",
+    name: "About STLACCESS — Built by a Miniature & 3D Printing Hobbyist",
     description: site.description,
     url: "/about",
     mainEntity: PERSON_ID,
@@ -27,7 +27,7 @@ const aboutSchema = graph([
 ]);
 ---
 <Layout
-  title={`About STLACCESS | Built by a Warhammer & 3D Printing Hobbyist`}
+  title={`About STLACCESS | Built by a Miniature & 3D Printing Hobbyist`}
   description={`Why I built the STLACCESS 3D print scale calculator to stop wasted filament and solve scale creep in tabletop 3D printing. Tested on a Bambu Lab A1 Mini with real PLA prints.`}
 >
 
@@ -61,7 +61,7 @@ const aboutSchema = graph([
     <section class="space-y-6" aria-labelledby="the-problem">
       <h2 id="the-problem" class="text-3xl font-bold text-white font-heading">Why "32mm" rarely means 32mm</h2>
       <p>
-        If you've been 3D printing tabletop miniatures for more than a week, you've experienced the frustration. You download an incredible proxy STL, slice it, hit print, and 8 hours later discover your new character towers over your Warhammer squad—or looks like a child standing next to your terrain.
+        If you've been 3D printing tabletop miniatures for more than a week, you've experienced the frustration. You download an incredible STL, slice it, hit print, and 8 hours later discover your new character towers over your current squad—or looks like a child standing next to your terrain.
       </p>
       <p>
         <strong class="text-white">I call it scale creep</strong> — because that's exactly what happens to my army when one sculptor measures to the eye and another measures to the crown. I've learned the hard way that no two creators agree on what "32mm" actually means. Some account for base thickness, others don't. For anyone trying to build a cohesive army or gaming table, it leads to a pile of failed prints and wasted filament.
@@ -84,7 +84,7 @@ const aboutSchema = graph([
         <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
           <h3 class="text-[#ff6b35] font-bold mb-2">Eye level ({site.eyeLevelCm}cm)</h3>
           <p class="text-sm">
-            The standard for fantasy and sci-fi miniatures (like Warhammer or D&D). Measures directly to eye level so helmets, hats, and spikes don't mess up the scale ratio.
+            The standard for fantasy and sci-fi miniatures (modern heroic scale). Measures directly to eye level so helmets, hats, and spikes don't mess up the scale ratio.
           </p>
         </div>
         <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
@@ -132,7 +132,7 @@ const aboutSchema = graph([
         </div>
       </div>
       <p>
-        My worst mistake? I once eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." My Space Marine came out looking like a bobblehead — correct height, wrong proportions. That's why I now measure every conversion with my PARKSIDE calipers before I publish the percentage.
+        My worst mistake? I once eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." My armoured soldier came out looking like a bobblehead — correct height, wrong proportions. That's why I now measure every conversion with my PARKSIDE calipers before I publish the percentage.
       </p>
       <p>
         I test <strong class="text-white">every conversion</strong> on my <span class="text-[#ff6b35] font-semibold">{site.printerName}</span> — mostly PLA and PETG. If a converted proxy comes off the build plate looking out of proportion with the rest of my unit, I adjust the numbers before they go live. <strong class="text-white">I don't publish percentages I haven't personally verified.</strong>
@@ -149,7 +149,7 @@ const aboutSchema = graph([
         In 2019, I tried turning the hobby into a business by running a 3D printing service in <strong class="text-white">Enschede, Netherlands</strong>. It didn't take long to realize that running a commercial print service completely drained the fun out of the hobby. The margins were tight, managing print queues felt like a grind, and I had no time left to print or paint minis for myself. Eventually, I shut down the service and stepped away.
       </p>
       <p>
-        When I returned to 3D printing, I kept it strictly about the hobby. Now I print on a <span class="text-[#ff6b35] font-semibold">{site.printerName}</span>—mostly PLA and PETG—focusing on Warhammer proxies, tabletop terrain, board game upgrades, and the occasional practical print. Zero commercial pressure, just enjoying the process.
+        When I returned to 3D printing, I kept it strictly about the hobby. Now I print on a <span class="text-[#ff6b35] font-semibold">{site.printerName}</span>—mostly PLA and PETG—focusing on sci-fi and fantasy miniature proxies, tabletop terrain, board game upgrades, and the occasional practical print. Zero commercial pressure, just enjoying the process.
       </p>
       <p>
         Running that print service taught me one key lesson: nobody wants to commit to a 10-hour print only to find out the model is scaled wrong. I built STLACCESS to solve the exact scaling headaches I kept hitting on my own workbench.

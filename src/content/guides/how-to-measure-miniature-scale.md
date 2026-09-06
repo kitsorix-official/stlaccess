@@ -14,9 +14,9 @@ faq:
   - question: Should I measure to eye level or the top of the head?
     answer: >-
       Eye level (160cm on a 175cm figure) is the standard for gaming scales like
-      Warhammer, D&D, and Star Wars Legion. Top of head (175cm) is used for
+      the modern sci-fi epic wargame, the classic fantasy RPG, and the 35mm sci-fi mass-battle game. Top of head (175cm) is used for
       historical miniatures and ratio scales like 1:35 and 1:56. Mixing the two
-      is how I ended up with a bobblehead Space Marine.
+      is how I ended up with a bobblehead power-armoured soldier.
   - question: How do I measure a miniature in a dynamic pose?
     answer: >-
       Measure from the foot contact point to the eye position, ignoring
@@ -32,13 +32,13 @@ tags: ["scale theory", "measurement", "eye level", "methodology", "175cm baselin
 
 If you have ever printed a miniature and it looked wrong next to your other models, the problem is probably not the percentage you typed into your slicer. I know because it happened to me. The problem is probably how you measured the scale in the first place.
 
-My moment of clarity came from a Space Marine that looked like a bobblehead. I'd eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." The print came out the correct height, but the proportions were all wrong — a head too big for the body, everything slightly off. I took out my PARKSIDE digital calipers and found the real problem: I'd been measuring to the top of the head the whole time, not the eyes. The model wasn't wrong. My measurement was.
+My moment of clarity came from a power-armoured soldier that looked like a bobblehead. I'd eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." The print came out the correct height, but the proportions were all wrong — a head too big for the body, everything slightly off. I took out my PARKSIDE digital calipers and found the real problem: I'd been measuring to the top of the head the whole time, not the eyes. The model wasn't wrong. My measurement was.
 
 ## Eye Level vs Top of Head
 
 There are two ways to define a miniature's scale, and they give different numbers:
 
-**Eye level (160cm on a 175cm human).** You measure from the bottom of the foot (or the base contact point) to the centre of the eye. This is the standard for fantasy and sci-fi miniatures—Warhammer, D&D, Star Wars Legion. It ignores helmets, top-knots, and decorative headgear. This is what I use for every gaming-scale conversion now.
+**Eye level (160cm on a 175cm human).** You measure from the bottom of the foot (or the base contact point) to the centre of the eye. This is the standard for fantasy and sci-fi miniatures—the modern sci-fi epic wargame, the classic fantasy RPG, the 35mm sci-fi mass-battle game. It ignores helmets, top-knots, and decorative headgear. This is what I use for every gaming-scale conversion now.
 
 **Top of head (175cm).** You measure from the foot to the highest point of the head. This is used for historical miniatures, display busts, and ratio scales like 1:35 and 1:56. The full height of the miniature matters because historical accuracy demands it.
 

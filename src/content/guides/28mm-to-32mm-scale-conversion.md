@@ -8,9 +8,9 @@ faq:
   - question: What percentage do I scale 28mm to 32mm?
     answer: >-
       114.3% measured to eye level. This is the most common tabletop
-      conversion there is — the jump from true 28mm scale (D&D, Bolt
-      Action, classic Warhammer Fantasy) to the 32mm heroic scale used by
-      modern Warhammer 40,000 and Age of Sigmar.
+      conversion there is — the jump from true 28mm scale (the classic fantasy
+      RPG, the 28mm WWII platoon wargame, classic fantasy) to the 32mm heroic
+      scale used by the modern sci-fi wargame (32mm) and the modern fantasy wargame (32mm heroic).
   - question: How do I scale a 28mm STL up to 32mm?
     answer: >-
       Import the STL, select the model, lock the X/Y/Z axes (chain link in
@@ -31,7 +31,7 @@ faq:
 tags: ["scale conversion", "28mm", "32mm", "slicer settings", "percentage"]
 ---
 
-Of all the conversions I get asked about, this is the one. Someone prints a D&D party, realises it looks tiny next to a Warhammer army, and starts searching "28mm to 32mm scale up" — and the answer is the same every time: **114.3%, typed into your slicer with the axes locked.**
+Of all the conversions I get asked about, this is the one. Someone prints a classic fantasy RPG party, realises it looks tiny next to a modern sci-fi epic wargame army, and starts searching "28mm to 32mm scale up" — and the answer is the same every time: **114.3%, typed into your slicer with the axes locked.**
 
 This guide walks through the math so the number sticks, shows the exact clicks in the four slicers I use, and gives you a calculator you can play with right here. If you need the reverse (shrinking a 32mm mini down to 28mm), I've got a dedicated [32mm to 28mm guide](/guides/32mm-to-28mm-scale-conversion) for that too.
 
@@ -108,7 +108,7 @@ Cura and PrusaSlicer work the same way under different names. In Cura, select th
 
 I find this trips up more people than anything else. When you hold a 28mm and a 32mm miniature side by side, the 32mm figure doesn't look 14.3% bigger — it looks almost a third bigger. That's partly the heroic proportions (bigger heads, hands, and weapons) and partly because the difference compounds in three dimensions: 114.3% in every axis is **1.143³ ≈ 1.49**, so the 32mm figure has nearly *50% more volume* than the 28mm figure. Same for the reverse — [drop a model to 87.5%](/guides/32mm-to-28mm-scale-conversion) and it loses about a third of its volume.
 
-That volume jump is exactly why Games Workshop moved from 28mm to 32mm between 2014 and 2015: the extra material gives a painter more surface for detail and makes a model read better at arm's length. If you're scaling a D&D STL up to stand next to a Primaris army, 114.3% is right — the slight sculpting differences fade once the model has the same bulk as its neighbours.
+That volume jump is exactly why the publisher moved from 28mm to 32mm between 2014 and 2015: the extra material gives a painter more surface for detail and makes a model read better at arm's length. If you're scaling a classic fantasy RPG STL up to stand next to a modern heroic (32mm) army, 114.3% is right — the slight sculpting differences fade once the model has the same bulk as its neighbours.
 
 ### Why a 32mm hero looks so much bigger than the math suggests
 
@@ -120,11 +120,11 @@ The other half of the illusion is proportion. Most 32mm-scale sculpts are *heroi
 
 Both numbers come from measuring the same average human — 175cm tall, eyes at 160cm — and then scaling that figure so either the eye line or the top of the head lands on the stated millimetre count. 28mm to the eyes at 1:56, 32mm to the eyes at 1:50. The shorthand is "the eyes", but what it really means is "this miniature is the same height, at the table, as a real person standing next to the model kit at the stated scale." I've written the whole methodology out in the [175cm baseline guide](/guides/175cm-baseline), including why eye-level and top-of-head scales can't be mixed without a conversion step.
 
-### D&D vs Warhammer: which scale do you actually play?
+### Classic fantasy RPG vs modern sci-fi epic wargame: which scale do you actually play?
 
-This is the fork in the road. True 28mm is the language of D&D, Bolt Action, and most historical games. 32mm heroic is the language of modern Warhammer 40,000, Age of Sigmar, and most current skirmish games. Play one system and you never need this conversion. Play both — or print STLs from one ecosystem for use in the other, which is what nearly everyone I know does — and 114.3% becomes your best friend.
+This is the fork in the road. True 28mm is the language of the classic fantasy RPG, the 28mm WWII platoon wargame, and most historical games. 32mm heroic is the language of the modern sci-fi wargame (32mm), the modern fantasy wargame (32mm heroic), and most current skirmish games. Play one system and you never need this conversion. Play both — or print STLs from one ecosystem for use in the other, which is what nearly everyone I know does — and 114.3% becomes your best friend.
 
-If you're mostly a D&D player, my [D&D miniature scale guide](/guides/dnd-miniature-scale-guide) has the full size-category chart. If you're on the Warhammer side and want to know exactly where your army sits, the [Warhammer 40k scale page](/games/warhammer-40000) breaks down the Firstborn/Primaris difference — which, conveniently, is the same 28mm-to-32mm jump this guide covers.
+If you're mostly a fantasy RPG player, my [fantasy RPG miniature scale guide](/guides/classic-fantasy-rpg-miniature-scale-guide) has the full size-category chart. If you're scaling the 32mm heroic sci-fi standard and want to know exactly where your army sits, the [modern sci-fi epic wargame scale page](/games/sci-fi-epic-32mm) breaks down the classic true-scale vs modern heroic difference — which, conveniently, is the same 28mm-to-32mm jump this guide covers.
 
 ## Where Does the 28mm to 32mm Conversion Break Down?
 

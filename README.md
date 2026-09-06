@@ -3,7 +3,7 @@
 **Get your miniatures the right size before you waste filament.**
 
 STLACCESS is a fast, browser-based tool suite for scaling 3D-printable miniatures between the many scales
-used in tabletop gaming — Warhammer, D&D, Bolt Action, Star Wars Legion & Shatterpoint, historical wargaming,
+used in tabletop gaming — 6mm epic, 28mm true scale, 32mm heroic, 35mm eye level, historical wargaming,
 and display figures. It exists because getting a printed proxy to match your army shouldn't require guesswork
 or a pile of failed prints.
 
@@ -45,8 +45,8 @@ with physical test prints on a Bambu Lab A1 Mini, measured with a PARKSIDE digit
   For when you want to *see* the size difference, not just read a number.
 - **Scale Conversion Reference** (`/reference`) — 46 verified conversion pairs with full math breakdowns and
   FDM printing notes.
-- **Tabletop Game Scale Guide** (`/games`) — 26 game systems (Warhammer 40k, Age of Sigmar, D&D, Bolt Action,
-  Legion, Shatterpoint, BattleTech, Flames of War, and more), each with its scale, base sizes, conversion
+- **Tabletop Game Scale Guide** (`/games`) — 26 game systems (modern sci-fi epic 32mm, fantasy epic 32mm,
+  28mm true scale, 35mm eye level, WWII, mech tactical, epic 6–10mm, and more), each with its scale, base sizes, conversion
   table, and FDM printing tips.
 - **Guides** (`/guides`) — 16 in-depth articles on scale theory, measurement, slicer workflow, and FDM
   settings. Every guide opens with a **Direct Answer box** so you get the number immediately, before the deep
@@ -111,7 +111,7 @@ repository.
   the fast-numbers engine on the homepage, or this visual option.
 - **Guides expansion** — grew the guide library from 6 to 16, adding the 28mm real-world conversion companion,
   FDM vs Resin, Arachne vs Classic wall generator, Cura tree support settings, Resin2FDM workflow,
-  budget-printer picks, D&D and Star Wars Legion scale deep-dives, and the 28mm→32mm / 32mm→28mm walkthroughs.
+  budget-printer picks, 35mm eye-level and classic-fantasy-RPG scale deep-dives, and the 28mm→32mm / 32mm→28mm walkthroughs.
 - **Guide redesign** — Direct Answer boxes with jump-to-section navigation, reading time, H1-first reading
   order, and restyled prose (card-style tables, accent-bar headings, custom list markers).
 - **SEO pass** — keyword-first titles, all 26 game meta descriptions rewritten to ≤155 characters, and a

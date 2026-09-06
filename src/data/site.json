@@ -1,7 +1,7 @@
 {
   "name": "STLACCESS",
   "url": "https://stlaccess.com",
-  "description": "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on my Bambu Lab A1 Mini.",
+  "description": "STL scale converter for 3D printed miniatures. Slicer percentages for modern sci-fi epic wargames, classic fantasy RPGs, WWII platoon wargames, and tabletop gaming — tested on my Bambu Lab A1 Mini.",
   "baselineHeightCm": 175,
   "baselineHeight": "175cm",
   "eyeLevelCm": 160,
@@ -35,7 +35,7 @@
       "label": "28mm to 32mm",
       "category": "Most searched",
       "percentage": "114.3%",
-      "description": "Warhammer 40K and D&D heroic scale"
+      "description": "Modern sci-fi epic and classic fantasy RPG heroic scale"
     },
     {
       "slug": "1-35-to-32mm",
@@ -54,7 +54,7 @@
     {
       "slug": "1-56-to-28mm",
       "label": "1:56 to 28mm",
-      "category": "Bolt Action",
+      "category": "WWII Wargaming",
       "percentage": "89.6%",
       "description": "WWII wargaming to true 28mm"
     },
@@ -68,18 +68,18 @@
     {
       "slug": "28mm-to-35mm",
       "label": "28mm to 35mm",
-      "category": "Star Wars",
+      "category": "Sci-Fi",
       "percentage": "125.0%",
-      "description": "True scale to Star Wars Legion"
+      "description": "True scale to 35mm sci-fi mass-battle"
     }
   ],
   "homepageFaq": [
     {
-      "question": "What scale is <span class=\"text-[#ff6b35]\">Warhammer 40k</span> miniatures?",
-      "answer": "Most people in the hobby treat Games Workshop miniatures as <span class=\"text-white font-semibold\">32mm heroic scale</span>, measured from eye level at roughly 160cm. To convert from true 28mm, scale your STL to <span class=\"text-[#ff6b35] font-bold text-lg\">114.3%</span> in your slicer. Your mileage may vary depending on the sculpt."
+      "question": "What scale is <span class=\"text-[#ff6b35]\">modern sci-fi epic wargame</span> miniatures?",
+      "answer": "Most people in the hobby treat modern sci-fi epic wargame miniatures as <span class=\"text-white font-semibold\">32mm heroic scale</span>, measured from eye level at roughly 160cm. To convert from true 28mm, scale your STL to <span class=\"text-[#ff6b35] font-bold text-lg\">114.3%</span> in your slicer. Your mileage may vary depending on the sculpt."
     },
     {
-      "question": "How do I convert <span class=\"text-[#ff6b35]\">28mm to 32mm</span> for D&D?",
+      "question": "How do I convert <span class=\"text-[#ff6b35]\">28mm to 32mm</span> for classic fantasy RPG?",
       "answer": "Multiply your 28mm STL file by <span class=\"text-[#ff6b35] font-bold text-lg\">114.3%</span> to get what most players call heroic 32mm scale. This accounts for the <span class=\"text-white font-semibold\">175cm human baseline</span> and <a href=\"/about\" class=\"text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors\">eye-level measurement</a> I use on STLACCESS. If your group uses something different, adjust accordingly."
     },
     {
@@ -89,7 +89,7 @@
     {
       "question": "What is the difference between <span class=\"text-[#ff6b35]\">28mm and 32mm</span> miniatures?",
       "answer": "<span class=\"text-white font-semibold\">28mm true scale</span> measures a 175cm human from eye level. <span class=\"text-white font-semibold\">32mm heroic scale</span> uses the same baseline but adds exaggerated proportions for detail and durability. A 32mm miniature ends up roughly <span class=\"text-[#ff6b35] font-bold\">14% taller</span> than its 28mm equivalent.",
-      "answerExtra": "Games Workshop uses 32mm heroic for Warhammer 40k. A lot of D&D and Pathfinder miniatures are closer to 28mm true scale, though it varies by manufacturer."
+      "answerExtra": "The flagship modern sci-fi epic wargame uses 32mm heroic scale. A lot of fantasy RPG miniatures are closer to 28mm true scale, though it varies by manufacturer."
     },
     {
       "question": "How do I scale an <span class=\"text-[#ff6b35]\">STL file</span> in my slicer?",
@@ -97,14 +97,14 @@
     },
     {
       "question": "What does <span class=\"text-[#ff6b35]\">1:56 scale</span> mean in miniature gaming?",
-      "answer": "1:56 is a ratio scale common in historical wargaming, including <span class=\"text-white font-semibold\">Bolt Action</span>. It works out to roughly 28mm true scale when you use a 175cm human baseline. To convert 1:56 STLs to 32mm heroic, most people scale them to <span class=\"text-[#ff6b35] font-bold text-lg\">114.3%</span>."
+      "answer": "1:56 is a ratio scale common in historical wargaming, including <span class=\"text-white font-semibold\">WWII platoon wargame</span>. It works out to roughly 28mm true scale when you use a 175cm human baseline. To convert 1:56 STLs to 32mm heroic, most people scale them to <span class=\"text-[#ff6b35] font-bold text-lg\">114.3%</span>."
     }
   ],
   "quickRef": [
     { "from": "32mm (Heroic)", "to": "28mm (True)", "pct": "87.5%" },
-    { "from": "1:56 (Bolt Action)", "to": "1:48 (Tamiya)", "pct": "116.7%" },
+    { "from": "1:56 (28mm WWII wargame)", "to": "1:48 (Tamiya)", "pct": "116.7%" },
     { "from": "1:35 (Model Kit)", "to": "1:56 (Tabletop)", "pct": "62.5%" },
-    { "from": "32mm (AoS/Legion)", "to": "28mm (D&D)", "pct": "87.5%" },
+    { "from": "32mm (Modern Fantasy / Sci-Fi Mass-Battle)", "to": "28mm (classic fantasy RPG)", "pct": "87.5%" },
     { "from": "28mm (Heroic)", "to": "1:48 (True)", "pct": "130.4%" },
     { "from": "1:48 (Aircraft)", "to": "1:56 (Ground)", "pct": "85.7%" }
   ],
@@ -131,7 +131,7 @@
     },
     {
       "question": "Why do 1:48 tanks look better with 28mm infantry than 1:56?",
-      "answer": "Here is the thing — most modern 28mm plastics from Warlord Games and similar manufacturers actually measure closer to 30-32mm. A true 1:56 tank looks undersized next to them. 1:48 Tamiya kits match the heroic proportions better, and they are often cheaper than official wargaming vehicles. I use 1:48 for my Bolt Action motor pool and nobody has complained at tournaments. Use my <a href=\"/reference/1-48-to-28mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">1:48 to 28mm guide</a> and see how it looks on your table."
+      "answer": "Here is the thing — most modern 28mm plastics from the major wargaming publishers and similar manufacturers actually measure closer to 30-32mm. A true 1:56 tank looks undersized next to them. 1:48 Tamiya kits match the heroic proportions better, and they are often cheaper than official wargaming vehicles. I use 1:48 for my WWII platoon wargame motor pool and nobody has complained at tournaments. Use my <a href=\"/reference/1-48-to-28mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">1:48 to 28mm guide</a> and see how it looks on your table."
     },
     {
       "question": "What does \"Eye Level\" vs \"Top of Head\" mean in miniature scale?",
