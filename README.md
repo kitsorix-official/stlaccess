@@ -7,9 +7,7 @@ used in tabletop gaming — 6mm epic, 28mm true scale, 32mm heroic, 35mm eye lev
 and display figures. It exists because getting a printed proxy to match your army shouldn't require guesswork
 or a pile of failed prints.
 
-No file uploads, no user accounts, no cookies. Privacy-first, cookie-free analytics (Umami) for anonymous
-pageviews only. Every calculation runs directly in your browser — your STLs and dimensions never leave your
-machine.
+No file uploads, no user accounts, no cookies. Privacy-first, cookie-free visitor counter (a small custom script writing anonymous pageview stats to a private Google Sheet) for pageview counts only. Every calculation runs directly in your browser — your STLs and dimensions never leave your machine.
 
 ## Why I Built This
 

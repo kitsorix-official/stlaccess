@@ -11,7 +11,7 @@ export const faqData = [
       },
       {
         q: "Why is scale so inconsistent between manufacturers?",
-        a: `Because nobody agreed on where to put the ruler. Some sculptors measure to the eyes, some to the crown. Some account for base thickness, some do not. A "28mm" miniature from 2010 is often smaller than a "28mm" miniature from 2024. I built the <span class="text-[#ff6b35] font-semibold">175cm human baseline</span> to cut through the noise and give everyone the same starting point.`,
+        a: `Because nobody agreed on where to put the ruler. Some sculptors measure to the eyes, some to the crown. Some account for base thickness, some do not. A "28mm" miniature from a decade ago is often smaller than a "28mm" miniature from today. I built the <span class="text-[#ff6b35] font-semibold">175cm human baseline</span> to cut through the noise and give everyone the same starting point.`,
       },
       {
         q: "Can a 28mm and 32mm miniature be the same physical size?",
@@ -49,7 +49,7 @@ export const faqData = [
     questions: [
       {
         q: "What vehicle scale works with 28mm WWII platoon wargame (28mm) infantry?",
-        a: `Officially 1:56. In practice, <span class="text-[#ff6b35] font-semibold">1:48 Tamiya kits</span> often look better because modern WWII platoon wargame plastics are closer to 30-32mm than true 28mm. A true 1:56 tank looks small next to chunky heroic infantry. Try both if you have them. I use 1:48 for my WWII platoon wargame motor pool and nobody has complained at tournaments.`,
+        a: `Officially 1:56. In practice, <span class="text-[#ff6b35] font-semibold">1:48 model kits</span> often look better because modern WWII platoon wargame plastics are closer to 30-32mm than true 28mm. A true 1:56 tank looks small next to chunky heroic infantry. Try both if you have them. I use 1:48 for my WWII platoon wargame motor pool and nobody has complained at tournaments.`,
       },
       {
         q: "Will 1:48 infantry look too tall next to 28mm miniatures?",

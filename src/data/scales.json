@@ -17,7 +17,7 @@
     "topOfHeadMm": 34.5,
     "ratioEquivalent": "1:50",
     "games": ["modern sci-fi epic wargame (32mm heroic)", "modern fantasy wargame", "gothic skirmish game", "post-apocalyptic setting", "miniature-agnostic sci-fi wargame", "sci-fi skirmish game", "gang warfare skirmish game", "fantasy skirmish game"],
-    "note": "The publisher shifted from 28mm to 32mm between 2014 and 2015 for more facial detail and heroic proportions.",
+    "note": "The publisher shifted from 28mm to 32mm over a single range refresh for more facial detail and heroic proportions.",
     "printNote": "32mm is forgiving on FDM; layer lines are less visible on larger surfaces.",
     "commonIssue": "Some third-party sculptors label 35mm models as '32mm heroic.' Check eye-level measurement, not total height."
   },
@@ -38,7 +38,7 @@
     "eyeLevelMm": 40.0,
     "topOfHeadMm": 43.0,
     "ratioEquivalent": "1:43",
-    "games": ["40mm sci-fi skirmish game", "superhero skirmish game (35mm)", "inquisitor-style skirmish (the publisher)", "Display vignettes"],
+    "games": ["40mm sci-fi skirmish game", "superhero skirmish game (35mm)", "large-format skirmish (the publisher)", "Display vignettes"],
     "note": "Used for centerpiece models, display dioramas, or games where individual heroes need to stand out.",
     "printNote": "FDM works well at 40mm for monsters and vehicles with a 0.4mm nozzle.",
     "commonIssue": "40mm bases can destabilize on uneven terrain. Consider magnetizing or weighting the base."
@@ -60,7 +60,7 @@
     "eyeLevelMm": 45.7,
     "topOfHeadMm": 50.0,
     "ratioEquivalent": "1:35",
-    "games": ["Tamiya", "model kit manufacturer", "model kit manufacturer", "Military dioramas", "Armor modeling"],
+    "games": ["model kit manufacturer", "model kit manufacturer", "model kit manufacturer", "Military dioramas", "Armor modeling"],
     "note": "A true ratio scale, not a 'gaming scale.' Vehicles and armor dominate this scale.",
     "printNote": "1:35 vehicles print beautifully on FDM at 0.2mm layers with a 0.4mm nozzle.",
     "commonIssue": "1:35 miniatures from different manufacturers can vary by ±2mm."

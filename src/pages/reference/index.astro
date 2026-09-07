@@ -61,7 +61,7 @@ const referenceSchema = graph([
 <form role="search" class="px-6 mb-6 max-w-6xl mx-auto" aria-labelledby="ref-search-heading" onsubmit="return false">
   <h2 id="ref-search-heading" class="sr-only">Search conversions</h2>
   <div class="relative group">
-    <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
+    <i class="ti ti-search absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
     <input
       type="text"
       id="referenceSearch"
@@ -99,7 +99,7 @@ const referenceSchema = graph([
           <span class="font-mono">{conv.math}</span>
           <div class="flex items-center gap-1 group-hover:text-[#ff6b35] transition-colors">
             <span>Details</span>
-            <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+            <i class="ti ti-arrow-right text-[10px]" aria-hidden="true"></i>
           </div>
         </div>
       </a>
@@ -112,7 +112,7 @@ const referenceSchema = graph([
   <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12">
     <div class="flex items-start gap-4 mb-6">
       <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0">
-        <i class="fa-solid fa-graduation-cap text-[#ff6b35] text-lg" aria-hidden="true"></i>
+        <i class="ti ti-school text-[#ff6b35] text-lg" aria-hidden="true"></i>
       </div>
       <div>
         <h3 class="font-bold text-white text-lg mb-1">How these numbers are calculated</h3>
@@ -230,17 +230,17 @@ const referenceSchema = graph([
         </div>
         <div class="pl-14">
           <p class="mb-4">
-            The WWII platoon wargames state the official vehicle scale is 1:56. On paper this is correct for 28mm. Walk into any tournament and you will see <strong class="text-white">Tamiya 1:48 kits</strong> dominating the motor pool. This is not an accident.
+            The WWII platoon wargames state the official vehicle scale is 1:56. On paper this is correct for 28mm. Walk into any tournament and you will see <strong class="text-white">1:48 model kits</strong> dominating the motor pool. This is not an accident.
           </p>
           <p class="mb-6">
             The publisher has an internal inconsistency. Their metal miniatures are traditional 28mm (closer to 1:52 or 1:56), but their newer plastic sprues are actually <strong class="text-white">32mm</strong>. These plastics are taller and bulkier, so a true 1:56 tank looks like a toy next to them. The volumetric bulk of the infantry makes the vehicle look like the crew would not fit inside.
           </p>
           <blockquote class="border-l-4 border-[#ff6b35] pl-6 py-2 my-6 bg-[#ff6b35]/5 rounded-r-xl">
             <p class="text-slate-300 italic mb-2">"I believe they fit with the oversized nature of the publisher's newer plastic infantry better than the actual tanks themselves."</p>
-            <cite class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] not-italic">— Reddit, r/boltaction</cite>
+            <cite class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] not-italic">— Reddit, community wargaming forum</cite>
           </blockquote>
           <p class="mb-4">
-            There is also a fiscal reality: 1:48 Tamiya kits are widely available at hobby shops and often cost <strong class="text-white">half the price</strong> of official wargaming-branded 1:56 kits.
+            There is also a fiscal reality: 1:48 model kits are widely available at hobby shops and often cost <strong class="text-white">half the price</strong> of official wargaming-branded 1:56 kits.
           </p>
           <p>
             For the technical hobbyist, 1:48 is a rare win-win: better visual proportions and lower cost. Use my <a rel="nofollow" href="/?source=1:48&target=32mm&logic=eye" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">1:48 to 32mm conversion</a> and see how it looks on your table.
@@ -263,7 +263,7 @@ const referenceSchema = graph([
             <cite class="text-xs font-bold uppercase tracking-widest text-[#ff6b35] not-italic">— Zandoria Studios</cite>
           </blockquote>
           <p class="mb-4">
-            Sculptors exaggerate heads, hands, and weapons to make models readable and easier to paint. This has led to what Warlord Games forums call the <strong class="text-white">"Stay Puft Marshmallow Man" effect</strong>.
+            Sculptors exaggerate heads, hands, and weapons to make models readable and easier to paint. This has led to what hobbyists call the <strong class="text-white">"marshmallow man" effect</strong>.
           </p>
           <p class="mb-4">
             You can see this in the new plastic German Veteran and US Airborne kits. They are so puffy that they are incompatible with older true-scale kits. A new-style arm on an old-style body looks like a prosthetic from a different species.
@@ -309,21 +309,21 @@ const referenceSchema = graph([
           <h4 class="text-sm font-black uppercase tracking-widest text-white mb-4">What I do in practice</h4>
           <div class="space-y-4 mb-8">
             <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
-              <i class="fa-solid fa-calculator text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
+              <i class="ti ti-calculator text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
               <div>
                 <p class="text-white font-semibold text-sm mb-1">28mm true scale to 32mm heroic</p>
                 <p class="text-slate-400 text-sm">I set my slicer to <span class="text-white font-mono">{conv28to32.percentage}%</span> for eye level{conv28to32.topHeadPercentage ? `, or <span class="text-white font-mono">${conv28to32.topHeadPercentage}%</span> for top of head` : ''}.</p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
-              <i class="fa-solid fa-flask text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
+              <i class="ti ti-flask text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
               <div>
                 <p class="text-white font-semibold text-sm mb-1">Material compensation</p>
                 <p class="text-slate-400 text-sm">PLA and PETG shrink under 0.5% during cooling. I do not add compensation for FDM because the effect is smaller than normal print variation.</p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
-              <i class="fa-solid fa-bullseye text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
+              <i class="ti ti-target text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
               <div>
                 <p class="text-white font-semibold text-sm mb-1">The number I actually use</p>
                 <p class="text-slate-400 text-sm">To match a realistic 28mm soldier to a modern heroic system with material cooling accounted for, I land on <span class="text-white font-mono">115.8%</span>. Your printer may want something different.</p>
@@ -349,7 +349,7 @@ const referenceSchema = graph([
       <details class="group searchable-row">
         <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
           <span class="faq-question pr-4">{item.question}</span>
-          <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
+          <i class="ti ti-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
         </summary>
         <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl">
           <div set:html={item.answer} />
@@ -372,7 +372,7 @@ const referenceSchema = graph([
       </p>
       <a href="/" class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform">
         Launch the 3D print scale calculator
-        <i class="fa-solid fa-arrow-right"></i>
+        <i class="ti ti-arrow-right"></i>
       </a>
     </div>
   </div>

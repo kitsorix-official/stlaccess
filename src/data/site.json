@@ -20,7 +20,7 @@
     "message": "New: 3D Scale Visualizer \u2014 Compare miniature scales side-by-side in an interactive 3D viewport",
     "url": "/tools/3d-scale-visualizer",
     "urlLabel": "Try it",
-    "icon": "fa-cubes",
+    "icon": "ti-box-multiple",
     "ttlDays": 14
   },
   "author": {
@@ -102,7 +102,7 @@
   ],
   "quickRef": [
     { "from": "32mm (Heroic)", "to": "28mm (True)", "pct": "87.5%" },
-    { "from": "1:56 (28mm WWII wargame)", "to": "1:48 (Tamiya)", "pct": "116.7%" },
+    { "from": "1:56 (28mm WWII wargame)", "to": "1:48 (Model Kit)", "pct": "116.7%" },
     { "from": "1:35 (Model Kit)", "to": "1:56 (Tabletop)", "pct": "62.5%" },
     { "from": "32mm (Modern Fantasy / Sci-Fi Mass-Battle)", "to": "28mm (classic fantasy RPG)", "pct": "87.5%" },
     { "from": "28mm (Heroic)", "to": "1:48 (True)", "pct": "130.4%" },
@@ -123,7 +123,7 @@
     },
     {
       "question": "What scale is 1:35 in mm for miniatures?",
-      "answer": "At 1:35, a 175cm human works out to about 50mm to the eyes. That is significantly bigger than 28mm tabletop miniatures — most 1:35 kits are Tamiya-style military models, not wargaming miniatures. If you want to mix a 1:35 tank with 28mm infantry, scale it down to <span class=\"text-[#ff6b35] font-bold\">62.5%</span> in your slicer."
+      "answer": "At 1:35, a 175cm human works out to about 50mm to the eyes. That is significantly bigger than 28mm tabletop miniatures — most 1:35 kits are commercial model-kit military vehicles, not wargaming miniatures. If you want to mix a 1:35 tank with 28mm infantry, scale it down to <span class=\"text-[#ff6b35] font-bold\">62.5%</span> in your slicer."
     },
     {
       "question": "Does PLA or PETG shrink after printing?",
@@ -131,7 +131,7 @@
     },
     {
       "question": "Why do 1:48 tanks look better with 28mm infantry than 1:56?",
-      "answer": "Here is the thing — most modern 28mm plastics from the major wargaming publishers and similar manufacturers actually measure closer to 30-32mm. A true 1:56 tank looks undersized next to them. 1:48 Tamiya kits match the heroic proportions better, and they are often cheaper than official wargaming vehicles. I use 1:48 for my WWII platoon wargame motor pool and nobody has complained at tournaments. Use my <a href=\"/reference/1-48-to-28mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">1:48 to 28mm guide</a> and see how it looks on your table."
+      "answer": "Here is the thing — most modern 28mm plastics from the major wargaming publishers and similar manufacturers actually measure closer to 30-32mm. A true 1:56 tank looks undersized next to them. 1:48 model kits match the heroic proportions better, and they are often cheaper than official wargaming vehicles. I use 1:48 for my WWII platoon wargame motor pool and nobody has complained at tournaments. Use my <a href=\"/reference/1-48-to-28mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">1:48 to 28mm guide</a> and see how it looks on your table."
     },
     {
       "question": "What does \"Eye Level\" vs \"Top of Head\" mean in miniature scale?",

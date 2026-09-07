@@ -47,7 +47,7 @@ If you want to play with the numbers yourself, here's the exact calculator I use
 
 <div class="my-8 rounded-2xl border border-[#ff6b35]/30 bg-slate-900/40 p-6 md:p-8" aria-labelledby="scale-calc-heading">
   <div class="flex items-center gap-2 mb-4">
-    <i class="fa-solid fa-calculator text-[#ff6b35] text-lg" aria-hidden="true"></i>
+    <i class="ti ti-calculator text-[#ff6b35] text-lg" aria-hidden="true"></i>
     <h3 id="scale-calc-heading" class="text-sm font-black uppercase tracking-widest text-white">Scale calculator</h3>
   </div>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">

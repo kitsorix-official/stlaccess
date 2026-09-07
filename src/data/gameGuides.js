@@ -246,7 +246,7 @@ export const gameGuides = {
       {
         heading: "Where the Modern 32mm Sits in Scale",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Every modern fantasy release since 2015 is <strong class="text-white">32mm heroic scale</strong>, measured to the eyes — the same convention as the modern heroic (32mm) sci-fi standard. Older classic fantasy battle miniatures (pre-2015) are <strong class="text-white">28mm heroic</strong>. Both ranges still share tables in the modern fantasy game, and the size gap is part of the range's history.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Every modern fantasy release is <strong class="text-white">32mm heroic scale</strong>, measured to the eyes — the same convention as the modern heroic (32mm) sci-fi standard. Older classic fantasy battle miniatures are <strong class="text-white">28mm heroic</strong>. Both ranges still share tables in the modern fantasy game, and the size gap is part of the range's history.</p>
           <div class="overflow-x-auto">
             <table class="w-full text-sm">
               <thead>
@@ -267,7 +267,7 @@ export const gameGuides = {
       {
         heading: "Mixing Classic Fantasy and New Plastic",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">If your force is mostly new plastic, treat 32mm as your anchor and scale any older 28mm fantasy STLs up at 114.3%. If you are printing a classic regimental army to sit next to 2015-era sculpts, you usually want to keep it at 32mm to hold the line — an undersized rank reads instantly across the table.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">If your force is mostly new plastic, treat 32mm as your anchor and scale any older 28mm fantasy STLs up at 114.3%. If you are printing a classic regimental army to sit next to older-era sculpts, you usually want to keep it at 32mm to hold the line — an undersized rank reads instantly across the table.</p>
           <p class="text-sm text-slate-400 leading-relaxed">The reverse matters too. A modern fantasy STL dropped into a classic 28mm collection will tower over the old metal heroes; bring it down at 87.5% if you want it to blend in.</p>
         `
       },

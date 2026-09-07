@@ -110,21 +110,21 @@ const aboutSchema = graph([
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-          <i class="fa-solid fa-ruler text-[#ff6b35] text-lg mb-3 block"></i>
+          <i class="ti ti-ruler text-[#ff6b35] text-lg mb-3 block"></i>
           <h4 class="text-white font-semibold text-sm mb-2">FDM Calibration</h4>
           <p class="text-xs text-slate-400">
             Slight over-extrusion can expand dimensions by <span class="text-[#ff6b35] font-semibold">0.3% to 0.5%</span>. Keeping flow rate tuned is essential before measuring physical minis.
           </p>
         </div>
         <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-          <i class="fa-solid fa-layer-group text-[#ff6b35] text-lg mb-3 block"></i>
+          <i class="ti ti-stack text-[#ff6b35] text-lg mb-3 block"></i>
           <h4 class="text-white font-semibold text-sm mb-2">Layer Stepping</h4>
           <p class="text-xs text-slate-400">
             Printing at <span class="text-[#ff6b35] font-semibold">0.08mm</span> vs 0.2mm layer heights changes surface stepping, which can subtly shift crown-height caliper readings on rounded helmets.
           </p>
         </div>
         <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-          <i class="fa-solid fa-temperature-high text-[#ff6b35] text-lg mb-3 block"></i>
+          <i class="ti ti-temperature text-[#ff6b35] text-lg mb-3 block"></i>
           <h4 class="text-white font-semibold text-sm mb-2">Material Shrinkage</h4>
           <p class="text-xs text-slate-400">
             PLA and PETG shrink roughly <span class="text-[#ff6b35] font-semibold">0.2% to 0.5%</span> as they cool. I include material compensation options in the tools to counteract this.
@@ -191,7 +191,7 @@ const aboutSchema = graph([
       </div>
       <p class="text-xs text-slate-500 mt-6">
         <a href={site.author.url} class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1">
-          <i class="fa-solid fa-code-branch text-xs"></i>
+          <i class="ti ti-git-branch text-xs"></i>
           Follow on GitHub
         </a>
       </p>
@@ -206,7 +206,7 @@ const aboutSchema = graph([
       href="/"
       class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:scale-105 hover:shadow-2xl hover:shadow-[#ff6b35]/30 active:scale-95 transition-all duration-200"
     >
-      <i class="fa-solid fa-calculator"></i>
+      <i class="ti ti-calculator"></i>
       Launch the 3D print scale calculator
     </a>
   </div>

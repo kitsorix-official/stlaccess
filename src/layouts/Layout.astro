@@ -84,10 +84,10 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
     <!-- Preconnect -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
-    <!-- Font Awesome -->
+    <!-- Tabler Icons (MIT — free for commercial use, attribution not required) -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.46.0/tabler-icons.min.css"
     />
 
     <!-- RSS Autodiscovery -->
@@ -126,7 +126,7 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
               <div class="flex items-center justify-between gap-4">
                 <a href={banner.url} class="flex items-center gap-3 min-w-0 group">
                   <span class="shrink-0 w-8 h-8 rounded-lg bg-[#ff6b35]/20 flex items-center justify-center">
-                    <i class={`fa-solid ${banner.icon} text-[#ff6b35] text-sm`}></i>
+                    <i class={`ti ${banner.icon} text-[#ff6b35] text-sm`}></i>
                   </span>
                   <span class="min-w-0 text-sm text-slate-300">
                     <span class="font-semibold text-white group-hover:text-[#ff6b35] transition-colors">
@@ -135,7 +135,7 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
                   </span>
                   <span class="shrink-0 hidden sm:inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#ff6b35] group-hover:translate-x-0.5 transition-transform">
                     {banner.urlLabel}
-                    <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                    <i class="ti ti-arrow-right text-[8px]"></i>
                   </span>
                 </a>
                 <button
@@ -144,7 +144,7 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
                   aria-label="Dismiss announcement"
                   class="shrink-0 w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-slate-500 hover:text-slate-300"
                 >
-                  <i class="fa-solid fa-xmark text-xs"></i>
+                  <i class="ti ti-x text-xs"></i>
                 </button>
               </div>
             </div>
@@ -452,6 +452,9 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
           STLACCESS is not affiliated with, endorsed by, or connected to any of
           those owners.
         </p>
+        <p class="max-w-6xl mx-auto px-6 pb-2 text-[11px] leading-relaxed text-slate-700">
+          Icons by <a href="https://tabler.io/icons" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition-colors">Tabler Icons</a> (MIT — <a href="https://github.com/tabler/tabler-icons/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition-colors">license</a>; free for commercial use, no attribution required).
+        </p>
       </div>
     </footer>
 
@@ -470,7 +473,7 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="fa-solid fa-calculator text-base" aria-hidden="true"></i>
+            <i class="ti ti-calculator text-base" aria-hidden="true"></i>
             <span>Scaler</span>
           </a>
         </li>
@@ -481,7 +484,7 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="fa-solid fa-dollar-sign text-base" aria-hidden="true"></i>
+            <i class="ti ti-currency-dollar text-base" aria-hidden="true"></i>
             <span>Filament Cost</span>
           </a>
         </li>
@@ -492,7 +495,7 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="fa-solid fa-screwdriver-wrench text-base" aria-hidden="true"></i>
+            <i class="ti ti-tools text-base" aria-hidden="true"></i>
             <span>Tools</span>
           </a>
         </li>
@@ -503,7 +506,7 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="fa-solid fa-book-open text-base" aria-hidden="true"></i>
+            <i class="ti ti-book text-base" aria-hidden="true"></i>
             <span>Reference</span>
           </a>
         </li>

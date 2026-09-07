@@ -106,7 +106,7 @@ export const conversionDetailContent = {
     ],
     faq: [
       { question: "Is 56% the right shrink for 1:35 to 28mm?", answer: "Yes. 28mm of a 175cm baseline maps to 50mm for 1:35 eye level, so 28 ÷ 50 = 56.0%." },
-      { question: "Why use 1:35 kits for WWII platoon wargame?", answer: "They are cheap and abundant, and at 56% they match 28mm infantry well — which is why players run Tamiya kits despite the nominal 1:56 rules scale." },
+      { question: "Why use 1:35 kits for WWII platoon wargame?", answer: "They are cheap and abundant, and at 56% they match 28mm infantry well — which is why players run model kit vehicles despite the nominal 1:56 rules scale." },
     ],
   },
   "1-35-to-32mm": {

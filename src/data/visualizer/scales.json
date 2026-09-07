@@ -49,7 +49,7 @@
   },
   {
     "id": "25mm",
-    "name": "25mm (1:64) Classic Fantasy RPG / Oldhammer",
+    "name": "25mm (1:64) Classic Fantasy RPG / Retro Fantasy Wargame",
     "shortName": "25mm Classic (1:64)",
     "ratio": "1:64",
     "eyeLevelMm": 25.0,
@@ -121,25 +121,25 @@
   },
   {
     "id": "40mm",
-    "name": "40mm (1:43) Inquisitor-Style / Large Skirmish",
+    "name": "40mm (1:43) Large-Format Skirmish / Collector Scale",
     "shortName": "40mm (1:43)",
     "ratio": "1:43",
     "eyeLevelMm": 40.0,
     "topOfHeadMm": 45.0,
     "category": "Display & Action Figures",
-    "popularGames": ["inquisitor-style skirmish (custom)", "mythic skirmish game", "O Scale Dioramas"],
+    "popularGames": ["large-format skirmish (custom)", "mythic skirmish game", "O Scale Dioramas"],
     "typicalBaseMm": 40,
     "description": "Bridge scale between standard gaming and collector display pieces."
   },
   {
     "id": "54mm",
-    "name": "54mm (1:32) Inquisitor-Style / Collector Scale",
+    "name": "54mm (1:32) Large-Format Skirmish / Collector Scale",
     "shortName": "54mm (1:32)",
     "ratio": "1:32",
     "eyeLevelMm": 54.0,
     "topOfHeadMm": 60.0,
     "category": "Display & Action Figures",
-    "popularGames": ["Inquisitor-Style Skirmish (The Publisher)", "historical figure makers", "Traditional Toy Soldiers"],
+    "popularGames": ["Large-Format Skirmish (The Publisher)", "historical figure makers", "Traditional Toy Soldiers"],
     "typicalBaseMm": 50,
     "description": "Traditional military display modeling and high-detail character showdowns."
   },

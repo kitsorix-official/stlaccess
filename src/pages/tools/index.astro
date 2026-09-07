@@ -70,7 +70,7 @@ const toolsSchema = graph([
     <div class="absolute top-0 right-0 w-64 h-64 bg-[#ff6b35]/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
     <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-6">
       <div class="w-16 h-16 rounded-2xl bg-[#ff6b35]/20 flex items-center justify-center shrink-0">
-        <i class="fa-solid fa-calculator text-[#ff6b35] text-3xl"></i>
+        <i class="ti ti-calculator text-[#ff6b35] text-3xl"></i>
       </div>
       <div class="min-w-0 flex-1">
         <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-2 block">Featured tool</span>
@@ -83,14 +83,14 @@ const toolsSchema = graph([
       </div>
       <span class="inline-flex items-center gap-2 bg-[#ff6b35] text-black px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-widest group-hover:scale-105 transition-transform shrink-0">
         Use the tool
-        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+        <i class="ti ti-arrow-right text-[10px]"></i>
       </span>
     </div>
     <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-xs text-slate-500">
-      <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i> {scalesCount}+ gaming scales</span>
-      <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i> Eye Level & Top of Head</span>
-      <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i> FDM-optimized percentages</span>
-      <span class="flex items-center gap-1.5"><i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i> No upload, no login</span>
+      <span class="flex items-center gap-1.5"><i class="ti ti-check text-[#ff6b35] text-[8px]"></i> {scalesCount}+ gaming scales</span>
+      <span class="flex items-center gap-1.5"><i class="ti ti-check text-[#ff6b35] text-[8px]"></i> Eye Level & Top of Head</span>
+      <span class="flex items-center gap-1.5"><i class="ti ti-check text-[#ff6b35] text-[8px]"></i> FDM-optimized percentages</span>
+      <span class="flex items-center gap-1.5"><i class="ti ti-check text-[#ff6b35] text-[8px]"></i> No upload, no login</span>
     </div>
   </a>
 </section>
@@ -109,7 +109,7 @@ const toolsSchema = graph([
         >
           <div class="flex items-start gap-5">
             <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0 group-hover:bg-[#ff6b35]/20 transition-colors">
-              <i class={`fa-solid ${tool.icon} text-[#ff6b35] text-lg`}></i>
+              <i class={`ti ${tool.icon} text-[#ff6b35] text-lg`}></i>
             </div>
             <div class="min-w-0">
               <h3 class="text-xl font-bold mb-2 group-hover:text-[#ff6b35] transition-colors">
@@ -124,7 +124,7 @@ const toolsSchema = graph([
             <ul class="mt-6 flex flex-wrap gap-x-6 gap-y-2">
               {tool.features.map(f => (
                 <li class="text-xs text-slate-500 flex items-center gap-1.5">
-                  <i class="fa-solid fa-check text-[#ff6b35] text-[8px]"></i>
+                  <i class="ti ti-check text-[#ff6b35] text-[8px]"></i>
                   {f}
                 </li>
               ))}
@@ -147,11 +147,11 @@ const toolsSchema = graph([
       </p>
       <ul class="space-y-3 text-sm text-slate-400">
         <li class="flex items-start gap-3">
-          <i class="fa-solid fa-check-circle text-[#ff6b35] mt-0.5"></i>
+          <i class="ti ti-circle-check text-[#ff6b35] mt-0.5"></i>
           <span><strong class="text-white">STL Scale Engine</strong> — The main calculator for converting between any supported scales</span>
         </li>
         <li class="flex items-start gap-3">
-          <i class="fa-solid fa-check-circle text-[#ff6b35] mt-0.5"></i>
+          <i class="ti ti-circle-check text-[#ff6b35] mt-0.5"></i>
           <span><strong class="text-white">Scale Reference Library</strong> — {conversionsCount} verified conversion percentages with print-tested results</span>
         </li>
       </ul>
@@ -164,7 +164,7 @@ const toolsSchema = graph([
   <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12">
     <div class="flex items-start gap-4 mb-6">
       <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0">
-        <i class="fa-solid fa-screwdriver-wrench text-[#ff6b35] text-lg"></i>
+        <i class="ti ti-tools text-[#ff6b35] text-lg"></i>
       </div>
       <div>
         <h2 class="font-bold text-white text-lg mb-1">I build these tools like this</h2>

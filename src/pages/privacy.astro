@@ -52,7 +52,7 @@ const privacySchema = graph([
           <div
             class="w-10 h-10 bg-[#ff6b35]/10 rounded-xl flex items-center justify-center mb-6"
           >
-            <i class="fa-solid fa-user-slash text-[#ff6b35]" aria-hidden="true"
+            <i class="ti ti-user-off text-[#ff6b35]" aria-hidden="true"
             ></i>
           </div>
           <h3 class="font-bold text-white mb-2">No Accounts</h3>
@@ -66,7 +66,7 @@ const privacySchema = graph([
           <div
             class="w-10 h-10 bg-[#ff6b35]/10 rounded-xl flex items-center justify-center mb-6"
           >
-            <i class="fa-solid fa-hard-drive text-[#ff6b35]" aria-hidden="true"
+            <i class="ti ti-server text-[#ff6b35]" aria-hidden="true"
             ></i>
           </div>
           <h3 class="font-bold text-white mb-2">Local Storage</h3>
@@ -81,7 +81,7 @@ const privacySchema = graph([
           <div
             class="w-10 h-10 bg-[#ff6b35]/10 rounded-xl flex items-center justify-center mb-6"
           >
-            <i class="fa-solid fa-eye-slash text-[#ff6b35]" aria-hidden="true"
+            <i class="ti ti-eye-off text-[#ff6b35]" aria-hidden="true"
             ></i>
           </div>
           <h3 class="font-bold text-white mb-2">No Tracking</h3>
@@ -146,7 +146,7 @@ const privacySchema = graph([
             2. The Web Observer — Exactly What It Stores
           </h2>
           <p>
-            The only analytics on this site is a self-hosted <strong class="text-white">web observer</strong> — an anonymous, cookie-free visitor counter. Imagine a click-counter at a shop door: it counts people coming in and notes roughly how they arrived, and nothing more. It does <strong class="text-white">not</strong> store your name, email, IP address, or anything that can be used to identify you.
+            The only analytics on this site is a small custom <strong class="text-white">web observer script</strong> — an anonymous, cookie-free visitor counter writing non-personal details to a private Google Sheet I can open. Imagine a click-counter at a shop door: it counts people coming in and notes roughly how they arrived, and nothing more. It does <strong class="text-white">not</strong> store your name, email, IP address, or anything that can be used to identify you.
           </p>
           <p>
             When a visit happens, the observer sends a few non-personal details to a <strong class="text-white">Google Apps Script</strong> (a small program running in Google's cloud), which writes them into a <strong class="text-white">Google Sheet</strong> that only I can open. Like Cloudflare, the Google servers that run this script briefly see standard network data — such as your IP address — purely to deliver the request to their cloud; none of it is stored in my sheet. The exact fields stored are:
@@ -176,8 +176,7 @@ const privacySchema = graph([
             3. Cookies and Storage
           </h2>
           <p>
-            STLACCESS is completely cookie-free. The only type of browser
-            storage running behind the scenes is:
+STLACCESS is completely cookie-free. The only types of browser storage running behind the scenes are:
           </p>
           <ul class="list-disc pl-6 space-y-4">
             <li>
@@ -185,6 +184,12 @@ const privacySchema = graph([
               entries in the "My Library" feature — saved scale conversions for your
               tabletop miniatures. This data remains on your hardware, meaning it's
               completely locked away from me or anyone else.
+            </li>
+            <li>
+              <strong>SessionStorage:</strong> A short-lived, tab-only random session ID
+              used by the web observer to count a single browsing session as one
+              visit. It is cleared when you close the tab and never persists beyond
+              that.
             </li>
           </ul>
         </div>

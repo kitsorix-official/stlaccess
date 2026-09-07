@@ -129,7 +129,7 @@ if (copyBtn) {
         if (!text) return;
         navigator.clipboard.writeText(text).then(function() {
             var original = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<i class="fa-solid fa-check"></i><span>Copied!</span>';
+            copyBtn.innerHTML = '<i class="ti ti-check"></i><span>Copied!</span>';
             setTimeout(function() {
                 copyBtn.innerHTML = original;
             }, 1500);

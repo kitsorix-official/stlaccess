@@ -96,13 +96,13 @@ const pageSchema = graph([
     </div>
     <div class="mt-8 pt-6 border-t border-white/5 flex flex-wrap items-center justify-between gap-3">
       <a href="/reference" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-[#ff6b35] transition-colors">
-        <i class="fa-solid fa-arrow-left text-xs"></i>
+        <i class="ti ti-arrow-left text-xs"></i>
         Back to all conversions
       </a>
       {reverseExists && (
         <a href={`/reference/${reverseSlug}`} class="inline-flex items-center gap-2 text-sm font-semibold text-[#ff6b35] hover:text-white transition-colors">
           {conv.h1Target} to {conv.h1Source}
-          <i class="fa-solid fa-arrow-right text-xs"></i>
+          <i class="ti ti-arrow-right text-xs"></i>
         </a>
       )}
     </div>
@@ -112,7 +112,7 @@ const pageSchema = graph([
   <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16" aria-labelledby="math-heading">
     <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5 math-proof">
       <h3 id="math-heading" class="font-bold text-white mb-4 flex items-center gap-2">
-        <i class="fa-solid fa-microscope text-[#ff6b35]"></i>
+        <i class="ti ti-microscope text-[#ff6b35]"></i>
         The math
       </h3>
       <code class="block bg-black/50 p-4 rounded-xl text-xs font-mono text-[#ff6b35] overflow-x-auto">
@@ -124,7 +124,7 @@ const pageSchema = graph([
     </div>
     <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
       <h3 class="font-bold text-white mb-4 flex items-center gap-2">
-        <i class="fa-solid fa-circle-info text-[#ff6b35]"></i>
+        <i class="ti ti-info-circle text-[#ff6b35]"></i>
         Scale baselines
       </h3>
       <ul class="space-y-3 text-sm text-slate-400">
@@ -150,7 +150,7 @@ const pageSchema = graph([
       {detail.sections.map((s) => (
         <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5">
           <h3 class="font-bold text-white mb-3 flex items-center gap-2">
-            <i class="fa-solid fa-chess-knight text-[#ff6b35]"></i>
+            <i class="ti ti-chess-knight text-[#ff6b35]"></i>
             {s.heading}
           </h3>
           <p class="text-sm text-slate-400 leading-relaxed whitespace-pre-line">
@@ -165,7 +165,7 @@ const pageSchema = graph([
   <aside class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12 mb-16" aria-label="Calculation methodology and author expertise">
     <div class="flex items-start gap-4 mb-6">
       <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0">
-        <i class="fa-solid fa-graduation-cap text-[#ff6b35] text-lg"></i>
+        <i class="ti ti-school text-[#ff6b35] text-lg"></i>
       </div>
       <div>
         <h3 class="font-bold text-white text-lg mb-1">How I got this number</h3>
@@ -202,7 +202,7 @@ const pageSchema = graph([
                 <div class="font-semibold text-white group-hover:text-[#ff6b35] transition-colors">{g.name}</div>
                 <div class="text-xs text-slate-500">{g.scale} · {g.genre}</div>
               </div>
-              <i class="fa-solid fa-arrow-right text-xs text-slate-600 group-hover:text-[#ff6b35] transition-colors"></i>
+              <i class="ti ti-arrow-right text-xs text-slate-600 group-hover:text-[#ff6b35] transition-colors"></i>
             </a>
           ))}
         </div>
@@ -229,7 +229,7 @@ const pageSchema = graph([
   <div class="text-center py-10 border-t border-white/5">
     <p class="text-slate-500 text-sm mb-4">Want a live calculation for another pair?</p>
     <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black font-bold px-8 py-3 rounded-xl hover:brightness-110 active:scale-95 transition-all hover:shadow-lg hover:shadow-[#ff6b35]/20">
-      <i class="fa-solid fa-calculator"></i>
+      <i class="ti ti-calculator"></i>
       Launch the STL scale calculator
     </a>
   </div>

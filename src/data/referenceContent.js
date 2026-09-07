@@ -16,7 +16,7 @@ export const scaleInfo = {
         shortName: "32mm",
         games: ["modern sci-fi epic wargame", "modern fantasy wargame", "gothic skirmish game", "post-apocalyptic setting", "miniature-agnostic sci-fi wargame", "sci-fi skirmish game", "gang warfare skirmish game", "fantasy skirmish game"],
         type: "gaming",
-        note: "the publisher drifted from 28mm to 32mm between 2014 and 2015 for more facial detail and heroic proportions — a change I felt immediately when my old armies started looking small.",
+        note: "the publisher drifted from 28mm to 32mm over a single range refresh for more facial detail and heroic proportions — a change I felt immediately when my old armies started looking small.",
         printNote: "32mm is forgiving on my FDM printer; layer lines vanish into the bigger surfaces.",
         commonIssue: "I've been burned by third-party sculptors labeling 35mm models as '32mm heroic.' Check the eye-level measurement, not the total height.",
     },
@@ -30,7 +30,7 @@ export const scaleInfo = {
     },
     "40mm": {
         shortName: "40mm",
-        games: ["40mm sci-fi skirmish game", "inquisitor-style skirmish (the publisher)", "Display vignettes"],
+        games: ["40mm sci-fi skirmish game", "large-format skirmish (the publisher)", "Display vignettes"],
         type: "gaming",
         note: "I reach for 40mm for centerpiece models, display dioramas, or games where a hero needs to stand out on the table.",
         printNote: "On FDM, 40mm monsters and vehicles print great with a 0.4mm nozzle.",
@@ -46,7 +46,7 @@ export const scaleInfo = {
     },
     "1:35": {
         shortName: "1:35",
-        games: ["Tamiya", "model kit manufacturer", "model kit manufacturer", "Military dioramas", "Armor modeling"],
+        games: ["model kit manufacturer", "model kit manufacturer", "model kit manufacturer", "Military dioramas", "Armor modeling"],
         type: "ratio",
         note: "A true ratio scale rather than a gaming label. When I build armor and dioramas, this is my lane.",
         printNote: "1:35 vehicles come off my FDM printer beautifully at 0.2mm layers with a 0.4mm nozzle.",

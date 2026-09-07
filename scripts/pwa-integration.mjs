@@ -79,13 +79,12 @@ export default function pwa() {
         }
 
         // --- Cross-origin assets precached at install so the site stays ---
-        // --- fully styled offline (Font Awesome CSS + webfonts the site ---
-        // --- actually uses). cdnjs serves these with CORS enabled, so ---
-        // --- cache.add() works from the service worker. ---
+        // --- fully styled offline (Tabler Icons CSS the site actually ---
+        // --- uses). cdnjs serves these with CORS enabled, so cache.add() ---
+        // --- works from the service worker. Tabler's icons are inline SVG ---
+        // --- inside the CSS, so no separate font files are needed. ---
         const externalPrecache = [
-          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2',
-          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2',
+          'https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.46.0/tabler-icons.min.css',
         ];
 
         // --- Version = hash of the manifest contents, so ANY content change ---

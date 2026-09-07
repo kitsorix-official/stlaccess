@@ -241,7 +241,7 @@ const toolSchema = graph([
 <div class="max-w-4xl mx-auto px-6 mb-12">
   <div class="flex items-center gap-4 mb-6">
     <div class="w-14 h-14 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center">
-      <i class={`fa-solid ${tool.icon} text-[#ff6b35] text-2xl`}></i>
+      <i class={`ti ${tool.icon} text-[#ff6b35] text-2xl`}></i>
     </div>
     <div>
       <h1 class="text-4xl md:text-5xl font-bold font-heading tracking-tight">
@@ -265,7 +265,7 @@ const toolSchema = graph([
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {tool.features.map(f => (
           <div class="flex items-start gap-3 bg-slate-900/30 p-5 rounded-2xl border border-white/5">
-            <i class="fa-solid fa-check text-[#ff6b35] mt-1 text-sm shrink-0"></i>
+            <i class="ti ti-check text-[#ff6b35] mt-1 text-sm shrink-0"></i>
             <span class="text-sm text-slate-300">{f}</span>
           </div>
         ))}
@@ -315,11 +315,11 @@ const toolSchema = graph([
 
         <div class="flex gap-3">
           <button id="copy-btn" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 px-5 py-3 rounded-xl text-sm font-bold transition-colors cursor-pointer">
-            <i class="fa-solid fa-copy text-xs"></i>
+            <i class="ti ti-copy text-xs"></i>
             Copy Percentage
           </button>
           <button id="swap-btn" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 px-5 py-3 rounded-xl text-sm font-bold transition-colors cursor-pointer">
-            <i class="fa-solid fa-arrow-right-arrow-left text-xs"></i>
+            <i class="ti ti-arrows-right-left text-xs"></i>
             Swap Values
           </button>
         </div>
@@ -342,14 +342,14 @@ const toolSchema = graph([
               <p class="text-xs text-[#ff6b35] uppercase tracking-widest font-bold mb-1">Scale conversion</p>
               <p class="text-lg font-bold text-white">
                 <span id="ctx-from"></span>
-                <i class="fa-solid fa-arrow-right text-sm text-slate-500 mx-2"></i>
+                <i class="ti ti-arrow-right text-sm text-slate-500 mx-2"></i>
                 <span id="ctx-to"></span>
                 <span class="text-[#ff6b35] ml-2" id="ctx-percent"></span>
               </p>
               <p class="text-xs text-slate-500 mt-1" id="ctx-logic"></p>
             </div>
             <a id="ctx-back-link" href="/" class="text-xs text-[#ff6b35] hover:text-white transition-colors font-bold uppercase tracking-widest">
-              <i class="fa-solid fa-arrow-left mr-1"></i>Back to calculator
+              <i class="ti ti-arrow-left mr-1"></i>Back to calculator
             </a>
           </div>
           <p class="text-xs text-slate-400 mt-3 leading-relaxed">
@@ -441,7 +441,7 @@ const toolSchema = graph([
 
         <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6">
           <div class="flex items-start gap-3">
-            <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-0.5 shrink-0"></i>
+            <i class="ti ti-alert-triangle text-amber-500 mt-0.5 shrink-0"></i>
             <div>
               <p class="text-sm font-semibold text-white mb-1">Disclaimer: This is an estimate</p>
               <p class="text-xs text-slate-400 leading-relaxed">
@@ -539,7 +539,7 @@ const toolSchema = graph([
 
         <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6 mb-6">
           <div class="flex items-start gap-3">
-            <i class="fa-solid fa-wand-magic-sparkles text-[#ff6b35] mt-1 shrink-0"></i>
+            <i class="ti ti-wand text-[#ff6b35] mt-1 shrink-0"></i>
             <div class="min-w-0 flex-1">
               <label for="si-target" class="block text-sm font-bold text-slate-300 mb-2">Now scale it to another game:</label>
               <select id="si-target" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer mb-4">
@@ -548,7 +548,7 @@ const toolSchema = graph([
                 ))}
               </select>
               <a id="si-link" href="/?source=32mm&target=32mm&logic=head" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black px-6 py-4 rounded-xl text-sm font-bold uppercase tracking-widest hover:scale-105 transition-transform">
-                <i class="fa-solid fa-arrow-right text-xs"></i>
+                <i class="ti ti-arrow-right text-xs"></i>
                 Open in Scale Calculator
               </a>
             </div>
@@ -584,7 +584,7 @@ const toolSchema = graph([
         </div>
 
         <button id="rb-generate" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black px-6 py-4 rounded-xl text-sm font-bold uppercase tracking-widest hover:scale-105 transition-transform cursor-pointer mb-8">
-          <i class="fa-solid fa-download text-sm"></i>
+          <i class="ti ti-download text-sm"></i>
           Generate &amp; Download STL
         </button>
 
@@ -615,7 +615,7 @@ const toolSchema = graph([
           href={tool.url}
           class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform shrink-0"
         >
-          <i class={`fa-solid ${tool.icon}`}></i>
+          <i class={`ti ${tool.icon}`}></i>
           Launch {tool.name}
         </a>
       </div>
@@ -625,7 +625,7 @@ const toolSchema = graph([
   <!-- Back link -->
   <div class="mt-12">
     <a href="/tools" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
-      <i class="fa-solid fa-arrow-left text-xs"></i>
+      <i class="ti ti-arrow-left text-xs"></i>
       Back to all tools
     </a>
   </div>
@@ -705,7 +705,7 @@ const toolSchema = graph([
         <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
           <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
             <span class="font-bold text-white">{f.question}</span>
-            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
           </summary>
           <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
         </details>
@@ -790,7 +790,7 @@ const toolSchema = graph([
         <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
           <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
             <span class="font-bold text-white">{f.question}</span>
-            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
           </summary>
           <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
         </details>
@@ -877,7 +877,7 @@ const toolSchema = graph([
         <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
           <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
             <span class="font-bold text-white">{f.question}</span>
-            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
           </summary>
           <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
         </details>
@@ -962,7 +962,7 @@ const toolSchema = graph([
         <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
           <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
             <span class="font-bold text-white">{f.question}</span>
-            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
           </summary>
           <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
         </details>
@@ -1028,7 +1028,7 @@ const toolSchema = graph([
           </tr>
           <tr class="bg-slate-900/20">
             <td class="px-5 py-3 font-mono text-slate-400">~45-50mm</td>
-            <td class="px-5 py-3 text-white">1:35 — model kits (Tamiya)</td>
+            <td class="px-5 py-3 text-white">1:35 — model kit manufacturer</td>
             <td class="px-5 py-3 text-white">50mm</td>
           </tr>
           <tr class="bg-slate-900/20">
@@ -1078,7 +1078,7 @@ const toolSchema = graph([
         <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
           <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
             <span class="font-bold text-white">{f.question}</span>
-            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
           </summary>
           <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
         </details>

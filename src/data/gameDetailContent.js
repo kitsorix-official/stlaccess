@@ -18,7 +18,7 @@ export const gameDetailContent = {
     printingIntro:
       "For rank-and-file infantry I use a 0.4mm nozzle at 0.08mm layers. Character models and anything with exposed faces earn a 0.2mm nozzle at 0.06mm layers. Vehicles and terrain tolerate 0.12mm layers without visible loss. Scale your STL to the percentage above, lock XYZ, and always print a single test piece before a full squad.",
     faq: [
-      { name: "Is the sci-fi epic standard 28mm or 32mm scale?", text: "The modern sci-fi epic standard (2017 onward) is 32mm heroic scale measured to the eyes. Older classic true-scale (28mm) and classic sculpts are closer to 28mm true scale. Scale up 28mm STLs to 114.3% to match a modern heroic (32mm) army." },
+      { name: "Is the sci-fi epic standard 28mm or 32mm scale?", text: "The modern sci-fi epic standard is 32mm heroic scale measured to the eyes. Older classic true-scale (28mm) and classic sculpts are closer to 28mm true scale. Scale up 28mm STLs to 114.3% to match a modern heroic (32mm) army." },
       { name: "How do I scale a sci-fi proxy STL?", text: "Measure the file's eye level in your slicer first. If it is a 28mm classic true-scale (28mm) proxy aiming to stand next to modern heroic (32mm), apply a uniform 114.3% scale. If the file is already 32mm, print it as-is." },
       { name: "What is the best FDM profile for 32mm sci-fi infantry?", text: "A 0.4mm nozzle at 0.08mm layers handles rank-and-file well. Swap to a 0.2mm nozzle at 0.06mm layers for character models so faces and weapons stay crisp." },
     ],
@@ -29,14 +29,14 @@ export const gameDetailContent = {
     intro:
       "The modern fantasy wargame shares its 32mm heroic baseline with the 32mm sci-fi epic standard, which makes conversions predictable once you know where a file started. Old classic fantasy sculpts measure closer to 28mm, so the recurring question is whether your printed hero should tower over the old infantry block or sit level with it.",
     body: [
-      "I treat modern fantasy conversions in two buckets. Files designed for the current 32mm range print as-is, while classic pre-2015 fantasy sculpts and the many '28mm fantasy' STLs get scaled up to 114.3% to match. It is the same number as the sci-fi epic standard because both ranges share the heroic 175cm baseline.",
+      "I treat modern fantasy conversions in two buckets. Files designed for the current 32mm range print as-is, while classic-generation fantasy sculpts and the many '28mm fantasy' STLs get scaled up to 114.3% to match. It is the same number as the sci-fi epic standard because both ranges share the heroic 175cm baseline.",
       "Modern fantasy models have dramatic poses — flowing cloaks, extended banners, weapon arms swung wide. I always check the slicer's bounding box after scaling because a 14% upscale on a wide pose can push a model past the build plate on small beds. I plan orientation before I commit to supports.",
     ],
     printingIntro:
       "Character models get a 0.2mm nozzle at 0.06mm layers for clean edges on armor and chainmail. Centerpiece dragons, daemons, and undead warlords benefit from the same profile on the faces. FDM handles terrain and large monsters well at 0.1mm layers.",
     faq: [
       { name: "What scale is the modern fantasy wargame?", text: "The modern fantasy wargame uses 32mm heroic scale for new releases, the same baseline as the 32mm sci-fi epic standard. Modern sculpts are designed to this size." },
-      { name: "How do I convert old classic fantasy STLs to the modern 32mm range?", text: "Scale pre-2015 28mm classic fantasy sculpts up by 114.3% to match the modern 32mm range. The two otherwise show a noticeable height gap." },
+      { name: "How do I convert old classic fantasy STLs to the modern 32mm range?", text: "Scale classic-generation 28mm fantasy sculpts up by 114.3% to match the modern 32mm range. The two otherwise show a noticeable height gap." },
     ],
   },
   "classic-fantasy-28mm": {
@@ -75,7 +75,7 @@ export const gameDetailContent = {
     title: "WWII Platoon Scale: 28mm Infantry and the 1:56 Vehicle Question",
     h1: "WWII Platoon (28mm) Miniature Scale for 3D Printing",
     intro:
-      "The WWII platoon wargame (28mm) pairs 28mm true-scale infantry with 1:56 vehicles, and this is where the famous 1:48 confusion lives. On paper the vehicle scale is 1:56, but in practice many players run Tamiya 1:48 kits because modern plastic infantry have crept larger and the bulkier hulls look right alongside them.",
+      "The WWII platoon wargame (28mm) pairs 28mm true-scale infantry with 1:56 vehicles, and this is where the famous 1:48 confusion lives. On paper the vehicle scale is 1:56, but in practice many players run 1:48 model kits because modern plastic infantry have crept larger and the bulkier hulls look right alongside them.",
     body: [
       "I split my WWII platoon prints into two jobs. Infantry get scaled to a strict 28mm true-scale eye line. Vehicles I scale to look correct under my infantry's geometry — and that often means 1:48 rather than 1:56, because squinting soldier proportions demand a beefier hull.",
       "The math is easy per figure, but the look is decided by the pair. I hang a test vehicle next to an infantry model before printing a motor pool. Numbers get you 90% of the way; the last 10% is eyeballing articulation and hull height, which no formula replaces.",
@@ -83,7 +83,7 @@ export const gameDetailContent = {
     printingIntro:
       "Rank-and-file infantry print at a 0.4mm nozzle and 0.1mm layers; officers and snipers get 0.06mm on a 0.2mm nozzle. Vehicles print fast and clean at 0.2mm layers. Bayonets and rifle barrels soften on FDM, so I orient those parts carefully.",
     faq: [
-      { name: "Is the WWII platoon scale 28mm or 1:56?", text: "Both. Infantry are 28mm true scale to the eyes, and the official vehicle scale is 1:56. Many players prefer 1:48 Tamiya kits because they look correct next to bulkier modern plastic infantry." },
+      { name: "Is the WWII platoon scale 28mm or 1:56?", text: "Both. Infantry are 28mm true scale to the eyes, and the official vehicle scale is 1:56. Many players prefer 1:48 model kits because they look correct next to bulkier modern plastic infantry." },
       { name: "How do I bring a 1:35 vehicle STL down for a WWII platoon game?", text: "Scale a 1:35 vehicle to 62.5% to reach 1:56. If you target 1:48 instead, use a smaller reduction so the hull lands in the 1:48 sweet spot." },
     ],
   },

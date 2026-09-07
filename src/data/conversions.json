@@ -110,7 +110,7 @@
   {
     "slug": "1-35-to-28mm",
     "title": "1:35 to 28mm Scale Conversion | 56.0% STL Scale Guide",
-    "description": "Downscale 1:35 Tamiya kits to 28mm WWII platoon wargame or classic fantasy RPG scale. Type 56.0% into your slicer and lock XYZ axes.",
+    "description": "Downscale 1:35 model kits to 28mm WWII platoon wargame or classic fantasy RPG scale. Type 56.0% into your slicer and lock XYZ axes.",
     "percentage": "56.0",
     "math": "28.0mm / 50.0mm",
     "sourceLabel": "1:35 Military",
@@ -119,7 +119,7 @@
     "targetValue": "28.0mm Eye",
     "h1Part1": "1:35 Military",
     "h1Part2": "28mm True Scale",
-    "subtext": "Tamiya soldiers downscaled for WWII platoon wargame or classic fantasy RPG tabletop play.",
+    "subtext": "1:35 model-kit soldiers downscaled for WWII platoon wargame or classic fantasy RPG tabletop play.",
     "h1Source": "1:35",
     "h1Target": "28mm",
     "popular": true,
@@ -164,7 +164,7 @@
   {
     "slug": "1-35-to-40mm",
     "title": "1:35 to 40mm Scale Conversion | 80.0% STL Scale Guide",
-    "description": "Downscale 1:35 Tamiya infantry to 40mm sci-fi skirmish scale. 80.0% in your slicer with uniform XYZ for this STL.",
+    "description": "Downscale 1:35 model-kit infantry to 40mm sci-fi skirmish scale. 80.0% in your slicer with uniform XYZ for this STL.",
     "percentage": "80.0",
     "math": "40.0mm / 50.0mm",
     "sourceLabel": "1:35 Military",
@@ -236,7 +236,7 @@
   {
     "slug": "1-48-to-32mm",
     "title": "1:48 to 32mm Scale Conversion | 87.8% STL Scale Guide",
-    "description": "Downscale 1:48 Tamiya kits to 32mm heroic sci-fi wargame scale. Use 87.8% uniform scale for this 3D printed STL.",
+    "description": "Downscale 1:48 model kits to 32mm heroic sci-fi wargame scale. Use 87.8% uniform scale for this 3D printed STL.",
     "percentage": "87.8",
     "math": "32.0mm / 36.5mm",
     "sourceLabel": "1:48 Quarter Scale",

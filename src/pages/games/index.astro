@@ -63,7 +63,7 @@ const gamesSchema = graph([
   <form role="search" class="px-6 mb-12 max-w-6xl mx-auto" aria-labelledby="games-search-heading" onsubmit="return false">
     <h2 id="games-search-heading" class="sr-only">Search game systems</h2>
     <div class="relative group">
-      <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
+      <i class="ti ti-search absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
       <input
         type="text"
         id="gamesSearch"
@@ -105,7 +105,7 @@ const gamesSchema = graph([
                 <span class="text-xs text-slate-500">{game.genre} · {game.scale}</span>
                 <div class="flex items-center gap-1 text-xs text-slate-500 group-hover:text-[#ff6b35] transition-colors">
                   <span>{game.relatedConversions.length} conversions</span>
-                  <i class="fa-solid fa-arrow-right text-[10px]" aria-hidden="true"></i>
+                  <i class="ti ti-arrow-right text-[10px]" aria-hidden="true"></i>
                 </div>
               </div>
             </a>
@@ -122,11 +122,11 @@ const gamesSchema = graph([
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/" class="inline-flex items-center gap-2 bg-[#ff6b35] text-black font-bold px-6 py-3 rounded-xl hover:brightness-110 active:scale-95 transition-all">
-          <i class="fa-solid fa-calculator"></i>
+          <i class="ti ti-calculator"></i>
           Open Scale Engine
         </a>
         <a href="/reference" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 font-semibold px-6 py-3 rounded-xl border border-white/5 transition-all">
-          <i class="fa-solid fa-table"></i>
+          <i class="ti ti-table"></i>
           Full Reference Table
         </a>
       </div>
