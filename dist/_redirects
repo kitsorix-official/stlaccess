@@ -1,31 +1,35 @@
-/library  /reference  301
-/library.html  /reference  301
+/library  /miniature-size-chart  301
+/library.html  /miniature-size-chart  301
 /blog  /guides  301
 /blog/*  /guides/:splat  301
 /embed  /  301
+
+# /reference → /miniature-size-chart (renamed; all conversions now on one page)
+/reference  /miniature-size-chart  301
+/reference/*  /miniature-size-chart  301
 
 # Trailing slash → clean URL
 /faq/  /faq  301
 /privacy/  /privacy  301
 /terms/  /terms  301
 /embed/  /  301
-/reference/  /reference  301
+/reference/  /miniature-size-chart  301
 
 # .html extension → clean URL
 /index.html  /  301
-/reference.html  /reference  301
+/reference.html  /miniature-size-chart  301
 /faq.html  /faq  301
 
 # Reference and Game System sub-pages now live at their own URLs
-# (/reference/{slug} and /games/{slug}) instead of collapsing into the hubs.
+# (miniature size chart and /games/{slug}) instead of collapsing into the hubs.
 
-/guides/stl-scale-conversion-chart  /reference  301
-/guides/stl-scale-conversion-chart/  /reference  301
+/guides/stl-scale-conversion-chart  /miniature-size-chart  301
+/guides/stl-scale-conversion-chart/  /miniature-size-chart  301
 
-# Legacy guide redirects → now point to their dedicated detail pages
-# (/reference/{slug} and /games/{slug}) instead of hub anchors.
-/guides/28mm-to-32mm-percentage  /reference/28mm-to-32mm  301
-/guides/28mm-to-32mm-percentage/  /reference/28mm-to-32mm  301
+# Legacy guide redirects → now point to their dedicated pages or the chart
+# (miniature size chart and /games/{slug}) instead of hub anchors.
+/guides/28mm-to-32mm-percentage  /miniature-size-chart  301
+/guides/28mm-to-32mm-percentage/  /miniature-size-chart  301
 /guides/warhammer-40k-scale-guide  /games/sci-fi-epic-32mm  301
 /guides/warhammer-40k-scale-guide/  /games/sci-fi-epic-32mm  301
 /guides/bolt-action-scale-guide  /games/ww2-platoon-28mm  301
@@ -94,9 +98,9 @@
 /games/conquest/  /games/fantasy-mass-battle-35mm  301
 
 # Missing slash in path
-/reference32mm-to-40mm  /reference  301
-/reference35mm-to-28mm  /reference  301
-/reference1-48-to-75mm  /reference  301
+/reference32mm-to-40mm  /miniature-size-chart  301
+/reference35mm-to-28mm  /miniature-size-chart  301
+/reference1-48-to-75mm  /miniature-size-chart  301
 
 # Old tool paths
 /tools/stlscaler/  /  301
@@ -104,8 +108,14 @@
 /tools/stl-scale-engine/  /  301
 /tools/stlscale-engine  /  301
 /tools/personal-library  /tools  301
-/tools/scale-reference  /reference  301
-/tools/scale-reference/  /reference  301
+/tools/scale-reference  /miniature-size-chart  301
+/tools/scale-reference/  /miniature-size-chart  301
+/tools/3d-scale-visualizer  /tools  301
+/tools/3d-scale-visualizer/  /tools  301
+/tools/real-world-scale-converter  /tools  301
+/tools/real-world-scale-converter/  /tools  301
+/tools/miniature-scale-identifier  /tools  301
+/tools/miniature-scale-identifier/  /tools  301
 
 # Non-existent pages
 /cookies/  /privacy  301

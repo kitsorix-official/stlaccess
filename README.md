@@ -38,10 +38,7 @@ with physical test prints on a Bambu Lab A1 Mini, measured with a PARKSIDE digit
   compensation (for PETG and other cooling-shrink materials), copy-to-clipboard, and bookmarkable URL params.
   Powered by the community's most-asked
   conversion, 28mm → 32mm. This is the **fast-numbers** option.
-- **3D Scale Visualizer** (`/tools/3d-scale-visualizer`) — the premium visual option: compare 28mm, 32mm, 35mm,
-  and ratio scales side-by-side in interactive 3D, rotate, zoom, and measure against a calibrated 10mm grid.
-  For when you want to *see* the size difference, not just read a number.
-- **Scale Conversion Reference** (`/reference`) — 46 verified conversion pairs with full math breakdowns and
+- **Miniature Size Chart** (`/miniature-size-chart`) — 46 verified conversion pairs with full math breakdowns and
   FDM printing notes.
 - **Tabletop Game Scale Guide** (`/games`) — 26 game systems (modern sci-fi epic 32mm, fantasy epic 32mm,
   28mm true scale, 35mm eye level, WWII, mech tactical, epic 6–10mm, and more), each with its scale, base sizes, conversion
@@ -53,8 +50,6 @@ with physical test prints on a Bambu Lab A1 Mini, measured with a PARKSIDE digit
   electricity) before you start.
 - **Slicer Percentage Calculator** (`/tools/slicer-percentage-calculator`) — two measurements in, one exact
   percentage out.
-- **Miniature Scale Identifier** (`/tools/miniature-scale-identifier`) — measure a model's height and it tells
-  you which scale it matches, with matched game systems and a deep-link into the engine.
 
 ## Privacy
 
@@ -87,7 +82,7 @@ npm run preview # preview the production build
 ```
 src/
 ├── layouts/       Layout.astro — global header, masthead, nav, footer
-├── pages/         Routes (/, /reference, /games, /guides, /tools, /about, …)
+├── pages/         Routes (/, /miniature-size-chart, /games, /guides, /tools, /about, …)
 ├── content/       Guides collection (markdown, content collections schema in content.config.ts)
 ├── data/          Structured data: scales, conversions, gameSystems, tools, filamentPresets, …
 └── styles/        global.css — theme tokens + prose/table styling
@@ -104,9 +99,10 @@ repository.
 
 ## Recent Updates
 
-- **3D Scale Visualizer** — new premium `/tools/3d-scale-visualizer` page: compare 28mm/32mm/35mm and ratio
-  scales side-by-side in interactive 3D on a calibrated 10mm grid. Now there are two ways to work out a scale —
-  the fast-numbers engine on the homepage, or this visual option.
+- **3D Scale Visualizer retired** — `/tools/3d-scale-visualizer` now 301-redirects to `/tools`; announcement
+  banner disabled (reserved for future announcements). The visualizer components are removed from the source tree.
+- **Scale Identifier & Real-World Converter retired** — `/tools/miniature-scale-identifier` and
+  `/tools/real-world-scale-converter` now 301-redirect to `/tools`; their components are removed from the source tree.
 - **Guides expansion** — grew the guide library from 6 to 16, adding the 28mm real-world conversion companion,
   FDM vs Resin, Arachne vs Classic wall generator, Cura tree support settings, Resin2FDM workflow,
   budget-printer picks, 35mm eye-level and classic-fantasy-RPG scale deep-dives, and the 28mm→32mm / 32mm→28mm walkthroughs.

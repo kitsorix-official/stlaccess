@@ -32,9 +32,7 @@ if (pathname !== "/" && pathname.endsWith("/")) {
 const canonical = new URL(pathname, Astro.site || site.url).href;
 
 const currentPath = Astro.url.pathname;
-const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
-  ? site.banner
-  : { enabled: false };
+const banner = site.banner || { enabled: false };
 ---
 
 <!doctype html>
@@ -218,12 +216,12 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
           </li>
           <li>
             <a
-              href="/reference"
-              class={currentPath === "/reference"
+              href="/miniature-size-chart"
+class={currentPath.startsWith("/miniature-size-chart")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Reference
+              Size Chart
             </a>
           </li>
 
@@ -308,9 +306,9 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
                 </li>
                 <li>
                   <a
-                    href="/reference"
+                    href="/miniature-size-chart"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Reference Library</a
+                    >Miniature Size Chart</a
                   >
                 </li>
                 <li>
@@ -501,13 +499,13 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
         </li>
         <li class="h-full">
           <a
-            href="/reference"
-            class={currentPath === "/reference"
+            href="/miniature-size-chart"
+            class={currentPath.startsWith("/miniature-size-chart")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
             <i class="ti ti-book text-base" aria-hidden="true"></i>
-            <span>Reference</span>
+            <span>Size Chart</span>
           </a>
         </li>
       </ul>

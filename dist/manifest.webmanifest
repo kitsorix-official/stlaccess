@@ -58,8 +58,8 @@
       ]
     },
     {
-      "name": "Reference",
-      "url": "/reference",
+      "name": "Size Chart",
+      "url": "/miniature-size-chart",
       "icons": [
         {
           "src": "/pwa-192x192.png",

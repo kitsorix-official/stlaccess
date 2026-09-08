@@ -1,5 +1,6 @@
 // src/data/conversionDetailContent.js
-// Hand-authored, per-conversion content for the /reference/[slug] spoke pages.
+// Hand-authored, per-conversion content rendered inline on the all-in-one
+// miniature size chart (/miniature-size-chart).
 //
 // IMPORTANT anti-pSEO note:
 // Every string here is written by hand for its specific source->target pair.

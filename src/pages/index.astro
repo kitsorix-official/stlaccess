@@ -335,13 +335,13 @@ The conversions I use <span class="text-[#ff6b35] italic">most often</span>
 Before I commit a miniature to a long print, I check the scale first. A few seconds now saves me a lot of frustration later. These are the percentages I use myself, but if one of your prints comes out looking wrong, <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors">let me know</a>.
 </p>
 </div>
-<a href="/reference" class="text-[#ff6b35] font-bold text-sm uppercase tracking-widest border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-1 transition-all">
-View my full scale reference
+<a href="/miniature-size-chart" class="text-[#ff6b35] font-bold text-sm uppercase tracking-widest border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-1 transition-all">
+View my full miniature size chart
 </a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 {referencePreviews.map((card, i) => (
-  <a href={`/reference/${card.slug}`} class="group block bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50">
+  <a href={`/miniature-size-chart#${card.slug}`} class="group block bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50">
     <span class={`text-[10px] font-bold uppercase tracking-widest block mb-4 ${i === 0 ? 'text-[#ff6b35]' : 'text-slate-500'}`}>{card.category}</span>
     <h3 class="text-xl font-bold mb-2 group-hover:text-[#ff6b35] transition-colors">{card.label}</h3>
     <p class="text-sm text-slate-500 mb-6">{card.description}</p>
@@ -413,7 +413,7 @@ Straight answers from my own experience at the painting desk.
   <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500">
     <a href="/about" class="hover:text-[#ff6b35] transition-colors">Read my full methodology</a>
     <span class="mx-2 text-slate-700">•</span>
-    <a href="/reference" class="hover:text-[#ff6b35] transition-colors">View my wargaming data sources</a>
+    <a href="/miniature-size-chart" class="hover:text-[#ff6b35] transition-colors">View my miniature size chart data sources</a>
   </p>
 </div>
 </section>

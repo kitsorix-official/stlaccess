@@ -13,8 +13,8 @@ const scalesCount = Object.keys(scales).length;
 const conversionsCount = conversions.length;
 
 // stl-scale-engine lives on the homepage (/) and scale-reference lives at
-// /reference; both are featured there, so they are excluded from the tools
-// index cards and no /tools/* page is built for them.
+// /miniature-size-chart; both are featured there, so they are excluded from
+// the tools index cards and no /tools/* page is built for them.
 const visibleTools = tools.filter(
   (t) => t.slug !== "stl-scale-engine" && t.slug !== "scale-reference"
 );
@@ -152,7 +152,7 @@ const toolsSchema = graph([
         </li>
         <li class="flex items-start gap-3">
           <i class="ti ti-circle-check text-[#ff6b35] mt-0.5"></i>
-          <span><strong class="text-white">Scale Reference Library</strong> — {conversionsCount} verified conversion percentages with print-tested results</span>
+          <span><strong class="text-white">Miniature Size Chart</strong> — {conversionsCount} verified conversion percentages with print-tested results</span>
         </li>
       </ul>
     </div>

@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import site from "../../data/site.json";
 import rawConversions from "../../data/conversions.json";
+import { conversionDetailContent } from "../../data/conversionDetailContent.js";
 import { graph, breadcrumb, faqPage, article } from "../../lib/schema";
 import { lastModifiedDate, formatLongDate, lastModifiedISO } from "../../lib/freshness";
 
@@ -14,22 +15,22 @@ const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
 const referenceSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Reference", path: "/reference" },
+    { name: "Miniature Size Chart", path: "/miniature-size-chart" },
   ]),
   article({
-    title: "Why is Miniature Scale Inconsistent?",
-    description: "Five things I learned mixing miniatures from six manufacturers and measuring them with calipers. The scale on the box rarely matches the model.",
-    url: "/reference",
+    title: "Miniature Size Chart: Every Scale Percentage on One Page",
+    description: "The complete miniature size chart with every scale conversion percentage — 28mm, 32mm, 35mm, 40mm, 1:35, 1:48, 1:56 and more. All calculated from a 175cm human baseline and verified on physical test prints.",
+    url: "/miniature-size-chart",
     datePublished: lastModifiedISO(),
     dateModified: lastModifiedISO(),
-    keywords: ["miniature scale", "scale creep", "28mm", "32mm", "1:48", "3D printing"],
+    keywords: ["miniature size chart", "scale conversion", "28mm to 32mm", "1:48", "1:56", "3D printing percentages"],
   }),
-  faqPage(referencePageQA, "/reference"),
+  faqPage(referencePageQA, "/miniature-size-chart"),
 ]);
 ---
 <Layout
-  title="STL Scale Conversion Chart | 3D Print Miniature Percentages | STLACCESS"
-  description="Every conversion percentage for tabletop miniature scales — 28mm to 32mm, 1:35, 1:48, 1:56, and more. All calculated from a 175cm human baseline and verified on physical test prints."
+  title="Miniature Size Chart | All Scale Conversion Percentages for 3D Printing | STLACCESS"
+  description="The complete miniature size chart: every scale conversion percentage for 3D printing — 28mm, 32mm, 35mm, 40mm, 1:35, 1:48, 1:56 and more. Based on a 175cm human baseline, verified on physical test prints."
 >
 
 <JsonLd slot="head" data={referenceSchema} />
@@ -39,19 +40,19 @@ const referenceSchema = graph([
 <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
   <span class="mx-2 text-slate-800">/</span>
-  <span class="text-slate-400" aria-current="page">Reference</span>
+  <span class="text-slate-400" aria-current="page">Miniature Size Chart</span>
 </nav>
 
 <!-- Header -->
 <div class="pb-16 px-6 max-w-6xl mx-auto" aria-labelledby="ref-hero-heading">
   <h1 id="ref-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
-    STL Scale Conversion <span class="text-[#ff6b35]">Chart</span>
+    Miniature Size <span class="text-[#ff6b35]">Chart</span>
   </h1>
   <p class="reference-intro text-lg text-slate-400 max-w-2xl leading-relaxed">
-    Slicer percentages for converting miniatures between tabletop scales — from 6mm epic to 32mm heroic, 35mm eye level, and beyond. These are the numbers I use myself, based on a 175cm human baseline with eye-level measurement. I print on a {printerName}. Your mileage may vary.
+    Every miniature size chart percentage you need for converting STLs between tabletop scales — from 6mm epic to 32mm heroic, 35mm eye level, and beyond — all on one page. These are the numbers I use myself, based on a 175cm human baseline with eye-level measurement. I print on a {printerName}. Your mileage may vary.
   </p>
   <p class="text-sm text-slate-500 mt-3">
-    Don't know your model's scale? Measure it and <a href="/tools/miniature-scale-identifier" class="text-[#ff6b35] hover:underline font-semibold">find out in 10 seconds</a> first.
+    Don't know your model's scale? Print the <a href="/tools/reference-bar-generator" class="text-[#ff6b35] hover:underline font-semibold">scale reference bar</a> and measure it in your slicer first.
   </p>
   {siteUpdated && <p class="text-xs text-slate-600 mt-3">Last updated: {formatLongDate(siteUpdated)}</p>}
 </div>
@@ -75,35 +76,104 @@ const referenceSchema = graph([
   </div>
 </form>
 
-<!-- Conversion Card Matrix -->
+<!-- Conversion List with Full Details on One Page -->
 <section class="px-6 pb-24 max-w-6xl mx-auto" id="conversion-details" aria-labelledby="details-heading">
   <div class="mb-6 flex items-center gap-3">
-    <h2 id="details-heading" class="text-xl font-bold font-heading">All Conversions</h2>
-    <span class="text-xs text-slate-500 font-medium">Each links to a full breakdown</span>
+    <h2 id="details-heading" class="text-xl font-bold font-heading">Miniature Sizes at a Glance</h2>
+    <span class="text-xs text-slate-500 font-medium">Every percentage on one page</span>
   </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    {rawConversions.map((conv) => (
-      <a
-        href={`/reference/${conv.slug}`}
-        class="searchable-section group block bg-slate-900/20 border border-white/5 rounded-2xl p-5 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all"
-        data-search={`${conv.h1Source} ${conv.h1Target} ${conv.sourceLabel} ${conv.targetLabel} ${conv.percentage} ${conv.title} ${conv.description} ${conv.subtext}`}
-      >
-        <div class="flex items-start justify-between mb-3">
-          <h3 class="font-bold text-white group-hover:text-[#ff6b35] transition-colors text-lg leading-tight">
-            {conv.h1Source} <span class="text-slate-500 text-sm">to</span> {conv.h1Target}
-          </h3>
-          <span class="text-xs font-mono text-[#ff6b35] bg-[#ff6b35]/10 px-2 py-1 rounded shrink-0 ml-2">{conv.percentage}%</span>
-        </div>
-        <p class="text-sm text-slate-400 leading-relaxed mb-3 line-clamp-2">{conv.subtext}</p>
-        <div class="flex items-center justify-between text-xs text-slate-500">
-          <span class="font-mono">{conv.math}</span>
-          <div class="flex items-center gap-1 group-hover:text-[#ff6b35] transition-colors">
-            <span>Details</span>
-            <i class="ti ti-arrow-right text-[10px]" aria-hidden="true"></i>
+  <div class="space-y-4">
+    {rawConversions.map((conv) => {
+      const detail = conversionDetailContent[conv.slug] || {};
+      return (
+        <details id={conv.slug} class="searchable-section group block bg-slate-900/20 border border-white/5 rounded-2xl overflow-hidden hover:border-[#ff6b35]/40 transition-all scroll-mt-24">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 hover:bg-slate-900/40 transition-colors">
+            <div class="flex items-start justify-between gap-4 w-full">
+              <div>
+                <h3 class="font-bold text-white text-lg leading-tight">
+                  {conv.h1Source} <span class="text-slate-500 text-sm">to</span> {conv.h1Target}
+                </h3>
+                <p class="text-sm text-slate-400 leading-relaxed mt-1">{conv.subtext}</p>
+              </div>
+              <div class="flex items-center gap-3 shrink-0">
+                <span class="text-xl font-mono text-[#ff6b35] bg-[#ff6b35]/10 px-3 py-1 rounded-xl font-black">{conv.percentage}%</span>
+                <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+              </div>
+            </div>
+          </summary>
+          <div class="px-6 pb-6 pt-2 border-t border-white/5" data-full-detail>
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+                <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                  <i class="ti ti-microscope text-[#ff6b35]"></i>
+                  The math
+                </h4>
+                <code class="block bg-black/50 p-4 rounded-xl text-xs font-mono text-[#ff6b35] overflow-x-auto">
+                  ({conv.math}) × 100 = {conv.percentage}%
+                </code>
+                <p class="text-xs text-slate-500 mt-3">
+                  Based on {site.baselineHeightCm}cm human baseline, eye-level measurement ({site.eyeLevelCm}cm).
+                </p>
+                {conv.topHeadPercentage && (
+                  <p class="text-sm text-slate-400 mt-4 font-mono">
+                    Top of head: <span class="text-white font-bold">{conv.topHeadPercentage}%</span>
+                  </p>
+                )}
+              </div>
+              <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+                <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                  <i class="ti ti-info-circle text-[#ff6b35]"></i>
+                  Scale baselines
+                </h4>
+                <ul class="space-y-3 text-sm text-slate-400">
+                  <li class="flex justify-between">
+                    <span>Source eye level</span>
+                    <span class="text-white font-mono">{conv.sourceValue}</span>
+                  </li>
+                  <li class="flex justify-between">
+                    <span>Target eye level</span>
+                    <span class="text-white font-mono">{conv.targetValue}</span>
+                  </li>
+                  <li class="flex justify-between border-t border-white/5 pt-3">
+                    <span>Scale factor</span>
+                    <span class="text-[#ff6b35] font-mono font-bold">{conv.percentage}%</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {detail.intro && (
+              <p class="text-sm text-slate-400 leading-relaxed mt-6 whitespace-pre-line">{detail.intro}</p>
+            )}
+
+            {detail.sections && detail.sections.length > 0 && (
+              <div class="space-y-6 mt-6">
+                {detail.sections.map((s) => (
+                  <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                      <i class="ti ti-chess-knight text-[#ff6b35]"></i>
+                      {s.heading}
+                    </h4>
+                    <p class="text-sm text-slate-400 leading-relaxed whitespace-pre-line">{s.body}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {(detail.faq || []).length > 0 && (
+              <div class="space-y-4 mt-6">
+                {detail.faq.map((item) => (
+                  <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+                    <h4 class="font-semibold text-[#ff6b35] mb-1.5">{item.question}</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">{item.answer}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
-      </a>
-    ))}
+        </details>
+      );
+    })}
   </div>
 </section>
 
@@ -435,7 +505,7 @@ const referenceSchema = graph([
     var sections = document.querySelectorAll('.searchable-section');
     var visible = 0;
     sections.forEach(function(section) {
-      var haystack = section.getAttribute('data-search').toLowerCase();
+      var haystack = section.textContent.toLowerCase();
       if (haystack.includes(filter)) {
         section.style.display = '';
         visible++;
@@ -459,6 +529,11 @@ const referenceSchema = graph([
       refSearchInput.value = q;
       filterCards();
     }
+  }
+
+  var target = document.getElementById(window.location.hash.slice(1));
+  if (target && target.tagName === 'DETAILS') {
+    target.open = true;
   }
 
   var refForm = document.getElementById('ref-feedback-form');

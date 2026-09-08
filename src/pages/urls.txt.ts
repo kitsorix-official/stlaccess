@@ -17,7 +17,7 @@ export const GET: APIRoute = async () => {
     `${base}/games`,
     `${base}/guides`,
     ...guides.map((g) => `${base}/guides/${g.id}`),
-    `${base}/reference`,
+    `${base}/miniature-size-chart`,
     `${base}/tools`,
     ...tools
       .filter((t) => t.slug !== "stl-scale-engine" && t.slug !== "scale-reference")

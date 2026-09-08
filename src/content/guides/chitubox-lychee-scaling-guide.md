@@ -78,7 +78,7 @@ Before you type a single percentage, you need to know what you're starting from.
 
 The number that matters for scale is the **Z-axis** — that's the height. Select your model, look at the Z field, and you instantly know its current height in mm. That's the source number for every conversion you type in.
 
-Here is the catch I hit constantly: **which height counts depends on how the sculptor measured it.** Gaming scales like 28mm and 32mm measure to eye level, so a true 32mm model usually reads 34-35mm on the Z-axis once you include the forehead, hair, or helmet. If you measure a "32mm" model and see 34.5mm, that is not a mistake — that is eye level plus skull. If you have an unlabeled sculpt, the [miniature scale identifier](/tools/miniature-scale-identifier) will name it for you, and the [reference library](/reference) notes which measurement each scale uses.
+Here is the catch I hit constantly: **which height counts depends on how the sculptor measured it.** Gaming scales like 28mm and 32mm measure to eye level, so a true 32mm model usually reads 34-35mm on the Z-axis once you include the forehead, hair, or helmet. If you measure a "32mm" model and see 34.5mm, that is not a mistake — that is eye level plus skull. If you have an unlabeled sculpt, print the [scale reference bar](/tools/reference-bar-generator) and measure it in your slicer, and the [reference library](/miniature-size-chart) notes which measurement each scale uses.
 
 A quick sanity check before you scale: a 28-32mm miniature should be roughly the height of your thumb. If the Z-axis shows a grain of rice instead, the file was exported in inches — jump down to the Lychee units section for the fix.
 
@@ -122,7 +122,7 @@ If your file's X-axis shows as, for example, 30mm:
 | Scale to 32mm (from 28mm) | 114.3% |
 | Scale to 35mm (from 28mm) | 125.0% |
 
-Use the [STLACCESS scale engine](/) to calculate any conversion, or browse the [reference library](/reference) for pre-calculated percentages. I use both constantly — that's the whole reason I built them.
+Use the [STLACCESS scale engine](/) to calculate any conversion, or browse the [reference library](/miniature-size-chart) for pre-calculated percentages. I use both constantly — that's the whole reason I built them.
 
 ## Common Mistakes to Avoid
 
@@ -130,5 +130,5 @@ These are the mistakes I've personally made, so you don't have to:
 
 - **Forgetting to lock the aspect ratio** — results in a squashed or stretched miniature. My hydraulic-press print was the teacher here.
 - **Scaling the base with the model** — makes the base look wrong for the game system. Separate it first.
-- **Distinguishing between eye-level and top-of-head** — 28mm refers to eye level; ratio scales like 1:56 are top-of-head. The [scale reference](/reference) has notes for each
+- **Distinguishing between eye-level and top-of-head** — 28mm refers to eye level; ratio scales like 1:56 are top-of-head. The [scale reference](/miniature-size-chart) has notes for each
 - **Skipping the test print** — I always print one test piece and measure it with my PARKSIDE calipers before committing to a full squad. The STL scale calculator has a [shrinkage compensation toggle](/) for filaments that shrink more than the usual 0.2-0.5%

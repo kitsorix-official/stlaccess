@@ -14,11 +14,11 @@
   },
   {
     "slug": "scale-reference",
-    "name": "Scale Conversion Reference",
+    "name": "Miniature Size Chart",
     "shortDescription": "Every conversion percentage I've verified for scaling 3D printed miniatures, all in one searchable list. Print-tested on FDM.",
-    "description": "Every conversion percentage I have verified, all in one searchable list. Covers 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales. Each entry shows the math, the scale baselines, and FDM print notes. You can jump straight to the calculator from any conversion. I update these when the community catches something wrong.",
+    "description": "Every conversion percentage I have verified, all on a single page. Covers 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales. Each entry shows the math, the scale baselines, and FDM print notes. You can jump straight to the calculator from any conversion. I update these when the community catches something wrong.",
     "icon": "ti-book",
-    "url": "/reference",
+    "url": "/miniature-size-chart",
     "features": ["44 verified conversion pairs", "Search and filter by scale", "Full math breakdown for each entry", "Print-tested on FDM", "Community feedback and correction system"],
     "category": "references",
     "featured": true
@@ -46,19 +46,6 @@
     "featured": true
   },
   {
-    "slug": "real-world-scale-converter",
-    "name": "Real-World Scale Converter",
-    "h1": "Real-World Object to Miniature Scale Converter",
-    "metaTitle": "Real-World to Miniature Scale Converter — Feet to mm | STLACCESS",
-    "shortDescription": "How tall is a 12-foot wall in 32mm scale? Enter any real-world height in feet, inches, or centimetres and get the exact miniature size in millimetres.",
-    "description": "The reverse of my scale engine. Instead of converting between two miniature scales, it takes a real-world measurement — a wall, a dragon, a building — and converts it to the exact millimetre height at any tabletop scale. It uses the same 175cm human baseline with eyes at 160cm that powers every conversion on this site, so the numbers match the reference library and the scale engine exactly. No uploads, no accounts, no cookies.",
-    "icon": "ti-ruler",
-    "url": "/tools/real-world-scale-converter",
-    "features": ["Feet, inches, or centimetres input", "All 16 tabletop scales supported", "Eye-level and ratio measurement logic", "Same 175cm baseline as the rest of the site", "Deep-link straight to the scale engine", "Runs entirely in your browser"],
-    "category": "calculators",
-    "featured": false
-  },
-  {
     "slug": "reference-bar-generator",
     "name": "Scale Reference Bar Generator",
     "h1": "STL Scale Reference Bar Generator",
@@ -70,31 +57,5 @@
     "features": ["Downloadable STL, generated in your browser", "All 16 tabletop scales supported", "5mm tick marks plus a figure-height end tab", "Ruler lengths from 30 to 100mm", "No uploads, no accounts, no cookies"],
     "category": "references",
     "featured": false
-  },
-  {
-    "slug": "miniature-scale-identifier",
-    "name": "Miniature Scale Identifier",
-    "h1": "What Scale Is My Miniature?",
-    "metaTitle": "What Scale Is My Miniature? | Identify STL & Print Scale | STLACCESS",
-    "shortDescription": "Type in your model's height in mm and find out what scale it is — 28mm, 32mm, 35mm, 1:35, and more. The laziest way to identify a miniature scale.",
-    "description": "Downloaded an STL with no scale listed, or printed a model that looks wrong next to your army? Measure its height in millimetres — from your slicer's bounding box or a ruler on the printed figure — and this tool tells you which tabletop scale it matches: 28mm, 32mm heroic, 35mm sci-fi mass-battle, 40mm sci-fi skirmish, 1:35 model kits, and everything in between. It compares your measurement against the same 175cm human baseline (eyes at 160cm) that powers every conversion on this site, then hands you a ready-made link to scale it to any game you play. No uploads, no accounts, no cookies.",
-    "icon": "ti-search",
-    "url": "/tools/miniature-scale-identifier",
-    "features": ["Identifies all 16 supported scales", "Works from slicer height or a ruler", "Eye level, top of head, or 'not sure' measurement", "1-click deep link to the scale calculator", "Shows which games each match belongs to", "No uploads, no accounts, no cookies"],
-    "category": "references",
-    "featured": true
-  },
-  {
-    "slug": "3d-scale-visualizer",
-    "name": "3D Scale Visualizer",
-    "h1": "STL Scale Converter with 3D Visualizer",
-    "metaTitle": "STL Scale Converter & 3D Visualizer | Miniature Scale Calculator | STLACCESS",
-    "shortDescription": "Compare miniature scales side-by-side in an interactive 3D environment. Rotate, zoom, and measure against a calibrated 10mm grid.",
-    "description": "Interactive 3D comparison tool for visualizing miniature scale differences. Select two scales from modern sci-fi epic wargames, classic fantasy RPGs, WWII platoon wargames, and 15+ tabletop systems, then see them side-by-side in a rotatable 3D viewport. Includes eye-level vs top-of-head measurement, shrinkage compensation, print bed overlay, and a calibrated 10mm grid. Upload your own STL to compare at any scale. Everything runs in your browser — no uploads, no accounts, no cookies.",
-    "icon": "ti-box-multiple",
-    "url": "/tools/3d-scale-visualizer",
-    "features": ["Interactive 3D viewport with orbit controls", "15+ tabletop scales supported", "Eye-level and top-of-head measurement", "Print bed volume overlay", "Custom STL upload", "Calibrated 10mm grid", "Screenshot export", "Bookmarkable URL parameters", "No uploads, no accounts, no cookies"],
-    "category": "visualizers",
-    "featured": true
   }
 ]

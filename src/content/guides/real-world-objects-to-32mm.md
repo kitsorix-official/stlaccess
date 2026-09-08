@@ -111,7 +111,7 @@ I built a dedicated [28mm scale guide](/guides/real-world-objects-to-28mm) with 
 
 Gaming scales like 28mm and 32mm are measured to the eye (160cm on a 175cm human), not the top of the head. If your game system uses a different baseline — some older games measure against a 6-foot human — the monster will come out slightly different.
 
-STLACCESS uses the 175cm baseline for all conversions. You can read more about [why that number was chosen](/guides/175cm-baseline) and how it affects every percentage in the [reference library](/reference).
+STLACCESS uses the 175cm baseline for all conversions. You can read more about [why that number was chosen](/guides/175cm-baseline) and how it affects every percentage in the [reference library](/miniature-size-chart).
 
 ## Terrain and Buildings
 
@@ -123,4 +123,4 @@ Terrain is easier to scale than creatures because you don't need to account for 
 
 Print a wall that is 122mm tall and place a 32mm miniature next to it — the proportions match a 20-foot wall in real life. I built my entire table's ruined walls from this exact calculation, and they finally stopped looking like dollhouse furniture next to my minis.
 
-To convert any real measurement to miniature millimetres on the fly, use the [real-world scale converter](/tools/real-world-scale-converter) or the [STL scale engine](/).
+To convert any real measurement to miniature millimetres on the fly, plug the numbers into the [STL scale engine](/) — it handles real-world heights and tabletop scales the same way.

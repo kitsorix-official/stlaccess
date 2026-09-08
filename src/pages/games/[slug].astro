@@ -187,7 +187,7 @@ const pageSchema = graph([
             {relatedConvData.map((conv) => (
               <tr class="border-b border-white/5 hover:bg-slate-900/50 transition-colors">
                 <td class="py-3 px-4">
-                  <a href={`/reference/${conv.slug}`} class="text-[#ff6b35] hover:text-white transition-colors font-mono font-semibold">
+                  <a href={`/miniature-size-chart#${conv.slug}`} class="text-[#ff6b35] hover:text-white transition-colors font-mono font-semibold">
                     {conv.h1Source} → {conv.h1Target}
                   </a>
                 </td>
@@ -200,7 +200,7 @@ const pageSchema = graph([
         </table>
       </div>
       <div class="mt-4">
-        <a href="/reference" class="text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
+        <a href="/miniature-size-chart" class="text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
           View all conversion reference →
         </a>
       </div>

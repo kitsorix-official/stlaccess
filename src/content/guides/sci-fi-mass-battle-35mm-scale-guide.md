@@ -46,21 +46,21 @@ For comparison, that makes this game's troopers noticeably taller than a 32mm mo
 
 ### The 1:47 math behind the label
 
-The publisher works this game from a slightly taller eye-height reference than my usual 160cm — they use **1678mm**, the measured average adult eye height. Divide 35.7mm by that and you get **1:47 scale**. It's a hair larger than the 1:48 space opera model kits from major manufacturers, which is why those kits are the community's favourite way to add vehicles and terrain to this game's table. My [reference](/reference) treats this game at 35mm eye level, and the difference between 1:47 and 1:48 is small enough to be invisible at the table.
+The publisher works this game from a slightly taller eye-height reference than my usual 160cm — they use **1678mm**, the measured average adult eye height. Divide 35.7mm by that and you get **1:47 scale**. It's a hair larger than the 1:48 space opera model kits from major manufacturers, which is why those kits are the community's favourite way to add vehicles and terrain to this game's table. My [reference](/miniature-size-chart) treats this game at 35mm eye level, and the difference between 1:47 and 1:48 is small enough to be invisible at the table.
 
 ## How Big Is This Game's Mini Compared to the Classic Fantasy RPG or the Modern Sci-Fi Epic Wargame?
 
 ### Compared to the 32mm modern sci-fi epic wargame — scale to 109.4%
 
-If you're printing modern sci-fi epic wargame-scaled STLs as proxies for this game, the number is **109.4%** (35 ÷ 32 × 100), axes locked. That's the same jump, in reverse, as scaling one of these minis down to sit in a 32mm heroic sci-fi army — I keep both directions on the [scale conversion chart](/reference).
+If you're printing modern sci-fi epic wargame-scaled STLs as proxies for this game, the number is **109.4%** (35 ÷ 32 × 100), axes locked. That's the same jump, in reverse, as scaling one of these minis down to sit in a 32mm heroic sci-fi army — I keep both directions on the [scale conversion chart](/miniature-size-chart).
 
-A tip from my own painting desk: before scaling a whole squad, run the [miniature scale identifier](/tools/miniature-scale-identifier) on the STL. A lot of sculptors label "35mm" files that are actually 32mm heroic or vice versa, and it changes the percentage you need.
+A tip from my own painting desk: before scaling a whole squad, measure the STL against a [scale reference bar](/tools/reference-bar-generator). A lot of sculptors label "35mm" files that are actually 32mm heroic or vice versa, and it changes the percentage you need.
 
 ### Compared to the classic fantasy RPG's true 28mm — scale to 125%
 
 The big jump is from the classic fantasy RPG's true 28mm scale: **125%** (35 ÷ 28 × 100). A 28mm figure scaled to 125% matches this game's trooper at the eyes. Going the other way — from this game into a 28mm army — is **80%** (28 ÷ 35 × 100).
 
-Both numbers are in the [reference matrix](/reference), and both assume true 28mm to begin with. Since most third-party classic-fantasy-RPG-style STLs are actually sculpted at 32mm heroic these days, I always measure the model's Z-height in my slicer before I trust a 125% scaling.
+Both numbers are in the [reference matrix](/miniature-size-chart), and both assume true 28mm to begin with. Since most third-party classic-fantasy-RPG-style STLs are actually sculpted at 32mm heroic these days, I always measure the model's Z-height in my slicer before I trust a 125% scaling.
 
 ## How Do I Scale a 3D Print to Match This Game?
 
@@ -99,6 +99,6 @@ If you're printing proxies, matching the base size matters more than the infantr
 
 ### Vehicles slide between scales
 
-The vehicles are where this game's 1:47 scale shines for printing. Because the game's walkers and speeders are oversized on purpose (they're designed to be readable at table distance, not accurate to the films), you have a lot of room to work with. The community's favourite trick is printing space opera vehicle STLs that are *supposed* to be display-scaled and shrinking them to fit this game's table — 1:48 kits at 96% are the closest fit, and the [real-world scale converter](/tools/real-world-scale-converter) gives you the exact millimetre height of any vehicle at this game's scale before you commit to the plate.
+The vehicles are where this game's 1:47 scale shines for printing. Because the game's walkers and speeders are oversized on purpose (they're designed to be readable at table distance, not accurate to the films), you have a lot of room to work with. The community's favourite trick is printing space opera vehicle STLs that are *supposed* to be display-scaled and shrinking them to fit this game's table — 1:48 kits at 96% are the closest fit, so check the exact height you need against this game's scale before you commit to the plate.
 
-That's the conversion. 35mm to the eyes, 109.4% from the modern sci-fi epic wargame, 125% from the classic fantasy RPG, and a printed standee to keep you honest. The full set of percentages across every scale sits on the [miniature scale conversion chart](/reference).
+That's the conversion. 35mm to the eyes, 109.4% from the modern sci-fi epic wargame, 125% from the classic fantasy RPG, and a printed standee to keep you honest. The full set of percentages across every scale sits on the [miniature scale conversion chart](/miniature-size-chart).

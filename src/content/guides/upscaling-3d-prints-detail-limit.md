@@ -100,4 +100,4 @@ Check the model in Blender or MeshLab before printing. If you can see faceted ed
 - **FDM, 32mm → 200mm+ (625%):** Visible ridges even with optimal settings. Check polygon count and be ready for serious post-processing.
 - **Always check the polygon density** before committing a big upscale to a long print.
 
-For more on how scales relate and the baseline measurements used, see the [scale reference library](/reference) or use the [STL scale engine](/) to calculate any conversion.
+For more on how scales relate and the baseline measurements used, see the [scale reference library](/miniature-size-chart) or use the [STL scale engine](/) to calculate any conversion.

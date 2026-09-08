@@ -84,13 +84,13 @@ With axes locked, these are the numbers that cover almost every classic fantasy 
 | Medium humanoid | Large creature | 200.0% |
 | Medium humanoid | Huge creature | ~300.0% |
 
-The Medium-to-Large jump is just scaling a humanoid figure to double height, since a 9-foot ogre is twice a 4.5-foot human. The Medium-to-Huge jump (~59mm from ~30mm) lands around 200% to 300% depending on how big you want your giant — the [slicer percentage calculator](/tools/slicer-percentage-calculator) gives you the exact number for any target height, and the [scale conversion chart](/reference) has the full table.
+The Medium-to-Large jump is just scaling a humanoid figure to double height, since a 9-foot ogre is twice a 4.5-foot human. The Medium-to-Huge jump (~59mm from ~30mm) lands around 200% to 300% depending on how big you want your giant — the [slicer percentage calculator](/tools/slicer-percentage-calculator) gives you the exact number for any target height, and the [scale conversion chart](/miniature-size-chart) has the full table.
 
 ### Scaling monster STLs to match official minis
 
 The one place I'm careful is monsters. Ancient dragons and krakens from third-party sculptors range wildly — I've seen "Gargantuan" dragons from 80mm to 180mm, because there's no single answer for "how tall is a dragon". My rule: decide your target base (4-inch for Gargantuan) and scale the STL so the *footprint* fits, then let the height be whatever proportion the sculptor chose. That keeps the mini legal on the table and stops you from obsessing over a number nobody official publishes.
 
-If a dragon STL has no scale listed at all, the [miniature scale identifier](/tools/miniature-scale-identifier) will tell you what scale it's actually sculpted at by matching its height to the baseline — then you scale from there instead of guessing.
+If a dragon STL has no scale listed at all, measure it against my [scale reference bar](/tools/reference-bar-generator) in your slicer to see what height it's actually sculpted at — then you scale from there instead of guessing.
 
 ## How Do I Measure a Classic Fantasy RPG Mini to Find Its Scale?
 
@@ -102,6 +102,6 @@ This is the same convention the [175cm baseline guide](/guides/175cm-baseline) e
 
 ### What if my STL has no scale listed?
 
-You have three options, in order of how much I trust them. First, check the model description — many sculptors state the intended height even if not the scale word. Second, measure the printed or sliced height and compare it to this guide's chart; a Medium humanoid at 30-32mm is true 28mm, at 34.5mm total it's 32mm heroic. Third, use the [miniature scale identifier](/tools/miniature-scale-identifier), which does that comparison for you and hands you the exact percentage to hit whatever game you're printing for.
+You have three options, in order of how much I trust them. First, check the model description — many sculptors state the intended height even if not the scale word. Second, measure the printed or sliced height and compare it to this guide's chart; a Medium humanoid at 30-32mm is true 28mm, at 34.5mm total it's 32mm heroic. Third, print a [scale reference bar](/tools/reference-bar-generator) to measure the sliced height against the chart and work out the exact percentage for whatever game you're printing.
 
-That's the classic fantasy RPG scale answer. True 28mm to the eyes, bases over heights, and one measurement before you type any percentage. The complete set of conversions across every tabletop scale — the classic fantasy RPG, the modern sci-fi epic wargame, the 35mm sci-fi mass-battle game, and the ratio scales — is on the [miniature scale conversion chart](/reference).
+That's the classic fantasy RPG scale answer. True 28mm to the eyes, bases over heights, and one measurement before you type any percentage. The complete set of conversions across every tabletop scale — the classic fantasy RPG, the modern sci-fi epic wargame, the 35mm sci-fi mass-battle game, and the ratio scales — is on the [miniature scale conversion chart](/miniature-size-chart).

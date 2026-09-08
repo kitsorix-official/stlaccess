@@ -41,7 +41,7 @@ This guide walks through the math so the number sticks, shows the exact clicks i
 
 Type **114.3%** into your slicer's scale field — with X, Y, and Z locked — and a true 28mm miniature becomes a true 32mm miniature. That's the whole answer. It's also the most searched scale conversion in the tabletop space, and for good reason: it's the jump between the two biggest scales in the hobby.
 
-On the [175cm human baseline](/guides/175cm-baseline) I use for every conversion on this site, a 28mm figure measures 28mm from the bottom of the feet to eye level, and a 32mm figure measures 32mm to the eyes. The percentage is just target divided by source: **32 ÷ 28 = 1.143, which is 114.3%**. The same formula drives the [slicer percentage calculator](/tools/slicer-percentage-calculator) and every row on the [scale conversion chart](/reference).
+On the [175cm human baseline](/guides/175cm-baseline) I use for every conversion on this site, a 28mm figure measures 28mm from the bottom of the feet to eye level, and a 32mm figure measures 32mm to the eyes. The percentage is just target divided by source: **32 ÷ 28 = 1.143, which is 114.3%**. The same formula drives the [slicer percentage calculator](/tools/slicer-percentage-calculator) and every row on the [scale conversion chart](/miniature-size-chart).
 
 If you want to play with the numbers yourself, here's the exact calculator I use before every batch — enter your own source and target heights in millimetres and it gives you the slicer percentage instantly.
 
@@ -82,7 +82,7 @@ If you want to play with the numbers yourself, here's the exact calculator I use
 
 Honestly, the even numbers would be easier to remember, but scale math doesn't work that way. 28mm and 32mm are both measurements of the *same* 175cm human at different magnifications, so the ratio between them is fixed: 32/28. You can't round 114.3% to 115% without shifting every figure off the eye line by a fraction of a millimetre. It won't ruin a print, but if you're batch-scaling an army, 114.3% keeps everyone exactly in proportion.
 
-The one thing that *does* change the number is how you measure. A 28mm gaming figure measured to the top of the head is about **30.5mm**, and a 32mm heroic figure is about **34.5mm** — so measured top-of-head, the conversion is **116.1%** instead. Every scale on the [miniature scale conversion chart](/reference) shows both numbers, because sculptors disagree about which one matters. Gaming convention says the eyes, so I use 114.3% as my default and I suggest you do the same.
+The one thing that *does* change the number is how you measure. A 28mm gaming figure measured to the top of the head is about **30.5mm**, and a 32mm heroic figure is about **34.5mm** — so measured top-of-head, the conversion is **116.1%** instead. Every scale on the [miniature scale conversion chart](/miniature-size-chart) shows both numbers, because sculptors disagree about which one matters. Gaming convention says the eyes, so I use 114.3% as my default and I suggest you do the same.
 
 ## How Do I Scale a 28mm Mini to 32mm in My Slicer?
 
@@ -112,7 +112,7 @@ That volume jump is exactly why the publisher moved from 28mm to 32mm between 20
 
 ### Why a 32mm hero looks so much bigger than the math suggests
 
-The other half of the illusion is proportion. Most 32mm-scale sculpts are *heroic* — the head is about 1:6 of the total height instead of the realistic 1:7.5, and hands and weapons are oversized too. So when you compare a true-scale 28mm sculpt against a heroic 32mm sculpt, you're seeing two differences at once: the scale jump *and* the proportion style. That's worth knowing before you print a whole proxy squad: the percentage gets the height right, but the *feel* of the model still depends on the sculptor's style. My [miniature scale identifier](/tools/miniature-scale-identifier) can tell you whether an unlabelled STL is true-scale or heroic so you're not scaling from the wrong starting point.
+The other half of the illusion is proportion. Most 32mm-scale sculpts are *heroic* — the head is about 1:6 of the total height instead of the realistic 1:7.5, and hands and weapons are oversized too. So when you compare a true-scale 28mm sculpt against a heroic 32mm sculpt, you're seeing two differences at once: the scale jump *and* the proportion style. That's worth knowing before you print a whole proxy squad: the percentage gets the height right, but the *feel* of the model still depends on the sculptor's style. Print my [scale reference bar](/tools/reference-bar-generator) and measure an unlabelled STL in your slicer to see whether it's true-scale or heroic before you scale from the wrong starting point.
 
 ## What Does 28mm and 32mm Mean in Real Terms?
 
@@ -134,4 +134,4 @@ Every conversion on this site assumes the *source* model is honestly 28mm. In pr
 
 The second honest limit is the print itself. Scaling a 28mm STL up by 14.3% hides print artefacts — bigger layer lines look smoother relative to the model, and fine detail gets more forgiving. That's one more reason this conversion is so popular. If you're scaling the *other* way and shrinking a 32mm hero down, detail gets denser and support points get pickier; I cover that properly in the [downscale guide](/guides/32mm-to-28mm-scale-conversion) with the settings I use to keep faces clean at 87.5%.
 
-That's the whole conversion. 114.3%, axes locked, one test print, and you're done. If you want the master list of every scale jump in the hobby — 15mm to 28mm, 1:72 to 32mm, 1:35 to 28mm and the rest — the full [miniature scale conversion chart](/reference) has them all in one table, calculated on the same 175cm baseline.
+That's the whole conversion. 114.3%, axes locked, one test print, and you're done. If you want the master list of every scale jump in the hobby — 15mm to 28mm, 1:72 to 32mm, 1:35 to 28mm and the rest — the full [miniature scale conversion chart](/miniature-size-chart) has them all in one table, calculated on the same 175cm baseline.

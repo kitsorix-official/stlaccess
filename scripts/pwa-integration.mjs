@@ -53,7 +53,7 @@ export default function pwa() {
           shortcuts: [
             { name: 'Scale Engine', short_name: 'Scaler', url: '/', icons: [{ src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png' }] },
             { name: 'Tools', url: '/tools', icons: [{ src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png' }] },
-            { name: 'Reference', url: '/reference', icons: [{ src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png' }] },
+            { name: 'Size Chart', url: '/miniature-size-chart', icons: [{ src: '/pwa-192x192.png', sizes: '192x192', type: 'image/png' }] },
           ],
         };
         const manifestPath = path.join(distPath, 'manifest.webmanifest');
