@@ -2,8 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import site from "../../data/site.json";
-import rawConversions from "../../data/conversions.json";
-import { conversionDetailContent } from "../../data/conversionDetailContent.js";
+import rawConversions from "../../data/conversionMatrix.json";
+import { conversionGuideContent } from "../../data/conversionGuideContent.js";
 import { graph, breadcrumb, faqPage, article } from "../../lib/schema";
 import { lastModifiedDate, formatLongDate, lastModifiedISO } from "../../lib/freshness";
 
@@ -84,7 +84,7 @@ const referenceSchema = graph([
   </div>
   <div class="space-y-4">
     {rawConversions.map((conv) => {
-      const detail = conversionDetailContent[conv.slug] || {};
+      const detail = conversionGuideContent[conv.slug] || {};
       return (
         <details id={conv.slug} class="searchable-section group block bg-slate-900/20 border border-white/5 rounded-2xl overflow-hidden hover:border-[#ff6b35]/40 transition-all scroll-mt-24">
           <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 hover:bg-slate-900/40 transition-colors">

@@ -1,0 +1,481 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import site from "../../data/site.json";
+import profiles from "../../data/fdmProfiles.json";
+import conversions from "../../data/conversionMatrix.json";
+import { fdmProfileDetails } from "../../data/fdmProfileDetails.js";
+import { fdmProfileGuides } from "../../data/fdmProfileGuides.js";
+import { graph, breadcrumb, article, faqPage } from "../../lib/schema";
+import { lastModifiedDate, formatLongDate, lastModifiedISO } from "../../lib/freshness";
+
+const { gasEndpoint, printerName, baselineHeight, eyeLevelCm } = site;
+const siteUpdated = lastModifiedDate();
+
+// Group profiles by scale, mm scales ascending numerically, ratio scales after
+const byScale = {};
+for (const p of profiles) {
+  if (!byScale[p.scale]) byScale[p.scale] = [];
+  byScale[p.scale].push(p);
+}
+const allScales = [...new Set(profiles.map(p => p.scale))];
+const mmScales = allScales.filter(s => s.endsWith('mm')).sort((a, b) => parseInt(a) - parseInt(b));
+const ratioScales = allScales.filter(s => !s.endsWith('mm')).sort();
+const scaleOrder = [...mmScales, ...ratioScales];
+const sortedScales = scaleOrder.filter(s => byScale[s]);
+
+// Build rich detail for each profile (related conversions + authored content)
+const enriched = profiles.map((p) => {
+  const detail = fdmProfileDetails[p.slug] || {};
+  const guide = fdmProfileGuides[p.slug];
+  const related = (p.relatedConversions || [])
+    .map((rc) => {
+      const full = conversions.find((c) => c.slug === rc.slug);
+      return full ? { ...rc, ...full } : null;
+    })
+    .filter(Boolean);
+  const faq = detail.faq || [
+    { name: `What FDM settings should I use to print ${p.scale} (${p.ratioScale}) miniatures?`, text: `${p.printingTips}` },
+    { name: `What scale is ${p.name} and how is it measured?`, text: `${p.name} is ${p.scale} scale (${p.ratioScale} ratio), measured ${p.measurementMethod}. ${p.scaleNotes}` },
+    { name: `What base sizes does ${p.name} use?`, text: `This range uses the following base sizes: ${p.baseSizes}.` },
+  ];
+  return { ...p, detail, guide, related, faq };
+});
+
+// Accordion/summary-friendly per-profile FAQ questions for search + JSON-LD
+const allFaq = enriched.flatMap((p) => p.faq.map((f) => ({ question: f.name, answer: f.text })));
+
+const pageSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "FDM Printing Profiles", path: "/fdm-printing-profiles" },
+  ]),
+  article({
+    title: "FDM Printing Profiles: Tested Slicer Settings by Miniature Scale",
+    description: "FDM printing profiles for every tabletop miniature scale — nozzle size, layer height, orientation, and printing tips for 6mm epic up to 40mm skirmish. All tested on a Bambu Lab A1 Mini.",
+    url: "/fdm-printing-profiles",
+    datePublished: lastModifiedISO(),
+    dateModified: lastModifiedISO(),
+    keywords: ["FDM printing", "miniature scale", "nozzle size", "layer height", "3D printing settings", "slicer settings"],
+  }),
+  faqPage(allFaq, "/fdm-printing-profiles"),
+]);
+---
+
+<Layout
+  title="FDM Printing Profiles | Miniature Scale Print Settings for 3D Printing | STLACCESS"
+  description="FDM printing profiles for every tabletop miniature scale — the nozzle size, layer height, and orientation I use for 6mm epic up to 40mm skirmish. Tested on a Bambu Lab A1 Mini with PLA."
+>
+
+<JsonLd slot="head" data={pageSchema} />
+
+<div slot="hero">
+  <!-- Breadcrumb -->
+  <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <span class="text-slate-400" aria-current="page">FDM Printing Profiles</span>
+  </nav>
+
+  <!-- Header -->
+  <div class="pb-16 px-6 max-w-6xl mx-auto" aria-labelledby="fdm-hero-heading">
+    <h1 id="fdm-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
+      FDM Printing <span class="text-[#ff6b35]">Profiles</span>
+    </h1>
+    <p class="fdm-intro text-lg text-slate-400 max-w-2xl leading-relaxed">
+      The exact FDM print settings I use for every miniature scale — nozzle size, layer height, orientation, and the pitfalls to watch for — all on one page. I print on my {printerName} with PLA and test every profile before I write it down. No resin here, just practical FDM settings for tabletop minis.
+    </p>
+    <p class="text-sm text-slate-500 mt-3">
+      Not sure which scale your STL is? <a href="/miniature-size-chart" class="text-[#ff6b35] hover:underline font-semibold">Find your scale on the size chart</a> first, then come back for the print settings.
+    </p>
+    {siteUpdated && <p class="text-xs text-slate-600 mt-3">Last updated: {formatLongDate(siteUpdated)}</p>}
+  </div>
+</div>
+
+<!-- Search / Filter -->
+<form role="search" class="px-6 mb-6 max-w-6xl mx-auto" aria-labelledby="fdm-search-heading" onsubmit="return false">
+  <h2 id="fdm-search-heading" class="sr-only">Search FDM printing profiles</h2>
+  <div class="relative group">
+    <i class="ti ti-search absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
+    <input
+      type="text"
+      id="fdmSearch"
+      placeholder="Search profiles (e.g. 32mm heroic, nozzle, layer height...)"
+      class="w-full bg-slate-900/50 border border-white/10 rounded-2xl py-5 pl-14 pr-6 text-white focus:ring-1 focus:ring-[#ff6b35] focus:border-[#ff6b35] focus:outline-none transition-all placeholder:text-slate-600"
+      aria-label="Search FDM printing profiles"
+    />
+  </div>
+  <div id="noResults" class="hidden mt-8 text-center text-slate-500 italic py-12 border border-dashed border-white/5 rounded-3xl">
+    No profiles found. Try "32mm" or "layer height".
+  </div>
+</form>
+
+<!-- Profiles by Scale -->
+<section class="px-6 pb-12 max-w-6xl mx-auto" id="profile-details" aria-labelledby="details-heading">
+  <div class="mb-6 flex items-center gap-3">
+    <h2 id="details-heading" class="text-xl font-bold font-heading">Every FDM profile on one page</h2>
+    <span class="text-xs text-slate-500 font-medium">{profiles.length} profiles across {sortedScales.length} scales</span>
+  </div>
+
+  {sortedScales.map((scale) => {
+    const group = enriched.filter((p) => p.scale === scale);
+    return (
+      <div class="scale-group mb-12" aria-labelledby={`scale-heading-${scale}`}>
+        <div class="flex items-center gap-4 mb-4">
+          <h3 id={`scale-heading-${scale}`} class="text-2xl font-bold font-heading text-white">{scale} Scale</h3>
+          <div class="flex-grow h-px bg-white/10"></div>
+          <span class="text-xs text-slate-500 font-mono">{group.length} {group.length === 1 ? 'profile' : 'profiles'}</span>
+        </div>
+        <div class="space-y-3">
+          {group.map((p) => (
+            <details id={p.slug} class="searchable-section group block bg-slate-900/20 border border-white/5 rounded-2xl overflow-hidden hover:border-[#ff6b35]/40 transition-all scroll-mt-24">
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 hover:bg-slate-900/40 transition-colors">
+                <div class="flex items-start justify-between gap-4 w-full">
+                  <div>
+                    <h4 class="font-bold text-white text-lg leading-tight">{p.name}</h4>
+                    <p class="text-sm text-slate-500 mt-0.5">{p.genre} · {p.ratioScale} ratio · {p.measurementMethod}</p>
+                    <p class="text-sm text-slate-400 leading-relaxed mt-2 line-clamp-2">{p.detail.intro || p.description}</p>
+                  </div>
+                  <div class="flex items-center flex-col gap-2 shrink-0 text-right">
+                    <span class="text-xl font-mono text-[#ff6b35] bg-[#ff6b35]/10 px-3 py-1 rounded-xl font-black">{p.scale}</span>
+                    <i class="ti ti-chevron-down text-slate-500 transition-transform group-open:rotate-180" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </summary>
+              <div class="px-6 pb-6 pt-2 border-t border-white/5" data-full-detail>
+
+                <!-- Scale at a glance -->
+                <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                  <div>
+                    <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Miniature Scale</div>
+                    <div class="text-2xl font-bold text-[#ff6b35] font-mono">{p.scale}</div>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Ratio Equivalent</div>
+                    <div class="text-2xl font-bold text-white font-mono">{p.ratioScale}</div>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Measurement</div>
+                    <div class="text-lg font-semibold text-slate-300 capitalize">{p.measurementMethod}</div>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Eye Level</div>
+                    <div class="text-lg font-semibold text-white font-mono">{p.eyeLevelMm}</div>
+                  </div>
+                </div>
+
+                <!-- FDM print profile - primary content -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div class="bg-black/20 p-6 rounded-2xl border border-[#ff6b35]/20">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                      <i class="ti ti-printer text-[#ff6b35]"></i>
+                      FDM print settings
+                    </h4>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-4">{p.detail.printingIntro || p.printingTips}</p>
+                    {p.detail.body && p.detail.body.length > 0 && (
+                      <div class="space-y-3 text-sm text-slate-400 leading-relaxed">
+                        {p.detail.body.map((para) => <p>{para}</p>)}
+                      </div>
+                    )}
+                  </div>
+                  <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                      <i class="ti ti-ruler text-[#ff6b35]"></i>
+                      Scale notes
+                    </h4>
+                    <p class="text-sm text-slate-400 leading-relaxed mb-4">{p.scaleNotes}</p>
+                    <div class="space-y-3 text-sm text-slate-400">
+                      <div class="flex justify-between border-t border-white/5 pt-3">
+                        <span>Base sizes</span>
+                        <span class="text-white text-right font-mono">{p.baseSizes}</span>
+                      </div>
+                      <div class="flex justify-between border-t border-white/5 pt-3">
+                        <span>Popular with</span>
+                        <span class="text-white text-right">{p.popularWith}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Conversions -->
+                {p.related && p.related.length > 0 && (
+                  <div class="mb-8">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                      <i class="ti ti-arrows-exchange text-[#ff6b35]"></i>
+                      Scale conversions
+                    </h4>
+                    <div class="overflow-x-auto">
+                      <table class="w-full text-sm">
+                        <caption class="sr-only">Scale conversions for {p.name}</caption>
+                        <thead>
+                          <tr class="border-b border-white/5">
+                            <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Conversion</th>
+                            <th scope="col" class="text-left py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">Description</th>
+                            <th scope="col" class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500">Slicer %</th>
+                            <th scope="col" class="text-right py-3 px-4 text-xs font-bold uppercase tracking-wider text-slate-500 hidden md:table-cell">Formula</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {p.related.map((conv) => (
+                            <tr class="border-b border-white/5 hover:bg-slate-900/50 transition-colors">
+                              <td class="py-3 px-4">
+                                <a href={`/miniature-size-chart#${conv.slug}`} class="text-[#ff6b35] hover:text-white transition-colors font-mono font-semibold">
+                                  {conv.h1Source} → {conv.h1Target}
+                                </a>
+                              </td>
+                              <td class="py-3 px-4 text-slate-400 hidden md:table-cell">{conv.label}</td>
+                              <td class="py-3 px-4 text-right font-mono font-bold text-white">{conv.percentage}%</td>
+                              <td class="py-3 px-4 text-right font-mono text-slate-500 hidden md:table-cell">{conv.math}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="mt-3">
+                      <a href="/miniature-size-chart" class="text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
+                        View all conversion reference →
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+                <!-- Deep Dive -->
+                {p.guide && (
+                  <div class="bg-[#0a0a0a]/40 border border-[#ff6b35]/20 rounded-2xl p-6 mb-8">
+                    <div class="flex items-center gap-2 mb-2">
+                      <i class="ti ti-book text-[#ff6b35] text-xs" aria-hidden="true"></i>
+                      <h4 class="text-xs font-black uppercase tracking-widest text-[#ff6b35]">Deep Dive: {p.guide.title}</h4>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-5 leading-relaxed">{p.guide.intro}</p>
+                    {p.guide.blocks.map((block) => (
+                      <div class="mb-6 last:mb-0">
+                        <h5 class="text-base font-bold font-heading text-white mb-3">{block.heading}</h5>
+                        <div set:html={block.html}></div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <!-- FAQ per profile -->
+                <div class="space-y-4">
+                  {p.faq.map((item, i) => (
+                    <div class="bg-black/20 p-5 rounded-2xl border border-white/5">
+                      <h5 class="font-semibold text-[#ff6b35] mb-1.5 text-sm">{item.name}</h5>
+                      <p class="text-sm text-slate-400 leading-relaxed">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    );
+  })}
+</section>
+
+<!-- Authority: methodology + author -->
+<aside class="max-w-6xl mx-auto px-6 mb-16" aria-label="FDM printing methodology and author expertise">
+  <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-3xl p-8 md:p-12">
+    <div class="flex items-start gap-4 mb-6">
+      <div class="w-12 h-12 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center shrink-0">
+        <i class="ti ti-school text-[#ff6b35] text-lg" aria-hidden="true"></i>
+      </div>
+      <div>
+        <h3 class="font-bold text-white text-lg mb-1">How these FDM profiles are tested</h3>
+        <p class="text-sm text-slate-400">
+          By <a href="/about" class="text-[#ff6b35] hover:underline font-semibold" rel="author">{site.author.name}</a>, 3D printing hobbyist
+        </p>
+      </div>
+    </div>
+    <div class="space-y-4 text-sm text-slate-400 leading-relaxed max-w-4xl">
+      <p>
+        Every profile here starts from a <strong class="text-white">{baselineHeight} human baseline</strong> with eye-level at {eyeLevelCm}cm, then gets a real test print. FDM materials are dimensionally stable within 0.5%, so the scale you dial in is the scale you get.
+      </p>
+      <p>
+        I print on a <strong class="text-white">{printerName}</strong> with PLA. These nozzle and layer-height recommendations are what actually works for me on that machine — they are a solid starting point, not a guarantee. Your printer, filament, and environment will introduce their own variables.
+      </p>
+      <p>
+        If a profile reads differently on your machine, <a href="#fdm-feedback-container" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">send it to me</a> and I will add a note.
+      </p>
+      <p>
+        <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1" rel="author">
+          Full methodology and test data <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </div>
+  </div>
+</aside>
+
+<!-- FAQ -->
+<section id="faq-section" class="px-6 pb-12 max-w-6xl mx-auto" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="text-3xl font-bold mb-10 font-heading">
+    FDM printing <span class="text-[#ff6b35]">FAQ</span>
+  </h2>
+  <div class="bg-slate-900/20 rounded-[2.5rem] border border-white/5 overflow-hidden divide-y divide-white/5">
+    {allFaq.map((item) => (
+      <details class="group searchable-row">
+        <summary class="flex items-center justify-between cursor-pointer list-none px-8 py-6 text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/[0.02] transition-all select-none">
+          <span class="faq-question pr-4">{item.question}</span>
+          <i class="ti ti-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180 shrink-0"></i>
+        </summary>
+        <div class="px-8 pb-6 text-sm text-slate-400 leading-relaxed max-w-4xl">{item.answer}</div>
+      </details>
+    ))}
+  </div>
+</section>
+
+<!-- CTA to Tool -->
+<section class="max-w-6xl mx-auto px-6 pb-12" aria-labelledby="fdm-cta-heading">
+  <div class="bg-gradient-to-r from-[#ff6b35]/10 to-transparent p-12 rounded-[2.5rem] border border-[#ff6b35]/20">
+    <div class="max-w-2xl">
+      <h2 id="fdm-cta-heading" class="text-3xl font-bold font-heading mb-4">Got your settings? Now get the scale.</h2>
+      <p class="text-slate-400 mb-8 leading-relaxed">
+        These profiles assume you know your source and target scales. If you do not, the STL scale engine calculates the exact slicer percentage for any pair of scales.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/" class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:scale-105 transition-transform">
+          Launch the 3D print scale calculator
+          <i class="ti ti-arrow-right"></i>
+        </a>
+        <a href="/miniature-size-chart" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 text-sm font-semibold px-6 py-4 rounded-xl border border-white/5 transition-all">
+          <i class="ti ti-table"></i>
+          Full Size Chart
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Data Correction Form -->
+<div class="max-w-3xl mx-auto px-6 pb-24">
+  <aside id="fdm-feedback-container" class="my-16 rounded-[2rem] border border-white/5 bg-slate-900/20 p-8 md:p-12 glow-box animate-fade-in text-center" aria-labelledby="fdm-feedback-heading">
+    <div id="fdm-form-wrapper">
+      <div class="max-w-[550px] mx-auto mb-8">
+        <span class="font-mono inline-block rounded bg-[#ff6b35]/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-3">
+          Data Correction
+        </span>
+        <h2 id="fdm-feedback-heading" class="font-heading text-2xl font-bold text-white mb-3 tracking-tight">
+          A profile different on your machine?
+        </h2>
+        <p class="text-sm leading-relaxed text-slate-400">
+          These are starting points from my own prints and community feedback. If a nozzle, layer height, or setting works differently on your printer, send it and I will add a note.
+        </p>
+      </div>
+      <form id="fdm-feedback-form" action={gasEndpoint} method="POST" class="space-y-6 max-w-xl mx-auto text-left">
+        <input type="hidden" name="page_source" value="fdm_profiles_page" />
+        <input type="hidden" name="type" value="data-correction" />
+        <div>
+          <label class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-2" for="fdm-correction">
+            What needs changing?
+          </label>
+          <textarea
+            id="fdm-correction"
+            name="correction"
+            rows="3"
+            placeholder="e.g. The 32mm heroic profile works better at 0.08mm layers on my Prusa because..."
+            required
+            class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all resize-none"
+          ></textarea>
+        </div>
+        <div class="flex justify-center pt-2">
+          <button type="submit" id="fdm-submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-[#ff6b35] px-8 py-4 text-sm font-bold text-black hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer">
+            Submit Correction
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="fdm-success-msg" class="hidden py-12 animate-fade-in flex flex-col items-center justify-center">
+      <div class="h-14 w-14 rounded-full bg-[#ff6b35]/10 flex items-center justify-center border border-[#ff6b35]/30 mb-4 shadow-[0_0_30px_rgba(255,107,53,0.2)]">
+        <span class="text-[#ff6b35] text-2xl font-bold">🛠️</span>
+      </div>
+      <h3 class="font-heading text-xl font-bold text-white mb-2 tracking-tight">Correction submitted</h3>
+      <p class="text-sm text-slate-400 max-w-sm mx-auto">
+        I will test it and update the profile if it holds up.
+      </p>
+    </div>
+  </aside>
+</div>
+
+<script is:inline>
+  function filterProfiles() {
+    var input = document.getElementById('fdmSearch');
+    if (!input) return;
+    var filter = input.value.toLowerCase().trim();
+    var sections = document.querySelectorAll('.searchable-section');
+    var groups = document.querySelectorAll('.scale-group');
+    var visible = 0;
+    sections.forEach(function(section) {
+      var haystack = section.textContent.toLowerCase();
+      if (!filter || haystack.includes(filter)) {
+        section.style.display = '';
+        visible++;
+      } else {
+        section.style.display = 'none';
+      }
+    });
+    groups.forEach(function(group) {
+      var hasVisible = Array.prototype.some.call(group.querySelectorAll('.searchable-section'), function(s) {
+        return s.style.display !== 'none';
+      });
+      group.style.display = hasVisible ? '' : 'none';
+    });
+    var noResults = document.getElementById('noResults');
+    if (visible === 0 && filter.length > 0) {
+      noResults.classList.remove('hidden');
+    } else {
+      noResults.classList.add('hidden');
+    }
+  }
+
+  var fdmSearchInput = document.getElementById('fdmSearch');
+  if (fdmSearchInput) {
+    fdmSearchInput.addEventListener('input', filterProfiles);
+    var q = new URLSearchParams(window.location.search).get('q');
+    if (q) {
+      fdmSearchInput.value = q;
+      filterProfiles();
+    }
+  }
+
+  var target = document.getElementById(window.location.hash.slice(1));
+  if (target && target.tagName === 'DETAILS') {
+    target.open = true;
+  }
+
+  var fdmForm = document.getElementById('fdm-feedback-form');
+  var fdmWrapper = document.getElementById('fdm-form-wrapper');
+  var fdmSuccessMsg = document.getElementById('fdm-success-msg');
+  var fdmBtn = document.getElementById('fdm-submit-btn');
+
+  if (fdmForm) {
+    fdmForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (fdmBtn) {
+        fdmBtn.disabled = true;
+        fdmBtn.innerText = 'Sending...';
+        fdmBtn.style.opacity = '0.7';
+      }
+      var formData = new FormData(fdmForm);
+      fetch(fdmForm.action, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      })
+      .then(function() {
+        fdmWrapper.classList.add('hidden');
+        fdmSuccessMsg.classList.remove('hidden');
+      })
+      .catch(function() {
+        if (fdmBtn) {
+          fdmBtn.disabled = false;
+          fdmBtn.innerText = 'Submit Correction';
+          fdmBtn.style.opacity = '1';
+        }
+      });
+    });
+  }
+</script>
+
+</Layout>

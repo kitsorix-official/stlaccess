@@ -1,9 +1,9 @@
-// Game-specific guide content merged into the consolidated /games page.
-// Each entry is keyed by the game slug from gameSystems.json and rendered as
-// a "Deep Dive" block inside that game's section. HTML strings keep tables,
-// lists, and inline emphasis intact.
+// FDM printing profile deep-dive content for /fdm-printing-profiles.
+// Each entry is keyed by the profile slug from fdmProfiles.json and rendered as
+// a "Deep Dive" block inside that profile's expandable section. HTML strings
+// keep tables, lists, and inline emphasis intact.
 
-export const gameGuides = {
+export const fdmProfileGuides = {
   "sci-fi-epic-32mm": {
     title: "Heroic 32mm vs True-Scale 28mm",
     intro: "The modern sci-fi epic standard has one of the most confusing scale landscapes in tabletop gaming. Between modern heroic (32mm) soldiers, classic true-scale (28mm) sculpts, older casts, and third-party proxies, knowing what percentage to type into your slicer is not always obvious.",
@@ -1527,8 +1527,8 @@ export const gameGuides = {
   }
 };
 
-export function gameGuideSearch(slug) {
-  const guide = gameGuides[slug];
+export function fdmProfileGuideSearch(slug) {
+  const guide = fdmProfileGuides[slug];
   if (!guide) return '';
   return `${guide.title} ${guide.blocks.map((b) => b.heading).join(' ')}`;
 }

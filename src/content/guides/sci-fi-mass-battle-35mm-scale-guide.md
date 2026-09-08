@@ -34,7 +34,7 @@ tags: ["35mm mass-battle", "35mm", "scale guide", "proxy", "slicer settings"]
 
 Every time I build a proxy army for the 35mm sci-fi mass-battle game, someone asks the same two questions: how big are these guys, and what percentage do I type in? This game sits in an awkward spot between the two big fantasy scales — bigger than the modern sci-fi epic wargame, smaller than the 40mm sci-fi skirmish game — so the conversions never feel obvious.
 
-I measured my own armoured trooper core set with my PARKSIDE calipers, cross-checked against my [scale notes for the modern sci-fi epic wargame](/games/sci-fi-epic-32mm), and here's the honest version of what I found.
+I measured my own armoured trooper core set with my PARKSIDE calipers, cross-checked against my [scale notes for the modern sci-fi epic wargame](/fdm-printing-profiles#sci-fi-epic-32mm), and here's the honest version of what I found.
 
 ## What Scale Are the 35mm Sci-Fi Mass-Battle Game's Miniatures?
 

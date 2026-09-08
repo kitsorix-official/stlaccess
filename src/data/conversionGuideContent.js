@@ -1,16 +1,16 @@
-// src/data/conversionDetailContent.js
+// src/data/conversionGuideContent.js
 // Hand-authored, per-conversion content rendered inline on the all-in-one
 // miniature size chart (/miniature-size-chart).
 //
 // IMPORTANT anti-pSEO note:
 // Every string here is written by hand for its specific source->target pair.
-// We deliberately DO NOT machine-generate prose from referenceContent.js
-// getContextualContent(): template-spliced, label-swapped sentences at this
-// scale read as programmatically-generated content to search engines. These
-// entries carry unique intent, unique phrasing, and real print/test notes per
-// pair so each page has substance a human actually wrote.
+// We deliberately DO NOT machine-generate prose from template-spliced,
+// label-swapped sentences (the old referenceContent.js getContextualContent()
+// approach) because it reads as programmatically-generated content to search
+// engines. These entries carry unique intent, unique phrasing, and real
+// print/test notes per pair so each page has substance a human actually wrote.
 
-export const conversionDetailContent = {
+export const conversionGuideContent = {
   // ---------------------------------------------------------------
   // 1:100 (15mm) conversions
   // ---------------------------------------------------------------

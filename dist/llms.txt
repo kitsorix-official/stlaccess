@@ -4,7 +4,7 @@
 
 ## What I built STLACCESS for
 
-I built STLACCESS to solve one problem I kept hitting: figuring out what percentage to type into my slicer to scale an STL file from one miniature scale to another. Every conversion I publish uses a 175cm human baseline, measured to eye level (160cm) by default. The site hosts the main **STL Scale Engine** (the calculator on the homepage), a miniature size chart of 46 verified conversions, 26 game-system guides, 16 deep-dive guides, and supporting tools for 3D printing hobbyists like me. You get the fast-numbers **STL Scale Engine** on the homepage, plus the **Miniature Size Chart** with every conversion already worked out.
+I built STLACCESS to solve one problem I kept hitting: figuring out what percentage to type into my slicer to scale an STL file from one miniature scale to another. Every conversion I publish uses a 175cm human baseline, measured to eye level (160cm) by default. The site hosts the main **STL Scale Engine** (the calculator on the homepage), a miniature size chart of 46 verified conversions, 26 FDM printing profiles, 16 deep-dive guides, and supporting tools for 3D printing hobbyists like me. You get the fast-numbers **STL Scale Engine** on the homepage, plus the **Miniature Size Chart** with every conversion already worked out.
 
 ## How I calculate every conversion
 
@@ -24,7 +24,7 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 - [Conversion FAQ](https://stlaccess.com/faq) — Answers I wrote about 28mm, 32mm, 35mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales
 - [Methodology / About](https://stlaccess.com/about) — My 175cm human baseline, FDM test prints with a PARKSIDE digital caliper, and the story behind why I started this project
 - [All Tools](https://stlaccess.com/tools) — STL Scale Engine, Miniature Size Chart, Slicer Percentage Calculator, Filament Cost Calculator, and STL Scale Reference Bar Generator
-- [Game Systems](https://stlaccess.com/games) — Scale guides I wrote for 26 tabletop games with related conversions, printing tips, and base sizes
+- [FDM Printing Profiles](https://stlaccess.com/fdm-printing-profiles) — 26 anonymized printing profiles with related conversions, printing tips, and base sizes
 - [Guides](https://stlaccess.com/guides) — 16 deep-dive guides I wrote on miniature scale, 3D printing, and conversion math
 - [Slicer Percentage Calculator](https://stlaccess.com/tools/slicer-percentage-calculator) — Enter any current height and target height to get the exact slicer percentage
 - [Filament Cost Calculator](https://stlaccess.com/tools/filament-cost-calculator) — Calculate print cost from filament price, weight, and optional electricity
@@ -35,7 +35,7 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 - [Contact](https://stlaccess.com/contact) — Report errors, request new scales, suggest features
 - [RSS Feed](https://stlaccess.com/rss.xml) — Guide articles feed
 
-## Supported game systems (26 total)
+## FDM printing profiles (26 total, from fdmProfiles.json)
 
 | System | Scale | Ratio | Measurement | Publisher | Genre |
 |--------|-------|-------|-------------|-----------|-------|
@@ -66,7 +66,7 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 | Sci-Fi Dogfight (1:27) | 1:27 | 1:27 | vehicle scale | Independent publisher | Space Combat |
 | Fantasy Mass Battle (35mm) | 35mm | 1:48 | eye level | Independent publisher | Fantasy Mass Battle |
 
-## Scale baselines (from scales.json)
+## Scale baselines (from scaleBaselines.json)
 
 | Scale | Eye Level | Top of Head | Ratio | Type | Common Games |
 |-------|-----------|-------------|-------|------|--------------|
@@ -160,7 +160,7 @@ All percentages use the 175cm human baseline with eye-level measurement unless n
 
 ## Guides I wrote (16 total)
 
-Every guide I write opens with a **Direct Answer box** (rendered from frontmatter `tldr`) plus jump links to its sections. `description` is used for SEO/meta only. Game-specific guides (modern sci-fi epic, WWII platoon, classic fantasy RPG) were merged as "Deep Dive" sections of /games, and the chart + 28mm→32mm guides were merged into the /miniature-size-chart page — all their old URLs 301-redirect.
+Every guide I write opens with a **Direct Answer box** (rendered from frontmatter `tldr`) plus jump links to its sections. `description` is used for SEO/meta only. Game-specific guides (modern sci-fi epic, WWII platoon, classic fantasy RPG) were merged as "Deep Dive" sections of /fdm-printing-profiles, and the chart + 28mm→32mm guides were merged into the /miniature-size-chart page — all their old URLs 301-redirect.
 
 - [How to Measure a Miniature's Scale: Eye Level vs Top of Head Explained](https://stlaccess.com/guides/how-to-measure-miniature-scale) — Measure foot to eye level, not top of head; a "28mm" mini is ~31–32mm to the crown
 - [Why Miniature Scales Use a 175cm Human Baseline](https://stlaccess.com/guides/175cm-baseline) — Origin and reasoning behind the 175cm reference height
@@ -247,7 +247,7 @@ For ratio scales, the calculator converts ratio-to-mm using the 175cm baseline (
 - **Meta titles:** keyword-first → problem/intent → brand. Pattern: `"&lt;Keyword&gt; | &lt;intent&gt; | STLACCESS"`.
 - **Meta descriptions:** ≤155 characters, natural language, name what the user gets + the problem solved.
 - **Guide frontmatter:** `tldr` is the Direct Answer shown in the orange box — one punchy sentence with the key number inline. `description` stays for SEO.
-- **Numbers:** always derive from the 175cm/160cm baseline and the formula above. Any change must be verified against `scales.json` / `conversions.json` / `gameSystems.json`.
+- **Numbers:** always derive from the 175cm/160cm baseline and the formula above. Any change must be verified against `scaleBaselines.json` / `conversionMatrix.json` / `fdmProfiles.json`.
 - **Voice:** first-person hobbyist ("I printed it myself"), plain English.
 - **Build check:** `npm run build` must stay green.
 

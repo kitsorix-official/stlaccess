@@ -2,8 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import JsonLd from "../components/JsonLd.astro";
 import site from "../data/site.json";
-import scales from "../data/scales.json";
-import conversions from "../data/conversions.json";
+import scales from "../data/scaleBaselines.json";
+import conversions from "../data/conversionMatrix.json";
 import tools from "../data/tools.json";
 import { graph, organization, webSite, softwareApplication, faqPage } from "../lib/schema";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
@@ -97,7 +97,7 @@ for (const [key, s] of Object.entries(scales)) {
   };
 }
 
-// Extract head-mode overrides from conversions.json (topHeadPercentage where non-null)
+// Extract head-mode overrides from conversionMatrix.json (topHeadPercentage where non-null)
 const headOverrides: Record<string, number> = {};
 for (const conv of conversions) {
   if (conv.topHeadPercentage) {

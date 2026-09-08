@@ -40,9 +40,10 @@ with physical test prints on a Bambu Lab A1 Mini, measured with a PARKSIDE digit
   conversion, 28mm → 32mm. This is the **fast-numbers** option.
 - **Miniature Size Chart** (`/miniature-size-chart`) — 46 verified conversion pairs with full math breakdowns and
   FDM printing notes.
-- **Tabletop Game Scale Guide** (`/games`) — 26 game systems (modern sci-fi epic 32mm, fantasy epic 32mm,
-  28mm true scale, 35mm eye level, WWII, mech tactical, epic 6–10mm, and more), each with its scale, base sizes, conversion
-  table, and FDM printing tips.
+- **FDM Printing Profiles** (`/fdm-printing-profiles`) — 26 anonymized profile scale guides (modern sci-fi epic
+  32mm, fantasy epic 32mm,
+  28mm true scale, 35mm eye level, WWII, mech tactical, epic 6–10mm, and more), each with its scale, base sizes,
+  and FDM printing tips.
 - **Guides** (`/guides`) — 16 in-depth articles on scale theory, measurement, slicer workflow, and FDM
   settings. Every guide opens with a **Direct Answer box** so you get the number immediately, before the deep
   dive.
@@ -65,7 +66,7 @@ third-party request is an anonymous, cookie-free pageview count.
 - Built with **Astro** (content collections), **Tailwind CSS v4** (`@tailwindcss/vite`), and **TypeScript**.
 - Static-first: every page pre-rendered, no client framework, no backend database.
 - Sitemap + RSS feed generated at build time.
-- Structured site data (scales, conversions, games, tools, presets) lives in `src/data/*.json`; guide
+- Structured site data (scales, conversions, profiles, tools, presets) lives in `src/data/*.json`; guide
   articles live in `src/content/guides/*.md` with a `tldr` field that powers each guide's Direct Answer box.
 
 ### Local Development
@@ -82,9 +83,9 @@ npm run preview # preview the production build
 ```
 src/
 ├── layouts/       Layout.astro — global header, masthead, nav, footer
-├── pages/         Routes (/, /miniature-size-chart, /games, /guides, /tools, /about, …)
+├── pages/         Routes (/, /miniature-size-chart, /fdm-printing-profiles, /guides, /tools, /about, …)
 ├── content/       Guides collection (markdown, content collections schema in content.config.ts)
-├── data/          Structured data: scales, conversions, gameSystems, tools, filamentPresets, …
+├── data/          Structured data: scales, conversions, profiles, tools, filamentPresets, …
 └── styles/        global.css — theme tokens + prose/table styling
 ```
 

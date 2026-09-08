@@ -2,6 +2,23 @@
 /library.html  /miniature-size-chart  301
 /blog  /guides  301
 /blog/*  /guides/:splat  301
+
+# Blog slugs that redirect again → point directly at final target (no chains)
+/blog/stl-scale-conversion-chart  /miniature-size-chart  301
+/blog/stl-scale-conversion-chart/  /miniature-size-chart  301
+/blog/28mm-to-32mm-percentage  /miniature-size-chart  301
+/blog/28mm-to-32mm-percentage/  /miniature-size-chart  301
+/blog/dnd-miniature-scale-guide  /guides/classic-fantasy-rpg-miniature-scale-guide  301
+/blog/dnd-miniature-scale-guide/  /guides/classic-fantasy-rpg-miniature-scale-guide  301
+/blog/star-wars-legion-scale-guide  /guides/sci-fi-mass-battle-35mm-scale-guide  301
+/blog/star-wars-legion-scale-guide/  /guides/sci-fi-mass-battle-35mm-scale-guide  301
+/blog/warhammer-40k-scale-guide  /fdm-printing-profiles  301
+/blog/warhammer-40k-scale-guide/  /fdm-printing-profiles  301
+/blog/bolt-action-scale-guide  /fdm-printing-profiles  301
+/blog/bolt-action-scale-guide/  /fdm-printing-profiles  301
+/blog/dungeons-and-dragons-miniature-scale  /fdm-printing-profiles  301
+/blog/dungeons-and-dragons-miniature-scale/  /fdm-printing-profiles  301
+
 /embed  /  301
 
 # /reference → /miniature-size-chart (renamed; all conversions now on one page)
@@ -20,22 +37,22 @@
 /reference.html  /miniature-size-chart  301
 /faq.html  /faq  301
 
-# Reference and Game System sub-pages now live at their own URLs
-# (miniature size chart and /games/{slug}) instead of collapsing into the hubs.
+# Reference and Game System sub-pages now live at their own final URLs
+# (miniature size chart and /fdm-printing-profiles) instead of collapsing into the hubs.
 
 /guides/stl-scale-conversion-chart  /miniature-size-chart  301
 /guides/stl-scale-conversion-chart/  /miniature-size-chart  301
 
 # Legacy guide redirects → now point to their dedicated pages or the chart
-# (miniature size chart and /games/{slug}) instead of hub anchors.
+# (miniature size chart and /fdm-printing-profiles) instead of hub anchors.
 /guides/28mm-to-32mm-percentage  /miniature-size-chart  301
 /guides/28mm-to-32mm-percentage/  /miniature-size-chart  301
-/guides/warhammer-40k-scale-guide  /games/sci-fi-epic-32mm  301
-/guides/warhammer-40k-scale-guide/  /games/sci-fi-epic-32mm  301
-/guides/bolt-action-scale-guide  /games/ww2-platoon-28mm  301
-/guides/bolt-action-scale-guide/  /games/ww2-platoon-28mm  301
-/guides/dungeons-and-dragons-miniature-scale  /games/classic-fantasy-rpg-28mm  301
-/guides/dungeons-and-dragons-miniature-scale/  /games/classic-fantasy-rpg-28mm  301
+/guides/warhammer-40k-scale-guide  /fdm-printing-profiles  301
+/guides/warhammer-40k-scale-guide/  /fdm-printing-profiles  301
+/guides/bolt-action-scale-guide  /fdm-printing-profiles  301
+/guides/bolt-action-scale-guide/  /fdm-printing-profiles  301
+/guides/dungeons-and-dragons-miniature-scale  /fdm-printing-profiles  301
+/guides/dungeons-and-dragons-miniature-scale/  /fdm-printing-profiles  301
 
 # Guide slugs renamed to generic scale-first descriptors (trademark rebrand)
 /guides/dnd-miniature-scale-guide  /guides/classic-fantasy-rpg-miniature-scale-guide  301
@@ -43,59 +60,117 @@
 /guides/star-wars-legion-scale-guide  /guides/sci-fi-mass-battle-35mm-scale-guide  301
 /guides/star-wars-legion-scale-guide/  /guides/sci-fi-mass-battle-35mm-scale-guide  301
 
-# Game system slugs renamed to generic scale-first descriptors (trademark rebrand)
-/games/warhammer-40000  /games/sci-fi-epic-32mm  301
-/games/warhammer-40000/  /games/sci-fi-epic-32mm  301
-/games/age-of-sigmar  /games/fantasy-epic-32mm  301
-/games/age-of-sigmar/  /games/fantasy-epic-32mm  301
-/games/warhammer-the-old-world  /games/classic-fantasy-28mm  301
-/games/warhammer-the-old-world/  /games/classic-fantasy-28mm  301
-/games/middle-earth-strategy-battle-game  /games/fantasy-skirmish-25-28mm  301
-/games/middle-earth-strategy-battle-game/  /games/fantasy-skirmish-25-28mm  301
-/games/bolt-action  /games/ww2-platoon-28mm  301
-/games/bolt-action/  /games/ww2-platoon-28mm  301
-/games/dungeons-and-dragons  /games/classic-fantasy-rpg-28mm  301
-/games/dungeons-and-dragons/  /games/classic-fantasy-rpg-28mm  301
-/games/star-wars-legion  /games/sci-fi-mass-battle-35mm  301
-/games/star-wars-legion/  /games/sci-fi-mass-battle-35mm  301
-/games/star-wars-shatterpoint  /games/sci-fi-skirmish-40mm  301
-/games/star-wars-shatterpoint/  /games/sci-fi-skirmish-40mm  301
-/games/star-wars-x-wing  /games/sci-fi-dogfight-1-27  301
-/games/star-wars-x-wing/  /games/sci-fi-dogfight-1-27  301
-/games/marvel-crisis-protocol  /games/superhero-skirmish-35mm  301
-/games/marvel-crisis-protocol/  /games/superhero-skirmish-35mm  301
-/games/malifaux  /games/gothic-pulp-skirmish-32mm  301
-/games/malifaux/  /games/gothic-pulp-skirmish-32mm  301
-/games/infinity  /games/anime-sci-fi-skirmish-28mm  301
-/games/infinity/  /games/anime-sci-fi-skirmish-28mm  301
-/games/warmachine-hordes  /games/steampunk-fantasy-wargame-30mm  301
-/games/warmachine-hordes/  /games/steampunk-fantasy-wargame-30mm  301
-/games/frostgrave-stargrave  /games/miniature-agnostic-skirmish-28mm  301
-/games/frostgrave-stargrave/  /games/miniature-agnostic-skirmish-28mm  301
-/games/kings-of-war  /games/ranked-fantasy-mass-battle-28mm  301
-/games/kings-of-war/  /games/ranked-fantasy-mass-battle-28mm  301
-/games/battletech  /games/mech-tactical-6mm  301
-/games/battletech/  /games/mech-tactical-6mm  301
-/games/flames-of-war  /games/ww2-company-15mm  301
-/games/flames-of-war/  /games/ww2-company-15mm  301
-/games/dropzone-commander  /games/sci-fi-mass-battle-10mm  301
-/games/dropzone-commander/  /games/sci-fi-mass-battle-10mm  301
-/games/legions-imperialis  /games/epic-sci-fi-8mm  301
-/games/legions-imperialis/  /games/epic-sci-fi-8mm  301
-/games/one-page-rules-grimdark-future  /games/miniature-agnostic-sci-fi-32mm  301
-/games/one-page-rules-grimdark-future/  /games/miniature-agnostic-sci-fi-32mm  301
-/games/fallout-wasteland-warfare  /games/post-apocalyptic-32mm  301
-/games/fallout-wasteland-warfare/  /games/post-apocalyptic-32mm  301
-/games/gaslands  /games/vehicular-combat-1-56  301
-/games/gaslands/  /games/vehicular-combat-1-56  301
-/games/kill-team  /games/sci-fi-skirmish-32mm  301
-/games/kill-team/  /games/sci-fi-skirmish-32mm  301
-/games/necromunda  /games/gang-skirmish-32mm  301
-/games/necromunda/  /games/gang-skirmish-32mm  301
-/games/warcry  /games/fantasy-skirmish-32mm  301
-/games/warcry/  /games/fantasy-skirmish-32mm  301
-/games/conquest  /games/fantasy-mass-battle-35mm  301
-/games/conquest/  /games/fantasy-mass-battle-35mm  301
+# /games → /fdm-printing-profiles (repurposed from game system pages to FDM print profiles)
+/games  /fdm-printing-profiles  301
+/games/  /fdm-printing-profiles  301
+
+# All previous game system slugs (incl. legacy trademark names) → /fdm-printing-profiles
+/games/warhammer-40000  /fdm-printing-profiles  301
+/games/warhammer-40000/  /fdm-printing-profiles  301
+/games/age-of-sigmar  /fdm-printing-profiles  301
+/games/age-of-sigmar/  /fdm-printing-profiles  301
+/games/warhammer-the-old-world  /fdm-printing-profiles  301
+/games/warhammer-the-old-world/  /fdm-printing-profiles  301
+/games/middle-earth-strategy-battle-game  /fdm-printing-profiles  301
+/games/middle-earth-strategy-battle-game/  /fdm-printing-profiles  301
+/games/bolt-action  /fdm-printing-profiles  301
+/games/bolt-action/  /fdm-printing-profiles  301
+/games/dungeons-and-dragons  /fdm-printing-profiles  301
+/games/dungeons-and-dragons/  /fdm-printing-profiles  301
+/games/star-wars-legion  /fdm-printing-profiles  301
+/games/star-wars-legion/  /fdm-printing-profiles  301
+/games/star-wars-shatterpoint  /fdm-printing-profiles  301
+/games/star-wars-shatterpoint/  /fdm-printing-profiles  301
+/games/star-wars-x-wing  /fdm-printing-profiles  301
+/games/star-wars-x-wing/  /fdm-printing-profiles  301
+/games/marvel-crisis-protocol  /fdm-printing-profiles  301
+/games/marvel-crisis-protocol/  /fdm-printing-profiles  301
+/games/malifaux  /fdm-printing-profiles  301
+/games/malifaux/  /fdm-printing-profiles  301
+/games/infinity  /fdm-printing-profiles  301
+/games/infinity/  /fdm-printing-profiles  301
+/games/warmachine-hordes  /fdm-printing-profiles  301
+/games/warmachine-hordes/  /fdm-printing-profiles  301
+/games/frostgrave-stargrave  /fdm-printing-profiles  301
+/games/frostgrave-stargrave/  /fdm-printing-profiles  301
+/games/kings-of-war  /fdm-printing-profiles  301
+/games/kings-of-war/  /fdm-printing-profiles  301
+/games/battletech  /fdm-printing-profiles  301
+/games/battletech/  /fdm-printing-profiles  301
+/games/flames-of-war  /fdm-printing-profiles  301
+/games/flames-of-war/  /fdm-printing-profiles  301
+/games/dropzone-commander  /fdm-printing-profiles  301
+/games/dropzone-commander/  /fdm-printing-profiles  301
+/games/legions-imperialis  /fdm-printing-profiles  301
+/games/legions-imperialis/  /fdm-printing-profiles  301
+/games/one-page-rules-grimdark-future  /fdm-printing-profiles  301
+/games/one-page-rules-grimdark-future/  /fdm-printing-profiles  301
+/games/fallout-wasteland-warfare  /fdm-printing-profiles  301
+/games/fallout-wasteland-warfare/  /fdm-printing-profiles  301
+/games/gaslands  /fdm-printing-profiles  301
+/games/gaslands/  /fdm-printing-profiles  301
+/games/kill-team  /fdm-printing-profiles  301
+/games/kill-team/  /fdm-printing-profiles  301
+/games/necromunda  /fdm-printing-profiles  301
+/games/necromunda/  /fdm-printing-profiles  301
+/games/warcry  /fdm-printing-profiles  301
+/games/warcry/  /fdm-printing-profiles  301
+/games/conquest  /fdm-printing-profiles  301
+/games/conquest/  /fdm-printing-profiles  301
+
+# Indexed /games/{slug} profile pages → /fdm-printing-profiles
+/games/sci-fi-epic-32mm  /fdm-printing-profiles  301
+/games/sci-fi-epic-32mm/  /fdm-printing-profiles  301
+/games/fantasy-epic-32mm  /fdm-printing-profiles  301
+/games/fantasy-epic-32mm/  /fdm-printing-profiles  301
+/games/classic-fantasy-28mm  /fdm-printing-profiles  301
+/games/classic-fantasy-28mm/  /fdm-printing-profiles  301
+/games/fantasy-skirmish-25-28mm  /fdm-printing-profiles  301
+/games/fantasy-skirmish-25-28mm/  /fdm-printing-profiles  301
+/games/ww2-platoon-28mm  /fdm-printing-profiles  301
+/games/ww2-platoon-28mm/  /fdm-printing-profiles  301
+/games/classic-fantasy-rpg-28mm  /fdm-printing-profiles  301
+/games/classic-fantasy-rpg-28mm/  /fdm-printing-profiles  301
+/games/sci-fi-mass-battle-35mm  /fdm-printing-profiles  301
+/games/sci-fi-mass-battle-35mm/  /fdm-printing-profiles  301
+/games/sci-fi-skirmish-40mm  /fdm-printing-profiles  301
+/games/sci-fi-skirmish-40mm/  /fdm-printing-profiles  301
+/games/superhero-skirmish-35mm  /fdm-printing-profiles  301
+/games/superhero-skirmish-35mm/  /fdm-printing-profiles  301
+/games/gothic-pulp-skirmish-32mm  /fdm-printing-profiles  301
+/games/gothic-pulp-skirmish-32mm/  /fdm-printing-profiles  301
+/games/anime-sci-fi-skirmish-28mm  /fdm-printing-profiles  301
+/games/anime-sci-fi-skirmish-28mm/  /fdm-printing-profiles  301
+/games/steampunk-fantasy-wargame-30mm  /fdm-printing-profiles  301
+/games/steampunk-fantasy-wargame-30mm/  /fdm-printing-profiles  301
+/games/miniature-agnostic-skirmish-28mm  /fdm-printing-profiles  301
+/games/miniature-agnostic-skirmish-28mm/  /fdm-printing-profiles  301
+/games/ranked-fantasy-mass-battle-28mm  /fdm-printing-profiles  301
+/games/ranked-fantasy-mass-battle-28mm/  /fdm-printing-profiles  301
+/games/mech-tactical-6mm  /fdm-printing-profiles  301
+/games/mech-tactical-6mm/  /fdm-printing-profiles  301
+/games/ww2-company-15mm  /fdm-printing-profiles  301
+/games/ww2-company-15mm/  /fdm-printing-profiles  301
+/games/sci-fi-mass-battle-10mm  /fdm-printing-profiles  301
+/games/sci-fi-mass-battle-10mm/  /fdm-printing-profiles  301
+/games/epic-sci-fi-8mm  /fdm-printing-profiles  301
+/games/epic-sci-fi-8mm/  /fdm-printing-profiles  301
+/games/miniature-agnostic-sci-fi-32mm  /fdm-printing-profiles  301
+/games/miniature-agnostic-sci-fi-32mm/  /fdm-printing-profiles  301
+/games/post-apocalyptic-32mm  /fdm-printing-profiles  301
+/games/post-apocalyptic-32mm/  /fdm-printing-profiles  301
+/games/vehicular-combat-1-56  /fdm-printing-profiles  301
+/games/vehicular-combat-1-56/  /fdm-printing-profiles  301
+/games/sci-fi-skirmish-32mm  /fdm-printing-profiles  301
+/games/sci-fi-skirmish-32mm/  /fdm-printing-profiles  301
+/games/gang-skirmish-32mm  /fdm-printing-profiles  301
+/games/gang-skirmish-32mm/  /fdm-printing-profiles  301
+/games/fantasy-skirmish-32mm  /fdm-printing-profiles  301
+/games/fantasy-skirmish-32mm/  /fdm-printing-profiles  301
+/games/sci-fi-dogfight-1-27  /fdm-printing-profiles  301
+/games/sci-fi-dogfight-1-27/  /fdm-printing-profiles  301
+/games/fantasy-mass-battle-35mm  /fdm-printing-profiles  301
+/games/fantasy-mass-battle-35mm/  /fdm-printing-profiles  301
 
 # Missing slash in path
 /reference32mm-to-40mm  /miniature-size-chart  301

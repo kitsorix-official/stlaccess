@@ -124,7 +124,7 @@ Both numbers come from measuring the same average human — 175cm tall, eyes at 
 
 This is the fork in the road. True 28mm is the language of the classic fantasy RPG, the 28mm WWII platoon wargame, and most historical games. 32mm heroic is the language of the modern sci-fi wargame (32mm), the modern fantasy wargame (32mm heroic), and most current skirmish games. Play one system and you never need this conversion. Play both — or print STLs from one ecosystem for use in the other, which is what nearly everyone I know does — and 114.3% becomes your best friend.
 
-If you're mostly a fantasy RPG player, my [fantasy RPG miniature scale guide](/guides/classic-fantasy-rpg-miniature-scale-guide) has the full size-category chart. If you're scaling the 32mm heroic sci-fi standard and want to know exactly where your army sits, the [modern sci-fi epic wargame scale page](/games/sci-fi-epic-32mm) breaks down the classic true-scale vs modern heroic difference — which, conveniently, is the same 28mm-to-32mm jump this guide covers.
+If you're mostly a fantasy RPG player, my [fantasy RPG miniature scale guide](/guides/classic-fantasy-rpg-miniature-scale-guide) has the full size-category chart. If you're scaling the 32mm heroic sci-fi standard and want to know exactly where your army sits, the [modern sci-fi epic wargame scale profile](/fdm-printing-profiles#sci-fi-epic-32mm) breaks down the classic true-scale vs modern heroic difference — which, conveniently, is the same 28mm-to-32mm jump this guide covers.
 
 ## Where Does the 28mm to 32mm Conversion Break Down?
 

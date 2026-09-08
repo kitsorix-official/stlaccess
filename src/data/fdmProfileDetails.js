@@ -1,11 +1,10 @@
-// src/data/gameDetailContent.js
-// Hand-authored, per-game detail content for the /games/[slug] spoke pages.
+// Hand-authored, per-profile detail content for /fdm-printing-profiles.
 // Every string below is written by hand in a first-person hobbyist voice so each
-// spoke page carries genuinely unique substance rather than template-spliced
-// boilerplate. Kept deliberately short per game; the heavier "Deep Dive" blocks
-// live in gameGuides.js and are appended on the spoke page too.
+// profile carries genuinely unique substance rather than template-spliced
+// boilerplate. Kept deliberately short per profile; the heavier "Deep Dive"
+// blocks live in fdmProfileGuides.js and are appended inline on the page.
 
-export const gameDetailContent = {
+export const fdmProfileDetails = {
   "sci-fi-epic-32mm": {
     title: "How to Scale Sci-Fi Epic STL Proxies for 3D Printing",
     h1: "Sci-Fi Epic (32mm Heroic) Scale for 3D Printing",

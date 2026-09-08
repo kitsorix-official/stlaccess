@@ -1,13 +1,13 @@
 /**
  * The STLACCESS Scale Engine Core
  * Dynamic calculator — reads scale data from window.CALCULATOR_SCALES
- * injected by the Astro page at build time from src/data/scales.json.
+ * injected by the Astro page at build time from src/data/scaleBaselines.json.
  *
  * Eye-level mode: percentage = (targetStandard / sourceStandard) × 100
  *   - Ratio scales use topOfHeadMm as standard (ratio = total height)
  *   - Gaming/display scales use eyeLevelMm as standard
  *
- * Top-of-head mode: checks validated overrides first (from conversions.json),
+ * Top-of-head mode: checks validated overrides first (from conversionMatrix.json),
  *   then falls back to (targetTopOfHeadMm / sourceStandard) × 100.
  */
 
@@ -45,7 +45,7 @@ function calculate() {
     var overrideKey = source + '_' + target;
 
     if (logic === 'head') {
-        // Check for validated override from conversions.json
+        // Check for validated override from conversionMatrix.json
         if (headOverrides[overrideKey] !== undefined) {
             result = headOverrides[overrideKey];
         } else {

@@ -14,7 +14,7 @@ export const GET: APIRoute = async () => {
 
   const urls = [
     ...staticPages.map((p) => (p === '' ? base : `${base}/${p}`)),
-    `${base}/games`,
+    `${base}/fdm-printing-profiles`,
     `${base}/guides`,
     ...guides.map((g) => `${base}/guides/${g.id}`),
     `${base}/miniature-size-chart`,
