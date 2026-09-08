@@ -44,9 +44,7 @@ with physical test prints on a Bambu Lab A1 Mini, measured with a PARKSIDE digit
   32mm, fantasy epic 32mm,
   28mm true scale, 35mm eye level, WWII, mech tactical, epic 6–10mm, and more), each with its scale, base sizes,
   and FDM printing tips.
-- **Guides** (`/guides`) — 16 in-depth articles on scale theory, measurement, slicer workflow, and FDM
-  settings. Every guide opens with a **Direct Answer box** so you get the number immediately, before the deep
-  dive.
+- **FDM** (`/fdm`) — FDM-focused scale math and conversion resources hub (placeholder while this section grows).
 - **Filament Cost Calculator** (`/tools/filament-cost-calculator`) — know what a print costs (filament +
   electricity) before you start.
 - **Slicer Percentage Calculator** (`/tools/slicer-percentage-calculator`) — two measurements in, one exact
@@ -66,8 +64,7 @@ third-party request is an anonymous, cookie-free pageview count.
 - Built with **Astro** (content collections), **Tailwind CSS v4** (`@tailwindcss/vite`), and **TypeScript**.
 - Static-first: every page pre-rendered, no client framework, no backend database.
 - Sitemap + RSS feed generated at build time.
-- Structured site data (scales, conversions, profiles, tools, presets) lives in `src/data/*.json`; guide
-  articles live in `src/content/guides/*.md` with a `tldr` field that powers each guide's Direct Answer box.
+- Structured site data (scales, conversions, profiles, tools, presets) lives in `src/data/*.json`.
 
 ### Local Development
 
@@ -83,8 +80,7 @@ npm run preview # preview the production build
 ```
 src/
 ├── layouts/       Layout.astro — global header, masthead, nav, footer
-├── pages/         Routes (/, /miniature-size-chart, /fdm-printing-profiles, /guides, /tools, /about, …)
-├── content/       Guides collection (markdown, content collections schema in content.config.ts)
+├── pages/         Routes (/, /miniature-size-chart, /fdm-printing-profiles, /fdm, /tools, /about, …)
 ├── data/          Structured data: scales, conversions, profiles, tools, filamentPresets, …
 └── styles/        global.css — theme tokens + prose/table styling
 ```
@@ -100,15 +96,12 @@ repository.
 
 ## Recent Updates
 
+- **Guides retired; `/guides` → `/fdm`** — the long-form /guides articles were removed; all 16 guide URLs and
+  `/blog/*` now 301-redirect to the new `/fdm` FDM scale math hub (placeholder for future math-only content).
 - **3D Scale Visualizer retired** — `/tools/3d-scale-visualizer` now 301-redirects to `/tools`; announcement
   banner disabled (reserved for future announcements). The visualizer components are removed from the source tree.
 - **Scale Identifier & Real-World Converter retired** — `/tools/miniature-scale-identifier` and
   `/tools/real-world-scale-converter` now 301-redirect to `/tools`; their components are removed from the source tree.
-- **Guides expansion** — grew the guide library from 6 to 16, adding the 28mm real-world conversion companion,
-  FDM vs Resin, Arachne vs Classic wall generator, Cura tree support settings, Resin2FDM workflow,
-  budget-printer picks, 35mm eye-level and classic-fantasy-RPG scale deep-dives, and the 28mm→32mm / 32mm→28mm walkthroughs.
-- **Guide redesign** — Direct Answer boxes with jump-to-section navigation, reading time, H1-first reading
-  order, and restyled prose (card-style tables, accent-bar headings, custom list markers).
 - **SEO pass** — keyword-first titles, all 26 game meta descriptions rewritten to ≤155 characters, and a
   homepage H1 that says exactly what the tool does.
 - **Layout & navigation** — sticky desktop nav, mobile bottom nav, breadcrumbs, skip link, and every page's

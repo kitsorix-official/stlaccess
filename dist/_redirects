@@ -1,23 +1,21 @@
 /library  /miniature-size-chart  301
 /library.html  /miniature-size-chart  301
-/blog  /guides  301
-/blog/*  /guides/:splat  301
 
-# Blog slugs that redirect again → point directly at final target (no chains)
+# /blog → /fdm (renamed from /guides; all guide subpages retired)
+# Specific legacy blog slugs that map to a closer live page come first.
 /blog/stl-scale-conversion-chart  /miniature-size-chart  301
 /blog/stl-scale-conversion-chart/  /miniature-size-chart  301
 /blog/28mm-to-32mm-percentage  /miniature-size-chart  301
 /blog/28mm-to-32mm-percentage/  /miniature-size-chart  301
-/blog/dnd-miniature-scale-guide  /guides/classic-fantasy-rpg-miniature-scale-guide  301
-/blog/dnd-miniature-scale-guide/  /guides/classic-fantasy-rpg-miniature-scale-guide  301
-/blog/star-wars-legion-scale-guide  /guides/sci-fi-mass-battle-35mm-scale-guide  301
-/blog/star-wars-legion-scale-guide/  /guides/sci-fi-mass-battle-35mm-scale-guide  301
 /blog/warhammer-40k-scale-guide  /fdm-printing-profiles  301
 /blog/warhammer-40k-scale-guide/  /fdm-printing-profiles  301
 /blog/bolt-action-scale-guide  /fdm-printing-profiles  301
 /blog/bolt-action-scale-guide/  /fdm-printing-profiles  301
 /blog/dungeons-and-dragons-miniature-scale  /fdm-printing-profiles  301
 /blog/dungeons-and-dragons-miniature-scale/  /fdm-printing-profiles  301
+/blog  /fdm  301
+/blog/  /fdm  301
+/blog/*  /fdm  301
 
 /embed  /  301
 
@@ -37,14 +35,10 @@
 /reference.html  /miniature-size-chart  301
 /faq.html  /faq  301
 
-# Reference and Game System sub-pages now live at their own final URLs
-# (miniature size chart and /fdm-printing-profiles) instead of collapsing into the hubs.
-
+# /guides → /fdm (guides section renamed to FDM hub)
+# Specific legacy guide slugs that map to a closer live page come first.
 /guides/stl-scale-conversion-chart  /miniature-size-chart  301
 /guides/stl-scale-conversion-chart/  /miniature-size-chart  301
-
-# Legacy guide redirects → now point to their dedicated pages or the chart
-# (miniature size chart and /fdm-printing-profiles) instead of hub anchors.
 /guides/28mm-to-32mm-percentage  /miniature-size-chart  301
 /guides/28mm-to-32mm-percentage/  /miniature-size-chart  301
 /guides/warhammer-40k-scale-guide  /fdm-printing-profiles  301
@@ -53,12 +47,9 @@
 /guides/bolt-action-scale-guide/  /fdm-printing-profiles  301
 /guides/dungeons-and-dragons-miniature-scale  /fdm-printing-profiles  301
 /guides/dungeons-and-dragons-miniature-scale/  /fdm-printing-profiles  301
-
-# Guide slugs renamed to generic scale-first descriptors (trademark rebrand)
-/guides/dnd-miniature-scale-guide  /guides/classic-fantasy-rpg-miniature-scale-guide  301
-/guides/dnd-miniature-scale-guide/  /guides/classic-fantasy-rpg-miniature-scale-guide  301
-/guides/star-wars-legion-scale-guide  /guides/sci-fi-mass-battle-35mm-scale-guide  301
-/guides/star-wars-legion-scale-guide/  /guides/sci-fi-mass-battle-35mm-scale-guide  301
+/guides  /fdm  301
+/guides/  /fdm  301
+/guides/*  /fdm  301
 
 # /games → /fdm-printing-profiles (repurposed from game system pages to FDM print profiles)
 /games  /fdm-printing-profiles  301

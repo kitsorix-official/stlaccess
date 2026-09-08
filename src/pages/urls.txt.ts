@@ -1,5 +1,4 @@
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
 import site from '../data/site.json';
 import tools from '../data/tools.json';
 
@@ -10,13 +9,10 @@ const base = site.url;
 const staticPages = ['', 'about', 'contact', 'faq', 'legal', 'privacy', 'terms'];
 
 export const GET: APIRoute = async () => {
-  const guides = await getCollection('guides');
-
   const urls = [
     ...staticPages.map((p) => (p === '' ? base : `${base}/${p}`)),
     `${base}/fdm-printing-profiles`,
-    `${base}/guides`,
-    ...guides.map((g) => `${base}/guides/${g.id}`),
+    `${base}/fdm`,
     `${base}/miniature-size-chart`,
     `${base}/tools`,
     ...tools

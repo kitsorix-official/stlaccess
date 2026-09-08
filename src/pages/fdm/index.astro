@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import { graph, breadcrumb } from "../../lib/schema";
+
+const pageSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "FDM", path: "/fdm" },
+  ]),
+]);
+---
+<Layout
+  title="FDM | STLACCESS"
+  description="fused deposition modeling resources from STLACCESS."
+>
+<JsonLd slot="head" data={pageSchema} />
+<div slot="hero">
+  <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+    <span class="mx-2 text-slate-800">/</span>
+    <span class="text-slate-400" aria-current="page">FDM</span>
+  </nav>
+
+  <div class="pb-16 px-6 max-w-6xl mx-auto" aria-labelledby="fdm-heading">
+    <h1 id="fdm-heading" class="text-4xl md:text-6xl font-bold font-heading tracking-tight mb-6">
+      FDM: <span class="text-[#ff6b35]">Fused Deposition Modeling</span>
+    </h1>
+    <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
+      Here is where I keep all my FDM-focused math and other resources. Check back as this section grows.
+    </p>
+  </div>
+</div>
+
+<aside class="max-w-6xl mx-auto px-6 pb-24" aria-label="Navigation">
+  <a href="/" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
+    <i class="ti ti-arrow-left text-xs"></i>
+    Back to Scale Engine
+  </a>
+</aside>
+
+</Layout>

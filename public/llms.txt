@@ -4,7 +4,7 @@
 
 ## What I built STLACCESS for
 
-I built STLACCESS to solve one problem I kept hitting: figuring out what percentage to type into my slicer to scale an STL file from one miniature scale to another. Every conversion I publish uses a 175cm human baseline, measured to eye level (160cm) by default. The site hosts the main **STL Scale Engine** (the calculator on the homepage), a miniature size chart of 46 verified conversions, 26 FDM printing profiles, 16 deep-dive guides, and supporting tools for 3D printing hobbyists like me. You get the fast-numbers **STL Scale Engine** on the homepage, plus the **Miniature Size Chart** with every conversion already worked out.
+I built STLACCESS to solve one problem I kept hitting: figuring out what percentage to type into my slicer to scale an STL file from one miniature scale to another. Every conversion I publish uses a 175cm human baseline, measured to eye level (160cm) by default. The site hosts the main **STL Scale Engine** (the calculator on the homepage), a miniature size chart of 46 verified conversions, 26 FDM printing profiles, an FDM scale-math hub, and supporting tools for 3D printing hobbyists like me. You get the fast-numbers **STL Scale Engine** on the homepage, plus the **Miniature Size Chart** with every conversion already worked out.
 
 ## How I calculate every conversion
 
@@ -25,7 +25,7 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 - [Methodology / About](https://stlaccess.com/about) — My 175cm human baseline, FDM test prints with a PARKSIDE digital caliper, and the story behind why I started this project
 - [All Tools](https://stlaccess.com/tools) — STL Scale Engine, Miniature Size Chart, Slicer Percentage Calculator, Filament Cost Calculator, and STL Scale Reference Bar Generator
 - [FDM Printing Profiles](https://stlaccess.com/fdm-printing-profiles) — 26 anonymized printing profiles with related conversions, printing tips, and base sizes
-- [Guides](https://stlaccess.com/guides) — 16 deep-dive guides I wrote on miniature scale, 3D printing, and conversion math
+- [FDM Scale Math](https://stlaccess.com/fdm) — FDM-focused scale math and conversion resources
 - [Slicer Percentage Calculator](https://stlaccess.com/tools/slicer-percentage-calculator) — Enter any current height and target height to get the exact slicer percentage
 - [Filament Cost Calculator](https://stlaccess.com/tools/filament-cost-calculator) — Calculate print cost from filament price, weight, and optional electricity
 - [STL Scale Reference Bar Generator](https://stlaccess.com/tools/reference-bar-generator) — Generate a download-and-print STL ruler bar (5mm ticks + end tab the exact height of a figure at that scale) to calibrate in Lychee or Chitubox
@@ -33,7 +33,7 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 - [Terms](https://stlaccess.com/terms) — Terms of use
 - [Legal](https://stlaccess.com/legal) — Legal information
 - [Contact](https://stlaccess.com/contact) — Report errors, request new scales, suggest features
-- [RSS Feed](https://stlaccess.com/rss.xml) — Guide articles feed
+- [RSS Feed](https://stlaccess.com/rss.xml) — FDM scale math feed
 
 ## FDM printing profiles (26 total, from fdmProfiles.json)
 
@@ -158,26 +158,9 @@ All percentages use the 175cm human baseline with eye-level measurement unless n
 | 1:48 | 1:56 | 85.7% |
 | 1:56 | 1:48 | 116.7% |
 
-## Guides I wrote (16 total)
+## FDM scale math hub
 
-Every guide I write opens with a **Direct Answer box** (rendered from frontmatter `tldr`) plus jump links to its sections. `description` is used for SEO/meta only. Game-specific guides (modern sci-fi epic, WWII platoon, classic fantasy RPG) were merged as "Deep Dive" sections of /fdm-printing-profiles, and the chart + 28mm→32mm guides were merged into the /miniature-size-chart page — all their old URLs 301-redirect.
-
-- [How to Measure a Miniature's Scale: Eye Level vs Top of Head Explained](https://stlaccess.com/guides/how-to-measure-miniature-scale) — Measure foot to eye level, not top of head; a "28mm" mini is ~31–32mm to the crown
-- [Why Miniature Scales Use a 175cm Human Baseline](https://stlaccess.com/guides/175cm-baseline) — Origin and reasoning behind the 175cm reference height
-- [How to Scale 28mm to 32mm (114.3% Slicer Percentage, Explained)](https://stlaccess.com/guides/28mm-to-32mm-scale-conversion) — 32mm ÷ 28mm measured to eye level; top-of-head variant 116.1%
-- [How to Downscale 32mm to 28mm (87.5% Slicer Percentage, Explained)](https://stlaccess.com/guides/32mm-to-28mm-scale-conversion) — 28mm ÷ 32mm; shrink supports and detail too, so test before batch printing
-- [Classic Fantasy RPG Miniature Scale Guide — What Size Are Fantasy RPG Minis?](https://stlaccess.com/guides/classic-fantasy-rpg-miniature-scale-guide) — 28mm true scale; full Tiny-to-Gargantuan height and base-size chart
-- [Sci-Fi Mass-Battle Scale Guide — What Size Are 35mm Eye-Level Miniatures?](https://stlaccess.com/guides/sci-fi-mass-battle-35mm-scale-guide) — 35mm to the eyes (≈1:47); scale 32mm STLs to 109.4% or 28mm to 125%
-- [FDM Miniature Printing: Complete Guide to Layer Height, Nozzles, and Settings](https://stlaccess.com/guides/fdm-miniature-printing-guide) — 0.2mm nozzle @ 0.06mm for characters; 0.4mm @ 0.08mm for rank-and-file; PLA, 100% fan, tilt 15–20°, tree supports
-- [FDM vs Resin 3D Printing for Miniatures: When to Switch](https://stlaccess.com/guides/fdm-vs-resin-miniatures) — Resin wins on fine detail and support removal; FDM wins on speed, cost, and safety. Painted and at arm's length, both look great
-- [Arachne vs Classic Wall Generator: Which Is Sharper for Miniatures?](https://stlaccess.com/guides/arachne-vs-classic-wall-generator-miniatures) — Arachne varies wall thickness for thin features, but classic often kept fine detail sharper in test prints
-- [Cura Tree Support Settings: How to Make Supports Easy to Remove](https://stlaccess.com/guides/cura-tree-support-settings-miniatures) — Build-plate-only tree supports, overhang 20, Z distance 0.25, 3+3 interface, branch angle 60; paint supports on by hand for problem models
-- [Resin2FDM: Convert Resin-Supported STLs to FDM-Ready in Blender](https://stlaccess.com/guides/resin2fdm-convert-stl-to-fdm-ready) — Split, assign, thicken resin supports to 0.05–0.2mm, add a level cube, export mini + supports separately
-- [Best Budget 3D Printers for Tabletop Wargaming](https://stlaccess.com/guides/best-budget-3d-printers-wargaming) — FDM terrain/vehicle picks: Sovol SV06 ACE, Ender-3 V3 SE, Bambu Lab A1 Mini, Elegoo Centauri Carbon
-- [How to Scale Real-World Objects to 32mm Miniatures (The Math Explained)](https://stlaccess.com/guides/real-world-objects-to-32mm) — (real inches × 32) ÷ 63 = mm; an 18-ft dragon ≈ 110mm
-- [How to Scale Real-World Objects to 28mm Miniatures (The Math Explained)](https://stlaccess.com/guides/real-world-objects-to-28mm) — (real inches × 28) ÷ 63 = mm; same dragon ≈ 96mm; doubles as a WWII vehicle/terrain chart
-- [Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?](https://stlaccess.com/guides/upscaling-3d-prints-detail-limit) — FDM: ~50mm (156%) practical ceiling; 0.2mm nozzle at 0.08mm layers pushes it to ~80mm
-- [How to Scale Miniatures in Chitubox & Lychee Slicer (Without Messing Up the Base)](https://stlaccess.com/guides/chitubox-lychee-scaling-guide) — Lock the chain-link/aspect ratio first; inch-exported files scale up 2540%
+The old long-form /guides section was retired. `/guides` now 301-redirects to [/fdm](https://stlaccess.com/fdm), where FDM-focused scale math and conversion resources live. Content from the old guides is covered by the 26 FDM printing profiles on /fdm-printing-profiles and the 46 conversion pairs on /miniature-size-chart.
 
 ## Tools I built (5 total)
 
@@ -231,7 +214,7 @@ For ratio scales, the calculator converts ratio-to-mm using the 175cm baseline (
 - All calculations run client-side in JavaScript
 - No cookies, no accounts. Cookie-free visitor counter (a small custom script writing anonymous pageview counts to a private Google Sheet) only.
 - Sitemap + RSS feed generated at build time
-- Structured data in `src/data/*.json`; guide articles in `src/content/guides/*.md`
+- Structured data in `src/data/*.json`
 - Source on GitHub (kitsorix-official)
 
 ## FAQ topics I cover
@@ -253,8 +236,8 @@ For ratio scales, the calculator converts ratio-to-mm using the 175cm baseline (
 
 ## What I've been working on
 
+- **Guides retired; `/guides` → `/fdm`** — removed the long-form /guides articles; all 16 guide URLs and `/blog/*` now 301-redirect to the new `/fdm` FDM scale math hub (a placeholder for future math-only content). The FDM printing profiles and miniature size chart remain the primary content pages.
 - **3D Scale Visualizer removed** — the `/tools/3d-scale-visualizer` page and its redirect targets were retired; `/tools/3d-scale-visualizer` now 301-redirects to `/tools` and the announcement banner is disabled (reserved for future announcements).
-- **Guides expansion** — grew the guide library from 6 to 16 articles, adding the 28mm real-world conversion companion, FDM vs Resin, Arachne vs Classic wall generator, Cura tree support settings, Resin2FDM workflow, budget-printer picks, 35mm eye-level and classic-fantasy-RPG scale deep-dives, and dedicated 28mm→32mm / 32mm→28mm conversion walkthroughs.
 - **Scale Identifier & Real-World Converter retired** — `/tools/miniature-scale-identifier` and `/tools/real-world-scale-converter` were removed; both now 301-redirect to `/tools`.
 - **Guide redesign** — I added Direct Answer boxes with jump-to-section navigation, reading time, H1-first reading order, restyled `.prose` (card-style tables, accent-bar headings, custom list markers).
 - **SEO pass** — keyword-first titles, all 26 game meta descriptions rewritten to ≤155 characters, homepage H1 names the tool ("The STL scale calculator…"), reference hub title gained the `| STLACCESS` suffix, 4 guide descriptions trimmed, 2 tool descriptions enriched.
