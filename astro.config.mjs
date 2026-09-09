@@ -3,7 +3,6 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
-import pwa from './scripts/pwa-integration.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -99,7 +98,6 @@ export default defineConfig({
     }),
     singleSitemap(),
     react(),
-    pwa()
   ],
 
   vite: {

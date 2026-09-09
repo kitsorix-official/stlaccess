@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
+import AdBanner from "../../components/AdBanner.astro";
 import tools from "../../data/tools.json";
 import site from "../../data/site.json";
 import filamentPresets from "../../data/filamentPresets.json";
@@ -445,6 +446,9 @@ const toolSchema = graph([
   </div>
 
 </article>
+
+<!-- Ad: below calculator -->
+<AdBanner class="max-w-4xl mx-auto px-6" />
 
 {tool.slug === "slicer-percentage-calculator" && (
   <>

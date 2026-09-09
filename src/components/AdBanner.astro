@@ -1,0 +1,20 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+<div class={`flex justify-center py-8 ${className}`} role="complementary" aria-label="Advertisement">
+  <div class="bg-slate-900/20 border border-white/5 rounded-2xl p-4 overflow-hidden">
+    <iframe
+      src="https://aidzap.com/ad/d2c27a1f-0d84-4b82-9d79-50ad0fffbb93"
+      width="300"
+      height="250"
+      scrolling="no"
+      frameborder="0"
+      style="border:none"
+      loading="lazy"
+      title="Advertisement"
+    ></iframe>
+  </div>
+</div>
