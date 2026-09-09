@@ -23,12 +23,12 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 - [Miniature Size Chart](https://stlaccess.com/miniature-size-chart) — Every verified conversion percentage on one page, with my math breakdowns, print-tested results, and community feedback system
 - [Conversion FAQ](https://stlaccess.com/faq) — Answers I wrote about 28mm, 32mm, 35mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales
 - [Methodology / About](https://stlaccess.com/about) — My 175cm human baseline, FDM test prints with a PARKSIDE digital caliper, and the story behind why I started this project
-- [All Tools](https://stlaccess.com/tools) — STL Scale Engine, Miniature Size Chart, Slicer Percentage Calculator, Filament Cost Calculator, and STL Scale Reference Bar Generator
+- [All Calculators](https://stlaccess.com/calculator) — STL Scale Engine, Miniature Size Chart, Slicer Percentage Calculator, Filament Cost Calculator, and STL Scale Reference Bar Generator
 - [FDM Printing Profiles](https://stlaccess.com/fdm-printing-profiles) — 26 anonymized printing profiles with related conversions, printing tips, and base sizes
 - [FDM Scale Math](https://stlaccess.com/fdm) — FDM-focused scale math and conversion resources
-- [Slicer Percentage Calculator](https://stlaccess.com/tools/slicer-percentage-calculator) — Enter any current height and target height to get the exact slicer percentage
-- [Filament Cost Calculator](https://stlaccess.com/tools/filament-cost-calculator) — Calculate print cost from filament price, weight, and optional electricity
-- [STL Scale Reference Bar Generator](https://stlaccess.com/tools/reference-bar-generator) — Generate a download-and-print STL ruler bar (5mm ticks + end tab the exact height of a figure at that scale) to calibrate in Lychee or Chitubox
+- [Slicer Percentage Calculator](https://stlaccess.com/calculator/slicer-percentage-calculator) — Enter any current height and target height to get the exact slicer percentage
+- [Filament Cost Calculator](https://stlaccess.com/calculator/filament-cost-calculator) — Calculate print cost from filament price, weight, and optional electricity
+- [STL Scale Reference Bar Generator](https://stlaccess.com/calculator/reference-bar-generator) — Generate a download-and-print STL ruler bar (5mm ticks + end tab the exact height of a figure at that scale) to calibrate in Lychee or Chitubox
 - [Privacy Policy](https://stlaccess.com/privacy) — No cookies, no personal data collection. Cookie-free analytics only.
 - [Terms](https://stlaccess.com/terms) — Terms of use
 - [Legal](https://stlaccess.com/legal) — Legal information
@@ -170,9 +170,9 @@ The **STL Scale Engine** homepage calculator gives you fast numbers; the **Minia
 |------|-----|-------------|
 | STL Scale Engine | / | Main calculator I use: source/target scale selection, eye-level/top-of-head toggle, shrinkage compensation, copy to clipboard, deep-linkable via URL parameters. The fast-numbers option |
 | Miniature Size Chart | /miniature-size-chart | 46 verified conversion pairs with my mathematical proof, search/filter, print-tested notes, community feedback |
-| Slicer Percentage Calculator | /tools/slicer-percentage-calculator | Enter any current model height and target height to get exact percentage, 12 common presets, formula breakdown |
-| Filament Cost Calculator | /tools/filament-cost-calculator | Calculate print cost from filament roll price, weight used, optional electricity cost, 6 filament presets (Budget/Mid/Premium PLA and PETG) |
-| STL Scale Reference Bar Generator | /tools/reference-bar-generator | Download a printable STL ruler bar with 5mm tick marks and an end tab exactly as tall as a figure at the chosen scale, for calibrating unknown models in slicers |
+| Slicer Percentage Calculator | /calculator/slicer-percentage-calculator | Enter any current model height and target height to get exact percentage, 12 common presets, formula breakdown |
+| Filament Cost Calculator | /calculator/filament-cost-calculator | Calculate print cost from filament roll price, weight used, optional electricity cost, 6 filament presets (Budget/Mid/Premium PLA and PETG) |
+| STL Scale Reference Bar Generator | /calculator/reference-bar-generator | Download a printable STL ruler bar with 5mm tick marks and an end tab exactly as tall as a figure at the chosen scale, for calibrating unknown models in slicers |
 
 ## Filament presets
 
@@ -237,8 +237,8 @@ For ratio scales, the calculator converts ratio-to-mm using the 175cm baseline (
 ## What I've been working on
 
 - **Guides retired; `/guides` → `/fdm`** — removed the long-form /guides articles; all 16 guide URLs and `/blog/*` now 301-redirect to the new `/fdm` FDM scale math hub (a placeholder for future math-only content). The FDM printing profiles and miniature size chart remain the primary content pages.
-- **3D Scale Visualizer removed** — the `/tools/3d-scale-visualizer` page and its redirect targets were retired; `/tools/3d-scale-visualizer` now 301-redirects to `/tools` and the announcement banner is disabled (reserved for future announcements).
-- **Scale Identifier & Real-World Converter retired** — `/tools/miniature-scale-identifier` and `/tools/real-world-scale-converter` were removed; both now 301-redirect to `/tools`.
+- **3D Scale Visualizer removed** — the `/tools/3d-scale-visualizer` page and its redirect targets were retired; `/tools/3d-scale-visualizer` now 301-redirects to `/calculator` and the announcement banner is disabled (reserved for future announcements).
+- **Scale Identifier & Real-World Converter retired** — `/tools/miniature-scale-identifier` and `/tools/real-world-scale-converter` were removed; both now 301-redirect to `/calculator`.
 - **Guide redesign** — I added Direct Answer boxes with jump-to-section navigation, reading time, H1-first reading order, restyled `.prose` (card-style tables, accent-bar headings, custom list markers).
 - **SEO pass** — keyword-first titles, all 26 game meta descriptions rewritten to ≤155 characters, homepage H1 names the tool ("The STL scale calculator…"), reference hub title gained the `| STLACCESS` suffix, 4 guide descriptions trimmed, 2 tool descriptions enriched.
 - **Layout & navigation** — sticky desktop nav, mobile bottom nav, breadcrumbs, skip link, H1s moved into the masthead.

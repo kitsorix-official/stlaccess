@@ -14,7 +14,7 @@ const conversionsCount = conversions.length;
 
 // stl-scale-engine lives on the homepage (/) and scale-reference lives at
 // /miniature-size-chart; both are featured there, so they are excluded from
-// the tools index cards and no /tools/* page is built for them.
+// the calculator index cards and no /calculator/* page is built for them.
 const visibleTools = tools.filter(
   (t) => t.slug !== "stl-scale-engine" && t.slug !== "scale-reference"
 );
@@ -24,7 +24,7 @@ const categories = [...new Set(visibleTools.map(t => t.category))];
 const toolsSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Tools", path: "/tools" },
+    { name: "Calculators", path: "/calculator" },
   ]),
   itemList(visibleTools.map(t => ({
     type: "SoftwareApplication",
@@ -36,8 +36,8 @@ const toolsSchema = graph([
 ---
 
 <Layout
-  title="3D Print Tools for Miniatures | STLACCESS"
-  description="Free 3D print tools for miniatures — the scale calculator, conversion reference, and filament cost estimator I use before every print."
+  title="3D Printing Calculators | STLACCESS"
+  description="Calculate filament costs, scale conversions, and slicer percentages for 3D printing. Free online calculators, no signup required."
 >
 
 <JsonLd slot="head" data={toolsSchema} />
@@ -47,16 +47,16 @@ const toolsSchema = graph([
 <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
   <span class="mx-2 text-slate-800">/</span>
-  <span class="text-slate-400" aria-current="page">Tools</span>
+  <span class="text-slate-400" aria-current="page">Calculators</span>
 </nav>
 
 <!-- Hero -->
 <div class="pb-16 px-6 max-w-6xl mx-auto tools-intro" aria-labelledby="tools-hero-heading">
   <h1 id="tools-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
-    3D Print <span class="text-[#ff6b35]">Tools</span>
+    3D Print <span class="text-[#ff6b35]">Calculators</span>
   </h1>
   <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-    Free browser-based tools for scaling, referencing, and calculating costs for STL conversions for tabletop miniatures. Whether you are printing sci-fi epic armies, fantasy RPG monsters, or WWII infantry, these tools help you avoid wasted filament. All tools run client-side — no uploads, no accounts, no cookies.
+    Free browser-based calculators for scaling, referencing, and calculating costs for STL conversions for tabletop miniatures. Whether you are printing sci-fi epic armies, fantasy RPG monsters, or WWII infantry, these tools help you avoid wasted filament. All tools run client-side — no uploads, no accounts, no cookies.
   </p>
 </div>
 </div>
@@ -104,7 +104,7 @@ const toolsSchema = graph([
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       {visibleTools.filter(t => t.category === cat).map(tool => (
         <a
-          href={`/tools/${tool.slug}`}
+          href={`/calculator/${tool.slug}`}
           class="tool-card group block bg-slate-900/30 rounded-3xl border border-white/5 p-8 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50"
         >
           <div class="flex items-start gap-5">

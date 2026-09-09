@@ -29,7 +29,7 @@
     "shortDescription": "Type in two measurements in millimetres, get the exact percentage for your slicer. Works for any scale combination.",
     "description": "The simplest tool on the site. Enter your current model height and your desired target height, and the calculator gives you the percentage to type into Chitubox, Lychee, or PrusaSlicer. Shows the formula so you can check the math yourself. No account, no cookies, no bloat.",
     "icon": "ti-percentage",
-    "url": "/tools/slicer-percentage-calculator",
+    "url": "/calculator/slicer-percentage-calculator",
     "features": ["Any source size to any target size", "Real-time calculation as you type", "12 common conversion presets", "Formula breakdown for verification", "Copy result to clipboard", "Zero bloat — no account, no cookies"],
     "category": "calculators",
     "featured": true
@@ -40,7 +40,7 @@
     "shortDescription": "Know your print cost before you start. Enter filament price, weight used, and optional electricity to estimate the true cost of 3D printing miniatures.",
     "description": "Enter your roll price, the grams your slicer reports, and optionally your printer power draw and print time. The calculator tells you the filament cost, electricity cost, and total. Works for PLA, PETG, and any filament type. Preset buttons for common rolls so you don't have to type everything manually.",
     "icon": "ti-currency-dollar",
-    "url": "/tools/filament-cost-calculator",
+    "url": "/calculator/filament-cost-calculator",
     "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Filament presets with real market prices", "Deep-link from scale engine", "No account, no cookies"],
     "category": "calculators",
     "featured": true
@@ -53,7 +53,7 @@
     "shortDescription": "Generate a printable ruler bar at any tabletop scale and import it into Lychee or Chitubox to measure unknown STLs. Download the STL right in your browser.",
     "description": "The tool behind those 'cubes to import into lychee for scaling' searches. Pick a scale and a bar length, and I generate an STL ruler bar you can download instantly. It has 5mm tick marks along its length plus an end tab exactly as tall as a figure at that scale. Import it next to any model of unknown scale, measure the model against the ruler in your slicer, and you instantly know what percentage to type in. Generated in your browser — nothing uploaded.",
     "icon": "ti-cube",
-    "url": "/tools/reference-bar-generator",
+    "url": "/calculator/reference-bar-generator",
     "features": ["Downloadable STL, generated in your browser", "All 16 tabletop scales supported", "5mm tick marks plus a figure-height end tab", "Ruler lengths from 30 to 100mm", "No uploads, no accounts, no cookies"],
     "category": "references",
     "featured": false

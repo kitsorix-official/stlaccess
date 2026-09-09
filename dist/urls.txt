@@ -8,7 +8,7 @@ https://stlaccess.com/terms
 https://stlaccess.com/fdm-printing-profiles
 https://stlaccess.com/fdm
 https://stlaccess.com/miniature-size-chart
-https://stlaccess.com/tools
-https://stlaccess.com/tools/slicer-percentage-calculator
-https://stlaccess.com/tools/filament-cost-calculator
-https://stlaccess.com/tools/reference-bar-generator
+https://stlaccess.com/calculator
+https://stlaccess.com/calculator/slicer-percentage-calculator
+https://stlaccess.com/calculator/filament-cost-calculator
+https://stlaccess.com/calculator/reference-bar-generator

@@ -97,7 +97,7 @@ function calculate() {
         params.set('to', target);
         params.set('percent', result.toFixed(1));
         params.set('logic', logic);
-        costBtn.href = '/tools/filament-cost-calculator?' + params.toString();
+        costBtn.href = '/calculator/filament-cost-calculator?' + params.toString();
     }
 }
 

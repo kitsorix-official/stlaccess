@@ -169,19 +169,25 @@
 /reference1-48-to-75mm  /miniature-size-chart  301
 
 # Old tool paths
+# (specific rules first — Netlify matches top-to-bottom, so the generic
+#  splat rule below must come last in this block)
+/tools  /calculator  301
+/tools/  /calculator  301
 /tools/stlscaler/  /  301
 /tools/stl-scale-engine  /  301
 /tools/stl-scale-engine/  /  301
 /tools/stlscale-engine  /  301
-/tools/personal-library  /tools  301
+/tools/personal-library  /calculator  301
 /tools/scale-reference  /miniature-size-chart  301
 /tools/scale-reference/  /miniature-size-chart  301
-/tools/3d-scale-visualizer  /tools  301
-/tools/3d-scale-visualizer/  /tools  301
-/tools/real-world-scale-converter  /tools  301
-/tools/real-world-scale-converter/  /tools  301
-/tools/miniature-scale-identifier  /tools  301
-/tools/miniature-scale-identifier/  /tools  301
+/tools/3d-scale-visualizer  /calculator  301
+/tools/3d-scale-visualizer/  /calculator  301
+/tools/real-world-scale-converter  /calculator  301
+/tools/real-world-scale-converter/  /calculator  301
+/tools/miniature-scale-identifier  /calculator  301
+/tools/miniature-scale-identifier/  /calculator  301
+# Any remaining /tools/<slug> maps 1:1 to /calculator/<slug>
+/tools/*  /calculator/:splat  301
 
 # Non-existent pages
 /cookies/  /privacy  301
