@@ -1,6 +1,70 @@
 User-agent: *
 Allow: /
 
+# Block ALL Google bots, scrapers, and AI crawlers
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: Googlebot-News
+Disallow: /
+
+User-agent: Googlebot-Video
+Disallow: /
+
+User-agent: Googlebot-AdsBot
+Disallow: /
+
+User-agent: AdsBot-Google
+Disallow: /
+
+User-agent: AdsBot-Google-Mobile
+Disallow: /
+
+User-agent: Mediapartners-Google
+Disallow: /
+
+User-agent: Storebot-Google
+Disallow: /
+
+User-agent: Google-InspectionTool
+Disallow: /
+
+User-agent: API-Google
+Disallow: /
+
+User-agent: GoogleOther
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Google-SourceHunter
+Disallow: /
+
+User-agent: FeedFetcher-Google
+Disallow: /
+
+User-agent: DuplexWeb-Google
+Disallow: /
+
+User-agent: Google Favicon
+Disallow: /
+
+User-agent: Google Web Preview
+Disallow: /
+
+User-agent: Google-Read-Aloud
+Disallow: /
+
+User-agent: Nautilus
+Disallow: /
+
+User-agent: MindShare
+Disallow: /
+
 # Block all Wayback Machine / Internet Archive crawlers
 User-agent: ia_archiver
 Disallow: /
