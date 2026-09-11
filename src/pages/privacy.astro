@@ -14,7 +14,7 @@ const privacySchema = graph([
 
 <Layout
   title="Privacy Policy | STLACCESS — 3D Print Scale Calculator"
-  description="No accounts, no cookies, no personal data collection. A cookie-free web observer counts anonymous visits into a Google Sheet. Full breakdown of exactly what is stored, how Cloudflare handles your data, and how children are protected."
+  description="No accounts, no cookies, no personal data collection. A cookie-free web observer counts anonymous visits into a Google Sheet. Full breakdown of what is stored, how Cloudflare handles your data, affiliate promotion disclosure, and how children are protected."
 >
 <JsonLd slot="head" data={privacySchema} />
 <div slot="hero">
@@ -247,13 +247,19 @@ STLACCESS is completely cookie-free. The only types of browser storage running b
 
         <div class="space-y-6">
           <h2 class="text-2xl font-bold text-white font-heading">
-            6. Third-Party Embedded Content
+            6. Affiliate Links & Advertising Disclosure
           </h2>
           <p>
-            Some pages on STLACCESS display static advertisements served via a third-party iframe from <strong class="text-white">aidzap.com</strong>. This iframe is a static embed — it does <strong class="text-white">not</strong> set cookies, execute tracking JavaScript, or collect personal data through this site. The iframe content is subject to aidzap.com's own privacy policy. No cookie consent banner is required because no cookies or local storage are used by this embed.
+            Some pages on STLACCESS may display sponsored banners or affiliate links. These are served through the affiliate network <strong class="text-white">ogads.com</strong>, and any banner linked to an external offer is clearly labeled as a sponsored advertisement before you click it.
           </p>
           <p>
-            The iframe loads from the aidzap.com domain, which means your browser makes a standard network request to their servers to fetch the ad content. Like Cloudflare, aidzap.com may briefly see technical data such as your IP address and browser information purely to deliver the request. I do not control what aidzap.com collects on their end, and I never see or store any data from those requests.
+            <strong class="text-white">Affiliate disclosure:</strong> If you click a sponsored banner and complete an offer — such as subscribing to a service or making a purchase — I may earn a commission as an affiliate. This never changes the price you pay or the terms of the offer. I only promote offers I believe may genuinely interest 3D printing and tabletop hobbyists, and no endorsement of any advertiser or product is implied.
+          </p>
+          <p>
+            <strong class="text-white">How clicks work:</strong> Sponsored banners link out to <strong class="text-white">singingfiles.com</strong> (an offer page managed through my ogads.com affiliate account). Clicking a banner takes you to that external offer page, which is <strong class="text-white">not</strong> part of STLACCESS and is governed by its own terms and privacy practices. For transparency, these banners open in a new tab and carry nofollow/sponsored link attributes so search engines do not treat them as editorial endorsements.
+          </p>
+          <p>
+            When you click a sponsored banner, your browser makes a request to the offer's servers (singingfiles.com via the affiliate redirect), which — like Cloudflare — may briefly see standard network data such as your IP address and browser information purely to deliver and attribute the click. I do not control what the advertiser or ogads.com collects on their end, and the click itself does not set cookies or collect any personal data through this site. The affiliate network and advertiser have their own privacy policies, which I recommend reviewing before completing any offer.
           </p>
         </div>
 

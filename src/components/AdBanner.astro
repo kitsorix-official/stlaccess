@@ -3,18 +3,42 @@ interface Props {
   class?: string;
 }
 const { class: className = '' } = Astro.props;
+const bannerLink = "https://singingfiles.com/show.php?l=0&u=623530&id=75217";
+const rel = "sponsored nofollow noopener";
 ---
-<div class={`flex justify-center py-8 ${className}`} role="complementary" aria-label="Advertisement">
-  <div class="bg-slate-900/20 border border-white/5 rounded-2xl p-4 overflow-hidden">
-    <iframe
-      src="https://aidzap.com/ad/a41509df-944b-493b-a877-999fc010c5b4"
-      width="300"
-      height="250"
-      scrolling="no"
-      frameborder="0"
-      style="border:none"
-      loading="lazy"
-      title="Advertisement"
-    ></iframe>
-  </div>
+<div class={`flex justify-center py-8 ${className}`} role="complementary" aria-label="Sponsored banner">
+  <a
+    href={bannerLink}
+    target="_blank"
+    rel={rel}
+    class="relative block w-[300px] h-[250px] bg-slate-900/20 border border-white/5 rounded-2xl overflow-hidden group"
+  >
+    <picture>
+      <source
+        type="image/avif"
+        srcset="/images/giftcard-banner/giftcard-banner-300x250.avif 1x, /images/giftcard-banner/giftcard-banner-600x500.avif 2x"
+      />
+      <source
+        type="image/webp"
+        srcset="/images/giftcard-banner/giftcard-banner-300x250.webp 1x, /images/giftcard-banner/giftcard-banner-600x500.webp 2x"
+      />
+      <img
+        src="/images/giftcard-banner/giftcard-banner-300x250.jpg"
+        srcset="/images/giftcard-banner/giftcard-banner-300x250.jpg 1x, /images/giftcard-banner/giftcard-banner-600x500.jpg 2x"
+        alt="Sponsored gift card banner"
+        width="300"
+        height="250"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="low"
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+      />
+    </picture>
+    <span
+      class="absolute top-2 right-2 text-[9px] font-black uppercase tracking-[0.15em] text-white/80 bg-black/50 backdrop-blur-sm px-1.5 py-0.5 rounded"
+      aria-hidden="true"
+    >
+      Sponsored
+    </span>
+  </a>
 </div>
