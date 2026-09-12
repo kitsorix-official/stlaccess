@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
-import AdBanner from "../../components/AdBanner.astro";
 import site from "../../data/site.json";
 import rawConversions from "../../data/conversionMatrix.json";
 import { conversionGuideContent } from "../../data/conversionGuideContent.js";
@@ -175,7 +174,6 @@ const referenceSchema = graph([
         </details>
       );
     })}
-    <AdBanner />
     {rawConversions.slice(23).map((conv) => {
       const detail = conversionGuideContent[conv.slug] || {};
       return (

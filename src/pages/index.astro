@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import JsonLd from "../components/JsonLd.astro";
-import AdBanner from "../components/AdBanner.astro";
 import site from "../data/site.json";
 import scales from "../data/scaleBaselines.json";
 import conversions from "../data/conversionMatrix.json";
@@ -120,7 +119,7 @@ const defaultContext = `${defaultSource} → ${defaultTarget} · Eye Level`;
 ---
 <Layout
   title="STL Scale Converter | Slicer Percentage Calculator for 3D Miniatures | STLACCESS"
-  description="I built this free scale calculator after wasting too much filament on mis-sized prints. Tested on my Bambu Lab A1 Mini with digital calipers."
+  description="Free browser-based scale calculator for 3D printed miniatures. Instantly calculate exact slicer percentages from 28mm to 32mm, Star Wars Legion, and resin to FDM conversions."
 >
 
 <JsonLd slot="head" data={homeSchema} />
@@ -133,17 +132,17 @@ const defaultContext = `${defaultSource} → ${defaultTarget} · Eye Level`;
 <div slot="hero">
 <div class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
 <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-6">
-By a hobbyist, for hobbyists
+Verified for Windows, Edge, Chitubox & Lychee Slicer
 </p>
 <h1 id="hero-heading" class="text-4xl md:text-7xl font-bold mb-6 font-heading tracking-tight leading-tight">
   STL Scale Converter<br />
   <span class="text-[#ff6b35] italic">Exact Slicer Percentages for Miniatures</span>
 </h1>
 <p id="hero-description" class="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
-  I wasted months printing models that towered over my existing miniatures or looked like children next to my terrain. So I bought digital calipers, printed test cubes at every scale, and built this calculator to save you the same headache. Everything is tested on my <span class="text-white font-semibold">Bambu Lab A1 Mini</span> before it goes live.
+  Stop wasting filament and resin on mis-sized proxies. Tested with digital calipers on a <span class="text-white font-semibold">Bambu Lab A1 Mini</span>, this free tool calculates exact scale percentages for tabletop miniatures, terrain, and multi-part kits.
 </p>
 <p class="text-sm text-slate-500">
-  I use these exact percentages in my own slicer. No guesswork. No file uploads.
+  Runs instantly in your browser. Zero file uploads, zero installation, 100% offline-ready math.
 </p>
 </div>
 </div>
@@ -226,7 +225,7 @@ Top of Head
 Material compensation
 </h3>
 <p class="text-[10px] text-slate-500">
-I add a slight bump when my PLA or PETG shrinks while cooling.
+Add a slight percentage bump for cooling contraction in PLA or PETG.
 </p>
 </div>
 <label class="relative inline-flex items-center cursor-pointer">
@@ -278,7 +277,7 @@ Type this into your slicer
 </div>
 <div class="mt-4 flex items-center justify-center gap-2 text-[10px] text-black/60 font-bold uppercase tracking-widest">
 <i class="ti ti-shield-half"></i>
-Tested by me
+Tested on Bambu A1 Mini
 <span class="mx-1">•</span>
 <a href="/about" class="hover:underline">My Methodology</a>
 </div>
@@ -286,17 +285,101 @@ Tested by me
 </div>
 
 <p class="text-[11px] text-slate-500 text-center leading-relaxed px-4">
-My conversion logic assumes a {baselineHeightCm} human baseline. Eye Level measures to {eyeLevelCm}cm. Top of Head accounts for hair and helmets at {baselineHeightCm}cm.
+Conversion logic assumes a {baselineHeightCm} human baseline. Eye Level measures to {eyeLevelCm}cm. Top of Head accounts for hair and helmets at {baselineHeightCm}cm.
 <br />
-<strong class="text-slate-400">Tip:</strong> I always use <span class="text-[#ff6b35] font-semibold">Uniform Scaling</span> (lock X, Y, and Z axes) in my slicer to avoid distorted models.
+<strong class="text-slate-400">Tip:</strong> Always use <span class="text-[#ff6b35] font-semibold">Uniform Scaling</span> (lock X, Y, Z axes) in Chitubox or Lychee to avoid model distortion.
 </p>
 
 </div>
 </div>
 </section>
 
-<!-- Ad: below calculator -->
-<AdBanner />
+<!-- NEW BOLD SECTION: BATCH OFFLINE TOOL & PAYPAL -->
+<section class="max-w-4xl mx-auto px-6 py-12" aria-labelledby="batch-tool-heading">
+<div class="bg-gradient-to-b from-slate-900 to-black p-8 md:p-12 rounded-[2.5rem] border-2 border-[#ff6b35]/40 shadow-2xl relative overflow-hidden">
+  <div class="absolute -right-10 -bottom-10 text-[#ff6b35]/5 pointer-events-none" aria-hidden="true">
+    <i class="ti ti-file-code text-9xl"></i>
+  </div>
+  
+  <div class="relative z-10 space-y-6">
+    <div class="inline-flex items-center gap-2 bg-[#ff6b35]/10 text-[#ff6b35] border border-[#ff6b35]/30 px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider">
+      <i class="ti ti-coffee"></i> Support the Creator &bull; $4.99 Toolkit
+    </div>
+    
+    <h2 id="batch-tool-heading" class="text-3xl md:text-4xl font-black font-heading tracking-tight text-white">
+      Get the <span class="text-[#ff6b35]">Offline Batch Scale Queue Toolkit</span>
+    </h2>
+    
+    <p class="text-slate-300 text-base leading-relaxed max-w-2xl">
+      Got dozens of STL parts to scale for an entire army? Instead of calculating files one-by-one, grab my standalone offline HTML/JS toolkit. It runs locally on your computer with zero installation, zero internet required, and zero security blocks.
+    </p>
+
+    <!-- Preview Box of Checklist Output -->
+    <div class="bg-black/60 border border-white/10 p-5 rounded-2xl font-mono text-xs text-slate-300 space-y-1 shadow-inner">
+      <div class="text-slate-500 font-bold pb-2 border-b border-white/10 mb-2 flex items-center justify-between">
+        <span>SAMPLE BATCH TOOL OUTPUT</span>
+        <span class="text-[#ff6b35]">INSTANT CHECKLIST (.TXT EXPORT)</span>
+      </div>
+      <p class="text-white font-bold">[1] File: Hero_Torso_Default.stl</p>
+      <p class="pl-4 text-slate-400">Conversion: 28mm -> 32mm (EYE) &bull; <span class="text-[#ff6b35]">SLICER UNIFORM SCALE: 114.3%</span></p>
+      <p class="text-white font-bold pt-2">[2] File: Hero_Legs_Default.stl</p>
+      <p class="pl-4 text-slate-400">Conversion: 28mm -> 32mm (EYE) &bull; <span class="text-[#ff6b35]">SLICER UNIFORM SCALE: 114.3%</span></p>
+    </div>
+
+    <div class="space-y-4 pt-2">
+      <div class="flex flex-col sm:flex-row items-center gap-4">
+        <!-- PayPal Me Link with 5-second waiting timer -->
+        <a id="toolkitBuyBtn" href="https://paypal.me/pascalvant/4.99" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-[#ff6b35] hover:bg-[#e05a28] text-black font-black rounded-xl text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-3 shadow-lg shadow-[#ff6b35]/20 cursor-pointer">
+          <i class="ti ti-brand-paypal text-xl"></i>
+          <span id="toolkitBtnText">Support & Get Toolkit ($4.99)</span>
+        </a>
+        <span class="text-xs text-slate-400 font-mono text-center sm:text-left">
+          Instant ZIP download &bull; Works offline forever
+        </span>
+      </div>
+
+      <!-- Hidden Download Box revealed after 5 seconds with a supportive prompt -->
+      <div id="toolkitDownloadBox" class="hidden p-4 bg-slate-900/90 border border-emerald-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 animate-in fade-in duration-500">
+        <div class="text-xs text-slate-300">
+          <span class="text-emerald-400 font-bold block mb-0.5">Finished supporting on PayPal?</span>
+          Click below to proceed to your download page:
+        </div>
+        <a href="/thank-you" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shrink-0 flex items-center justify-center gap-2">
+          <i class="ti ti-circle-check"></i> Continue to Download
+        </a>
+      </div>
+
+      <!-- Personal PayPal Note -->
+      <p class="text-[11px] text-slate-500 italic max-w-xl">
+        * Note: Because I'm setting this up fresh as an independent hobbyist, payments go to my personal PayPal account. Think of it as buying me a coffee to support the site—plus you get the offline batch utility as a thank you!
+      </p>
+    </div>
+  </div>
+</div>
+</section>
+
+<script is:inline>
+document.addEventListener('DOMContentLoaded', () => {
+  const buyBtn = document.getElementById('toolkitBuyBtn');
+  const btnText = document.getElementById('toolkitBtnText');
+  const downloadBox = document.getElementById('toolkitDownloadBox');
+
+  if (buyBtn && downloadBox) {
+    buyBtn.addEventListener('click', () => {
+      // Set active loading state on the button
+      btnText.textContent = "Opening PayPal (Please complete payment)...";
+      buyBtn.style.opacity = "0.7";
+
+      // 5-second delay to give PayPal time to load and user a moment to review
+      setTimeout(() => {
+        downloadBox.classList.remove('hidden');
+        btnText.textContent = "Support Again / Re-open PayPal";
+        buyBtn.style.opacity = "1";
+      }, 5000);
+    });
+  }
+});
+</script>
 
 <!-- How to Use -->
 <section class="max-w-3xl mx-auto px-6 py-12" aria-labelledby="howto-heading">
@@ -308,21 +391,21 @@ How I use the calculator <span class="text-[#ff6b35]">for every print</span>
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">1</span>
 <div>
 <p class="text-slate-200 font-semibold">Pick the scales</p>
-<p class="text-slate-400 text-sm">I check what scale the sculptor modeled in — usually listed on Patreon or MyMiniFactory — then pick the scale my army actually uses. For modern heroic sci-fi, that's almost always 32mm.</p>
+<p class="text-slate-400 text-sm">Check what scale the sculptor modeled in — usually listed on Patreon or MyMiniFactory — then select the target scale for your army.</p>
 </div>
 </li>
 <li class="flex gap-4 items-start">
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">2</span>
 <div>
 <p class="text-slate-200 font-semibold">Copy the exact percentage</p>
-<p class="text-slate-400 text-sm">I once eyeballed 115% for a 28mm→32mm conversion and my armoured soldier mini looked like a bobblehead. The calculator gives me <span class="text-white font-semibold">114.3%</span> — the number I verified with calipers on actual prints.</p>
+<p class="text-slate-400 text-sm">Eyeballing percentages leads to distorted proportions. The calculator gives exact mathematical output verified with physical calipers.</p>
 </div>
 </li>
 <li class="flex gap-4 items-start">
 <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">3</span>
 <div>
 <p class="text-slate-200 font-semibold">Paste and lock axes</p>
-<p class="text-slate-400 text-sm">I enter the percentage into <span class="text-white">Lychee</span> or <span class="text-white">Chitubox</span>, lock <span class="text-[#ff6b35] font-semibold">X, Y, and Z</span> to uniform scaling, and hit slice. With PETG I bump the shrinkage compensation up by 1.5% because it contracts a bit more than PLA while cooling.</p>
+<p class="text-slate-400 text-sm">Enter the percentage into <span class="text-white">Lychee</span> or <span class="text-white">Chitubox</span>, lock <span class="text-[#ff6b35] font-semibold">X, Y, and Z</span> to uniform scaling, and slice.</p>
 </div>
 </li>
 </ol>
@@ -336,11 +419,11 @@ How I use the calculator <span class="text-[#ff6b35]">for every print</span>
 The conversions I use <span class="text-[#ff6b35] italic">most often</span>
 </h2>
 <p id="reference-intro" class="text-slate-400 text-lg">
-Before I commit a miniature to a long print, I check the scale first. A few seconds now saves me a lot of frustration later. These are the percentages I use myself, but if one of your prints comes out looking wrong, <a href="/about" class="text-[#ff6b35] hover:text-white transition-colors">let me know</a>.
+Before committing a miniature to a long print, verify the scale first. These are the percentages used in my own printing queue.
 </p>
 </div>
 <a href="/miniature-size-chart" class="text-[#ff6b35] font-bold text-sm uppercase tracking-widest border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-1 transition-all">
-View my full miniature size chart
+View full miniature size chart
 </a>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -355,7 +438,7 @@ View my full miniature size chart
 </div>
 </section>
 
-<!-- FAQ Section — Now a Card Grid -->
+<!-- FAQ Section -->
 <section id="faq" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5" aria-labelledby="faq-heading">
 <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
 <div class="max-w-xl">
@@ -394,23 +477,15 @@ Straight answers from my own experience at the painting desk.
 </div>
 
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
-  I started 3D printing back in 2017 with a cheap entry-level FDM printer. Like a lot of people back then, I spent more time troubleshooting bed leveling and failed prints than actually printing models for the table. In 2019, I tried turning the hobby into a business by running a commercial print service in Enschede, Netherlands. It didn't take long to realize that running a commercial print service completely drained the fun out of the hobby. The margins were tight, managing print queues felt like a grind, and I had no time left to print or paint minis for myself. Eventually, I shut it down and stepped away.
+  I started 3D printing back in 2017 with a cheap entry-level FDM printer. In 2019, I ran a commercial print service in Enschede, Netherlands, but quickly realized running commercial queues drained the fun out of the hobby. I shut it down and returned strictly to hobby printing on a <span class="text-white font-semibold">Bambu Lab A1 Mini</span>.
 </p>
 
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
-  When I returned to 3D printing, I kept it strictly about the hobby. Now I print on a <span class="text-white font-semibold">Bambu Lab A1 Mini</span> — mostly PLA and PETG — focusing on sci-fi and fantasy miniatures, tabletop terrain, board game upgrades, and the occasional practical print. Zero commercial pressure, just enjoying the process.
-</p>
-
-<p class="text-lg text-slate-300 leading-relaxed mb-6">
-  The one thing that never stopped frustrating me? Scale. I would download an incredible STL, slice it, print for 8 hours, and discover my new character towered over my existing miniatures or looked like a child standing next to my terrain. I threw away enough mis-scaled models that I finally broke out my <span class="text-white font-semibold">digital calipers</span> and started working out the actual math.
-</p>
-
-<p class="text-lg text-slate-300 leading-relaxed mb-6">
-  Every percentage in this calculator is tested on my own printer. If a converted proxy comes off the build plate looking out of proportion with the rest of the unit, I tweak the calculations before publishing. I don't sell STL files, spools of filament, or printers. There are no paywalls or affiliate tricks. I built this for my own workflow and published it so other tabletop printers can save time and filament.
+  The frustration with miniatures scaling incorrectly led me to pull out digital calipers and work out the exact mathematical percentages. Every formula here is tested on my own printer to ensure proxies match existing tabletop units.
 </p>
 
 <p class="text-slate-400 leading-relaxed mb-8">
-  Plus, this calculator runs entirely in your browser. I never see your files.
+  This calculator runs entirely in your browser. I never see your files.
 </p>
 
 <div class="text-center">
@@ -434,7 +509,7 @@ Community Feedback
 Need another system added?
 </h2>
 <p class="text-sm leading-relaxed text-slate-400">
-I only build things I actually need at my own painting desk. Tell me what's missing and I'll test it.
+Tell me what scale or system is missing and I'll test it.
 </p>
 </div>
 <form id="hp-feedback-form" action={site.gasEndpoint} method="POST" class="space-y-4 max-w-xl mx-auto text-left">

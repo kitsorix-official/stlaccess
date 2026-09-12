@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
 
+# Do not crawl the purchase thank-you page or the paid-toolkit download
+Disallow: /thank-you
+Disallow: /offline-batch-scale-queue-toolkit.zip
+
 # Block ALL Google bots, scrapers, and AI crawlers
 User-agent: Googlebot
 Disallow: /

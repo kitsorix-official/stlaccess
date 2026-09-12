@@ -1,7 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
-import AdBanner from "../../components/AdBanner.astro";
 import site from "../../data/site.json";
 import profiles from "../../data/fdmProfiles.json";
 import conversions from "../../data/conversionMatrix.json";
@@ -274,8 +273,6 @@ const pageSchema = graph([
       </div>
     );
   })}
-
-  <AdBanner />
 
   {sortedScales.slice(Math.ceil(sortedScales.length / 2)).map((scale) => {
     const group = enriched.filter((p) => p.scale === scale);

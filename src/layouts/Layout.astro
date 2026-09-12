@@ -2,7 +2,6 @@
 import "../styles/global.css";
 import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
-import AdBanner from "../components/AdBanner.astro";
 
 const siteUpdated = lastModifiedDate();
 
@@ -263,11 +262,6 @@ class={currentPath.startsWith("/miniature-size-chart")
     <main id="main-content" class="flex-grow order-3">
       <slot />
     </main>
-
-    <!-- Ad: above footer -->
-    <div class="order-4">
-      <AdBanner />
-    </div>
 
     <!-- Footer -->
     <footer
