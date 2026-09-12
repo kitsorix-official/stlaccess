@@ -87,9 +87,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       filter(page) {
-        // Keep the payment thank-you page out of the sitemap — it is only
-        // reachable via the download button's parent flow.
-        return new URL(page).pathname !== '/thank-you';
+        return true;
       },
       serialize(item) {
         if (item.url !== 'https://stlaccess.com/' && item.url.endsWith('/')) {
