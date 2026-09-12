@@ -328,9 +328,9 @@ Conversion logic assumes a {baselineHeightCm} human baseline. Eye Level measures
 
     <div class="space-y-4 pt-2">
       <div class="flex flex-col sm:flex-row items-center gap-4">
-        <!-- PayPal Me Link with 5-second waiting timer -->
-        <a id="toolkitBuyBtn" href="https://paypal.me/pascalvant/4.99" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-[#ff6b35] hover:bg-[#e05a28] text-black font-black rounded-xl text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-3 shadow-lg shadow-[#ff6b35]/20 cursor-pointer">
-          <i class="ti ti-brand-paypal text-xl"></i>
+        <!-- Ko-fi Shop Link -->
+        <a id="toolkitBuyBtn" href="https://ko-fi.com/s/0b4ce712c4" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-[#ff6b35] hover:bg-[#e05a28] text-black font-black rounded-xl text-sm uppercase tracking-widest transition-all flex items-center justify-center gap-3 shadow-lg shadow-[#ff6b35]/20 cursor-pointer">
+          <i class="ti ti-coffee text-xl"></i>
           <span id="toolkitBtnText">Support & Get Toolkit ($4.99)</span>
         </a>
         <span class="text-xs text-slate-400 font-mono text-center sm:text-left">
@@ -338,48 +338,14 @@ Conversion logic assumes a {baselineHeightCm} human baseline. Eye Level measures
         </span>
       </div>
 
-      <!-- Hidden Download Box revealed after 5 seconds with a supportive prompt -->
-      <div id="toolkitDownloadBox" class="hidden p-4 bg-slate-900/90 border border-emerald-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 animate-in fade-in duration-500">
-        <div class="text-xs text-slate-300">
-          <span class="text-emerald-400 font-bold block mb-0.5">Finished supporting on PayPal?</span>
-          Click below to proceed to your download page:
-        </div>
-        <a href="/thank-you" class="w-full sm:w-auto px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shrink-0 flex items-center justify-center gap-2">
-          <i class="ti ti-circle-check"></i> Continue to Download
-        </a>
-      </div>
-
-      <!-- Personal PayPal Note -->
+      <!-- Ko-fi Shop Note -->
       <p class="text-[11px] text-slate-500 italic max-w-xl">
-        * Note: Because I'm setting this up fresh as an independent hobbyist, payments go to my personal PayPal account. Think of it as buying me a coffee to support the site—plus you get the offline batch utility as a thank you!
+        * Note: Because I'm setting this up fresh as an independent hobbyist, purchases go through my Ko-fi shop. Think of it as buying me a coffee to support the site—plus you get the offline batch utility as a thank you!
       </p>
     </div>
   </div>
 </div>
 </section>
-
-<script is:inline>
-document.addEventListener('DOMContentLoaded', () => {
-  const buyBtn = document.getElementById('toolkitBuyBtn');
-  const btnText = document.getElementById('toolkitBtnText');
-  const downloadBox = document.getElementById('toolkitDownloadBox');
-
-  if (buyBtn && downloadBox) {
-    buyBtn.addEventListener('click', () => {
-      // Set active loading state on the button
-      btnText.textContent = "Opening PayPal (Please complete payment)...";
-      buyBtn.style.opacity = "0.7";
-
-      // 5-second delay to give PayPal time to load and user a moment to review
-      setTimeout(() => {
-        downloadBox.classList.remove('hidden');
-        btnText.textContent = "Support Again / Re-open PayPal";
-        buyBtn.style.opacity = "1";
-      }, 5000);
-    });
-  }
-});
-</script>
 
 <!-- How to Use -->
 <section class="max-w-3xl mx-auto px-6 py-12" aria-labelledby="howto-heading">
