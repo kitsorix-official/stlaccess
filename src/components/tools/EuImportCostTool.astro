@@ -1,0 +1,365 @@
+---
+// src/components/tools/EuImportCostTool.astro
+// EU 3D Printing Import & Landed Cost Calculator for
+// /calculator/eu-3d-printing-import-cost-calculator.
+//
+// part="calc"    → the interactive calculator block (rendered inside <article>)
+// part="content" → direct answer, duty rules, VAT reference, steps, and FAQ
+//
+// Math (client-side only):
+//   duty ≤ €150  = €3 × distinct item categories (Council Reg. (EU) 2026/382,
+//                   in force 1 Jul 2026 – 1 Jul 2028)
+//   duty > €150  = item price × standard tariff rate % (user-entered)
+//   VAT base     = item price + shipping + duty
+//   landed cost  = VAT base + VAT
+import euVatRates from "../../data/euVatRates.json";
+import { euImportCostFaq } from "../../data/toolFaqs.js";
+
+interface Props {
+  part: "calc" | "content";
+}
+
+const { part } = Astro.props;
+
+const defaultVat = euVatRates.find((r) => r.country === "Netherlands") || euVatRates[0];
+
+// Split the VAT table in two columns so 27 rows stay scannable on desktop
+const vatHalf = Math.ceil(euVatRates.length / 2);
+const vatColumns = [euVatRates.slice(0, vatHalf), euVatRates.slice(vatHalf)];
+
+const dutyRuleRows = [
+  {
+    situation: "Goods value ≤ €150",
+    duty: "€3.00 per distinct item category",
+    applies: "1 Jul 2026 – 1 Jul 2028",
+  },
+  {
+    situation: "Goods value > €150",
+    duty: "Normal EU tariff rate by product classification",
+    applies: "Now",
+  },
+  {
+    situation: "Any parcel from 1 Jul 2028",
+    duty: "Common Customs Tariff rates by classification",
+    applies: "From 1 Jul 2028",
+  },
+  {
+    situation: "EU handling fee (separate)",
+    duty: "Amount TBA — expected €2–€4 per parcel",
+    applies: "Expected 1 Nov 2026 · not included here",
+  },
+];
+---
+
+{part === "calc" && (
+  <section class="mb-12" aria-labelledby="calculator-heading">
+    <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Calculator</h2>
+    <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="eu-price" class="block text-sm font-bold text-slate-300 mb-2">Item Price (EUR)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">€</span>
+            <input id="eu-price" type="number" value="24.99" step="0.01" min="0" class="eu-calc w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Goods value before shipping — the sticker price</p>
+        </div>
+        <div>
+          <label for="eu-shipping" class="block text-sm font-bold text-slate-300 mb-2">Shipping Cost (EUR)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">€</span>
+            <input id="eu-shipping" type="number" value="4.99" step="0.01" min="0" class="eu-calc w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Flat international rate or the checkout total</p>
+        </div>
+        <div>
+          <label for="eu-categories" class="block text-sm font-bold text-slate-300 mb-2">Distinct Item Categories</label>
+          <input id="eu-categories" type="number" value="1" step="1" min="1" class="eu-calc w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          <p class="text-xs text-slate-500 mt-1">3 spools of the same PLA = 1 category. 1 spool + 1 heater block = 2.</p>
+        </div>
+        <div>
+          <label for="eu-vat" class="block text-sm font-bold text-slate-300 mb-2">Member State VAT Rate</label>
+          <select id="eu-vat" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+            {euVatRates.map(r => (
+              <option value={r.rate} selected={r.country === defaultVat.country}>{r.country} — {r.rate}%</option>
+            ))}
+          </select>
+          <p class="text-xs text-slate-500 mt-1">Standard rate where the goods are consumed</p>
+        </div>
+      </div>
+
+      <!-- Over €150: flat €3 duty no longer applies -->
+      <div id="eu-over150" class="hidden mb-6 p-5 bg-amber-500/10 border border-amber-500/30 rounded-2xl">
+        <div class="flex items-start gap-3">
+          <i class="ti ti-alert-triangle text-amber-500 mt-0.5 shrink-0"></i>
+          <div class="w-full">
+            <p class="text-sm font-semibold text-white mb-1">Goods value over €150 — the flat €3 rate does not apply</p>
+            <p class="text-xs text-slate-400 leading-relaxed mb-3">
+              Above €150, normal EU tariff rates apply based on the product's classification and origin. Plastic filaments under CN 3916 are commonly around 6.5% for default third-country rates, but your rate depends on the CN code and origin country — verify it before ordering.
+            </p>
+            <label for="eu-standard-rate" class="block text-xs font-semibold text-slate-400 mb-1">Standard Customs Duty Rate (%)</label>
+            <input id="eu-standard-rate" type="number" value="0" step="0.1" min="0" max="100" class="eu-calc w-full max-w-xs bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4" aria-live="polite">
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Item &amp; Shipping</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="eu-base">€29.98</p>
+          <p class="text-[10px] text-slate-600 mt-1" id="eu-base-note">€24.99 + €4.99</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">EU Customs Duty</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="eu-duty">€3.00</p>
+          <p class="text-[10px] text-slate-600 mt-1" id="eu-duty-note">€3 × 1 category</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Import VAT</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="eu-vat-amt">€6.93</p>
+          <p class="text-[10px] text-slate-600 mt-1" id="eu-vat-note">21% on €32.98</p>
+        </div>
+        <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Total Landed Price</p>
+          <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="eu-total">€39.91</p>
+          <p class="text-[10px] text-slate-600 mt-1" id="eu-total-note">+59.7% over item price</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 mb-6">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">The math</p>
+        <p class="text-sm font-mono text-slate-300 leading-relaxed" id="eu-formula">€24.99 + €4.99 + €3.00 duty = €32.98 base × 21% VAT = €6.93 → €39.91 landed</p>
+      </div>
+
+      <!-- Contextual CTA -->
+      <div class="mb-8 bg-gradient-to-r from-[#ff6b35]/10 to-transparent border border-[#ff6b35]/20 rounded-2xl p-6">
+        <p class="text-sm text-slate-300 leading-relaxed mb-2">
+          Need to measure an STL of unknown scale without uploading your files anywhere?
+        </p>
+        <a href="/calculator/reference-bar-generator" class="inline-flex items-center gap-2 text-sm font-bold text-[#ff6b35] hover:text-white transition-colors">
+          Check out the Scale Reference Bar Generator
+          <i class="ti ti-arrow-right text-xs"></i>
+        </a>
+        <p class="text-[11px] text-slate-500 mt-2">
+          It builds the calibration bar right in your browser — your local files never leave your device, no upload fees, no accounts.
+        </p>
+      </div>
+
+      <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6">
+        <div class="flex items-start gap-3">
+          <i class="ti ti-alert-triangle text-amber-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="text-sm font-semibold text-white mb-1">Disclaimer: This is an estimate</p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              This calculator is a planning aid, not legal or tax advice. The €3 duty and VAT rules follow Council Regulation (EU) 2026/382 as of 1 July 2026, but rates, thresholds, and your country's VAT can change. In practice the duty is collected from the seller, platform, or carrier rather than charged to you at the door — but it still shapes the price you pay. The upcoming EU handling fee (expected no later than 1 November 2026) is not included, and IOSS sellers may fold VAT into the checkout price. Always confirm the final number with the seller.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{part === "content" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="euc-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="euc-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">What does that order really cost delivered?</h2>
+      <p class="text-slate-300 leading-relaxed">
+        Add the <strong class="text-white">item price</strong>, the <strong class="text-white">shipping</strong>, and the <strong class="text-white">customs duty</strong> — €3 per distinct item category on parcels up to €150 since 1 July 2026 — then apply your country's VAT to that whole base. A €24.99 spool with €4.99 shipping costs €29.98 before duty; add €3.00 and the VAT base is <em class="text-[#ff6b35] font-semibold not-italic">€32.98</em>. At 21% VAT that is €6.93, for a landed total of <em class="text-[#ff6b35] font-semibold not-italic">€39.91</em>. Calculating VAT on the sticker price alone is the classic mistake — shipping and duty are both taxable.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="euc-rules-heading">
+    <h2 id="euc-rules-heading" class="text-2xl font-bold font-heading mb-6">EU Customs Duty Rules for Small Parcels</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Situation</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Customs Duty</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Applies</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {dutyRuleRows.map(r => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white font-semibold">{r.situation}</td>
+              <td class="px-5 py-3 text-slate-300">{r.duty}</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] text-xs">{r.applies}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      The €3 is charged per item line by tariff classification, not per parcel — one box with two different product types draws €6. Quantity within one type does not multiply it.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="euc-vat-heading">
+    <h2 id="euc-vat-heading" class="text-2xl font-bold font-heading mb-6">Standard VAT Rates — All 27 Member States</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {vatColumns.map(col => (
+        <div class="overflow-x-auto rounded-2xl border border-white/5">
+          <table class="w-full text-sm">
+            <tbody class="divide-y divide-white/5">
+              {col.map(r => (
+                <tr class="bg-slate-900/20">
+                  <td class="px-5 py-2.5 text-white">{r.country}</td>
+                  <td class="px-5 py-2.5 font-mono text-[#ff6b35] font-bold text-right">{r.rate}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))}
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      Import VAT is due at the standard rate of the member state where the goods are consumed. Reduced rates exist for some goods but not for printer filament and hardware — and rates change, so confirm yours on large orders.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="euc-steps-heading">
+    <h2 id="euc-steps-heading" class="text-2xl font-bold font-heading mb-6">How to compare an import order honestly</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Take the sticker price and shipping from checkout</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Use the goods value before shipping — that is what customs values the consignment on. Add the international shipping line exactly as the shop quotes it, because shipping is part of the VAT base.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Count distinct product categories in the box</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Same filament in three colours is one tariff line — one €3 duty. Add a heater block or a PTFE tube of a different classification and it becomes two categories, €6. Enter that number, not the number of items.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Pick your country and compare the landed total</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">The landed price is the number to hold against an EU-based shop. If the gap is thin, buying locally usually wins on shipping time, returns, and support — and you avoid the courier's own handling fee on top.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="euc-faq-heading">
+    <h2 id="euc-faq-heading" class="text-2xl font-bold font-heading mb-6">EU Import Cost FAQ</h2>
+    <div class="space-y-4">
+      {euImportCostFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+<script>
+  // EU Import & Landed Cost Calculator — all math runs locally.
+  //   duty ≤ €150 = €3 × distinct item categories (Reg. (EU) 2026/382)
+  //   duty > €150 = item price × standard tariff rate %
+  //   VAT base    = item price + shipping + duty
+  //   landed      = VAT base + VAT
+
+  const el = (id: string) => document.getElementById(id);
+  const input = (id: string) => el(id) as HTMLInputElement | null;
+
+  const priceEl = input("eu-price");
+  const shippingEl = input("eu-shipping");
+  const categoriesEl = input("eu-categories");
+  const vatEl = document.getElementById("eu-vat") as HTMLSelectElement | null;
+  const over150Box = el("eu-over150");
+  const standardRateEl = input("eu-standard-rate");
+
+  function num(el: HTMLInputElement | null): number {
+    const v = parseFloat(el?.value ?? "");
+    return isFinite(v) ? v : NaN;
+  }
+
+  function eur(n: number): string {
+    return "€" + n.toFixed(2);
+  }
+
+  function set(id: string, text: string) {
+    const node = el(id);
+    if (node) node.textContent = text;
+  }
+
+  function recalc() {
+    const price = num(priceEl);
+    const shippingRaw = num(shippingEl);
+    const shipping = isFinite(shippingRaw) && shippingRaw > 0 ? shippingRaw : 0;
+    const catsRaw = parseInt(categoriesEl?.value ?? "", 10);
+    const cats = isFinite(catsRaw) && catsRaw >= 1 ? Math.floor(catsRaw) : NaN;
+    const vatRate = parseFloat(vatEl?.value ?? "0") || 0;
+    const over150 = isFinite(price) && price > 150;
+
+    // Over-threshold notice + rate input follow the item price
+    over150Box?.classList.toggle("hidden", !over150);
+
+    if (!isFinite(price) || price < 0 || !isFinite(cats)) {
+      ["eu-base", "eu-duty", "eu-vat-amt", "eu-total"].forEach((id) => set(id, "—"));
+      set("eu-base-note", "—");
+      set("eu-duty-note", "—");
+      set("eu-vat-note", "—");
+      set("eu-total-note", "—");
+      set("eu-formula", "Enter your item price and category count");
+      return;
+    }
+
+    // Customs duty
+    let duty: number;
+    let dutyNote: string;
+    if (over150) {
+      const rate = num(standardRateEl);
+      const r = isFinite(rate) && rate > 0 ? rate : 0;
+      duty = (price * r) / 100;
+      dutyNote = r > 0 ? `${r}% tariff on ${eur(price)}` : "over €150 — enter a tariff rate";
+    } else {
+      duty = 3 * cats;
+      dutyNote = `€3 × ${cats} categor${cats === 1 ? "y" : "ies"}`;
+    }
+
+    const base = price + shipping;
+    const vatBase = base + duty;
+    const vatAmount = (vatBase * vatRate) / 100;
+    const total = vatBase + vatAmount;
+    const markup = price > 0 ? ((total - price) / price) * 100 : NaN;
+
+    set("eu-base", eur(base));
+    set("eu-base-note", `${eur(price)} + ${eur(shipping)}`);
+    set("eu-duty", eur(duty));
+    set("eu-duty-note", dutyNote);
+    set("eu-vat-amt", eur(vatAmount));
+    set("eu-vat-note", `${vatRate}% on ${eur(vatBase)}`);
+    set("eu-total", eur(total));
+    set("eu-total-note", isFinite(markup) ? `+${markup.toFixed(1)}% over item price` : "—");
+    set(
+      "eu-formula",
+      `${eur(price)} + ${eur(shipping)} + ${eur(duty)} duty = ${eur(vatBase)} base × ${vatRate}% VAT = ${eur(vatAmount)} → ${eur(total)} landed`
+    );
+  }
+
+  document.querySelectorAll<HTMLInputElement>(".eu-calc").forEach((node) => {
+    node.addEventListener("input", recalc);
+    node.addEventListener("change", recalc);
+  });
+  vatEl?.addEventListener("change", recalc);
+  vatEl?.addEventListener("input", recalc);
+
+  recalc();
+</script>

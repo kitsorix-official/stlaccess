@@ -1,0 +1,336 @@
+---
+// src/components/tools/FilamentCostTool.astro
+// Filament Cost Calculator — calculator UI and content sections for
+// /calculator/filament-cost-calculator.
+//
+// part="calc"    → the interactive calculator block (rendered inside <article>)
+// part="content" → direct answer, preset table, steps, and FAQ sections
+//
+// Markup and IDs are preserved from the original [slug].astro branches; the
+// client script restores the cost logic and the scale-engine deep-link banner
+// (?from=&to=&percent=&logic=), which the page shipped without.
+import site from "../../data/site.json";
+import filamentPresets from "../../data/filamentPresets.json";
+import { filamentFaq } from "../../data/toolFaqs.js";
+
+interface Props {
+  part: "calc" | "content";
+}
+
+const { part } = Astro.props;
+
+const defaultPreset = filamentPresets.find(p => p.type === 'PLA' && p.name === 'Mid PLA') || filamentPresets[0];
+
+// Filament presets with computed per-gram cost for the reference table
+const filamentPresetsWithCost = filamentPresets.map((p) => ({
+  name: p.name,
+  brands: p.brands,
+  price: p.price,
+  weight: p.weight,
+  perGram: p.price / p.weight,
+}));
+---
+
+{part === "calc" && (
+  <section class="mb-12" aria-labelledby="calculator-heading">
+    <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Calculator</h2>
+    <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+      <!-- Scale context banner (shown when arriving via deep-link) -->
+      <div id="scale-context" class="hidden mb-8 bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-6">
+        <div class="flex items-center justify-between flex-wrap gap-4">
+          <div>
+            <p class="text-xs text-[#ff6b35] uppercase tracking-widest font-bold mb-1">Scale conversion</p>
+            <p class="text-lg font-bold text-white">
+              <span id="ctx-from"></span>
+              <i class="ti ti-arrow-right text-sm text-slate-500 mx-2"></i>
+              <span id="ctx-to"></span>
+              <span class="text-[#ff6b35] ml-2" id="ctx-percent"></span>
+            </p>
+            <p class="text-xs text-slate-500 mt-1" id="ctx-logic"></p>
+          </div>
+          <a id="ctx-back-link" href="/" class="text-xs text-[#ff6b35] hover:text-white transition-colors font-bold uppercase tracking-widest">
+            <i class="ti ti-arrow-left mr-1"></i>Back to calculator
+          </a>
+        </div>
+        <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+          This is your slicer scale. After importing and scaling your STL, check your slicer's estimated filament weight and enter it below.
+        </p>
+      </div>
+
+      <!-- Filament presets -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="text-xs text-slate-500 uppercase tracking-widest mr-1 self-center">Presets:</span>
+        {filamentPresets.map((preset) => (
+          <button class="filament-preset-btn text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-price={preset.price} data-weight={preset.weight} title={preset.brands}>
+            {preset.name}
+          </button>
+        ))}
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <label for="roll-price" class="block text-sm font-bold text-slate-300 mb-2">Roll Price ($)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">$</span>
+            <input id="roll-price" type="number" value={defaultPreset.price} step="0.01" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+        <div>
+          <label for="roll-weight" class="block text-sm font-bold text-slate-300 mb-2">Roll Weight (g)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">g</span>
+            <input id="roll-weight" type="number" value={defaultPreset.weight} step="10" min="1" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+        <div>
+          <label for="filament-used" class="block text-sm font-bold text-slate-300 mb-2">Filament Used (g)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">g</span>
+            <input id="filament-used" type="number" value="" step="0.1" min="0" placeholder="45" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors placeholder-slate-600" />
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Check your slicer's estimated filament usage</p>
+        </div>
+        <div>
+          <label for="cost-per-gram" class="block text-sm font-bold text-slate-300 mb-2">Cost Per Gram</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">$</span>
+            <input id="cost-per-gram" type="text" value="" readonly class="w-full bg-slate-950/50 border border-white/5 rounded-xl px-10 py-4 text-slate-400 text-lg font-mono cursor-default" />
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-8 p-6 bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-4">Optional — Electricity Cost</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label for="power-draw" class="block text-xs font-semibold text-slate-400 mb-1">Printer Power Draw (W)</label>
+            <input id="power-draw" type="number" value="0" step="5" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            <p class="text-[10px] text-slate-500 mt-0.5">{site.printerName} ~60W, typical ~80-120W</p>
+          </div>
+          <div>
+            <label for="electricity-rate" class="block text-xs font-semibold text-slate-400 mb-1">Electricity Rate ($/kWh)</label>
+            <input id="electricity-rate" type="number" value="0" step="0.01" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            <p class="text-[10px] text-slate-500 mt-0.5">US avg ~$0.12, EU ~$0.25</p>
+          </div>
+          <div>
+            <label for="print-time" class="block text-xs font-semibold text-slate-400 mb-1">Print Time (hours)</label>
+            <input id="print-time" type="number" value="0" step="0.5" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            <p class="text-[10px] text-slate-500 mt-0.5">Check your slicer estimate</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" aria-live="polite">
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Filament Cost</p>
+          <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="cost-filament">$0.00</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Electricity Cost</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="cost-electricity">$0.00</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Total Cost</p>
+          <p class="text-2xl md:text-3xl font-black text-white font-heading" id="cost-total">$0.00</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Grams per Dollar</p>
+          <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="cost-gpd">—</p>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6">
+        <div class="flex items-start gap-3">
+          <i class="ti ti-alert-triangle text-amber-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="text-sm font-semibold text-white mb-1">Disclaimer: This is an estimate</p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              All values are approximations. Actual filament usage varies by purge tower, support material, raft, and slicer settings. Electricity cost depends on your local rate, printer efficiency, and whether the bed and nozzle reach full temperature for the entire print. This calculator is a planning aid only and has no legal or contractual value.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{part === "content" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fcc-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="fcc-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">How to estimate a print's cost</h2>
+      <p class="text-slate-300 leading-relaxed">
+        Divide the <strong class="text-white">roll price by the roll weight</strong> to get your cost per gram, then multiply by the grams your slicer reports. A $19.99, 1000g roll comes to about <em class="text-[#ff6b35] font-semibold not-italic">$0.02/g</em>, so a 10g miniature costs roughly <em class="text-[#ff6b35] font-semibold not-italic">$0.20</em> in filament. Add electricity if you want the full picture — the calculator handles both.
+      </p>
+      <p class="text-slate-400 leading-relaxed mt-4 text-sm">
+        Don't know the grams yet? Work them out first with the <a href="/calculator/filament-density-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Filament Density Calculator</a> — enter your model's dimensions and material, get the weight, then bring it here for the price.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fcc-ref-heading">
+    <h2 id="fcc-ref-heading" class="text-2xl font-bold font-heading mb-6">Filament Preset Price Per Gram</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Preset</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Brands</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Roll Price</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Per Gram</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {filamentPresetsWithCost.map(p => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white">{p.name}</td>
+              <td class="px-5 py-3 text-slate-400">{p.brands}</td>
+              <td class="px-5 py-3 font-mono text-white">${p.price.toFixed(2)} / {p.weight}g</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">${p.perGram.toFixed(4)}/g</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      These are the exact presets loaded into the calculator. A mid-range PLA roll at $0.02/g is the sweet spot for most tabletop printing.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fcc-steps-heading">
+    <h2 id="fcc-steps-heading" class="text-2xl font-bold font-heading mb-6">How to get an accurate cost</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Read the grams from your slicer</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Chitubox, Lychee, and PrusaSlicer all estimate filament weight before you slice. Include the purge tower and supports — they're real material, so they belong in the number.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Enter your roll price and weight</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">The preset buttons load real market prices for you — or type your own. The cost per gram updates instantly so you can see the math behind the number.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Add electricity only when it matters</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">A short mini print at 60W costs cents. A 10-hour terrain print at 120W adds real money. Fill in the optional fields when you're planning something big.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="fcc-faq-heading">
+    <h2 id="fcc-faq-heading" class="text-2xl font-bold font-heading mb-6">Filament Cost FAQ</h2>
+    <div class="space-y-4">
+      {filamentFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+<script>
+  // Filament Cost Calculator — cost per gram, totals, presets, and the
+  // scale-engine deep-link banner (?from=&to=&percent=&logic=).
+  const rollPrice = document.getElementById("roll-price") as HTMLInputElement | null;
+  const rollWeight = document.getElementById("roll-weight") as HTMLInputElement | null;
+  const filamentUsed = document.getElementById("filament-used") as HTMLInputElement | null;
+  const costPerGram = document.getElementById("cost-per-gram") as HTMLInputElement | null;
+  const powerDraw = document.getElementById("power-draw") as HTMLInputElement | null;
+  const electricityRate = document.getElementById("electricity-rate") as HTMLInputElement | null;
+  const printTime = document.getElementById("print-time") as HTMLInputElement | null;
+
+  function num(el: HTMLInputElement | null): number {
+    const v = parseFloat(el?.value ?? "");
+    return isFinite(v) ? v : 0;
+  }
+
+  function money(n: number): string {
+    return "$" + n.toFixed(2);
+  }
+
+  function recalcCost() {
+    const price = num(rollPrice);
+    const weight = num(rollWeight);
+    const perGram = weight > 0 ? price / weight : 0;
+
+    if (costPerGram) costPerGram.value = perGram > 0 ? perGram.toFixed(4) : "";
+
+    const used = num(filamentUsed);
+    const filamentCost = used * perGram;
+
+    const watts = num(powerDraw);
+    const rate = num(electricityRate);
+    const hours = num(printTime);
+    const electricityCost = (watts * hours * rate) / 1000;
+
+    const total = filamentCost + electricityCost;
+
+    const set = (id: string, text: string) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
+    set("cost-filament", money(filamentCost));
+    set("cost-electricity", money(electricityCost));
+    set("cost-total", money(total));
+    set("cost-gpd", perGram > 0 ? (1 / perGram).toFixed(1) + " g" : "—");
+  }
+
+  if (rollPrice && rollWeight && filamentUsed) {
+    [rollPrice, rollWeight, filamentUsed, powerDraw, electricityRate, printTime]
+      .filter(Boolean)
+      .forEach((el) => {
+        el!.addEventListener("input", recalcCost);
+        el!.addEventListener("change", recalcCost);
+      });
+
+    // Preset buttons load real market prices from data-price / data-weight
+    document.querySelectorAll<HTMLButtonElement>(".filament-preset-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.price && rollPrice) rollPrice.value = btn.dataset.price;
+        if (btn.dataset.weight && rollWeight) rollWeight.value = btn.dataset.weight;
+        recalcCost();
+      });
+    });
+
+    // Scale-engine deep-link banner
+    const params = new URLSearchParams(window.location.search);
+    const from = params.get("from");
+    const to = params.get("to");
+    const percent = params.get("percent");
+    const logic = params.get("logic");
+    if (from && to && percent) {
+      const banner = document.getElementById("scale-context");
+      const setText = (id: string, text: string) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+      };
+      setText("ctx-from", from);
+      setText("ctx-to", to);
+      setText("ctx-percent", percent + "%");
+      setText("ctx-logic", "Measured " + (logic === "head" ? "to top of head" : "to eye level"));
+      const backLink = document.getElementById("ctx-back-link") as HTMLAnchorElement | null;
+      if (backLink) {
+        backLink.href = "/?source=" + encodeURIComponent(from) +
+          "&target=" + encodeURIComponent(to) +
+          "&logic=" + encodeURIComponent(logic || "eye");
+      }
+      banner?.classList.remove("hidden");
+    }
+
+    recalcCost();
+  }
+</script>

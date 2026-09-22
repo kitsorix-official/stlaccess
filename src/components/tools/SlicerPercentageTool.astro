@@ -1,0 +1,216 @@
+---
+// src/components/tools/SlicerPercentageTool.astro
+// Slicer Percentage Calculator — calculator UI and content sections for
+// /calculator/slicer-percentage-calculator.
+//
+// part="calc"    → the interactive calculator block (rendered inside <article>)
+// part="content" → direct answer, reference table, steps, and FAQ sections
+//
+// Markup and IDs are preserved from the original [slug].astro branches; the
+// client script restores the calculation logic (the page shipped without it).
+import site from "../../data/site.json";
+import { slicerFaq } from "../../data/toolFaqs.js";
+
+interface Props {
+  part: "calc" | "content";
+}
+
+const { part } = Astro.props;
+---
+
+{part === "calc" && (
+  <section class="mb-12" aria-labelledby="calculator-heading">
+    <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Calculator</h2>
+    <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <label for="src-size" class="block text-sm font-bold text-slate-300 mb-2">Source Size (mm)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mm</span>
+            <input id="src-size" type="number" value="32" step="0.1" min="0.1" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+        <div>
+          <label for="tgt-size" class="block text-sm font-bold text-slate-300 mb-2">Target Size (mm)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mm</span>
+            <input id="tgt-size" type="number" value="28" step="0.1" min="0.1" class="w-full bg-slate-950 border border-white/10 rounded-xl px-10 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+      </div>
+
+      <div id="calc-result" class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-6 mb-8 text-center" aria-live="polite">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">Type this into your slicer</p>
+        <p class="text-5xl md:text-6xl font-black text-[#ff6b35] font-heading tracking-tight" id="calc-pct">87.5%</p>
+        <p class="text-slate-400 text-sm mt-3" id="calc-formula">28 ÷ 32 × 100</p>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="text-xs text-slate-500 uppercase tracking-widest mr-1 self-center">Presets:</span>
+        {[
+          [25, 32], [28, 32], [32, 35], [32, 40], [32, 54], [32, 75],
+          [32, 28], [35, 32], [40, 32], [54, 32], [75, 32], [28, 35]
+        ].map(([s, t]) => (
+          <button class="preset-btn text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-src={s} data-tgt={t}>
+            {s}mm → {t}mm
+          </button>
+        ))}
+      </div>
+
+      <div class="flex gap-3">
+        <button id="copy-btn" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 px-5 py-3 rounded-xl text-sm font-bold transition-colors cursor-pointer">
+          <i class="ti ti-copy text-xs"></i>
+          Copy Percentage
+        </button>
+        <button id="swap-btn" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 px-5 py-3 rounded-xl text-sm font-bold transition-colors cursor-pointer">
+          <i class="ti ti-arrows-right-left text-xs"></i>
+          Swap Values
+        </button>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-white/5">
+        <p class="text-xs text-slate-500">
+          Formula: (Target ÷ Source) × 100 = Percentage. Enter the result as a uniform scale factor in Chitubox, Lychee Slicer, or PrusaSlicer. All calculations are performed locally — nothing is sent to any server.
+        </p>
+      </div>
+    </div>
+  </section>
+)}
+
+{part === "content" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="spc-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="spc-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">The percentage formula, plain and simple</h2>
+      <p class="text-slate-300 leading-relaxed">
+        Take your <strong class="text-white">target height in millimetres</strong>, divide it by your <strong class="text-white">source height</strong>, and multiply by 100. That number is exactly what you type into your slicer. Going from 32mm to 28mm? <em class="text-[#ff6b35] font-semibold not-italic">28 ÷ 32 × 100 = 87.5%</em>. Going from 28mm to 32mm? <em class="text-[#ff6b35] font-semibold not-italic">114.3%</em>. No mystery, no guesswork — just one division.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="spc-ref-heading">
+    <h2 id="spc-ref-heading" class="text-2xl font-bold font-heading mb-6">Common Conversion Quick Reference</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">From</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">To</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Slicer %</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {site.quickRef.map(q => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white">{q.from}</td>
+              <td class="px-5 py-3 text-white">{q.to}</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{q.pct}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      All percentages use the same {site.baselineHeightCm}cm human baseline with eyes at {site.eyeLevelCm}cm. The calculator above works for any pair — these are just the six I reach for most.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="spc-steps-heading">
+    <h2 id="spc-steps-heading" class="text-2xl font-bold font-heading mb-6">How to scale an STL in your slicer</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Confirm the model's source scale first</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Check the STL listing for the intended scale. If it's not labelled, measure the imported model against the bar in your slicer to get its height in millimetres before you touch the scale tool.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Type the percentage with uniform scaling</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">In Chitubox, Lychee, PrusaSlicer, or Cura, open the scale tool and enter the percentage from above. <strong class="text-white">Lock the X, Y, and Z axes</strong> so the model scales evenly and the proportions stay intact.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Slice a test piece, not the whole army</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Print one model and hold it against the rest of your collection before committing to a batch. Over-extrusion and cooling shrinkage drift by 0.2-0.5%, which is usually invisible but worth confirming.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="spc-faq-heading">
+    <h2 id="spc-faq-heading" class="text-2xl font-bold font-heading mb-6">Slicer Percentage FAQ</h2>
+    <div class="space-y-4">
+      {slicerFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+<script>
+  // Slicer Percentage Calculator — live percentage, presets, copy, and swap.
+  const srcSize = document.getElementById("src-size") as HTMLInputElement | null;
+  const tgtSize = document.getElementById("tgt-size") as HTMLInputElement | null;
+  const pctEl = document.getElementById("calc-pct");
+  const formulaEl = document.getElementById("calc-formula");
+
+  function recalcPercentage() {
+    if (!srcSize || !tgtSize || !pctEl || !formulaEl) return;
+    const s = parseFloat(srcSize.value);
+    const t = parseFloat(tgtSize.value);
+    if (!isFinite(s) || s <= 0 || !isFinite(t) || t <= 0) {
+      pctEl.textContent = "—";
+      formulaEl.textContent = "Enter a source and target size above";
+      return;
+    }
+    const pct = (t / s) * 100;
+    pctEl.textContent = (Math.round(pct * 10) / 10).toFixed(1) + "%";
+    formulaEl.textContent = `${t} ÷ ${s} × 100`;
+  }
+
+  if (srcSize && tgtSize) {
+    srcSize.addEventListener("input", recalcPercentage);
+    tgtSize.addEventListener("input", recalcPercentage);
+
+    document.querySelectorAll<HTMLButtonElement>(".preset-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        srcSize.value = btn.dataset.src || srcSize.value;
+        tgtSize.value = btn.dataset.tgt || tgtSize.value;
+        recalcPercentage();
+      });
+    });
+
+    document.getElementById("swap-btn")?.addEventListener("click", () => {
+      const tmp = srcSize.value;
+      srcSize.value = tgtSize.value;
+      tgtSize.value = tmp;
+      recalcPercentage();
+    });
+
+    const copyBtn = document.getElementById("copy-btn");
+    copyBtn?.addEventListener("click", () => {
+      const text = pctEl?.textContent || "";
+      if (!text) return;
+      navigator.clipboard.writeText(text).then(() => {
+        const original = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="ti ti-check text-xs"></i> Copied!';
+        setTimeout(() => { copyBtn.innerHTML = original; }, 1500);
+      }).catch(() => {});
+    });
+
+    recalcPercentage();
+  }
+</script>

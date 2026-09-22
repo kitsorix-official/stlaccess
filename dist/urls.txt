@@ -12,3 +12,5 @@ https://stlaccess.com/calculator
 https://stlaccess.com/calculator/slicer-percentage-calculator
 https://stlaccess.com/calculator/filament-cost-calculator
 https://stlaccess.com/calculator/reference-bar-generator
+https://stlaccess.com/calculator/filament-density-calculator
+https://stlaccess.com/calculator/eu-3d-printing-import-cost-calculator

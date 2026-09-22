@@ -1,0 +1,586 @@
+---
+// src/components/tools/FilamentDensityTool.astro
+// Filament Density & Weight-to-Volume Estimator for
+// /calculator/filament-density-calculator.
+//
+// part="calc"    → the interactive calculator block (rendered inside <article>)
+// part="content" → direct answer, density reference, steps, and FAQ sections
+//
+// Math (client-side only):
+//   weight = material volume (cm³) × density (g/cm³)
+//   hollow = shell volume + interior volume × infill%
+//   time   = material volume (cm³) × minutes-per-cm³ for the quality preset
+import materialDensities from "../../data/materialDensities.json";
+import { filamentDensityFaq } from "../../data/toolFaqs.js";
+
+interface Props {
+  part: "calc" | "content";
+}
+
+const { part } = Astro.props;
+
+// Print-time baseline constants — minutes per cm³ of extruded material.
+// Tuned as a rough planning baseline for a bed-slinger at each layer height;
+// the slicer's own estimate is always the final word.
+const qualityPresets = [
+  { key: "draft", label: "Draft", layer: "0.28 mm", rate: 5 },
+  { key: "normal", label: "Normal", layer: "0.20 mm", rate: 8 },
+  { key: "fine", label: "Fine", layer: "0.12 mm", rate: 12 },
+];
+
+const defaultQuality = qualityPresets[1];
+---
+
+{part === "calc" && (
+  <section class="mb-12" aria-labelledby="calculator-heading">
+    <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Calculator</h2>
+    <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+
+      <!-- Input mode -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="text-xs text-slate-500 uppercase tracking-widest mr-1 self-center">Input:</span>
+        <button class="fd-mode-btn text-xs px-3 py-1.5 rounded-lg border border-[#ff6b35]/50 text-[#ff6b35] transition-colors cursor-pointer" data-mode="shape" aria-pressed="true">
+          Shape dimensions
+        </button>
+        <button class="fd-mode-btn text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-mode="volume" aria-pressed="false">
+          Direct volume (cm³)
+        </button>
+      </div>
+
+      <!-- Shape selection -->
+      <div id="fd-shape-inputs" class="mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="fd-shape" class="block text-sm font-bold text-slate-300 mb-2">Shape</label>
+            <select id="fd-shape" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+              <option value="box" selected>Box / cube</option>
+              <option value="cylinder">Cylinder</option>
+              <option value="sphere">Sphere</option>
+              <option value="tube">Tube (hollow cylinder)</option>
+            </select>
+          </div>
+          <div>
+            <label for="fd-shell" class="block text-sm font-bold text-slate-300 mb-2">Solid or Hollow</label>
+            <select id="fd-shell" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+              <option value="solid">Solid (no infill)</option>
+              <option value="hollow" selected>Hollow (wall + infill)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="fd-group-box" class="fd-shape-group grid grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <label for="fd-len" class="block text-sm font-bold text-slate-300 mb-2">Length (mm)</label>
+            <input id="fd-len" type="number" value="50" step="1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="fd-wid" class="block text-sm font-bold text-slate-300 mb-2">Width (mm)</label>
+            <input id="fd-wid" type="number" value="50" step="1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="fd-hgt" class="block text-sm font-bold text-slate-300 mb-2">Height (mm)</label>
+            <input id="fd-hgt" type="number" value="50" step="1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+
+        <div id="fd-group-cylinder" class="fd-shape-group grid grid-cols-2 gap-6 mb-6 hidden">
+          <div>
+            <label for="fd-dia" class="block text-sm font-bold text-slate-300 mb-2">Diameter (mm)</label>
+            <input id="fd-dia" type="number" value="40" step="1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="fd-cyl-h" class="block text-sm font-bold text-slate-300 mb-2">Height (mm)</label>
+            <input id="fd-cyl-h" type="number" value="60" step="1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+
+        <div id="fd-group-sphere" class="fd-shape-group grid grid-cols-2 gap-6 mb-6 hidden">
+          <div>
+            <label for="fd-sph-d" class="block text-sm font-bold text-slate-300 mb-2">Diameter (mm)</label>
+            <input id="fd-sph-d" type="number" value="50" step="1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+
+        <div id="fd-group-tube" class="fd-shape-group grid grid-cols-2 md:grid-cols-3 gap-6 mb-6 hidden">
+          <div>
+            <label for="fd-tube-od" class="block text-sm font-bold text-slate-300 mb-2">Outer Ø (mm)</label>
+            <input id="fd-tube-od" type="number" value="40" step="1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="fd-tube-h" class="block text-sm font-bold text-slate-300 mb-2">Height (mm)</label>
+            <input id="fd-tube-h" type="number" value="100" step="1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="fd-tube-w" class="block text-sm font-bold text-slate-300 mb-2">Wall (mm)</label>
+            <input id="fd-tube-w" type="number" value="2" step="0.1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+
+        <!-- Hollow shell settings -->
+        <div id="fd-shell-inputs" class="grid grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="fd-wall" class="block text-sm font-bold text-slate-300 mb-2">Wall Thickness (mm)</label>
+            <input id="fd-wall" type="number" value="1.2" step="0.1" min="0.1" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="fd-infill" class="block text-sm font-bold text-slate-300 mb-2">Infill (%)</label>
+            <input id="fd-infill" type="number" value="15" step="1" min="0" max="100" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Direct volume input -->
+      <div id="fd-volume-inputs" class="mb-6 hidden">
+        <label for="fd-volume" class="block text-sm font-bold text-slate-300 mb-2">Volume (cm³ or mL)</label>
+        <div class="relative max-w-sm">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">cm³</span>
+          <input id="fd-volume" type="number" value="25" step="0.1" min="0.01" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-12 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+        </div>
+        <p class="text-xs text-slate-500 mt-1">Every slicer reports model volume in the preview — Chitubox, Lychee, and PrusaSlicer all show cm³.</p>
+      </div>
+
+      <!-- Material + quality -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="fd-material" class="block text-sm font-bold text-slate-300 mb-2">Material</label>
+          <select id="fd-material" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+            {materialDensities.map(m => (
+              <option value={m.density} selected={m.name === "PLA"}>{m.name} — {m.density} g/cm³</option>
+            ))}
+            <option value="custom">Custom density…</option>
+          </select>
+          <p class="text-xs text-slate-500 mt-1" id="fd-density-hint">Density: 1.24 g/cm³</p>
+          <div id="fd-custom-wrap" class="hidden mt-3">
+            <label for="fd-custom-density" class="block text-xs font-semibold text-slate-400 mb-1">Custom Density (g/cm³)</label>
+            <input id="fd-custom-density" type="number" value="1.24" step="0.01" min="0.01" class="fd-dim w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+        <div>
+          <label for="fd-quality" class="block text-sm font-bold text-slate-300 mb-2">Quality Preset (print time)</label>
+          <select id="fd-quality" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+            {qualityPresets.map(q => (
+              <option value={q.key} data-rate={q.rate} selected={q.key === defaultQuality.key}>{q.label} — {q.layer}</option>
+            ))}
+          </select>
+          <p class="text-xs text-slate-500 mt-1">Baseline only — your slicer's estimate is the final word.</p>
+        </div>
+      </div>
+
+      <!-- Spool / cost (optional) -->
+      <div class="mb-8 p-6 bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-4">Optional — Your Spool</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label for="fd-spool-price" class="block text-xs font-semibold text-slate-400 mb-1">Spool Price ($)</label>
+            <input id="fd-spool-price" type="number" value="19.99" step="0.01" min="0" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            <p class="text-[10px] text-slate-500 mt-0.5">A mid-range 1kg PLA roll runs about $19.99</p>
+          </div>
+          <div>
+            <label for="fd-spool-weight" class="block text-xs font-semibold text-slate-400 mb-1">Spool Weight (g)</label>
+            <input id="fd-spool-weight" type="number" value="1000" step="10" min="1" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            <p class="text-[10px] text-slate-500 mt-0.5">Also works for what's left on a partial spool</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4" aria-live="polite">
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Model Volume</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="fd-vol-outer">125.0</p>
+          <p class="text-[10px] text-slate-600 mt-1">cm³</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Material Volume</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="fd-vol-material">33.3</p>
+          <p class="text-[10px] text-slate-600 mt-1">cm³</p>
+        </div>
+        <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Weight</p>
+          <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="fd-weight">41.3</p>
+          <p class="text-[10px] text-slate-600 mt-1">grams</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Print Time Baseline</p>
+          <p class="text-2xl md:text-3xl font-black text-white font-heading" id="fd-time">4h 27m</p>
+          <p class="text-[10px] text-slate-600 mt-1">rough estimate</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mb-8" aria-live="polite">
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Prints per Spool</p>
+          <p class="text-xl md:text-2xl font-black text-[#ff6b35] font-heading" id="fd-per-spool">24</p>
+          <p class="text-[10px] text-slate-600 mt-1">from a full spool at this weight</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Cost of This Print</p>
+          <p class="text-xl md:text-2xl font-black text-white font-heading" id="fd-cost">$0.83</p>
+          <p class="text-[10px] text-slate-600 mt-1">filament only</p>
+        </div>
+      </div>
+
+      <div id="fd-formula-box" class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 mb-8">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">The math</p>
+        <p class="text-sm font-mono text-slate-300 leading-relaxed" id="fd-formula">125.0 cm³ outer · 33.3 cm³ material × 1.24 g/cm³ = 41.3 g</p>
+      </div>
+
+      <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6">
+        <div class="flex items-start gap-3">
+          <i class="ti ti-alert-triangle text-amber-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="text-sm font-semibold text-white mb-1">Disclaimer: This is an estimate</p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Densities are typical published values — brand-to-brand variation is about ±2%, and colour dyes make no practical difference. Hollow math assumes a uniform wall and even infill, so it will not match a print with heavy supports, a purge tower, or a brim. The print-time baseline is a planning figure, not a slicer estimate. This calculator has no legal or contractual value.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{part === "content" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fdc-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="fdc-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">How to get grams from volume</h2>
+      <p class="text-slate-300 leading-relaxed">
+        <strong class="text-white">Weight = Volume × Density.</strong> A 10 cm³ solid model printed in PLA at <em class="text-[#ff6b35] font-semibold not-italic">1.24 g/cm³</em> weighs 10 × 1.24 = <em class="text-[#ff6b35] font-semibold not-italic">12.4 g</em>. The same volume in ABS at 1.04 g/cm³ comes to 10.4 g — 16% lighter, same shape. For a hollow FDM print, subtract the interior behind your wall thickness and only count the infill percentage of what's left. That is the whole trick, and the calculator above does every step of it live.
+      </p>
+      <p class="text-slate-400 leading-relaxed mt-4 text-sm">
+        Got your grams? Feed them into the <a href="/calculator/filament-cost-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Filament Cost Calculator</a> to turn the weight into money.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fdc-density-heading">
+    <h2 id="fdc-density-heading" class="text-2xl font-bold font-heading mb-6">Material Density Reference</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Material</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Density</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Typical use</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {materialDensities.map(m => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white font-semibold">{m.name}</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{m.density} g/cm³</td>
+              <td class="px-5 py-3 text-slate-400">{m.notes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      These are the exact presets loaded into the calculator. Density is mass per unit volume — multiply it by your model's cm³ and you have the weight before the first layer is laid down.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fdc-time-heading">
+    <h2 id="fdc-time-heading" class="text-2xl font-bold font-heading mb-6">Print Time Baseline Presets</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Preset</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Layer Height</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Rate</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {qualityPresets.map(q => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white font-semibold">{q.label}</td>
+              <td class="px-5 py-3 font-mono text-slate-300">{q.layer}</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{q.rate} min per cm³</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      Time = material volume × the rate for your preset. Treat it as a planning baseline: supports, infill pattern, wall count, and speed profiles all move the real number, so always confirm in your slicer.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="fdc-steps-heading">
+    <h2 id="fdc-steps-heading" class="text-2xl font-bold font-heading mb-6">How to estimate a print before slicing</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Enter dimensions — or paste the volume</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Measure the model or read the bounding box, pick box, cylinder, sphere, or tube, and type the numbers. If your slicer already reports the model volume in cm³, switch to Direct volume and paste it in.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Match the material and shell settings</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Pick your filament so the density is right, then set <strong class="text-white">Solid</strong> for resin-style solid prints or <strong class="text-white">Hollow</strong> with the wall thickness and infill percentage your slicer profile uses. The weight updates as you type.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Check the grams against your spool</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">The tool tells you how many such prints a full spool delivers and what this one costs. If the number is close to what's left on your roll, drop to a lower infill — or head to the <a href="/calculator/filament-cost-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Filament Cost Calculator</a> for the full picture with electricity.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="fdc-faq-heading">
+    <h2 id="fdc-faq-heading" class="text-2xl font-bold font-heading mb-6">Filament Density FAQ</h2>
+    <div class="space-y-4">
+      {filamentDensityFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+<script>
+  // Filament Density & Weight-to-Volume Estimator — all math runs locally.
+  //   weight = material volume (cm³) × density (g/cm³)
+  //   hollow = shell volume + interior volume × infill%
+  //   time   = material volume × minutes-per-cm³ (quality preset)
+
+  const $ = (id: string) => document.getElementById(id);
+  const input = (id: string) => $id<HTMLInputElement>(id);
+  function $id<T extends HTMLElement>(id: string): T | null {
+    return document.getElementById(id) as T | null;
+  }
+
+  const shapeSelect = $id<HTMLSelectElement>("fd-shape");
+  const shellSelect = $id<HTMLSelectElement>("fd-shell");
+  const materialSelect = $id<HTMLSelectElement>("fd-material");
+  const qualitySelect = $id<HTMLSelectElement>("fd-quality");
+
+  const modeBtns = document.querySelectorAll<HTMLButtonElement>(".fd-mode-btn");
+  const shapeInputs = $("fd-shape-inputs");
+  const volumeInputs = $("fd-volume-inputs");
+  const shellInputs = $("fd-shell-inputs");
+  const customWrap = $("fd-custom-wrap");
+  const densityHint = $("fd-density-hint");
+
+  let mode: "shape" | "volume" = "shape";
+
+  function num(el: HTMLInputElement | null): number {
+    const v = parseFloat(el?.value ?? "");
+    return isFinite(v) ? v : NaN;
+  }
+
+  function currentDensity(): number {
+    if (!materialSelect) return NaN;
+    if (materialSelect.value === "custom") return num(input("fd-custom-density"));
+    return parseFloat(materialSelect.value);
+  }
+
+  // Outer and interior volumes in mm³ for the active shape.
+  // Interior is the cavity behind `wall` mm (0 → solid object).
+  function volumes(shape: string, wall: number): { outer: number; inner: number } {
+    if (shape === "box") {
+      const L = num(input("fd-len"));
+      const W = num(input("fd-wid"));
+      const H = num(input("fd-hgt"));
+      if (!(L > 0 && W > 0 && H > 0)) return { outer: NaN, inner: NaN };
+      const iL = Math.max(L - 2 * wall, 0);
+      const iW = Math.max(W - 2 * wall, 0);
+      const iH = Math.max(H - 2 * wall, 0);
+      return { outer: L * W * H, inner: iL * iW * iH };
+    }
+    if (shape === "cylinder") {
+      const D = num(input("fd-dia"));
+      const H = num(input("fd-cyl-h"));
+      if (!(D > 0 && H > 0)) return { outer: NaN, inner: NaN };
+      const iD = Math.max(D - 2 * wall, 0);
+      const iH = Math.max(H - 2 * wall, 0);
+      return { outer: (Math.PI / 4) * D * D * H, inner: (Math.PI / 4) * iD * iD * iH };
+    }
+    if (shape === "sphere") {
+      const D = num(input("fd-sph-d"));
+      if (!(D > 0)) return { outer: NaN, inner: NaN };
+      const iD = Math.max(D - 2 * wall, 0);
+      return { outer: (Math.PI / 6) * D ** 3, inner: (Math.PI / 6) * iD ** 3 };
+    }
+    // tube: outer is the bounding cylinder; inner is everything inside the wall
+    const OD = num(input("fd-tube-od"));
+    const H = num(input("fd-tube-h"));
+    const W = num(input("fd-tube-w"));
+    if (!(OD > 0 && H > 0 && W > 0)) return { outer: NaN, inner: NaN };
+    const iD = Math.max(OD - 2 * W, 0);
+    const outer = (Math.PI / 4) * OD * OD * H;
+    const inner = (Math.PI / 4) * iD * iD * H;
+    return { outer, inner };
+  }
+
+  function fmtVol(cm3: number): string {
+    if (!isFinite(cm3)) return "—";
+    return cm3 >= 1000 ? cm3.toFixed(0) : cm3.toFixed(1);
+  }
+
+  function fmtWeight(g: number): string {
+    if (!isFinite(g)) return "—";
+    return g >= 100 ? g.toFixed(0) : g.toFixed(1);
+  }
+
+  function fmtTime(minutes: number): string {
+    if (!isFinite(minutes) || minutes <= 0) return "—";
+    const total = Math.round(minutes);
+    const h = Math.floor(total / 60);
+    const m = total % 60;
+    return h > 0 ? `${h}h ${m}m` : `${m}m`;
+  }
+
+  function set(id: string, text: string) {
+    const el = $(id);
+    if (el) el.textContent = text;
+  }
+
+  function syncVisibility() {
+    if (!shapeInputs || !volumeInputs) return;
+    const shape = shapeSelect?.value || "box";
+
+    shapeInputs.classList.toggle("hidden", mode !== "shape");
+    volumeInputs.classList.toggle("hidden", mode !== "volume");
+
+    document.querySelectorAll<HTMLElement>(".fd-shape-group").forEach((g) => {
+      g.classList.toggle("hidden", mode !== "shape" || g.id !== "fd-group-" + shape);
+    });
+
+    // Tube defines its own wall — no separate shell options.
+    const tube = shape === "tube";
+    const hollow = shellSelect?.value === "hollow";
+    if (shellSelect) shellSelect.disabled = tube || mode === "volume";
+    shellInputs?.classList.toggle("hidden", mode !== "shape" || tube || !hollow);
+
+    customWrap?.classList.toggle("hidden", materialSelect?.value !== "custom");
+    if (densityHint) {
+      const d = currentDensity();
+      densityHint.textContent = isFinite(d) && d > 0 ? `Density: ${d} g/cm³` : "Enter a valid density";
+    }
+  }
+
+  function recalc() {
+    syncVisibility();
+
+    const density = currentDensity();
+    const quality = qualitySelect?.selectedOptions[0];
+    const rate = parseFloat(quality?.dataset.rate ?? "0") || 0;
+
+    let outerMm3 = NaN;
+    let materialMm3 = NaN;
+    let formulaNote = "";
+
+    if (mode === "volume") {
+      const v = num(input("fd-volume")); // cm³
+      if (!(v > 0)) {
+        outerMm3 = materialMm3 = NaN;
+      } else {
+        outerMm3 = materialMm3 = v * 1000;
+      }
+    } else {
+      const shape = shapeSelect?.value || "box";
+      const wall = shape === "tube" ? NaN : num(input("fd-wall"));
+      const useWall = shape === "tube" ? 0 : wall;
+      const { outer, inner } = volumes(shape, isNaN(useWall) ? NaN : useWall);
+      outerMm3 = outer;
+
+      if (isFinite(outer)) {
+        if (shape === "tube") {
+          // Tube walls print solid — material is the shell itself.
+          materialMm3 = outer - inner;
+          formulaNote = "solid walls";
+        } else if (shellSelect?.value === "hollow" && isFinite(wall) && wall > 0) {
+          const infill = Math.min(Math.max(num(input("fd-infill")) || 0, 0), 100);
+          const shell = outer - inner;
+          materialMm3 = shell + inner * (infill / 100);
+          formulaNote = `${wall}mm wall · ${infill}% infill`;
+        } else {
+          materialMm3 = outer;
+        }
+      }
+    }
+
+    const outerCm3 = outerMm3 / 1000;
+    const materialCm3 = materialMm3 / 1000;
+    const weight = materialCm3 * density;
+    const minutes = materialCm3 * rate;
+
+    // Spool math
+    const spoolPrice = num(input("fd-spool-price"));
+    const spoolWeight = num(input("fd-spool-weight"));
+    const perSpool = weight > 0 && spoolWeight > 0 ? Math.floor(spoolWeight / weight) : NaN;
+    const cost = weight > 0 && spoolPrice > 0 && spoolWeight > 0
+      ? weight * (spoolPrice / spoolWeight)
+      : NaN;
+
+    set("fd-vol-outer", fmtVol(outerCm3));
+    set("fd-vol-material", fmtVol(materialCm3));
+    set("fd-weight", fmtWeight(weight));
+    set("fd-time", fmtTime(minutes));
+    set("fd-per-spool", isFinite(perSpool) ? String(perSpool) : "—");
+    set("fd-cost", isFinite(cost) ? "$" + cost.toFixed(2) : "—");
+
+    // Formula line
+    const formula = $("fd-formula");
+    if (formula) {
+      if (!isFinite(outerMm3) || !isFinite(materialMm3) || !(density > 0)) {
+        formula.textContent = !isFinite(outerMm3) || !isFinite(materialMm3)
+          ? "Enter your dimensions above"
+          : "Enter a valid density";
+      } else if (mode === "volume") {
+        formula.textContent = `${fmtVol(outerCm3)} cm³ × ${density} g/cm³ = ${fmtWeight(weight)} g`;
+      } else if (materialCm3 === outerCm3) {
+        formula.textContent = `${fmtVol(outerCm3)} cm³ solid × ${density} g/cm³ = ${fmtWeight(weight)} g`;
+      } else {
+        formula.textContent = `${fmtVol(outerCm3)} cm³ outer · ${fmtVol(materialCm3)} cm³ material (${formulaNote}) × ${density} g/cm³ = ${fmtWeight(weight)} g`;
+      }
+    }
+  }
+
+  // Mode buttons
+  modeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      mode = (btn.dataset.mode as "shape" | "volume") || "shape";
+      modeBtns.forEach((b) => {
+        const active = b === btn;
+        b.setAttribute("aria-pressed", String(active));
+        b.classList.toggle("border-[#ff6b35]/50", active);
+        b.classList.toggle("text-[#ff6b35]", active);
+        b.classList.toggle("border-white/10", !active);
+        b.classList.toggle("text-slate-400", !active);
+      });
+      recalc();
+    });
+  });
+
+  // All inputs recalc live
+  document.querySelectorAll<HTMLInputElement>(".fd-dim").forEach((el) => {
+    el.addEventListener("input", recalc);
+    el.addEventListener("change", recalc);
+  });
+  [shapeSelect, shellSelect, materialSelect, qualitySelect,
+   input("fd-spool-price"), input("fd-spool-weight"), input("fd-custom-density")]
+    .filter(Boolean)
+    .forEach((el) => {
+      el!.addEventListener("change", recalc);
+      el!.addEventListener("input", recalc);
+    });
+
+  recalc();
+</script>

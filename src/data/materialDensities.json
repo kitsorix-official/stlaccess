@@ -1,0 +1,74 @@
+[
+  {
+    "name": "PLA",
+    "density": 1.24,
+    "family": "filament",
+    "notes": "The default for miniatures — cheap, stiff, crisp detail"
+  },
+  {
+    "name": "PETG",
+    "density": 1.27,
+    "family": "filament",
+    "notes": "Tough and slightly heavier than PLA — terrain and functional parts"
+  },
+  {
+    "name": "ABS",
+    "density": 1.04,
+    "family": "filament",
+    "notes": "Lightest common filament — needs an enclosure"
+  },
+  {
+    "name": "ASA",
+    "density": 1.07,
+    "family": "filament",
+    "notes": "UV-stable ABS alternative for outdoor prints"
+  },
+  {
+    "name": "TPU",
+    "density": 1.21,
+    "family": "filament",
+    "notes": "Flexible rubber-like material — banners, tracks, tires"
+  },
+  {
+    "name": "Nylon (PA12)",
+    "density": 1.14,
+    "family": "filament",
+    "notes": "Strong and slightly hygroscopic — engineering parts"
+  },
+  {
+    "name": "Polycarbonate (PC)",
+    "density": 1.2,
+    "family": "filament",
+    "notes": "High-heat engineering filament"
+  },
+  {
+    "name": "PLA-CF",
+    "density": 1.27,
+    "family": "filament",
+    "notes": "Carbon-fiber filled PLA — fillers push the density up"
+  },
+  {
+    "name": "Resin — Standard",
+    "density": 1.1,
+    "family": "resin",
+    "notes": "General purpose photopolymer — usually printed solid"
+  },
+  {
+    "name": "Resin — Tough",
+    "density": 1.12,
+    "family": "resin",
+    "notes": "Higher impact resistance for functional resin parts"
+  },
+  {
+    "name": "Resin — ABS-Like",
+    "density": 1.15,
+    "family": "resin",
+    "notes": "The most common upgrade resin for miniatures"
+  },
+  {
+    "name": "Resin — Flexible",
+    "density": 1.1,
+    "family": "resin",
+    "notes": "Rubber-like photopolymer for tires and gaskets"
+  }
+]
