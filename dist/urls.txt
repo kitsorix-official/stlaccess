@@ -14,3 +14,6 @@ https://stlaccess.com/3d-math/filament-cost-calculator
 https://stlaccess.com/3d-math/reference-bar-generator
 https://stlaccess.com/3d-math/filament-density-calculator
 https://stlaccess.com/3d-math/eu-3d-printing-import-cost-calculator
+https://stlaccess.com/3d-math/resin-shrinkage-compensation-calculator
+https://stlaccess.com/3d-math/miniature-resin-weight-cost-calculator
+https://stlaccess.com/3d-math/layer-resolution-angle-calculator

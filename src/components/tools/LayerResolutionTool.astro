@@ -1,0 +1,586 @@
+---
+// src/components/tools/LayerResolutionTool.astro
+// Layer Height Resolution & Angle Step Calculator for
+// /3d-math/layer-resolution-angle-calculator.
+//
+// part="calc"    → the interactive calculator block (rendered inside <article>)
+// part="content" → direct answer, layer comparison, steps, and FAQ sections
+//
+// Math (client-side only). β is the surface tilt measured from the build
+// plate, so 0° is a flat ceiling and 90° is a vertical wall — the same
+// convention as the "45° overhang rule":
+//   layers      = model height ÷ layer height
+//   step riser  = h                       (vertical, constant — every layer)
+//   step tread  = h ÷ tan(β)              (horizontal run of each step)
+//   step facet  = h ÷ sin(β)              (chunk size measured on the surface)
+//   worst case  = h × √2                  (faceting peaks at 45°)
+//   sanding     = h ÷ 2                   (average removal to fair the steps)
+//
+// Note: layer count is *linear* in 1/h, not exponential. Dropping 0.2mm to
+// 0.08mm gives 2.5× the layers and 2.5× the fineness — a 60% cut in step
+// size, which is what actually changes the sanding workload.
+import { layerResolutionFaq } from "../../data/toolFaqs.js";
+
+interface Props {
+  part: "calc" | "content";
+}
+
+const { part } = Astro.props;
+
+// Layer height presets per process.
+const fdmLayers = [
+  { key: "0.28", label: "Draft 0.28mm" },
+  { key: "0.20", label: "Standard 0.20mm" },
+  { key: "0.16", label: "Fine 0.16mm" },
+  { key: "0.12", label: "Fine 0.12mm" },
+  { key: "0.08", label: "Ultra 0.08mm" },
+  { key: "0.06", label: "Ultra 0.06mm" },
+];
+
+const resinLayers = [
+  { key: "0.10", label: "Fast 0.10mm" },
+  { key: "0.05", label: "Standard 0.05mm" },
+  { key: "0.03", label: "Fine 0.03mm" },
+  { key: "0.02", label: "Fine 0.02mm" },
+  { key: "0.015", label: "Ultra 0.015mm" },
+];
+
+// Maximum angle-from-horizontal that prints unsupported, per material.
+const overhangLimits = [
+  { material: "PLA", maxAngle: 55, note: "Best overhangs of the common filaments" },
+  { material: "PETG", maxAngle: 50, note: "Stringy at the limit — plan supports early" },
+  { material: "ABS / ASA", maxAngle: 55, note: "Rigid, grips the bed well" },
+  { material: "TPU (95A)", maxAngle: 40, note: "Sticky — the worst overhangs of any material" },
+  { material: "Nylon (PA12)", maxAngle: 50, note: "Warps unless dried and enclosed" },
+  { material: "Polycarbonate (PC)", maxAngle: 55, note: "Needs 280°C and an enclosure" },
+  { material: "Resin (MSLA/SLA)", maxAngle: 90, note: "No overhang limit — needs drainage holes instead" },
+];
+
+// MSLA panel resolution sets the XY floor on resin surface detail.
+const resinPanels = [
+  { label: "8.9cm panel · 3840px", px: 0.0232 },
+  { label: "14cm panel · 4096px", px: 0.0342 },
+  { label: "14cm panel · 3024px", px: 0.0463 },
+  { label: "Custom / unknown", px: 0.0463 },
+];
+
+// Rough print-time multipliers against a 0.20mm baseline, normalised so the
+// relationship is honest about being linear in layer count but not in time.
+const timeMultipliers: Record<string, number> = {
+  "0.28": 0.78, "0.20": 1.0, "0.16": 1.22, "0.12": 1.55, "0.08": 2.05, "0.06": 2.55,
+  "0.10": 1.0, "0.05": 1.45, "0.03": 1.95, "0.02": 2.4, "0.015": 2.9,
+};
+---
+
+{part === "calc" && (
+  <section class="mb-12" aria-labelledby="calculator-heading">
+    <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Calculator</h2>
+    <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+
+      <!-- Process -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="text-xs text-slate-500 uppercase tracking-widest mr-1 self-center">Process:</span>
+        <button class="lr-process-btn text-xs px-3 py-1.5 rounded-lg border border-[#ff6b35]/50 text-[#ff6b35] transition-colors cursor-pointer" data-process="fdm" aria-pressed="true">
+          FDM filament
+        </button>
+        <button class="lr-process-btn text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-process="resin" aria-pressed="false">
+          Resin (MSLA)
+        </button>
+      </div>
+
+      <!-- Layer height -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="lr-layer" class="block text-sm font-bold text-slate-300 mb-2">Layer Height (mm)</label>
+          <input id="lr-layer" type="number" value="0.2" step="0.005" min="0.01" class="lr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          <p class="text-xs text-slate-500 mt-1">Your slicer's layer height. Halving it halves every step on the model.</p>
+        </div>
+        <div>
+          <label for="lr-height" class="block text-sm font-bold text-slate-300 mb-2">Model Height (mm)</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mm</span>
+            <input id="lr-height" type="number" value="40" step="1" min="0.1" class="lr-field w-full bg-slate-950 border border-white/10 rounded-xl px-12 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Eye level to base — 32mm for a heroic-scale figure, 40mm for a bust or 40mm model.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="text-xs text-slate-500 uppercase tracking-widest mr-1 self-center">Layer height presets:</span>
+        {fdmLayers.map((l) => (
+          <button class="lr-fdm-preset text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-layer={l.key}>{l.label}</button>
+        ))}
+        {resinLayers.map((l) => (
+          <button class="lr-resin-preset hidden text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-layer={l.key}>{l.label}</button>
+        ))}
+      </div>
+
+      <!-- Surface angle -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="lr-angle" class="block text-sm font-bold text-slate-300 mb-2">Surface Tilt from Build Plate (°)</label>
+          <div class="relative">
+            <input id="lr-angle" type="number" value="45" step="1" min="0" max="90" class="lr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 pr-12 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">°</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">0° is a flat ceiling, 90° is a vertical wall. Curved surfaces pass through every angle, and 45° is where the faceting is worst.</p>
+        </div>
+        <div>
+          <label for="lr-material" class="block text-sm font-bold text-slate-300 mb-2">Material (overhang limit)</label>
+          <select id="lr-material" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+            {overhangLimits.map((o) => (
+              <option value={o.maxAngle}>{o.material}</option>
+            ))}
+          </select>
+          <p class="text-xs text-slate-500 mt-1" id="lr-overhang-hint">PLA supports up to 55° from horizontal</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="text-xs text-slate-500 uppercase tracking-widest mr-1 self-center">Common angles:</span>
+        {[0, 15, 30, 45, 60, 75, 90].map((a) => (
+          <button class="lr-angle-preset text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-angle={a}>{a}°</button>
+        ))}
+      </div>
+
+      <!-- Resin panel -->
+      <div id="lr-panel-wrap" class="mb-6 p-6 bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl hidden">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-4">MSLA Panel — the XY limit on resin</p>
+        <div>
+          <label for="lr-panel" class="block text-xs font-semibold text-slate-400 mb-1">LCD panel</label>
+          <select id="lr-panel" class="w-full max-w-sm bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+            {resinPanels.map((p) => (
+              <option value={p.px}>{p.label}</option>
+            ))}
+          </select>
+          <p class="text-[10px] text-slate-500 mt-1">Pixel pitch: <span id="lr-pixel" class="font-mono text-[#ff6b35] font-bold">0.0463 mm</span> — resin looks smooth in XY because this is finer than your layer height</p>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4" aria-live="polite">
+        <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Layer Count</p>
+          <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="lr-layers">200</p>
+          <p class="text-[10px] text-slate-600 mt-1" id="lr-time-note">~1.0× print time</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Step Riser (Z)</p>
+          <p class="text-2xl md:text-3xl font-black text-white font-heading" id="lr-riser">0.200</p>
+          <p class="text-[10px] text-slate-600 mt-1">mm vertical</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Step Tread (XY)</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="lr-tread">0.200</p>
+          <p class="text-[10px] text-slate-600 mt-1">mm horizontal run</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Step Facet</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="lr-facet">0.283</p>
+          <p class="text-[10px] text-slate-600 mt-1">mm chunk on the surface</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8" aria-live="polite">
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Worst Facet on Model</p>
+          <p class="text-2xl md:text-3xl font-black text-white font-heading" id="lr-worst">0.283</p>
+          <p class="text-[10px] text-slate-600 mt-1">mm — the 45° chunk on a curve</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Sanding Estimate</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="lr-sanding">0.100</p>
+          <p class="text-[10px] text-slate-600 mt-1">mm average to fair</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Visibility</p>
+          <p class="text-2xl md:text-3xl font-black font-heading" id="lr-visibility">Visible</p>
+          <p class="text-[10px] text-slate-600 mt-1" id="lr-visibility-note">above the 0.1mm eye threshold</p>
+        </div>
+      </div>
+
+      <div id="lr-overhang-box" class="mb-8 rounded-2xl p-5 border" aria-live="polite">
+        <div class="flex items-start gap-3">
+          <i class="ti ti-alert-triangle mt-0.5 shrink-0" id="lr-overhang-icon"></i>
+          <div>
+            <p class="text-sm font-semibold mb-1" id="lr-overhang-title">Support needed</p>
+            <p class="text-xs text-slate-400 leading-relaxed" id="lr-overhang-detail"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="lr-formula-box" class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 mb-8">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">The math</p>
+        <p class="text-sm font-mono text-slate-300 leading-relaxed" id="lr-formula">40 ÷ 0.200 = 200 layers · tread = 0.200 ÷ tan 45° = 0.200 mm · facet = 0.200 ÷ sin 45° = 0.283 mm</p>
+      </div>
+
+      <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6">
+        <div class="flex items-start gap-3">
+          <i class="ti ti-alert-triangle text-amber-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="text-sm font-semibold text-white mb-1">Geometry is only half of the surface quality</p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              These numbers describe the staircase the slicer cuts. They say nothing about the ridges and valleys your extruder leaves on top of each step, which is why a 0.08mm layer height on FDM still needs sanding to clear a visible seam. That texture scales with nozzle diameter, not layer height. On resin, the same stair-stepping applies in Z while the XY surface is limited by the LCD pixel instead — the panel figure is why a 0.05mm resin print looks glassy on a curve where 0.05mm FDM still looks layered.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{part === "content" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="lr-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="lr-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">How layer height drives stair-stepping</h2>
+      <p class="text-slate-300 leading-relaxed">
+        <strong class="text-white">Every layer adds one step of exactly your layer height.</strong> That vertical riser is constant no matter which way the surface faces, so a 0.2mm print has 0.2mm of stair-stepping in Z. What changes with the surface angle is the horizontal run: the tread is <em class="text-[#ff6b35] font-semibold not-italic">layer height ÷ tan(angle from horizontal)</em>, which is why a vertical wall comes out geometrically flat while a 45° curve is where the faceting is worst. On a curve, the chunk you actually feel is <em class="text-[#ff6b35] font-semibold not-italic">layer height ÷ sin(angle)</em>, peaking at 45° at 1.41× the layer height.
+      </p>
+      <p class="text-slate-300 leading-relaxed mt-4">
+        Layer count is <strong class="text-white">linear</strong> in the inverse of layer height, not exponential. Dropping from 0.2mm to 0.08mm gives you 2.5× the layers and 2.5× the fineness — a 60% cut in step size for 2.5× the layer count. That is the whole trade: sand for two hours, or wait for five times as many layers.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="lr-table-heading">
+    <h2 id="lr-table-heading" class="text-2xl font-bold font-heading mb-6">Layer Height Compared</h2>
+    <p class="text-sm text-slate-400 mb-4">A 40mm tall model, faceting at its worst 45° point. Step size is what your hands feel; the sanding figure is the average material to fair it off.</p>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Layer</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Layers</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Worst facet</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Sanding</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Print time</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {[...fdmLayers, ...resinLayers].map((l) => {
+            const h = parseFloat(l.key);
+            const layers = Math.ceil(40 / h);
+            const facet = h * Math.SQRT2;
+            const sanding = h / 2;
+            const time = timeMultipliers[l.key] ?? 1;
+            return (
+              <tr class="bg-slate-900/20">
+                <td class="px-5 py-3 text-white font-semibold font-mono">{h.toFixed(3)}mm</td>
+                <td class="px-5 py-3 font-mono text-slate-300">{layers}</td>
+                <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{facet.toFixed(3)}mm</td>
+                <td class="px-5 py-3 font-mono text-slate-400">{sanding.toFixed(3)}mm</td>
+                <td class="px-5 py-3 font-mono text-slate-400">~{time.toFixed(2)}×</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      Print time is a rough baseline against 0.20mm FDM and 0.10mm resin, not a slicer estimate. It grows more slowly than layer count because thin layers are lighter per layer, but the Z travel, acceleration, and per-layer overhead do not shrink. Anything that is not full of 45° curves does not need the bottom of this table.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="lr-overhang-heading">
+    <h2 id="lr-overhang-heading" class="text-2xl font-bold font-heading mb-6">Maximum Unsupported Overhangs</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Material</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Max angle</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Notes</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {overhangLimits.map((o) => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white font-semibold">{o.material}</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{o.maxAngle}°</td>
+              <td class="px-5 py-3 text-slate-400">{o.note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      Angles are measured from the build plate, so a bigger number is a steeper wall. The classic 45° rule is the FDM average of this column — anything past it starts drooping into the layer below. Resin has no limit at all; a flat ceiling on resin needs drainage holes, not support.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="lr-steps-heading">
+    <h2 id="lr-steps-heading" class="text-2xl font-bold font-heading mb-6">How to pick a layer height</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Start at 0.20mm and go down only if you must</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">0.20mm is the right answer for most FDM miniatures. Halving to 0.10mm buys you 0.1mm of step size and costs double the layers, and a well-primed 0.20mm print under a good light hides the difference on anything but a sphere or a hooded cloak.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Spend the resolution where the 45° angles are</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Run the calculator at 45° to see your worst case, then look at the model. If the stepping you dislike is on a cape hem or a shoulder pauldron, a thinner layer helps. If it is on flat armour plates, no layer height will fix it — you are looking at extrusion ridges, and the nozzle diameter is the dial that matters.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Resin lives at 0.05mm, not 0.02mm</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Going from 0.05mm to 0.02mm on resin buys 0.03mm of Z resolution and costs 2.5× the exposure count, most of which is light bleeding between layers on anything but a fresh vat. The bigger resin win is XY: your LCD panel is usually finer than your layer height, so a 0.05mm print already resolves detail below what your eye picks out on a curve.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">4</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Check the angle before you trust the overhang</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Set the calculator to the steepest part of your model and read the overhang box. Under 45° on FDM you are fine; past it, the layer sags into the one below and the fault shows up on a cape or a beard as a wave that no amount of sanding will fix. Reorient the model if you can — rotating a part 90° turns its worst overhang into its best.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="lr-faq-heading">
+    <h2 id="lr-faq-heading" class="text-2xl font-bold font-heading mb-6">Layer Height &amp; Angle FAQ</h2>
+    <div class="space-y-4">
+      {layerResolutionFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+<script>
+  // Layer Height Resolution & Angle Step Calculator — all math runs locally.
+  //   layers = height ÷ layer height
+  //   tread  = layer height ÷ tan(β)      β = tilt from the build plate
+  //   facet  = layer height ÷ sin(β)
+  //   worst  = layer height × √2          (faceting peaks at 45°)
+  //   sanding= layer height ÷ 2
+  //   steps below the eye threshold read as invisible once painted.
+
+  type El = HTMLElement | null;
+  function el<T extends HTMLElement>(id: string): T | null {
+    return document.getElementById(id) as T | null;
+  }
+  const num = (id: string): number => {
+    const v = parseFloat(el<HTMLInputElement>(id)?.value ?? "");
+    return isFinite(v) ? v : NaN;
+  };
+  const set = (id: string, text: string) => {
+    const node = el(id);
+    if (node) node.textContent = text;
+  };
+  const mm = (v: number) => v.toFixed(3);
+  const deg = (r: number) => r * 180 / Math.PI;
+
+  // Relative print-time baseline keyed by layer height string.
+  const timeMultipliers: Record<string, number> = {
+    "0.28": 0.78, "0.2": 1.0, "0.16": 1.22, "0.12": 1.55, "0.08": 2.05, "0.06": 2.55,
+    "0.1": 1.0, "0.05": 1.45, "0.03": 1.95, "0.02": 2.4, "0.015": 2.9,
+  };
+
+  let process: "fdm" | "resin" = "fdm";
+  const processBtns = document.querySelectorAll<HTMLButtonElement>(".lr-process-btn");
+  const materialSelect = el<HTMLSelectElement>("lr-material");
+  const panelWrap = el("lr-panel-wrap");
+
+  // Eye thresholds for a painted surface at normal viewing distance.
+  const INVISIBLE = 0.05;
+  const BORDERLINE = 0.1;
+
+  function timeFactor(h: number): number {
+    if (timeMultipliers[String(h)]) return timeMultipliers[String(h)];
+    // Fall back to a linear-in-layers approximation for off-preset values.
+    return h > 0 ? Math.max(0.5, 0.2 / h) : 1;
+  }
+
+  function recalc() {
+    // --- Process visibility
+    document.querySelectorAll<HTMLElement>(".lr-fdm-preset").forEach((b) =>
+      b.classList.toggle("hidden", process !== "fdm")
+    );
+    document.querySelectorAll<HTMLElement>(".lr-resin-preset").forEach((b) =>
+      b.classList.toggle("hidden", process !== "resin")
+    );
+    panelWrap?.classList.toggle("hidden", process !== "resin");
+    materialSelect?.classList.toggle("hidden", process !== "resin");
+
+    const h = num("lr-layer");
+    const height = num("lr-height");
+    const beta = Math.min(Math.max(num("lr-angle") || 0, 0), 90);
+    const betaRad = (beta * Math.PI) / 180;
+
+    // --- Layers
+    const layers = h > 0 && height > 0 ? Math.ceil(height / h) : NaN;
+    set("lr-layers", isFinite(layers) ? String(layers) : "—");
+    const time = isFinite(h) && h > 0 ? timeFactor(h) : NaN;
+    set("lr-time-note", isFinite(time) ? `~${time.toFixed(2)}× print time` : "—");
+
+    // --- Steps
+    // The riser is the layer height itself, independent of surface angle.
+    set("lr-riser", isFinite(h) ? mm(h) : "—");
+
+    const flat = beta <= 0.01;
+    const vertical = beta >= 89.99;
+
+    // Tread and facet blow up as the surface approaches flat (a flat ceiling
+    // has no stepping at all) and collapse at vertical (a vertical wall is
+    // geometrically flat). Guard both ends explicitly.
+    const tread = !isFinite(h) || flat ? NaN : h / Math.tan(betaRad);
+    const facet = !isFinite(h) || flat ? NaN : h / Math.sin(betaRad);
+
+    set("lr-tread", flat ? "n/a" : isFinite(tread) ? mm(vertical ? 0 : tread) : "—");
+    set("lr-facet", flat ? "n/a" : isFinite(facet) ? mm(vertical ? h : facet) : "—");
+
+    const sanding = isFinite(h) ? h / 2 : NaN;
+    set("lr-sanding", isFinite(sanding) ? mm(sanding) : "—");
+
+    const worst = isFinite(h) ? h * Math.SQRT2 : NaN;
+    set("lr-worst", isFinite(worst) ? mm(worst) : "—");
+
+    // --- Visibility, judged on the riser (what a raking light catches)
+    const visEl = el("lr-visibility");
+    const visNote = el("lr-visibility-note");
+    if (visEl && isFinite(h)) {
+      if (h < INVISIBLE) {
+        visEl.textContent = "Invisible";
+        visEl.className = "text-2xl md:text-3xl font-black text-emerald-400 font-heading";
+        if (visNote) visNote.textContent = `below the ${INVISIBLE}mm eye threshold`;
+      } else if (h < BORDERLINE) {
+        visEl.textContent = "Borderline";
+        visEl.className = "text-2xl md:text-3xl font-black text-amber-400 font-heading";
+        if (visNote) visNote.textContent = "catches light under raking light";
+      } else {
+        visEl.textContent = "Visible";
+        visEl.className = "text-2xl md:text-3xl font-black text-[#ff6b35] font-heading";
+        if (visNote) visNote.textContent = `above the ${BORDERLINE}mm eye threshold`;
+      }
+    } else if (visEl) {
+      visEl.textContent = "—";
+    }
+
+    // --- Overhang verdict
+    const maxAngle = parseFloat(materialSelect?.value ?? "45");
+    const box = el("lr-overhang-box");
+    const icon = el("lr-overhang-icon");
+    const title = el("lr-overhang-title");
+    const detail = el("lr-overhang-detail");
+    const materialName = materialSelect?.selectedOptions[0]?.textContent ?? "this material";
+
+    if (box && title && detail && icon) {
+      if (process === "resin") {
+        box.className = "mb-8 rounded-2xl p-5 border border-emerald-500/20 bg-emerald-500/5";
+        icon.className = "ti ti-check text-emerald-400 mt-0.5 shrink-0";
+        title.textContent = "No support needed";
+        title.className = "text-sm font-semibold mb-1 text-emerald-400";
+        detail.textContent = "Liquid resin supports every angle. A flat ceiling at 0° still needs 2mm drainage holes and a slight raft tilt, or the resin pools and cures into a bump you have to sand off.";
+      } else if (beta > maxAngle) {
+        box.className = "mb-8 rounded-2xl p-5 border border-amber-500/20 bg-amber-500/5";
+        icon.className = "ti ti-alert-triangle text-amber-500 mt-0.5 shrink-0";
+        title.textContent = "Support needed";
+        title.className = "text-sm font-semibold mb-1 text-amber-400";
+        detail.textContent = `At ${beta}° this surface is steeper than ${materialName} can hold — it is ${(beta - maxAngle).toFixed(0)}° past the limit and the layer will sag into the one below. Reorient the model, or accept the support marks.`;
+      } else {
+        box.className = "mb-8 rounded-2xl p-5 border border-emerald-500/20 bg-emerald-500/5";
+        icon.className = "ti ti-check text-emerald-400 mt-0.5 shrink-0";
+        title.textContent = "No support needed";
+        title.className = "text-sm font-semibold mb-1 text-emerald-400";
+        detail.textContent = `At ${beta}° this surface is within the ${maxAngle}° limit for ${materialName}, with ${(maxAngle - beta).toFixed(0)}° of headroom.`;
+      }
+    }
+
+    // --- Resin pixel pitch
+    const pixel = el("lr-pixel");
+    if (pixel) {
+      const px = parseFloat(el<HTMLSelectElement>("lr-panel")?.value ?? "");
+      if (isFinite(px) && px > 0) {
+        const cmp = isFinite(h) && h > 0
+          ? (px < h ? " — finer than your layer height" : " — coarser than your layer height, so layer height wins")
+          : "";
+        pixel.textContent = px.toFixed(4) + " mm" + cmp;
+      }
+    }
+
+    // --- Formula line
+    const formula = el("lr-formula");
+    if (formula) {
+      if (!isFinite(h) || h <= 0) {
+        formula.textContent = "Enter a layer height above";
+      } else if (flat) {
+        formula.textContent = `${mm(h)} mm · 0° is a flat ceiling — no stair-stepping at all${isFinite(layers) ? `, but still ${layers} layers` : ""}`;
+      } else if (vertical) {
+        formula.textContent = `${mm(h)} mm · 90° is a vertical wall — geometrically flat, tread 0, and the worst faceting on the model is still ${mm(worst)}mm at 45°`;
+      } else {
+        const t = isFinite(tread) ? mm(tread) : "—";
+        const f = isFinite(facet) ? mm(facet) : "—";
+        formula.textContent =
+          `${isFinite(layers) ? layers : "—"} layers (${height} ÷ ${mm(h)}) · tread = ${mm(h)} ÷ tan ${beta}° = ${t} mm · facet = ${mm(h)} ÷ sin ${beta}° = ${f} mm`;
+      }
+    }
+  }
+
+  processBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      process = (btn.dataset.process as "fdm" | "resin") || "fdm";
+      processBtns.forEach((b) => {
+        const active = b === btn;
+        b.setAttribute("aria-pressed", String(active));
+        b.classList.toggle("border-[#ff6b35]/50", active);
+        b.classList.toggle("text-[#ff6b35]", active);
+        b.classList.toggle("border-white/10", !active);
+        b.classList.toggle("text-slate-400", !active);
+      });
+      // Default each process to its own normal layer height.
+      el<HTMLInputElement>("lr-layer")!.value = process === "resin" ? "0.05" : "0.2";
+      recalc();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>(".lr-fdm-preset, .lr-resin-preset").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      el<HTMLInputElement>("lr-layer")!.value = btn.dataset.layer ?? "";
+      recalc();
+    });
+  });
+
+  document.querySelectorAll<HTMLButtonElement>(".lr-angle-preset").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      el<HTMLInputElement>("lr-angle")!.value = btn.dataset.angle ?? "";
+      recalc();
+    });
+  });
+
+  document.querySelectorAll<HTMLInputElement>(".lr-field").forEach((node) => {
+    node.addEventListener("input", recalc);
+    node.addEventListener("change", recalc);
+  });
+  [materialSelect, el<HTMLSelectElement>("lr-panel")].forEach((node) => {
+    node?.addEventListener("change", recalc);
+  });
+
+  // Material hint on load.
+  const hint = el("lr-overhang-hint");
+  if (hint && materialSelect) {
+    const sync = () => {
+      const a = parseFloat(materialSelect.value);
+      hint.textContent = isFinite(a)
+        ? `${materialSelect.selectedOptions[0]?.textContent ?? "Material"} holds up to ${a}° from horizontal`
+        : "";
+    };
+    sync();
+  }
+
+  recalc();
+</script>

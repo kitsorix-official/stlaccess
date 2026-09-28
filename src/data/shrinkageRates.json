@@ -1,0 +1,93 @@
+[
+  {
+    "name": "Resin — Low Shrink",
+    "family": "resin",
+    "xy": 0.2,
+    "z": 0.4,
+    "notes": "Low-shrink formulated photopolymer for tight tolerance work"
+  },
+  {
+    "name": "Resin — Standard",
+    "family": "resin",
+    "xy": 0.3,
+    "z": 0.9,
+    "notes": "General purpose grey/clear — the default resin preset"
+  },
+  {
+    "name": "Resin — Tough",
+    "family": "resin",
+    "xy": 0.4,
+    "z": 1.0,
+    "notes": "Impact-resistant resin for functional parts and snap fits"
+  },
+  {
+    "name": "Resin — ABS-Like",
+    "family": "resin",
+    "xy": 0.4,
+    "z": 1.0,
+    "notes": "The most common upgrade resin for miniatures"
+  },
+  {
+    "name": "Resin — Flexible",
+    "family": "resin",
+    "xy": 0.7,
+    "z": 1.8,
+    "notes": "Rubber-like photopolymer — shrinks the most of any resin"
+  },
+  {
+    "name": "Resin — Cast / Pattern",
+    "family": "resin",
+    "xy": 0.5,
+    "z": 1.2,
+    "notes": "Castable resins for resin-casting masters"
+  },
+  {
+    "name": "PLA",
+    "family": "filament",
+    "xy": 0.3,
+    "z": 0.1,
+    "notes": "Stable in XY; Z barely moves because layers fuse together"
+  },
+  {
+    "name": "PETG",
+    "family": "filament",
+    "xy": 0.4,
+    "z": 0.2,
+    "notes": "Slightly more than PLA — stringy and higher tension"
+  },
+  {
+    "name": "ABS / ASA",
+    "family": "filament",
+    "xy": 0.6,
+    "z": 0.3,
+    "notes": "Warping and enclosure heat push the contraction up"
+  },
+  {
+    "name": "PLA-CF",
+    "family": "filament",
+    "xy": 0.4,
+    "z": 0.2,
+    "notes": "Carbon-fiber filled PLA — stiffer, marginally tighter"
+  },
+  {
+    "name": "Polycarbonate (PC)",
+    "family": "filament",
+    "xy": 0.6,
+    "z": 0.3,
+    "notes": "High-temperature engineering filament"
+  },
+  {
+    "name": "Nylon (PA12)",
+    "family": "filament",
+    "xy": 0.8,
+    "z": 0.4,
+    "notes": "Hygroscopic — absorbs moisture and contracts noticeably"
+  },
+  {
+    "name": "TPU (95A)",
+    "family": "filament",
+    "xy": 0.7,
+    "z": 0.3,
+    "notes": "Rubber-like filament for tires, gaskets, and flex parts"
+  }
+]

@@ -11,7 +11,10 @@ import FilamentCostTool from "../../components/tools/FilamentCostTool.astro";
 import ReferenceBarTool from "../../components/tools/ReferenceBarTool.astro";
 import FilamentDensityTool from "../../components/tools/FilamentDensityTool.astro";
 import EuImportCostTool from "../../components/tools/EuImportCostTool.astro";
-import { slicerFaq, filamentFaq, referenceBarFaq, filamentDensityFaq, euImportCostFaq } from "../../data/toolFaqs.js";
+import ResinShrinkageTool from "../../components/tools/ResinShrinkageTool.astro";
+import MiniatureResinTool from "../../components/tools/MiniatureResinTool.astro";
+import LayerResolutionTool from "../../components/tools/LayerResolutionTool.astro";
+import { slicerFaq, filamentFaq, referenceBarFaq, filamentDensityFaq, euImportCostFaq, resinShrinkageFaq, miniatureResinFaq, layerResolutionFaq } from "../../data/toolFaqs.js";
 import { graph, breadcrumb, softwareApplication, faqPage } from "../../lib/schema";
 
 export async function getStaticPaths() {
@@ -31,6 +34,9 @@ const toolFaqs: Record<string, { question: string; answer: string }[]> = {
   "reference-bar-generator": referenceBarFaq,
   "filament-density-calculator": filamentDensityFaq,
   "eu-3d-printing-import-cost-calculator": euImportCostFaq,
+  "resin-shrinkage-compensation-calculator": resinShrinkageFaq,
+  "miniature-resin-weight-cost-calculator": miniatureResinFaq,
+  "layer-resolution-angle-calculator": layerResolutionFaq,
 };
 
 const toolSchema = graph([
@@ -112,6 +118,12 @@ const toolSchema = graph([
     <FilamentDensityTool part="calc" />
   ) : tool.slug === "eu-3d-printing-import-cost-calculator" ? (
     <EuImportCostTool part="calc" />
+  ) : tool.slug === "resin-shrinkage-compensation-calculator" ? (
+    <ResinShrinkageTool part="calc" />
+  ) : tool.slug === "miniature-resin-weight-cost-calculator" ? (
+    <MiniatureResinTool part="calc" />
+  ) : tool.slug === "layer-resolution-angle-calculator" ? (
+    <LayerResolutionTool part="calc" />
   ) : (
     <section class="bg-gradient-to-r from-[#ff6b35]/10 to-transparent rounded-[2.5rem] border border-[#ff6b35]/20 p-8 md:p-12">
       <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -148,5 +160,8 @@ const toolSchema = graph([
 {tool.slug === "reference-bar-generator" && <ReferenceBarTool part="content" />}
 {tool.slug === "filament-density-calculator" && <FilamentDensityTool part="content" />}
 {tool.slug === "eu-3d-printing-import-cost-calculator" && <EuImportCostTool part="content" />}
+{tool.slug === "resin-shrinkage-compensation-calculator" && <ResinShrinkageTool part="content" />}
+{tool.slug === "miniature-resin-weight-cost-calculator" && <MiniatureResinTool part="content" />}
+{tool.slug === "layer-resolution-angle-calculator" && <LayerResolutionTool part="content" />}
 
 </Layout>

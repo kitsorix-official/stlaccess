@@ -1,0 +1,474 @@
+---
+// src/components/tools/ResinShrinkageTool.astro
+// Resin & Filament Shrinkage Compensation Calculator for
+// /3d-math/resin-shrinkage-compensation-calculator.
+//
+// part="calc"    → the interactive calculator block (rendered inside <article>)
+// part="content" → direct answer, shrink reference, steps, and FAQ sections
+//
+// Math (client-side only):
+//   shrink factor k  = 1 − (linear shrink % / 100)
+//   compensation     = 1 / k              ← the number to type in the slicer
+//   delta to add     = (1 / k − 1) × 100
+//   model dimension  = target dimension / k
+//
+// The compensation is the exact inverse (1 / k), not the naive 1 + shrink %.
+// For a 2% shrink that is 1.020408 rather than 1.02 — the difference is only
+// 0.04% in scale, but it is the difference between an exact solve and an
+// approximation, so both figures are shown side by side.
+import shrinkageRates from "../../data/shrinkageRates.json";
+import { resinShrinkageFaq } from "../../data/toolFaqs.js";
+
+interface Props {
+  part: "calc" | "content";
+}
+
+const { part } = Astro.props;
+
+const resinRates = shrinkageRates.filter((r) => r.family === "resin");
+const filamentRates = shrinkageRates.filter((r) => r.family === "filament");
+const defaultMaterial = "Resin — Standard";
+---
+
+{part === "calc" && (
+  <section class="mb-12" aria-labelledby="calculator-heading">
+    <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Calculator</h2>
+    <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+
+      <!-- Input mode -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="text-xs text-slate-500 uppercase tracking-widest mr-1 self-center">Shrinkage from:</span>
+        <button class="rs-mode-btn text-xs px-3 py-1.5 rounded-lg border border-[#ff6b35]/50 text-[#ff6b35] transition-colors cursor-pointer" data-mode="preset" aria-pressed="true">
+          Material preset
+        </button>
+        <button class="rs-mode-btn text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-mode="measured" aria-pressed="false">
+          Measured test coupon
+        </button>
+      </div>
+
+      <!-- Preset mode -->
+      <div id="rs-preset-inputs" class="mb-6">
+        <div class="mb-6">
+          <label for="rs-material" class="block text-sm font-bold text-slate-300 mb-2">Material</label>
+          <select id="rs-material" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+            <optgroup label="Photopolymer resin">
+              {resinRates.map((r) => (
+                <option value={r.name} data-xy={r.xy} data-z={r.z} selected={r.name === defaultMaterial}>{r.name}</option>
+              ))}
+            </optgroup>
+            <optgroup label="FDM filament">
+              {filamentRates.map((r) => (
+                <option value={r.name} data-xy={r.xy} data-z={r.z}>{r.name}</option>
+              ))}
+            </optgroup>
+          </select>
+          <p class="text-xs text-slate-500 mt-1" id="rs-material-hint">Typical shrinkage: 0.30% in XY, 0.90% in Z</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="rs-xy-shrink" class="block text-sm font-bold text-slate-300 mb-2">Linear Shrinkage — XY (%)</label>
+            <div class="relative">
+              <input id="rs-xy-shrink" type="number" value="0.3" step="0.01" min="0" max="10" class="rs-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 pr-12 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">%</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Widths, hole diameters, pin fits</p>
+          </div>
+          <div>
+            <label for="rs-z-shrink" class="block text-sm font-bold text-slate-300 mb-2">Linear Shrinkage — Z (%)</label>
+            <div class="relative">
+              <input id="rs-z-shrink" type="number" value="0.9" step="0.01" min="0" max="10" class="rs-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 pr-12 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">%</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Height, stacked parts, base tabs</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Measured mode -->
+      <div id="rs-measured-inputs" class="mb-6 hidden">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-4">Print a test coupon, measure it, and the tool back-solves your real shrink factor</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+          <div>
+            <label for="rs-nominal" class="block text-sm font-bold text-slate-300 mb-2">Nominal Size (mm)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mm</span>
+              <input id="rs-nominal" type="number" value="20" step="0.01" min="0.01" class="rs-field w-full bg-slate-950 border border-white/10 rounded-xl px-12 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            </div>
+            <p class="text-xs text-slate-500 mt-1">What you told the slicer to print</p>
+          </div>
+          <div>
+            <label for="rs-measured-xy" class="block text-sm font-bold text-slate-300 mb-2">Measured XY (mm)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mm</span>
+              <input id="rs-measured-xy" type="number" value="19.94" step="0.01" min="0.01" class="rs-field w-full bg-slate-950 border border-white/10 rounded-xl px-12 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Calipers, across the widest axis</p>
+          </div>
+          <div>
+            <label for="rs-measured-z" class="block text-sm font-bold text-slate-300 mb-2">Measured Z (mm)</label>
+            <div class="relative">
+              <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mm</span>
+              <input id="rs-measured-z" type="number" value="19.82" step="0.01" min="0.01" class="rs-field w-full bg-slate-950 border border-white/10 rounded-xl px-12 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Total height, base to top</p>
+          </div>
+        </div>
+        <p class="text-xs text-slate-500" id="rs-measured-hint">Measured shrink: 0.30% in XY, 0.90% in Z</p>
+      </div>
+
+      <!-- Target dimension + clearance -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <label for="rs-target" class="block text-sm font-bold text-slate-300 mb-2">Target Dimension (mm)</label>
+          <div class="relative max-w-sm">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mm</span>
+            <input id="rs-target" type="number" value="25" step="0.01" min="0.01" class="rs-field w-full bg-slate-950 border border-white/10 rounded-xl px-12 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <p class="text-xs text-slate-500 mt-1">The size you want the finished part to be — a pin diameter, a slot width, a base tab</p>
+        </div>
+        <div>
+          <label for="rs-clearance" class="block text-sm font-bold text-slate-300 mb-2">Fit Clearance (mm)</label>
+          <div class="relative max-w-sm">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mm</span>
+            <input id="rs-clearance" type="number" value="0" step="0.01" min="0" class="rs-field w-full bg-slate-950 border border-white/10 rounded-xl px-12 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Extra room for a sliding or press fit. 0.10mm reads as a snug slide, 0.20mm as a hand-assembled fit</p>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" aria-live="polite">
+        <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-6 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Type this in the slicer — XY</p>
+          <p class="text-4xl md:text-5xl font-black text-[#ff6b35] font-heading tracking-tight" id="rs-scale-xy">100.3%</p>
+          <p class="text-slate-400 text-xs mt-2" id="rs-delta-xy">+0.30% on top of 100%</p>
+        </div>
+        <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-6 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Type this in the slicer — Z</p>
+          <p class="text-4xl md:text-5xl font-black text-[#ff6b35] font-heading tracking-tight" id="rs-scale-z">100.9%</p>
+          <p class="text-slate-400 text-xs mt-2" id="rs-delta-z">+0.91% on top of 100%</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" aria-live="polite">
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Model XY</p>
+          <p class="text-2xl md:text-3xl font-black text-white font-heading" id="rs-model-xy">25.08</p>
+          <p class="text-[10px] text-slate-600 mt-1">mm to model</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Model Z</p>
+          <p class="text-2xl md:text-3xl font-black text-white font-heading" id="rs-model-z">25.23</p>
+          <p class="text-[10px] text-slate-600 mt-1">mm to model</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Naive 1 + s</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-400 font-heading" id="rs-naive-xy">100.30%</p>
+          <p class="text-[10px] text-slate-600 mt-1">under-compensates</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Slot to Model</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-400 font-heading" id="rs-slot-xy">25.08</p>
+          <p class="text-[10px] text-slate-600 mt-1">pin Ø + clearance</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-3 mb-8">
+        <button id="rs-copy-btn" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-slate-300 px-5 py-3 rounded-xl text-sm font-bold transition-colors cursor-pointer">
+          <i class="ti ti-copy text-xs"></i>
+          Copy XY Scale
+        </button>
+      </div>
+
+      <div id="rs-formula-box" class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 mb-8">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">The math</p>
+        <p class="text-sm font-mono text-slate-300 leading-relaxed" id="rs-formula">k = 1 − 0.003 = 0.99700 · compensation = 1 ÷ 0.99700 = 100.30%</p>
+      </div>
+
+      <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6">
+        <div class="flex items-start gap-3">
+          <i class="ti ti-alert-triangle text-amber-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="text-sm font-semibold text-white mb-1">Print your own coupon before trusting any of this</p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Shrinkage is not a constant. It moves with the brand and batch of resin, the wall thickness, the number of perimeters, the cure time, your ambient temperature, and how long the part sat before you measured it. The presets here are typical starting points, not specifications. Print a 20mm cube, measure it with calipers, and switch to the Measured tab — that number is worth more than any table, and it is the number you should scale against.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{part === "content" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="rsc-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="rsc-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">How to calculate shrinkage compensation</h2>
+      <p class="text-slate-300 leading-relaxed">
+        <strong class="text-white">Compensation = 1 ÷ (1 − shrink).</strong> For a 2% shrinkage the shrink factor is <em class="text-[#ff6b35] font-semibold not-italic">k = 0.98</em>, so the compensation is 1 ÷ 0.98 = <em class="text-[#ff6b35] font-semibold not-italic">1.0204</em> — type <strong class="text-white">102.04%</strong> into your slicer and a 25mm slot comes off the build plate at 25.00mm instead of 24.50mm. You can also work it the other way: divide the target dimension by the shrink factor to get the dimension to model, so 25 ÷ 0.98 = 25.51mm.
+      </p>
+      <p class="text-slate-400 leading-relaxed mt-4 text-sm">
+        Most guides shortcut this to 1 + the shrink percentage, which gives you 102.00% for the same 2% case. The gap is 0.04% — irrelevant for a miniature standing on a base, and the whole reason a 0.5mm pin no longer slides into its socket. The calculator shows both so you can see where the naive figure leaves you.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="rsc-reference-heading">
+    <h2 id="rsc-reference-heading" class="text-2xl font-bold font-heading mb-6">Typical Shrinkage by Material</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Material</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Shrink XY</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Shrink Z</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Notes</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {shrinkageRates.map((r) => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white font-semibold">{r.name}</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{r.xy}%</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">{r.z}%</td>
+              <td class="px-5 py-3 text-slate-400">{r.notes}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      These are the exact presets loaded into the calculator. Resin contracts hardest in Z, because each layer cures against a build platform that stays at a fixed distance while the rest of the part relaxes. FDM runs the other way — the Z axis barely moves at all, since every layer is bonded to the one below it and the whole part is already dimensionally locked.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="rsc-steps-heading">
+    <h2 id="rsc-steps-heading" class="text-2xl font-bold font-heading mb-6">How to compensate a print that has to fit</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Print a coupon in your actual material</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">A 20mm cube costs almost nothing in resin and about four minutes on FDM. Print it with the same wall count, perimeters, and cure or cooling profile you use for the real part — shrinkage scales with how much mass is behind the outer wall.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Measure it and switch to the Measured tab</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Enter 20 as the nominal size and your caliper reading as the measurement. The tool back-solves the shrink factor in both axes. Fully cured resin keeps creeping for a few hours, so measure again the next day before you commit to a number.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Add clearance on top of the compensation</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Compensation makes the part hit its nominal size. It does not make a fit work. A 0.10mm gap reads as a snug slide fit, 0.20mm as a hand-assembled fit that survives handling, and a press fit wants negative clearance. Enter the gap you want in the clearance field and the tool gives you the exact hole to model.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">4</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Scale the model, not the slicer profile</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Type the percentage into the model's scale field so only that object moves, and lock X, Y, and Z together. If the fit only needs correcting in one axis you can set them separately — the tool gives you an XY and a Z figure — but for a mating pin and socket, uniform is safer.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="rsc-faq-heading">
+    <h2 id="rsc-faq-heading" class="text-2xl font-bold font-heading mb-6">Shrinkage Compensation FAQ</h2>
+    <div class="space-y-4">
+      {resinShrinkageFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+<script>
+  // Resin & Filament Shrinkage Compensation — all math runs locally.
+  //   k           = 1 − (shrink% / 100)
+  //   compensation= 1 / k        (the slicer percentage)
+  //   model dim   = target / k
+
+  type El = HTMLElement | null;
+  function el<T extends HTMLElement>(id: string): T | null {
+    return document.getElementById(id) as T | null;
+  }
+  const num = (id: string): number => {
+    const v = parseFloat(el<HTMLInputElement>(id)?.value ?? "");
+    return isFinite(v) ? v : NaN;
+  };
+  const set = (id: string, text: string) => {
+    const node = el(id);
+    if (node) node.textContent = text;
+  };
+  const pct = (v: number) => v.toFixed(2) + "%";
+  const mm = (v: number) => v.toFixed(3);
+
+  let mode: "preset" | "measured" = "preset";
+  const modeBtns = document.querySelectorAll<HTMLButtonElement>(".rs-mode-btn");
+  const materialSelect = el<HTMLSelectElement>("rs-material");
+
+  // Shrink percentages in percent, read from whichever mode is active.
+  function shrinkRates(): { xy: number; z: number } {
+    if (mode === "measured") {
+      const nominal = num("rs-nominal");
+      const mxy = num("rs-measured-xy");
+      const mz = num("rs-measured-z");
+      if (!(nominal > 0)) return { xy: NaN, z: NaN };
+      return {
+        xy: ((nominal - mxy) / nominal) * 100,
+        z: ((nominal - mz) / nominal) * 100,
+      };
+    }
+    return { xy: num("rs-xy-shrink"), z: num("rs-z-shrink") };
+  }
+
+  // 1/k for a shrink percentage. Returns the slicer multiplier.
+  function compensation(shrinkPct: number): number {
+    const k = 1 - shrinkPct / 100;
+    return k > 0 ? 1 / k : NaN;
+  }
+
+  function recalc() {
+    // --- Input mode visibility
+    const presetBox = el("rs-preset-inputs");
+    const measuredBox = el("rs-measured-inputs");
+    presetBox?.classList.toggle("hidden", mode !== "preset");
+    measuredBox?.classList.toggle("hidden", mode !== "measured");
+    if (mode === "preset") {
+      materialSelect?.classList.remove("hidden");
+    } else {
+      materialSelect?.classList.add("hidden");
+    }
+
+    // --- Hints
+    const { xy: sxy, z: sz } = shrinkRates();
+    if (mode === "preset") {
+      const hint = el("rs-material-hint");
+      if (hint) {
+        hint.textContent = isFinite(sxy)
+          ? `Typical shrinkage: ${sxy.toFixed(2)}% in XY, ${sz.toFixed(2)}% in Z`
+          : "Enter a shrink percentage";
+      }
+    } else {
+      const hint = el("rs-measured-hint");
+      if (hint) {
+        hint.textContent = isFinite(sxy)
+          ? `Measured shrink: ${sxy.toFixed(2)}% in XY, ${sz.toFixed(2)}% in Z`
+          : "Enter a nominal size and your measurement";
+      }
+    }
+
+    // --- Compensation
+    const compXY = compensation(sxy);
+    const compZ = compensation(sz);
+    const target = num("rs-target");
+    const clearance = num("rs-clearance");
+    const gap = isFinite(clearance) && clearance > 0 ? clearance : 0;
+
+    set("rs-scale-xy", isFinite(compXY) ? pct(compXY * 100) : "—");
+    set("rs-scale-z", isFinite(compZ) ? pct(compZ * 100) : "—");
+
+    const dxy = isFinite(compXY) ? (compXY - 1) * 100 : NaN;
+    const dz = isFinite(compZ) ? (compZ - 1) * 100 : NaN;
+    set("rs-delta-xy", isFinite(dxy) ? `${dxy >= 0 ? "+" : ""}${dxy.toFixed(2)}% on top of 100%` : "Enter a shrink rate");
+    set("rs-delta-z", isFinite(dz) ? `${dz >= 0 ? "+" : ""}${dz.toFixed(2)}% on top of 100%` : "Enter a shrink rate");
+
+    // --- Model dimensions
+    const modelXY = isFinite(compXY) && target > 0 ? target * compXY : NaN;
+    const modelZ = isFinite(compZ) && target > 0 ? target * compZ : NaN;
+    set("rs-model-xy", isFinite(modelXY) ? mm(modelXY) : "—");
+    set("rs-model-z", isFinite(modelZ) ? mm(modelZ) : "—");
+
+    // --- Naive comparison (1 + shrink)
+    set("rs-naive-xy", isFinite(sxy) ? pct(100 + sxy) : "—");
+
+    // --- Slot to model: pin diameter + clearance
+    const slot = isFinite(compXY) && target > 0 ? (target + gap) * compXY : NaN;
+    set("rs-slot-xy", isFinite(slot) ? mm(slot) : "—");
+
+    // --- Formula line
+    const formula = el("rs-formula");
+    if (formula) {
+      if (!isFinite(sxy) || !isFinite(sz)) {
+        formula.textContent = mode === "measured"
+          ? "Enter a nominal size and your measurement above"
+          : "Choose a material or enter a shrink rate above";
+      } else {
+        const k = 1 - sxy / 100;
+        const naive = 100 + sxy;
+        const exact = (1 / k) * 100;
+        const gapNote = gap > 0 ? ` · clearance ${gap.toFixed(2)}mm applied` : "";
+        formula.textContent =
+          `k = 1 − ${(sxy / 100).toFixed(3)} = ${k.toFixed(5)} · 1 ÷ k = ${pct(exact)}` +
+          ` (naive 1 + s = ${pct(naive)}, off by ${(exact - naive).toFixed(2)} points)${gapNote}`;
+      }
+    }
+  }
+
+  modeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      mode = (btn.dataset.mode as "preset" | "measured") || "preset";
+      modeBtns.forEach((b) => {
+        const active = b === btn;
+        b.setAttribute("aria-pressed", String(active));
+        b.classList.toggle("border-[#ff6b35]/50", active);
+        b.classList.toggle("text-[#ff6b35]", active);
+        b.classList.toggle("border-white/10", !active);
+        b.classList.toggle("text-slate-400", !active);
+      });
+      recalc();
+    });
+  });
+
+  // Switching material loads its published rates into the fields. This lives
+  // on the select's own change event rather than inside recalc() for two
+  // reasons: the values must be written *before* recalc reads them, or the
+  // results lag a keystroke behind the dropdown; and it must not run on every
+  // recalc, or it would overwrite a rate the user typed by hand.
+  function loadMaterialRates() {
+    const opt = materialSelect?.selectedOptions[0];
+    if (!opt || !isFinite(parseFloat(opt.dataset.xy ?? ""))) return;
+    el<HTMLInputElement>("rs-xy-shrink")!.value = opt.dataset.xy ?? "";
+    el<HTMLInputElement>("rs-z-shrink")!.value = opt.dataset.z ?? "";
+  }
+  materialSelect?.addEventListener("change", () => {
+    loadMaterialRates();
+    recalc();
+  });
+
+  // Every field recalculates live.
+  document.querySelectorAll<HTMLInputElement>(".rs-field").forEach((node) => {
+    node.addEventListener("input", recalc);
+    node.addEventListener("change", recalc);
+  });
+
+  el<HTMLButtonElement>("rs-copy-btn")?.addEventListener("click", () => {
+    const text = el("rs-scale-xy")?.textContent || "";
+    if (!text || text === "—") return;
+    const btn = el<HTMLButtonElement>("rs-copy-btn")!;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.innerHTML;
+      btn.innerHTML = '<i class="ti ti-check text-xs"></i> Copied!';
+      setTimeout(() => { btn.innerHTML = original; }, 1500);
+    }).catch(() => {});
+  });
+
+  // Seed the rate fields from the selected material so the initial render can
+  // never disagree with the dropdown if a preset is added or retuned later.
+  loadMaterialRates();
+  recalc();
+</script>

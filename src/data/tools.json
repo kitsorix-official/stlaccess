@@ -83,5 +83,44 @@
     "features": ["€3 flat customs duty per item category", "Import VAT for all 27 EU member states", "Correct VAT base: item + shipping + duty", "Over-€150 orders with custom duty rate", "Instant landed-cost breakdown in EUR", "No account, no cookies — nothing uploaded"],
     "category": "calculators",
     "featured": false
+  },
+  {
+    "slug": "resin-shrinkage-compensation-calculator",
+    "name": "Resin Shrinkage Calculator",
+    "h1": "Resin & Filament Shrinkage Compensation Calculator",
+    "metaTitle": "3D Resin Shrinkage Calculator | Dimensional Tolerance Math | STLACCESS",
+    "shortDescription": "Calculate exact dimensional scaling compensation for resin and FDM 3D printing. Prevent shrinkage distortion and ensure precise part-to-part fitting.",
+    "description": "When 3D printing engineering components or tight-tolerance miniatures, material cooling and UV curing cause physical parts to shrink. This interactive 3D math tool calculates your exact dimensional compensation percentage to counteract volumetric shrinkage in your slicer. Thirteen material presets, separate XY and Z shrink rates, and a measured-coupon mode that back-solves your real shrink factor from caliper readings. Runs entirely in your browser — no uploads, no accounts, no cookies.",
+    "icon": "ti-ruler-measure",
+    "url": "/3d-math/resin-shrinkage-compensation-calculator",
+    "features": ["13 resin and filament shrink presets", "Separate XY and Z compensation", "Measured test coupon back-solve mode", "Exact 1÷k inverse, not the naive 1+s", "Fit clearance for press and slide fits", "Copy the scale percentage to clipboard"],
+    "category": "calculators",
+    "featured": false
+  },
+  {
+    "slug": "miniature-resin-weight-cost-calculator",
+    "name": "Miniature Resin Weight & Cost Calculator",
+    "h1": "Miniature Resin Weight & Cost Calculator",
+    "metaTitle": "Miniature Resin Cost Calculator | STL Weight & Volume Math | STLACCESS",
+    "shortDescription": "Calculate exact resin weight, material volume, and printing cost for tabletop miniatures. Input your bottle price and model mL for instant pricing.",
+    "description": "Accurately budgeting your tabletop 3D printing projects requires combining liquid volume geometry with resin density math. This 3D calculation tool breaks down exact material weight, hollowed wall volume, and total cost per print. Model a bounding box, paste the volume straight out of your slicer, price it against your own bottle, and scale it up to a whole army. Runs entirely in your browser — no uploads, no accounts, no cookies.",
+    "icon": "ti-weight",
+    "url": "/3d-math/miniature-resin-weight-cost-calculator",
+    "features": ["Box, cylinder, and sphere volume math", "Hollowed shell with wall thickness and solid base", "Direct volume input from Chitubox or Lychee", "6 bottle presets with per-mL cost rates", "Army planner for N miniatures at once", "Weight in grams as a hollowing sanity check"],
+    "category": "calculators",
+    "featured": false
+  },
+  {
+    "slug": "layer-resolution-angle-calculator",
+    "name": "Layer Resolution & Angle Calculator",
+    "h1": "Layer Height Resolution & Angle Step Calculator",
+    "metaTitle": "3D Layer Resolution & Angle Calculator | Print Math | STLACCESS",
+    "shortDescription": "Calculate optimal layer height, Z-axis resolution, and surface stair-stepping angles for FDM and resin 3D printing precision.",
+    "description": "Surface smoothness on curved 3D prints is governed by trigonometric layer-step math. This tool calculates the effective vertical resolution and facet angles based on your layer height and printer nozzle or LCD panel specs. Step riser, step tread, worst-case faceting at 45°, sanding estimates, print-time tradeoffs, and the maximum unsupported overhang for seven materials. Runs entirely in your browser — no uploads, no accounts, no cookies.",
+    "icon": "ti-stack-2",
+    "url": "/3d-math/layer-resolution-angle-calculator",
+    "features": ["Layer count from model height", "Step riser, tread, and facet geometry", "Worst-case faceting at 45° surfaces", "Sanding effort estimate per layer height", "Max unsupported overhang for 7 materials", "MSLA LCD pixel pitch for resin XY detail"],
+    "category": "references",
+    "featured": false
   }
 ]

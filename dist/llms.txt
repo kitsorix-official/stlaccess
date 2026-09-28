@@ -29,6 +29,9 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 - [Slicer Percentage Calculator](https://stlaccess.com/3d-math/slicer-percentage-calculator) — Enter any current height and target height to get the exact slicer percentage
 - [Filament Cost Calculator](https://stlaccess.com/3d-math/filament-cost-calculator) — Calculate print cost from filament price, weight, and optional electricity
 - [STL Scale Reference Bar Generator](https://stlaccess.com/3d-math/reference-bar-generator) — Generate a download-and-print STL ruler bar (5mm ticks + end tab the exact height of a figure at that scale) to calibrate in Lychee or Chitubox
+- [Resin & Filament Shrinkage Compensation Calculator](https://stlaccess.com/3d-math/resin-shrinkage-compensation-calculator) — Calculate the exact slicer scale percentage that cancels material shrinkage, with 13 material presets and a measured-coupon back-solve
+- [Miniature Resin Weight & Cost Calculator](https://stlaccess.com/3d-math/miniature-resin-weight-cost-calculator) — Resin weight in grams and cost per miniature from a bounding box or your slicer's volume, plus an army planner
+- [Layer Height Resolution & Angle Step Calculator](https://stlaccess.com/3d-math/layer-resolution-angle-calculator) — Layer count, stair-step riser/tread/facet geometry, sanding estimate, and max unsupported overhang by material
 - [Privacy Policy](https://stlaccess.com/privacy) — No cookies, no personal data collection. Cookie-free analytics only.
 - [Terms](https://stlaccess.com/terms) — Terms of use
 - [Legal](https://stlaccess.com/legal) — Legal information
@@ -173,6 +176,9 @@ The **STL Scale Engine** homepage calculator gives you fast numbers; the **Minia
 | Slicer Percentage Calculator | /3d-math/slicer-percentage-calculator | Enter any current model height and target height to get exact percentage, 12 common presets, formula breakdown |
 | Filament Cost Calculator | /3d-math/filament-cost-calculator | Calculate print cost from filament roll price, weight used, optional electricity cost, 6 filament presets (Budget/Mid/Premium PLA and PETG) |
 | STL Scale Reference Bar Generator | /3d-math/reference-bar-generator | Download a printable STL ruler bar with 5mm tick marks and an end tab exactly as tall as a figure at the chosen scale, for calibrating unknown models in slicers |
+| Resin & Filament Shrinkage Compensation Calculator | /3d-math/resin-shrinkage-compensation-calculator | Exact inverse-shrink scale percentage (1÷k, not 1+s) for resin and FDM, separate XY and Z rates, 13 material presets, measured-coupon back-solve from caliper readings, fit clearance for press and slide fits |
+| Miniature Resin Weight & Cost Calculator | /3d-math/miniature-resin-weight-cost-calculator | Resin volume and weight in grams for box/cylinder/sphere or a pasted slicer volume, hollowed shell with wall thickness and solid base, 6 bottle presets with per-mL rates, army planner for N miniatures |
+| Layer Height Resolution & Angle Step Calculator | /3d-math/layer-resolution-angle-calculator | Layer count, step riser/tread/facet geometry from layer height and surface tilt, worst-case 45° faceting, sanding estimate, print-time tradeoff, max unsupported overhang for 7 materials, MSLA LCD pixel pitch |
 
 ## Filament presets
 

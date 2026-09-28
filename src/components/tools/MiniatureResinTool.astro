@@ -1,0 +1,542 @@
+---
+// src/components/tools/MiniatureResinTool.astro
+// Miniature Resin Weight & Cost Estimator for
+// /3d-math/miniature-resin-weight-cost-calculator.
+//
+// part="calc"    → the interactive calculator block (rendered inside <article>)
+// part="content" → direct answer, bottle presets, steps, and FAQ sections
+//
+// Math (client-side only):
+//   outer    = shape volume in mm³
+//   hollow   = outer − cavity, where the cavity is inset by the wall on every
+//              side but the build plate side (resin hollowing leaves a solid
+//              base so the part does not delaminate off the raft)
+//   material = outer (solid) or hollow
+//   total    = material × (1 + overhead %)   ← supports, raft, purge, failures
+//   weight   = total (mL) × density (g/mL)
+//   cost     = total (mL) × (bottle price ÷ bottle mL)
+import materialDensities from "../../data/materialDensities.json";
+import { miniatureResinFaq } from "../../data/toolFaqs.js";
+
+interface Props {
+  part: "calc" | "content";
+}
+
+const { part } = Astro.props;
+
+const resinDensities = materialDensities.filter((m) => m.family === "resin");
+
+// Ballpark 2026 bottle pricing. Real prices move with sales and region — the
+// point is the per-mL rate, so overriding these with your own bottle is the
+// intended use.
+const bottlePresets = [
+  { label: "Budget 1kg bottle", ml: 1000, price: 14.99 },
+  { label: "Anycubic Mono 500ml", ml: 500, price: 15.99 },
+  { label: "Elegoo Mars 1kg", ml: 1000, price: 19.99 },
+  { label: "Anycubic Mono M5 Pro 1kg", ml: 1000, price: 22.99 },
+  { label: "Prisma Resin 1kg", ml: 1000, price: 34.99 },
+  { label: "Elegoo Saturn 2kg", ml: 2000, price: 35.99 },
+];
+const defaultBottle = bottlePresets[2];
+---
+
+{part === "calc" && (
+  <section class="mb-12" aria-labelledby="calculator-heading">
+    <h2 id="calculator-heading" class="text-sm font-black uppercase tracking-widest text-[#ff6b35] mb-6">Calculator</h2>
+    <div class="bg-slate-900/50 rounded-[2.5rem] border border-white/5 p-8 md:p-12">
+
+      <!-- Input mode -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <span class="text-xs text-slate-500 uppercase tracking-widest mr-1 self-center">Input:</span>
+        <button class="mr-mode-btn text-xs px-3 py-1.5 rounded-lg border border-[#ff6b35]/50 text-[#ff6b35] transition-colors cursor-pointer" data-mode="shape" aria-pressed="true">
+          Bounding box
+        </button>
+        <button class="mr-mode-btn text-xs px-3 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:border-[#ff6b35]/50 hover:text-[#ff6b35] transition-colors cursor-pointer" data-mode="volume" aria-pressed="false">
+          Volume from slicer (mL)
+        </button>
+      </div>
+
+      <!-- Shape inputs -->
+      <div id="mr-shape-inputs" class="mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="mr-shape" class="block text-sm font-bold text-slate-300 mb-2">Shape</label>
+            <select id="mr-shape" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+              <option value="box" selected>Box (figure bounding box)</option>
+              <option value="cylinder">Cylinder (round base)</option>
+              <option value="sphere">Sphere</option>
+            </select>
+          </div>
+          <div>
+            <label for="mr-shell" class="block text-sm font-bold text-slate-300 mb-2">Solid or Hollow</label>
+            <select id="mr-shell" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+              <option value="hollow" selected>Hollow (resin standard)</option>
+              <option value="solid">Solid</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="mr-group-box" class="mr-shape-group grid grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <label for="mr-len" class="block text-sm font-bold text-slate-300 mb-2">Length (mm)</label>
+            <input id="mr-len" type="number" value="28" step="1" min="0.1" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="mr-wid" class="block text-sm font-bold text-slate-300 mb-2">Width (mm)</label>
+            <input id="mr-wid" type="number" value="20" step="1" min="0.1" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="mr-hgt" class="block text-sm font-bold text-slate-300 mb-2">Height (mm)</label>
+            <input id="mr-hgt" type="number" value="40" step="1" min="0.1" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+
+        <div id="mr-group-cylinder" class="mr-shape-group grid grid-cols-2 gap-6 mb-6 hidden">
+          <div>
+            <label for="mr-dia" class="block text-sm font-bold text-slate-300 mb-2">Diameter (mm)</label>
+            <input id="mr-dia" type="number" value="32" step="1" min="0.1" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="mr-cyl-h" class="block text-sm font-bold text-slate-300 mb-2">Height (mm)</label>
+            <input id="mr-cyl-h" type="number" value="40" step="1" min="0.1" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+
+        <div id="mr-group-sphere" class="mr-shape-group grid grid-cols-2 gap-6 mb-6 hidden">
+          <div>
+            <label for="mr-sph-d" class="block text-sm font-bold text-slate-300 mb-2">Diameter (mm)</label>
+            <input id="mr-sph-d" type="number" value="32" step="1" min="0.1" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+
+        <div id="mr-wall-wrap" class="grid grid-cols-2 gap-6 mb-6">
+          <div>
+            <label for="mr-wall" class="block text-sm font-bold text-slate-300 mb-2">Wall Thickness (mm)</label>
+            <input id="mr-wall" type="number" value="1.5" step="0.1" min="0.1" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+            <p class="text-xs text-slate-500 mt-1">1.0–2.0mm is the normal resin range. The cavity keeps a solid base.</p>
+          </div>
+          <div>
+            <label for="mr-overhead" class="block text-sm font-bold text-slate-300 mb-2">Supports &amp; Waste (%)</label>
+            <div class="relative">
+              <input id="mr-overhead" type="number" value="15" step="1" min="0" max="200" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 pr-12 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">%</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">Raft, supports, purge, and failed prints. Hollowed parts need more supports, not fewer.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Direct volume input -->
+      <div id="mr-volume-inputs" class="mb-6 hidden">
+        <label for="mr-volume" class="block text-sm font-bold text-slate-300 mb-2">Model Volume (mL)</label>
+        <div class="relative max-w-sm">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm">mL</span>
+          <input id="mr-volume" type="number" value="6" step="0.1" min="0.01" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-12 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+        </div>
+        <p class="text-xs text-slate-500 mt-1">Chitubox and Lychee both report the actual consumed volume per layer stack in the print estimate — paste that number here for an exact figure.</p>
+      </div>
+
+      <!-- Resin + bottle -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="mr-resin" class="block text-sm font-bold text-slate-300 mb-2">Resin</label>
+          <select id="mr-resin" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+            {resinDensities.map((m) => (
+              <option value={m.density} selected={m.name === "Resin — Tough"}>{m.name} — {m.density} g/mL</option>
+            ))}
+          </select>
+          <p class="text-xs text-slate-500 mt-1" id="mr-density-hint">Density: 1.12 g/mL</p>
+        </div>
+        <div>
+          <label for="mr-bottle" class="block text-sm font-bold text-slate-300 mb-2">Bottle Preset</label>
+          <select id="mr-bottle" class="w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-4 text-white text-lg font-mono focus:outline-none focus:border-[#ff6b35] transition-colors cursor-pointer">
+            {bottlePresets.map((b) => (
+              <option value={b.label} data-ml={b.ml} data-price={b.price} selected={b.label === defaultBottle.label}>{b.label}</option>
+            ))}
+            <option value="custom">My own bottle…</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mb-8 p-6 bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-4">Your Bottle</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label for="mr-bottle-ml" class="block text-xs font-semibold text-slate-400 mb-1">Bottle Size (mL)</label>
+            <input id="mr-bottle-ml" type="number" value={defaultBottle.ml} step="10" min="1" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="mr-bottle-price" class="block text-xs font-semibold text-slate-400 mb-1">Bottle Price ($)</label>
+            <input id="mr-bottle-price" type="number" value={defaultBottle.price} step="0.01" min="0" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+          <div>
+            <label for="mr-army" class="block text-xs font-semibold text-slate-400 mb-1">How many miniatures?</label>
+            <input id="mr-army" type="number" value="100" step="1" min="1" class="mr-field w-full bg-slate-950 border border-white/10 rounded-xl px-4 py-3 text-white text-base font-mono focus:outline-none focus:border-[#ff6b35] transition-colors" />
+          </div>
+        </div>
+        <p class="text-xs text-slate-500 mt-3">Cost per mL: <span id="mr-per-ml" class="font-mono text-[#ff6b35] font-bold">$0.0200</span></p>
+      </div>
+
+      <!-- Results -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4" aria-live="polite">
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Bounding Volume</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="mr-vol-outer">22.4</p>
+          <p class="text-[10px] text-slate-600 mt-1">mL</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Resin in Part</p>
+          <p class="text-2xl md:text-3xl font-black text-slate-300 font-heading" id="mr-vol-part">6.0</p>
+          <p class="text-[10px] text-slate-600 mt-1">mL</p>
+        </div>
+        <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Total Resin Used</p>
+          <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="mr-vol-total">6.9</p>
+          <p class="text-[10px] text-slate-600 mt-1">mL with waste</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Weight</p>
+          <p class="text-2xl md:text-3xl font-black text-white font-heading" id="mr-weight">7.7</p>
+          <p class="text-[10px] text-slate-600 mt-1">grams</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8" aria-live="polite">
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Cost per Mini</p>
+          <p class="text-2xl md:text-3xl font-black text-white font-heading" id="mr-cost">$0.14</p>
+          <p class="text-[10px] text-slate-600 mt-1">resin only</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Mini per Bottle</p>
+          <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="mr-per-bottle">144</p>
+          <p class="text-[10px] text-slate-600 mt-1">from a full bottle</p>
+        </div>
+        <div class="bg-black/40 p-5 rounded-2xl border border-white/5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Whole Army</p>
+          <p class="text-2xl md:text-3xl font-black text-white font-heading" id="mr-army-ml">690</p>
+          <p class="text-[10px] text-slate-600 mt-1">mL of resin</p>
+        </div>
+        <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-5 text-center">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Army Cost</p>
+          <p class="text-2xl md:text-3xl font-black text-[#ff6b35] font-heading" id="mr-army-cost">$13.80</p>
+          <p class="text-[10px] text-slate-600 mt-1" id="mr-bottles-needed">1 bottle to buy</p>
+        </div>
+      </div>
+
+      <div id="mr-formula-box" class="bg-slate-900/30 border border-white/5 rounded-2xl p-6 mb-8">
+        <p class="text-xs text-slate-500 uppercase tracking-widest mb-2">The math</p>
+        <p class="text-sm font-mono text-slate-300 leading-relaxed" id="mr-formula">22.4 mL box · 6.0 mL hollow shell × 1.15 waste = 6.9 mL × 1.12 g/mL = 7.7 g</p>
+      </div>
+
+      <div class="bg-slate-900/30 rounded-2xl border border-white/5 p-6">
+        <div class="flex items-start gap-3">
+          <i class="ti ti-alert-triangle text-amber-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="text-sm font-semibold text-white mb-1">A bounding box is a bounding box, not a model</p>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              A 28mm figure is nowhere near a solid 28×20×40 block — it is mostly air, arms, and a cloak. The hollow math above uses the full box minus the cavity, so it overestimates a detailed sculpt and underestimates a chunky one. Treat the number as a planning figure, and switch to Volume from slicer once you have the exact figure for your own STL. Bottle prices are also ballpark: sales, bundles, and your region all move the real per-mL rate, so overwrite them with what you actually paid.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}
+
+{part === "content" && (
+  <>
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="mr-answer-heading">
+    <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-[2.5rem] p-8 md:p-10">
+      <span class="text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3 block">Direct answer</span>
+      <h2 id="mr-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">How much resin does a miniature use, and what does it cost</h2>
+      <p class="text-slate-300 leading-relaxed">
+        A standard 28mm tabletop miniature consumes roughly <strong class="text-white">5ml to 12ml</strong> of resin hollowed, and closer to 20ml solid. Hollowing is the whole game on resin: a 28×20×40mm bounding box is 22.4ml, but hollowed at a 1.5mm wall with a solid base it holds about <em class="text-[#ff6b35] font-semibold not-italic">6ml</em> — a 73% saving over solid. Multiply that by your waste allowance for the raft, supports, and purge, and you have the real consumption.
+      </p>
+      <p class="text-slate-300 leading-relaxed mt-4">
+        For cost, work per millilitre. A 1kg bottle at $19.99 is 1000ml at <em class="text-[#ff6b35] font-semibold not-italic">$0.020/ml</em>, so a 6ml hollowed miniature is about <em class="text-[#ff6b35] font-semibold not-italic">$0.12</em> in resin — a hundred of them lands near $12 and roughly one bottle. Weight is the same multiplication the other way: 6ml × 1.12 g/ml = 6.7g, which is what a hollowed 28mm mini should feel like in your hand.
+      </p>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="mr-bottle-heading">
+    <h2 id="mr-bottle-heading" class="text-2xl font-bold font-heading mb-6">Cost per Millilitre by Bottle</h2>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/60 text-left">
+            <th class="px-5 py-3 text-slate-400 font-bold">Bottle</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Size</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Price</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Per mL</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5">
+          {bottlePresets.map((b) => (
+            <tr class="bg-slate-900/20">
+              <td class="px-5 py-3 text-white font-semibold">{b.label}</td>
+              <td class="px-5 py-3 font-mono text-slate-300">{b.ml} mL</td>
+              <td class="px-5 py-3 font-mono text-slate-300">${b.price.toFixed(2)}</td>
+              <td class="px-5 py-3 font-mono text-[#ff6b35] font-bold">${(b.price / b.ml).toFixed(4)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3">
+      These are the exact presets loaded into the calculator. Buy on per-millilitre, not on sticker price — a 2kg bottle looks like a bargain until you notice you cannot keep 2kg of mixed resin from six brands in one jug without curing problems.
+    </p>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="mr-steps-heading">
+    <h2 id="mr-steps-heading" class="text-2xl font-bold font-heading mb-6">How to budget a whole project</h2>
+    <ol class="space-y-4">
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">1</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Hollow everything, and set the wall once</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Most slicers hollow automatically at print time — Chitubox, Lychee, and Elegoo Space all have a per-object hollowing option. Pick 1.5mm and leave it there. Dropping to 1.0mm on a miniature saves maybe 0.6ml and is the difference between a part that survives a drop and one that does not.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">2</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Honest about supports</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">A hollowed mini needs supports for the same features a solid one does, but the supports themselves are solid, and the raft is solid too. 15% overhead is a reasonable floor for a small figure. Terrain tiles, flying models, and anything with a big unsupported flat want 25–40%, because that is where the failures cluster.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Price the bottle, not the millilitre you use</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">The calculator shows the cost of the resin you consume and, separately, how many bottles that project actually requires. They are not the same number. A 100-mini project that consumes 690ml costs $13.80 in resin but you still had to buy a whole bottle, and the half you never use will thicken in the jug.</p>
+        </div>
+      </li>
+      <li class="flex gap-4 bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+        <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">4</span>
+        <div>
+          <h3 class="font-bold text-white mb-1">Watch the uncured waste, not just the printed part</h3>
+          <p class="text-sm text-slate-400 leading-relaxed">Your biggest resin loss is the failed hollow that slumps off the build plate, the rag you wipe the cup with, and the vat sediment you can never pour back. On a small-figure project those run 5–10% on top of everything else, and none of it shows up in a slicer estimate. Keep one bottle per resin brand — mixing is what actually wastes resin.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-24" aria-labelledby="mr-faq-heading">
+    <h2 id="mr-faq-heading" class="text-2xl font-bold font-heading mb-6">Miniature Resin Weight &amp; Cost FAQ</h2>
+    <div class="space-y-4">
+      {miniatureResinFaq.map((f) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{f.question}</span>
+            <i class="ti ti-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+  </>
+)}
+
+<script>
+  // Miniature Resin Weight & Cost Estimator — all math runs locally.
+  //   outer  = shape volume (mm³) → mL
+  //   hollow = outer − cavity, cavity inset by `wall` on all sides but the base
+  //   total  = part volume × (1 + overhead %)
+  //   weight = total (mL) × density (g/mL)
+  //   cost   = total (mL) × (bottle price ÷ bottle mL)
+
+  type El = HTMLElement | null;
+  function el<T extends HTMLElement>(id: string): T | null {
+    return document.getElementById(id) as T | null;
+  }
+  const num = (id: string): number => {
+    const v = parseFloat(el<HTMLInputElement>(id)?.value ?? "");
+    return isFinite(v) ? v : NaN;
+  };
+  const set = (id: string, text: string) => {
+    const node = el(id);
+    if (node) node.textContent = text;
+  };
+  const ml = (v: number) => v.toFixed(1);
+  const grams = (v: number) => (v >= 100 ? v.toFixed(0) : v.toFixed(1));
+
+  let mode: "shape" | "volume" = "shape";
+  const modeBtns = document.querySelectorAll<HTMLButtonElement>(".mr-mode-btn");
+  const shapeSelect = el<HTMLSelectElement>("mr-shape");
+  const shellSelect = el<HTMLSelectElement>("mr-shell");
+  const resinSelect = el<HTMLSelectElement>("mr-resin");
+  const bottleSelect = el<HTMLSelectElement>("mr-bottle");
+
+  function currentDensity(): number {
+    return resinSelect ? parseFloat(resinSelect.value) : NaN;
+  }
+
+  // Outer and cavity volumes in mm³ for the active shape.
+  // The cavity is inset by `wall` on every side except the build plate, so the
+  // hollowed part keeps a solid base and does not delaminate off the raft.
+  function volumes(shape: string, wall: number): { outer: number; cavity: number } {
+    if (shape === "box") {
+      const L = num("mr-len"), W = num("mr-wid"), H = num("mr-hgt");
+      if (!(L > 0 && W > 0 && H > 0)) return { outer: NaN, cavity: NaN };
+      const cavity =
+        Math.max(L - 2 * wall, 0) * Math.max(W - 2 * wall, 0) * Math.max(H - wall, 0);
+      return { outer: L * W * H, cavity };
+    }
+    if (shape === "cylinder") {
+      const D = num("mr-dia"), H = num("mr-cyl-h");
+      if (!(D > 0 && H > 0)) return { outer: NaN, cavity: NaN };
+      const iD = Math.max(D - 2 * wall, 0);
+      const iH = Math.max(H - wall, 0);
+      return { outer: (Math.PI / 4) * D * D * H, cavity: (Math.PI / 4) * iD * iD * iH };
+    }
+    const D = num("mr-sph-d");
+    if (!(D > 0)) return { outer: NaN, cavity: NaN };
+    const iD = Math.max(D - 2 * wall, 0);
+    return { outer: (Math.PI / 6) * D ** 3, cavity: (Math.PI / 6) * iD ** 3 };
+  }
+
+  function recalc() {
+    // --- Visibility
+    const shapeBox = el("mr-shape-inputs");
+    const volumeBox = el("mr-volume-inputs");
+    shapeBox?.classList.toggle("hidden", mode !== "shape");
+    volumeBox?.classList.toggle("hidden", mode !== "volume");
+
+    document.querySelectorAll<HTMLElement>(".mr-shape-group").forEach((g) => {
+      g.classList.toggle("hidden", mode !== "shape" || g.id !== "mr-group-" + (shapeSelect?.value || "box"));
+    });
+
+    const hollow = shellSelect?.value === "hollow";
+    if (shellSelect) shellSelect.disabled = mode === "volume";
+    el("mr-wall-wrap")?.classList.toggle("hidden", mode !== "shape" || !hollow);
+
+    // --- Bottle
+    const bottleMl = num("mr-bottle-ml");
+    const bottlePrice = num("mr-bottle-price");
+    const perMl = bottleMl > 0 && bottlePrice > 0 ? bottlePrice / bottleMl : NaN;
+    set("mr-per-ml", isFinite(perMl) ? "$" + perMl.toFixed(4) + " / mL" : "—");
+
+    // --- Volumes
+    let outerMl = NaN;
+    let partMl = NaN;
+    let shellNote = "";
+
+    if (mode === "volume") {
+      const v = num("mr-volume");
+      if (v > 0) {
+        outerMl = v;
+        partMl = v;
+        shellNote = "slicer figure";
+      }
+    } else {
+      const shape = shapeSelect?.value || "box";
+      const wall = hollow ? num("mr-wall") : 0;
+      const { outer, cavity } = volumes(shape, isFinite(wall) ? wall : NaN);
+      if (isFinite(outer)) {
+        outerMl = outer / 1000;
+        if (hollow && isFinite(wall) && wall > 0) {
+          partMl = Math.max(outer - cavity, 0) / 1000;
+          shellNote = `${wall}mm wall, solid base`;
+        } else {
+          partMl = outerMl;
+          shellNote = "solid";
+        }
+      }
+    }
+
+    // --- Overhead
+    const overhead = Math.min(Math.max(num("mr-overhead") || 0, 0), 200) / 100;
+    const totalMl = isFinite(partMl) ? partMl * (1 + overhead) : NaN;
+
+    // --- Weight + cost
+    const density = currentDensity();
+    const weight = isFinite(totalMl) && density > 0 ? totalMl * density : NaN;
+    const cost = isFinite(totalMl) && isFinite(perMl) ? totalMl * perMl : NaN;
+    const perBottle = isFinite(totalMl) && totalMl > 0 ? Math.floor(bottleMl / totalMl) : NaN;
+
+    set("mr-vol-outer", isFinite(outerMl) ? ml(outerMl) : "—");
+    set("mr-vol-part", isFinite(partMl) ? ml(partMl) : "—");
+    set("mr-vol-total", isFinite(totalMl) ? ml(totalMl) : "—");
+    set("mr-weight", isFinite(weight) ? grams(weight) : "—");
+    set("mr-cost", isFinite(cost) ? "$" + cost.toFixed(2) : "—");
+    set("mr-per-bottle", isFinite(perBottle) ? String(perBottle) : "—");
+
+    // --- Army totals
+    const army = Math.max(Math.floor(num("mr-army") || 0), 0);
+    const armyMl = isFinite(totalMl) ? totalMl * army : NaN;
+    const armyCost = isFinite(cost) ? cost * army : NaN;
+    const bottlesNeeded = isFinite(armyMl) && bottleMl > 0 ? Math.max(Math.ceil(armyMl / bottleMl), 1) : NaN;
+    const buyCost = isFinite(bottlesNeeded) ? bottlesNeeded * bottlePrice : NaN;
+
+    set("mr-army-ml", isFinite(armyMl) ? (armyMl >= 1000 ? (armyMl / 1000).toFixed(2) + " L" : armyMl.toFixed(0)) : "—");
+    set("mr-army-cost", isFinite(armyCost) ? "$" + armyCost.toFixed(2) : "—");
+    set("mr-bottles-needed", isFinite(bottlesNeeded) && army > 0
+      ? `${bottlesNeeded} bottle${bottlesNeeded === 1 ? "" : "s"} to buy — $${buyCost.toFixed(2)}`
+      : "how many miniatures?");
+
+    // --- Formula line
+    const formula = el("mr-formula");
+    if (formula) {
+      if (!isFinite(outerMl) || !isFinite(partMl)) {
+        formula.textContent = mode === "volume"
+          ? "Enter the volume from your slicer above"
+          : "Enter your dimensions above";
+      } else if (mode === "volume") {
+        formula.textContent = `${ml(totalMl)} mL × ${(overhead * 100).toFixed(0)}% waste × ${density} g/mL = ${grams(weight)} g`;
+      } else {
+        formula.textContent =
+          `${ml(outerMl)} mL box · ${ml(partMl)} mL ${shellNote} × ${(1 + overhead).toFixed(2)} waste = ${ml(totalMl)} mL × ${density} g/mL = ${grams(weight)} g`;
+      }
+    }
+  }
+
+  modeBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      mode = (btn.dataset.mode as "shape" | "volume") || "shape";
+      modeBtns.forEach((b) => {
+        const active = b === btn;
+        b.setAttribute("aria-pressed", String(active));
+        b.classList.toggle("border-[#ff6b35]/50", active);
+        b.classList.toggle("text-[#ff6b35]", active);
+        b.classList.toggle("border-white/10", !active);
+        b.classList.toggle("text-slate-400", !active);
+      });
+      recalc();
+    });
+  });
+
+  // Bottle presets fill in the price and size fields.
+  bottleSelect?.addEventListener("change", () => {
+    if (bottleSelect.value === "custom") {
+      el("mr-bottle-ml")?.focus();
+      return;
+    }
+    const opt = bottleSelect.selectedOptions[0];
+    if (opt) {
+      el<HTMLInputElement>("mr-bottle-ml")!.value = opt.dataset.ml ?? "";
+      el<HTMLInputElement>("mr-bottle-price")!.value = opt.dataset.price ?? "";
+    }
+    recalc();
+  });
+
+  const densityHint = el("mr-density-hint");
+  if (densityHint && resinSelect) {
+    const sync = () => {
+      const d = currentDensity();
+      densityHint.textContent = isFinite(d) && d > 0 ? `Density: ${d} g/mL` : "Enter a valid density";
+    };
+    sync();
+  }
+
+  document.querySelectorAll<HTMLInputElement>(".mr-field").forEach((node) => {
+    node.addEventListener("input", recalc);
+    node.addEventListener("change", recalc);
+  });
+  [shapeSelect, shellSelect, resinSelect].forEach((node) => {
+    node?.addEventListener("change", recalc);
+  });
+
+  recalc();
+</script>
