@@ -1,5 +1,5 @@
 ---
-// src/pages/calculator/[slug].astro
+// src/pages/3d-math/[slug].astro
 // Generic calculator page. Each tool lives in src/components/tools/*.astro and
 // is dispatched by slug below: part="calc" renders the interactive block
 // inside the article, part="content" renders the trailing content sections.
@@ -36,7 +36,7 @@ const toolFaqs: Record<string, { question: string; answer: string }[]> = {
 const toolSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Calculators", path: "/calculator" },
+    { name: "3D Math", path: "/3d-math" },
     { name: tool.name, path: tool.url },
   ]),
   softwareApplication({
@@ -60,7 +60,7 @@ const toolSchema = graph([
 <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
   <span class="mx-2">/</span>
-  <a href="/calculator" class="hover:text-[#ff6b35] transition-colors">Calculators</a>
+  <a href="/3d-math" class="hover:text-[#ff6b35] transition-colors">3D Math</a>
   <span class="mx-2">/</span>
   <span class="text-slate-400" aria-current="page">{tool.name}</span>
 </nav>
@@ -134,9 +134,9 @@ const toolSchema = graph([
 
   <!-- Back link -->
   <div class="mt-12">
-    <a href="/calculator" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
+    <a href="/3d-math" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
       <i class="ti ti-arrow-left text-xs"></i>
-      Back to all calculators
+      Back to 3D Math
     </a>
   </div>
 

@@ -1,196 +1,50 @@
-/library  /miniature-size-chart  301
-/library.html  /miniature-size-chart  301
+# --- Core Pages & Legacy Hubs ---
+# /calculator → /3d-math (renamed; subpaths map 1:1)
+/calculator      /3d-math         301
+/calculator/*    /3d-math/:splat  301
 
-# /blog → /fdm (renamed from /guides; all guide subpages retired)
-# Specific legacy blog slugs that map to a closer live page come first.
-/blog/stl-scale-conversion-chart  /miniature-size-chart  301
-/blog/stl-scale-conversion-chart/  /miniature-size-chart  301
-/blog/28mm-to-32mm-percentage  /miniature-size-chart  301
-/blog/28mm-to-32mm-percentage/  /miniature-size-chart  301
-/blog/warhammer-40k-scale-guide  /fdm-printing-profiles  301
-/blog/warhammer-40k-scale-guide/  /fdm-printing-profiles  301
-/blog/bolt-action-scale-guide  /fdm-printing-profiles  301
-/blog/bolt-action-scale-guide/  /fdm-printing-profiles  301
-/blog/dungeons-and-dragons-miniature-scale  /fdm-printing-profiles  301
-/blog/dungeons-and-dragons-miniature-scale/  /fdm-printing-profiles  301
-/blog  /fdm  301
-/blog/  /fdm  301
-/blog/*  /fdm  301
+/library        /miniature-size-chart  301
+/library.html   /miniature-size-chart  301
+/embed          /                      301
+/cookies/       /privacy               301
+/llm.txt        /llms.txt              301
 
-/embed  /  301
+# --- Specific Legacy Guide/Blog Slugs ---
+# (Placed before the wildcard catches them)
+/blog/stl-scale-conversion-chart          /miniature-size-chart  301
+/blog/28mm-to-32mm-percentage             /miniature-size-chart  301
+/blog/warhammer-40k-scale-guide           /fdm-printing-profiles  301
+/blog/bolt-action-scale-guide             /fdm-printing-profiles  301
+/blog/dungeons-and-dragons-miniature-scale /fdm-printing-profiles  301
 
-# /reference → /miniature-size-chart (renamed; all conversions now on one page)
-/reference  /miniature-size-chart  301
-/reference/*  /miniature-size-chart  301
+/guides/stl-scale-conversion-chart         /miniature-size-chart  301
+/guides/28mm-to-32mm-percentage            /miniature-size-chart  301
+/guides/warhammer-40k-scale-guide          /fdm-printing-profiles  301
+/guides/bolt-action-scale-guide            /fdm-printing-profiles  301
+/guides/dungeons-and-dragons-miniature-scale /fdm-printing-profiles  301
 
-# Trailing slash → clean URL
-/faq/  /faq  301
-/privacy/  /privacy  301
-/terms/  /terms  301
-/embed/  /  301
-/reference/  /miniature-size-chart  301
-
-# .html extension → clean URL
-/index.html  /  301
-/reference.html  /miniature-size-chart  301
-/faq.html  /faq  301
-
-# /guides → /fdm (guides section renamed to FDM hub)
-# Specific legacy guide slugs that map to a closer live page come first.
-/guides/stl-scale-conversion-chart  /miniature-size-chart  301
-/guides/stl-scale-conversion-chart/  /miniature-size-chart  301
-/guides/28mm-to-32mm-percentage  /miniature-size-chart  301
-/guides/28mm-to-32mm-percentage/  /miniature-size-chart  301
-/guides/warhammer-40k-scale-guide  /fdm-printing-profiles  301
-/guides/warhammer-40k-scale-guide/  /fdm-printing-profiles  301
-/guides/bolt-action-scale-guide  /fdm-printing-profiles  301
-/guides/bolt-action-scale-guide/  /fdm-printing-profiles  301
-/guides/dungeons-and-dragons-miniature-scale  /fdm-printing-profiles  301
-/guides/dungeons-and-dragons-miniature-scale/  /fdm-printing-profiles  301
-/guides  /fdm  301
-/guides/  /fdm  301
+# --- Catch-all Directory Redirects ---
+# All old blog and guide subpaths cleanly map to /fdm
+/blog/*    /fdm  301
 /guides/*  /fdm  301
 
-# /games → /fdm-printing-profiles (repurposed from game system pages to FDM print profiles)
-/games  /fdm-printing-profiles  301
-/games/  /fdm-printing-profiles  301
+# All legacy /games and game subpaths map to profiles
+/games/*   /fdm-printing-profiles  301
 
-# All previous game system slugs (incl. legacy trademark names) → /fdm-printing-profiles
-/games/warhammer-40000  /fdm-printing-profiles  301
-/games/warhammer-40000/  /fdm-printing-profiles  301
-/games/age-of-sigmar  /fdm-printing-profiles  301
-/games/age-of-sigmar/  /fdm-printing-profiles  301
-/games/warhammer-the-old-world  /fdm-printing-profiles  301
-/games/warhammer-the-old-world/  /fdm-printing-profiles  301
-/games/middle-earth-strategy-battle-game  /fdm-printing-profiles  301
-/games/middle-earth-strategy-battle-game/  /fdm-printing-profiles  301
-/games/bolt-action  /fdm-printing-profiles  301
-/games/bolt-action/  /fdm-printing-profiles  301
-/games/dungeons-and-dragons  /fdm-printing-profiles  301
-/games/dungeons-and-dragons/  /fdm-printing-profiles  301
-/games/star-wars-legion  /fdm-printing-profiles  301
-/games/star-wars-legion/  /fdm-printing-profiles  301
-/games/star-wars-shatterpoint  /fdm-printing-profiles  301
-/games/star-wars-shatterpoint/  /fdm-printing-profiles  301
-/games/star-wars-x-wing  /fdm-printing-profiles  301
-/games/star-wars-x-wing/  /fdm-printing-profiles  301
-/games/marvel-crisis-protocol  /fdm-printing-profiles  301
-/games/marvel-crisis-protocol/  /fdm-printing-profiles  301
-/games/malifaux  /fdm-printing-profiles  301
-/games/malifaux/  /fdm-printing-profiles  301
-/games/infinity  /fdm-printing-profiles  301
-/games/infinity/  /fdm-printing-profiles  301
-/games/warmachine-hordes  /fdm-printing-profiles  301
-/games/warmachine-hordes/  /fdm-printing-profiles  301
-/games/frostgrave-stargrave  /fdm-printing-profiles  301
-/games/frostgrave-stargrave/  /fdm-printing-profiles  301
-/games/kings-of-war  /fdm-printing-profiles  301
-/games/kings-of-war/  /fdm-printing-profiles  301
-/games/battletech  /fdm-printing-profiles  301
-/games/battletech/  /fdm-printing-profiles  301
-/games/flames-of-war  /fdm-printing-profiles  301
-/games/flames-of-war/  /fdm-printing-profiles  301
-/games/dropzone-commander  /fdm-printing-profiles  301
-/games/dropzone-commander/  /fdm-printing-profiles  301
-/games/legions-imperialis  /fdm-printing-profiles  301
-/games/legions-imperialis/  /fdm-printing-profiles  301
-/games/one-page-rules-grimdark-future  /fdm-printing-profiles  301
-/games/one-page-rules-grimdark-future/  /fdm-printing-profiles  301
-/games/fallout-wasteland-warfare  /fdm-printing-profiles  301
-/games/fallout-wasteland-warfare/  /fdm-printing-profiles  301
-/games/gaslands  /fdm-printing-profiles  301
-/games/gaslands/  /fdm-printing-profiles  301
-/games/kill-team  /fdm-printing-profiles  301
-/games/kill-team/  /fdm-printing-profiles  301
-/games/necromunda  /fdm-printing-profiles  301
-/games/necromunda/  /fdm-printing-profiles  301
-/games/warcry  /fdm-printing-profiles  301
-/games/warcry/  /fdm-printing-profiles  301
-/games/conquest  /fdm-printing-profiles  301
-/games/conquest/  /fdm-printing-profiles  301
+# --- Reference & Old Tool Slugs ---
+/reference            /miniature-size-chart  301
+/reference/*          /miniature-size-chart  301
+/reference32mm-to-40mm /miniature-size-chart  301
+/reference35mm-to-28mm /miniature-size-chart  301
+/reference1-48-to-75mm /miniature-size-chart  301
 
-# Indexed /games/{slug} profile pages → /fdm-printing-profiles
-/games/sci-fi-epic-32mm  /fdm-printing-profiles  301
-/games/sci-fi-epic-32mm/  /fdm-printing-profiles  301
-/games/fantasy-epic-32mm  /fdm-printing-profiles  301
-/games/fantasy-epic-32mm/  /fdm-printing-profiles  301
-/games/classic-fantasy-28mm  /fdm-printing-profiles  301
-/games/classic-fantasy-28mm/  /fdm-printing-profiles  301
-/games/fantasy-skirmish-25-28mm  /fdm-printing-profiles  301
-/games/fantasy-skirmish-25-28mm/  /fdm-printing-profiles  301
-/games/ww2-platoon-28mm  /fdm-printing-profiles  301
-/games/ww2-platoon-28mm/  /fdm-printing-profiles  301
-/games/classic-fantasy-rpg-28mm  /fdm-printing-profiles  301
-/games/classic-fantasy-rpg-28mm/  /fdm-printing-profiles  301
-/games/sci-fi-mass-battle-35mm  /fdm-printing-profiles  301
-/games/sci-fi-mass-battle-35mm/  /fdm-printing-profiles  301
-/games/sci-fi-skirmish-40mm  /fdm-printing-profiles  301
-/games/sci-fi-skirmish-40mm/  /fdm-printing-profiles  301
-/games/superhero-skirmish-35mm  /fdm-printing-profiles  301
-/games/superhero-skirmish-35mm/  /fdm-printing-profiles  301
-/games/gothic-pulp-skirmish-32mm  /fdm-printing-profiles  301
-/games/gothic-pulp-skirmish-32mm/  /fdm-printing-profiles  301
-/games/anime-sci-fi-skirmish-28mm  /fdm-printing-profiles  301
-/games/anime-sci-fi-skirmish-28mm/  /fdm-printing-profiles  301
-/games/steampunk-fantasy-wargame-30mm  /fdm-printing-profiles  301
-/games/steampunk-fantasy-wargame-30mm/  /fdm-printing-profiles  301
-/games/miniature-agnostic-skirmish-28mm  /fdm-printing-profiles  301
-/games/miniature-agnostic-skirmish-28mm/  /fdm-printing-profiles  301
-/games/ranked-fantasy-mass-battle-28mm  /fdm-printing-profiles  301
-/games/ranked-fantasy-mass-battle-28mm/  /fdm-printing-profiles  301
-/games/mech-tactical-6mm  /fdm-printing-profiles  301
-/games/mech-tactical-6mm/  /fdm-printing-profiles  301
-/games/ww2-company-15mm  /fdm-printing-profiles  301
-/games/ww2-company-15mm/  /fdm-printing-profiles  301
-/games/sci-fi-mass-battle-10mm  /fdm-printing-profiles  301
-/games/sci-fi-mass-battle-10mm/  /fdm-printing-profiles  301
-/games/epic-sci-fi-8mm  /fdm-printing-profiles  301
-/games/epic-sci-fi-8mm/  /fdm-printing-profiles  301
-/games/miniature-agnostic-sci-fi-32mm  /fdm-printing-profiles  301
-/games/miniature-agnostic-sci-fi-32mm/  /fdm-printing-profiles  301
-/games/post-apocalyptic-32mm  /fdm-printing-profiles  301
-/games/post-apocalyptic-32mm/  /fdm-printing-profiles  301
-/games/vehicular-combat-1-56  /fdm-printing-profiles  301
-/games/vehicular-combat-1-56/  /fdm-printing-profiles  301
-/games/sci-fi-skirmish-32mm  /fdm-printing-profiles  301
-/games/sci-fi-skirmish-32mm/  /fdm-printing-profiles  301
-/games/gang-skirmish-32mm  /fdm-printing-profiles  301
-/games/gang-skirmish-32mm/  /fdm-printing-profiles  301
-/games/fantasy-skirmish-32mm  /fdm-printing-profiles  301
-/games/fantasy-skirmish-32mm/  /fdm-printing-profiles  301
-/games/sci-fi-dogfight-1-27  /fdm-printing-profiles  301
-/games/sci-fi-dogfight-1-27/  /fdm-printing-profiles  301
-/games/fantasy-mass-battle-35mm  /fdm-printing-profiles  301
-/games/fantasy-mass-battle-35mm/  /fdm-printing-profiles  301
+/tools                /3d-math  301
+/tools/stlscaler/     /            301
+/tools/stl-scale-engine /          301
+/tools/scale-reference /miniature-size-chart  301
+/tools/3d-scale-visualizer /3d-math  301
+/tools/real-world-scale-converter /3d-math  301
+/tools/miniature-scale-identifier /3d-math  301
 
-# Missing slash in path
-/reference32mm-to-40mm  /miniature-size-chart  301
-/reference35mm-to-28mm  /miniature-size-chart  301
-/reference1-48-to-75mm  /miniature-size-chart  301
-
-# Old tool paths
-# (specific rules first — Netlify matches top-to-bottom, so the generic
-#  splat rule below must come last in this block)
-/tools  /calculator  301
-/tools/  /calculator  301
-/tools/stlscaler/  /  301
-/tools/stl-scale-engine  /  301
-/tools/stl-scale-engine/  /  301
-/tools/stlscale-engine  /  301
-/tools/personal-library  /calculator  301
-/tools/scale-reference  /miniature-size-chart  301
-/tools/scale-reference/  /miniature-size-chart  301
-/tools/3d-scale-visualizer  /calculator  301
-/tools/3d-scale-visualizer/  /calculator  301
-/tools/real-world-scale-converter  /calculator  301
-/tools/real-world-scale-converter/  /calculator  301
-/tools/miniature-scale-identifier  /calculator  301
-/tools/miniature-scale-identifier/  /calculator  301
-# Any remaining /tools/<slug> maps 1:1 to /calculator/<slug>
-/tools/*  /calculator/:splat  301
-
-# Non-existent pages
-/cookies/  /privacy  301
-
-# llms.txt (renamed from llm.txt)
-/llm.txt  /llms.txt  301
+# Any remaining /tools/<slug> maps dynamically 1:1 to /3d-math/<slug>
+/tools/*              /3d-math/:splat  301

@@ -14,10 +14,10 @@ export const GET: APIRoute = async () => {
     `${base}/fdm-printing-profiles`,
     `${base}/fdm`,
     `${base}/miniature-size-chart`,
-    `${base}/calculator`,
+    `${base}/3d-math`,
     ...tools
       .filter((t) => t.slug !== "stl-scale-engine" && t.slug !== "scale-reference")
-      .map((t) => `${base}/calculator/${t.slug}`),
+      .map((t) => `${base}/3d-math/${t.slug}`),
   ];
 
   return new Response(urls.join('\n') + '\n', {

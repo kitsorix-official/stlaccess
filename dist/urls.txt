@@ -8,9 +8,9 @@ https://stlaccess.com/terms
 https://stlaccess.com/fdm-printing-profiles
 https://stlaccess.com/fdm
 https://stlaccess.com/miniature-size-chart
-https://stlaccess.com/calculator
-https://stlaccess.com/calculator/slicer-percentage-calculator
-https://stlaccess.com/calculator/filament-cost-calculator
-https://stlaccess.com/calculator/reference-bar-generator
-https://stlaccess.com/calculator/filament-density-calculator
-https://stlaccess.com/calculator/eu-3d-printing-import-cost-calculator
+https://stlaccess.com/3d-math
+https://stlaccess.com/3d-math/slicer-percentage-calculator
+https://stlaccess.com/3d-math/filament-cost-calculator
+https://stlaccess.com/3d-math/reference-bar-generator
+https://stlaccess.com/3d-math/filament-density-calculator
+https://stlaccess.com/3d-math/eu-3d-printing-import-cost-calculator

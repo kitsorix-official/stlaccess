@@ -1,7 +1,7 @@
 ---
 // src/components/tools/FilamentDensityTool.astro
 // Filament Density & Weight-to-Volume Estimator for
-// /calculator/filament-density-calculator.
+// /3d-math/filament-density-calculator.
 //
 // part="calc"    → the interactive calculator block (rendered inside <article>)
 // part="content" → direct answer, density reference, steps, and FAQ sections
@@ -250,7 +250,7 @@ const defaultQuality = qualityPresets[1];
         <strong class="text-white">Weight = Volume × Density.</strong> A 10 cm³ solid model printed in PLA at <em class="text-[#ff6b35] font-semibold not-italic">1.24 g/cm³</em> weighs 10 × 1.24 = <em class="text-[#ff6b35] font-semibold not-italic">12.4 g</em>. The same volume in ABS at 1.04 g/cm³ comes to 10.4 g — 16% lighter, same shape. For a hollow FDM print, subtract the interior behind your wall thickness and only count the infill percentage of what's left. That is the whole trick, and the calculator above does every step of it live.
       </p>
       <p class="text-slate-400 leading-relaxed mt-4 text-sm">
-        Got your grams? Feed them into the <a href="/calculator/filament-cost-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Filament Cost Calculator</a> to turn the weight into money.
+        Got your grams? Feed them into the <a href="/3d-math/filament-cost-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Filament Cost Calculator</a> to turn the weight into money.
       </p>
     </div>
   </section>
@@ -330,7 +330,7 @@ const defaultQuality = qualityPresets[1];
         <span class="w-8 h-8 shrink-0 rounded-lg bg-[#ff6b35]/10 text-[#ff6b35] font-black flex items-center justify-center">3</span>
         <div>
           <h3 class="font-bold text-white mb-1">Check the grams against your spool</h3>
-          <p class="text-sm text-slate-400 leading-relaxed">The tool tells you how many such prints a full spool delivers and what this one costs. If the number is close to what's left on your roll, drop to a lower infill — or head to the <a href="/calculator/filament-cost-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Filament Cost Calculator</a> for the full picture with electricity.</p>
+          <p class="text-sm text-slate-400 leading-relaxed">The tool tells you how many such prints a full spool delivers and what this one costs. If the number is close to what's left on your roll, drop to a lower infill — or head to the <a href="/3d-math/filament-cost-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">Filament Cost Calculator</a> for the full picture with electricity.</p>
         </div>
       </li>
     </ol>

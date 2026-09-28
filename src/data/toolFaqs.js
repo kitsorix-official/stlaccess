@@ -1,6 +1,6 @@
 // src/data/toolFaqs.js
 // Per-tool FAQ content. Rendered on each calculator page and reused for the
-// FAQPage JSON-LD graph in src/pages/calculator/[slug].astro.
+// FAQPage JSON-LD graph in src/pages/3d-math/[slug].astro.
 
 export const slicerFaq = [
   {

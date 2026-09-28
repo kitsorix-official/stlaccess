@@ -29,7 +29,7 @@
     "shortDescription": "Type in two measurements in millimetres, get the exact percentage for your slicer. Works for any scale combination.",
     "description": "The simplest tool on the site. Enter your current model height and your desired target height, and the calculator gives you the percentage to type into Chitubox, Lychee, or PrusaSlicer. Shows the formula so you can check the math yourself. No account, no cookies, no bloat.",
     "icon": "ti-percentage",
-    "url": "/calculator/slicer-percentage-calculator",
+    "url": "/3d-math/slicer-percentage-calculator",
     "features": ["Any source size to any target size", "Real-time calculation as you type", "12 common conversion presets", "Formula breakdown for verification", "Copy result to clipboard", "Zero bloat — no account, no cookies"],
     "category": "calculators",
     "featured": true
@@ -40,7 +40,7 @@
     "shortDescription": "Know your print cost before you start. Enter filament price, weight used, and optional electricity to estimate the true cost of 3D printing miniatures.",
     "description": "Enter your roll price, the grams your slicer reports, and optionally your printer power draw and print time. The calculator tells you the filament cost, electricity cost, and total. Works for PLA, PETG, and any filament type. Preset buttons for common rolls so you don't have to type everything manually.",
     "icon": "ti-currency-dollar",
-    "url": "/calculator/filament-cost-calculator",
+    "url": "/3d-math/filament-cost-calculator",
     "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Filament presets with real market prices", "Deep-link from scale engine", "No account, no cookies"],
     "category": "calculators",
     "featured": true
@@ -53,7 +53,7 @@
     "shortDescription": "Generate a printable ruler bar at any tabletop scale and import it into Lychee or Chitubox to measure unknown STLs. Download the STL right in your browser.",
     "description": "The tool behind those 'cubes to import into lychee for scaling' searches. Pick a scale and a bar length, and I generate an STL ruler bar you can download instantly. It has 5mm tick marks along its length plus an end tab exactly as tall as a figure at that scale. Import it next to any model of unknown scale, measure the model against the ruler in your slicer, and you instantly know what percentage to type in. Generated in your browser — nothing uploaded.",
     "icon": "ti-cube",
-    "url": "/calculator/reference-bar-generator",
+    "url": "/3d-math/reference-bar-generator",
     "features": ["Downloadable STL, generated in your browser", "All 16 tabletop scales supported", "5mm tick marks plus a figure-height end tab", "Ruler lengths from 30 to 100mm", "No uploads, no accounts, no cookies"],
     "category": "references",
     "featured": false
@@ -66,7 +66,7 @@
     "shortDescription": "Enter dimensions or a volume, pick a material, and get the weight in grams before you open your slicer. PLA, PETG, ABS, resin, and more.",
     "description": "A pre-slice planning calculator. Type the dimensions of a solid or hollow shape — or the volume straight from your slicer — choose a material, and the tool multiplies volume by density to give you the weight in grams, prints per spool, and a print-time baseline. Hollow prints account for wall thickness and infill, so the number reflects what actually comes off the build plate. Runs entirely in your browser — no uploads, no accounts, no cookies.",
     "icon": "ti-scale",
-    "url": "/calculator/filament-density-calculator",
+    "url": "/3d-math/filament-density-calculator",
     "features": ["12 material densities plus custom density", "Box, cylinder, sphere, and tube shapes", "Hollow shell math with wall thickness and infill", "Direct volume input in cm³ or mL", "Prints per spool and cost estimate", "Print time baseline by quality preset"],
     "category": "calculators",
     "featured": false
@@ -79,7 +79,7 @@
     "shortDescription": "The true landed cost in EUR for 3D printing supplies shipped into the EU — item price, shipping, the €3 per-item customs duty, and import VAT for your country.",
     "description": "Sticker prices on foreign webshops no longer tell the whole story. Since 1 July 2026 the EU charges a €3 customs duty per item on parcels valued up to €150, and import VAT applies to the item price, shipping, and duty combined. Enter what you are buying, how many distinct product categories are in the box, and your country's VAT rate — the calculator gives you the full landed cost in EUR instantly. Built for EU makers ordering filaments, nozzles, heater blocks, and printer parts from outside the EU. Runs entirely in your browser — no uploads, no accounts, no cookies.",
     "icon": "ti-truck-delivery",
-    "url": "/calculator/eu-3d-printing-import-cost-calculator",
+    "url": "/3d-math/eu-3d-printing-import-cost-calculator",
     "features": ["€3 flat customs duty per item category", "Import VAT for all 27 EU member states", "Correct VAT base: item + shipping + duty", "Over-€150 orders with custom duty rate", "Instant landed-cost breakdown in EUR", "No account, no cookies — nothing uploaded"],
     "category": "calculators",
     "featured": false
