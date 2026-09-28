@@ -33,6 +33,10 @@ const canonical = new URL(pathname, Astro.site || site.url).href;
 
 const currentPath = Astro.url.pathname;
 const banner = site.banner || { enabled: false };
+
+// Pages opt into a page-level header (H1 + intro + breadcrumbs) via the
+// "hero" slot. 404 has none, so only emit the <header> when it is filled.
+const hasHero = Astro.slots.has("hero");
 ---
 
 <!doctype html>
@@ -104,9 +108,10 @@ const banner = site.banner || { enabled: false };
   </head>
 
   <body class="min-h-screen flex flex-col bg-black text-white">
-    <!-- Header: skip link + sticky navbar. The header uses display:contents
-         so its children stay flex items of <body> (required for the navbar's
-         sticky positioning). -->
+    <!-- Header: site chrome only — sticky navbar and brand. The header uses
+         display:contents so its children stay flex items of <body> (required
+         for the navbar's sticky positioning). Page-level headings (H1, intro,
+         breadcrumbs) live in the <header> inside <main> below, not here. -->
     <header class="contents">
       {/* Global announcement banner — order-0 renders above the order-1 navbar */}
       {banner.enabled && (
@@ -168,11 +173,6 @@ const banner = site.banner || { enabled: false };
           });
         })();
       </script>
-
-      <!-- Hero (homepage only) — first in DOM, visually below navbar via order -->
-      <div class="order-2">
-        <slot name="hero" />
-      </div>
 
       <!-- Skip link -->
       <a
@@ -260,6 +260,16 @@ class={currentPath.startsWith("/miniature-size-chart")
 
     <!-- Main content -->
     <main id="main-content" class="flex-grow order-3">
+      {/* Page header — H1, intro, and breadcrumbs. Inside <main> so the outer
+          <header> above holds only site chrome (nav + brand). It was the
+          order-2 body flex item before, so it still renders between the
+          navbar (order-1) and the page body. */}
+      {hasHero && (
+        <header>
+          <slot name="hero" />
+        </header>
+      )}
+
       <slot />
     </main>
 

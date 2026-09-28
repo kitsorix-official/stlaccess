@@ -124,12 +124,13 @@ const defaultContext = `${defaultSource} → ${defaultTarget} · Eye Level`;
 
 <JsonLd slot="head" data={homeSchema} />
 
+<!-- Hero Section. Carries the screen-reader breadcrumb so it stays ahead of
+     the H1 in the accessibility tree now that the hero renders as the
+     <header> at the top of <main>, ahead of the default slot. -->
+<div slot="hero">
 <nav class="sr-only" aria-label="Breadcrumb">
   <span aria-current="page">Home</span>
 </nav>
-
-<!-- Hero Section -->
-<div slot="hero">
 <div class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
 <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-6">
 Verified for Windows, Edge, Chitubox & Lychee Slicer
