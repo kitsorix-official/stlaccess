@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
+import FeedbackBanner from "../components/FeedbackBanner.astro";
 
 const siteUpdated = lastModifiedDate();
 
@@ -267,6 +268,11 @@ class={currentPath.startsWith("/miniature-size-chart")
 
       </div>
     </header>
+
+    {/* Feedback solicitation. Appears once per visitor on every page, directly
+        below the sticky navbar, and retires itself once dismissed or once the
+        visitor actually scrolls to the form. */}
+    <FeedbackBanner href="/#feedback" />
 
     <!-- Main content -->
     <main id="main-content" class="flex-grow order-3">

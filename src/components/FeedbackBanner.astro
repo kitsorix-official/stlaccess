@@ -1,0 +1,124 @@
+---
+/**
+ * Site-wide feedback solicitation.
+ *
+ * Renders a loud, unmissable strip directly under the sticky navbar. Dismissal
+ * is remembered in localStorage so it never nags twice, but it is intentionally
+ * impossible to miss the first time.
+ *
+ * `href` should point at the feedback form. On the homepage that is a same-page
+ * anchor (`#feedback`); everywhere else it is `/#feedback`.
+ */
+const href = Astro.props.href ?? "/#feedback";
+const storageKey = "stlaccess:feedback-dismissed";
+---
+
+{/* Runs before the banner element is parsed, so a returning visitor who
+    already dismissed never sees a flash of it. */}
+<script is:inline define:vars={{ storageKey }}>
+  try {
+    if (localStorage.getItem(storageKey) === "1") {
+      document.documentElement.setAttribute("data-feedback-dismissed", "1");
+    }
+  } catch (e) {
+    /* Private mode or blocked storage — banner simply stays visible. */
+  }
+</script>
+
+<div
+  data-feedback-banner
+  class="relative border-y-2 border-[#ff6b35]/60 bg-gradient-to-r from-[#ff6b35]/20 via-black to-[#ff6b35]/20"
+>
+  {/* Pulsing edge so it reads as an active request, not static furniture. */}
+  <div
+    class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-[#ff6b35] to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div
+    class="max-w-6xl mx-auto px-6 py-6 md:py-7 flex flex-col md:flex-row md:items-center gap-5 md:gap-8"
+  >
+    <div class="flex-1 min-w-0">
+      <p
+        class="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#ff6b35] mb-2"
+      >
+        Help me build this properly
+      </p>
+      <p
+        class="text-xl md:text-2xl font-heading font-bold text-white leading-tight tracking-tight"
+      >
+        Does this actually solve <em class="text-[#ff6b35] not-italic">your</em> problem, or
+        not?
+      </p>
+      <p class="text-sm text-slate-300 mt-2 leading-relaxed max-w-2xl">
+        I built this to answer one question: what percentage do I type into my slicer. But I
+        don't know if that is where your workflow actually breaks. Tell me what is broken,
+        missing, or just plain useless here. Honest answers, <strong class="text-white"
+          >especially negative ones</strong
+        >, are worth more to me than anything else you could do on this page.
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3 shrink-0 md:flex-col lg:flex-row">
+      <a
+        href={href}
+        data-feedback-cta
+        class="inline-flex items-center justify-center gap-2 px-7 py-4 bg-[#ff6b35] hover:bg-[#e05a28] text-black font-black rounded-xl text-sm uppercase tracking-widest transition-all shadow-lg shadow-[#ff6b35]/30 focus-ring whitespace-nowrap"
+      >
+        <i class="ti ti-message-circle text-lg" aria-hidden="true"></i>
+        Tell me what's wrong
+      </a>
+      <button
+        type="button"
+        data-feedback-dismiss
+        class="inline-flex items-center justify-center gap-2 px-5 py-4 bg-transparent hover:bg-white/5 text-slate-400 hover:text-white font-bold rounded-xl text-xs uppercase tracking-widest transition-all focus-ring whitespace-nowrap"
+      >
+        Dismiss
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ storageKey }}>
+  (function () {
+    var root = document.documentElement;
+
+    function hide() {
+      root.setAttribute("data-feedback-dismissed", "1");
+      var banner = document.querySelector("[data-feedback-banner]");
+      if (banner) banner.setAttribute("aria-hidden", "true");
+      try {
+        localStorage.setItem(storageKey, "1");
+      } catch (e) {
+        /* Nothing to do — dismissal just won't persist. */
+      }
+    }
+
+    var btn = document.querySelector("[data-feedback-dismiss]");
+    if (btn) btn.addEventListener("click", hide);
+
+    // The banner links to a form further down some pages. Once that form is
+    // actually on screen the banner has done its job, so retire it for good.
+    // Only the homepage carries the form; elsewhere this just never fires.
+    var form = document.getElementById("hp-feedback-form");
+    if (form && "IntersectionObserver" in window) {
+      var seen = new IntersectionObserver(
+        function (entries) {
+          if (entries.some((e) => e.isIntersecting)) {
+            hide();
+            seen.disconnect();
+          }
+        },
+        { threshold: 0.25 },
+      );
+      seen.observe(form);
+    }
+  })();
+</script>
+
+<style is:global>
+  html[data-feedback-dismissed="1"] [data-feedback-banner] {
+    display: none !important;
+  }
+</style>
