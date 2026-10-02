@@ -22,11 +22,14 @@
 /guides/warhammer-40k-scale-guide          /fdm-printing-profiles  301
 /guides/bolt-action-scale-guide            /fdm-printing-profiles  301
 /guides/dungeons-and-dragons-miniature-scale /fdm-printing-profiles  301
+/guides/star-wars-legion-scale-guide       /fdm-printing-profiles  301
+/guides/dnd-miniature-scale-guide          /fdm-printing-profiles  301
 
 # --- Catch-all Directory Redirects ---
-# All old blog and guide subpaths cleanly map to /fdm
+# NOTE: /guides/* has NO catch-all on purpose. The guide library is restored
+# and served as real pages, and Netlify applies _redirects rules *before*
+# static files — a catch-all here would shadow every restored guide.
 /blog/*    /fdm  301
-/guides/*  /fdm  301
 
 # All legacy /games and game subpaths map to profiles
 /games/*   /fdm-printing-profiles  301
