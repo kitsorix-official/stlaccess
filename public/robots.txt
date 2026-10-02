@@ -50,11 +50,10 @@ Disallow: /
 User-agent: DuplexWeb-Google
 Disallow: /
 
-User-agent: Google Favicon
-Disallow: /
-
-User-agent: Google Web Preview
-Disallow: /
+# Note: "Google Favicon" and "Google Web Preview" were previously listed here.
+# Those tokens contain spaces, which makes the whole group invalid under
+# RFC 9309 -- crawlers ignore it entirely, so those rules never did anything.
+# Removed rather than "fixed", since neither is a real Googlebot token.
 
 User-agent: Google-Read-Aloud
 Disallow: /

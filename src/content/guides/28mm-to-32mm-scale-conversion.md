@@ -64,7 +64,7 @@ If you want to play with the numbers yourself, here's the exact calculator I use
       <output id="calcResult" class="text-3xl font-black font-heading text-[#ff6b35]">114.3%</output>
     </div>
   </div>
-  <p class="text-xs text-slate-500">Same math as the <a href="/tools/slicer-percentage-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">slicer percentage calculator</a>: target ÷ source × 100.</p>
+  <p class="text-xs text-slate-500">Same math as the <a href="/3d-math/slicer-percentage-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">slicer percentage calculator</a>: target ÷ source × 100.</p>
 </div>
 <script is:inline>
   function updateScaleCalc() {

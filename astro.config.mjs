@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -100,7 +99,6 @@ export default defineConfig({
       }
     }),
     singleSitemap(),
-    react(),
   ],
 
   vite: {

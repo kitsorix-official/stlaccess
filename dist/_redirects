@@ -11,6 +11,12 @@
 
 # --- Specific Legacy Guide/Blog Slugs ---
 # (Placed before the wildcard catches them)
+# These slugs still have a live equivalent page under /guides/, so they must
+# point there. Bing shows /blog/chitubox-lychee-scaling-guide ranking at
+# position 2.5 with a 15% CTR -- the best-performing legacy URL in the report --
+# so sending it to the /fdm hub was throwing away ranked traffic.
+/blog/chitubox-lychee-scaling-guide  /guides/chitubox-lychee-scaling-guide  301
+/blog/175cm-baseline                 /guides/175cm-baseline                 301
 /blog/stl-scale-conversion-chart          /miniature-size-chart  301
 /blog/28mm-to-32mm-percentage             /miniature-size-chart  301
 /blog/warhammer-40k-scale-guide           /fdm-printing-profiles  301
