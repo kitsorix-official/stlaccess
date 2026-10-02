@@ -1,29 +1,31 @@
 ---
 title: "FDM vs Resin vs SLS 3D Printing: Which Technology Fits Your Project?"
 description: "A head-to-head look at FDM, resin/SLA, and SLS printing — how each melts, cures, or sinters material, plus detail, strength, safety, and cost comparisons with a decision matrix for props, miniatures, and functional parts."
-tldr: "FDM extrudes filament — cheapest, safest, best for functional parts and large props, but shows layer lines. SLA/resin cures liquid with UV — micron detail that wins on miniatures, but messy and toxic. SLS sinters powder — strong isotropic parts with no supports, but industrial cost. Pick by project: armor suits FDM, tiny contrast detail suits resin, structural parts suit FDM or SLS."
+tldr: "Three different processes, three different jobs. FDM extrudes filament — cheapest and safest, best for functional parts, brackets, and large props. Resin cures liquid with UV — micron detail that wins on miniatures, but it is messy and toxic to handle. SLS sinters powder — strong isotropic parts with no supports at all, but it is industrial and priced per service bureau. Pick by the part, not by hype."
 pubDate: "2026-09-14"
 faq:
-  - question: Which is better, FDM or resin printing for miniatures?
+  - question: What can SLS print that FDM and resin cannot?
     answer: >-
-      Resin wins on micron-level detail for delicate faces, capes, and weaponry
-      that FDM nozzles miss, and its thin lattice supports snap off cleanly.
-      FDM wins on speed, cost, and safety. For functional parts and large props,
-      FDM's engineering thermoplastics flex and absorb impact where brittle UV
-      resins shatter.
-  - question: Is FDM or resin easier to use?
+      SLS needs no support structures at all, because the surrounding unsintered
+      powder holds every overhang in place. That makes it the only one of the three
+      that handles deep internal channels, fully-enclosed hollow parts, and complex
+      assemblies without designing around support removal. The tradeoff is that SLS
+      is not a desktop machine — you pay a service bureau per part.
+  - question: Do I need an enclosed chamber to print with ABS and ASA?
     answer: >-
-      FDM by a wide margin — plug it in, level the bed, load a spool, and hit
-      print. Resin is a chemical process that needs a ventilated space, nitrile
-      gloves, IPA washing, and UV post-curing. That safety overhead is the
-      biggest reason people stick with FDM even though resin makes higher detail.
-  - question: Can you use resin-style supports on an FDM printer?
+      Yes, in practice. ABS and ASA warp badly in an open frame because the layer
+      cools too fast and the bed sits exposed to draughts. An enclosure keeps the
+      chamber warm, which is why machines sold for engineering filaments — the
+      Creality K1C, the Elegoo Centauri Carbon — come with a closed build volume.
+      PLA and PETG need no enclosure at all.
+  - question: How do I choose between FDM, resin, and SLS for a project?
     answer: >-
-      Yes and no. Cura and PrusaSlicer offer thin, branching organic/tree
-      supports that look like resin supports and snap off cleaner than grid
-      supports — but they are still bound by FDM's physical extrusion limits.
-      You can't print a complex floating overhang just because the tree support
-      looks like a resin layout; gravity and minimum bridging angles still apply.
+      Choose by what the part has to survive and how it will be finished. Functional
+      brackets, terrain, and large props go to FDM. Miniatures needing fine facial
+      detail go to resin, provided you can handle the chemical process. Anything
+      needing support-free internal geometry or isotropic strength goes to SLS —
+      but at service-bureau prices that only makes sense for functional parts, not
+      hobby terrain.
 tags: ["FDM vs resin", "SLA printing", "SLS printing", "miniature printing"]
 ---
 
@@ -61,9 +63,11 @@ FDM is vastly superior for a low-stress workflow. You plug it in, level the bed,
 | **Tabletop Miniatures** | **Resin / SLA** | Exceptional micron-level resolution captures delicate facial features, capes, and weaponry that FDM nozzles miss. |
 | **Functional Mechanical Parts** | **FDM / SLS** | Offers genuine engineering thermoplastics with high impact resistance, avoiding the brittle nature of standard resins. |
 
-### A Quick Word on Resin-Style Supports on FDM
+### If the Question Is Specifically Miniatures
 
-Can you use resin-style supports on an FDM printer? Yes and no. Modern slicers like Cura and PrusaSlicer feature thin, branching organic/tree supports that look remarkably like resin supports. They save massive amounts of material and snap off FDM prints much cleaner than traditional grid supports, but they are still bound by FDM's physical extrusion limits. You can't print a complex floating overhang just because the tree support looks like a resin layout—gravity and minimum bridging angles still apply.
+This page is about choosing a *process* for a *part*. If what you actually want to know is which technology prints a 28mm or 32mm miniature better — support scarring, whether the difference survives painting, when FDM is good enough and you should stop thinking about resin — that is a different question with a different answer. I compared both side by side and wrote it up separately in [FDM vs Resin 3D Printing for Miniatures: When to Switch](/guides/fdm-vs-resin-miniatures).
+
+What is worth saying here is the process difference underneath it. Resin's supports are thin lattices cured by a light source, so they snap off with a light pull. FDM's supports are extruded plastic tubes that can fuse into the surface they touch. That gap is the single biggest practical difference between the two for hobbyists, and it is a materials property — not a settings problem you can slice away.
 
 ## Verdict
 

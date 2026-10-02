@@ -30,20 +30,21 @@ I still have a cardboard box sitting in my garage filled with roughly three kilo
 
 If you've ever tried to populate a wargaming mat with custom structures or armies only to watch your print turn into a blobby, stringy disaster, you know the frustration. For a long time, the hobby consensus was simple: FDM is for clunky terrain, and resin is for miniatures. But modern engineering has changed the game completely.
 
-I don't publish slicer profiles, speeds, or equipment recommendations I haven't personally ruined a batch of test prints verifying. Armed with my trusty **PARKSIDE digital calipers** (reading down to that crucial **0.01mm resolution**), I've spent months pushing modern machines to their absolute limits. Let's look at how you can kit out your workshop, tune your slicer, and print tabletop-ready **fdm miniatures** and **fdm 40k terrain** without losing your mind.
+I don't publish slicer profiles, speeds, or equipment recommendations I haven't personally ruined a batch of test prints verifying. Armed with my trusty **PARKSIDE digital calipers** (reading down to that crucial **0.01mm resolution**), I've spent months pushing modern machines to their absolute limits. Let's look at how you can kit out your workshop, tune your slicer, and print tabletop-ready **fdm miniatures** and **tabletop terrain** without losing your mind.
 
 ## FDM Hardware Selection for Gamers
 
 Mechanical stability is everything when you are pushing tall, hollow structures or ultra-fine details at high speeds. If your machine shakes, your layer lines wiggle, and your print fails half-inch from the top.
 
 * **CoreXY vs. Bed-slingers:** Traditional bed-slingers move the heavy Y-axis back and forth, which creates inertia ghosting on tall, thin terrain walls. Modern CoreXY architectures keep the bed moving only on the Z-axis, providing the rock-solid stability required for high-speed batch printing.
-* **Top Printer Picks Across Budgets:**
-* If you want effortless, plug-and-play reliability right out of the box, a **Bambu Lab FDM printer** (like the A1 Mini or P1S) handles multi-color terrain and rapid prototyping with brutal efficiency.
-* For an enclosed workhorse that can chew through engineering-grade filaments and overnight terrain runs without breaking a sweat, the **Creality K1C FDM 3D printer** is a phenomenal mid-tier tool.
-* If you're shopping on a tighter budget, entry-level platforms from an **Elegoo FDM printer** or **Anycubic FDM printer** lineup offer incredible value, provided you take the time to manually calibrate your first layer.
+* **Enclosed vs. Open Frames:** An open frame loses heat to draughts, which is fine for PLA and PETG but makes ABS and ASA warp. If you plan to print engineering filaments, an enclosure is the difference between usable parts and a pile of curled corners.
+* **Specialty Formats:** If you are looking to print massive, monolithic multi-part titan structures or whole modular hex maps in a single go, a **large format FDM 3d printer** will save you countless hours of gluing separate tiles together. (Though, thankfully, we aren't quite at the point where tabletop wargaming needs an industrial **5 axis FDM 3d printer**).
 
+### Which Printer to Buy Is a Separate Question
 
-* **Specialty Formats:** If you are looking to print massive, monolithic multi-part titan structures or whole modular hex maps in a single go, a **large format FDM 3D printer** will save you countless hours of gluing separate tiles together. (Though, thankfully, we aren't quite at the point where you need an industrial **5 axis FDM 3D printer** for a game of 40k).
+This page is about *how to print* once you own a machine — layer heights, nozzles, infill, and the settings differences between miniatures and terrain. If you have not bought yet and want specific models with current prices, build volumes, and an honest note on where each one is fiddly, I wrote that up separately: [Best Budget 3D Printers for Tabletop Wargaming](/guides/best-budget-3d-printers-wargaming).
+
+The short version of what that page concludes: you almost certainly do not need a flagship machine to print terrain and vehicles. A budget CoreXY or a reliable bed-slinger handles the bulk work. Spend money on a fine nozzle only if you intend to print characters.
 
 ## Slicer Optimization for Tabletop Scale
 
@@ -51,14 +52,14 @@ Printing miniatures and terrain requires completely different mentalities in you
 
 * **Fine-Tuning Layer Heights:** Forget standard 0.2mm layers if you want clean details. For character models and detailed bits, I drop my layer height down to **0.08mm to 0.12mm**. It drastically increases print time, but it shrinks those visible stair-step lines down to manageable levels.
 * **Cooling and Flow Calibration:** Tiny weapons and outstretched cloaks need aggressive part-cooling fans running at 100%. If your filament stays hot for even a second too long on a micro-feature, it will droop into a melted lump. Dial in your flow rate using calibration prints before running any critical batches.
-* **Unlocking the Micro-Nozzle:** If you want genuinely crisp faces and intricate armor plates on your **fdm dnd minis**, swap your stock hardware for a **fdm 0.2 mm nozzle**. Just remember to drop your volumetric speed—forcing plastic through a tiny opening too fast will instantly jam your hotend.
+* **Unlocking the Micro-Nozzle:** If you want genuinely crisp faces and intricate armor plates on your **tabletop roleplaying minis**, swap your stock hardware for a **fdm 0.2 mm nozzle**. Just remember to drop your volumetric speed—forcing plastic through a tiny opening too fast will instantly jam your hotend.
 
 ## Printing Miniatures vs. Terrain
 
 The secret to a successful tabletop setup is knowing when to brute-force a print and when to play smart with your geometry.
 
-* **Terrain & Scenery Mastery:** When printing massive **fdm 40k terrain** or dungeon tiles for a campaign, speed and material efficiency matter most. I usually stick to a 0.4mm or 0.6mm nozzle, drop my infill to a gyroid or cubic pattern at **10% to 15%**, and let the machine rip. Terrain doesn't need to be solid plastic; it just needs to look heavy and take a coat of spray primer.
-* **Miniatures & Battletech Mechs:** Printing tiny characters is a high-wire act. My worst mistake? Trying to clean standard miniature STLs with dense, auto-generated tree supports that fused permanently to fragile plastic ankles. To fix this, I hunt down specialized **supportless fdm minis** (creators like *Brite Minis* design brilliant models specifically optimized to bridge and overhang without external supports). For **fdm battletech** mechs and vehicles, tilt them slightly on the build plate to avoid flat horizontal surfaces and let your cooling fan do the heavy lifting.
+* **Terrain & Scenery Mastery:** When printing massive **tabletop terrain** or dungeon tiles for a campaign, speed and material efficiency matter most. I usually stick to a 0.4mm or 0.6mm nozzle, drop my infill to a gyroid or cubic pattern at **10% to 15%**, and let the machine rip. Terrain doesn't need to be solid plastic; it just needs to look heavy and take a coat of spray primer.
+* **Miniatures & Large Mechs:** Printing tiny characters is a high-wire act. My worst mistake? Trying to clean standard miniature STLs with dense, auto-generated tree supports that fused permanently to fragile plastic ankles. To fix this, I hunt down specialized **supportless fdm minis** (creators like *Brite Minis* design brilliant models specifically optimized to bridge and overhang without external supports). For **tabletop mechs** and vehicles, tilt them slightly on the build plate to avoid flat horizontal surfaces and let your cooling fan do the heavy lifting.
 
 ## Conclusion & Print Settings Cheat-Sheet
 
