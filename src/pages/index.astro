@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import JsonLd from "../components/JsonLd.astro";
+import TrainSpine from "../components/TrainSpine.astro";
 import site from "../data/site.json";
 import scales from "../data/scaleBaselines.json";
 import conversions from "../data/conversionMatrix.json";
@@ -324,6 +325,11 @@ How I use the calculator <span class="text-[#ff6b35]">for every print</span>
 </li>
 </ol>
 </section>
+
+<!-- Workflow spine. Placed after the "how I use the calculator" section rather
+     than above the calculator: the converter is the point of this page, and a
+     seven-station map above it would push the tool below the fold. -->
+<TrainSpine />
 
 <!-- Reference Section -->
 <section id="reference" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5" aria-labelledby="reference-heading">
