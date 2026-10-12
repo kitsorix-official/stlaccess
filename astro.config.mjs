@@ -96,8 +96,10 @@ export default defineConfig({
 
   integrations: [
     sitemap({
+      // /widget is a noindex embed surface (not a landing page); keep it out
+      // of the sitemap entirely.
       filter(page) {
-        return true;
+        return new URL(page).pathname !== '/widget';
       },
       serialize(item) {
         if (item.url !== 'https://stlaccess.com/' && item.url.endsWith('/')) {

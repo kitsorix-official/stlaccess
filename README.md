@@ -74,6 +74,14 @@ a private Google Sheet. No tracking cookies, no analytics SDKs, no third-party e
 
 👉 **[Launch STLACCESS](https://stlaccess.com)**
 
+## Embed on Your Site
+
+The STL scale converter is available as a free, self-contained iframe widget for maker
+blogs, tutorials, and community resources — no cookies, no scripts for your visitors,
+and the math runs in their browser. Grab the copy-paste code at
+**[/embed](https://stlaccess.com/embed)**. One condition: keep the "Powered by
+STLACCESS" attribution line and link it back to the site.
+
 ## The Stack
 
 - Built with **Astro** (content collections for `/guides` and `/fdm`), **Tailwind CSS v4**

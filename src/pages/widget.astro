@@ -1,0 +1,224 @@
+---
+// The STLACCESS embeddable STL Scale Converter.
+// Same data + math as the homepage engine (uses /js/mathscaler.js), served
+// standalone so tutorial/maker sites can embed it via <iframe>.
+//
+// noindex: this is a utility surface, not a landing page. It is filtered from
+// the sitemap in astro.config.mjs and marked noindex below; the public
+// experience is on / and /embed.
+
+import scalesData from "../data/scaleBaselines.json";
+import conversionsData from "../data/conversionMatrix.json";
+
+const dropdownLabels: Record<string, string> = {
+  "28mm": "28mm (Classic True Scale)",
+  "32mm": "32mm (Heroic Scale)",
+  "35mm": "35mm (Eye Level)",
+  "40mm": "40mm (Big Skirmish)",
+  "75mm": "75mm (Display Miniatures)",
+  "1:35": "1:35 (Military Models)",
+  "1:27": "1:27 (Dogfight Ships)",
+  "1:48": "1:48 (Quarter Scale / Aircraft)",
+  "1:56": "1:56 (Vehicle Scale)",
+  "1:72": "1:72 (Plastic Soldiers)",
+  "6mm": "6mm (Epic Scale)",
+  "8mm": "8mm (Epic Sci-Fi)",
+  "10mm": "10mm (Sci-Fi Mass Battle)",
+  "30mm": "30mm (Modern Heroic)",
+  "15mm": "15mm (WWII Company)",
+  "1:100": "1:100 (WWII / 15mm)"
+};
+
+// Standard mm values: ratio scales use topOfHeadMm, gaming/display use eyeLevelMm
+const calculatorScales: Record<string, { standardMm: number; topOfHeadMm: number; type: string }> = {};
+for (const [key, s] of Object.entries(scalesData)) {
+  calculatorScales[key] = {
+    standardMm: s.type === "ratio" ? s.topOfHeadMm : s.eyeLevelMm,
+    topOfHeadMm: s.topOfHeadMm,
+    type: s.type
+  };
+}
+
+// Head-mode overrides from conversionMatrix.json (topHeadPercentage where non-null)
+const headOverrides: Record<string, number> = {};
+for (const conv of conversionsData) {
+  if (conv.topHeadPercentage) {
+    headOverrides[`${conv.h1Source}_${conv.h1Target}`] = parseFloat(conv.topHeadPercentage);
+  }
+}
+
+const gamingScales = Object.entries(scalesData)
+  .filter(([, s]) => s.type === "gaming" || s.type === "display")
+  .sort(([, a], [, b]) => a.eyeLevelMm - b.eyeLevelMm);
+const ratioScales = Object.entries(scalesData)
+  .filter(([, s]) => s.type === "ratio")
+  .sort(([, a], [, b]) => a.eyeLevelMm - b.eyeLevelMm);
+
+// Pre-rendered default (28mm -> 32mm, Eye Level) so the result is visible
+// without JavaScript. Mirrors mathscaler.js calculate().
+const fmtMm = (v: number) => {
+  const s = v.toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+  return s.includes(".") ? s : s + ".0";
+};
+const defaultResult = ((calculatorScales["32mm"].standardMm / calculatorScales["28mm"].standardMm) * 100).toFixed(1) + "%";
+const defaultFormula = `${fmtMm(calculatorScales["32mm"].standardMm)} ÷ ${fmtMm(calculatorScales["28mm"].standardMm)} × 100`;
+
+const defaultSource = "28mm";
+const defaultTarget = "32mm";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>STL Scale Converter | STLACCESS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta name="theme-color" content="#ff6b35" />
+    <meta name="robots" content="noindex, nofollow" />
+    <script is:inline defer src="/js/observatory.js"></script>
+    <style>
+      :root { color-scheme: dark; }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body { background: transparent; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+      button, select, input { font: inherit; }
+      .card {
+        background: #0a0a0a;
+        color: #f1f5f9;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        width: 100%;
+      }
+      .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+      .card-title { font-size: 9px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #ff6b35; }
+      .card-sub { font-size: 10px; color: #64748b; }
+      .field label { display: block; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #94a3b8; margin-bottom: 5px; }
+      select {
+        width: 100%;
+        background: #111827;
+        border: 1px solid #1f2937;
+        color: #f8fafc;
+        border-radius: 12px;
+        padding: 11px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='3'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+      }
+      select:focus { outline: 2px solid rgba(255, 107, 53, 0.5); border-color: #ff6b35; }
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .modes { display: flex; gap: 6px; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 4px; }
+      .modes label { flex: 1; text-align: center; cursor: pointer; }
+      .modes input { position: absolute; opacity: 0; pointer-events: none; }
+      .modes span {
+        display: block; padding: 8px 6px; border-radius: 9px; font-size: 11px; font-weight: 600;
+        color: #94a3b8; border: 1px solid transparent; transition: all 0.15s ease;
+      }
+      .modes input:checked + span { background: #111827; border-color: rgba(255,255,255,0.1); color: #ff6b35; }
+      .shrink { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11px; color: #94a3b8; }
+      .shrink input[type="checkbox"] { accent-color: #ff6b35; width: 15px; height: 15px; }
+      #shrinkageInputContainer { display: none; }
+      #shrinkageInputContainer.show { display: block; margin-top: 8px; }
+      #shrinkageInputContainer input {
+        width: 100%; background: #111827; border: 1px solid #1f2937; color: #f8fafc;
+        border-radius: 10px; padding: 9px 10px; font-size: 13px; font-weight: 600;
+      }
+      .result {
+        background: #ff6b35; color: #000; border-radius: 16px; padding: 16px; text-align: center; position: relative; overflow: hidden;
+      }
+      .result-label { font-size: 9px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; }
+      #resultDisplay { font-size: 42px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; margin: 4px 0; }
+      #resultContext { font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; }
+      #resultFormula { font-size: 9px; font-weight: 700; opacity: 0.5; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px; }
+      .result-actions { display: flex; gap: 8px; margin-top: 10px; }
+      .result-actions button {
+        flex: 1; border: 0; border-radius: 10px; padding: 9px 8px; font-size: 11px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; transition: opacity 0.15s ease;
+      }
+      .btn-primary { background: #000; color: #fff; }
+      .btn-ghost { background: rgba(0,0,0,0.15); color: #000; }
+      .result-actions button:hover { opacity: 0.85; }
+      .attribution { text-align: center; font-size: 10px; color: #64748b; }
+      .attribution a { color: #ff6b35; font-weight: 700; text-decoration: none; }
+      .attribution a:hover { text-decoration: underline; }
+      @media (max-width: 420px) { #resultDisplay { font-size: 34px; } }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-head">
+        <span class="card-title">STL Scale Converter</span>
+        <span class="card-sub">exact slicer percentages</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="sourceScale">Current STL scale</label>
+          <select id="sourceScale">
+            <optgroup label="Ratio Scales">
+              {ratioScales.map(([k]) => <option value={k}>{dropdownLabels[k]}</option>)}
+            </optgroup>
+            <optgroup label="Gaming Scales">
+              {gamingScales.map(([k]) => <option value={k} selected={k === "28mm"}>{dropdownLabels[k]}</option>)}
+            </optgroup>
+          </select>
+        </div>
+        <div class="field">
+          <label for="targetScale">Scale you want</label>
+          <select id="targetScale">
+            <optgroup label="Ratio Scales">
+              {ratioScales.map(([k]) => <option value={k}>{dropdownLabels[k]}</option>)}
+            </optgroup>
+            <optgroup label="Gaming Scales">
+              {gamingScales.map(([k]) => <option value={k} selected={k === "32mm"}>{dropdownLabels[k]}</option>)}
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div class="modes">
+        <label>
+          <input type="radio" name="logic" value="eye" checked />
+          <span>Eye Level (Standard)</span>
+        </label>
+        <label>
+          <input type="radio" name="logic" value="head" />
+          <span>Top of Head</span>
+        </label>
+      </div>
+
+      <div class="shrink">
+        <label for="useShrinkage">Material compensation (shrinkage)</label>
+        <input type="checkbox" id="useShrinkage" aria-label="Apply material compensation" />
+      </div>
+      <div id="shrinkageInputContainer">
+        <input type="number" id="shrinkageRate" value="1.5" step="0.1" min="0" max="10" aria-label="Shrinkage compensation rate" />
+      </div>
+
+      <div class="result" role="region" aria-live="polite">
+        <span class="result-label">Type this into your slicer</span>
+        <div id="resultDisplay">{defaultResult}</div>
+        <div id="resultContext">28mm → 32mm · Eye Level</div>
+        <div id="resultFormula">{defaultFormula}</div>
+        <div class="result-actions">
+          <button type="button" id="copyPctBtn" class="btn-ghost">Copy</button>
+          <button type="button" id="swapScaleBtn" class="btn-ghost">Swap</button>
+          <button type="button" id="estimateCostBtn" class="btn-primary">Estimate Cost</button>
+        </div>
+      </div>
+
+      <p class="attribution">
+        Powered by <a href="https://stlaccess.com" target="_blank" rel="noopener">STLACCESS</a> — free STL scale calculator
+      </p>
+    </div>
+
+    <script is:inline set:html={`window.CALCULATOR_SCALES = ${JSON.stringify(calculatorScales)};window.CALCULATOR_HEAD_OVERRIDES = ${JSON.stringify(headOverrides)};`} />
+    <script is:inline src="/js/mathscaler.js"></script>
+  </body>
+</html>

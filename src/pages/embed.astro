@@ -1,0 +1,103 @@
+---
+import Layout from "../layouts/Layout.astro";
+import JsonLd from "../components/JsonLd.astro";
+import site from "../data/site.json";
+import { graph, breadcrumb, webPage, softwareApplication } from "../lib/schema";
+
+const schema = graph([
+  webPage({
+    name: "Embed the STL Scale Converter on Your Site",
+    description:
+      "Free iframe embed code for the STLACCESS STL scale converter. Exact slicer percentages for 16 tabletop scales, no cookies, runs in the visitor's browser. Keep the attribution link and it's yours to use.",
+    url: "/embed",
+  }),
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Embed the converter", path: "/embed" },
+  ]),
+  softwareApplication({
+    name: "STLACCESS Embeddable STL Scale Converter",
+    description:
+      "Embeddable widget that calculates exact slicer percentages for 16 tabletop miniature scales using the STLACCESS 175cm baseline.",
+    url: "/widget",
+  }),
+]);
+---
+<Layout
+  title="Embed the STL Scale Converter on Your Site | Free Widget | STLACCESS"
+  description="Free iframe embed code for the STLACCESS STL scale converter — exact slicer percentages for 16 tabletop scales, no cookies, runs in the visitor's browser. Keep the attribution link and use it anywhere."
+>
+  <JsonLd slot="head" data={schema} />
+
+  <div slot="hero">
+    <!-- Breadcrumbs -->
+    <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+      <span class="mx-2 text-slate-800">/</span>
+      <span class="text-slate-400" aria-current="page">Embed the Converter</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="pb-10 px-6 max-w-6xl mx-auto" aria-labelledby="embed-hero-heading">
+      <h1 id="embed-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
+        Embed <span class="text-[#ff6b35] italic">the STL Scale Converter</span> on your site
+      </h1>
+      <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
+        Free to use on any maker blog, tutorial page, or community resource. Drop in one <code class="text-[#ff6b35]">&lt;iframe&gt;</code> and your readers get exact slicer percentages for 16 tabletop scales — the same math as the <a href="/" class="text-[#ff6b35] hover:underline font-semibold">STL scale calculator</a> on the homepage.
+      </p>
+    </div>
+  </div>
+
+  <!-- The snippet -->
+  <section class="px-6 pb-12 max-w-6xl mx-auto" aria-labelledby="snippet-heading">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div>
+        <h2 id="snippet-heading" class="text-xl font-bold font-heading mb-3">Copy-paste embed code</h2>
+        <pre class="bg-slate-900/60 border border-white/10 rounded-2xl p-5 text-xs font-mono text-slate-300 overflow-x-auto leading-relaxed" aria-label="Embed code to copy"><code>&lt;iframe
+  src="https://stlaccess.com/widget"
+  title="STL scale converter by STLACCESS"
+  width="100%" height="560"
+  style="border:0;border-radius:20px;background:#0a0a0a;max-width:430px"
+  loading="lazy"&gt;
+&lt;/iframe&gt;</code></pre>
+        <p class="text-xs text-slate-500 mt-3">
+          The widget is self-contained: no cookies, no scripts for your visitors to load, and the math runs in <em>their</em> browser. If the conversion logic ever changes, it updates everywhere automatically.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-bold font-heading mb-3">Live preview</h2>
+        <div class="rounded-2xl border border-white/10 overflow-hidden">
+          <iframe
+            src="/widget"
+            title="STL scale converter preview"
+            width="100%" height="560"
+            style="border:0;display:block;background:#0a0a0a"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Options + rules -->
+  <section class="px-6 pb-24 max-w-6xl mx-auto" aria-labelledby="options-heading">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+        <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="ti ti-link text-[#ff6b35]" aria-hidden="true"></i>Deep-link presets</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">Add URL parameters to the <code class="text-[#ff6b35]">src</code> to pre-select scales: <code class="text-xs text-slate-300">src="https://stlaccess.com/widget?source=28mm&target=32mm&logic=eye"</code> — perfect for a specific tutorial.</p>
+      </div>
+      <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+        <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="ti ti-heart-handshake text-[#ff6b35]" aria-hidden="true"></i>One condition</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">Keep the "Powered by STLACCESS" line visible inside the widget and let it link to <a href="/" class="text-[#ff6b35] hover:underline font-semibold">stlaccess.com</a>. That's the whole deal — no accounts, no fees.</p>
+      </div>
+      <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+        <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="ti ti-shield-lock text-[#ff6b35]" aria-hidden="true"></i>Privacy</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">Zero cookies, zero user data, zero uploads. The widget only reports an anonymous pageview count when the page loads — nothing about your visitors leaves their machine.</p>
+      </div>
+    </div>
+    <p class="text-sm text-slate-500 mt-6">
+      Questions about a specific embed context? <a href="/contact" class="text-[#ff6b35] hover:underline">Get in touch</a>. Want the full reference instead of the widget? Use the <a href="/scale-standard" class="text-[#ff6b35] hover:underline font-semibold">STLACCESS Scale Standard</a> and the open datasets.
+    </p>
+  </section>
+</Layout>

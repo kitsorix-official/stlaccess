@@ -26,6 +26,7 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 - [Conversion FAQ](https://stlaccess.com/faq) — Answers I wrote about 28mm, 32mm, 35mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales
 - [Methodology / About](https://stlaccess.com/about) — My 175cm human baseline, FDM test prints with a PARKSIDE digital caliper, and the story behind why I started this project
 - [3D Math (all calculators)](https://stlaccess.com/3d-math) — STL Scale Engine, Miniature Size Chart, Slicer Percentage Calculator, Filament Cost Calculator, and STL Scale Reference Bar Generator
+- [Embed the STL Scale Converter](https://stlaccess.com/embed) — Free iframe embed code so maker blogs and tutorials can embed the converter (widget surface: https://stlaccess.com/widget)
 - [FDM Printing Profiles](https://stlaccess.com/fdm-printing-profiles) — 26 anonymized printing profiles with related conversions, printing tips, and base sizes
 - [FDM Scale Math](https://stlaccess.com/fdm) — FDM-focused scale math and conversion resources
 - [Slicer Percentage Calculator](https://stlaccess.com/3d-math/slicer-percentage-calculator) — Enter any current height and target height to get the exact slicer percentage
