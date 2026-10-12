@@ -2,6 +2,29 @@ User-agent: *
 Content-Signal: ai-train=no, search=yes, ai-input=no
 Allow: /
 
+# AI *search* crawlers stay allowed: they may crawl, cite, and link to the
+# site, which is exactly the audience we want (AI overviews / citations).
+# The Content-Signal above opts out of AI *training* only, not search.
+# Deliberate stance — see strategy doc (AI-search-first / Option A).
+# Do not blanket-block these.
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
 # Block ALL Google bots, scrapers, and AI crawlers
 User-agent: Googlebot
 Disallow: /

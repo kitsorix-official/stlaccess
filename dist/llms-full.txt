@@ -1,0 +1,1761 @@
+# STLACCESS — Full Content Archive
+
+Full text of https://stlaccess.com: the STL scale standard, 16
+scale-conversion guides, and 5 FDM printing articles. Every
+conversion starts from a 175cm human baseline measured to eye level (160cm);
+the slicer percentage is always (target standard mm ÷ source standard mm) × 100.
+
+## Reference
+
+- **STLACCESS Scale Standard** — https://stlaccess.com/scale-standard
+  (175cm baseline, eyes at 160cm, gaming scales to eye level, ratio scales to top of head)
+- **Open datasets (CC BY 4.0)** — https://stlaccess.com/data/index.json
+  (JSON + CSV: 16 baselines, 46 conversions, 26 FDM profiles)
+- **Miniature Size Chart** — https://stlaccess.com/miniature-size-chart (46 verified conversions)
+- **Embeddable converter widget** — https://stlaccess.com/embed
+
+## Guides (16)
+
+### Why Miniature Scales Use a 175cm Human Baseline
+
+Source: https://stlaccess.com/guides/175cm-baseline
+Published: 2026-06-15
+
+**Description:** Most tabletop miniature scales are built around a 175cm (5'9) human. Here is why I chose that number for every STLACCESS scale conversion.
+
+**Direct answer:** All STLACCESS scale conversions start from a 175cm (5'9) human with eyes at 160cm — the same baseline the tabletop industry uses. Gaming scales like 28mm and 32mm measure to eye level; ratio scales like 1:35 and 1:56 measure to the top of the head. Same baseline = consistent slicer percentages.
+
+Every scale conversion on STLACCESS starts from the same reference point: a human figure that is **175cm tall (5'9")** with eyes at **160cm**.
+
+I chose this number the hard way. Before I picked a single baseline, my army suffered from what I call scale creep — one sculptor measures to the eye, another to the crown, and suddenly your "32mm" squad has one guy who towers over the rest. I spent my 2019 print service days in Enschede dealing with customers who wanted their proxies to match games that each used a slightly different standard. Eventually I sat down and worked out that the industry had already converged on a baseline, and locking every conversion to it made the whole mess predictable.
+
+This isn't arbitrary. It's the baseline used by most of the tabletop miniatures industry, and understanding why will help you get better results when you scale STL files.
+
+## Where 175cm Comes From
+
+Historical wargaming scales like 28mm and 32mm didn't start as precise measurements. A "28mm miniature" was loosely defined as a miniature whose height (from sole to eye level) measured approximately 28mm. Over time, the community converged on a standard reference height to make cross-system scaling predictable.
+
+The 175cm baseline emerged because:
+
+- It represents a realistic average human height across global populations
+- It aligns with the reference miniatures used by manufacturers across the tabletop industry
+- It produces clean conversion percentages between the most popular gaming scales — and I'm a sucker for a percentage that comes out even
+
+## Eye Level vs Top of Head
+
+When you convert a miniature's scale, you have two choices: measure to the eyes or to the top of the head.
+
+| Method | Baseline | Used For |
+|--------|----------|----------|
+| Eye level | 160cm (175cm figure) | 28mm, 32mm, 35mm heroic scales |
+| Top of head | 175cm | 1:35, 1:48, 1:56 ratio scales |
+
+The eye-level convention matches how manufacturers historically measured their sculpts. Models like the modern sci-fi epic wargame's power-armoured soldiers are intentionally "heroic" — their proportions are exaggerated so details read at arm's length. Using the eye-level baseline preserves those proportions when scaling. This is exactly where my bobblehead mistake came from: I measured a power-armoured soldier to the top of the head, treated it as eye level, and everything shifted.
+
+## What This Means for 3D Printing
+
+When you upload an STL and use the STLACCESS scale engine:
+
+1. The tool assumes the original file was sculpted to one of the supported scales using the 175cm baseline
+2. It calculates the ratio between the source and target eye-level or top-of-head measurements
+3. The resulting percentage compensates for the difference
+
+If a file was originally designed for 32mm heroic (the modern sci-fi epic wargame) and you want to print it at 28mm true scale, the engine calculates `(28 / 32) = 87.5%` — but only because both 28mm and 32mm reference the same 175cm baseline.
+
+This is also why ratio scales like 1:56 behave differently — they measure to the top of the head, not eye level. Mixing the two without adjusting would give you undersized or oversized prints. That one distinction is behind more failed tabletop prints than any slicer setting I know.
+
+## Testing the Baseline
+
+Every conversion percentage published on STLACCESS is physically printed and measured with my PARKSIDE digital calipers (0.01mm resolution, all-metal construction). The 175cm baseline has held up across hundreds of test prints on my Bambu Lab A1 Mini. I don't publish a number I haven't held in my hands and measured against the rest of my army. If you find a conversion that doesn't look right, the reference library includes a feedback form — submitting a correction helps improve the data for everyone, and I genuinely test every submission that comes in.
+
+---
+
+### How to Scale 28mm to 32mm (114.3% Slicer Percentage, Explained)
+
+Source: https://stlaccess.com/guides/28mm-to-32mm-scale-conversion
+Published: 2026-08-15
+
+**Description:** What percent for 28mm to 32mm? 114.3% with XYZ locked. The math behind the conversion, the exact slicer steps for Chitubox, Lychee, Cura, and PrusaSlicer, and how to verify it on a test print.
+
+**Direct answer:** Type 114.3% into your slicer with X, Y, and Z locked. That's 32mm ÷ 28mm × 100, measured to eye level on a 175cm baseline. Measured to the top of the head the number is 116.1%. Print one test piece and check it with calipers (a PARKSIDE with 0.01mm resolution costs under 15 euro) before you commit to a full squad.
+
+Of all the conversions I get asked about, this is the one. Someone prints a classic fantasy RPG party, realises it looks tiny next to a modern sci-fi epic wargame army, and starts searching "28mm to 32mm scale up" — and the answer is the same every time: **114.3%, typed into your slicer with the axes locked.**
+
+This guide walks through the math so the number sticks, shows the exact clicks in the four slicers I use, and gives you a calculator you can play with right here. If you need the reverse (shrinking a 32mm mini down to 28mm), I've got a dedicated [32mm to 28mm guide](/guides/32mm-to-28mm-scale-conversion) for that too.
+
+## What Percentage Do I Scale 28mm to 32mm?
+
+### The number: 114.3%
+
+Type **114.3%** into your slicer's scale field — with X, Y, and Z locked — and a true 28mm miniature becomes a true 32mm miniature. That's the whole answer. It's also the most searched scale conversion in the tabletop space, and for good reason: it's the jump between the two biggest scales in the hobby.
+
+On the [175cm human baseline](/guides/175cm-baseline) I use for every conversion on this site, a 28mm figure measures 28mm from the bottom of the feet to eye level, and a 32mm figure measures 32mm to the eyes. The percentage is just target divided by source: **32 ÷ 28 = 1.143, which is 114.3%**. The same formula drives the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) and every row on the [scale conversion chart](/miniature-size-chart).
+
+If you want to play with the numbers yourself, here's the exact calculator I use before every batch — enter your own source and target heights in millimetres and it gives you the slicer percentage instantly.
+
+<div class="my-8 rounded-2xl border border-[#ff6b35]/30 bg-slate-900/40 p-6 md:p-8" aria-labelledby="scale-calc-heading">
+  <div class="flex items-center gap-2 mb-4">
+    <i class="ti ti-calculator text-[#ff6b35] text-lg" aria-hidden="true"></i>
+    <h3 id="scale-calc-heading" class="text-sm font-black uppercase tracking-widest text-white">Scale calculator</h3>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <label class="block">
+      <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-2">Source height (mm)</span>
+      <input type="number" id="calcSource" value="28" min="1" step="0.1" class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-white focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all" />
+    </label>
+    <label class="block">
+      <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-2">Target height (mm)</span>
+      <input type="number" id="calcTarget" value="32" min="1" step="0.1" class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-white focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all" />
+    </label>
+    <div class="flex flex-col justify-end">
+      <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-2">Slicer percentage</span>
+      <output id="calcResult" class="text-3xl font-black font-heading text-[#ff6b35]">114.3%</output>
+    </div>
+  </div>
+  <p class="text-xs text-slate-500">Same math as the <a href="/3d-math/slicer-percentage-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">slicer percentage calculator</a>: target ÷ source × 100.</p>
+</div>
+<script is:inline>
+  function updateScaleCalc() {
+    var src = parseFloat(document.getElementById('calcSource').value);
+    var tgt = parseFloat(document.getElementById('calcTarget').value);
+    var out = document.getElementById('calcResult');
+    if (!isFinite(src) || !isFinite(tgt) || src <= 0 || tgt <= 0) { out.textContent = '—'; return; }
+    out.textContent = (tgt / src * 100).toFixed(1) + '%';
+  }
+  document.getElementById('calcSource').addEventListener('input', updateScaleCalc);
+  document.getElementById('calcTarget').addEventListener('input', updateScaleCalc);
+</script>
+
+### Why 114.3% and not something round?
+
+Honestly, the even numbers would be easier to remember, but scale math doesn't work that way. 28mm and 32mm are both measurements of the *same* 175cm human at different magnifications, so the ratio between them is fixed: 32/28. You can't round 114.3% to 115% without shifting every figure off the eye line by a fraction of a millimetre. It won't ruin a print, but if you're batch-scaling an army, 114.3% keeps everyone exactly in proportion.
+
+The one thing that *does* change the number is how you measure. A 28mm gaming figure measured to the top of the head is about **30.5mm**, and a 32mm heroic figure is about **34.5mm** — so measured top-of-head, the conversion is **116.1%** instead. Every scale on the [miniature scale conversion chart](/miniature-size-chart) shows both numbers, because sculptors disagree about which one matters. Gaming convention says the eyes, so I use 114.3% as my default and I suggest you do the same.
+
+## How Do I Scale a 28mm Mini to 32mm in My Slicer?
+
+### The five-step routine I use every time
+
+1. **Import the STL** and let the slicer finish its auto-arrangement.
+2. **Select the model** and open the scale/transform tool.
+3. **Lock the axes** — the chain link in Chitubox, the uniform scaling toggle in Lychee, the padlock in Cura and PrusaSlicer.
+4. **Type 114.3** into any of the three scale fields (they all share one value once locked).
+5. **Apply**, then sanity-check the model height against the base so you haven't scaled the base into a UFO.
+
+The one mistake I see constantly in the community is scaling without locking the axes. If you type 114.3 only into the X field, your 14.3% taller miniature is also 14.3% *wider* — and, because the Z field was left at 100, the whole model flattens. Locked axes means everything grows together and the proportions stay exactly as the sculptor intended.
+
+### Where the scale field lives in Chitubox, Lychee, Cura, and PrusaSlicer
+
+Chitubox and Lychee I covered in depth in my [Chitubox & Lychee scaling guide](/guides/chitubox-lychee-scaling-guide), but the short version: Chitubox is `T` → Transform → Scale, and Lychee is Transform → Uniform Scaling. Both show the current X/Y/Z dimensions in millimetres, so you can verify the height before and after.
+
+Cura and PrusaSlicer work the same way under different names. In Cura, select the model and the Scale tool (or press `S`), then make sure the padlock between the X/Y/Z boxes is closed before entering 114.3. In PrusaSlicer, it's the Scale button in the left toolbar — the three fields are locked by default, so you only type the number once. In every case the Z-axis readout after applying should show roughly 32mm for a 28mm-sourced figure, plus whatever the base contributes.
+
+## Is 28mm to 32mm Really a 14.3% Difference?
+
+### Eye-level vs top-of-head measurement
+
+I find this trips up more people than anything else. When you hold a 28mm and a 32mm miniature side by side, the 32mm figure doesn't look 14.3% bigger — it looks almost a third bigger. That's partly the heroic proportions (bigger heads, hands, and weapons) and partly because the difference compounds in three dimensions: 114.3% in every axis is **1.143³ ≈ 1.49**, so the 32mm figure has nearly *50% more volume* than the 28mm figure. Same for the reverse — [drop a model to 87.5%](/guides/32mm-to-28mm-scale-conversion) and it loses about a third of its volume.
+
+That volume jump is exactly why the publisher moved from 28mm to 32mm between 2014 and 2015: the extra material gives a painter more surface for detail and makes a model read better at arm's length. If you're scaling a classic fantasy RPG STL up to stand next to a modern heroic (32mm) army, 114.3% is right — the slight sculpting differences fade once the model has the same bulk as its neighbours.
+
+### Why a 32mm hero looks so much bigger than the math suggests
+
+The other half of the illusion is proportion. Most 32mm-scale sculpts are *heroic* — the head is about 1:6 of the total height instead of the realistic 1:7.5, and hands and weapons are oversized too. So when you compare a true-scale 28mm sculpt against a heroic 32mm sculpt, you're seeing two differences at once: the scale jump *and* the proportion style. That's worth knowing before you print a whole proxy squad: the percentage gets the height right, but the *feel* of the model still depends on the sculptor's style. Print my [scale reference bar](/3d-math/reference-bar-generator) and measure an unlabelled STL in your slicer to see whether it's true-scale or heroic before you scale from the wrong starting point.
+
+## What Does 28mm and 32mm Mean in Real Terms?
+
+### The 175cm human baseline
+
+Both numbers come from measuring the same average human — 175cm tall, eyes at 160cm — and then scaling that figure so either the eye line or the top of the head lands on the stated millimetre count. 28mm to the eyes at 1:56, 32mm to the eyes at 1:50. The shorthand is "the eyes", but what it really means is "this miniature is the same height, at the table, as a real person standing next to the model kit at the stated scale." I've written the whole methodology out in the [175cm baseline guide](/guides/175cm-baseline), including why eye-level and top-of-head scales can't be mixed without a conversion step.
+
+### Classic fantasy RPG vs modern sci-fi epic wargame: which scale do you actually play?
+
+This is the fork in the road. True 28mm is the language of the classic fantasy RPG, the 28mm WWII platoon wargame, and most historical games. 32mm heroic is the language of the modern sci-fi wargame (32mm), the modern fantasy wargame (32mm heroic), and most current skirmish games. Play one system and you never need this conversion. Play both — or print STLs from one ecosystem for use in the other, which is what nearly everyone I know does — and 114.3% becomes your best friend.
+
+If you're mostly a fantasy RPG player, my [fantasy RPG miniature scale guide](/guides/classic-fantasy-rpg-miniature-scale-guide) has the full size-category chart. If you're scaling the 32mm heroic sci-fi standard and want to know exactly where your army sits, the [modern sci-fi epic wargame scale profile](/fdm-printing-profiles#sci-fi-epic-32mm) breaks down the classic true-scale vs modern heroic difference — which, conveniently, is the same 28mm-to-32mm jump this guide covers.
+
+## Where Does the 28mm to 32mm Conversion Break Down?
+
+### Sculptor scale creep and the caliper test
+
+Every conversion on this site assumes the *source* model is honestly 28mm. In practice, "28mm" can mean anything from 25mm true-scale to 32mm labelled as 28mm — I've held both. So my rule is: measure before you trust. Select the model in your slicer and read the Z-height, then compare it to the eye-level number in the chart. If a claimed 28mm figure already reads 32mm to the eyes, the sculptor was working in 32mm the whole time and scaling it by 114.3% would be wrong.
+
+The second honest limit is the print itself. Scaling a 28mm STL up by 14.3% hides print artefacts — bigger layer lines look smoother relative to the model, and fine detail gets more forgiving. That's one more reason this conversion is so popular. If you're scaling the *other* way and shrinking a 32mm hero down, detail gets denser and support points get pickier; I cover that properly in the [downscale guide](/guides/32mm-to-28mm-scale-conversion) with the settings I use to keep faces clean at 87.5%.
+
+That's the whole conversion. 114.3%, axes locked, one test print, and you're done. If you want the master list of every scale jump in the hobby — 15mm to 28mm, 1:72 to 32mm, 1:35 to 28mm and the rest — the full [miniature scale conversion chart](/miniature-size-chart) has them all in one table, calculated on the same 175cm baseline.
+
+---
+
+### How to Downscale 32mm to 28mm (87.5% Slicer Percentage, Explained)
+
+Source: https://stlaccess.com/guides/32mm-to-28mm-scale-conversion
+Published: 2026-08-15
+
+**Description:** Shrink 32mm miniatures down to true 28mm scale with an 87.5% slicer percentage. Fits more minis on a resin plate and mixes classic fantasy RPG proxies into true-scale armies.
+
+**Direct answer:** Type 87.5% with X, Y, and Z locked — that's 28mm ÷ 32mm × 100 on the 175cm baseline. Downscaling also shrinks supports and fine detail, so print a test piece, lower layer height if needed, and re-orient before batch printing.
+
+The internet is full of guides for scaling miniatures up — a classic fantasy RPG party meeting a modern sci-fi epic wargame army, small scale jumping to heroic scale, all that. But shrinking a miniature is just as common, and it's harder to get right. Scale a model down by 12.5% and every support point, every thin blade, and every layer line has to work at the smaller size.
+
+This guide covers the number (87.5%, same as it ever was), the slicer routine that keeps detail intact, and the practical reasons you'd downscale at all. If you're going the other way, my [28mm to 32mm guide](/guides/28mm-to-32mm-scale-conversion) has the full walkthrough.
+
+## What Percentage Do I Scale 32mm Down to 28mm?
+
+### The number: 87.5%
+
+Type **87.5%** into your slicer with X, Y, and Z locked. That's 28 ÷ 32 × 100 — the exact reverse of the 28mm-to-32mm upscale, which is [114.3%](/guides/28mm-to-32mm-scale-conversion). Where the upscale grows a model by 14.3%, the downscale shrinks it by 12.5%, so a heroic 32mm figure lands at true 28mm eye level on the [175cm baseline](/guides/175cm-baseline).
+
+This is the conversion I reach for when a modern sci-fi epic wargame proxy needs to stand next to a classic fantasy RPG party, or when a sculpt I love only exists in 32mm and I play the 28mm WWII platoon wargame. The number shows up in the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) and in every row of the [miniature scale conversion chart](/miniature-size-chart), always with the axes locked and always measured to the eyes.
+
+### Why 87.5% and not 90%?
+
+Same reason the upscale isn't 115%: because both scales measure the same 175cm human to the eyes, the ratio between them is fixed at 28/32. Deviating from it shifts every figure off the intended eye line. 90% sounds friendlier and is close enough to pass the eye test on a single model, but batch-scaling a squad to 90% leaves you with a 28.8mm figure — small enough that nobody will measure it, wrong enough that I won't recommend it.
+
+The one thing that *does* change the number is the measurement convention. If a sculptor measures to the top of the head instead of the eyes, the downscale percentage shifts by about a point in the other direction. The [scale conversion chart](/miniature-size-chart) lists both where it matters, but gaming convention says the eyes, so 87.5% is my default.
+
+## Why Would I Shrink a 32mm Miniature to 28mm?
+
+### Fitting more minis on the plate
+
+The most practical reason, especially on resin: an 87.5% miniature takes up about 67% of the volume of the original (0.875³ ≈ 0.67), so you fit noticeably more minis per build plate per run. Once you're printing rank-and-file infantry in batches, that's real time and real resin saved. I use the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) to plan batch spacing, and the [reference](/miniature-size-chart) page has the full matrix if you want to see every pairing at once.
+
+### Mixing with a true-scale collection
+
+The other reason is consistency. The publisher moved to 32mm heroic in 2014-2015, but the classic fantasy RPG, 28mm WWII platoon wargames, and most historical games stayed true 28mm. If your collection is 28mm and you find an STL that only ships in 32mm heroic — common with popular sci-fi and fantasy sculptors — 87.5% is what makes it look at home in the display cabinet next to everything else.
+
+There's a caveat I have to flag: shrinking a 32mm heroic sculpt to 87.5% gives you a *smaller heroic sculpt*, not a true-scale 28mm sculpt. The proportions stay chunky — the head is still 1:6 of the height, the hands are still oversized. For most hobbyists that's fine, because it reads as "detailed 28mm". If you're a stickler for anatomical proportions, the heroism is baked into the model and no percentage will remove it.
+
+## How Do I Downscale a Mini Without Ruining the Detail?
+
+### The slicer routine for shrinking
+
+Lock the axes, type 87.5, apply. Then the steps that actually matter when you're going *down*, because the problems are different from an upscale:
+
+1. **Re-generate supports.** Supports generated for the original size won't scale sensibly — gaps get too tight and contact points get too small. Deleting and re-supporting takes two minutes and saves a failed print.
+2. **Check the layer height.** Detail that printed cleanly at 32mm is 12.5% smaller now. On resin I drop to a finer layer height for the batch; on FDM I switch to a 0.2mm nozzle if the model has faces worth saving.
+3. **Re-check orientation.** A 12.5% smaller footprint changes the balance of the model, and thin blades or antennae that survived at 32mm may need a tilt to survive at 28mm.
+4. **Print one test piece** and measure it with my PARKSIDE calipers before committing to a full squad — same rule as every conversion on this site.
+
+### What gets lost when you shrink a miniature
+
+Two things, predictably: surface detail and mechanical strength. Fine features get denser relative to the nozzle or resin pixel, so a face that printed cleanly at 32mm can lose its expression at 87.5%. On FDM, thinner features also mean more fragile prints — swords, rifles, and capes are the first casualties. That's the trade you're accepting for a cheaper, denser plate.
+
+The good news is that everything shrinks uniformly, so proportions never distort. If the original was well-sculpted, the 87.5% version is the same sculpt with less material. That's exactly why the [reference page](/miniature-size-chart) treats downscale as the mirror of upscale rather than a separate skill — the math is the same, only the print settings change.
+
+## Are 32mm and 28mm Miniatures Really That Different?
+
+### The 14.3% height difference in practice
+
+Side by side, the difference reads as much bigger than 14.3%. Hold a classic true-scale (28mm) power-armoured soldier next to a modern heroic (32mm) one and the latter looks a third larger — because the height ratio compounds across all three dimensions. A 32mm figure at 1:50 has nearly 50% more volume than a 28mm figure at 1:56, and most 32mm sculpts pile heroic proportions on top of that. When you downscale, you're removing volume, and the model's *presence* drops faster than its height.
+
+### Heroic proportions vs true scale when going down
+
+This is the one thing nobody warns you about: scale is not the same as proportion. 28mm and 32mm describe where a figure's eyes sit; heroic describes how the sculptor shaped the body inside that height. A 32mm heroic miniature downscaled to 87.5% still has the big head and oversized hands — it's a heroic 28mm figure. So measure any unlabelled STL against a [scale reference bar](/3d-math/reference-bar-generator) and weigh the proportions before you type in a percentage.
+
+If you mostly play 28mm systems, my [fantasy RPG miniature scale guide](/guides/classic-fantasy-rpg-miniature-scale-guide) shows what a true 28mm army looks like across every size category, from Tiny to Gargantuan. Compare it against your shrunken 32mm squad and you'll see the proportions instantly.
+
+That's the downscale. 87.5%, axes locked, supports re-generated, one test print. If you want the full set of percentages — including how the same ratio behaves across the 35mm sci-fi mass-battle game and the 40mm sci-fi skirmish game, and the rest — the [miniature scale conversion chart](/miniature-size-chart) has the master list.
+
+---
+
+### Arachne vs Classic Wall Generator: Which Is Sharper for Miniatures?
+
+Source: https://stlaccess.com/guides/arachne-vs-classic-wall-generator-miniatures
+Published: 2026-08-30
+
+**Description:** Arachne is supposed to make tighter details than the classic wall generator, but on test miniatures classic often prints fine detail sharper. A practical comparison for 28-32mm FDM prints.
+
+**Direct answer:** Arachne varies wall thickness to keep thin features crisp, so on paper it should win every time. But in repeated test prints of the same miniature, the classic wall generator kept the fine detail (like individual beard strands) sharper. Test both on your own machine and choose for the detail you care about.
+
+You'd expect the newer, smarter wall generator to win every time. Arachne varies the width of each wall to match the model, so a thin sword blade or a strand of hair gets its own wall instead of being absorbed into a neighbor. It even slices faster. The conclusion writes itself, right?
+
+Wrong. When I ran the same miniature through both generators, the classic one kept the fine detail sharper. That's not how it's supposed to work, and it took a proper side-by-side to convince me.
+
+## What Each Generator Does
+
+**Arachne** (available in Cura and Bambu Studio) is the newer approach. It looks at the model's shape and adjusts the wall thickness on the fly, so narrow features get a dedicated wall rather than being rounded into whatever's next to them. It's also noticeably faster to slice. On paper, that makes it strictly better for detail.
+
+**Classic** is the old way. It lays down a fixed number of constant-width walls. Thin features that fall between walls just get merged into their neighbor or dropped. Everything I read said that should make it worse — yet the test prints disagreed.
+
+## The Test: Same Model, Both Generators
+
+I sliced an identical miniature with each generator, same filament, same machine, same every other setting, and printed them back to back. I was specifically looking at the beard, which has fine, closely packed strands that should be the perfect stress test for Arachne.
+
+With the **classic** generator, each strand of the beard was clearly visible when printed — sharp and distinct.
+
+With **Arachne**, those same strands lost their definition. They blended together into a mushier surface. It produced tighter-looking details on the flat parts, but the fine line detail that makes a face read as high quality was worse.
+
+That's the reverse of what you'd predict, and I'd love to know exactly why — it goes against the logic of the tool. But the outcome was consistent across every test miniature I ran. So I went with the classic generator for fine detail.
+
+## What Actually Matters for Miniatures
+
+The takeaway isn't "classic is always better." It's that the default "newer equals better" assumption doesn't hold for fine miniature detail, and the only way to know is to test on your own machine.
+
+A few things that matter more than the generator choice:
+
+- **Layer height.** This swamps the wall generator difference. At 0.06mm on a 0.2mm nozzle, even a mediocre generator produces a clean miniature. At 0.2mm layers, no generator saves you.
+- **Nozzle size.** A 0.2mm nozzle resolves fine detail far better than a 0.4mm one, regardless of generator.
+- **Cooling.** Maximum fan on small layers keeps overhangs sharp, which is half the battle on minis.
+- **Orientation.** Face the detail you care about up and away from supports, so the generator has clean geometry to work with.
+
+## How to Test For Yourself
+
+1. Pick one detailed miniature, ideally one with fine, closely spaced features (a beard, fur, or trim works well).
+2. Slice it once with Arachne and once with classic, keeping everything else identical.
+3. Print both back to back.
+4. Compare the fine detail under good light — not at arm's length, but close enough to judge the strand definition.
+
+Do this before you trust either generator for your whole army. My result was classic wins for fine detail; yours might genuinely be Arachne if your printer and filament behave differently.
+
+## Summary
+
+- Arachne varies wall width for sharp, fast slicing — the theory says it should win.
+- In test prints, classic kept fine line detail like beard strands sharper.
+- Layer height, nozzle size, and orientation outweigh the generator choice.
+- Run your own side-by-side; the winner may surprise you.
+
+I still use Arachne for terrain and big flat pieces where its speed shines. For miniatures where fine detail is the whole point, I've gone back to classic until I dig into why it keeps winning. Either way, don't take the slicer's default on faith — the sharpest tool for your specific mini is the one you prove works on your own printer.
+
+---
+
+### Best Budget 3D Printers for Tabletop Wargaming — FDM Terrrain & Vehicle Guide
+
+Source: https://stlaccess.com/guides/best-budget-3d-printers-wargaming
+Published: 2026-08-26
+
+**Description:** Top budget FDM 3D printers for wargaming terrain, vehicles, and scatter. Sovol SV06 ACE, Creality Ender-3 V3 SE, Bambu Lab A1 Mini, and Elegoo Centauri Carbon compared.
+
+**Direct answer:** You do not need an $800+ printer for tabletop terrain. The Sovol SV06 ACE (~$200-300) is the best terrain workhorse, the Creality Ender-3 V3 SE (~$170-200) is the cheapest plug-and-play, the Bambu Lab A1 Mini (~$300-450) is the most reliable compact option, and the Elegoo Centauri Carbon (~$300-400) handles ABS/ASA in an enclosed CoreXY.
+
+If you print 28mm heroic infantry, you already rely on resin for sharp detail. Tying up a resin vat — or dropping $1,200 on a flagship printer — just to print Gothic ruins or blocky tank hulls is overkill. You don't need top-tier money for simple FDM jobs. You need a secondary workhorse: cheap to buy, easy to maintain, and ready to run 18-hour terrain prints while you sleep without burning your hobby budget.
+
+I've been through the cycle of buying too much printer for jobs that didn't need it. Here's what I've learned about picking the right budget FDM machine for wargaming terrain, vehicles, and scatter.
+
+## Why You Shouldn't Buy an $800+ Printer for Tabletop Terrain
+
+Most wargamers printing 28mm heroic infantry are using resin — and they should, because FDM layer lines will always be visible on tiny faces and weapon details. But the second you need modular ruins, trench lines, movement trays, or a proxy tank hull to check scale before committing to resin, you're staring at a different kind of job. These are big, blocky, low-detail prints that don't need a $1,200 machine.
+
+A budget FDM secondary sits beside your resin setup and handles the jobs resin is bad at: dirt-cheap bulk PLA, overnight runs you can ignore, and functional parts that need impact resistance instead of surface finish. You get the best of both worlds without wrecking your hobby budget.
+
+## Quick Comparison
+
+| Printer | Price | Best For | Build Volume | Key Feature |
+| --- | --- | --- | --- | --- |
+| Sovol SV06 ACE | ~$200-300 | Heavy terrain batches | 220 x 220 x 250mm | Open-source Klipper, high speed |
+| Creality Ender-3 V3 SE | ~$170-200 | Dirt-cheap secondary | 220 x 220 x 250mm | Auto bed-leveling, zero hassle |
+| Bambu Lab A1 Mini | ~$300-450 | Compact multi-color | 180 x 180 x 180mm | Zero-friction ecosystem |
+| Elegoo Centauri Carbon | ~$300-400 | ABS/ASA engineering | Enclosed CoreXY | High-temp hotend, 500mm/s |
+
+## No-Caliper Scaling Hacks for Beginners
+
+Slicing without calipers is risky, but you don't need a €10 metal display to avoid print disasters. If you're starting out, waiting on shipping for your PARKSIDE caliper, or your battery just died mid-session, you can calibrate scale using objects already sitting on your painting desk.
+
+### Hack 1: The Wargamer's Base-Match Trick
+
+The publisher and other wargame manufacturers use standardized base sizes. Import a simple primitive cylinder into your slicer — a 32.0mm diameter cylinder for power-armoured soldiers, for example — and place it next to your proxy model. If your proxy's feet spill over the cylinder edges or look tiny inside it, adjust your scaling percentage until it fits cleanly before hitting print.
+
+### Hack 2: The Pocket Change Reference Scale
+
+Pocket change is manufactured to strict legal tolerances. A **2 Euro coin** measures 23.25mm across — nearly identical to a classic 25mm round base footprint — while a **US Quarter** is 24.26mm. Hold a physical coin up to your monitor over your slicer window at 1:1 preview zoom to verify base-to-infantry ratios.
+
+### Hack 3: The Grid-Paper Screen Overlay
+
+Grab standard 5mm graph paper. Six grid squares equal exactly 30mm — a solid proxy reference for a 32mm heroic mini's head height. Hold the paper directly against your screen over your slicer preview to check if a proxy vehicle door frame or ruins gateway would realistically fit an infantry model.
+
+## Critical Slicer Tweaks for FDM Tabletop Terrain
+
+Before committing to an 18-hour terrain batch on an FDM machine, lock in these slicer adjustments to save time and filament.
+
+### Horizontal Expansion
+
+FDM nozzles push filament outward. When printing proxy tanks or modular terrain with interlocking pegs, adjust your slicer's **Horizontal Expansion** by -0.05mm to -0.1mm to stop door frames from binding or turret rings from fusing.
+
+### The 0.6mm Nozzle Swap for Ruins
+
+Ditch the stock 0.4mm nozzle when printing large stone structures or trench lines. A **0.6mm nozzle** drops print times by nearly 40-50% with almost zero visual loss on weathered stone or brick textures. This is the single biggest time saver for terrain batches.
+
+### Draft Layer Heights
+
+Before wasting 60ml of resin on a complex vehicle proxy, run a 0.28mm layer height FDM print first to verify scale against your squad. It takes a fraction of the time and costs pennies in filament. If the proportions look right in draft mode, you can commit to the resin version knowing the scale is locked in.
+
+## 1. Sovol SV06 ACE — Best Overall Terrain Workhorse
+
+**Price:** ~$200 - $300
+
+The SV06 ACE is the terrain workhorse I'd recommend to anyone who prints bulk scatter and modular ruins. It runs open-source Klipper with a direct-drive extruder and a 220 x 220 x 250mm build volume — big enough for cathedral walls and modular trench sections without splitting files.
+
+High-speed output up to 600mm/s top speeds means you can knock out a full batch of Gothic ruins overnight. The open-source Klipper firmware gives you deep control over print profiles, and the direct-drive extruder handles PLA, PETG, and even some flexibles without fuss. It's a rugged bed-slinger built to chew through bulk spools of cheap PLA.
+
+**The Hardware Reality Check:** Open-source Klipper is powerful, but it means you are your own tech support if a firmware config file breaks. If you've never touched Klipper before, expect a learning curve during initial setup. Once it's running though, it's fast and reliable.
+
+## 2. Creality Ender-3 V3 SE — Best Budget Plug-and-Play
+
+**Price:** ~$170 - $200
+
+The Ender-3 V3 SE is the cheapest way to get a reliable FDM printer with auto bed-leveling. At this price, you're getting a direct-drive extruder and 250mm/s max speed — more than enough for ruins, movement trays, and simple board game upgrades.
+
+What makes it appealing is that it eliminates the classic bed-leveling headache. Auto bed-leveling at this price point means you can pop off the box, run the calibration, and start printing terrain without spending an evening adjusting corner screws. It's the gateway FDM printer for wargamers who want zero hassle.
+
+**The Hardware Reality Check:** The included PC build plate surface degrades fast if you run high-temp PETG. Budget an extra $15 to swap to a textured PEI plate immediately — it's a night-and-day difference in bed adhesion and longevity.
+
+## 3. Bambu Lab A1 Mini — Best Compact & Multi-Color
+
+**Price:** ~$300 (Standalone) - $450 (AMS Lite Combo)
+
+The A1 Mini is the printer I'd pick if you want to hit "print" and walk away without tinkering. Bambu's ecosystem is designed around zero-friction operation: automated calibration, solid software, and optional 4-color AMS for printing colorful objective markers and tokens in a single run.
+
+The 180 x 180 x 180mm build volume is compact, so larger cathedral pieces or titan proxies need to be split into multiple parts in your slicer first. But for small scatter terrain, objective markers, board game inserts, and token batches, it's hard to beat the reliability.
+
+**The Hardware Reality Check:** That 180mm cube is real. If you're printing full-size modular Gothic ruins or large vehicle hulls, you'll be cutting files in the slicer more often than you'd like. This is a "small jobs done perfectly" machine, not a terrain factory.
+
+## 4. Elegoo Centauri Carbon — Best Budget Enclosed CoreXY
+
+**Price:** ~$300 - $400
+
+The Centauri Carbon is the pick if you need to print ABS or ASA for functional wargaming gear. The enclosed CoreXY frame keeps heat in and warping out, with a 500mm/s max speed and a high-temp hotend that handles engineering polymers without drama.
+
+This matters for things like transport trays, heavy vehicle proxies, and functional connectors that need impact resistance. PLA is great for terrain, but ABS and ASA hold up better to repeated handling, temperature swings in a car trunk, and the general abuse that gaming gear takes.
+
+**The Hardware Reality Check:** Higher power draw and fan noise compared to open-frame bed-slingers. If you're running ABS, keep it in a garage or separate workshop space — ABS fumes aren't something you want in your living room. The enclosure helps contain them, but ventilation still matters.
+
+## How FDM Fits Alongside Your Resin Setup
+
+| Job Type | Primary Resin Printer | Budget FDM Secondary |
+| --- | --- | --- |
+| **Main Output** | 28mm/32mm Infantry, sharp heads, weapons | Ruins, trenches, tanks, movement trays |
+| **Material Cost** | Higher cost per model | Dirt-cheap bulk PLA/PETG |
+| **Post-Processing** | Wash, cure, chemical safety | Pop off the bed, slap on primer |
+| **Risk Tolerance** | Delicate setup; keep clean | Beat it up, test thick nozzles, run overnight |
+
+The two setups complement each other. Resin handles the detail work where layer lines would ruin the model. FDM handles the volume work where speed and cost per model matter more than surface finish. A $200 FDM printer running overnight terrain while your resin machine sleeps is the most efficient use of your hobby budget.
+
+Once the machine is chosen, the settings are what decide whether it is worth owning. I put together the layer heights, nozzle sizes, infill densities, and support strategies for printing both miniatures and terrain on the same printer in [Tabletop Gaming with FDM](/fdm/best-fdm-printer-miniatures-and-terrain).
+
+## Summary
+
+- **Sovol SV06 ACE** (~$200-300): Best terrain workhorse — fast, open-source Klipper, great for bulk batches
+- **Creality Ender-3 V3 SE** (~$170-200): Cheapest plug-and-play — auto bed-leveling at rock-bottom price
+- **Bambu Lab A1 Mini** (~$300-450): Best compact & reliable — zero-friction ecosystem, multi-color option
+- **Elegoo Centauri Carbon** (~$300-400): Best enclosed CoreXY — handles ABS/ASA for functional gear
+
+You don't need to spend $800+ to get a capable FDM printer for wargaming. Pick the one that matches your job — terrain batches, quick proxies, small multi-color jobs, or engineering plastics — and let it run alongside your resin setup. The hobby budget you save can go toward more models.
+
+---
+
+### How to Scale Miniatures in Chitubox & Lychee Slicer (Without Messing Up the Base)
+
+Source: https://stlaccess.com/guides/chitubox-lychee-scaling-guide
+Published: 2026-06-22
+Updated: 2026-08-15
+
+**Description:** Step-by-step guide to scaling STL files in Chitubox and Lychee. Lock aspect ratios, scale without stretching the base, and understand the unit conversion — from my own slicer.
+
+**Direct answer:** Click the chain-link to lock the aspect ratio, then type your percentage into any scale field. Chitubox: press T then Transform. Lychee: Transform then uniform scaling. If a model imports tiny, it was exported in inches — scale up 2540%.
+
+If your STL file has an X-axis of 30mm, that is exactly **1.18 inches wide**. This unit confusion — mixing millimetres and inches — is the most common mistake people make when scaling miniatures in slicer software, and it's the one that taught me to never trust an import at face value.
+
+The first time a file imported into Chitubox as a grain of rice, I spent an hour convinced the slicer was broken. It wasn't. The sculptor had exported in inches, and my slicer was dutifully reading inches as millimetres. The fix took one number: scale everything up by 2540%. Since then I've developed a full routine that works in both Chitubox and Lychee every time, including how to scale a model without distorting the base.
+
+## The Golden Rule: Lock The Aspect Ratio
+
+Before you type any number into a scale field, **find the chain link icon and click it**. When the chain is locked, changing one axis automatically updates the other two. This is how you avoid ending up with a miniature that looks like it was stepped on. I learned this one from a print that came off the plate looking like it had been through a hydraulic press — one axis at 114%, the others at 100%.
+
+| Slicer | Where to find the lock |
+|--------|----------------------|
+| Chitubox | Transform panel → Scale section → chain icon next to X/Y/Z |
+| Lychee | Transform panel → Uniform scaling toggle (looks like a chain or a percentage sign with arrows) |
+
+## Scaling in Chitubox
+
+Chitubox is what I use for most of my proxy slicing. Here is the exact sequence I run:
+
+1. **Import your STL** (File → Import → STL)
+2. **Select the model** — click it in the viewport
+3. **Open the Transform panel** (press `T` or click the Transform icon on the left toolbar)
+4. **Lock the aspect ratio** — click the chain icon so it shows as connected
+5. **Type your percentage** in the Scale X field — for a 28mm → 32mm conversion, enter `114.3`
+6. **Check the height** — the Z field should show the new height in mm
+7. **Click Apply** (the checkmark) to confirm
+
+### Pro Tip: Scale Without Scaling the Base
+
+If your miniature has an integral base that you do not want to scale, listen closely, because I ruined a hero's scenic base this way once:
+
+1. Before importing, use MeshLab or Blender to separate the base from the model
+2. Import both pieces separately
+3. Scale only the miniature body, leave the base at 100%
+4. Merge them back together or print them as separate pieces and glue after
+
+This is a common ask in the miniature printing community — a 32mm hero should not end up standing on a comically oversized 40mm base just because you scaled the whole model up. Trust me, nothing kills a good print faster than a base that dwarfs the model standing on it.
+
+## How to Measure Models in Chitubox
+
+Before you type a single percentage, you need to know what you're starting from. Measuring a model in Chitubox takes about three seconds:
+
+1. **Select the model** in the viewport
+2. **Open the Transform panel** (press `T`)
+3. **Read the X/Y/Z fields** — Chitubox shows the current dimensions in millimetres, and those same fields double as the scale inputs
+
+The number that matters for scale is the **Z-axis** — that's the height. Select your model, look at the Z field, and you instantly know its current height in mm. That's the source number for every conversion you type in.
+
+Here is the catch I hit constantly: **which height counts depends on how the sculptor measured it.** Gaming scales like 28mm and 32mm measure to eye level, so a true 32mm model usually reads 34-35mm on the Z-axis once you include the forehead, hair, or helmet. If you measure a "32mm" model and see 34.5mm, that is not a mistake — that is eye level plus skull. If you have an unlabeled sculpt, print the [scale reference bar](/3d-math/reference-bar-generator) and measure it in your slicer, and the [reference library](/miniature-size-chart) notes which measurement each scale uses.
+
+A quick sanity check before you scale: a 28-32mm miniature should be roughly the height of your thumb. If the Z-axis shows a grain of rice instead, the file was exported in inches — jump down to the Lychee units section for the fix.
+
+## Scaling in Lychee Slicer
+
+Lychee is my go-to for bigger batch prints because the interface feels faster. The steps mirror Chitubox:
+
+1. **Import your STL** (the plus icon or drag-and-drop)
+2. **Select the model** in the 3D viewport
+3. **Open the Transform panel** (right sidebar, looks like a move/scale/rotate icon)
+4. **Enable uniform scaling** — click the lock or chain icon
+5. **Enter your percentage** — Lychee shows the scale as a multiplier, so `114.3%` can be entered as either `114.3%` or `1.143`
+6. **Confirm** — Lychee applies changes automatically
+
+Lychee also shows you the real-world dimensions of the model in mm, so you can sanity-check your scale. A 32mm model should measure approximately 32mm in the Z-axis (plus or minus the base thickness). I always glance at that Z value before slicing — it has caught more mistakes than I care to admit.
+
+## How to Change Units in Lychee Slicer
+
+Lychee works in millimetres out of the box, and most of the time you never need to touch the unit setting — model dimensions, the Transform panel, and the print bed all display in mm. But when you import STLs from a sculptor who exported in inches, you have two options:
+
+**Option 1: Change the display unit.** Open **Settings** (or Preferences, depending on your Lychee version) and look for the unit selector next to the measurement readout. Switching it to inches only changes how Lychee *displays* dimensions — it does not rescale your model. I leave mine on millimetres and never think about it.
+
+**Option 2: Fix an inch-exported model — the one that actually matters.** An inch file imports looking tiny because Lychee reads each inch as a millimetre. Don't hunt for a hidden "import unit" toggle; just select the model, open Transform, enable uniform scaling, and enter **2540%** (25.4 × 100). That converts inches to millimetres in a single step. Once it's scaled, the Transform panel shows the real dimensions in mm so you can confirm the height before slicing.
+
+Unit confusion is exactly why I check the Z-axis after every import: if a "32mm" hero imports at 32mm it's good to go, and if it lands at 1.2mm you know precisely what happened.
+
+## When to Use mm vs Inches
+
+Slicers display model dimensions in millimetres by default. If your STL was exported in inches, it will import looking either tiny (an inch-miniature showing as 1.2mm tall) or enormous (a mm-miniature showing as 25 feet tall).
+
+**Quick rule of thumb:** A 28-32mm miniature should be roughly the height of your thumb. If it comes in looking like a grain of rice, it was likely exported in inches. Scale everything up by 2540% (25.4 × 100) to convert inches to millimetres.
+
+## Chitubox Unit Conversion Helper
+
+If your file's X-axis shows as, for example, 30mm:
+
+| Measurement | Value |
+|-------------|-------|
+| Millimetres | 30 mm |
+| Inches | 1.18 in |
+| Scale to 32mm (from 28mm) | 114.3% |
+| Scale to 35mm (from 28mm) | 125.0% |
+
+Use the [STLACCESS scale engine](/) to calculate any conversion, or browse the [reference library](/miniature-size-chart) for pre-calculated percentages. I use both constantly — that's the whole reason I built them.
+
+## Common Mistakes to Avoid
+
+These are the mistakes I've personally made, so you don't have to:
+
+- **Forgetting to lock the aspect ratio** — results in a squashed or stretched miniature. My hydraulic-press print was the teacher here.
+- **Scaling the base with the model** — makes the base look wrong for the game system. Separate it first.
+- **Distinguishing between eye-level and top-of-head** — 28mm refers to eye level; ratio scales like 1:56 are top-of-head. The [scale reference](/miniature-size-chart) has notes for each
+- **Skipping the test print** — I always print one test piece and measure it with my PARKSIDE calipers before committing to a full squad. The STL scale calculator has a [shrinkage compensation toggle](/) for filaments that shrink more than the usual 0.2-0.5%
+
+---
+
+### Classic Fantasy RPG Miniature Scale Guide — What Size Are Classic Fantasy RPG Minis?
+
+Source: https://stlaccess.com/guides/classic-fantasy-rpg-miniature-scale-guide
+Published: 2026-08-15
+
+**Description:** What scale is the classic fantasy RPG? Medium humanoids are 28mm to the eyes on the 175cm baseline. The full classic fantasy RPG size chart: Tiny, Small, Medium, Large, Huge, Gargantuan with mini heights and base sizes.
+
+**Direct answer:** The classic fantasy RPG is 28mm true scale: a Medium humanoid measures 28mm to the eyes, about 30-32mm total height. The publisher's official minis run true 28mm, while most printed STLs are 32mm heroic. Bases: 1-inch Medium, 2-inch Large, 3-inch Huge, 4-inch Gargantuan.
+
+The classic fantasy RPG is the easiest game to answer "what scale am I playing?" for, and the hardest to answer "how big should this miniature be?" for — because the answer changes depending on whether you're talking about a halfling, an ogre, or an ancient dragon. Officially it's all one scale. In practice you're juggling six size categories, two measurement conventions, and a whole industry of sculptors who quietly drifted away from true 28mm.
+
+This guide untangles it. I measured the publisher's official minis against my own prints, and here's the version of the classic fantasy RPG scale question that actually helps at the slicer.
+
+## What Scale Are Classic Fantasy RPG Miniatures?
+
+### 28mm to the eyes, about 30-32mm tall
+
+The classic fantasy RPG is **true 28mm scale**. On the [175cm human baseline](/guides/175cm-baseline) I use across this site, a Medium humanoid measures **28mm from the feet to the eyes** — which works out to about **30-32mm to the top of the head**, because the forehead and hair add a few millimetres past the eye line. That's the same convention as every other tabletop scale: eyes, not crown.
+
+The publisher's official minis match this. Its flagship product lines are branded and sculpted at true 28mm, which is one reason they slot into a classic fantasy RPG table so seamlessly. If you pick up any of the official lines, you can print and play at 28mm without converting anything.
+
+### Why so many printed classic fantasy RPG minis are 32mm
+
+Here's the trap. A huge share of the STLs sold "for the classic fantasy RPG" — especially the popular fantasy sculptors on the usual platforms — are actually sculpted at **32mm heroic**. It's not malicious; bigger models carry more detail, print more forgivingly, and look better in renders. But it means a party printed from mixed sources will show two generations of height side by side.
+
+The fix is the same one as everywhere else on this site: measure the model's Z-height in your slicer, then use [114.3% to go 28mm to 32mm](/guides/28mm-to-32mm-scale-conversion) or [87.5% to go back down](/guides/32mm-to-28mm-scale-conversion). Both percentages, plus the reasoning, are covered in their own guides.
+
+## How Tall Are Classic Fantasy RPG Minis by Size Category?
+
+### The classic fantasy RPG size chart
+
+The classic fantasy RPG defines size by the space a creature controls on a 5-foot grid, which translates directly to base size and roughly to miniature height. These are the heights I use, worked out from real-world creature sizes at 28mm scale:
+
+| Size | Map space | Example creatures | Mini height | Base |
+| --- | --- | --- | --- | --- |
+| Tiny | 2.5 × 2.5 ft | Rat, imp, familiar | ~10-25mm | Under 1-inch |
+| Small | 5 × 5 ft | Halfling, goblin, kobold | ~25-28mm | 1-inch (25mm) |
+| Medium | 5 × 5 ft | Human, elf, orc | ~30-32mm | 1-inch (25mm) |
+| Large | 10 × 10 ft | Ogre, troll, horse | ~44mm | 2-inch (50mm) |
+| Huge | 15 × 15 ft | Hill giant, young dragon | ~59mm | 3-inch (75mm) |
+| Gargantuan | 20 × 20+ ft | Ancient dragon, kraken | 90-120mm+ | 4-inch+ (100mm+) |
+
+The heights aren't magic numbers — they're the real creature's height divided by 63, which is what 28mm scale means for a 175cm human. An ogre at 9 feet tall lands at about 44mm; a hill giant at 12 feet lands at about 59mm. The publisher's own giants and dragons often run a touch bigger for shelf presence, which is fine — the base, not the height, is what governs play.
+
+### Base sizes are what matter on the table
+
+In actual play, the base is the rule. A creature occupies the squares its base covers — a 2-inch base is "Large" no matter how tall the sculpt is — so when you're printing replacements or proxies, match the base first and the height second. A Huge creature on a 3-inch base with a 55mm sculpt plays identically to the official mini; a Medium minion that towers over the goblins beside it will bother you more than it bothers the rules.
+
+That's also the reason the official lines are internally consistent even though sculptors' proportions drift: every mini ships with the correct base for its category, and the categories are locked to the grid.
+
+## How Do I Scale a Classic Fantasy RPG STL to the Right Size?
+
+### The slicer percentages I use for heroes and monsters
+
+With axes locked, these are the numbers that cover almost every classic fantasy RPG situation:
+
+| What you have | What you want | Percentage |
+| --- | --- | --- |
+| 28mm true-scale STL | 32mm heroic look | 114.3% |
+| 32mm heroic STL | True 28mm table | 87.5% |
+| Medium humanoid | Large creature | 200.0% |
+| Medium humanoid | Huge creature | ~300.0% |
+
+The Medium-to-Large jump is just scaling a humanoid figure to double height, since a 9-foot ogre is twice a 4.5-foot human. The Medium-to-Huge jump (~59mm from ~30mm) lands around 200% to 300% depending on how big you want your giant — the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) gives you the exact number for any target height, and the [scale conversion chart](/miniature-size-chart) has the full table.
+
+### Scaling monster STLs to match official minis
+
+The one place I'm careful is monsters. Ancient dragons and krakens from third-party sculptors range wildly — I've seen "Gargantuan" dragons from 80mm to 180mm, because there's no single answer for "how tall is a dragon". My rule: decide your target base (4-inch for Gargantuan) and scale the STL so the *footprint* fits, then let the height be whatever proportion the sculptor chose. That keeps the mini legal on the table and stops you from obsessing over a number nobody official publishes.
+
+If a dragon STL has no scale listed at all, measure it against my [scale reference bar](/3d-math/reference-bar-generator) in your slicer to see what height it's actually sculpted at — then you scale from there instead of guessing.
+
+## How Do I Measure a Classic Fantasy RPG Mini to Find Its Scale?
+
+### Measure to the eyes, not the top of the head
+
+The single most useful habit for classic fantasy RPG printing: **measure to the eyes**. A humanoid is "28mm" when its eye line is 28mm above the base, and the 2-4mm between the eyes and the top of the head is exactly where the confusion comes from. When you read a Z-height in your slicer, you're reading total height including the head and the base — so subtract the base and eyeball the eye line before you decide a model is "the wrong scale".
+
+This is the same convention the [175cm baseline guide](/guides/175cm-baseline) explains in full, and it's why two minis that are both "28mm" can measure 30mm and 32mm total and still be exactly the same scale.
+
+### What if my STL has no scale listed?
+
+You have three options, in order of how much I trust them. First, check the model description — many sculptors state the intended height even if not the scale word. Second, measure the printed or sliced height and compare it to this guide's chart; a Medium humanoid at 30-32mm is true 28mm, at 34.5mm total it's 32mm heroic. Third, print a [scale reference bar](/3d-math/reference-bar-generator) to measure the sliced height against the chart and work out the exact percentage for whatever game you're printing.
+
+That's the classic fantasy RPG scale answer. True 28mm to the eyes, bases over heights, and one measurement before you type any percentage. The complete set of conversions across every tabletop scale — the classic fantasy RPG, the modern sci-fi epic wargame, the 35mm sci-fi mass-battle game, and the ratio scales — is on the [miniature scale conversion chart](/miniature-size-chart).
+
+---
+
+### Cura Tree Support Settings: How to Make Supports Easy to Remove
+
+Source: https://stlaccess.com/guides/cura-tree-support-settings-miniatures
+Published: 2026-08-30
+
+**Description:** The exact Cura tree (organic) support settings for 3D printing miniatures that come off clean — Z distance, interface layers, branch distance and angle, and painting supports on manually.
+
+**Direct answer:** In Cura, use tree supports on the build plate only, overhang threshold 20, top Z distance 0.25, 3 top + 3 bottom interface layers, branch distance 2.0, branch diameter 1.0, branch angle 60, no prime tower. For problem models, paint supports on by hand instead of trusting auto.
+
+Every time I've pulled a failed miniature off my Bambu Lab A1 Mini, the culprit was almost never the model and almost always the supports. Either they never formed, they snapped mid-print, or they fused to the model so hard I destroyed the detail removing them. Getting tree supports right changed all three of those failures at once.
+
+This guide distills the settings I finally settled on after a long run of test prints. They're the values I now trust for miniatures in Cura, and they transfer to most printers with a 0.2mm or 0.4mm nozzle.
+
+## The Settings That Worked
+
+Here's the whole setup, in one table. These are the numbers I keep coming back to:
+
+| Setting | Value | Why |
+|---|---|---|
+| Support type | Tree (organic) | Touches the model at few points, easy to remove |
+| Support placement | Only build plate | Keeps supports off the model's sides entirely |
+| Overhang threshold | 20 | Stops Cura from supporting every little detail |
+| Top Z distance | 0.25 | Small enough to hold, big enough to break away clean |
+| Top interface layers | 3 | A thin, removable interface before the model |
+| Bottom interface layers | 3 | Keeps the branch tips held while they grow |
+| Tree branch distance | 2.0 | The gap between branches (the magic number) |
+| Tree branch diameter | 1.0 | Thick enough to be reliable, thin enough to remove |
+| Tree branch angle | 60 | Steeper angles here stop over-supporting |
+| Prime tower | Off | Saves time, not needed for single miniatures |
+
+The **branch distance** is the setting that made the biggest difference for me. It controls how far apart the support branches grow. Get it too low and the supports form a solid wall under the model; too high and they just don't grow where you need them. 2.0mm hit the balance where supports hold cleanly but pull away almost voluntarily.
+
+## Keep the Model Standing at a Good Angle
+
+Before any settings matter, the model needs to be oriented so it doesn't fight the printer. For a miniature with lots of accessories, tilt it back about 45° so the center of gravity sits over the base and the supports do the minimum work. Flipping it doesn't have to be the exact same every time — it depends on how the model's weight is distributed.
+
+The point is to place supports underneath the model to hold it up, like crowd-surfers at a concert, rather than all over the model's front and face. Supports on visible surfaces are what create the scars you spend an hour sanding off.
+
+## Print the Supports Coarser
+
+Tree supports only need to hold the model, not look good. So print them faster and rougher. If your model is at 0.08mm layers, run the supports at a coarser layer height and fewer walls. This cuts print time noticeably.
+
+A few other settings that helped me finish a batch of miniatures faster without hurting quality:
+
+| Setting | Value |
+|---|---|
+| Wall loops | 1 for supports, keep the model's own higher |
+| Sparse infill density | 35% |
+| Sparse infill pattern | Cubic |
+| Support top layers | 3 |
+
+## Paint Supports On for Problem Models
+
+Auto supports are fine for a simple soldier. For a sculpt with a cape, a chain, or delicate details, letting auto run everywhere is how you end up with supports plastered across a face. The fix is to paint supports on by hand.
+
+In Cura, use the support **painting** tool and zoom right in. The trick is to think like a printer: brush supports only where the model actually needs holding up, and skip anywhere the support would be hard to remove. For a model at a 45° angle, that usually means the underside of the torso and limbs represented in green, and the visible front surfaces brushed with the "no support" color in pink.
+
+It's tedious, but it's the single most reliable way to get a clean miniature. I do it for every hero model now and save the auto settings for rank-and-file infantry.
+
+## Summary
+
+- Tree supports with branch distance 2.0, branch diameter 1.0, angle 60
+- Overhang threshold 20 so it doesn't over-support
+- Top Z distance 0.25 with 3 top + 3 bottom interface layers
+- Print supports coarser than the model to save time
+- Paint supports on by hand for any detailed model
+
+The day I stopped trusting auto supports for characters and started painting them on was the day my failure rate dropped and the sanding time shrank. The settings above are the starting point — print a test model, see where the supports stick, and nudge the Z distance or branch distance until they come off clean.
+
+---
+
+### FDM Miniature Printing: Complete Guide to Layer Height, Nozzles, and Settings
+
+Source: https://stlaccess.com/guides/fdm-miniature-printing-guide
+Published: 2026-07-09
+Updated: 2026-08-15
+
+**Description:** Best FDM settings for tabletop miniatures — nozzles, layer heights, orientation tips, and post-processing for 28mm and 32mm models. Tested on my Bambu Lab A1 Mini.
+
+**Direct answer:** You do not need a resin printer. 0.2mm nozzle at 0.06mm layers for characters; 0.4mm at 0.08mm for rank-and-file. PLA, 100% fan, tilt 15-20°, tree supports, filler primer.
+
+You do not need a resin printer to print good-looking tabletop miniatures. I've proven it to myself a hundred times over on my Bambu Lab A1 Mini, mostly in PLA and PETG. With the right FDM settings, 28mm and 32mm models come off the plate looking sharp at arm's length and surviving normal tabletop handling.
+
+I didn't start here. Back in 2017 I was fighting a cheap entry-level FDM printer that spent more time clogging and peeling off the bed than actually printing. I almost gave up on the whole hobby. What kept me going was figuring out that the printer wasn't the problem — my settings were. Every setting in this guide is something I dialed in by ruining prints first, and I want you to skip that part.
+
+## The Ideal FDM Setup for Miniatures
+
+After hundreds of miniatures on my A1 Mini, here is the setup I keep coming back to:
+
+| Component | Recommendation | Why |
+|---|---|---|
+| Nozzle | 0.2mm for characters, 0.4mm for rank-and-file | Smaller nozzle = finer detail, longer print time |
+| Layer height | 0.06mm (0.2mm nozzle) or 0.08mm (0.4mm nozzle) | Balances detail against print duration |
+| Filament | PLA or PLA+ | Easy to print, low shrinkage, good layer adhesion |
+| Cooling | 100% fan from layer 3 | Sharp overhangs need maximum cooling at small layer heights |
+
+I used to run everything through a 0.4mm nozzle because swapping nozzles felt like a hassle. Then I printed a power-armoured soldier with a 0.4mm nozzle at 0.08mm and squinted at the visible faceting on the helmet. The same model with a 0.2mm nozzle at 0.06mm layers looked like a different sculpt entirely. Now the 0.2mm nozzle only comes off for terrain and batch infantry.
+
+## Bambu Lab A1/Mini Settings for Miniatures
+
+Every number in this guide was dialed in on my Bambu Lab A1 Mini, so here is the whole machine-specific setup in one place. Nozzle, layer height, filament, and cooling come from the setup table above — these are the settings particular to the A1 and A1 Mini:
+
+| Setting | Value | Why |
+|---|---|---|
+| Retraction | 1mm at 30mm/s | Direct drive, so short retraction is all it needs |
+| Travel speed | 200mm/s | Crosses open gaps fast so stringing never gets a chance |
+| Model tilt | 15-20 degrees backward | Hides layer lines on the face and chest |
+| Supports | Tree (organic) | Touch the model at fewer points, leave less scarring |
+| Flat bases | 5mm brim | Stops the corners from lifting on the textured plate |
+| Plate prep | Clean plate, dry filament | Auto leveling only helps if the plate is clean |
+
+Bambu Studio's built-in profiles are a solid base, but do not trust the default 0.4mm nozzle layer heights for miniatures — the defaults assume big parts, not 32mm soldiers. I always swap to the 0.2mm nozzle for characters and let the print run long. The A1 Mini's automatic leveling and vibration compensation handle the rest; my only job is to keep the plate clean and the filament dry.
+
+If you're on a different printer, the layer heights and cooling advice in this guide transfer over fine — the retraction numbers are the direct-drive-specific part.
+
+## Best Layer Heights for Detail
+
+The single most important setting for miniature quality is layer height. Here is what I've learned at each range:
+
+| Layer Height | Result | Best For |
+|---|---|---|
+| 0.04mm | Cast-quality finish, very slow (12+ hours for 32mm) | Display pieces, competition models |
+| 0.06mm | Excellent detail, 6-8 hours for 32mm | Character models, officers, heroes |
+| 0.08mm | Good detail, 4-5 hours for 32mm | Rank-and-file infantry, monsters |
+| 0.12mm | Noticeable layer lines, 2-3 hours | Terrain, vehicles, test prints |
+| 0.2mm | Very rough, fast | Large terrain, bases, quick prototypes |
+
+My rule of thumb is simple: every hero in my army gets the 0.2mm nozzle at 0.06mm, because I'll paint them and display them and they deserve it. Rank-and-file squads get 0.08mm so I can actually field a full unit without waiting a week. The difference at arm's length is minor, and after primer it nearly vanishes.
+
+## Orientation Matters
+
+I learned orientation the expensive way. My first proper character print came out with obvious layer lines running straight across the face — because I'd dropped the model flat on the plate. How you orient the model affects surface quality more than any setting:
+
+- **Tilt the model 15-20 degrees backward.** This hides layer lines on the front of the model (chest, face) and puts them on the back where they are less visible. This one tip changed more of my prints than any filament or nozzle change.
+- **Place the most detailed surface facing up.** The top surface of an FDM print is always cleaner than the bottom (which rests on supports). Faces and pauldrons up, ugly support contact hidden underneath.
+- **Use tree (organic) supports.** They touch the model at fewer points and leave less scarring than standard supports. My first standard supports left divots in a shoulder pad that took an hour of sanding and filling to repair.
+
+## Post-Processing for FDM Miniatures
+
+Three steps that transform an FDM miniature from okay to tabletop-ready:
+
+1. **Remove supports carefully.** Flush cutters are better than pulling. Clip supports away from the model in small pieces rather than ripping them off. This prevents snapped bayonets and stretched plastic. Ask me how many spear tips I've sacrificed to impatience.
+
+2. **Sand the layer lines (optional).** For character models, a quick pass with 400-grit sandpaper on flat surfaces (shoulder pads, helmet tops) removes visible layer lines. Avoid sanding faces and detail areas — I sanded a cape once and rounded off every fold.
+
+3. **Prime with filler primer.** A coat of automotive filler primer fills micro-gaps between layers and gives you a smooth painting surface. Spray from 20cm away in quick passes. One coat is usually enough for 0.06mm layer heights. This is the cheapest magic trick in the hobby — it makes FDM prints read as store-bought plastic until you're close enough to count layers.
+
+## Common FDM Miniature Problems
+
+**Stringing between arms and body.** This happens when the nozzle moves across an open gap. I fought it for a full evening before realizing my travel speed was too slow. Fix it by enabling retraction (5mm at 40mm/s for Bowden, 1mm at 30mm/s for direct drive) and increasing travel speed to 200mm/s. My A1 Mini is direct drive, so 1mm at 30mm/s is my starting point.
+
+**Supports fusing to the model.** Reduce support interface density to 50% and increase the support Z distance to 0.2mm. The supports will still hold the model up but will break away much more cleanly. This is the setting that ended my snapped-bayonet streak — I used to lose one weapon per squad to fused supports.
+
+**Warped bases.** Print the base flat on the build plate with a brim. A 5mm brim around a 25mm or 32mm base prevents the corners from lifting during printing. I print my bases flat even when the model is tilted, because a warped base wobbles on the table and there is no fixing it after the fact.
+
+## Summary
+
+- 0.2mm nozzle at 0.06mm layer height for characters
+- 0.4mm nozzle at 0.08mm layer height for rank-and-file
+- Tilt models 15-20 degrees, use tree supports
+- Filler primer hides remaining layer lines
+- PLA works great—no special filament needed
+
+I dialed all of this in the slow way so you don't have to. If your first FDM miniature doesn't look like a store-bought plastic miniature, that's normal — mine didn't either. Print another one with these settings and the difference will surprise you.
+
+---
+
+### FDM vs Resin 3D Printing for Miniatures: When to Switch
+
+Source: https://stlaccess.com/guides/fdm-vs-resin-miniatures
+Published: 2026-08-30
+
+**Description:** The honest resin vs FDM comparison for tabletop miniatures — detail, support removal, toxicity, speed, and which kinds of models each printer genuinely does better.
+
+**Direct answer:** Resin wins on tiny, delicate detail and easy support removal; it's messier and more toxic to handle. FDM wins on speed, cost, and safety. Once painted and on the table at arm's length, both look great — the gap is mostly up close in the hand. Pick by the model: angular armor suits FDM, tiny contrast details suit resin.
+
+There is no single right answer to resin versus FDM for miniatures. I printed the same model on both, painted them side by side, and the result was closer than I expected — and more specific than any blanket "one is better" answer.
+
+Resin wins for tiny, delicate detail and easy support removal. FDM wins for speed, cost, and safety. Once painted and on the table at arm's length, both look great; the gap mostly shows up close in the hand. The real question is which models you print.
+
+## The Head-to-Head
+
+| Factor | Resin | FDM |
+|---|---|---|
+| Fine detail | Excellent — handles tiny, fragile contrast details | Good, sharpest with a 0.2mm nozzle |
+| Support removal | Snaps off almost cleanly | Needs patience and cutting, more scarring |
+| Speed | Slower per print | Faster, especially with coarse supports |
+| Cost | Higher (resin, wash, cleanup) | Lower, PLA is cheap |
+| Safety | Toxic fumes + skin contact, needs care | PLA is basically safe |
+| Order of print | Beeper, more cleanup mess | Simpler to run |
+
+The single biggest practical gap is support removal. Resin supports are thin ladders that come off with a gentle pull and leave almost nothing behind. FDM supports are thicker, can fuse to the model, and removing them is where most beginners break a delicate piece. This is the reason troubleshooting FDM supports is worth your time — it closes most of the quality gap.
+
+## Where Resin Clearly Wins
+
+For models with fine, fragile geometry, resin is the right call. Think a wizard's staff with a delicate finial, a model with a thin ornamental tail, or fine facial sculpting. Those features print cleaner in resin and hold up better when you handle them.
+
+Resin also nails the very smallest detail at 28mm and below, where FDM layer lines start to compete with the sculpt. If you hold your miniatures up in your hand and pore over them, resin is what you want.
+
+## Where FDM Clearly Wins
+
+FDM is the pragmatic choice for most wargaming armies. It's faster, cheaper, and you can run it in your house without a dedicated, ventilated setup. PLA filament is a fraction of the cost of resin plus wash and cleanup supplies.
+
+It's also genuinely fine for the models most people actually print. Big, angular armor plates read great on FDM — a power-armoured soldier or a mech has large flat surfaces where layers just look like part of the build. Monsters and vehicles with chunky geometry do well too.
+
+## Painted and on the Table, They Meet in the Middle
+
+Here's what surprised me: after a few coats of paint and viewed from across the table, the two prints from my comparison were nearly indistinguishable in a miniatures comparison. At arm's length, both read as proper minis. It's only when you bring them close and study the fine details that the resin one separates itself.
+
+Primer closes a lot of the gap on FDM. A coat of filler primer fills the micro-gaps between layers and makes FDM minis read as store-bought plastic. That one step turns "layered" into "painted."
+
+## Which Should You Print?
+
+Use this as a rough rule of thumb:
+
+- **Resin:** tiny, delicate, or extremely detailed models — swords, tails, fine faces, display pieces you'll pore over.
+- **FDM:** rank-and-file infantry, vehicles, terrain, monsters with chunky geometry — especially when you need quantity and speed.
+- **Either:** most standard wargaming models, once you account for the support and printing quirks of each.
+
+If you already own an FDM printer, don't feel you need to rush out and buy a resin one. Start with a 0.2mm nozzle and good settings, and only reach for resin if the fine detail you want is genuinely beyond FDM.
+
+If your real question is broader than miniatures — large props, functional brackets, or whether a service-bureau SLS machine is worth it — I compared all three processes by what the part has to do in [FDM vs Resin vs SLS 3D Printing](/fdm/fdm-vs-resin-sla-sls-3d-printing).
+
+## Summary
+
+- Resin wins on fine, fragile detail and support removal; costs more and needs safety care.
+- FDM wins on speed, cost, and safety; fine on angular and chunky models.
+- Painted and at table distance, both look great — the gap is up close.
+- Pick by the model, not the hype.
+
+The truth is most armies don't need resin. If you're printing quantities of rocky infantry and big machines, an FDM printer with a 0.2mm nozzle is enough. Save resin for the delicate heroes and display pieces that genuinely benefit from it.
+
+---
+
+### How to Measure a Miniature's Scale: Eye Level vs Top of Head Explained
+
+Source: https://stlaccess.com/guides/how-to-measure-miniature-scale
+Published: 2026-07-11
+
+**Description:** How I measure miniature scale for 3D printing — eye level vs top of head, PARKSIDE digital calipers, and why the 175cm baseline works.
+
+**Direct answer:** Measure from the foot to eye level, not the top of the head. A 28mm mini is about 31-32mm to the top of the head. Use calipers and ignore weapons, horns, and dynamic-pose extensions.
+
+If you have ever printed a miniature and it looked wrong next to your other models, the problem is probably not the percentage you typed into your slicer. I know because it happened to me. The problem is probably how you measured the scale in the first place.
+
+My moment of clarity came from a power-armoured soldier that looked like a bobblehead. I'd eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." The print came out the correct height, but the proportions were all wrong — a head too big for the body, everything slightly off. I took out my PARKSIDE digital calipers and found the real problem: I'd been measuring to the top of the head the whole time, not the eyes. The model wasn't wrong. My measurement was.
+
+## Eye Level vs Top of Head
+
+There are two ways to define a miniature's scale, and they give different numbers:
+
+**Eye level (160cm on a 175cm human).** You measure from the bottom of the foot (or the base contact point) to the centre of the eye. This is the standard for fantasy and sci-fi miniatures—the modern sci-fi epic wargame, the classic fantasy RPG, the 35mm sci-fi mass-battle game. It ignores helmets, top-knots, and decorative headgear. This is what I use for every gaming-scale conversion now.
+
+**Top of head (175cm).** You measure from the foot to the highest point of the head. This is used for historical miniatures, display busts, and ratio scales like 1:35 and 1:56. The full height of the miniature matters because historical accuracy demands it.
+
+## Why This Matters for 3D Printing
+
+A 28mm miniature measured to the eyes is actually about 31-32mm tall to the top of the head once you account for the forehead and skull. If you measure that same model by its total height and treat it as a 32mm miniature, you will scale it incorrectly. That 4mm of skull is exactly the gap that created my bobblehead.
+
+The STL scale converter uses eye-level measurement by default because that is what the tabletop industry uses for gaming scales. The top-of-head option is available for ratio-scale conversions.
+
+## How to Measure with Digital Calipers
+
+A good digital caliper is the best tool for checking a miniature's actual scale. I use a PARKSIDE caliper — all-metal construction, 0.01mm resolution, 0–150mm range, and it costs under 15 euro. It ended my guessing for good. Here is the process I follow on every test print:
+
+1. **Zero the calipers** with the jaws closed.
+2. **Place the miniature on a flat surface.** The base should sit flat on the table.
+3. **Measure from the table surface to the centre of the eye.** This is your eye-level measurement.
+4. **Record the number.** A "28mm" miniature should read approximately 28mm. A "32mm" miniature should read approximately 32mm.
+
+If you do not have calipers, most slicers have a measurement tool. Import the STL and measure the Z-axis distance from the lowest point of the foot to the eye. I use this when a file isn't printed yet and I want to check what the sculptor actually made.
+
+## What About Dynamic Poses?
+
+A miniature with a raised sword, a lunging pose, or a flying base cannot be measured by bounding box alone. The bounding box might be 45mm tall because of the sword, but the miniature itself might only be 28mm to the eyes. I learned this the hard way with a cavalry model whose lance made it look like a 50mm piece.
+
+To measure a dynamic pose:
+
+1. Find the foot contact point—the part of the model that touches the base.
+2. Find the eye position.
+3. Measure the vertical distance between these two points.
+4. Ignore everything above the eyes (weapons, horns, banners).
+
+## How the 175cm Baseline Works
+
+The 175cm human baseline is a reference height that lets us convert between any two scales consistently. Here is the logic:
+
+1. Assume a human figure is 175cm tall in real life (5 feet 9 inches).
+2. That human's eyes are at approximately 160cm.
+3. A "28mm" miniature represents this human at 28mm from foot to eye.
+4. A "32mm" miniature represents the same human at 32mm from foot to eye.
+5. The ratio between 32mm and 28mm is 32 ÷ 28 = 1.143 = 114.3%.
+
+The actual height of the average human does not matter for this calculation. What matters is that every conversion uses the same starting point, so the ratios between scales are mathematically consistent. That consistency is the whole reason I can trust the percentages on this site.
+
+## Quick Measurement Reference
+
+This is the chart I use when a sculptor's label is vague:
+
+| Label on Package | Likely Eye Level | Likely Total Height |
+|---|---|---|
+| 28mm true scale | 28mm | ~31mm |
+| 32mm heroic scale | 32mm | ~35mm |
+| 35mm scale | 35mm | ~38mm |
+| 40mm scale | 40mm | ~44mm |
+| 75mm scale | 75mm | ~82mm |
+
+## Summary
+
+- Measure to the eyes, not the top of the head
+- Use digital calipers (a PARKSIDE with 0.01mm resolution works perfectly) or your slicer's measurement tool
+- Ignore weapons, banners, and dynamic pose extensions when measuring
+- The 175cm baseline keeps ratios consistent between any two scales
+- If your print looks wrong, measure the eye level first — before you change anything else
+
+---
+
+### Real-World Objects to 28mm Scale: Feet to MM Conversion for 28mm WWII Platoon Wargames, the Classic Fantasy RPG & Historical
+
+Source: https://stlaccess.com/guides/real-world-objects-to-28mm
+Published: 2026-08-30
+
+**Description:** The formula I use to convert real-world heights to true 28mm miniature scale. Charts for humans, monsters, vehicles, and terrain for 28mm WWII platoon wargames, the classic fantasy RPG, and historical wargaming.
+
+**Direct answer:** (real height in inches × 28 ÷ 63 = height in mm). An 18-foot dragon at 28mm scale stands about 96mm tall. Because 28mm eye level maps to roughly 1:56 top of head, the same numbers double as 28mm WWII platoon wargame vehicle and terrain sizes.
+
+I build armies across both modern heroic 32mm and true 28mm — 28mm WWII platoon wargames, the classic fantasy RPG, and historical ranges — and every time I imported a real-world creature or vehicle I was doing the same calc by hand. So I wrote myself a proper 28mm chart and taped it above the printer. This is that chart, and the math behind it.
+
+The formula is identical to the 32mm version, just with 28 substituted for the eye-level:
+
+```
+(real_height_inches × 28) ÷ 63 = height_in_mm
+```
+
+For my favourite 18-foot dragon (216 inches):
+
+```
+(216 × 28) ÷ 63 = 96mm
+```
+
+At 28mm true scale the dragon comes out around **96mm tall** — noticeably smaller than the same dragon at 32mm (110mm), which is exactly right, because true 28mm is a smaller scale.
+
+## Why 63?
+
+The constant 63 is the number of inches in 160cm — the eye height on the 175cm human baseline this site uses for every conversion. At 28mm scale, 160cm of real height maps to 28mm on the figure, so:
+
+- 28 ÷ 1600 = 0.0175, or **17.5mm per real metre**.
+- In inches that's (inches × 28) ÷ 63 = mm.
+
+For practical use just remember: **(real inches × 28) ÷ 63 = mm on the tabletop** at 28mm scale.
+
+## Quick Reference Chart (Creatures)
+
+All values at 28mm true scale with the formula above. These are the numbers on my workbench wall:
+
+| Real Object | Height | In 28mm Scale |
+|-------------|--------|---------------|
+| Goblin / Halfling | 4 ft | **21mm** |
+| Average Human | 5'9" | **31mm** |
+| Orc / Brute | 6'6" | **35mm** |
+| Horse (to shoulder) | 5 ft | **27mm** |
+| Horse (to head) | 8 ft | **43mm** |
+| Ogre / Troll | 10 ft | **53mm** |
+| Giant | 14 ft | **75mm** |
+| Dragon (to shoulder) | 18 ft | **96mm** |
+| Dragon (total height) | 24 ft | **128mm** |
+
+The average human lands around 31mm — that's correct. At 28mm true scale the *eyes* sit at 28mm, so the full figure including skull and hair measures closer to 31mm. That's what my calipers read on printed true-scale infantry every single time.
+
+## Vehicles at 28mm (~1:56)
+
+Because 28mm eye level maps to roughly 1:56 top-of-head, real vehicle dimensions convert almost directly. For vehicles, divide the real size by the ratio:
+
+```
+(real_length_inches ÷ 56) × 25.4 = length_in_mm
+```
+
+| Real Vehicle | Length | In 28mm Scale |
+|--------------|--------|---------------|
+| Jeep | 3.3 m (11 ft) | **60mm** |
+| Truck | 6 m (19.7 ft) | **107mm** |
+| Tank (Sherman/T-34 class) | 6 m (19.7 ft) | **107mm** |
+| Heavy tank (Tiger class) | 7 m (23 ft) | **125mm** |
+| Half-track | 6 m (19.7 ft) | **107mm** |
+| Field gun + crew | 2 m + crew | ~36mm gun, crew = infantry |
+
+The vehicle numbers match what 28mm WWII platoon wargame players field every week. A 1:56 tank at around 107mm sits correctly next to 28mm infantry, which is why the 1:56 to 28mm conversion in the reference library works so cleanly.
+
+## Terrain and Buildings
+
+Terrain needs no heroic-proportion adjustment — the math is direct:
+
+```
+(real_height_inches × 28) ÷ 63 = height_in_mm
+```
+
+| Real Object | Height | In 28mm Scale |
+|-------------|--------|---------------|
+| Fence / low wall | 3 ft | **16mm** |
+| Single-storey wall | 8 ft | **43mm** |
+| Barn / Shed | 12 ft | **64mm** |
+| Two-storey building | 20 ft | **107mm** |
+| Church tower | 60 ft | **320mm** |
+
+Print a single-storey wall at 43mm and place a 28mm miniature next to it — it reads as a believable 8-foot wall. My 28mm WWII platoon wargame board's ruins all follow these numbers.
+
+## Mixing 28mm and 32mm on One Table
+
+You will end up with both, and that's fine. The math is identical, just with different eye-level numbers, so a 28mm model is about 12.5% smaller than an equivalent 32mm one (28 ÷ 32 = 0.875).
+
+Three rules that keep a mixed table coherent:
+
+1. **Don't scale factions to match.** A 28mm platoon fighting a 32mm force reads fine at arm's length. Shrinking one army to match is where everything starts to look wrong.
+2. **Keep bases consistent.** Mixing base sizes reads far worse than mixing figure heights. Pick one base standard for infantry and stick to it.
+3. **Use slightly oversize vehicles for 28mm.** 28mm WWII platoon wargame players commonly run 1:48 tanks with 28mm infantry because the extra bulk reads better than a true 1:56, which can look toy-like next to bulkier sculpts.
+
+## Summary
+
+- 28mm uses the same formula: (real inches × 28) ÷ 63.
+- An 18-foot dragon is about 96mm at 28mm scale.
+- 28mm maps to roughly 1:56, so it doubles as a WWII vehicle and terrain chart.
+- Terrain converts directly with no heroic adjustment.
+- Mixing 28mm and 32mm is fine at arm's length — keep bases consistent.
+
+This is the chart I wish I'd had when I started. Whenever I'm scaling a real-world creature, vehicle, or building to run beside my 28mm infantry, I go back to these numbers — and now so can you.
+
+---
+
+### Real-World Objects to 32mm Scale: Feet to MM Conversion (The Math Explained)
+
+Source: https://stlaccess.com/guides/real-world-objects-to-32mm
+Published: 2026-06-28
+Updated: 2026-08-15
+
+**Description:** The formula I use to convert real-world heights to 32mm miniature scale. Charts for humans, horses, monsters, and terrain for the modern sci-fi epic wargame, the classic fantasy RPG, and 28mm WWII platoon wargames.
+
+**Direct answer:** (real height in inches × scale ÷ 63 = height in mm). An 18-foot dragon at 32mm scale stands about 110mm tall — roughly the height of a soda can.
+
+I wanted an 18-foot dragon for my tabletop army, and I wanted it to tower over my infantry the way it should — not look like a slightly annoyed lizard. The problem was nobody had given me a "how big is an 18-foot dragon in 32mm scale" chart, so I sat down at my workbench with a calculator and worked it out. This is what I did to get the numbers.
+
+Here is the formula I ended up with:
+
+```
+(real_height_inches × 32) ÷ 63 = height_in_mm
+```
+
+So for my 18-foot monster (216 inches):
+
+```
+(216 × 32) ÷ 63 = 110mm
+```
+
+My 18-foot dragon stands approximately **110mm tall** — about the height of a soda can. I printed it, set it next to a can of soda on my desk, and the proportions were spot on. That's the moment the formula earned my trust.
+
+## Why 63?
+
+The number 63 is the conversion constant that maps real-world inches to tabletop millimetres. It comes from the 175cm human baseline this site uses for every conversion:
+
+- 32mm scale means a human's eyes — at 160cm on a 175cm figure — sit 32mm above the base.
+- So at 32mm scale, 160cm of real height is represented by 32mm. The scale factor is 32 ÷ 1600 = 0.02, or **20mm per real metre**.
+- 160cm is 63 inches (25.4mm per inch), which is why the inch version of the same formula reads **(inches × 32) ÷ 63 = mm**.
+
+For practical use, just remember: **(real inches × 32) ÷ 63 = mm on the tabletop** at 32mm scale.
+
+## Quick Reference Chart
+
+All values below are at 32mm scale, calculated with the formula above. These are the numbers I keep taped to the wall above my printer:
+
+| Real Object | Height | In 32mm Scale |
+|-------------|--------|---------------|
+| Goblin / Halfling | 4 ft | **24mm** |
+| Average Human | 5'9" | **35mm** |
+| Power-armoured soldier (heroic) | ~7 ft | **43mm** |
+| Horse (to shoulder) | 5 ft | **30mm** |
+| Horse (to head) | 8 ft | **49mm** |
+| Ogre / Troll | 10 ft | **61mm** |
+| Giant | 14 ft | **85mm** |
+| Dragon (to shoulder) | 18 ft | **110mm** |
+| Dragon (total height) | 24 ft | **146mm** |
+| Barn / Shed | 12 ft | **73mm** |
+| Two-story building | 20 ft | **122mm** |
+| Church tower | 60 ft | **366mm** |
+
+Notice the average human works out to about 35mm tall — that is correct. At 32mm scale the *eyes* are at 32mm, so the full figure (skull and hair included) stands closer to 35mm. It matches the top-of-head values used in the reference library, and it's what my PARKSIDE calipers read on a printed human every single time.
+
+## Converting Any Scale
+
+The formula works for any miniature scale. For gaming scales (eye level) swap the middle number; for ratio scales divide directly by the ratio:
+
+| Scale | Formula |
+|-------|---------|
+| 28mm true | (inches × 28) ÷ 63 |
+| 32mm heroic | (inches × 32) ÷ 63 |
+| 35mm (sci-fi mass-battle game) | (inches × 35) ÷ 63 |
+| 1:56 | (inches ÷ 56) × 25.4 — or just (inches × 0.454) |
+| 1:48 | (inches ÷ 48) × 25.4 — or (inches × 0.529) |
+
+For 28mm scale, the same 18-foot monster becomes:
+
+```
+(216 × 28) ÷ 63 = 96mm
+```
+
+Notice 28mm and 1:56 come out almost identical (96mm vs 98mm). That is no accident — 28mm eye level maps to roughly 1:56 top of head on the 175cm baseline, which is exactly why 28mm WWII platoon wargames treat the two as the same thing.
+
+## Prefer 28mm Scale?
+
+Everything in this guide is worked out at 32mm scale because that is the modern heroic standard — the modern sci-fi epic wargame, the modern fantasy wargame (32mm heroic), and most current skirmish games. A big chunk of the hobby still runs on true 28mm though: the classic fantasy RPG, 28mm WWII platoon wargames, historical wargaming, and a lot of older sculpt ranges. The math is identical — you just swap the scale number in the formula:
+
+```
+(real_height_inches × 28) ÷ 63 = height_in_mm
+```
+
+Run the same 18-foot dragon through it and it comes out at 96mm instead of 110mm. And because 28mm eye level maps to roughly 1:56 top of head, everything in this guide converts to 28mm WWII platoon wargame vehicles and terrain without re-rolling the numbers.
+
+I built a dedicated [28mm scale guide](/guides/real-world-objects-to-28mm) with a full set of 28mm charts for humans, monsters, vehicles, and terrain — same formula, 28mm-specific numbers, and how to mix 28mm and 32mm armies on one table. For quick 32mm work, the "Converting Any Scale" table above has everything you need.
+
+## Why the 175cm Baseline Matters
+
+Gaming scales like 28mm and 32mm are measured to the eye (160cm on a 175cm human), not the top of the head. If your game system uses a different baseline — some older games measure against a 6-foot human — the monster will come out slightly different.
+
+STLACCESS uses the 175cm baseline for all conversions. You can read more about [why that number was chosen](/guides/175cm-baseline) and how it affects every percentage in the [reference library](/miniature-size-chart).
+
+## Terrain and Buildings
+
+Terrain is easier to scale than creatures because you don't need to account for heroic proportions. A 20-foot building wall at 32mm scale:
+
+```
+(240 × 32) ÷ 63 = 122mm
+```
+
+Print a wall that is 122mm tall and place a 32mm miniature next to it — the proportions match a 20-foot wall in real life. I built my entire table's ruined walls from this exact calculation, and they finally stopped looking like dollhouse furniture next to my minis.
+
+To convert any real measurement to miniature millimetres on the fly, plug the numbers into the [STL scale engine](/) — it handles real-world heights and tabletop scales the same way.
+
+---
+
+### Resin2FDM: Convert Resin-Supported STLs to FDM-Ready in Blender
+
+Source: https://stlaccess.com/guides/resin2fdm-convert-stl-to-fdm-ready
+Published: 2026-08-30
+
+**Description:** How to take a resin-presupported STL from any sculptor and make it print clean on an FDM printer using the Resin2FDM Blender add-on — split, assign, thicken supports, and slice for cleanup.
+
+**Direct answer:** Split the pre-supported STL into loose parts, assign the mini, thicken the resin supports to 0.05-0.2mm so FDM picks them up, generate a level cube, export mini + supports separately, then print supports at 0.16mm layers with 2 walls.
+
+Every sculptor seems to release pre-supported files these days. The catch: most of those supports are designed for a resin printer. They're a fine lattice a millimeter or less in diameter, laid down by a laser. Drop that same file in an FDM slicer and the supports are too thin for the nozzle to print or too weak to survive layer after layer.
+
+You don't need to abandon those files. With the Resin2FDM Blender add-on you can convert a resin pre-supported STL into a clean FDM print in a few minutes. I've used this workflow to print models from half a dozen different sculptors on my Bambu Lab A1 Mini, and it's become my default for any pre-supported STL.
+
+## Why Resin Supports Don't Work on FDM
+
+Resin supports are designed to snap off with bare fingers and leave almost no trace — they're thin, light, and touch the model at tiny points. An FDM printer lays down molten plastic through a 0.2mm or 0.4mm nozzle. It can't resolve a 0.5mm support tower the way a resin UV light can, and even if it tries, the tower is too fragile to support the weight of a 20-gram plastic model over hours of printing.
+
+Resin2FDM fixes the two real problems:
+
+1. **It thickens the supports** so the slicer recognizes them and they survive the print.
+2. **It keeps the mini and supports aligned** so you can print them at different speeds and layer heights, then pull them apart cleanly.
+
+## What You Need
+
+- **Blender** 4.2 or newer (I use 4.5).
+- **Resin2FDM** — **Lite** is free from the creator's Gumroad; **Advanced** (with automatic support detection and extra features) is for Patreon supporters. Install as an add-on: Edit → Preferences → Add-ons → Install from Disk, then select the ZIP (no need to unzip it). The current release is v1.5.
+- **A resin pre-supported STL** — the model and its supports in one file.
+- Your normal FDM slicer (Orca Slicer, Bambu Studio, Cura — the workflow is the same).
+
+## The Workflow
+
+### 1. Prepare and import
+
+Open Blender, press **N** to bring up the toolbar, and open the Resin2FDM tab. Hit **Prepare Scene** — it removes Blender's default cube, camera, and lamp that would otherwise interfere. Then **Import STL** and load your miniature.
+
+Sometimes a model imports rotated 90°. If yours isn't sitting flat, select it, go to the Item tab, and set the rotation to 90 or -90 until it sits on the plate.
+
+### 2. Split by loose parts
+
+Click **Split by Loose Parts**. This separates the model into the miniature and all its tiny support pieces. Usually you get one object for the mini and a pile of objects for the supports. Sometimes a sculptor's model splits into several disconnected chunks too — that's normal, just select all of the mini's parts.
+
+### 3. Assign the miniature
+
+Select the mini (or all of its parts) and click **Assign Miniature**. Blender merges your selection into one "miniature" object and groups the rest together as the supports. This tells the tool which is which for the steps that follow.
+
+### 4. Thicken the supports
+
+This is the heart of the workflow. Resin supports are too thin for FDM, so you bulk them up. Open **Thicken Supports**, enter a value, preview it, then **Apply Modifier**.
+
+- **Resin pre-supports:** start around **0.05mm** and test. Different sculptors need different values — I found Bite the Bullet likes 0.05mm while Puppets War wanted 0.07mm.
+- **FDM-ready pre-supports** (Artisan Guild and similar): skip this step entirely, they're already built for FDM.
+- A value between **0.1 and 0.2** is a common sweet spot for thicker-style sculptors. There's real trial and error here — the tool shows you an estimated thickest-tower size to compare models.
+
+Applying the thickness matters. If you skip it, the next step won't work right.
+
+### 5. Generate the level cube
+
+Click **Generate Level Cube**. It adds a small piece of material under the miniature that sits flush with the bottom of the supports. Its job: when you separate the mini from its supports in the slicer, the mini doesn't drop to the build plate and misalign.
+
+This is exactly why you had to apply the thickness first — the cube has to account for it, or the two parts end up slightly off.
+
+### 6. Export
+
+Export the miniature and supports as **separate STL files**, or as a **single 3MF** if you've enabled that export option. Newer versions of Resin2FDM (v1.5 and up) can bake the support settings straight into the 3MF, so the supports are already configured for fast printing when you open it in the slicer. Name things clearly — e.g. `knight-miniature` and `knight-supports`.
+
+## Slicing for Clean Miniature + Support Separation
+
+Now the part that saves print time. In Orca Slicer or Bambu Studio:
+
+1. **Drop both files into the slicer together.** When it asks to import as one model with multiple parts, say **yes** (for STL). This keeps the mini and supports lined up.
+2. **Right-click → Split to Objects.** Now the mini and supports are separate so you can tune them independently.
+3. **Select the supports** and set their **layer height to 0.16mm** (double or more than the model's), walls down to **2**, and speeds around **50mm/s**. The supports print way faster, and 50mm/s keeps them from snapping off.
+4. **Make sure auto-supports are OFF.** Resin2FDM replaces it with the pre-generated supports.
+5. The **level cube** prevents the mini from dropping to the plate when you split them apart.
+
+## Printer Settings
+
+I run this on my Bambu Lab A1 Mini with a **0.2mm nozzle**. Any printer that handles a 0.2mm nozzle will work — the workflow is about how you prepare the file, not a specific machine.
+
+A few notes from my own prints:
+- The model itself stays at your normal miniature layer height (0.06mm on a 0.2mm nozzle for me).
+- Keep the supported angle reasonable — tilt models back so you're not placing supports on faces. Designed In Layers's method of running the support simulation slowly and checking for floating sections applies here too, just after the Resin2FDM pass.
+- Supports that don't touch important visible areas remove with almost no scarring. The whole point of this workflow is that the support breakthrough is tiny and in non-visible spots.
+
+## Summary
+
+- Resin pre-supports are too thin for FDM — thicken them 0.05-0.2mm per sculptor.
+- Split, assign, thicken, level cube applies in that exact order — skipping the apply step breaks the cube.
+- Export mini and supports separately; re-import as one multi-part model.
+- Print the supports at 0.16mm with 2 walls and 50mm/s so they're fast and durable.
+- FDM-ready files (Artisan Guild) skip the thickening step.
+
+The first time I converted a pre-supported file I expected a mess. Instead I got a power-armoured soldier that came off the plate clean, with supports that snapped off in seconds and left almost no trace. Those resin files aren't a dead end on an FDM printer — they just need a minute in Blender first.
+
+---
+
+### 35mm Sci-Fi Mass-Battle Game Scale Guide — What Scale Are Its Miniatures?
+
+Source: https://stlaccess.com/guides/sci-fi-mass-battle-35mm-scale-guide
+Published: 2026-08-15
+
+**Description:** Miniatures for the 35mm sci-fi mass-battle game are 35mm scale (1:47), measured to eye level at 35.7mm. Full height about 40mm. Exact slicer percentages to convert its STLs and proxies for space opera armies.
+
+**Direct answer:** The 35mm sci-fi mass-battle game's minis are 35mm scale measured to the eyes (about 35.7mm, roughly 40mm total height), around 1:47 — between the modern sci-fi epic wargame's 32mm and the 40mm sci-fi skirmish game's 40mm. To proxy into a 35mm sci-fi mass-battle army, scale 32mm STLs to 109.4% or 28mm STLs to 125%. Print a scale standee and compare in your slicer before committing.
+
+Every time I build a proxy army for the 35mm sci-fi mass-battle game, someone asks the same two questions: how big are these guys, and what percentage do I type in? This game sits in an awkward spot between the two big fantasy scales — bigger than the modern sci-fi epic wargame, smaller than the 40mm sci-fi skirmish game — so the conversions never feel obvious.
+
+I measured my own armoured trooper core set with my PARKSIDE calipers, cross-checked against my [scale notes for the modern sci-fi epic wargame](/fdm-printing-profiles#sci-fi-epic-32mm), and here's the honest version of what I found.
+
+## What Scale Are the 35mm Sci-Fi Mass-Battle Game's Miniatures?
+
+### 35mm to the eyes, about 40mm tall
+
+The game's "35mm" designation is an **eye-level measurement**. An armoured trooper's eyes sit roughly **35.7mm above the base**, and the full figure — helmet and all — reaches about **40mm**. That's the same convention as every other gaming scale on the [175cm human baseline](/guides/175cm-baseline): you measure to the eye line, not the top of the head, which is why the numbers in the box and the ruler never quite agree.
+
+For comparison, that makes this game's troopers noticeably taller than a 32mm modern sci-fi epic wargame miniature and noticeably shorter than the 40mm sci-fi skirmish game's figures. On the table the difference reads instantly — an armoured trooper next to a modern heroic (32mm) power-armoured soldier looks a head more imposing, which is exactly the vibe the game wants for its heroes.
+
+### The 1:47 math behind the label
+
+The publisher works this game from a slightly taller eye-height reference than my usual 160cm — they use **1678mm**, the measured average adult eye height. Divide 35.7mm by that and you get **1:47 scale**. It's a hair larger than the 1:48 space opera model kits from major manufacturers, which is why those kits are the community's favourite way to add vehicles and terrain to this game's table. My [reference](/miniature-size-chart) treats this game at 35mm eye level, and the difference between 1:47 and 1:48 is small enough to be invisible at the table.
+
+## How Big Is This Game's Mini Compared to the Classic Fantasy RPG or the Modern Sci-Fi Epic Wargame?
+
+### Compared to the 32mm modern sci-fi epic wargame — scale to 109.4%
+
+If you're printing modern sci-fi epic wargame-scaled STLs as proxies for this game, the number is **109.4%** (35 ÷ 32 × 100), axes locked. That's the same jump, in reverse, as scaling one of these minis down to sit in a 32mm heroic sci-fi army — I keep both directions on the [scale conversion chart](/miniature-size-chart).
+
+A tip from my own painting desk: before scaling a whole squad, measure the STL against a [scale reference bar](/3d-math/reference-bar-generator). A lot of sculptors label "35mm" files that are actually 32mm heroic or vice versa, and it changes the percentage you need.
+
+### Compared to the classic fantasy RPG's true 28mm — scale to 125%
+
+The big jump is from the classic fantasy RPG's true 28mm scale: **125%** (35 ÷ 28 × 100). A 28mm figure scaled to 125% matches this game's trooper at the eyes. Going the other way — from this game into a 28mm army — is **80%** (28 ÷ 35 × 100).
+
+Both numbers are in the [reference matrix](/miniature-size-chart), and both assume true 28mm to begin with. Since most third-party classic-fantasy-RPG-style STLs are actually sculpted at 32mm heroic these days, I always measure the model's Z-height in my slicer before I trust a 125% scaling.
+
+## How Do I Scale a 3D Print to Match This Game?
+
+### The exact slicer percentages
+
+Here's the set I use, all with X, Y, and Z locked:
+
+| Source scale | Slicer percentage | Use case |
+| --- | --- | --- |
+| 28mm (classic fantasy RPG / WWII platoon wargame) | 125.0% | Classic infantry to this game |
+| 32mm (modern sci-fi epic wargame / heroic) | 109.4% | The most common proxy jump |
+| 1:48 (space opera model kits) | 96.0% | Scale model kits down to infantry match |
+| 40mm (sci-fi skirmish game) | 87.5% | Shrinking big space opera sculpts to this game |
+
+Every one of these is the same formula — target eye height ÷ source eye height × 100 — which is what the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) does for you if you ever need a pair I haven't listed.
+
+### Print a scale standee and check it in the slicer
+
+The honest version of the "measure twice, cut once" rule for this game's proxies: print a **reference standee** — a plain 35mm-tall bar — and import it next to your model in the slicer. The [reference-bar generator](/3d-math/reference-bar-generator) creates one at any scale, with tick marks and an end tab exactly as tall as a figure at that scale. Select your model, read its current height, compare it to the tab, and you'll know the exact percentage without a single guess. I print one 35mm standee alongside the first test model of every batch, and it has caught more wrong assumptions than I care to count.
+
+## What Vehicles and Bases Does This Game Use?
+
+### Base sizes: 27mm, 50mm, and up
+
+Infantry and characters sit on **27mm round bases** — the same footprint across every faction, from an armoured trooper to the commander. From there it scales up:
+
+| Base size | What uses it |
+| --- | --- |
+| 27mm | All infantry, heroes, operatives |
+| 50mm | Speeder bikes, cavalry riders |
+| 70mm | Light walker vehicles, emplacement teams |
+| 100mm | Heavy walker vehicles, airspeeders |
+| 150mm | Heavy tanks |
+
+If you're printing proxies, matching the base size matters more than the infantry height — the base is what the movement tools measure, so a 27mm base with the right silhouette plays correctly even if the sculpt is slightly off.
+
+### Vehicles slide between scales
+
+The vehicles are where this game's 1:47 scale shines for printing. Because the game's walkers and speeders are oversized on purpose (they're designed to be readable at table distance, not accurate to the films), you have a lot of room to work with. The community's favourite trick is printing space opera vehicle STLs that are *supposed* to be display-scaled and shrinking them to fit this game's table — 1:48 kits at 96% are the closest fit, so check the exact height you need against this game's scale before you commit to the plate.
+
+That's the conversion. 35mm to the eyes, 109.4% from the modern sci-fi epic wargame, 125% from the classic fantasy RPG, and a printed standee to keep you honest. The full set of percentages across every scale sits on the [miniature scale conversion chart](/miniature-size-chart).
+
+---
+
+### Upscaling 3D Prints: How Big Can You Enlarge a 32mm Miniature Before Losing Detail?
+
+Source: https://stlaccess.com/guides/upscaling-3d-prints-detail-limit
+Published: 2026-06-25
+
+**Description:** How much can you enlarge a 32mm miniature on FDM before losing detail? Layer line visibility, nozzle settings, and slicer tips for clean upscaling on my Bambu Lab A1 Mini.
+
+**Direct answer:** On FDM, a 32mm model upscales to about 50mm (156%) before layer lines get distracting. A 0.2mm nozzle at 0.08mm layers pushes the comfortable ceiling to about 80mm. Check the polygon count before going past that.
+
+The short answer: on FDM, you can upscale a 32mm miniature to about **50mm (156%)** before layer lines start to dominate. Beyond that, expect visible ridges and real sanding work.
+
+I know because I blew right past that ceiling. I decided a favorite 32mm model would make a perfect 200mm display bust, scaled it up in my slicer, and let my Bambu Lab A1 Mini run for days. The result was a bust with ridges you could feel with a fingernail and faceted armor plates that looked like low-poly art. The model was fine. My assumptions about upscaling were not.
+
+## Why Upscaling Makes Layer Lines Visible
+
+Imagine a 0.08mm layer line on a 32mm model. At 1:1 scale, that line is 0.08mm thick — essentially invisible to the naked eye at arm's length.
+
+Now upscale that model to 200mm (625%). That same layer line is now 0.5mm thick — a visible ridge you can feel with your fingernail. That is exactly what my bust felt like.
+
+The math:
+
+```
+layer_height × (target_height ÷ source_height) = effective_layer_visibility
+```
+
+What happens in practice at 0.08mm layers:
+
+| Source | Target | Scale % | Layer line at 0.08mm |
+|--------|--------|---------|---------------------|
+| 32mm | 32mm | 100% | 0.08mm (invisible) |
+| 32mm | 50mm | 156% | 0.12mm (barely visible) |
+| 32mm | 80mm | 250% | 0.2mm (visible) |
+| 32mm | 125mm | 391% | 0.31mm (obvious) |
+| 32mm | 200mm | 625% | 0.5mm (very rough) |
+
+## Mitigation: Lower Your Layer Height
+
+The most effective fix is to print at a finer layer height. This is the single change that saved my second attempt at the bust:
+
+| Layer Height | Max upsized height before lines are visible |
+|-------------|--------------------------------------------|
+| 0.12mm (standard) | ~35mm |
+| 0.08mm (fine) | ~50mm |
+| 0.04mm (ultra-fine, 0.2mm nozzle) | ~80mm |
+
+If you want a comfortable 75mm display piece on FDM, that means 0.04mm layers with a 0.2mm nozzle — and a lot of patience, because that is slow going. My A1 Mini handles 0.04mm fine, but a full bust is a multi-day print.
+
+## Why FDM Limits Upscaling
+
+FDM introduces two problems when upscaling — and I live with both on my A1 Mini:
+
+1. **Z-axis banding** — the mechanical movement of the gantry amplifies slight imperfections, creating visible horizontal bands on tall prints. A 32mm mini hides them; a 200mm bust puts them front and center.
+2. **Overhang degradation** — details that were crisp at 32mm become stair-stepped at larger sizes because the same angle creates wider steps.
+
+If you must upscale miniatures on FDM, print at 0.08mm layer height with a 0.2mm nozzle. This halves the visible layer lines compared to a standard 0.4mm nozzle at 0.2mm layer height.
+
+## The Practical Limit for Display Pieces
+
+For a display-quality 32mm → 80mm upscale on FDM, this is the recipe I'd re-run for my bust:
+
+1. **Use a 0.2mm nozzle**
+2. **Slice at 0.04-0.08mm** layer height
+3. **Enable variable layer height** in your slicer to use thicker layers on hidden areas and thinner on faces
+4. **Acetone vapour smooth** ABS or ASA prints (do not use on PLA)
+
+The variable layer height setting alone hides most of the banding — the helmet and pauldrons get thin layers, while the cape and base run thick and fast.
+
+## Beyond 75mm: The Bust Range
+
+If you want to go beyond 75mm (say, a 200mm display bust from a 32mm source file), the limiting factor is no longer layer lines — it is the original model's polygon density. A model designed for 32mm printing may have too few polygons to look smooth at 200mm. My first 200mm bust looked faceted not because of my printer, but because the source mesh was never meant to be that big.
+
+Check the model in Blender or MeshLab before printing. If you can see faceted edges at the target size, apply a subdivision modifier (two iterations is usually enough) to smooth the geometry before slicing. That step alone would have saved my first bust.
+
+## Summary
+
+- **FDM, 32mm → 50mm (156%):** Fine with a 0.2mm nozzle at 0.08mm. Manageable lines.
+- **FDM, 32mm → 80mm (250%):** Needs 0.04mm layers and variable layer height. Expect sanding.
+- **FDM, 32mm → 200mm+ (625%):** Visible ridges even with optimal settings. Check polygon count and be ready for serious post-processing.
+- **Always check the polygon density** before committing a big upscale to a long print.
+
+For more on how scales relate and the baseline measurements used, see the [scale reference library](/miniature-size-chart) or use the [STL scale engine](/) to calculate any conversion.
+
+## FDM Articles (5)
+
+### Tabletop Gaming with FDM: Best Printers, Settings, and Models for Minis and Terrain
+
+Source: https://stlaccess.com/fdm/best-fdm-printer-miniatures-and-terrain
+Published: 2026-09-14
+
+**Description:** FDM printers and slicer settings that actually work for tabletop miniatures and terrain — CoreXY vs bed-slinger picks across budgets, 0.2mm nozzle tuning, and a mini-vs-terrain settings cheat sheet.
+
+**Direct answer:** Modern CoreXY machines handle both minis and terrain. Bambu A1 Mini/P1S for plug-and-play, Creality K1C for an enclosed workhorse, budget Elegoo/Anycubic if you calibrate the first layer. Characters at 0.2mm nozzle and 0.08-0.10mm layers, terrain at 0.4-0.6mm and 10-15% infill, and hunt down supportless STLs for fragile minis.
+
+I still have a cardboard box sitting in my garage filled with roughly three kilograms of warped plastic spaghetti—the tragic aftermath of my early attempts to print an entire urban battlefield overnight. I had cranked my acceleration settings to maximum, ignored my bed adhesion, and assumed that a standard 0.4mm nozzle could magically render crisp Gothic window tracery at 28mm scale. It couldn't. My table was empty, my weekend was shot, and I was out a significant chunk of filament.
+
+If you've ever tried to populate a wargaming mat with custom structures or armies only to watch your print turn into a blobby, stringy disaster, you know the frustration. For a long time, the hobby consensus was simple: FDM is for clunky terrain, and resin is for miniatures. But modern engineering has changed the game completely.
+
+I don't publish slicer profiles, speeds, or equipment recommendations I haven't personally ruined a batch of test prints verifying. Armed with my trusty **PARKSIDE digital calipers** (reading down to that crucial **0.01mm resolution**), I've spent months pushing modern machines to their absolute limits. Let's look at how you can kit out your workshop, tune your slicer, and print tabletop-ready **fdm miniatures** and **tabletop terrain** without losing your mind.
+
+## FDM Hardware Selection for Gamers
+
+Mechanical stability is everything when you are pushing tall, hollow structures or ultra-fine details at high speeds. If your machine shakes, your layer lines wiggle, and your print fails half-inch from the top.
+
+* **CoreXY vs. Bed-slingers:** Traditional bed-slingers move the heavy Y-axis back and forth, which creates inertia ghosting on tall, thin terrain walls. Modern CoreXY architectures keep the bed moving only on the Z-axis, providing the rock-solid stability required for high-speed batch printing.
+* **Enclosed vs. Open Frames:** An open frame loses heat to draughts, which is fine for PLA and PETG but makes ABS and ASA warp. If you plan to print engineering filaments, an enclosure is the difference between usable parts and a pile of curled corners.
+* **Specialty Formats:** If you are looking to print massive, monolithic multi-part titan structures or whole modular hex maps in a single go, a **large format FDM 3d printer** will save you countless hours of gluing separate tiles together. (Though, thankfully, we aren't quite at the point where tabletop wargaming needs an industrial **5 axis FDM 3d printer**).
+
+### Which Printer to Buy Is a Separate Question
+
+This page is about *how to print* once you own a machine — layer heights, nozzles, infill, and the settings differences between miniatures and terrain. If you have not bought yet and want specific models with current prices, build volumes, and an honest note on where each one is fiddly, I wrote that up separately: [Best Budget 3D Printers for Tabletop Wargaming](/guides/best-budget-3d-printers-wargaming).
+
+The short version of what that page concludes: you almost certainly do not need a flagship machine to print terrain and vehicles. A budget CoreXY or a reliable bed-slinger handles the bulk work. Spend money on a fine nozzle only if you intend to print characters.
+
+## Slicer Optimization for Tabletop Scale
+
+Printing miniatures and terrain requires completely different mentalities in your slicer. What works for a structural bracket will utterly destroy a 32mm sci-fi hero.
+
+* **Fine-Tuning Layer Heights:** Forget standard 0.2mm layers if you want clean details. For character models and detailed bits, I drop my layer height down to **0.08mm to 0.12mm**. It drastically increases print time, but it shrinks those visible stair-step lines down to manageable levels.
+* **Cooling and Flow Calibration:** Tiny weapons and outstretched cloaks need aggressive part-cooling fans running at 100%. If your filament stays hot for even a second too long on a micro-feature, it will droop into a melted lump. Dial in your flow rate using calibration prints before running any critical batches.
+* **Unlocking the Micro-Nozzle:** If you want genuinely crisp faces and intricate armor plates on your **tabletop roleplaying minis**, swap your stock hardware for a **fdm 0.2 mm nozzle**. Just remember to drop your volumetric speed—forcing plastic through a tiny opening too fast will instantly jam your hotend.
+
+## Printing Miniatures vs. Terrain
+
+The secret to a successful tabletop setup is knowing when to brute-force a print and when to play smart with your geometry.
+
+* **Terrain & Scenery Mastery:** When printing massive **tabletop terrain** or dungeon tiles for a campaign, speed and material efficiency matter most. I usually stick to a 0.4mm or 0.6mm nozzle, drop my infill to a gyroid or cubic pattern at **10% to 15%**, and let the machine rip. Terrain doesn't need to be solid plastic; it just needs to look heavy and take a coat of spray primer.
+* **Miniatures & Large Mechs:** Printing tiny characters is a high-wire act. My worst mistake? Trying to clean standard miniature STLs with dense, auto-generated tree supports that fused permanently to fragile plastic ankles. To fix this, I hunt down specialized **supportless fdm minis** (creators like *Brite Minis* design brilliant models specifically optimized to bridge and overhang without external supports). For **tabletop mechs** and vehicles, tilt them slightly on the build plate to avoid flat horizontal surfaces and let your cooling fan do the heavy lifting.
+
+## Conclusion & Print Settings Cheat-Sheet
+
+You don't need a toxic resin vat in your living room to field a gorgeous, fully painted army or a sprawling modular battlefield. Modern FDM printing has come far enough that, with a bit of patience and proper tuning, your plastic creations will hold their own next to commercial kits.
+
+Keep this reference sheet handy when you set up your next slicing profile:
+
+| Parameter | Miniatures (28mm–32mm) | Terrain & Scenery |
+| --- | --- | --- |
+| **Nozzle Size** | 0.2mm (or fine 0.4mm) | 0.4mm or 0.6mm |
+| **Layer Height** | 0.08mm – 0.10mm | 0.16mm – 0.20mm |
+| **Infill Density** | 15% – 20% (Gyroid) | 10% – 15% (Cubic) |
+| **Print Speed** | Slower (30–50 mm/s) | Fast (120–250 mm/s) |
+| **Support Strategy** | Supportless STLs preferred | Tree supports / minimal interface |
+
+Take your time dialing in your profile, embrace the trial-and-error curve, and get those armies onto the table!
+
+---
+
+### The Ultimate FDM Filament Guide: Materials, Nozzles, and Strength Tuning
+
+Source: https://stlaccess.com/fdm/fdm-3d-printer-filament-guide
+Published: 2026-09-14
+
+**Description:** PLA, PETG, ABS, ASA, TPU, nylon composites, and metal-filled filaments — how to choose the right plastic, match it to the correct nozzle, and avoid clogs, warping, and shredded spools.
+
+**Direct answer:** Choose plastic by environment and load: PLA for crisp prototypes and minis, PETG for toughness and sun exposure, ABS/ASA for a hot car, 95A TPU for flexible parts, nylon 12CF or metal-filled for industrial rigidity. Abrasive composites destroy brass nozzles fast — switch to hardened steel or tungsten carbide.
+
+I once ruined a custom gear assembly for a motorized tabletop terrain piece because I trusted a spool label blindly. The box swore it was standard PLA, but it behaved like a brittle piece of dried spaghetti under minimal torque, snapping clean in half during final assembly. It wasn't until I dragged out my **PARKSIDE digital calipers** with their **0.01mm resolution** and started running my own test prints that I realized something vital: picking the right plastic is only half the battle. If your nozzle geometry, temperature profile, and material choice don't talk to each other, your prints are living on borrowed time.
+
+I don't publish percentages, flow rates, or material claims I haven't personally ruined a batch of test prints verifying. Over years of wrestling with stubborn spools on my modded Ender 3 and direct-drive workhorses, I've learned that mastering **fdm filament types** and matching them to the right hardware is what separates a frustrating hobby from absolute printing confidence. Let's break down how to choose your plastics, chase down the **strongest fdm filament**, and pair your hotend correctly.
+
+## Standard vs. Engineering Filament Deep-Dive
+
+Every filament family has a personality, and trying to force one to do another's job is a fast track to a clogged hotend or a warped mess on your build plate.
+
+* **Everyday Prototyping (PLA & PETG):** Standard PLA is my go-to for quick desk prints, mechanical mockups, and miniatures because it yields crisp geometry without warping. But when I need something that can handle a drop or a bit of sun exposure, I switch to PETG. It offers a great balance of layer adhesion and toughness. If you're trying to tame **clear fdm filament** for translucent windows or light pipes, PETG is far more forgiving than PLA, provided you print hot and slow to eliminate internal air bubbles.
+* **High-Heat & Outdoor Durability (ABS & ASA):** If you're printing automotive components or items that will sit in a hot car, standard plastics will turn into modern art under the sun. **Fdm abs** and ASA offer the high glass-transition temperatures you need. Just be warned: ABS shrinks and warps if you don't have a fully enclosed build chamber and a healthy ventilation setup to clear out those nasty styrene fumes.
+* **Flexible Filaments (TPU):** Printing soft, rubbery parts is deeply satisfying until your extruder decides to turn **fdm tpu** into a knotted bird's nest around the drive gear. Shore hardness matters here—a stiffer 95A TPU feeds easily through almost any direct-drive setup, while ultra-soft 85A formulations demand patience, slow speeds, and a tightly constrained filament path.
+* **High-Strength Engineering Composites (Nylon & Metal):** When I need industrial-grade structural rigidity, I lean into **fdm nylon 12cf** (carbon-fiber reinforced nylon). It's stiff, incredibly strong, and handles heavy mechanical loads. On the exotic side, **metal fdm filament** (composite filaments loaded with bronze or stainless steel powder) lets you print heavy parts that can be polished or sintered for a genuine metallic finish.
+
+## Finding the Strongest FDM Filament
+
+"Strong" is a dangerous word in 3D printing because users often confuse tensile strength with impact resistance.
+
+* **Tensile vs. Impact Strength:** Tensile strength measures how much a material resists being pulled apart (think of a tow strap). Rigid engineering filaments like carbon-fiber nylon excel here. Impact strength, however, measures how well a plastic absorbs a sudden shock without shattering (think of a hammer blow). Standard PLA has decent tensile strength, but it's brittle under impact. PETG and TPU, by contrast, flex and absorb energy instead of snapping.
+* **The Strength Hierarchy:** If you need an unyielding mechanical part, carbon-fiber reinforced filaments sit at the top of the food chain, followed closely by high-temp polycarbonates and well-annealed PETG.
+* **Thermal and Chemical Resistance Considerations:** Don't forget your operating environment. A material can have incredible tensile strength at room temperature, but if its Heat Deflection Temperature (HDT) is only 55°C, it will warp under a summer sunbeam.
+
+## Nozzle Diameter & Filament Pairings
+
+Hardware geometry dictates success just as much as chemical composition. You wouldn't use a sledgehammer to paint a portrait, and you shouldn't try to push abrasive engineering filaments through a microscopic detail nozzle.
+
+* **The Standard Workhorse:** The **0.4mm nozzle** remains the universal baseline for 90% of everyday printing. It balances flow rate, structural strength, and print speed perfectly.
+* **Micro-Detail Precision:** When I'm printing high-detail tabletop miniatures or tiny, interlocking mechanical gears, I drop down to a **fdm 0.2 mm nozzle** or even experiment with a **0.1 mm fdm nozzle**. Dropping that low requires meticulous calibration—your first layer squish has to be absolute perfection, and you'll need to drop your volumetric flow rate to avoid choking the hotend.
+* **Material-to-Hardware Compatibility:** This is where my past mistakes sting the most. I once destroyed a standard brass nozzle in less than a single spool by printing carbon-fiber composite filament through it. Abrasive particles act like liquid sandpaper, widening a brass orifice in hours. If you are printing **fdm nylon 12cf** or metal-filled composites, skip the brass entirely and invest in a **hardened steel or tungsten carbide nozzle**.
+
+## Master Reference Matrix
+
+| Filament Type | Print Temp (°C) | Bed Temp (°C) | Ideal Nozzle Size | Primary Strength / Use Case |
+| --- | --- | --- | --- | --- |
+| **PLA** | 190–220 | 50–60 | 0.2mm – 0.6mm | Crisp visual details, prototypes, miniatures |
+| **PETG** | 230–250 | 70–80 | 0.4mm – 0.6mm | Toughness, moisture resistance, clear prints |
+| **ABS / ASA** | 240–260 | 90–100 | 0.4mm | UV resistance, high heat tolerance, functional enclosures |
+| **TPU** | 210–230 | 40–60 | 0.4mm (Direct Drive) | Flexibility, shock absorption, gaskets, wheels |
+| **Nylon 12CF** | 260–290 | 80–100 | 0.4mm – 0.6mm (Hardened) | Extreme rigidity, heavy-duty mechanical parts |
+| **Metal-Filled** | 210–240 | 50–70 | 0.6mm (Hardened) | Weighted aesthetics, post-processed metallic items |
+
+Take the time to match your plastic to your environment, audit your hotend hardware before loading abrasive composites, and always verify your physical tolerances with real-world measurements rather than digital assumptions.
+
+---
+
+### FDM vs Resin vs SLS 3D Printing: Which Technology Fits Your Project?
+
+Source: https://stlaccess.com/fdm/fdm-vs-resin-sla-sls-3d-printing
+Published: 2026-09-14
+
+**Description:** A head-to-head look at FDM, resin/SLA, and SLS printing — how each melts, cures, or sinters material, plus detail, strength, safety, and cost comparisons with a decision matrix for props, miniatures, and functional parts.
+
+**Direct answer:** Three different processes, three different jobs. FDM extrudes filament — cheapest and safest, best for functional parts, brackets, and large props. Resin cures liquid with UV — micron detail that wins on miniatures, but it is messy and toxic to handle. SLS sinters powder — strong isotropic parts with no supports at all, but it is industrial and priced per service bureau. Pick by the part, not by hype.
+
+## Introduction: Choosing Your Weapon in the 3D Printing World
+
+If you started your journey with a spool of plastic filament, it's easy to assume every 3D printer works the same way. But nothing brings that illusion crashing down quite like trying to print a 28mm tabletop miniature on an FDM machine, only to end up with a melted plastic blob that looks like an abstract art project. My worst mistake? I once eyeballed a complex proxy figure, assuming my standard 0.4mm nozzle could handle the intricate chainmail and facial features, only to spend an hour scraping a ruined, stringy mess off my build plate with a PARKSIDE scraper. Wasted time, wasted resin, and pure frustration.
+
+Matching the wrong technology to your project means endless failed prints and a lot of expensive regret. The market splits into three primary consumer and industrial manufacturing styles: FDM (filament-based), Resin/SLA (liquid-based), and SLS (powder-based). Each uses completely different physical processes to turn digital data into physical objects. I don't publish comparisons or workflows I haven't personally tested on my own workbench, so let's look at how these three machines stack up head-to-head so you can figure out what actually belongs in your workspace.
+
+## Technology Breakdown: How the Three Pillars Differ
+
+* **FDM (Fused Deposition Modeling):** The extrusion workhorse. It feeds thermoplastic filament—like PLA or PETG—through a heated nozzle, melting and laying down material line by line. It's accessible, budget-friendly, and simple to run once you get your flow rate dialed in.
+* **SLA (Stereolithography) / Resin:** The liquid process. Instead of plastic wire, it uses a vat of liquid photopolymer resin. A UV laser or an LCD screen cures the liquid layer by layer, pulling or lifting the print vertically out of a chemical pool.
+* **SLS (Selective Laser Sintering):** The industrial heavyweight. This powder-bed technology uses a high-powered laser to fuse nylon or other polymer powders together particle by particle. The surrounding unsintered powder acts as a natural support, though it's typically reserved for commercial service bureaus or heavy manufacturing.
+
+## Head-to-Head Comparison
+
+### Detail & Surface Finish
+
+If you need smooth aesthetics and microscopic precision, **fdm vs sla** is a blowout victory for resin. FDM leaves visible layer lines (layer stepping) dictated by your nozzle width and layer height. Resin printing operates at a micron-level resolution, producing ultra-smooth surfaces, sharp text, and razor-thin details that extrusion simply cannot replicate. SLS sits comfortably in the middle, offering clean industrial precision with a matte, slightly textured surface finish.
+
+### Mechanical Strength & Materials
+
+When you evaluate **fdm vs resin printer** durability under mechanical stress, FDM usually wins. FDM utilizes engineering-grade thermoplastics like ABS, PETG, and tough polycarbonates that flex and absorb impact. Standard UV resins tend to be rigid and brittle, meaning resin parts often shatter or snap when dropped. Meanwhile, SLS dominates structural endurance, producing isotropic, heavy-duty engineering parts that can take severe mechanical punishment.
+
+### Ease of Use & Safety
+
+FDM is vastly superior for a low-stress workflow. You plug it in, level the bed, load a spool, and hit print. Resin printing, on the other hand, is a messy chemical process. It requires working with toxic liquid photopolymers in a well-ventilated space, wearing nitrile gloves, washing prints in isopropyl alcohol (IPA), and post-curing them under UV light.
+
+## Specific Use-Case Decision Matrix
+
+| Project Type | Winner | Why It Works Best |
+| --- | --- | --- |
+| **Large Props & Cosplay** | **FDM** | Huge build volumes, cheap material costs, and structural durability make it the clear choice for oversized items. |
+| **Tabletop Miniatures** | **Resin / SLA** | Exceptional micron-level resolution captures delicate facial features, capes, and weaponry that FDM nozzles miss. |
+| **Functional Mechanical Parts** | **FDM / SLS** | Offers genuine engineering thermoplastics with high impact resistance, avoiding the brittle nature of standard resins. |
+
+### If the Question Is Specifically Miniatures
+
+This page is about choosing a *process* for a *part*. If what you actually want to know is which technology prints a 28mm or 32mm miniature better — support scarring, whether the difference survives painting, when FDM is good enough and you should stop thinking about resin — that is a different question with a different answer. I compared both side by side and wrote it up separately in [FDM vs Resin 3D Printing for Miniatures: When to Switch](/guides/fdm-vs-resin-miniatures).
+
+What is worth saying here is the process difference underneath it. Resin's supports are thin lattices cured by a light source, so they snap off with a light pull. FDM's supports are extruded plastic tubes that can fuse into the surface they touch. That gap is the single biggest practical difference between the two for hobbyists, and it is a materials property — not a settings problem you can slice away.
+
+## Verdict
+
+Your choice ultimately comes down to your primary projects, your budget, and your workspace. If you want to build functional brackets, mechanical components, and large props without dealing with toxic chemicals, stick with an FDM machine. If your heart is set on painting intricate gaming miniatures, detailed sculptures, or smooth jewelry masters, the cleanup hassle of a resin printer is worth every minute.
+
+---
+
+### How to Sand, Paint, and Post-Process FDM 3D Prints Like a Pro
+
+Source: https://stlaccess.com/fdm/how-to-sand-and-paint-fdm-prints
+Published: 2026-09-14
+
+**Description:** Turn rough, ridged FDM prints into smooth, professional parts — surgical support removal, the 120-to-400 grit progression, filler priming and the spray-sand-repeat cycle, then painting and locking in your FDM miniatures.
+
+**Direct answer:** Snip supports off in small chunks, don't peel. Sand 120 then 220 then 400 grit (wet-sand once past 400 to avoid heat gumming). Fill layer valleys with high-build filler primer, spray-sand-repeat. Never skip primer before painting — mist black or grey. Dry-brush and wash FDM minis, finish with a clear protective coat.
+
+I still remember pulling my very first miniature off the build plate of my old Ender 3. I was riding high, entirely convinced I had just birthed a masterpiece. Then I walked over to the window, the harsh afternoon sunlight hit the side of the model, and my heart sank. It didn't look like a heroic tabletop warrior; it looked like a tiny, plastic topographical map of the Swiss Alps. Every single layer line was screaming for attention.
+
+If you've ever wondered—*can you sand FDM prints?* or *can you paint FDM prints?*—you're likely staring at your own ridged plastic mountain right now. The short answer is yes, absolutely. But if you try to slap acrylic paint straight onto raw, textured plastic without a plan, you're going to end up with a sticky, gummy mess that hides all your hard work.
+
+Over the years, through an embarrassing amount of trial, error, and ruined prints, I've figured out how to turn ugly, ridged plastic into smooth, professional-grade models, props, and miniatures. Let's dive into how I do it.
+
+## Preparing Your Print: Removing Supports & Pre-Sanding
+
+My worst mistake? Early on, I used to yank supports off my prints with my bare hands like I was opening a stubborn bag of potato chips. I ended up tearing chunks out of cloaks, snapping off swords, and gouging permanent craters into the main walls of the print.
+
+Now, I treat support removal as a surgical operation:
+
+* **The Right Tooling:** I keep a pair of sharp flush cutters, a curved hobby knife, and a deburring tool right at my desk.
+* **Patience Over Power:** Snip away supports in small chunks rather than trying to peel them off in one satisfying sweep. Let the plastic break away naturally along the Z-axis.
+
+Once the supports are gone, it's time for the first round of physical flattening. This is where your grit progression matters. I don't publish percentages or techniques I haven't personally ruined a batch of prints trying out first, and I learned the hard way that jumping straight to fine sandpaper is a waste of time.
+
+Start aggressive. I kick things off with a **120-grit** sandpaper to knock down major seam lines and stubborn support scars. From there, I step up to **220-grit** and **400-grit** to smooth out the micro-scratches.
+
+* **Dry vs. Wet Sanding:** If you're working with PLA, dry sanding creates a ton of friction heat that can actually melt or gum up your plastic if you press too hard. I prefer wet sanding with a little bowl of water and a drop of dish soap once I hit the 400-grit stage. It keeps the dust down, prevents the paper from clogging, and gives you a buttery-smooth tactile feedback.
+
+## Smoothing & Layer Line Removal (Filling the Gaps)
+
+Even after rigorous sanding, FDM layer stepping stubbornly remains in the micro-valleys. Sanding alone just shaves down the peaks; it doesn't fill the trenches.
+
+To bridge those gaps, you need a filler.
+
+* **High-Build Primers:** My absolute go-to weapon is an automotive filler primer (like Rust-Oleum Filler Primer). It's thick, it goes on heavy, and it's specifically designed to bite into imperfections.
+* **The Spray, Sand, Repeat Cycle:** Spray a light, even coat across your print, let it cure fully, and then sand it back down. The primer will fill the tiny layer valleys while sanding completely exposes the plastic peaks. You'll know you're making progress when the surface turns into a uniform, chalky grey field.
+* **Putties for Deep Flaws:** For massive gaps, layer separation, or deep seam lines from multi-part STL files, I use a dab of UV-curing resin or quick-drying acrylic hobby putty. Hit it with a UV flashlight, sand it flat in thirty seconds, and move on.
+
+*(Quick note on chemical smoothing: While acetone vapor smoothing works wonders for ABS, it doesn't do much for PLA except turn it into a sticky, ruined blob. If you're printing exclusively in PLA, stick to mechanical sanding and priming—don't risk melting your print with hardware store solvents.)*
+
+## Painting FDM Prints
+
+Can you paint FDM prints straight off the build plate? Technically, yes. Practically, it looks awful. Raw 3D printing plastic is notoriously hydrophobic and slick; standard acrylics will bead up or peel right off under masking tape.
+
+* **Never Skip the Primer Base:** Once your surface is sanded smooth and wiped free of dust, lay down a dedicated primer base coat. I usually choose my primer color strategically: matte black if I'm painting a dark fantasy miniature and want built-in shadows in the recesses, or light grey if I'm working on a vibrant prop that needs bright topcoats.
+* **Laying Down the Color:** Whether you're using a standard airbrush or rattle cans, keep your passes thin and consistent. Drowning your model in thick paint kills the scale factor and ruins all the clean geometry your slicer worked so hard to generate.
+* **Techniques for FDM Miniatures:** Painting miniatures printed on an FDM machine requires a different mindset than resin prints. You aren't going to get microscopic details. Instead, lean into **dry brushing** and **acrylic washes**. A heavy dry brush over a dark undercoat will catch the raised edges of your layers and actually make the model pop, turning a limitation of the medium into a stylistic choice.
+* **Locking It In:** Always finish with a clear protective coat (matte, satin, or gloss depending on the material). It seals the acrylics and protects your finished piece from chipping when handling.
+
+## Specialty Finishing Tricks: Clear FDM Filaments
+
+One of the trickiest projects I ever tackled was printing functional transparent windows and glowing sci-fi energy cores using clear PETG and clear PLA. The core problem? Light refraction gets completely scrambled by internal infill lines and external layer ridges.
+
+If you want to achieve genuine optical transparency with clear FDM filaments, standard settings won't cut it:
+
+* **The Slicing Strategy:** Turn your infill up to 100%, or alternatively, drop your infill to 0% with 4 to 6 solid perimeters so light passes through a hollow, clean tube rather than a mesh web.
+* **The Ultra-Sanding Routine:** You have to take your sanding progression all the way up to ultra-fine grits (**2000-grit and above**), followed by a plastic polishing compound.
+* **The Clear Coat Secret:** Even after wet sanding, clear filament will look slightly frosted or hazy. The ultimate trick to bring back crystal-clear transparency is giving the print a light misting of clear gloss spray or brushing on a thin, self-leveling layer of clear UV resin. It fills in the microscopic micro-scratches instantly, turning frosted plastic transparent like glass.
+
+## Conclusion & Recommended Starter Kit
+
+Post-processing FDM prints isn't about rushing to the finish line; it's a zen, low-pressure part of the hobby where a messy plastic blob finally transforms into something you're genuinely proud to put on a shelf.
+
+If you're building your own workspace workbench, skip the expensive specialized kits and grab this simple, reliable starter loadout:
+
+* **Flush cutters and a sharp hobby knife** for clean support removal.
+* **A sandpaper variety pack** covering 120, 220, 400, and 800 grits.
+* **A can of automotive high-build filler primer**.
+* **Basic acrylic hobby paints** and a few flat synthetic brushes.
+* **Safety gear** (a basic dust mask and safety glasses—trust me, you do not want to inhale microscopic plastic dust while sanding).
+
+Take your time, embrace the learning curve, and happy printing!
+
+---
+
+### What Is FDM 3D Printing? A Beginner's Guide to How It Works
+
+Source: https://stlaccess.com/fdm/what-is-fdm-3d-printing-guide
+Published: 2026-09-14
+
+**Description:** FDM vs FFF explained, the extrusion process from STL to G-code to finished layers, the history from Stratasys to the 2009 patent expiry and RepRap boom, plus the real pros and cons of fused deposition modeling.
+
+**Direct answer:** FDM (also called FFF) melts thermoplastic filament and lays it down layer by layer. Slicer software turns an STL into G-code controlling moves, speeds, and flow. It's cheap and versatile but leaves visible layer lines, is weaker along the Z-axis, and can't print mid-air without supports.
+
+## Introduction: The Gateway to Additive Manufacturing
+
+If you've ever spent four hours watching a spool slowly unwind into a tangled, spaghetti-like monument of failure on your build plate, welcome to the club. My worst mistake? I early on eyeballed a replacement bracket for my workbench, trusting a sketchy digital file without checking the tolerances, only to watch a half-finished print lift off the bed and warp into a useless plastic potato chip. Wasted time, wasted filament, and pure frustration.
+
+That trial-and-error mess is exactly why I'm writing this. I don't publish percentages or tips I haven't personally verified on my own workbench. When you want to understand what fdm 3d printing actually is, you have to look past the pristine marketing renders and glossy boxes. At its core, Fused Deposition Modeling (FDM) is an extrusion-based additive manufacturing process. You might also see people throw around the term FFF—Fused Filament Fabrication—and wonder what the deal is with fdm vs fff. Here is the real-world breakdown: "FDM" was originally trademarked by Stratasys back in the day, while "FFF" became the open-source industry equivalent adopted by the maker community. Mechanically? They're the exact same rodeo. Let's break down how this technology actually evolved, how it works, and how to master it without losing your sanity.
+
+## The History & Evolution of FDM Technology
+
+Back in 1989, a guy named S. Scott Crump invented FDM and went on to co-found Stratasys. For a long time, if you wanted a fused deposition modeling fdm machine, you were looking at heavy industrial hardware that cost as much as a luxury car. Printers were locked behind corporate gates, proprietary software, and expensive maintenance contracts.
+
+Everything flipped when the original FDM patents expired around 2009. That single expiration date blew the doors off the industry. It sparked the legendary open-source RepRap movement, giving birth to DIY tinkerers, garage builders, and the affordable desktop 3D printers we use today. Suddenly, regular hobbyists could own a machine, swap out parts, tweak firmware, and experiment with raw materials right on their kitchen tables.
+
+## How FDM 3D Printing Works (Step-by-Step)
+
+Understanding how fdm 3d printing works isn't just about watching plastic melt; it's about managing a chain of small variables. Miss one step, and your print fails.
+
+### Phase 1: Digital Preparation & Slicing
+
+Everything starts on your computer. You download or design a 3D digital model, usually saved as an `.STL` or `.3MF` file. But your printer doesn't speak "3D shape"—it speaks machine code.
+
+* **The Slicing Process:** You drop that file into slicer software (like PrusaSlicer or Cura) which chops your digital object into hundreds of flat, horizontal slices.
+* **The Output:** The software translates those slices into **G-code**, telling the printer exactly where to move, how fast to travel, and how much plastic to push out.
+
+### Phase 2: The Extrusion Workflow
+
+Once you send that file to the machine, the physical magic happens:
+
+* **Feeding the Line:** A spool of thermoplastic filament (typically 1.75mm diameter) is grabbed by drive gears in the extruder and pushed down toward the hotend.
+* **Melting Down:** The filament passes through a precision heatbreak and enters the heater block, melting down to a precise temperature (e.g., 200°C to 215°C for standard PLA).
+* **Deposition:** The molten plastic is forced through a tiny brass or hardened steel nozzle (usually 0.4mm wide) onto the build platform, tracing the shape defined by your G-code line by line.
+
+### Phase 3: Solidification & Layer Bonding
+
+Thermal dynamics drive this entire process. The plastic goes from a solid spool to a liquid state inside the nozzle, and then instantly cools back down the second it hits the build plate or the layer beneath it. Getting strong inter-layer adhesion requires proper bed leveling, the right nozzle temperature, and cooling fans working in harmony. If your cooling is too high, layers won't fuse; if it's too low, details droop.
+
+## Pros and Cons of FDM Technology
+
+No technology is a magic bullet, and FDM has distinct strengths and weaknesses that every hobbyist has to learn to live with.
+
+### The Strengths
+
+* **Low Cost per Volume:** Raw material is cheap. A 1kg spool of PLA or PETG costs very little, making large functional prototypes or miniature terrain remarkably affordable.
+* **Material Versatility:** You can print everything from easy, brittle PLA to tough, flexible TPU and fiber-reinforced composite filaments.
+* **Functional Durability:** Unlike resin prints that can shatter under heavy impact, properly tuned FDM parts made from durable filaments can take a beating.
+
+### The Limitations
+
+* **Visible Layer Lines:** Because you are stacking melted lines of plastic on top of each other, you get structural "stair-stepping" (layer lines) that require sanding or filler if you want a smooth finish.
+* **Anisotropic Strength:** FDM parts are strong along the X and Y axes, but mechanically weaker along the Z-axis. If a part experiences shear stress across the layers, it's prone to snapping right along a layer line.
+* **Geometric Constraints:** You cannot print mid-air. Steeper overhangs require support material or clever part orientation to keep things from sagging.
+
+## Conclusion & Next Steps
+
+FDM 3D printing isn't about plugging in a machine and expecting perfection on the first try; it's an interactive craft built on learning how plastics behave under heat, tension, and gravity. By respecting the physics of layer adhesion, understanding your slicer settings, and keeping a reliable set of digital calipers on hand to measure your tolerances, you can turn raw plastic spools into rugged, custom-built tools and miniatures.
+
+Your next step? Grab a beginner-friendly printer, load up some standard PLA, fire up a slicer, and don't be afraid of your first few failed prints—they're just part of the tuition.
+
+---
+
+_Generated at build time from src/content (guides + fdm). Numbers are maintained
+against scaleBaselines.json / conversionMatrix.json / fdmProfiles.json. See the
+index at https://stlaccess.com/llms.txt for the full site map._
