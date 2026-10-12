@@ -7,7 +7,7 @@ export const prerender = true;
 
 const base = site.url;
 
-const staticPages = ['', 'about', 'contact', 'faq', 'legal', 'privacy', 'terms'];
+const staticPages = ['', 'about', 'contact', 'faq', 'legal', 'privacy', 'terms', 'scale-standard'];
 
 export const GET: APIRoute = async () => {
   const [guides, fdm] = await Promise.all([

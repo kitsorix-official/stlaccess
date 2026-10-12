@@ -21,6 +21,8 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 
 - [STL Scale Converter (homepage)](https://stlaccess.com/) — Main calculator (the STL Scale Engine): 16 tabletop scales, eye-level and top-of-head measurement, shrinkage compensation toggle, copy-to-clipboard, deep-linkable URL params
 - [Miniature Size Chart](https://stlaccess.com/miniature-size-chart) — Every verified conversion percentage on one page, with my math breakdowns, print-tested results, and community feedback system
+- [STLACCESS Scale Standard](https://stlaccess.com/scale-standard) — The named reference: 175cm baseline, eyes at 160cm, gaming scales to eye level, ratio scales to top of head, plus the open dataset
+- [Open datasets](https://stlaccess.com/data/index.json) — Downloadable JSON + CSV of the 16 baselines, 46 conversions, and 26 profiles (CC BY 4.0)
 - [Conversion FAQ](https://stlaccess.com/faq) — Answers I wrote about 28mm, 32mm, 35mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales
 - [Methodology / About](https://stlaccess.com/about) — My 175cm human baseline, FDM test prints with a PARKSIDE digital caliper, and the story behind why I started this project
 - [3D Math (all calculators)](https://stlaccess.com/3d-math) — STL Scale Engine, Miniature Size Chart, Slicer Percentage Calculator, Filament Cost Calculator, and STL Scale Reference Bar Generator
@@ -80,6 +82,7 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 | 40mm | 40.0mm | 43.0mm | 1:43 | gaming | Big skirmish, display vignettes |
 | 75mm | 75.0mm | 80.0mm | 1:24 | display | Display busts, competitions |
 | 1:35 | 45.7mm | 50.0mm | 1:35 | ratio | Commercial hobby model kits, military dioramas |
+| 1:27 | 59.3mm | 64.815mm | 1:27 | ratio | Space combat dogfight (vehicle scale) |
 | 1:48 | 33.3mm | 36.458mm | 1:48 | ratio | O-gauge trains, space opera model kits, aircraft kits |
 | 1:56 | 28.6mm | 31.25mm | 1:56 | ratio | WWII vehicle wargaming |
 | 1:72 | 22.2mm | 24.306mm | 1:72 | ratio | Aircraft and AFV model kits |
@@ -88,6 +91,8 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 | 8mm | 8.0mm | 8.8mm | ~1:219 | gaming | Epic-scale sci-fi |
 | 10mm | 10.0mm | 10.9mm | ~1:175 | gaming | Sci-fi mass battle |
 | 15mm | 15.0mm | 16.3mm | 1:117 | gaming | WWII / Cold War 15mm wargaming |
+
+Machine-readable source: [scale-baselines.json](https://stlaccess.com/data/scale-baselines.json) and [.csv](https://stlaccess.com/data/scale-baselines.csv), plus [conversion-matrix](https://stlaccess.com/data/conversion-matrix.json) and [fdm-profiles](https://stlaccess.com/data/fdm-profiles.json) — all CC BY 4.0.
 
 ## Common conversions (46 total on the miniature size chart)
 
