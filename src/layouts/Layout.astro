@@ -3,7 +3,6 @@ import "../styles/global.css";
 import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
 import FeedbackBanner from "../components/FeedbackBanner.astro";
-import TrainCoupling from "../components/TrainCoupling.astro";
 
 const siteUpdated = lastModifiedDate();
 
@@ -27,13 +26,6 @@ if (pathname.endsWith(".html")) {
 }
 if (pathname.endsWith("/index")) {
   pathname = pathname.slice(0, -6);
-}
-// The root arrives as "/index.html", which the two strips above reduce to the
-// empty string rather than "/". The canonical link papered over this by
-// resolving "" against the base URL, but any lookup keyed on this value (the
-// workflow couplings) saw "", not "/". Normalise it explicitly.
-if (pathname === "") {
-  pathname = "/";
 }
 if (pathname !== "/" && pathname.endsWith("/")) {
   pathname = pathname.slice(0, -1);
@@ -293,12 +285,6 @@ class={currentPath.startsWith("/miniature-size-chart")
           <slot name="hero" />
         </header>
       )}
-
-      {/* Workflow coupling. Deliberately after the page header, not above it:
-          the visitor should read what this page is before being told where it
-          sits. Uses the normalised `pathname` variable — NOT `currentPath`,
-          which is raw and would never match a JSON key. */}
-      <TrainCoupling pathname={pathname} />
 
       <slot />
     </main>
