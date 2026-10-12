@@ -19,7 +19,7 @@
     "description": "Every conversion percentage I have verified, all on a single page. Covers 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales. Each entry shows the math, the scale baselines, and FDM print notes. You can jump straight to the calculator from any conversion. I update these when the community catches something wrong.",
     "icon": "ti-book",
     "url": "/miniature-size-chart",
-    "features": ["44 verified conversion pairs", "Search and filter by scale", "Full math breakdown for each entry", "Print-tested on FDM", "Community feedback and correction system"],
+    "features": ["46 verified conversion pairs", "Search and filter by scale", "Full math breakdown for each entry", "Print-tested on FDM", "Community feedback and correction system"],
     "category": "references",
     "featured": true
   },
