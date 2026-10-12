@@ -555,6 +555,9 @@ const referenceSchema = graph([
         </p>
       </div>
       <form id="ref-feedback-form" action={gasEndpoint} method="POST" class="space-y-6 max-w-xl mx-auto text-left">
+      <!-- Honeypot: humans never see or fill this. The Apps Script collector must drop
+           any submission whose "website" field is non-empty. -->
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" />
         <input type="hidden" name="page_source" value="reference_page" />
         <input type="hidden" name="type" value="data-correction" />
         <div>

@@ -113,8 +113,14 @@ const defaultSource = "28mm";
 const defaultTarget = "32mm";
 const defaultSourceData = calculatorScales[defaultSource];
 const defaultTargetData = calculatorScales[defaultTarget];
+// Format mm so the visible formula divides out to the visible result — ratio
+// scales carry 3-dp standard values (e.g. 36.458), gaming scales are whole mm.
+const fmtMm = (v: number) => {
+  const s = v.toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+  return s.includes(".") ? s : s + ".0";
+};
 const defaultResultText = ((defaultTargetData.standardMm / defaultSourceData.standardMm) * 100).toFixed(1) + "%";
-const defaultFormula = `${defaultTargetData.standardMm.toFixed(1)} ÷ ${defaultSourceData.standardMm.toFixed(1)} × 100`;
+const defaultFormula = `${fmtMm(defaultTargetData.standardMm)} ÷ ${fmtMm(defaultSourceData.standardMm)} × 100`;
 const defaultContext = `${defaultSource} → ${defaultTarget} · Eye Level`;
 ---
 <Layout
@@ -427,6 +433,9 @@ Tell me what scale or system is missing and I'll test it.
 </p>
 </div>
 <form id="hp-feedback-form" action={site.gasEndpoint} method="POST" class="space-y-4 max-w-xl mx-auto text-left">
+<!-- Honeypot: humans never see or fill this. The Apps Script collector must drop
+     any submission whose "website" field is non-empty. -->
+<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden" />
 <div>
 <fieldset class="space-y-3">
 <legend class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-3">

@@ -906,7 +906,7 @@ export const fdmProfileGuides = {
               </thead>
               <tbody>
                 <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:100 → 1:35 (micro scale up)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 17.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">285.7%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale to model kit)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale to model kit)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.306</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
               </tbody>
             </table>
           </div>
@@ -1010,7 +1010,7 @@ export const fdmProfileGuides = {
               </thead>
               <tbody>
                 <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:100 → 1:35 (scale up reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 17.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">285.7%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.306</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
               </tbody>
             </table>
           </div>
@@ -1071,7 +1071,7 @@ export const fdmProfileGuides = {
               </thead>
               <tbody>
                 <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:100 → 1:35 (scale up reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 17.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">285.7%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.306</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
               </tbody>
             </table>
           </div>
@@ -1227,8 +1227,8 @@ export const fdmProfileGuides = {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:56 vehicle → 28mm infantry</td><td class="py-2 px-3 font-mono text-slate-500">28.0 ÷ 31.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">89.6%</td></tr>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:56 vehicle → 32mm heroic</td><td class="py-2 px-3 font-mono text-slate-500">32.0 ÷ 31.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">102.4%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:56 vehicle → 28mm infantry</td><td class="py-2 px-3 font-mono text-slate-500">28.0 ÷ 31.25</td><td class="py-2 px-3 text-right font-mono font-bold text-white">89.6%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:56 vehicle → 32mm heroic</td><td class="py-2 px-3 font-mono text-slate-500">32.0 ÷ 31.25</td><td class="py-2 px-3 text-right font-mono font-bold text-white">102.4%</td></tr>
                 <tr><td class="py-2 px-3 text-slate-300">28mm infantry → 1:35 model kit</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 28.0</td><td class="py-2 px-3 text-right font-mono font-bold text-white">178.6%</td></tr>
               </tbody>
             </table>
@@ -1444,8 +1444,8 @@ export const fdmProfileGuides = {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:48 → 1:35 (quarter scale up)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 36.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">137.1%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale up)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:48 → 1:35 (quarter scale up)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 36.458</td><td class="py-2 px-3 text-right font-mono font-bold text-white">137.1%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale up)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.306</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
               </tbody>
             </table>
           </div>

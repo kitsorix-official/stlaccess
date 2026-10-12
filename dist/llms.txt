@@ -1,6 +1,6 @@
 # STLACCESS — My STL Scale Converter for 3D Printed Miniatures
 
-&gt; I built this browser-based tool suite to calculate resize percentages for scaling STL files between tabletop gaming systems. It's free, requires no upload, and needs no login. All the math runs in your browser. I built it with Astro. The brand is **STLACCESS** — "STL scale" always refers to the *function* (scaling STL files), never to a product name.
+> I built this browser-based tool suite to calculate resize percentages for scaling STL files between tabletop gaming systems. It's free, requires no upload, and needs no login. All the math runs in your browser. I built it with Astro. The brand is **STLACCESS** — "STL scale" always refers to the *function* (scaling STL files), never to a product name.
 
 ## What I built STLACCESS for
 
@@ -80,9 +80,9 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 | 40mm | 40.0mm | 43.0mm | 1:43 | gaming | Big skirmish, display vignettes |
 | 75mm | 75.0mm | 80.0mm | 1:24 | display | Display busts, competitions |
 | 1:35 | 45.7mm | 50.0mm | 1:35 | ratio | Commercial hobby model kits, military dioramas |
-| 1:48 | 33.3mm | 36.5mm | 1:48 | ratio | O-gauge trains, space opera model kits, aircraft kits |
-| 1:56 | 28.6mm | 31.3mm | 1:56 | ratio | WWII vehicle wargaming |
-| 1:72 | 22.2mm | 24.3mm | 1:72 | ratio | Aircraft and AFV model kits |
+| 1:48 | 33.3mm | 36.458mm | 1:48 | ratio | O-gauge trains, space opera model kits, aircraft kits |
+| 1:56 | 28.6mm | 31.25mm | 1:56 | ratio | WWII vehicle wargaming |
+| 1:72 | 22.2mm | 24.306mm | 1:72 | ratio | Aircraft and AFV model kits |
 | 1:100 | 16.0mm | 17.5mm | 1:100 | ratio | WWII / Cold War 15mm wargaming |
 | 6mm | 6.0mm | 6.5mm | ~1:292 | gaming | Mech tactical, epic-scale sci-fi |
 | 8mm | 8.0mm | 8.8mm | ~1:219 | gaming | Epic-scale sci-fi |
@@ -161,11 +161,42 @@ All percentages use the 175cm human baseline with eye-level measurement unless n
 | 1:48 | 1:56 | 85.7% |
 | 1:56 | 1:48 | 116.7% |
 
-## FDM scale math hub
+## Guides (16 live articles)
 
-The old long-form /guides section was retired. `/guides` now 301-redirects to [/fdm](https://stlaccess.com/fdm), where FDM-focused scale math and conversion resources live. Content from the old guides is covered by the 26 FDM printing profiles on /fdm-printing-profiles and the 46 conversion pairs on /miniature-size-chart.
+`/guides` is a live hub. Each article covers one scale-conversion workflow. Legacy `/blog/<slug>` URLs 301-redirect to the matching `/guides/<slug>` where one exists.
 
-## Tools I built (5 total)
+| Guide | URL |
+|-------|-----|
+| Why Miniature Scales Use a 175cm Human Baseline | https://stlaccess.com/guides/175cm-baseline |
+| How to Scale 28mm to 32mm (114.3% Slicer Percentage, Explained) | https://stlaccess.com/guides/28mm-to-32mm-scale-conversion |
+| How to Downscale 32mm to 28mm (87.5% Slicer Percentage, Explained) | https://stlaccess.com/guides/32mm-to-28mm-scale-conversion |
+| Arachne vs Classic Wall Generator: Which Is Sharper for Miniatures? | https://stlaccess.com/guides/arachne-vs-classic-wall-generator-miniatures |
+| Best Budget 3D Printers for Tabletop Wargaming | https://stlaccess.com/guides/best-budget-3d-printers-wargaming |
+| How to Scale Miniatures in Chitubox & Lychee Slicer | https://stlaccess.com/guides/chitubox-lychee-scaling-guide |
+| Classic Fantasy RPG Miniature Scale Guide | https://stlaccess.com/guides/classic-fantasy-rpg-miniature-scale-guide |
+| Cura Tree Support Settings for Miniatures | https://stlaccess.com/guides/cura-tree-support-settings-miniatures |
+| FDM Miniature Printing: Layer Height, Nozzles, and Settings | https://stlaccess.com/guides/fdm-miniature-printing-guide |
+| FDM vs Resin 3D Printing for Miniatures | https://stlaccess.com/guides/fdm-vs-resin-miniatures |
+| How to Measure a Miniature's Scale: Eye Level vs Top of Head | https://stlaccess.com/guides/how-to-measure-miniature-scale |
+| Real-World Objects to 28mm Scale | https://stlaccess.com/guides/real-world-objects-to-28mm |
+| Real-World Objects to 32mm Scale | https://stlaccess.com/guides/real-world-objects-to-32mm |
+| Resin2FDM: Convert Resin-Supported STLs to FDM-Ready | https://stlaccess.com/guides/resin2fdm-convert-stl-to-fdm-ready |
+| 35mm Sci-Fi Mass-Battle Game Scale Guide | https://stlaccess.com/guides/sci-fi-mass-battle-35mm-scale-guide |
+| Upscaling 3D Prints: How Big Before Losing Detail? | https://stlaccess.com/guides/upscaling-3d-prints-detail-limit |
+
+## FDM articles (5 live, under /fdm)
+
+| Article | URL |
+|---------|-----|
+| Tabletop Gaming with FDM: Best Printers, Settings, and Models | https://stlaccess.com/fdm/best-fdm-printer-miniatures-and-terrain |
+| The Ultimate FDM Filament Guide | https://stlaccess.com/fdm/fdm-3d-printer-filament-guide |
+| FDM vs Resin vs SLS 3D Printing | https://stlaccess.com/fdm/fdm-vs-resin-sla-sls-3d-printing |
+| How to Sand, Paint, and Post-Process FDM 3D Prints | https://stlaccess.com/fdm/how-to-sand-and-paint-fdm-prints |
+| What Is FDM 3D Printing? A Beginner's Guide | https://stlaccess.com/fdm/what-is-fdm-3d-printing-guide |
+
+The `/fdm` hub links these together; `/fdm-printing-profiles` holds the 26 anonymized printing profiles and `/miniature-size-chart` holds the 46 conversion pairs.
+
+## Tools I built (8 total)
 
 The **STL Scale Engine** homepage calculator gives you fast numbers; the **Miniature Size Chart** has every conversion already worked out.
 
@@ -215,7 +246,7 @@ For ratio scales, the calculator converts ratio-to-mm using the 175cm baseline (
 
 ## How I built the site
 
-- Built with Astro 7.1.3, Tailwind CSS v4 (`@tailwindcss/vite`), TypeScript, content collections
+- Built with Astro 7.2.x, Tailwind CSS v4 (`@tailwindcss/vite`), TypeScript, content collections
 - Static site generation (no backend, no database)
 - All calculations run client-side in JavaScript
 - No cookies, no accounts. Cookie-free visitor counter (a small custom script writing anonymous pageview counts to a private Google Sheet) only.
@@ -233,7 +264,7 @@ For ratio scales, the calculator converts ratio-to-mm using the 175cm baseline (
 ## My editing conventions
 
 - **Brand:** always STLACCESS. The calculator is called the STL Scale Engine / STL scale calculator — a *function*, never a brand. Never write "stlscale" as a word that looks like a product name.
-- **Meta titles:** keyword-first → problem/intent → brand. Pattern: `"&lt;Keyword&gt; | &lt;intent&gt; | STLACCESS"`.
+- **Meta titles:** keyword-first → problem/intent → brand. Pattern: `"<Keyword> | <intent> | STLACCESS"`.
 - **Meta descriptions:** ≤155 characters, natural language, name what the user gets + the problem solved.
 - **Guide frontmatter:** `tldr` is the Direct Answer shown in the orange box — one punchy sentence with the key number inline. `description` stays for SEO.
 - **Numbers:** always derive from the 175cm/160cm baseline and the formula above. Any change must be verified against `scaleBaselines.json` / `conversionMatrix.json` / `fdmProfiles.json`.
@@ -242,7 +273,7 @@ For ratio scales, the calculator converts ratio-to-mm using the 175cm baseline (
 
 ## What I've been working on
 
-- **Guides retired; `/guides` → `/fdm`** — removed the long-form /guides articles; all 16 guide URLs and `/blog/*` now 301-redirect to the new `/fdm` FDM scale math hub (a placeholder for future math-only content). The FDM printing profiles and miniature size chart remain the primary content pages.
+- **Guides restored** — the 16 long-form guides are live again under `/guides` and are no longer redirected to `/fdm`. Legacy `/blog/<slug>` URLs 301 to their matching guide where one exists; the rest map to the relevant hub. `/guides` has no catch-all redirect, so the real pages are never shadowed.
 - **3D Scale Visualizer removed** — the `/tools/3d-scale-visualizer` page and its redirect targets were retired; `/tools/3d-scale-visualizer` now 301-redirects to `/3d-math` and the announcement banner is disabled (reserved for future announcements).
 - **Scale Identifier & Real-World Converter retired** — `/tools/miniature-scale-identifier` and `/tools/real-world-scale-converter` were removed; both now 301-redirect to `/3d-math`.
 - **Guide redesign** — I added Direct Answer boxes with jump-to-section navigation, reading time, H1-first reading order, restyled `.prose` (card-style tables, accent-bar headings, custom list markers).

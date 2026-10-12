@@ -44,6 +44,17 @@ const singleSitemap = () => ({
         fs.copyFileSync(sitemap0Path, targetSitemapPath);
         console.log(`[single-sitemap] Successfully created single sitemap at: ${targetSitemapPath}`);
 
+        // @astrojs/sitemap strips the trailing slash from EVERY url when
+        // trailingSlash is 'never' -- including the homepage -- and it does so
+        // after serialize() runs, so it can't be corrected there. Re-add it so
+        // the sitemap matches the homepage's canonical (https://stlaccess.com/).
+        const siteUrl = 'https://stlaccess.com';
+        const sitemapXml = fs.readFileSync(targetSitemapPath, 'utf8');
+        fs.writeFileSync(
+          targetSitemapPath,
+          sitemapXml.replace(`<loc>${siteUrl}</loc>`, `<loc>${siteUrl}/</loc>`)
+        );
+
         fs.unlinkSync(sitemap0Path);
         if (fs.existsSync(sitemapIndexPath)) {
           fs.unlinkSync(sitemapIndexPath);

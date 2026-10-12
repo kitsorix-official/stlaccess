@@ -17,6 +17,14 @@ function getScaleData() {
     return { scales: scales, headOverrides: headOverrides };
 }
 
+// Format a millimetre value so the displayed formula actually divides out to
+// the displayed result. Ratio scales carry 3-dp values (e.g. 36.458); gaming
+// scales are whole mm. Trims trailing zeros but always keeps one decimal.
+function fmtMm(v) {
+    var s = Number(v).toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+    return s.indexOf('.') === -1 ? s + '.0' : s;
+}
+
 function calculate() {
     var data = getScaleData();
     var scales = data.scales;
@@ -81,11 +89,11 @@ function calculate() {
     var formulaEl = document.getElementById('resultFormula');
     if (formulaEl) {
         if (logic === 'eye') {
-            formulaEl.textContent = targetData.standardMm.toFixed(1) + ' \u00F7 ' + sourceData.standardMm.toFixed(1) + ' \u00D7 100';
+            formulaEl.textContent = fmtMm(targetData.standardMm) + ' \u00F7 ' + fmtMm(sourceData.standardMm) + ' \u00D7 100';
         } else if (headOverrides[overrideKey] !== undefined) {
             formulaEl.textContent = 'Validated by my test prints';
         } else {
-            formulaEl.textContent = targetData.topOfHeadMm.toFixed(1) + ' \u00F7 ' + sourceData.standardMm.toFixed(1) + ' \u00D7 100';
+            formulaEl.textContent = fmtMm(targetData.topOfHeadMm) + ' \u00F7 ' + fmtMm(sourceData.standardMm) + ' \u00D7 100';
         }
     }
 
