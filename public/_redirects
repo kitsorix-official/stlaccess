@@ -19,17 +19,17 @@
 /blog/175cm-baseline                 /guides/175cm-baseline                 301
 /blog/stl-scale-conversion-chart          /miniature-size-chart  301
 /blog/28mm-to-32mm-percentage             /miniature-size-chart  301
-/blog/warhammer-40k-scale-guide           /fdm-printing-profiles  301
+/blog/warhammer-40k-scale-guide           /guides/sci-fi-mass-battle-35mm-scale-guide  301
 /blog/bolt-action-scale-guide             /fdm-printing-profiles  301
-/blog/dungeons-and-dragons-miniature-scale /fdm-printing-profiles  301
+/blog/dungeons-and-dragons-miniature-scale /guides/classic-fantasy-rpg-miniature-scale-guide  301
 
 /guides/stl-scale-conversion-chart         /miniature-size-chart  301
 /guides/28mm-to-32mm-percentage            /miniature-size-chart  301
-/guides/warhammer-40k-scale-guide          /fdm-printing-profiles  301
+/guides/warhammer-40k-scale-guide          /guides/sci-fi-mass-battle-35mm-scale-guide  301
 /guides/bolt-action-scale-guide            /fdm-printing-profiles  301
-/guides/dungeons-and-dragons-miniature-scale /fdm-printing-profiles  301
-/guides/star-wars-legion-scale-guide       /fdm-printing-profiles  301
-/guides/dnd-miniature-scale-guide          /fdm-printing-profiles  301
+/guides/dungeons-and-dragons-miniature-scale /guides/classic-fantasy-rpg-miniature-scale-guide  301
+/guides/star-wars-legion-scale-guide       /guides/sci-fi-mass-battle-35mm-scale-guide  301
+/guides/dnd-miniature-scale-guide          /guides/classic-fantasy-rpg-miniature-scale-guide  301
 
 # --- Catch-all Directory Redirects ---
 # NOTE: /guides/* has NO catch-all on purpose. The guide library is restored
@@ -37,7 +37,12 @@
 # static files — a catch-all here would shadow every restored guide.
 /blog/*    /fdm  301
 
-# All legacy /games and game subpaths map to profiles
+# Game systems that now have a dedicated, de-branded generic guide should land
+# on that guide rather than the profiles hub. Listed before the wildcard below
+# because Netlify matches redirects in order (first match wins).
+/games/star-wars-legion    /guides/sci-fi-mass-battle-35mm-scale-guide  301
+
+# All remaining legacy /games and game subpaths map to profiles
 /games/*   /fdm-printing-profiles  301
 
 # --- Reference & Old Tool Slugs ---
@@ -52,7 +57,7 @@
 /tools/stl-scale-engine /          301
 /tools/scale-reference /miniature-size-chart  301
 /tools/3d-scale-visualizer /3d-math  301
-/tools/real-world-scale-converter /3d-math  301
+/tools/real-world-scale-converter /guides/real-world-objects-to-32mm  301
 /tools/miniature-scale-identifier /3d-math  301
 
 # Any remaining /tools/<slug> maps dynamically 1:1 to /3d-math/<slug>

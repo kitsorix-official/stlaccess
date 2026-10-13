@@ -4,5 +4,49 @@
 # forces a recrawl so the redirect is followed and the stale entry drops out.
 #
 # One URL (absolute or root-relative) per line. Lines starting with # are ignored.
+#
+# Note: the runner already collects every non-wildcard source in _redirects and
+# every sitemap URL automatically. This file exists for the URLs that are only
+# reachable through a wildcard rule (so their literal path is never in
+# _redirects) and are therefore invisible to the automatic collector.
+
+# --- Best-performing legacy URLs (send the recrawl to the 301 target) ---
 /blog/chitubox-lychee-scaling-guide
 /blog/175cm-baseline
+/reference
+/guides/star-wars-legion-scale-guide
+/guides/dnd-miniature-scale-guide
+/guides/28mm-to-32mm-percentage
+/guides/stl-scale-conversion-chart
+
+# --- Legacy /games/* systems (wildcard target) ---
+/games/star-wars-legion
+/games/age-of-sigmar
+/games/battletech
+/games/bolt-action
+/games/dropzone-commander
+/games/flames-of-war
+/games/gaslands
+/games/malifaux
+/games/warhammer-the-old-world
+
+# --- Legacy /reference/* ratio pages (wildcard target) ---
+/reference/1-72-to-28mm
+/reference/28mm-to-40mm
+/reference/32mm-to-28mm
+/reference/35mm-to-32mm
+/reference/35mm-to-40mm
+
+# --- Legacy /tools/* and /calculator/* (wildcard targets) ---
+/tools
+/tools/3d-scale-visualizer
+/tools/filament-cost-calculator
+/tools/real-world-scale-converter
+/tools/reference-bar-generator
+/tools/slicer-percentage-calculator
+/tools/stlscale-engine
+/calculator/filament-cost-calculator
+/calculator/slicer-percentage-calculator
+
+# --- Misc ---
+/library.html
