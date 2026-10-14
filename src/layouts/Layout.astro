@@ -269,10 +269,15 @@ class={currentPath.startsWith("/miniature-size-chart")
       </div>
     </header>
 
-    {/* Feedback solicitation. Appears once per visitor on every page, directly
-        below the sticky navbar, and retires itself once dismissed or once the
-        visitor actually scrolls to the form. */}
-    <FeedbackBanner href="/#feedback" />
+    {/* Support CTA — the primary ask. Sits directly below the sticky navbar
+        (order-2, between the order-1 navbar and the order-3 main content) on
+        every content page. Excluded: /support itself (it is the destination),
+        the /embed + /widget surfaces (they render inside third-party sites),
+        and 404. To change this strip anywhere, edit
+        src/components/SupportCta.astro — addresses live in site.json. */}
+    {!["/support", "/embed", "/widget", "/404"].includes(pathname) && (
+      <SupportCta />
+    )}
 
     <!-- Main content -->
     <main id="main-content" class="flex-grow order-3">
@@ -289,14 +294,11 @@ class={currentPath.startsWith("/miniature-size-chart")
       <slot />
     </main>
 
-    {/* Support CTA — one reusable component, rendered on every content page
-        (guides, calculators, chart, articles…). Excluded: /support itself
-        (it is the destination), the /embed + /widget surfaces (they render
-        inside third-party sites), and 404. To change the strip anywhere,
-        edit src/components/SupportCta.astro — addresses live in site.json. */}
-    {!["/support", "/embed", "/widget", "/404"].includes(pathname) && (
-      <SupportCta />
-    )}
+    {/* Feedback solicitation — at the end of the page (order-4, between the
+        order-3 main content and the order-5 footer). Appears once per visitor
+        and retires itself once dismissed or once the visitor scrolls to the
+        form. */}
+    <FeedbackBanner href="/#feedback" />
 
     <!-- Footer -->
     <footer

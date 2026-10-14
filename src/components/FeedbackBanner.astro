@@ -2,9 +2,9 @@
 /**
  * Site-wide feedback solicitation.
  *
- * Renders a loud, unmissable strip directly under the sticky navbar. Dismissal
- * is remembered in localStorage so it never nags twice, but it is intentionally
- * impossible to miss the first time.
+ * Renders at the end of the page, directly above the footer (body flex
+ * order-4, between the order-3 main content and the order-5 footer).
+ * Dismissal is remembered in localStorage so it never nags twice.
  *
  * `href` should point at the feedback form. On the homepage that is a same-page
  * anchor (`#feedback`); everywhere else it is `/#feedback`.
@@ -27,7 +27,7 @@ const storageKey = "stlaccess:feedback-dismissed";
 
 <div
   data-feedback-banner
-  class="relative border-y-2 border-[#ff6b35]/60 bg-gradient-to-r from-[#ff6b35]/20 via-black to-[#ff6b35]/20"
+  class="relative order-4 border-y-2 border-[#ff6b35]/60 bg-gradient-to-r from-[#ff6b35]/20 via-black to-[#ff6b35]/20"
 >
   {/* Pulsing edge so it reads as an active request, not static furniture. */}
   <div
