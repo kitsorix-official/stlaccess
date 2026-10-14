@@ -25,67 +25,15 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-# Block ALL Google bots, scrapers, and AI crawlers
-User-agent: Googlebot
-Disallow: /
-
-User-agent: Googlebot-Image
-Disallow: /
-
-User-agent: Googlebot-News
-Disallow: /
-
-User-agent: Googlebot-Video
-Disallow: /
-
-User-agent: Googlebot-AdsBot
-Disallow: /
-
-User-agent: AdsBot-Google
-Disallow: /
-
-User-agent: AdsBot-Google-Mobile
-Disallow: /
-
-User-agent: Mediapartners-Google
-Disallow: /
-
-User-agent: Storebot-Google
-Disallow: /
-
-User-agent: Google-InspectionTool
-Disallow: /
-
-User-agent: API-Google
-Disallow: /
-
-User-agent: GoogleOther
-Disallow: /
-
+# Google access re-enabled (the site was re-added to Google Search Console).
+# Every Google Search / Images / News / Video / Ads / URL-Inspection bot now
+# falls through to the "User-agent: *" group above (Allow: /), so no explicit
+# Googlebot group is needed.
+# Google-Extended is the one exception: it is Google's dedicated AI-*training*
+# control and does NOT affect Search, so it stays blocked to preserve the
+# "ai-train=no" signal above. Remove it too if you ever want Google AI
+# training on this content.
 User-agent: Google-Extended
-Disallow: /
-
-User-agent: Google-SourceHunter
-Disallow: /
-
-User-agent: FeedFetcher-Google
-Disallow: /
-
-User-agent: DuplexWeb-Google
-Disallow: /
-
-# Note: "Google Favicon" and "Google Web Preview" were previously listed here.
-# Those tokens contain spaces, which makes the whole group invalid under
-# RFC 9309 -- crawlers ignore it entirely, so those rules never did anything.
-# Removed rather than "fixed", since neither is a real Googlebot token.
-
-User-agent: Google-Read-Aloud
-Disallow: /
-
-User-agent: Nautilus
-Disallow: /
-
-User-agent: MindShare
 Disallow: /
 
 # Block all Wayback Machine / Internet Archive crawlers
