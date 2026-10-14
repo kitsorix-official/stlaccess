@@ -259,6 +259,40 @@
 
 
   // ============================================
+  // AI search source, parsed from referrer host
+  // Sent as `ai_source` (the collector's column name)
+  // ============================================
+
+  function getAiSource() {
+
+    const ref = document.referrer;
+
+    if (!ref) return '';
+
+    try {
+
+      const host = new URL(ref).hostname.toLowerCase();
+
+      if (/(^|\.)chatgpt\.com$|(^|\.)openai\.com$/.test(host)) return 'chatgpt';
+      if (/(^|\.)perplexity\.ai$/.test(host)) return 'perplexity';
+      if (/^(gemini|bard)\.google\./.test(host)) return 'gemini';
+      if (/(^|\.)copilot\.microsoft\.com$/.test(host)) return 'copilot';
+      if (/(^|\.)grok\.com$|(^|\.)x\.ai$/.test(host)) return 'grok';
+      if (/(^|\.)claude\.ai$/.test(host)) return 'claude';
+      if (/(^|\.)deepseek\.com$/.test(host)) return 'deepseek';
+      if (/(^|\.)mistral\.ai$/.test(host)) return 'mistral';
+      if (/(^|\.)you\.com$/.test(host)) return 'you';
+      if (/(^|\.)phind\.com$/.test(host)) return 'phind';
+
+      return '';
+
+    } catch (error) {
+      return '';
+    }
+  }
+
+
+  // ============================================
   // Referrer, stripped of query strings & hash
   // ============================================
 
@@ -308,6 +342,9 @@
 
       engine:
         getEngine(),
+
+      ai_source:
+        getAiSource(),
 
       device:
         getDevice(),

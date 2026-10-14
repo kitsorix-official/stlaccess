@@ -40,6 +40,7 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 - [Terms](https://stlaccess.com/terms) — Terms of use
 - [Legal](https://stlaccess.com/legal) — Legal information
 - [Contact](https://stlaccess.com/contact) — Report errors, request new scales, suggest features
+- [Support](https://stlaccess.com/support) — Optional Bitcoin and Lightning tips to keep the calculators free — no ads, no accounts, wallet to wallet
 - [RSS Feed](https://stlaccess.com/rss.xml) — FDM scale math feed
 
 ## FDM printing profiles (26 total, from fdmProfiles.json)
