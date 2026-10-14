@@ -155,6 +155,13 @@ const hasHero = Astro.slots.has("hero");
 
       <script is:inline data-ttl-days={banner.ttlDays || 14}>
         (function () {
+          // Bail before touching storage when the banner isn't rendered
+          // (banner.enabled = false). This keeps the page free of any
+          // localStorage access in the default, no-banner configuration.
+          var banner = document.getElementById("site-banner");
+          var btn = document.getElementById("dismiss-banner");
+          if (!banner || !btn) return;
+
           var KEY = "stla-banner";
           var TTL_MS = parseInt(document.currentScript.dataset.ttlDays, 10) * 86400000;
           try {
@@ -164,9 +171,6 @@ const hasHero = Astro.slots.has("hero");
               if (Date.now() - d.ts < TTL_MS) return;
             }
           } catch (e) {}
-          var banner = document.getElementById("site-banner");
-          var btn = document.getElementById("dismiss-banner");
-          if (!banner || !btn) return;
           banner.classList.remove("hidden");
           btn.addEventListener("click", function () {
             banner.classList.add("hidden");

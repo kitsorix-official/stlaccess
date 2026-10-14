@@ -1,14 +1,26 @@
 (function () {
 
   // ============================================
-  // Privacy-first Website Observability (v2)
-  // Configuration
+  // Privacy-first Website Observability (v3)
+  //
+  // Stores NOTHING on the visitor's device. No
+  // cookies, no localStorage, no sessionStorage,
+  // no persistent or session identifiers.
+  //
+  // That means no ePrivacy consent is required, so
+  // the site needs no consent banner. Measurement
+  // rests on legitimate interest for first-party,
+  // aggregate audience stats (privacy notice only).
+  //
+  // The one exception is the opt-out flag set by
+  // ?admin=1: it records the visitor's own request
+  // to be excluded, and nothing else.
   // ============================================
 
   // Google Apps Script Web App endpoint
   // Change this when deploying a new collector
   const CONFIG = {
-    endpoint: 'https://script.google.com/macros/s/AKfycbxxZGdX3egla1WxGgOiuYzEvuMRsyHU7zyKkzpirpk7KFhzc8LJ7rrrtp-LCxtmUO9b2A/exec',
+    endpoint: 'https://script.google.com/macros/s/AKfycbxaJVMq6fCIS5-gdNHJoX3QVUmKl0BzoNx1nNlfuOpexActx5sdCodKcVcaF_WLiJdR/exec',
 
     // Must match the SITE_KEY in the Apps Script collector
     siteKey: 'obs_stlaccess_2026_9vXk2Q7mP4wZc8Lt',
@@ -35,11 +47,13 @@
 
 
   // ============================================
-  // Safe storage
-  // localStorage/sessionStorage can throw (Safari
-  // "Block All Cookies", WebViews, enterprise
-  // policies). An unguarded access would kill this
-  // entire script for those visitors.
+  // Opt-out
+  //
+  // The only thing this script ever stores, and it
+  // stores only the visitor's own decision to be
+  // excluded — the same as honouring "do not track".
+  // Safe against storage throwing (Safari "Block All
+  // Cookies", WebViews, enterprise policies).
   // ============================================
 
   function safeStore(kind) {
@@ -75,87 +89,22 @@
       if (store) store.setItem(key, value);
 
     } catch (error) {
-      // Storage full or blocked — tracking continues without it
+      // Storage full or blocked — measurement already ran, nothing to do
     }
   }
 
-  const localStore = safeStore('localStorage');
-  const sessionStore = safeStore('sessionStorage');
-
-
-  // ============================================
-  // Admin opt-out (?admin=1)
-  // ============================================
+  const optOutStore = safeStore('localStorage');
 
   const params = new URLSearchParams(window.location.search);
 
   if (params.get(CONFIG.adminParameter) === '1') {
-    storeSet(localStore, 'observability_admin', '1');
-    console.log('[Observability] Admin disabled');
+    storeSet(optOutStore, 'observability_admin', '1');
+    console.log('[Observability] Opted out');
   }
 
-  if (storeGet(localStore, 'observability_admin') === '1') {
+  if (storeGet(optOutStore, 'observability_admin') === '1') {
     return;
   }
-
-
-  // ============================================
-  // UUID helper
-  // ============================================
-
-  function makeUuid() {
-
-    if (window.crypto && typeof crypto.randomUUID === 'function') {
-      return crypto.randomUUID();
-    }
-
-    // Fallback for older browsers
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-
-      const r = Math.random() * 16 | 0;
-      const v = c === 'x' ? r : (r & 0x3 | 0x8);
-
-      return v.toString(16);
-    });
-  }
-
-
-  // ============================================
-  // Session ID
-  // Temporary, per-tab session only
-  // ============================================
-
-  let sessionId = storeGet(sessionStore, 'session_id');
-
-  if (!sessionId) {
-    sessionId = makeUuid();
-    storeSet(sessionStore, 'session_id', sessionId);
-  }
-
-  const isSessionStart = storeGet(sessionStore, 'session_started') !== '1';
-
-  if (isSessionStart) {
-    storeSet(sessionStore, 'session_started', '1');
-  }
-
-
-  // ============================================
-  // New vs returning visitor
-  // The persistent ID stays in localStorage and is
-  // NEVER transmitted. Only the boolean label leaves
-  // this browser.
-  // ============================================
-
-  // If persistent storage is unavailable we cannot tell
-  // new from returning, so the label stays empty rather
-  // than inflating "new" with every page load.
-  const isNewVisitor = localStore ? !storeGet(localStore, 'client_id') : false;
-
-  if (isNewVisitor) {
-    storeSet(localStore, 'client_id', makeUuid());
-  }
-
-  const visitorType = localStore ? (isNewVisitor ? 'new' : 'returning') : '';
 
 
   // ============================================
@@ -195,6 +144,8 @@
   // brands (e.g. "CUBOT") that are real people.
   const CRAWLER_PATTERN = /bingbot|googlebot|google web preview|yandex|baiduspider|duckduckbot|applebot|ahrefs|semrush|mj12bot|dotbot|petalbot|bytespider|gptbot|oai-searchbot|chatgpt-user|claudebot|anthropic|ccbot|perplexity|cohere|seznambot|sogou|exabot|crawler|spider|slurp|scrapy|internetmeasurement|headless|lighthouse|pingdom|uptimerobot|statuscake|prerender|facebookexternalhit|embedly|linkedinbot|twitterbot|discordbot|slackbot|telegrambot|whatsapp|skypeuripreview|monitoring/;
 
+  // human | crawler | automation — lets the sheet keep automated
+  // traffic out of the human numbers.
   function getAgent() {
 
     const ua = navigator.userAgent.toLowerCase();
@@ -386,9 +337,42 @@
 
 
   // ============================================
-  // AI search source, parsed from referrer host
-  // Sent as `ai_source` (the collector's column name)
+  // AI assistant / AI search source
+  // Parsed from the referrer host. Sent as
+  // `ai_source` (the collector's column name).
+  //
+  // Caveat: some AI tools send no referrer at all,
+  // so AI traffic will always be undercounted —
+  // treat this as a floor, not a total.
   // ============================================
+
+  const AI_HOSTS = [
+    [/(^|\.)chatgpt\.com$|(^|\.)chat\.openai\.com$|(^|\.)openai\.com$/, 'chatgpt'],
+    [/(^|\.)perplexity\.ai$/, 'perplexity'],
+    [/^(gemini|bard)\.google\./, 'gemini'],
+    [/(^|\.)copilot\.microsoft\.com$/, 'copilot'],
+    [/(^|\.)grok\.com$|(^|\.)x\.ai$/, 'grok'],
+    [/(^|\.)claude\.ai$/, 'claude'],
+    [/(^|\.)deepseek\.com$/, 'deepseek'],
+    [/(^|\.)mistral\.ai$/, 'mistral'],
+    [/(^|\.)you\.com$/, 'you'],
+    [/(^|\.)phind\.com$/, 'phind'],
+    [/(^|\.)poe\.com$/, 'poe'],
+    [/(^|\.)meta\.ai$/, 'meta'],
+    [/(^|\.)pi\.ai$/, 'pi'],
+    [/(^|\.)lmarena\.ai$/, 'lmarena'],
+    [/(^|\.)t3\.chat$/, 't3chat'],
+    [/(^|\.)openrouter\.ai$/, 'openrouter'],
+    [/(^|\.)huggingface\.co$/, 'huggingface'],
+    [/(^|\.)duck\.ai$/, 'duckduckgo'],
+    [/(^|\.)qwen\.ai$|(^|\.)chat\.qwen\.ai$|(^|\.)tongyi\.aliyun\.com$/, 'qwen'],
+    [/(^|\.)kimi\.com$|(^|\.)kimi\.moonshot\.cn$|(^|\.)moonshot\.cn$/, 'kimi'],
+    [/(^|\.)doubao\.com$/, 'doubao'],
+    [/(^|\.)genspark\.ai$/, 'genspark'],
+    [/(^|\.)character\.ai$/, 'character'],
+    [/(^|\.)elicit\.com$/, 'elicit'],
+    [/(^|\.)consensus\.app$/, 'consensus']
+  ];
 
   function getAiSource() {
 
@@ -398,18 +382,19 @@
 
     try {
 
-      const host = new URL(ref).hostname.toLowerCase();
+      const url = new URL(ref);
+      const host = url.hostname.toLowerCase().replace(/^www\./, '');
 
-      if (/(^|\.)chatgpt\.com$|(^|\.)openai\.com$/.test(host)) return 'chatgpt';
-      if (/(^|\.)perplexity\.ai$/.test(host)) return 'perplexity';
-      if (/^(gemini|bard)\.google\./.test(host)) return 'gemini';
-      if (/(^|\.)copilot\.microsoft\.com$/.test(host)) return 'copilot';
-      if (/(^|\.)grok\.com$|(^|\.)x\.ai$/.test(host)) return 'grok';
-      if (/(^|\.)claude\.ai$/.test(host)) return 'claude';
-      if (/(^|\.)deepseek\.com$/.test(host)) return 'deepseek';
-      if (/(^|\.)mistral\.ai$/.test(host)) return 'mistral';
-      if (/(^|\.)you\.com$/.test(host)) return 'you';
-      if (/(^|\.)phind\.com$/.test(host)) return 'phind';
+      // Bing's Copilot lives on the search host, so require the /chat path.
+      if (host === 'bing.com') {
+        return url.pathname.indexOf('/chat') === 0 ? 'copilot' : '';
+      }
+
+      for (let i = 0; i < AI_HOSTS.length; i++) {
+        if (AI_HOSTS[i][0].test(host)) {
+          return AI_HOSTS[i][1];
+        }
+      }
 
       return '';
 
@@ -485,29 +470,11 @@
       os:
         getOs(),
 
-      platform:
-        getPlatform(),
-
-      pointer:
-        isCoarsePointer() ? 'coarse' : 'fine',
-
-      webdriver:
-        isWebdriver() ? '1' : '',
-
       agent:
         getAgent(),
 
-      language:
-        navigator.language || '',
-
-      visitor_type:
-        visitorType,
-
       scroll_depth:
         '',
-
-      session_id:
-        sessionId,
 
       site_key:
         CONFIG.siteKey
@@ -607,10 +574,6 @@
   // ============================================
 
   send('page_view');
-
-  if (isSessionStart) {
-    send('session_start');
-  }
 
 
 })();
