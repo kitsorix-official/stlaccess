@@ -96,7 +96,7 @@ STLACCESS" attribution line and link it back to the site.
   as `.json` and `.js` modules.
 - Security headers (`public/_headers`), explicit legacy redirects (`public/_redirects`), and a
   `robots.txt` with AI-training opt-outs plus explicit AI-*search* crawler allows are deployed with
-  the site on Netlify.
+  the site on Cloudflare Pages.
 
 ### Local Development
 

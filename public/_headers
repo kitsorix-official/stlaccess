@@ -1,4 +1,4 @@
-# Netlify response headers.
+# Cloudflare Pages response headers.
 # Baseline hardening for a static, no-cookie site. No CSP here on purpose:
 # the site relies on several inline scripts, so a CSP needs nonces/hashes first.
 
@@ -8,6 +8,14 @@
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Cloudflare Pages serves non-HTML assets with its own 4-hour default
+# (max-age=14400), which wins over the /* rule above — so a changed
+# observer could keep running from cache for hours after a deploy.
+# Explicit path rules (like /_astro/* below) do take effect, so give
+# the directly-served scripts the same short cache.
+/js/*
   Cache-Control: public, max-age=0, must-revalidate
 
 # Hashed build assets are safe to cache forever.
