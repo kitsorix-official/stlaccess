@@ -8,7 +8,7 @@
   // Google Apps Script Web App endpoint
   // Change this when deploying a new collector
   const CONFIG = {
-    endpoint: 'https://script.google.com/macros/s/AKfycbwTAVgPQUjJ83Q_RWJHBygXpgREuIY53eRdRQtSvXREMxZuZ2bGDBL-QQ1K72Ep_Fn3pQ/exec',
+    endpoint: 'https://script.google.com/macros/s/AKfycbxxZGdX3egla1WxGgOiuYzEvuMRsyHU7zyKkzpirpk7KFhzc8LJ7rrrtp-LCxtmUO9b2A/exec',
 
     // Must match the SITE_KEY in the Apps Script collector
     siteKey: 'obs_stlaccess_2026_9vXk2Q7mP4wZc8Lt',
