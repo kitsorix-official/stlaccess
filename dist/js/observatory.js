@@ -35,17 +35,66 @@
 
 
   // ============================================
+  // Safe storage
+  // localStorage/sessionStorage can throw (Safari
+  // "Block All Cookies", WebViews, enterprise
+  // policies). An unguarded access would kill this
+  // entire script for those visitors.
+  // ============================================
+
+  function safeStore(kind) {
+
+    try {
+
+      const store = window[kind];
+      const probe = '__obs_probe__';
+
+      store.setItem(probe, '1');
+      store.removeItem(probe);
+
+      return store;
+
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function storeGet(store, key) {
+
+    try {
+      return store ? store.getItem(key) : null;
+
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function storeSet(store, key, value) {
+
+    try {
+      if (store) store.setItem(key, value);
+
+    } catch (error) {
+      // Storage full or blocked — tracking continues without it
+    }
+  }
+
+  const localStore = safeStore('localStorage');
+  const sessionStore = safeStore('sessionStorage');
+
+
+  // ============================================
   // Admin opt-out (?admin=1)
   // ============================================
 
   const params = new URLSearchParams(window.location.search);
 
   if (params.get(CONFIG.adminParameter) === '1') {
-    localStorage.setItem('observability_admin', '1');
+    storeSet(localStore, 'observability_admin', '1');
     console.log('[Observability] Admin disabled');
   }
 
-  if (localStorage.getItem('observability_admin') === '1') {
+  if (storeGet(localStore, 'observability_admin') === '1') {
     return;
   }
 
@@ -76,17 +125,17 @@
   // Temporary, per-tab session only
   // ============================================
 
-  let sessionId = sessionStorage.getItem('session_id');
+  let sessionId = storeGet(sessionStore, 'session_id');
 
   if (!sessionId) {
     sessionId = makeUuid();
-    sessionStorage.setItem('session_id', sessionId);
+    storeSet(sessionStore, 'session_id', sessionId);
   }
 
-  const isSessionStart = sessionStorage.getItem('session_started') !== '1';
+  const isSessionStart = storeGet(sessionStore, 'session_started') !== '1';
 
   if (isSessionStart) {
-    sessionStorage.setItem('session_started', '1');
+    storeSet(sessionStore, 'session_started', '1');
   }
 
 
@@ -97,13 +146,69 @@
   // this browser.
   // ============================================
 
-  const isNewVisitor = !localStorage.getItem('client_id');
+  // If persistent storage is unavailable we cannot tell
+  // new from returning, so the label stays empty rather
+  // than inflating "new" with every page load.
+  const isNewVisitor = localStore ? !storeGet(localStore, 'client_id') : false;
 
   if (isNewVisitor) {
-    localStorage.setItem('client_id', makeUuid());
+    storeSet(localStore, 'client_id', makeUuid());
   }
 
-  const visitorType = isNewVisitor ? 'new' : 'returning';
+  const visitorType = localStore ? (isNewVisitor ? 'new' : 'returning') : '';
+
+
+  // ============================================
+  // Platform / pointer / automation signals
+  // ============================================
+
+  function getPlatform() {
+
+    try {
+      if (navigator.userAgentData && navigator.userAgentData.platform) {
+        return navigator.userAgentData.platform;
+      }
+
+    } catch (error) {
+      // userAgentData unavailable
+    }
+
+    return navigator.platform || '';
+  }
+
+  function isCoarsePointer() {
+
+    try {
+      return !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function isWebdriver() {
+    return navigator.webdriver === true;
+  }
+
+  // Named crawlers, preview fetchers, uptime monitors and headless drivers.
+  // Deliberately an explicit list — a bare /bot/ would match some phone
+  // brands (e.g. "CUBOT") that are real people.
+  const CRAWLER_PATTERN = /bingbot|googlebot|google web preview|yandex|baiduspider|duckduckbot|applebot|ahrefs|semrush|mj12bot|dotbot|petalbot|bytespider|gptbot|oai-searchbot|chatgpt-user|claudebot|anthropic|ccbot|perplexity|cohere|seznambot|sogou|exabot|crawler|spider|slurp|scrapy|internetmeasurement|headless|lighthouse|pingdom|uptimerobot|statuscake|prerender|facebookexternalhit|embedly|linkedinbot|twitterbot|discordbot|slackbot|telegrambot|whatsapp|skypeuripreview|monitoring/;
+
+  function getAgent() {
+
+    const ua = navigator.userAgent.toLowerCase();
+
+    if (isWebdriver() || /headless|phantomjs|selenium|puppeteer|playwright/.test(ua)) {
+      return 'automation';
+    }
+
+    if (CRAWLER_PATTERN.test(ua)) {
+      return 'crawler';
+    }
+
+    return 'human';
+  }
 
 
   // ============================================
@@ -113,28 +218,36 @@
   function getDevice() {
 
     const width = window.innerWidth;
-    const touch = navigator.maxTouchPoints > 1;
-
     const ua = navigator.userAgent.toLowerCase();
+    const platform = getPlatform().toLowerCase();
+    const coarse = isCoarsePointer();
+    const touch = (navigator.maxTouchPoints || 0) > 1;
 
-    if (/iphone|ipod|android.*mobile/.test(ua)) {
-      return 'mobile';
-    }
-
-    if (
-      /ipad|tablet/.test(ua) ||
-      (touch && width <= 1024)
-    ) {
+    // iPadOS 13+ sends a desktop Mac user-agent; touch points give it away.
+    if (platform.indexOf('mac') === 0 && touch) {
       return 'tablet';
     }
 
-    if (width <= 480) {
-      return 'mobile';
+    if (/iphone|ipod/.test(ua)) return 'mobile';
+    if (/android/.test(ua)) return /mobile/.test(ua) ? 'mobile' : 'tablet';
+    if (/ipad|tablet/.test(ua)) return 'tablet';
+
+    // Chromium client hints are the reliable signal where available.
+    try {
+      if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
+        if (navigator.userAgentData.mobile) return 'mobile';
+        if (coarse && width <= 1366) return 'tablet';
+        return 'desktop';
+      }
+
+    } catch (error) {
+      // fall through to pointer heuristics
     }
 
-    if (width <= 1024) {
-      return 'tablet';
-    }
+    // Coarse *primary* pointer, not maxTouchPoints: a Windows touch laptop
+    // still has a fine primary pointer and must stay a desktop.
+    if (coarse && width <= 640) return 'mobile';
+    if (coarse && width <= 1366) return 'tablet';
 
     return 'desktop';
   }
@@ -186,11 +299,25 @@
 
     const ua = navigator.userAgent.toLowerCase();
 
-    if (/iphone|ipad|ipod/.test(ua)) return 'iOS';
+    if (/iphone|ipod/.test(ua)) return 'iOS';
+    if (/ipad/.test(ua)) return 'iOS';
     if (/android/.test(ua)) return 'Android';
-    if (/windows|win/.test(ua)) return 'Windows';
+    if (/windows|win32|win64/.test(ua)) return 'Windows';
     if (/mac os x|macintosh/.test(ua)) return 'macOS';
-    if (/linux|crOS/.test(ua)) return 'Linux';
+    if (/cros/.test(ua)) return 'ChromeOS';
+    if (/linux/.test(ua)) return 'Linux';
+
+    // User-agent without an OS token (some crawlers, reduced UAs).
+    // Fall back to the platform hint instead of returning 'Other'.
+    const platform = getPlatform().toLowerCase();
+
+    if (platform.indexOf('mac') === 0 && (navigator.maxTouchPoints || 0) > 1) return 'iOS';
+    if (platform.indexOf('win') === 0) return 'Windows';
+    if (platform.indexOf('mac') === 0) return 'macOS';
+    if (platform.indexOf('android') === 0) return 'Android';
+    if (platform.indexOf('ios') === 0) return 'iOS';
+    if (platform.indexOf('chrome os') === 0 || platform.indexOf('cros') === 0) return 'ChromeOS';
+    if (platform.indexOf('linux') === 0) return 'Linux';
 
     return 'Other';
   }
@@ -357,6 +484,18 @@
 
       os:
         getOs(),
+
+      platform:
+        getPlatform(),
+
+      pointer:
+        isCoarsePointer() ? 'coarse' : 'fine',
+
+      webdriver:
+        isWebdriver() ? '1' : '',
+
+      agent:
+        getAgent(),
 
       language:
         navigator.language || '',
