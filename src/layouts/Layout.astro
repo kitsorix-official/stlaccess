@@ -3,6 +3,7 @@ import "../styles/global.css";
 import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
 import FeedbackBanner from "../components/FeedbackBanner.astro";
+import SupportCta from "../components/SupportCta.astro";
 
 const siteUpdated = lastModifiedDate();
 
@@ -288,6 +289,15 @@ class={currentPath.startsWith("/miniature-size-chart")
       <slot />
     </main>
 
+    {/* Support CTA — one reusable component, rendered on every content page
+        (guides, calculators, chart, articles…). Excluded: /support itself
+        (it is the destination), the /embed + /widget surfaces (they render
+        inside third-party sites), and 404. To change the strip anywhere,
+        edit src/components/SupportCta.astro — addresses live in site.json. */}
+    {!["/support", "/embed", "/widget", "/404"].includes(pathname) && (
+      <SupportCta />
+    )}
+
     <!-- Footer -->
     <footer
       class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-auto order-5"
@@ -560,6 +570,29 @@ class={currentPath.startsWith("/miniature-size-chart")
       </ul>
     </nav>
 
+    {/* Shared copy-to-clipboard for every [data-copy] button on the site
+        (the /support address cards and the footer Support CTA). One
+        delegation point instead of a script per page. */}
+    <script is:inline>
+      document.querySelectorAll("[data-copy]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          var text = button.getAttribute("data-copy");
+          if (!text || !navigator.clipboard || !navigator.clipboard.writeText)
+            return;
+          navigator.clipboard.writeText(text).then(function () {
+            var label = button.querySelector("[data-copy-label]");
+            if (!label || label.dataset.busy === "1") return;
+            var original = label.textContent;
+            label.dataset.busy = "1";
+            label.textContent = "Copied";
+            setTimeout(function () {
+              label.textContent = original;
+              label.dataset.busy = "0";
+            }, 1500);
+          });
+        });
+      });
+    </script>
 
   </body>
 </html>

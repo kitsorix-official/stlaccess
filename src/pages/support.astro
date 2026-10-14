@@ -211,23 +211,4 @@ const supportSchema = graph([
 
 </article>
 
-<script is:inline>
-  document.querySelectorAll('[data-copy]').forEach(function (button) {
-    button.addEventListener('click', function () {
-      var text = button.getAttribute('data-copy');
-      if (!text || !navigator.clipboard || !navigator.clipboard.writeText) return;
-      navigator.clipboard.writeText(text).then(function () {
-        var label = button.querySelector('[data-copy-label]');
-        if (!label || label.dataset.busy === '1') return;
-        var original = label.textContent;
-        label.dataset.busy = '1';
-        label.textContent = 'Copied';
-        setTimeout(function () {
-          label.textContent = original;
-          label.dataset.busy = '0';
-        }, 1500);
-      });
-    });
-  });
-</script>
 </Layout>
