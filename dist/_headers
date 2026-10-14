@@ -10,11 +10,11 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Cache-Control: public, max-age=0, must-revalidate
 
-# Cloudflare Pages serves non-HTML assets with its own 4-hour default
-# (max-age=14400), which wins over the /* rule above — so a changed
-# observer could keep running from cache for hours after a deploy.
-# Explicit path rules (like /_astro/* below) do take effect, so give
-# the directly-served scripts the same short cache.
+# Cloudflare Pages serves /js/* from its own cache (observed: 4 hours) and
+# overrides this Cache-Control, so _headers alone cannot keep a changed
+# script fresh. The real fix is the content-hash query the markup adds
+# (/js/foo.js?v=<hash>) — see src/utils/assetVersion.js. Kept here so the
+# directive applies if the zone's cache settings ever respect it.
 /js/*
   Cache-Control: public, max-age=0, must-revalidate
 

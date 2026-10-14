@@ -7,6 +7,7 @@ import conversions from "../data/conversionMatrix.json";
 import tools from "../data/tools.json";
 import { graph, organization, webSite, softwareApplication, faqPage } from "../lib/schema";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
+import { assetVersion } from "../utils/assetVersion.js";
 
 const siteUpdated = lastModifiedDate();
 
@@ -520,5 +521,5 @@ btn.style.opacity = '1';
 <script is:inline set:html={`window.CALCULATOR_SCALES = ${JSON.stringify(calculatorScales)};window.CALCULATOR_HEAD_OVERRIDES = ${JSON.stringify(headOverrides)};`} />
 
 <!-- Page Specific Scripts -->
-<script is:inline src="/js/mathscaler.js"></script>
+<script is:inline src={assetVersion('js/mathscaler.js')}></script>
 </Layout>

@@ -4,6 +4,7 @@ import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
 import FeedbackBanner from "../components/FeedbackBanner.astro";
 import SupportCta from "../components/SupportCta.astro";
+import { assetVersion } from "../utils/assetVersion.js";
 
 const siteUpdated = lastModifiedDate();
 
@@ -100,7 +101,7 @@ const hasHero = Astro.slots.has("hero");
     />
 
     <!-- observatory -->
-    <script is:inline defer src="/js/observatory.js"></script>
+    <script is:inline defer src={assetVersion('js/observatory.js')}></script>
 
 
 

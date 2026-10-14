@@ -9,6 +9,7 @@
 
 import scalesData from "../data/scaleBaselines.json";
 import conversionsData from "../data/conversionMatrix.json";
+import { assetVersion } from "../utils/assetVersion.js";
 
 const dropdownLabels: Record<string, string> = {
   "28mm": "28mm (Classic True Scale)",
@@ -76,7 +77,7 @@ const defaultTarget = "32mm";
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta name="theme-color" content="#ff6b35" />
     <meta name="robots" content="noindex, nofollow" />
-    <script is:inline defer src="/js/observatory.js"></script>
+    <script is:inline defer src={assetVersion('js/observatory.js')}></script>
     <style>
       :root { color-scheme: dark; }
       * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -219,6 +220,6 @@ const defaultTarget = "32mm";
     </div>
 
     <script is:inline set:html={`window.CALCULATOR_SCALES = ${JSON.stringify(calculatorScales)};window.CALCULATOR_HEAD_OVERRIDES = ${JSON.stringify(headOverrides)};`} />
-    <script is:inline src="/js/mathscaler.js"></script>
+    <script is:inline src={assetVersion('js/mathscaler.js')}></script>
   </body>
 </html>
