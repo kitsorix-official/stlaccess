@@ -1,59 +1,67 @@
 (function () {
 
   // ============================================
-  // Privacy-first Website Observability (v3)
+  // STLACCESS Web Observer (v4 — minimal)
   //
-  // Stores NOTHING on the visitor's device. No
-  // cookies, no localStorage, no sessionStorage,
-  // no persistent or session identifiers.
+  // One row per page view. That's it.
   //
-  // That means no ePrivacy consent is required, so
-  // the site needs no consent banner. Measurement
-  // rests on legitimate interest for first-party,
-  // aggregate audience stats (privacy notice only).
+  // What a row contains:
+  //   timestamp_utc   when the visit reached the collector (server clock)
+  //   date            the same moment as YYYY-MM-DD (server clock)
+  //   page            the page path that was viewed
+  //   agent           human | crawler | automation
+  //   source          direct | search | ai | social | referral
+  //   source_name     the operator — google, bing, chatgpt, perplexity, ...
+  //   referrer        raw referrer host + path (query string removed)
   //
-  // The one exception is the opt-out flag set by
-  // ?admin=1: it records the visitor's own request
-  // to be excluded, and nothing else.
+  // PRIVACY
+  //   No cookies. No IP addresses. No names. No identifiers. Nothing here
+  //   singles anyone out, and nothing is stored on the visitor's device —
+  //   so a visit can never be linked back to the same person on a return
+  //   trip.
+  //
+  //   The single exception is the opt-out flag below: if a visitor appends
+  //   ?admin=1, their own choice to be excluded is remembered — the same
+  //   idea as honouring "Do Not Track". That flag holds nothing else.
   // ============================================
 
-  // Google Apps Script Web App endpoint
-  // Change this when deploying a new collector
   const CONFIG = {
-    endpoint: 'https://script.google.com/macros/s/AKfycbxaJVMq6fCIS5-gdNHJoX3QVUmKl0BzoNx1nNlfuOpexActx5sdCodKcVcaF_WLiJdR/exec',
 
-    // Must match the SITE_KEY in the Apps Script collector
-    siteKey: 'obs_stlaccess_2026_9vXk2Q7mP4wZc8Lt',
+    // Google Apps Script Web App URL.
+    // Deploy > Manage deployments > copy the "/exec" URL.
+    endpoint: 'https://script.google.com/macros/s/AKfycbxK6-eNoUG4iUV-qruFTmDui4ez3jNN6AznGHpp3W7JHdpxzDK5g9Pi7B43X4PYqoBe/exec',
+
+    // Must match SITE_KEY in the Apps Script.
+    // Not a secret — it's a spam gate, readable by anyone who opens this file.
+    siteKey: 'obs_stlaccess_20261018_q7Wk3Zm9Rt4Lp2Xc',
 
     allowedDomains: [
       'stlaccess.com',
       'www.stlaccess.com'
     ],
 
+    // Opt-out via ?admin=1
     adminParameter: 'admin'
+
   };
 
 
   // ============================================
-  // Domain protection
+  // Domain guard — never record local/dev hosts
   // ============================================
 
-  const hostname = window.location.hostname;
-
-  if (!CONFIG.allowedDomains.includes(hostname)) {
-    console.log('[Observability] Domain not allowed');
+  if (!CONFIG.allowedDomains.includes(window.location.hostname)) {
     return;
   }
 
 
   // ============================================
-  // Opt-out
+  // Storage helpers
   //
-  // The only thing this script ever stores, and it
-  // stores only the visitor's own decision to be
-  // excluded — the same as honouring "do not track".
-  // Safe against storage throwing (Safari "Block All
-  // Cookies", WebViews, enterprise policies).
+  // Used only for the opt-out flag. Every access is wrapped: Safari's
+  // "Block All Cookies", WebViews and enterprise policies can make storage
+  // throw. If it does, we quietly carry on without it rather than break the
+  // page.
   // ============================================
 
   function safeStore(kind) {
@@ -89,68 +97,45 @@
       if (store) store.setItem(key, value);
 
     } catch (error) {
-      // Storage full or blocked — measurement already ran, nothing to do
+      // Storage full or blocked — nothing to do
     }
   }
 
-  const optOutStore = safeStore('localStorage');
+  const localStore = safeStore('localStorage');
+
+
+  // ============================================
+  // Opt-out (?admin=1)
+  //
+  // Stored only so the visitor's own choice is remembered — the same idea
+  // as honouring "Do Not Track".
+  // ============================================
 
   const params = new URLSearchParams(window.location.search);
 
   if (params.get(CONFIG.adminParameter) === '1') {
-    storeSet(optOutStore, 'observability_admin', '1');
-    console.log('[Observability] Opted out');
+    storeSet(localStore, 'observability_admin', '1');
   }
 
-  if (storeGet(optOutStore, 'observability_admin') === '1') {
+  if (storeGet(localStore, 'observability_admin') === '1') {
     return;
   }
 
 
   // ============================================
-  // Platform / pointer / automation signals
+  // human | crawler | automation
+  //
+  // A named list, not a loose /bot/ match — a bare /bot/ would also catch
+  // some phone brands (e.g. "CUBOT") that are real people.
   // ============================================
 
-  function getPlatform() {
-
-    try {
-      if (navigator.userAgentData && navigator.userAgentData.platform) {
-        return navigator.userAgentData.platform;
-      }
-
-    } catch (error) {
-      // userAgentData unavailable
-    }
-
-    return navigator.platform || '';
-  }
-
-  function isCoarsePointer() {
-
-    try {
-      return !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
-
-    } catch (error) {
-      return false;
-    }
-  }
-
-  function isWebdriver() {
-    return navigator.webdriver === true;
-  }
-
-  // Named crawlers, preview fetchers, uptime monitors and headless drivers.
-  // Deliberately an explicit list — a bare /bot/ would match some phone
-  // brands (e.g. "CUBOT") that are real people.
   const CRAWLER_PATTERN = /bingbot|googlebot|google web preview|yandex|baiduspider|duckduckbot|applebot|ahrefs|semrush|mj12bot|dotbot|petalbot|bytespider|gptbot|oai-searchbot|chatgpt-user|claudebot|anthropic|ccbot|perplexity|cohere|seznambot|sogou|exabot|crawler|spider|slurp|scrapy|internetmeasurement|headless|lighthouse|pingdom|uptimerobot|statuscake|prerender|facebookexternalhit|embedly|linkedinbot|twitterbot|discordbot|slackbot|telegrambot|whatsapp|skypeuripreview|monitoring/;
 
-  // human | crawler | automation — lets the sheet keep automated
-  // traffic out of the human numbers.
   function getAgent() {
 
     const ua = navigator.userAgent.toLowerCase();
 
-    if (isWebdriver() || /headless|phantomjs|selenium|puppeteer|playwright/.test(ua)) {
+    if (navigator.webdriver === true || /headless|phantomjs|selenium|puppeteer|playwright/.test(ua)) {
       return 'automation';
     }
 
@@ -163,417 +148,174 @@
 
 
   // ============================================
-  // Device detection
+  // Referrer helpers
   // ============================================
 
-  function getDevice() {
+  function referrerUrl() {
 
-    const width = window.innerWidth;
-    const ua = navigator.userAgent.toLowerCase();
-    const platform = getPlatform().toLowerCase();
-    const coarse = isCoarsePointer();
-    const touch = (navigator.maxTouchPoints || 0) > 1;
-
-    // iPadOS 13+ sends a desktop Mac user-agent; touch points give it away.
-    if (platform.indexOf('mac') === 0 && touch) {
-      return 'tablet';
-    }
-
-    if (/iphone|ipod/.test(ua)) return 'mobile';
-    if (/android/.test(ua)) return /mobile/.test(ua) ? 'mobile' : 'tablet';
-    if (/ipad|tablet/.test(ua)) return 'tablet';
-
-    // Chromium client hints are the reliable signal where available.
-    try {
-      if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
-        if (navigator.userAgentData.mobile) return 'mobile';
-        if (coarse && width <= 1366) return 'tablet';
-        return 'desktop';
-      }
-
-    } catch (error) {
-      // fall through to pointer heuristics
-    }
-
-    // Coarse *primary* pointer, not maxTouchPoints: a Windows touch laptop
-    // still has a fine primary pointer and must stay a desktop.
-    if (coarse && width <= 640) return 'mobile';
-    if (coarse && width <= 1366) return 'tablet';
-
-    return 'desktop';
-  }
-
-
-  // ============================================
-  // Viewport category
-  // ============================================
-
-  function getViewport() {
-
-    const width = window.innerWidth;
-
-    if (width < 640) return 'xs';
-    if (width < 768) return 'sm';
-    if (width < 1024) return 'md';
-    if (width < 1280) return 'lg';
-    if (width < 1536) return 'xl';
-
-    return '2xl';
-  }
-
-
-  // ============================================
-  // Browser family only
-  // ============================================
-
-  function getBrowser() {
-
-    const ua = navigator.userAgent;
-
-    if (/Edg\//.test(ua)) return 'Edge';
-    if (/OPR|Opera/.test(ua)) return 'Opera';
-    if (/SamsungBrowser/.test(ua)) return 'Samsung';
-    if (/Firefox|FxiOS/.test(ua)) return 'Firefox';
-    if (/CriOS/.test(ua)) return 'Chrome';
-    if (/Chrome/.test(ua)) return 'Chrome';
-    if (/Safari/.test(ua)) return 'Safari';
-
-    return 'Other';
-  }
-
-
-  // ============================================
-  // Operating system (coarse)
-  // ============================================
-
-  function getOs() {
-
-    const ua = navigator.userAgent.toLowerCase();
-
-    if (/iphone|ipod/.test(ua)) return 'iOS';
-    if (/ipad/.test(ua)) return 'iOS';
-    if (/android/.test(ua)) return 'Android';
-    if (/windows|win32|win64/.test(ua)) return 'Windows';
-    if (/mac os x|macintosh/.test(ua)) return 'macOS';
-    if (/cros/.test(ua)) return 'ChromeOS';
-    if (/linux/.test(ua)) return 'Linux';
-
-    // User-agent without an OS token (some crawlers, reduced UAs).
-    // Fall back to the platform hint instead of returning 'Other'.
-    const platform = getPlatform().toLowerCase();
-
-    if (platform.indexOf('mac') === 0 && (navigator.maxTouchPoints || 0) > 1) return 'iOS';
-    if (platform.indexOf('win') === 0) return 'Windows';
-    if (platform.indexOf('mac') === 0) return 'macOS';
-    if (platform.indexOf('android') === 0) return 'Android';
-    if (platform.indexOf('ios') === 0) return 'iOS';
-    if (platform.indexOf('chrome os') === 0 || platform.indexOf('cros') === 0) return 'ChromeOS';
-    if (platform.indexOf('linux') === 0) return 'Linux';
-
-    return 'Other';
-  }
-
-
-  // ============================================
-  // Traffic source
-  // ============================================
-
-  function getTrafficSource() {
-
-    const ref = document.referrer;
-
-    if (!ref) return 'direct';
+    if (!document.referrer) return null;
 
     try {
-
-      const host = new URL(ref).hostname.toLowerCase();
-
-      if (/google\.|bing\.|duckduckgo\.|yahoo\.|startpage\.|ecosia\.|qwant\.|brave\.|search\./.test(host)) {
-        return 'search';
-      }
-
-      if (/(^|\.)(facebook\.|twitter\.|x\.|reddit\.|instagram\.|linkedin\.|youtube\.|discord\.|pinterest\.|t\.co|m\.me|whatsapp\.)/.test(host)) {
-        return 'social';
-      }
-
-      return 'referral';
+      return new URL(document.referrer);
 
     } catch (error) {
-      return 'referral';
+
+      // Referrer is not a parseable URL (rare). Treat it as opaque.
+      return null;
     }
   }
 
-
-  // ============================================
-  // Search engine, parsed from referrer host
-  // ============================================
-
-  function getEngine() {
-
-    const ref = document.referrer;
-
-    if (!ref) return '';
-
-    try {
-
-      const host = new URL(ref).hostname.toLowerCase();
-
-      if (/google\./.test(host)) return 'google';
-      if (/bing\./.test(host)) return 'bing';
-      if (/duckduckgo\./.test(host)) return 'duckduckgo';
-      if (/brave\./.test(host)) return 'brave';
-      if (/yahoo\./.test(host)) return 'yahoo';
-      if (/ecosia\./.test(host)) return 'ecosia';
-      if (/qwant\./.test(host)) return 'qwant';
-      if (/startpage\./.test(host)) return 'startpage';
-      if (/search\./.test(host)) return 'other';
-
-      return '';
-
-    } catch (error) {
-      return '';
-    }
-  }
-
-
-  // ============================================
-  // AI assistant / AI search source
-  // Parsed from the referrer host. Sent as
-  // `ai_source` (the collector's column name).
-  //
-  // Caveat: some AI tools send no referrer at all,
-  // so AI traffic will always be undercounted —
-  // treat this as a floor, not a total.
-  // ============================================
-
-  const AI_HOSTS = [
-    [/(^|\.)chatgpt\.com$|(^|\.)chat\.openai\.com$|(^|\.)openai\.com$/, 'chatgpt'],
-    [/(^|\.)perplexity\.ai$/, 'perplexity'],
-    [/^(gemini|bard)\.google\./, 'gemini'],
-    [/(^|\.)copilot\.microsoft\.com$/, 'copilot'],
-    [/(^|\.)grok\.com$|(^|\.)x\.ai$/, 'grok'],
-    [/(^|\.)claude\.ai$/, 'claude'],
-    [/(^|\.)deepseek\.com$/, 'deepseek'],
-    [/(^|\.)mistral\.ai$/, 'mistral'],
-    [/(^|\.)you\.com$/, 'you'],
-    [/(^|\.)phind\.com$/, 'phind'],
-    [/(^|\.)poe\.com$/, 'poe'],
-    [/(^|\.)meta\.ai$/, 'meta'],
-    [/(^|\.)pi\.ai$/, 'pi'],
-    [/(^|\.)lmarena\.ai$/, 'lmarena'],
-    [/(^|\.)t3\.chat$/, 't3chat'],
-    [/(^|\.)openrouter\.ai$/, 'openrouter'],
-    [/(^|\.)huggingface\.co$/, 'huggingface'],
-    [/(^|\.)duck\.ai$/, 'duckduckgo'],
-    [/(^|\.)qwen\.ai$|(^|\.)chat\.qwen\.ai$|(^|\.)tongyi\.aliyun\.com$/, 'qwen'],
-    [/(^|\.)kimi\.com$|(^|\.)kimi\.moonshot\.cn$|(^|\.)moonshot\.cn$/, 'kimi'],
-    [/(^|\.)doubao\.com$/, 'doubao'],
-    [/(^|\.)genspark\.ai$/, 'genspark'],
-    [/(^|\.)character\.ai$/, 'character'],
-    [/(^|\.)elicit\.com$/, 'elicit'],
-    [/(^|\.)consensus\.app$/, 'consensus']
-  ];
-
-  function getAiSource() {
-
-    const ref = document.referrer;
-
-    if (!ref) return '';
-
-    try {
-
-      const url = new URL(ref);
-      const host = url.hostname.toLowerCase().replace(/^www\./, '');
-
-      // Bing's Copilot lives on the search host, so require the /chat path.
-      if (host === 'bing.com') {
-        return url.pathname.indexOf('/chat') === 0 ? 'copilot' : '';
-      }
-
-      for (let i = 0; i < AI_HOSTS.length; i++) {
-        if (AI_HOSTS[i][0].test(host)) {
-          return AI_HOSTS[i][1];
-        }
-      }
-
-      return '';
-
-    } catch (error) {
-      return '';
-    }
-  }
-
-
-  // ============================================
-  // Referrer, stripped of query strings & hash
-  // ============================================
-
+  // Raw referrer: host + path only. Query strings and hashes are dropped
+  // so nothing like ?email=... can ever end up in the sheet.
   function getReferrer() {
 
     const ref = document.referrer;
 
     if (!ref) return 'direct';
 
-    try {
+    const url = referrerUrl();
 
-      const u = new URL(ref);
-
-      return u.hostname + u.pathname;
-
-    } catch (error) {
-      return ref.split('?')[0].split('#')[0];
+    if (url) {
+      return url.hostname.replace(/^www\./, '') + url.pathname;
     }
+
+    return ref.split('?')[0].split('#')[0];
   }
 
 
   // ============================================
-  // Event payload
+  // source + source_name
+  //
+  // Single ordered table; the first match wins, so an AI host that shares a
+  // domain with a search engine (gemini on google, copilot on bing, duck.ai
+  // on duckduckgo) must be listed before that search engine.
+  //
+  // Anything not matched is "referral" with an empty name — the raw
+  // referrer column still shows where it came from, so brand-new AI tools
+  // are discoverable instead of invisible.
   // ============================================
 
-  function send(eventName, eventValue, extra) {
+  const OPERATORS = [
 
-    const payload = {
+    // --- AI assistants ---
+    [/(^|\.)gemini\.google\./, 'ai', 'gemini'],
+    [/(^|\.)bard\.google\./, 'ai', 'gemini'],
+    [/(^|\.)chatgpt\.com$|(^|\.)chat\.openai\.com$|(^|\.)openai\.com$/, 'ai', 'chatgpt'],
+    [/(^|\.)perplexity\.ai$/, 'ai', 'perplexity'],
+    [/(^|\.)copilot\.microsoft\.com$/, 'ai', 'copilot'],
+    [/(^|\.)claude\.ai$/, 'ai', 'claude'],
+    [/(^|\.)grok\.com$|(^|\.)x\.ai$/, 'ai', 'grok'],
+    [/(^|\.)deepseek\.com$/, 'ai', 'deepseek'],
+    [/(^|\.)mistral\.ai$/, 'ai', 'mistral'],
+    [/(^|\.)you\.com$/, 'ai', 'you'],
+    [/(^|\.)phind\.com$/, 'ai', 'phind'],
+    [/(^|\.)poe\.com$/, 'ai', 'poe'],
+    [/(^|\.)meta\.ai$/, 'ai', 'meta'],
+    [/(^|\.)pi\.ai$/, 'ai', 'pi'],
+    [/(^|\.)lmarena\.ai$/, 'ai', 'lmarena'],
+    [/(^|\.)t3\.chat$/, 'ai', 't3chat'],
+    [/(^|\.)openrouter\.ai$/, 'ai', 'openrouter'],
+    [/(^|\.)huggingface\.co$/, 'ai', 'huggingface'],
+    [/(^|\.)duck\.ai$/, 'ai', 'duckduckgo'],
+    [/(^|\.)qwen\.ai$|(^|\.)chat\.qwen\.ai$|(^|\.)tongyi\.aliyun\.com$/, 'ai', 'qwen'],
+    [/(^|\.)kimi\.com$|(^|\.)kimi\.moonshot\.cn$|(^|\.)moonshot\.cn$/, 'ai', 'kimi'],
+    [/(^|\.)doubao\.com$/, 'ai', 'doubao'],
+    [/(^|\.)genspark\.ai$/, 'ai', 'genspark'],
+    [/(^|\.)character\.ai$/, 'ai', 'character'],
+    [/(^|\.)elicit\.com$/, 'ai', 'elicit'],
+    [/(^|\.)consensus\.app$/, 'ai', 'consensus'],
 
-      timestamp_utc:
-        new Date().toISOString(),
+    // --- search engines ---
+    [/(^|\.)google\./, 'search', 'google'],
+    [/(^|\.)bing\./, 'search', 'bing'],
+    [/(^|\.)duckduckgo\./, 'search', 'duckduckgo'],
+    [/(^|\.)ecosia\./, 'search', 'ecosia'],
+    [/(^|\.)yahoo\./, 'search', 'yahoo'],
+    [/(^|\.)startpage\./, 'search', 'startpage'],
+    [/(^|\.)qwant\./, 'search', 'qwant'],
+    [/(^|\.)brave\./, 'search', 'brave'],
+    [/(^|\.)yandex\./, 'search', 'yandex'],
+    [/(^|\.)mojeek\./, 'search', 'mojeek'],
+    [/(^|\.)baidu\./, 'search', 'baidu'],
 
-      page:
-        window.location.pathname,
+    // --- social ---
+    [/(^|\.)facebook\.com$|(^|\.)fb\.com$/, 'social', 'facebook'],
+    [/(^|\.)twitter\.com$|(^|\.)x\.com$|(^|\.)t\.co$/, 'social', 'x'],
+    [/(^|\.)reddit\.com$/, 'social', 'reddit'],
+    [/(^|\.)instagram\.com$/, 'social', 'instagram'],
+    [/(^|\.)linkedin\.com$|(^|\.)lnkd\.in$/, 'social', 'linkedin'],
+    [/(^|\.)youtube\.com$|(^|\.)youtu\.be$/, 'social', 'youtube'],
+    [/(^|\.)discord\./, 'social', 'discord'],
+    [/(^|\.)pinterest\./, 'social', 'pinterest'],
+    [/(^|\.)tiktok\.com$/, 'social', 'tiktok'],
+    [/(^|\.)telegram\./, 'social', 'telegram'],
+    [/(^|\.)whatsapp\.com$|(^|\.)wa\.me$/, 'social', 'whatsapp']
 
-      event:
-        eventName,
+  ];
 
-      event_value:
-        eventValue || '',
+  function getSource() {
 
-      referrer:
-        getReferrer(),
+    const url = referrerUrl();
 
-      traffic_source:
-        getTrafficSource(),
+    if (!document.referrer || !url) {
+      return { source: document.referrer ? 'referral' : 'direct', name: '' };
+    }
 
-      engine:
-        getEngine(),
+    const host = url.hostname.toLowerCase().replace(/^www\./, '');
 
-      ai_source:
-        getAiSource(),
+    // Copilot shares bing.com with Bing Search and only lives under /chat.
+    if (host === 'bing.com' && url.pathname.indexOf('/chat') === 0) {
+      return { source: 'ai', name: 'copilot' };
+    }
 
-      device:
-        getDevice(),
-
-      viewport:
-        getViewport(),
-
-      browser:
-        getBrowser(),
-
-      os:
-        getOs(),
-
-      agent:
-        getAgent(),
-
-      scroll_depth:
-        '',
-
-      site_key:
-        CONFIG.siteKey
-    };
-
-    if (extra) {
-      for (const key in extra) {
-        if (extra.hasOwnProperty(key)) {
-          payload[key] = extra[key];
-        }
+    for (let i = 0; i < OPERATORS.length; i++) {
+      if (OPERATORS[i][0].test(host)) {
+        return { source: OPERATORS[i][1], name: OPERATORS[i][2] };
       }
     }
+
+    return { source: 'referral', name: '' };
+  }
+
+
+  // ============================================
+  // Send one page view
+  // ============================================
+
+  function send() {
+
+    const origin = getSource();
+
+    const payload = {
+      page: window.location.pathname,
+      agent: getAgent(),
+      source: origin.source,
+      source_name: origin.name,
+      referrer: getReferrer(),
+      site_key: CONFIG.siteKey
+    };
+
+    // timestamp_utc and date are added by the collector, not sent from here,
+    // so the recorded time is the server's own clock.
 
     const body = JSON.stringify(payload);
 
     if (navigator.sendBeacon) {
 
-      navigator.sendBeacon(
-        CONFIG.endpoint,
-        body
-      );
+      navigator.sendBeacon(CONFIG.endpoint, body);
 
     } else {
 
-      fetch(
-        CONFIG.endpoint,
-        {
-          method: 'POST',
-          mode: 'no-cors',
-          keepalive: true,
-          body: body
-        }
-      )
-        .catch(function () {});
+      fetch(CONFIG.endpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        keepalive: true,
+        body: body
+      }).catch(function () {});
 
     }
   }
 
-
-  // ============================================
-  // Scroll depth (throttled, sent once on leave)
-  // ============================================
-
-  let maxScrollDepth = 0;
-  let scrollScheduled = false;
-  let scrollSent = false;
-
-  function readScrollDepth() {
-
-    scrollScheduled = false;
-
-    const doc = document.documentElement;
-    const total = doc.scrollHeight - doc.clientHeight;
-
-    if (total <= 0) return;
-
-    const depth = Math.round((window.scrollY / total) * 100);
-
-    if (depth > maxScrollDepth) {
-      maxScrollDepth = depth;
-    }
-  }
-
-  document.addEventListener(
-    'scroll',
-    function () {
-      if (scrollScheduled) return;
-      scrollScheduled = true;
-      setTimeout(readScrollDepth, 500);
-    },
-    { passive: true }
-  );
-
-  function sendScrollDepth() {
-
-    if (scrollSent) return;
-    scrollSent = true;
-
-    if (maxScrollDepth > 0) {
-      send('page_scroll', '', {
-        scroll_depth: String(maxScrollDepth)
-      });
-    }
-  }
-
-  document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'hidden') {
-      sendScrollDepth();
-    }
-  });
-
-  window.addEventListener('pagehide', sendScrollDepth);
-
-
-  // ============================================
-  // Send page_view (immediately, script is defer)
-  // ============================================
-
-  send('page_view');
-
+  send();
 
 })();

@@ -76,7 +76,7 @@ const legalSchema = graph([
             <ul class="text-xs space-y-2 text-slate-500">
               <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> Cookie-free web observer only</li>
               <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> Calculators run in your browser</li>
-              <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> A tab-only session ID (cleared when you close the tab)</li>
+              <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> No cookies, and no device storage (beyond an opt-out flag)</li>
               <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> Open and honest setup</li>
             </ul>
           </div>
@@ -93,18 +93,15 @@ const legalSchema = graph([
           </p>
           <div class="rounded-2xl border border-white/5 bg-black/40 p-6">
             <p class="font-mono text-xs text-slate-400 leading-loose break-words">
-              timestamp_utc · received_utc · date · time · page · event · event_value · referrer · traffic_source · engine · ai_source · device · viewport · browser · os · agent · scroll_depth
+              timestamp_utc · date · page · agent · source · source_name · referrer
             </p>
           </div>
           <p>In plain words, that means:</p>
           <ul class="list-disc pl-6 space-y-3">
             <li>Which page you looked at (<span class="font-mono text-slate-400">page</span>).</li>
-            <li>Which website or link brought you here — reduced to its address and page path, with any tracking parameters removed — plus a coarse label for how you arrived (<span class="font-mono text-slate-400">referrer</span>, <span class="font-mono text-slate-400">traffic_source</span>: direct, search, social, or referral), which search engine (<span class="font-mono text-slate-400">engine</span>), and which AI assistant (<span class="font-mono text-slate-400">ai_source</span>) when a link came from one.</li>
-            <li>What kind of device and screen you used — phone, tablet, or computer — plus browser family and a coarse operating system label (<span class="font-mono text-slate-400">device</span>, <span class="font-mono text-slate-400">viewport</span>, <span class="font-mono text-slate-400">browser</span>, <span class="font-mono text-slate-400">os</span>).</li>
+            <li>Which website or link brought you here — reduced to its address and page path, with any tracking parameters removed (<span class="font-mono text-slate-400">referrer</span>) — plus a coarse label for how you arrived (<span class="font-mono text-slate-400">source</span>: direct, search, social, or referral), and the operator's name when I recognise it (<span class="font-mono text-slate-400">source_name</span>, e.g. google, bing, chatgpt, perplexity).</li>
             <li>Whether the visit looks like a person or a bot — a plain label (<span class="font-mono text-slate-400">agent</span>: human, crawler, or automation) used only to keep crawlers out of the human numbers.</li>
-            <li>How far down the page you scrolled — recorded on a rolling basis as you read, empty on pages you don't scroll (<span class="font-mono text-slate-400">scroll_depth</span>).</li>
-            <li>Time stamps so I can see when people visit (<span class="font-mono text-slate-400">timestamp_utc</span>, <span class="font-mono text-slate-400">received_utc</span>, <span class="font-mono text-slate-400">date</span>, <span class="font-mono text-slate-400">time</span>).</li>
-            <li>What happened — normally a page view, or the scroll reading above (<span class="font-mono text-slate-400">event</span>, <span class="font-mono text-slate-400">event_value</span>).</li>
+            <li>Time stamps so I can see when people visit (<span class="font-mono text-slate-400">timestamp_utc</span>, <span class="font-mono text-slate-400">date</span>), stamped by the collector's own clock.</li>
           </ul>
           <p>
             There is no persistent visitor ID and no session ID: the observer stores nothing on your device, so it cannot tell one visit from another or recognise you on a return trip.
