@@ -7,11 +7,10 @@
     "ratioScale": "1:50",
     "measurementMethod": "eye level",
     "eyeLevelMm": "32.0mm",
-    "publisher": "Independent publisher",
     "genre": "Sci-fi Wargame",
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 60mm, 80mm, 100mm, 120mm",
-    "description": "The biggest sci-fi tabletop wargame out there — power-armoured soldiers, alien hordes, chaos cults, and dozens of other factions fighting it out in a far-future galaxy. Current kits sit squarely at 32mm heroic scale, while older classic models measure closer to 28mm true scale.",
-    "metaDescription": "The 32mm heroic sci-fi miniatures are the dominant tabletop baseline. Exact slicer percentages to scale STL proxies from 28mm to 32mm and beyond. FDM printing tips.",
+    "description": "A mass-battle sci-fi wargame with 32mm heroic-scale miniatures. Infantry sit at 32mm to eye level with deliberately exaggerated heroic proportions (heads, hands, and weapons enlarged for readability), while an earlier generation of releases in the same setting leaned closer to 28mm true scale.",
+    "metaDescription": "32mm heroic sci-fi miniatures with exaggerated proportions. Exact slicer percentages to scale STL proxies between 28mm true scale and 32mm heroic. FDM printing tips.",
     "scaleNotes": "This range uses heroic proportions — heads, hands, and weapons are intentionally oversized so details read at arm's length. A modern heroic soldier stands roughly 32mm to eye level, while a classic true-scale model measures about 28mm. Mixing the two on the same table is noticeable but acceptable for casual play.",
     "relatedConversions": [
       {
@@ -46,10 +45,9 @@
     "ratioScale": "1:50",
     "measurementMethod": "eye level",
     "eyeLevelMm": "32.0mm",
-    "publisher": "Independent publisher",
     "genre": "Fantasy Wargame",
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 60mm, 80mm, 100mm, 120mm",
-    "description": "This modern fantasy wargame replaced ranked infantry blocks with hero-focused skirmish and mass battle in a high-fantasy setting. The miniature scale matches the modern sci-fi standard — all current fantasy releases are 32mm heroic.",
+    "description": "A heroic-scale fantasy wargame at 32mm eye level. The range uses exaggerated heroic proportions and runs at the same 32mm heroic standard as the modern sci-fi tabletop baseline, making cross-system scale conversions straightforward.",
     "metaDescription": "Modern fantasy wargame miniatures are 32mm heroic scale. Get the exact slicer percentages to scale old 28mm fantasy STL proxies up to match. FDM tips.",
     "scaleNotes": "This range uses the same 32mm heroic scale as the modern sci-fi standard. Older classic fantasy miniatures were 28mm heroic and remain usable in current ranks, though they sit slightly shorter than modern sculpts.",
     "relatedConversions": [
@@ -85,10 +83,9 @@
     "ratioScale": "1:56",
     "measurementMethod": "eye level",
     "eyeLevelMm": "28.0mm",
-    "publisher": "Independent publisher",
     "genre": "Classic Fantasy Wargame",
     "baseSizes": "20mm, 25mm, 30mm, 40mm, 50mm",
-    "description": "A revival of the classic ranked fantasy style — regiment blocks, tile-based movement, and a hand-painted campaign map. It uses the legacy 28mm fantasy scale, making it compatible with decades of classic miniatures alongside new releases.",
+    "description": "A ranked fantasy mass-battle wargame with regiment-based movement. Miniatures are 28mm true scale (1:56) with restrained, realistic proportions. This is a classic 28mm fantasy baseline, compatible with many pre-2015 fantasy miniatures.",
     "metaDescription": "This classic ranked fantasy game uses the 28mm fantasy scale. Convert STL proxies between 28mm and the 32mm modern heroic standard with exact slicer percentages.",
     "scaleNotes": "The range deliberately returns to 28mm scale for its new plastic kits, matching the original classic fantasy range. This is smaller than the 32mm modern standard, so mixing the two ranges on the same table produces a visible size difference.",
     "relatedConversions": [
@@ -124,11 +121,10 @@
     "ratioScale": "1:56",
     "measurementMethod": "eye level",
     "eyeLevelMm": "28.0mm",
-    "publisher": "Independent publisher",
     "genre": "Fantasy Skirmish Wargame",
     "baseSizes": "20mm, 25mm, 40mm, 50mm, 60mm, 80mm",
-    "description": "A skirmish-focused wargame set in a beloved mythic fantasy world where individual heroes matter as much as armies. The range spans from 25mm (older metal sculpts from the early 2000s) to modern 28mm plastic kits.",
-    "metaDescription": "This fantasy skirmish line is 28mm scale for modern kits, older metals closer to 25mm. Exact slicer percentages for scaling mythic fantasy STL proxies to match.",
+    "description": "A fantasy skirmish wargame with 28mm true-scale miniatures. Individual figures sit around 28mm to eye level with realistic proportions. The line spans older 25mm sculpts through modern 28mm plastic kits, so scale creep is common.",
+    "metaDescription": "28mm fantasy skirmish miniatures with realistic proportions. Exact slicer percentages for scaling STL proxies to match a 28mm true-scale baseline.",
     "scaleNotes": "The range occupies a unique position — older metal miniatures from the original line measure closer to 25mm, while newer plastic releases are 28mm. Both are used in the same game, and the size difference is accepted as part of the range's history.",
     "relatedConversions": [
       {
@@ -163,12 +159,11 @@
     "ratioScale": "1:56",
     "measurementMethod": "eye level",
     "eyeLevelMm": "28.0mm",
-    "publisher": "Independent publisher",
     "genre": "Historical Wargame (WWII)",
     "baseSizes": "25mm, 40mm, 60mm, 80mm, 100mm",
-    "description": "One of the most widely played WWII tabletop wargames, covering platoon-level engagements from 1939-1945. Infantry are 28mm true scale (1:56), and vehicle kits from several manufacturers follow the same ratio, making 1:35 model kit vehicles usable after slight downsizing.",
-    "metaDescription": "WWII platoon wargaming is 28mm true scale (1:56). Exact slicer percentages for scaling WWII STL infantry and vehicles, including 1:35 model kit conversions.",
-    "scaleNotes": "This genre standard pairs 28mm true-scale infantry with 1:56 vehicles. A standard infantryman measures 28mm from foot to eye level with realistic human proportions and no heroic exaggeration. Vehicle scale is 1:56, which aligns naturally with 28mm miniatures. Many players run 1:48 model kits because modern plastic infantry have crept larger and the bulkier hulls look right alongside them.",
+    "description": "A WWII platoon-level wargame. Infantry are 28mm true scale (1:56); vehicles follow 1:56 ratio. Many 1:35 scale model kits can be downsized to 56% (1:56) for tabletop compatibility with 28mm infantry.",
+    "metaDescription": "WWII platoon miniatures at 28mm true scale (1:56). Exact slicer percentages for scaling WWII STL infantry and vehicles, including 1:35 model kit conversions.",
+    "scaleNotes": "28mm true-scale infantry pairs with 1:56 vehicles. A standard infantryman measures 28mm to eye level with realistic human proportions and no heroic exaggeration. Vehicle scale is 1:56, aligning naturally with 28mm miniatures.",
     "relatedConversions": [
       {
         "slug": "28mm-to-1-35",
@@ -202,10 +197,9 @@
     "ratioScale": "1:56",
     "measurementMethod": "eye level",
     "eyeLevelMm": "28.0mm",
-    "publisher": "Independent publisher",
     "genre": "Tabletop RPG",
     "baseSizes": "25mm, 32mm",
-    "description": "The original tabletop roleplaying game — players create characters and go on collaborative storytelling adventures. Miniatures are optional but widely used for combat encounters, with a Medium creature (human-sized) typically measuring 28mm to eye level on a 175cm baseline.",
+    "description": "Fantasy roleplaying game miniatures measured at 28mm to eye level for a Medium humanoid on the standard 175cm human baseline. Miniatures for this range cover everything from tiny creatures to gargantuan monsters, with the 28mm figure acting as the Medium reference point.",
     "metaDescription": "Fantasy RPG miniatures are 28mm scale for a Medium creature. Exact slicer percentages to scale STL monsters and heroes between 28mm and 32mm.",
     "scaleNotes": "Fantasy RPG miniatures span an enormous range — a Tiny rat might be 10mm while a Gargantuan ancient dragon can exceed 150mm. The baseline for a Medium humanoid is 28mm true scale. Retail miniature lines sit at 28mm, though many 3D printed alternatives are designed at 32mm for better detail.",
     "relatedConversions": [
@@ -241,12 +235,11 @@
     "ratioScale": "1:47",
     "measurementMethod": "eye level",
     "eyeLevelMm": "35.7mm",
-    "publisher": "Independent publisher",
     "genre": "Sci-fi Skirmish Wargame",
     "baseSizes": "27mm, 50mm",
-    "description": "A rank-and-file mass battle game set in a beloved space opera universe, covering the classic film era and beyond. Miniatures are measured at 35mm eye level (1:47 scale), making them noticeably larger than the 32mm standard but smaller than 40mm skirmish games.",
-    "metaDescription": "This 35mm eye-level game (1:47) is the space opera mass-battle standard. Exact slicer percentages to convert STL proxies to 32mm, 40mm, or classic 28mm.",
-    "scaleNotes": "The 35mm designation refers to eye-level measurement — an armoured trooper's eyes sit 35.7mm above the base. The full miniature (top of helmet) reaches about 40mm. This is 1:47 scale based on a 1678mm eye-height reference. Compatible model kits from major manufacturers sit near 1:48.",
+    "description": "A 35mm eye-level sci-fi mass-battle scale with a 1:47 ratio reference. Miniatures sit between 32mm heroic and 40mm skirmish in height — armoured troopers measure around 35-36mm to eye level with relatively restrained proportions.",
+    "metaDescription": "35mm eye-level sci-fi mass-battle miniatures (1:47 baseline). Exact slicer percentages to convert STL proxies between common tabletop scales.",
+    "scaleNotes": "The 35mm designation refers to eye-level measurement — an armoured trooper's eyes sit around 35.7mm above the base, with the full miniature topping out around 40mm. This 35mm baseline is a common outlier between 32mm heroic and 40mm skirmish scales.",
     "relatedConversions": [
       {
         "slug": "32mm-to-35mm",
@@ -270,7 +263,7 @@
       }
     ],
     "printingTips": "Smooth armour surfaces show layer lines easily, so print at 0.06mm layers or finer for armoured troopers. Walker vehicles print well on FDM at 0.1mm layers. Use the chain-link lock in your slicer to maintain proportions when scaling STLs from other systems.",
-    "popularWith": "Space opera fans, cinematic battle players, and hobbyists who enjoy painting iconic film characters."
+    "popularWith": "Cinematic battle players, painters, and hobbyists looking for a larger sci-fi mass-battle scale."
   },
   {
     "slug": "sci-fi-skirmish-40mm",
@@ -280,12 +273,11 @@
     "ratioScale": "1:43",
     "measurementMethod": "eye level",
     "eyeLevelMm": "40.0mm",
-    "publisher": "Independent publisher",
     "genre": "Sci-fi Skirmish Wargame",
     "baseSizes": "32mm, 40mm, 50mm",
-    "description": "A squad-based skirmish game where each player commands a small team of named figures from a well-known space opera. The 40mm scale was chosen specifically to capture high-resolution detail while providing large, smooth surfaces ideal for painters practicing blending techniques.",
-    "metaDescription": "The 40mm space opera skirmish scale — the largest standard in its franchise. Exact slicer percentages to scale 32mm or 35mm STL proxies up to match.",
-    "scaleNotes": "At 40mm, these miniatures are the largest standard scale in their franchise. The publisher chose this size to give painters expansive surfaces for blending and highlighting — a deliberate departure from the smaller 35mm and 32mm baselines. Key characters measure approximately 42.75mm total height.",
+    "description": "A 40mm eye-level sci-fi skirmish scale. Miniatures sit around 40mm to eye level — larger than 32mm and 35mm — trading play density for expanded surfaces and fine detail.",
+    "metaDescription": "40mm sci-fi skirmish miniatures. Exact slicer percentages to scale 32mm or 35mm STL proxies up.",
+    "scaleNotes": "At 40mm to eye level, these miniatures sit above 32mm and 35mm baselines. The extra size provides a larger canvas for detail; key characters typically measure around 42-43mm total height.",
     "relatedConversions": [
       {
         "slug": "35mm-to-40mm",
@@ -319,12 +311,11 @@
     "ratioScale": "1:48",
     "measurementMethod": "eye level",
     "eyeLevelMm": "35.0mm",
-    "publisher": "Independent publisher",
     "genre": "Superhero Skirmish Wargame",
     "baseSizes": "35mm, 40mm, 50mm",
-    "description": "A cinematic skirmish game pitting comic-book superheroes and villains against each other in tabletop battles. The game uses 35mm true scale with realistic proportions — no heroic exaggeration — making the miniatures notably larger and more detailed than standard 32mm equivalents.",
-    "metaDescription": "Superhero skirmish gaming uses 35mm true scale with realistic proportions. Exact slicer percentages for scaling superhero STL proxies to and from 35mm.",
-    "scaleNotes": "This range uses true-scale 35mm proportions, meaning characters look like realistic humans at that size rather than the exaggerated heroic proportions of the 32mm standard. Larger characters come on bigger bases but maintain consistent scale with standard characters.",
+    "description": "A superhero skirmish wargame at 35mm eye level with realistic (non-exaggerated) proportions. Miniatures sit at 35mm to eye level, noticeably larger than 32mm heroic but with a more realistic human body shape.",
+    "metaDescription": "Superhero skirmish miniatures at 35mm true scale with realistic proportions. Exact slicer percentages for scaling STL proxies to and from 35mm.",
+    "scaleNotes": "True-scale 35mm proportions give realistic human body shapes — no exaggerated bulk typical of 32mm heroic. Larger characters use bigger bases but maintain consistent scale.",
     "relatedConversions": [
       {
         "slug": "32mm-to-35mm",
@@ -348,7 +339,7 @@
       }
     ],
     "printingTips": "Dynamic superhero poses mean flowing capes and energy effects everywhere. Print at 0.2mm nozzle and 0.06mm layers for character models. The larger scale means fewer visible layer lines at standard settings compared to 28mm. Terrain pieces (cars, lampposts, rubble) print excellently on FDM at 0.1mm layers.",
-    "popularWith": "Comic-book fans, cinematic skirmish players, and painters who enjoy vibrant color schemes."
+    "popularWith": "Superhero skirmish players, painters, and collectors who enjoy vibrant color schemes."
   },
   {
     "slug": "gothic-pulp-skirmish-32mm",
@@ -358,10 +349,9 @@
     "ratioScale": "1:50",
     "measurementMethod": "eye level",
     "eyeLevelMm": "32.0mm",
-    "publisher": "Independent publisher",
     "genre": "Gothic Pulp Skirmish Wargame",
     "baseSizes": "30mm, 40mm, 50mm",
-    "description": "A card-driven skirmish game set in a gothic steampunk alternate Earth where magic and technology collide. Miniatures are 32mm heroic scale, molded in high-quality plastic with a distinctive artistic style that blends horror, western, and Victorian aesthetics.",
+    "description": "A gothic pulp skirmish game at 32mm heroic scale. Miniatures use exaggerated heroic proportions typical of the modern 32mm heroic tabletop standard, with a stylized sculpting approach.",
     "metaDescription": "This gothic skirmish line is 32mm heroic scale, compatible with the modern heroic standards. Exact slicer percentages for scaling STL proxies to and from 32mm.",
     "scaleNotes": "Miniatures here are 32mm heroic scale — compatible in size with the modern 32mm standard. The artistic style is more exaggerated than the mainstream heroic baseline, with larger heads and more expressive faces designed to convey character personality at tabletop distance.",
     "relatedConversions": [
@@ -397,12 +387,11 @@
     "ratioScale": "1:56",
     "measurementMethod": "eye level",
     "eyeLevelMm": "28.0mm",
-    "publisher": "Independent publisher",
     "genre": "Sci-fi Skirmish Wargame",
     "baseSizes": "25mm, 40mm, 55mm, 60mm",
-    "description": "A Japanese-anime-influenced sci-fi skirmish game set in a far-future human sphere. The publisher's metal miniatures are renowned for their dynamic poses and intricate detail, with slimmer proportions than heroic-scale games despite the 28mm designation.",
-    "metaDescription": "Anime-influenced sci-fi skirmish miniatures are 28mm with slim proportions. Exact slicer percentages to scale STL proxies up to match the range.",
-    "scaleNotes": "Models are nominally 28mm but measure closer to 29-30mm in practice due to scale creep across the range. The proportions are leaner and more realistic than heroic 28mm — heads and hands are smaller relative to body size. This gives the range a distinctly different visual feel from the heroic standard despite the overlapping scale numbers.",
+    "description": "An anime-influenced sci-fi skirmish wargame at 28mm eye level. Miniatures use slim, realistic proportions — narrower bodies, heads, and hands — rather than the exaggerated heroic proportions common at 28-32mm.",
+    "metaDescription": "28mm anime-influenced sci-fi skirmish miniatures with slim, realistic proportions. Exact slicer percentages to scale STL proxies to match.",
+    "scaleNotes": "Models are nominally 28mm with slim, realistic proportions. Heads and hands are smaller relative to body size than on exaggerated heroic sculpts. Practical measurements often sit around 29mm due to normal scale variation.",
     "relatedConversions": [
       {
         "slug": "28mm-to-32mm",
@@ -426,7 +415,7 @@
       }
     ],
     "printingTips": "Thin weapons, flowing hair, and delicate equipment — all challenging for FDM. Use a 0.2mm nozzle at 0.04-0.06mm layers for best results. Support placement is critical — attach supports to hidden areas like undersides and backs. Printed alternatives often need to be scaled up 5-10% to match the official metal minis.",
-    "popularWith": "Tactical skirmish players, anime aesthetic fans, and painters who enjoy non-metallic metal techniques on sci-fi armor."
+    "popularWith": "Tactical skirmish players, painters who favor slim-proportioned sci-fi, and fans of anime-influenced sculpts."
   },
   {
     "slug": "steampunk-fantasy-wargame-30mm",
@@ -436,12 +425,11 @@
     "ratioScale": "1:54",
     "measurementMethod": "eye level",
     "eyeLevelMm": "30.0mm",
-    "publisher": "Independent publisher",
     "genre": "Steampunk Fantasy Wargame",
     "baseSizes": "30mm, 40mm, 50mm",
-    "description": "Steam-powered war machines and magical beasts clashing in a fantasy world of industrial warfare. Originally labelled 28mm, the publisher shifted to calling the scale 30mm as the range evolved through scale creep.",
-    "metaDescription": "This steampunk fantasy line is 30mm scale, originally labelled 28mm. Exact slicer percentages for scaling STL proxies to match.",
-    "scaleNotes": "The range was originally marketed as 28mm but was reclassified to 30mm over time. The miniatures are compatible in size with 28mm heroic ranges — the difference is subtle enough that mixing on the same table is common in casual play.",
+    "description": "A steampunk fantasy wargame at 30mm eye level. Miniatures sit between 28mm and 32mm in height, with slightly fuller proportions than true 28mm but less exaggerated than 32mm heroic.",
+    "metaDescription": "30mm steampunk fantasy wargame miniatures. Exact slicer percentages for scaling STL proxies to match.",
+    "scaleNotes": "Miniatures sit at 30mm eye level, between 28mm true scale and 32mm heroic. The size difference is subtle enough that mixing with nearby baselines is common for casual play.",
     "relatedConversions": [
       {
         "slug": "28mm-to-32mm",
@@ -475,12 +463,11 @@
     "ratioScale": "1:56",
     "measurementMethod": "eye level",
     "eyeLevelMm": "28.0mm",
-    "publisher": "Independent publisher",
     "genre": "Fantasy/Sci-fi Skirmish Wargame",
     "baseSizes": "25mm, 40mm, 50mm",
-    "description": "A fantasy skirmish game about wizards exploring a frozen ruined city, with a sci-fi companion applying the same system to a far-future setting. Both are miniature-agnostic — you can use any 28mm fantasy or sci-fi miniatures, making them ideal for 3D printing custom warbands.",
+    "description": "A miniature-agnostic fantasy and sci-fi skirmish ruleset designed for 28mm miniatures. Designed to work equally well with 28mm or 32mm miniatures, making it ideal for 3D-printed custom warbands.",
     "metaDescription": "Miniature-agnostic skirmish games accept any 28mm or 32mm miniatures. Exact slicer percentages for scaling your STL warbands.",
-    "scaleNotes": "Official miniatures for the fantasy side are 28mm true scale. The game is explicitly miniature-agnostic, so any 28mm or 32mm miniatures work. The sci-fi companion leans toward 28mm sci-fi but accepts the same range. This flexibility makes both a natural fit for 3D printed collections.",
+    "scaleNotes": "The game is explicitly miniature-agnostic; any 28mm or 32mm miniatures work well. The recommended nominal baseline is 28mm true scale, though 32mm heroic is equally acceptable for 3D-printed collections.",
     "relatedConversions": [
       {
         "slug": "28mm-to-32mm",
@@ -514,12 +501,11 @@
     "ratioScale": "1:56",
     "measurementMethod": "eye level",
     "eyeLevelMm": "28.0mm",
-    "publisher": "Independent publisher",
     "genre": "Fantasy Mass Battle Wargame",
     "baseSizes": "20mm, 25mm, 50mm, 100mm, 120mm",
-    "description": "A rank-and-flank fantasy wargame designed as a streamlined alternative to classic ranked fantasy, with regiment-based play. The entire range is 28mm scale, and the game actively encourages using miniatures from any fantasy range.",
-    "metaDescription": "Ranked fantasy mass-battle games run at 28mm and accept any miniature range. Exact slicer percentages for scaling STL proxies to match regiments.",
-    "scaleNotes": "The standard is classic 28mm fantasy scale. The publisher's own miniatures are slightly smaller than the heroic 28mm baseline, but the difference is minimal on the table. The regiment-based movement system means individual miniature scale matters less than unit footprint.",
+    "description": "A ranked fantasy mass-battle wargame with regiment-based play at 28mm true scale (1:56). Miniature-agnostic by design — accepts 28mm and 32mm fantasy miniatures, with 28mm being the nominal baseline.",
+    "metaDescription": "Ranked fantasy mass-battle miniatures at 28mm true scale. Exact slicer percentages for scaling STL proxies to match regiments.",
+    "scaleNotes": "The nominal standard is classic 28mm fantasy scale with restrained proportions. The regiment-based movement system means individual miniature scale matters less than consistent unit footprint.",
     "relatedConversions": [
       {
         "slug": "28mm-to-32mm",
@@ -553,10 +539,9 @@
     "ratioScale": "1:285",
     "measurementMethod": "top of machine",
     "eyeLevelMm": "5.7mm",
-    "publisher": "Independent publisher",
     "genre": "Sci-fi Tactical Wargame",
     "baseSizes": "Hex-based (no traditional bases)",
-    "description": "A tactical wargame where players control giant robotic war machines called battle mechs. Miniatures are 6mm scale (approximately 1:285), with 'mechs ranging from 30mm to 55mm tall depending on weight class. The game uses hex-movement rather than measuring tapes.",
+    "description": "A tactical sci-fi wargame with 6mm scale (1:285) large walking war machines. Models range from around 30mm to 55mm tall depending on class, with a focus on combined-arms tabletop play.",
     "metaDescription": "Mech tactical wargaming sits at 6mm scale (1:285), roughly 30-55mm tall. Exact slicer percentages for scaling STL mechs to match the modern range.",
     "scaleNotes": "These war machines represent units 9-15 meters tall. At 1:285 scale, a 12-meter unit should be about 42mm tall, but actual miniatures vary widely — modern sculpts are closer to 1:265 (slightly larger than true 1:285). Older metal miniatures are smaller and closer to the original ratio. Scale consistency within the range matters more than mathematical accuracy.",
     "relatedConversions": [
@@ -582,12 +567,11 @@
     "ratioScale": "1:100",
     "measurementMethod": "eye level",
     "eyeLevelMm": "16.0mm",
-    "publisher": "Independent publisher",
     "genre": "Historical Wargame (WWII)",
     "baseSizes": "Small (40x40mm), Medium (60x40mm), Large (80x40mm), Artillery (varies)",
-    "description": "One of the most widely played 15mm WWII wargames, covering company-level engagements across all major theaters. Miniatures are 1:100 scale, allowing entire companies with supporting armor to fit on a standard gaming table. A companion Cold War-era variant extends the system to modern armor conflicts.",
-    "metaDescription": "The 15mm WWII company standard is 1:100 scale. Exact slicer percentages to scale WWII STL infantry and tanks, including conversions to 28mm or 1:35.",
-    "scaleNotes": "At 15mm (1:100), miniatures are small enough to field dozens of vehicles and hundreds of infantry on a single table. The scale is close to but not identical to 1:100 model kits — the company's miniatures are slightly larger than strict ratio scale to improve tabletop readability.",
+    "description": "A WWII company-level wargame at 15mm (1:100 scale). The small scale allows entire companies and supporting armor to fit on a standard table with a focus on combined-arms tactics.",
+    "metaDescription": "15mm (1:100) WWII company miniatures. Exact slicer percentages for scaling WWII STL infantry and tanks, including conversions to 28mm or 1:35.",
+    "scaleNotes": "At 15mm (1:100), miniatures allow large formations on a standard table. Slight variation from strict 1:100 is common to improve tabletop readability; consistency within the range is what matters most.",
     "relatedConversions": [
       {
         "slug": "1-100-to-1-35",
@@ -621,11 +605,10 @@
     "ratioScale": "1:160",
     "measurementMethod": "top of unit",
     "eyeLevelMm": "10.0mm",
-    "publisher": "Independent publisher",
     "genre": "Sci-fi Mass Battle Wargame",
     "baseSizes": "Acrylic bases (various)",
-    "description": "A 10mm sci-fi wargame depicting massive far-future battles with infantry, tanks, and dropships. The small scale allows entire companies with transport vehicles to be fielded in a single game, emphasizing combined-arms tactics over individual heroics.",
-    "metaDescription": "The 10mm (1:160) sci-fi mass-battle scale. Exact slicer percentages for scaling STL infantry, tanks, and dropships to match.",
+    "description": "A 10mm (1:160) sci-fi mass-battle wargame focused on combined arms. The small scale allows entire companies and vehicles to fit on a standard table, emphasizing formations over individual figures.",
+    "metaDescription": "10mm (1:160) sci-fi mass-battle miniatures. Exact slicer percentages for scaling STL infantry, tanks, and dropships to match.",
     "scaleNotes": "At 10mm, individual infantry miniatures are barely larger than a grain of rice. The game's visual impact comes from vehicle mass and formation density rather than individual detail. The range is consistent within itself, making cross-faction mixing straightforward.",
     "relatedConversions": [
       {
@@ -650,11 +633,10 @@
     "ratioScale": "1:200",
     "measurementMethod": "top of unit",
     "eyeLevelMm": "8.0mm",
-    "publisher": "Independent publisher",
     "genre": "Epic-Scale Sci-fi Wargame",
     "baseSizes": "Hex and movement-tray based",
-    "description": "This is the modern return to epic-scale sci-fi warfare, covering a galaxy-spanning civil war with hundreds of miniatures on a single table. At 8mm, individual soldiers are tiny but recognizable, and towering walkers loom over entire formations.",
-    "metaDescription": "Epic-scale sci-fi runs at 8mm. Exact slicer percentages for scaling STL soldiers and walkers to match the epic range.",
+    "description": "Epic-scale sci-fi wargame at 8mm. Hundreds of miniatures per side on a single table, with towering vehicles creating strong scale contrast against infantry formations.",
+    "metaDescription": "8mm epic-scale sci-fi miniatures. Exact slicer percentages for scaling STL soldiers and walkers to match 8mm scale.",
     "scaleNotes": "Epic-scale sci-fi uses 8mm scale, matching the classic epic Titan Warfare range it inherits. The scale is designed so that a walker miniature is roughly the same physical size as a 28mm infantry model, creating an intentionally dramatic size contrast on the table.",
     "relatedConversions": [
       {
@@ -679,12 +661,11 @@
     "ratioScale": "1:50",
     "measurementMethod": "eye level",
     "eyeLevelMm": "32.0mm",
-    "publisher": "Independent publisher",
     "genre": "Sci-fi Wargame (Miniature-Agnostic)",
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 60mm, 80mm, 100mm, 120mm",
-    "description": "A free, miniature-agnostic sci-fi wargame — a streamlined alternative to the modern 32mm standard that works with any 28-32mm miniatures. The rules fit on a single page, and the game explicitly encourages using 3D printed, proxy, or converted models.",
+    "description": "A free, miniature-agnostic sci-fi wargame designed for 28-32mm miniatures. 32mm heroic is the recommended baseline, but works well with 28mm true scale and mixed collections. Ideal for 3D-printed collections.",
     "metaDescription": "Miniature-agnostic sci-fi works with any 28-32mm miniatures — perfect for 3D printing. Exact slicer percentages for scaling your STL armies.",
-    "scaleNotes": "This rule set has no official miniature range — it is designed to work with whatever you own. The 32mm recommendation aligns with the modern heroic standard and the majority of 3D printed STL files. The flexibility makes it the most accessible entry point for players with custom-printed collections.",
+    "scaleNotes": "Miniature-agnostic by design — works with whatever miniatures you own. The 32mm heroic recommendation aligns with most 3D-printed STL files, but 28mm true scale is equally compatible.",
     "relatedConversions": [
       {
         "slug": "28mm-to-32mm",
@@ -718,12 +699,11 @@
     "ratioScale": "1:50",
     "measurementMethod": "eye level",
     "eyeLevelMm": "32.0mm",
-    "publisher": "Independent publisher",
     "genre": "Post-Apocalyptic Skirmish Wargame",
     "baseSizes": "32mm, 40mm, 50mm, 80mm",
-    "description": "A post-apocalyptic tabletop wargame that brings the ruined-wasteland video game setting to the tabletop with 32mm miniatures covering wasteland factions, raiders, and mutated creatures. The game supports both PvP and solo/cooperative play against AI-driven encounters.",
-    "metaDescription": "The post-apocalyptic skirmish standard is 32mm scale. Exact slicer percentages for scaling STL proxies for wasteland factions and crew.",
-    "scaleNotes": "All miniatures in this range are 32mm scale, matching the modern heroic standards. The line includes both pre-assembled plastic miniatures (starter sets) and multi-part resin kits for hobbyists. Creature models like giant mutated beasts are significantly larger but maintain consistent scale.",
+    "description": "A post-apocalyptic skirmish wargame at 32mm heroic scale. Miniatures use 32mm heroic proportions and cover a range of wasteland-themed figures from human scavengers through large mutated creatures.",
+    "metaDescription": "32mm heroic post-apocalyptic skirmish miniatures. Exact slicer percentages for scaling STL proxies for wasteland factions and crew.",
+    "scaleNotes": "All miniatures in this range are 32mm heroic scale. Creature models are scaled larger than humans but maintain the same 32mm heroic baseline and proportionality for consistency.",
     "relatedConversions": [
       {
         "slug": "28mm-to-32mm",
@@ -757,12 +737,11 @@
     "ratioScale": "1:56",
     "measurementMethod": "vehicle scale",
     "eyeLevelMm": "N/A",
-    "publisher": "Independent publisher",
     "genre": "Post-Apocalyptic Vehicular Combat",
     "baseSizes": "N/A (uses die-cast car bases)",
-    "description": "A post-apocalyptic vehicular combat game that uses modified die-cast toy cars as miniatures. At 1:56 scale, these toy cars are compatible with 28mm infantry, making it easy to add foot soldiers, terrain, and custom 3D printed accessories.",
+    "description": "A post-apocalyptic vehicular combat wargame at 1:56 scale. Uses die-cast cars at 1:56, fully compatible with 28mm infantry (1:56) miniatures for easy cross-compatibility with 3D-printed accessories.",
     "metaDescription": "Vehicular combat uses 1:56 die-cast cars, compatible with 28mm infantry. Exact slicer percentages for scaling 3D printed weapon mounts and accessories.",
-    "scaleNotes": "Vehicles are 1:56 scale die-cast cars — the same ratio as 28mm infantry. This natural compatibility means 3D printed weapon mounts, armor plates, and terrain pieces designed for 28mm work perfectly. The game uses template-based movement rather than measuring tape.",
+    "scaleNotes": "Vehicles are 1:56 scale die-cast cars — the same ratio as 28mm infantry (1:56). 3D-printed weapon mounts, armor plates, and terrain pieces designed for 28mm (1:56) are naturally compatible.",
     "relatedConversions": [
       {
         "slug": "1-56-to-28mm",
@@ -791,12 +770,11 @@
     "ratioScale": "1:50",
     "measurementMethod": "eye level",
     "eyeLevelMm": "32.0mm",
-    "publisher": "Independent publisher",
     "genre": "Sci-fi Skirmish",
     "baseSizes": "25mm, 28mm, 32mm, 40mm, 50mm",
-    "description": "A specialist-led sci-fi skirmish game set in the same far-future universe as the 32mm epic standard. Instead of massive army battles, you field a small squad of specialists — a sniper, a medic, a heavy weapons trooper — each with unique abilities. The game uses the same 32mm scale, so every model is fully usable in the bigger battles and vice versa.",
-    "metaDescription": "The 32mm heroic sci-fi skirmish game uses the same scale as the epic standard. Exact slicer percentages for scaling STL operatives to match your squad.",
-    "scaleNotes": "This skirmish game uses the same 32mm heroic scale as the epic sci-fi standard. Models are fully interchangeable between the two games at the same base size. The main difference is squad composition — this game emphasizes individual operatives with custom loadouts rather than massed infantry blocks.",
+    "description": "A sci-fi skirmish wargame at 32mm heroic scale. Squad-based play with small teams of specialists. The 32mm heroic baseline is fully interchangeable with 32mm heroic mass-battle miniatures.",
+    "metaDescription": "32mm heroic sci-fi skirmish miniatures. Exact slicer percentages for scaling STL operatives to match a 32mm heroic baseline.",
+    "scaleNotes": "Uses the same 32mm heroic scale as 32mm heroic mass-battle ranges. Models are fully interchangeable between skirmish and mass-battle play at the same base size.",
     "relatedConversions": [
       {
         "slug": "28mm-to-32mm",
@@ -830,12 +808,11 @@
     "ratioScale": "1:50",
     "measurementMethod": "eye level",
     "eyeLevelMm": "32.0mm",
-    "publisher": "Independent publisher",
     "genre": "Dystopian Skirmish",
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 65mm",
-    "description": "A gang warfare skirmish game set in the underhive of a grim sci-fi megacity, where rival gangs fight for territory, resources, and survival. Each gang has its own playstyle and aesthetic, and the industrial terrain is a major part of the experience. The game uses the same 32mm scale as the sci-fi epic standard.",
-    "metaDescription": "Gang warfare skirmish uses the 32mm heroic scale of the sci-fi standard. Exact slicer percentages for scaling STL gangers to match the underhive gangs.",
-    "scaleNotes": "This game uses the same 32mm heroic scale as the epic sci-fi standard. Gangers, hangers-on, and hired guns are all 32mm. The game features distinctive gang aesthetics — some gangs are massive hulking brutes, others lean and fast, others tech-heavy. Terrain (platforms, walkways, industrial machinery) is as important as the minis themselves.",
+    "description": "A dystopian sci-fi gang skirmish wargame at 32mm heroic scale. Terrain-heavy gameplay with vertical industrial boards. Miniatures use 32mm heroic proportions and share the same baseline as other 32mm heroic sci-fi ranges.",
+    "metaDescription": "32mm heroic dystopian sci-fi gang skirmish miniatures. Exact slicer percentages for scaling STL gangers to match a 32mm heroic baseline.",
+    "scaleNotes": "Uses the same 32mm heroic scale as 32mm heroic sci-fi ranges. Gangers and support models all use the 32mm heroic baseline; within a warband, size variation (brutes, leaders) is handled via base sizes and sculpting.",
     "relatedConversions": [
       {
         "slug": "28mm-to-32mm",
@@ -869,12 +846,11 @@
     "ratioScale": "1:50",
     "measurementMethod": "eye level",
     "eyeLevelMm": "32.0mm",
-    "publisher": "Independent publisher",
     "genre": "Fantasy Skirmish",
     "baseSizes": "25mm, 28mm, 32mm, 40mm, 50mm, 60mm",
-    "description": "A fast-paced fantasy skirmish game set in the shattered realms of a high-fantasy setting, where warbands with distinct visual identities clash in brutal, quick-resolving combat. Games are quick, lethal, and packed with cinematic moments. It uses the same 32mm scale as the modern fantasy standard.",
-    "metaDescription": "The 32mm heroic fantasy skirmish game uses the same scale as the modern fantasy standard. Exact slicer percentages for scaling STL warbands to match.",
-    "scaleNotes": "This skirmish game uses the same 32mm heroic scale as the modern fantasy standard. Models are fully interchangeable between the skirmish game and the big-battle game at the same base size. The warband-focused design means you need fewer models than a full army, making it an excellent entry point for 3D printing a complete collection.",
+    "description": "A high-fantasy skirmish wargame at 32mm heroic scale. Fast, warband-focused gameplay. Miniatures use 32mm heroic proportions and are fully compatible with the broader 32mm heroic fantasy baseline.",
+    "metaDescription": "32mm heroic fantasy skirmish miniatures. Exact slicer percentages for scaling STL warbands to match a 32mm heroic baseline.",
+    "scaleNotes": "Uses the same 32mm heroic scale as the modern 32mm heroic fantasy standard. Models are fully interchangeable between skirmish and mass-battle play at the same base size.",
     "relatedConversions": [
       {
         "slug": "28mm-to-32mm",
@@ -908,12 +884,11 @@
     "ratioScale": "1:27",
     "measurementMethod": "vehicle scale",
     "eyeLevelMm": "59.3mm",
-    "publisher": "Independent publisher",
     "genre": "Sci-fi Dogfight",
     "baseSizes": "Small (80mm), Medium (100mm), Large (140mm)",
-    "description": "A miniatures game of space combat where players pilot iconic starfighters and freighters in fast-paced dogfights. The game uses pre-painted plastic ships at 1:27 ratio scale, covering everything from tiny interceptors to enormous transports. There are no infantry-scale miniatures — every model is a vehicle or ship.",
-    "metaDescription": "Space dogfight games run at 1:27 ratio scale. Exact slicer percentages for scaling STL sci-fi ships to match the pre-painted miniatures.",
-    "scaleNotes": "The standard is 1:27 ratio scale, which works out to roughly 59.3mm eye-level and 64.8mm top-of-head for a human-sized reference. Ships vary dramatically in size — a fighter is small enough to hold in your palm, while a transport fills most of the table. Model kit manufacturers sell compatible kits at 1:48 scale, which are slightly smaller but work for casual play.",
+    "description": "A sci-fi spaceship dogfight wargame at 1:27 ratio scale. All models are vehicles/ships — from small interceptors to large transports. Focused on tabletop space combat at 1:27 vehicle scale.",
+    "metaDescription": "Sci-fi spaceship miniatures at 1:27 ratio scale. Exact slicer percentages for scaling STL sci-fi ships to match 1:27 vehicle scale.",
+    "scaleNotes": "The standard is 1:27 ratio scale. For a human-sized reference, eye-level sits around 59.3mm and top-of-head around 64.8mm. Ship sizes vary dramatically; 1:48 scale model kits are slightly smaller than 1:27 but often work for casual play.",
     "relatedConversions": [
       {
         "slug": "1-48-to-1-35",
@@ -927,7 +902,7 @@
       }
     ],
     "printingTips": "1:27 ships are large enough for FDM to handle detail well. Use 0.2mm nozzle at 0.08mm layers for cockpit glass, panel lines, and engine details. Large ships benefit from 0.4mm nozzle at 0.12mm layers for speed. The smooth hull surfaces of sci-fi ships show layer lines easily, so print at the finest layer height you have patience for. Orient engines and cockpits upward to keep support marks on hidden undersides.",
-    "popularWith": "Space combat enthusiasts who enjoy fast-resolving dogfights, model builders who enjoy painting iconic film ships, and fans of starfighter battles on the tabletop."
+    "popularWith": "Space combat enthusiasts, tabletop dogfight players, and model builders who enjoy painting spacecraft."
   },
   {
     "slug": "fantasy-mass-battle-35mm",
@@ -937,12 +912,11 @@
     "ratioScale": "1:48",
     "measurementMethod": "eye level",
     "eyeLevelMm": "35.0mm",
-    "publisher": "Independent publisher",
     "genre": "Fantasy Mass Battle",
     "baseSizes": "25mm, 32mm, 40mm, 50mm, 60mm, 80mm, 100mm, 120mm",
-    "description": "A mass-battle fantasy wargame with a unique alternating activation system that keeps both players engaged throughout the game. The setting features a dozen factions in a grim, low-fantasy world. The game uses 35mm scale, making it slightly larger than the 32mm standard and closer to 35mm mass-battle baselines.",
-    "metaDescription": "Fantasy mass battle at 35mm scale. Exact slicer percentages for scaling STL proxies — including down to 32mm at 91.4%.",
-    "scaleNotes": "This game uses 35mm scale, the same as the 35mm mass-battle standard. That is slightly larger than the 32mm heroic standard — the minis have more realistic proportions and stand noticeably taller next to 32mm models. If you are mixing with 32mm games, scale the 35mm models down to 91.4% to match.",
+    "description": "A fantasy mass-battle wargame at 35mm eye level. Miniatures sit at 35mm to eye level with relatively realistic proportions — slightly larger than 32mm heroic. Alternating-activation play with large-unit formations.",
+    "metaDescription": "35mm fantasy mass-battle miniatures. Exact slicer percentages for scaling STL proxies between 35mm and other tabletop scales.",
+    "scaleNotes": "Uses 35mm eye-level scale with realistic proportions — slightly larger than 32mm heroic. When mixing with 32mm heroic, scale 35mm models down to 91.4% to match visually.",
     "relatedConversions": [
       {
         "slug": "32mm-to-35mm",
@@ -966,6 +940,6 @@
       }
     ],
     "printingTips": "35mm infantry benefits from 0.2mm nozzle at 0.06mm layer height for characters and unit champions. Rank-and-file troops print well at 0.4mm nozzle and 0.08mm layers. Large monsters and cavalry are excellent FDM subjects at 0.1mm layers — the bigger scale means fewer visible layer lines at standard settings. The 35mm scale gives you more room for detail than 32mm, so faces and armour trim read clearly even at moderate layer heights.",
-    "popularWith": "Fantasy wargamers who enjoy mass-battle games with alternating activations, army builders who want a different aesthetic from the heroic standard, and painters who appreciate the extra canvas that 35mm provides over 32mm."
+    "popularWith": "Fantasy wargamers who enjoy mass-battle games with alternating activations, army builders, and painters who appreciate the extra canvas that 35mm provides."
   }
 ]

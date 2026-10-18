@@ -23,7 +23,7 @@
     "shortName": "32mm",
     "type": "gaming",
     "eyeLevelMm": 32,
-    "topOfHeadMm": 34.5,
+    "topOfHeadMm": 35,
     "ratioEquivalent": "1:50",
     "games": [
       "modern sci-fi epic wargame (32mm heroic)",
@@ -35,7 +35,7 @@
       "gang warfare skirmish game",
       "fantasy skirmish game"
     ],
-    "note": "The publisher shifted from 28mm to 32mm over a single range refresh for more facial detail and heroic proportions.",
+    "note": "Heroic 32mm scale offering more surface area for facial detail and larger sculpts than 28mm true scale.",
     "printNote": "32mm is forgiving on FDM; layer lines are less visible on larger surfaces.",
     "commonIssue": "Some third-party sculptors label 35mm models as '32mm heroic.' Check eye-level measurement, not total height."
   },
@@ -43,7 +43,7 @@
     "shortName": "35mm",
     "type": "gaming",
     "eyeLevelMm": 35,
-    "topOfHeadMm": 38,
+    "topOfHeadMm": 38.3,
     "ratioEquivalent": "1:48",
     "games": [
       "35mm sci-fi mass-battle game",
@@ -57,13 +57,12 @@
     "shortName": "40mm",
     "type": "gaming",
     "eyeLevelMm": 40,
-    "topOfHeadMm": 43,
+    "topOfHeadMm": 43.8,
     "ratioEquivalent": "1:43",
     "games": [
       "40mm sci-fi skirmish game",
-      "superhero skirmish game (35mm)",
-      "large-format skirmish (the publisher)",
-      "Display vignettes"
+      "display busts and dioramas",
+      "display vignettes"
     ],
     "note": "Used for centerpiece models, display dioramas, or games where individual heroes need to stand out.",
     "printNote": "FDM works well at 40mm for monsters and vehicles with a 0.4mm nozzle.",
@@ -91,11 +90,9 @@
     "topOfHeadMm": 50,
     "ratioEquivalent": "1:35",
     "games": [
-      "model kit manufacturer",
-      "model kit manufacturer",
-      "model kit manufacturer",
-      "Military dioramas",
-      "Armor modeling"
+      "military model kits",
+      "military dioramas",
+      "armor modeling"
     ],
     "note": "A true ratio scale, not a 'gaming scale.' Vehicles and armor dominate this scale.",
     "printNote": "1:35 vehicles print beautifully on FDM at 0.2mm layers with a 0.4mm nozzle.",
@@ -137,7 +134,6 @@
     "ratioEquivalent": "1:56",
     "games": [
       "WWII platoon wargame",
-      "WWII platoon wargame",
       "28mm wargaming vehicle companion"
     ],
     "note": "Often paired with 28mm infantry. Tanks and vehicles at 1:56 look correct next to 28mm miniatures.",
@@ -151,10 +147,8 @@
     "topOfHeadMm": 24.306,
     "ratioEquivalent": "1:72",
     "games": [
-      "model kit manufacturer",
-      "model kit manufacturer",
-      "model kit manufacturer",
-      "historical miniatures makers"
+      "1:72 scale military model kits",
+      "historical model kits"
     ],
     "note": "Popular for large army builds on a budget. Miniatures are roughly 20-22mm to the eyes.",
     "printNote": "1:72 miniatures are challenging on FDM due to rifle barrels and bayonets. A 0.2mm nozzle is recommended.",
@@ -183,10 +177,9 @@
     "ratioEquivalent": "~1:219",
     "games": [
       "epic-scale sci-fi wargame (8mm)",
-      "epic-scale sci-fi wargame (8mm)",
       "epic-scale civil-war setting"
     ],
-    "note": "the publisher's modern epic scale, successor to the classic epic-scale era. Focuses on Titans and massed infantry.",
+    "note": "Modern epic scale for Titans and massed infantry formations.",
     "printNote": "8mm infantry is small but manageable on FDM. Titans and large vehicles are excellent FDM subjects.",
     "commonIssue": "The epic-scale sci-fi wargames (8mm) use the same scale but different base sizes."
   },
@@ -213,7 +206,6 @@
     "ratioEquivalent": "~1:58",
     "games": [
       "steampunk fantasy wargame",
-      "fantasy skirmish game",
       "fantasy skirmish game"
     ],
     "note": "Between 28mm and 32mm. Stockier proportions than 28mm with exaggerated weapons and armor.",
@@ -230,7 +222,7 @@
       "15mm WWII company wargame",
       "modern-era company wargame",
       "epic-scale sci-fi wargame",
-      "DBA",
+      "ancient/medieval historical wargame",
       "epic-scale fantasy wargame"
     ],
     "note": "Popular for historical and epic-scale wargaming. Often used interchangeably with 1:100 ratio scale, though 15mm can refer to either eye-level or total height depending on manufacturer.",

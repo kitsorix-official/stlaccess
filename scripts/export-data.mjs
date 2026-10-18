@@ -65,7 +65,7 @@ write("conversion-matrix.csv", toCsv(matrix, matrixKeys));
 
 // --- FDM profiles (26) ---
 const profiles = JSON.parse(readFileSync(src("fdmProfiles.json"), "utf8"));
-const profileKeys = ["slug", "name", "shortName", "scale", "ratioScale", "measurementMethod", "eyeLevelMm", "publisher", "genre", "baseSizes", "description"];
+const profileKeys = ["slug", "name", "shortName", "scale", "ratioScale", "measurementMethod", "eyeLevelMm", "genre", "baseSizes", "description", "metaDescription", "scaleNotes", "printingTips", "popularWith"];
 write("fdm-profiles.json", JSON.stringify(profiles, null, 2) + "\n");
 write("fdm-profiles.csv", toCsv(profiles, profileKeys));
 

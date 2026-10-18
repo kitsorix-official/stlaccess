@@ -452,7 +452,7 @@
   {
     "slug": "1-72-to-1-35",
     "title": "1:72 to 1:35 Scale Conversion | 205.7% STL Scale Guide",
-    "description": "Scale 1:72 model kit manufacturer miniatures up to 1:35 model kit size. Type 205.7% into your slicer with locked XYZ axes.",
+    "description": "Scale 1:72 military model kit miniatures up to 1:35 model kit size. Type 205.7% into your slicer with locked XYZ axes.",
     "percentage": "205.7",
     "math": "50.0mm / 24.306mm",
     "sourceLabel": "1:72 Small Scale",
@@ -506,7 +506,7 @@
   {
     "slug": "1-72-to-35mm",
     "title": "1:72 to 35mm Scale Conversion | 144.0% STL Scale Guide",
-    "description": "Scale 1:72 model kit manufacturer minis up to 35mm sci-fi mass-battle scale. 144.0% in your slicer with locked axes.",
+    "description": "Scale 1:72 military model kit minis up to 35mm sci-fi mass-battle scale. 144.0% in your slicer with locked axes.",
     "percentage": "144.0",
     "math": "35.0mm / 24.306mm",
     "sourceLabel": "1:72 Small Scale",

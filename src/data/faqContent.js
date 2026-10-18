@@ -32,7 +32,7 @@ export const faqData = [
       },
       {
         q: "Does '32mm' mean model height or base diameter?",
-        a: `It usually means model height, but the publisher also uses 32mm as a <span class="text-[#ff6b35] font-semibold">base diameter</span> for newer models. Do not confuse the two. A 32mm base is a plastic disc. A 32mm model is the miniature standing on it. The STL scale converter handles height, not base size.`,
+        a: `It usually refers to model height. Some ranges also use 32mm as a base diameter for newer models, so don't confuse the two — a 32mm base is the plastic disc, while a 32mm model refers to miniature height. The STL scale converter handles height, not base size.`,
       },
       {
         q: "Can I use the same STL file for both 28mm and 32mm games?",

@@ -45,34 +45,34 @@ The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculate
 
 ## FDM printing profiles (26 total, from fdmProfiles.json)
 
-| System | Scale | Ratio | Measurement | Publisher | Genre |
-|--------|-------|-------|-------------|-----------|-------|
-| Sci-Fi Epic Wargame (Heroic 32mm) | 32mm | 1:50 | eye level | Independent publisher | Sci-fi Wargame |
-| Modern Fantasy Wargame (Heroic 32mm) | 32mm | 1:50 | eye level | Independent publisher | Fantasy Wargame |
-| Classic Ranked Fantasy (28mm) | 28mm | 1:56 | eye level | Independent publisher | Classic Fantasy Wargame |
-| Fantasy Skirmish (25–28mm) | 28mm | 1:56 | eye level | Independent publisher | Fantasy Skirmish |
-| WWII Platoon Wargame (28mm True Scale) | 28mm | 1:56 | eye level | Independent publisher | Historical WWII |
-| Classic Fantasy RPG (28mm) | 28mm | 1:56 | eye level | Independent publisher | Tabletop RPG |
-| Sci-Fi Mass Battle (35mm Eye Level) | 35mm | 1:47 | eye level | Independent publisher | Sci-fi Skirmish |
-| Sci-Fi Skirmish (40mm) | 40mm | 1:43 | eye level | Independent publisher | Sci-fi Skirmish |
-| Superhero Skirmish (35mm True Scale) | 35mm | 1:48 | eye level | Independent publisher | Superhero Skirmish |
-| Gothic Pulp Skirmish (32mm Heroic) | 32mm | 1:50 | eye level | Independent publisher | Gothic Pulp Skirmish |
-| Anime-Influenced Sci-Fi Skirmish (28mm) | 28mm | 1:56 | eye level | Independent publisher | Sci-fi Skirmish |
-| Steampunk Fantasy Wargame (30mm) | 30mm | 1:54 | eye level | Independent publisher | Steampunk Fantasy |
-| Miniature-Agnostic Skirmish (28mm) | 28mm | 1:56 | eye level | Independent publisher | Fantasy/Sci-fi Skirmish |
-| Ranked Fantasy Mass Battle (28mm) | 28mm | 1:56 | eye level | Independent publisher | Fantasy Mass Battle |
-| Mech Tactical Wargame (6mm / 1:285) | 6mm | 1:285 | top of machine | Independent publisher | Sci-fi Tactical |
-| WWII Company Wargame (15mm / 1:100) | 15mm | 1:100 | eye level | Independent publisher | Historical WWII |
-| Sci-Fi Mass Battle (10mm / 1:160) | 10mm | 1:160 | top of unit | Independent publisher | Sci-fi Mass Battle |
-| Epic-Scale Sci-Fi (8mm) | 8mm | 1:200 | top of unit | Independent publisher | Epic-scale Sci-fi |
-| Miniature-Agnostic Sci-Fi (32mm) | 32mm | 1:50 | eye level | Independent publisher | Sci-fi Wargame |
-| Post-Apocalyptic Skirmish (32mm) | 32mm | 1:50 | eye level | Independent publisher | Post-Apocalyptic Skirmish |
-| Vehicular Combat (1:56) | 1:56 | 1:56 | vehicle scale | Independent publisher | Vehicular Combat |
-| Sci-Fi Skirmish (32mm Heroic) | 32mm | 1:50 | eye level | Independent publisher | Sci-fi Skirmish |
-| Gang Warfare Skirmish (32mm Heroic) | 32mm | 1:50 | eye level | Independent publisher | Dystopian Skirmish |
-| Fantasy Skirmish (32mm Heroic) | 32mm | 1:50 | eye level | Independent publisher | Fantasy Skirmish |
-| Sci-Fi Dogfight (1:27) | 1:27 | 1:27 | vehicle scale | Independent publisher | Space Combat |
-| Fantasy Mass Battle (35mm) | 35mm | 1:48 | eye level | Independent publisher | Fantasy Mass Battle |
+| System | Scale | Ratio | Measurement | Genre |
+|--------|-------|-------|-------------|-------|
+| Sci-Fi Epic Wargame (Heroic 32mm) | 32mm | 1:50 | eye level | Sci-fi Wargame |
+| Modern Fantasy Wargame (Heroic 32mm) | 32mm | 1:50 | eye level | Fantasy Wargame |
+| Classic Ranked Fantasy (28mm) | 28mm | 1:56 | eye level | Classic Fantasy Wargame |
+| Fantasy Skirmish (25–28mm) | 28mm | 1:56 | eye level | Fantasy Skirmish |
+| WWII Platoon Wargame (28mm True Scale) | 28mm | 1:56 | eye level | Historical WWII |
+| Classic Fantasy RPG (28mm) | 28mm | 1:56 | eye level | Tabletop RPG |
+| Sci-Fi Mass Battle (35mm Eye Level) | 35mm | 1:47 | eye level | Sci-fi Skirmish |
+| Sci-Fi Skirmish (40mm) | 40mm | 1:43 | eye level | Sci-fi Skirmish |
+| Superhero Skirmish (35mm True Scale) | 35mm | 1:48 | eye level | Superhero Skirmish |
+| Gothic Pulp Skirmish (32mm Heroic) | 32mm | 1:50 | eye level | Gothic Pulp Skirmish |
+| Anime-Influenced Sci-Fi Skirmish (28mm) | 28mm | 1:56 | eye level | Sci-fi Skirmish |
+| Steampunk Fantasy Wargame (30mm) | 30mm | 1:54 | eye level | Steampunk Fantasy |
+| Miniature-Agnostic Skirmish (28mm) | 28mm | 1:56 | eye level | Fantasy/Sci-fi Skirmish |
+| Ranked Fantasy Mass Battle (28mm) | 28mm | 1:56 | eye level | Fantasy Mass Battle |
+| Mech Tactical Wargame (6mm / 1:285) | 6mm | 1:285 | top of machine | Sci-fi Tactical |
+| WWII Company Wargame (15mm / 1:100) | 15mm | 1:100 | eye level | Historical WWII |
+| Sci-Fi Mass Battle (10mm / 1:160) | 10mm | 1:160 | top of unit | Sci-fi Mass Battle |
+| Epic-Scale Sci-Fi (8mm) | 8mm | 1:200 | top of unit | Epic-scale Sci-fi |
+| Miniature-Agnostic Sci-Fi (32mm) | 32mm | 1:50 | eye level | Sci-fi Wargame |
+| Post-Apocalyptic Skirmish (32mm) | 32mm | 1:50 | eye level | Post-Apocalyptic Skirmish |
+| Vehicular Combat (1:56) | 1:56 | 1:56 | vehicle scale | Vehicular Combat |
+| Sci-Fi Skirmish (32mm Heroic) | 32mm | 1:50 | eye level | Sci-fi Skirmish |
+| Gang Warfare Skirmish (32mm Heroic) | 32mm | 1:50 | eye level | Dystopian Skirmish |
+| Fantasy Skirmish (32mm Heroic) | 32mm | 1:50 | eye level | Fantasy Skirmish |
+| Sci-Fi Dogfight (1:27) | 1:27 | 1:27 | vehicle scale | Space Combat |
+| Fantasy Mass Battle (35mm) | 35mm | 1:48 | eye level | Fantasy Mass Battle |
 
 ## Scale baselines (from scaleBaselines.json)
 
