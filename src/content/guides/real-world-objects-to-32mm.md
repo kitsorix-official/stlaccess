@@ -105,13 +105,13 @@ Everything in this guide is worked out at 32mm scale because that is the modern 
 
 Run the same 18-foot dragon through it and it comes out at 96mm instead of 110mm. And because 28mm eye level maps to roughly 1:56 top of head, everything in this guide converts to 28mm WWII platoon wargame vehicles and terrain without re-rolling the numbers.
 
-I built a dedicated [28mm scale guide](/guides/real-world-objects-to-28mm) with a full set of 28mm charts for humans, monsters, vehicles, and terrain — same formula, 28mm-specific numbers, and how to mix 28mm and 32mm armies on one table. For quick 32mm work, the "Converting Any Scale" table above has everything you need.
+I built a dedicated [28mm scale guide](/archive/guides/real-world-objects-to-28mm/) with a full set of 28mm charts for humans, monsters, vehicles, and terrain — same formula, 28mm-specific numbers, and how to mix 28mm and 32mm armies on one table. For quick 32mm work, the "Converting Any Scale" table above has everything you need.
 
 ## Why the 175cm Baseline Matters
 
 Gaming scales like 28mm and 32mm are measured to the eye (160cm on a 175cm human), not the top of the head. If your game system uses a different baseline — some older games measure against a 6-foot human — the monster will come out slightly different.
 
-STLACCESS uses the 175cm baseline for all conversions. You can read more about [why that number was chosen](/guides/175cm-baseline) and how it affects every percentage in the [reference library](/miniature-size-chart).
+STLACCESS uses the 175cm baseline for all conversions. You can read more about [why that number was chosen](/archive/guides/175cm-baseline/) and how it affects every percentage in the [reference library](/archive/miniature-size-chart/).
 
 ## Terrain and Buildings
 

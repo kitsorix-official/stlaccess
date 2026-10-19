@@ -15,13 +15,13 @@ const aboutSchema = graph([
   person(),
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "About & Methodology", path: "/about" },
+    { name: "About & Methodology", path: "/about/" },
   ]),
   webPage({
     type: "ProfilePage",
     name: "About STLACCESS — Built by a Miniature & 3D Printing Hobbyist",
     description: site.description,
-    url: "/about",
+    url: "/about/",
     mainEntity: PERSON_ID,
   }),
 ]);
@@ -161,7 +161,7 @@ const aboutSchema = graph([
       <h2 id="what-is-heading" class="text-3xl font-bold text-white font-heading mb-6">What STLACCESS is (and isn't)</h2>
       <div class="space-y-4 text-sm text-slate-400">
         <p>
-          <strong class="text-white">Built for the painting desk.</strong> I don't sell STL files, spools of filament, or printers. There are no paywalls or affiliate tricks. I built these calculators for my own workflow and published them so other tabletop printers can save time and filament.
+          <strong class="text-white">Built for the painting desk.</strong> I don't sell STL files, spools of filament, or printers. There are no paywalls. I built these calculators for my own workflow and published them so other tabletop printers can save time and filament.
         </p>
         <p>
           <strong class="text-white">Grounded in real printing experience.</strong> The numbers aren't just theoretical math. They are tested with physical test prints, measured with my PARKSIDE digital calipers (0.01mm precision), and adjusted when real-world results don't look tabletop-ready.
@@ -203,11 +203,11 @@ const aboutSchema = graph([
   <div class="mt-24 pt-12 border-t border-white/5 text-center">
     <h3 class="text-2xl font-bold font-heading mb-6">Get your scale right before you print</h3>
     <a
-      href="/"
+      href="/stl-scale-inspector/"
       class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:scale-105 hover:shadow-2xl hover:shadow-[#ff6b35]/30 active:scale-95 transition-all duration-200"
     >
-      <i class="ti ti-calculator"></i>
-      Launch the 3D print scale calculator
+      <i class="ti ti-ruler-measure"></i>
+      Open the STL Scale Inspector
     </a>
   </div>
 </div>

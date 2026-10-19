@@ -44,16 +44,7 @@ const singleSitemap = () => ({
         fs.copyFileSync(sitemap0Path, targetSitemapPath);
         console.log(`[single-sitemap] Successfully created single sitemap at: ${targetSitemapPath}`);
 
-        // @astrojs/sitemap strips the trailing slash from EVERY url when
-        // trailingSlash is 'never' -- including the homepage -- and it does so
-        // after serialize() runs, so it can't be corrected there. Re-add it so
-        // the sitemap matches the homepage's canonical (https://stlaccess.com/).
-        const siteUrl = 'https://stlaccess.com';
-        const sitemapXml = fs.readFileSync(targetSitemapPath, 'utf8');
-        fs.writeFileSync(
-          targetSitemapPath,
-          sitemapXml.replace(`<loc>${siteUrl}</loc>`, `<loc>${siteUrl}/</loc>`)
-        );
+        // With trailingSlash 'always', sitemap will include trailing slashes as expected.
 
         fs.unlinkSync(sitemap0Path);
         if (fs.existsSync(sitemapIndexPath)) {
@@ -88,10 +79,10 @@ const singleSitemap = () => ({
 // https://astro.build/config
 export default defineConfig({
   site: 'https://stlaccess.com/',
-  trailingSlash: 'never',
+  trailingSlash: 'always',
 
   build: {
-    format: 'file'
+    format: 'directory'
   },
 
   integrations: [
@@ -102,9 +93,6 @@ export default defineConfig({
         return new URL(page).pathname !== '/widget';
       },
       serialize(item) {
-        if (item.url !== 'https://stlaccess.com/' && item.url.endsWith('/')) {
-          item.url = item.url.slice(0, -1);
-        }
         if (lastmod) {
           item.lastmod = lastmod;
         }

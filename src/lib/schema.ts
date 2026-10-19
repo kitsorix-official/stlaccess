@@ -12,6 +12,7 @@ export function stripHtml(text: string): string {
   return text
     .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
+    .replace(/\s+([,.;:!?])/g, "$1")
     .trim();
 }
 
@@ -22,7 +23,7 @@ export function organization() {
     name: "STLACCESS",
     url: SITE_URL,
     description:
-      "STL scale converter for 3D printed miniatures. Exact slicer percentages for every tabletop scale, from 6mm epic to 32mm heroic and beyond — tested on a Bambu Lab A1 Mini.",
+      "Privacy-first STL utilities that run entirely in the browser: an STL viewer, scale and dimension inspector, converter, and printability checker. No uploads, no accounts, no cookies.",
     logo: LOGO_URL,
     image: IMAGE_URL,
     founder: { "@id": PERSON_ID },
@@ -47,7 +48,7 @@ export function webSite() {
     name: "STLACCESS",
     url: SITE_URL,
     description:
-      "STL scale converter for 3D printed miniatures. Exact slicer percentages for every tabletop scale, from 6mm epic to 32mm heroic and beyond — tested on a Bambu Lab A1 Mini.",
+      "Privacy-first STL utilities that run entirely in the browser: an STL viewer, scale and dimension inspector, converter, and printability checker. No uploads, no accounts, no cookies.",
     inLanguage: "en",
     publisher: { "@id": ORG_ID },
     potentialAction: [
@@ -55,7 +56,7 @@ export function webSite() {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: `${SITE_URL}/miniature-size-chart?q={search_term_string}`,
+          urlTemplate: `${SITE_URL}/archive/miniature-size-chart/?q={search_term_string}`,
         },
         "query-input": "required name=search_term_string",
       },

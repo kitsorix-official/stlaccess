@@ -2,7 +2,7 @@
   "name": "STLACCESS open datasets",
   "description": "Miniature scale baselines, conversion percentages, and FDM printing profiles published by STLACCESS under CC BY 4.0.",
   "license": "https://creativecommons.org/licenses/by/4.0/",
-  "homepage": "https://stlaccess.com/scale-standard",
+  "homepage": "https://stlaccess.com/archive/scale-standard/",
   "files": [
     {
       "path": "scale-baselines.json",

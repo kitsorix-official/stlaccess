@@ -65,7 +65,7 @@ FDM is vastly superior for a low-stress workflow. You plug it in, level the bed,
 
 ### If the Question Is Specifically Miniatures
 
-This page is about choosing a *process* for a *part*. If what you actually want to know is which technology prints a 28mm or 32mm miniature better — support scarring, whether the difference survives painting, when FDM is good enough and you should stop thinking about resin — that is a different question with a different answer. I compared both side by side and wrote it up separately in [FDM vs Resin 3D Printing for Miniatures: When to Switch](/guides/fdm-vs-resin-miniatures).
+This page is about choosing a *process* for a *part*. If what you actually want to know is which technology prints a 28mm or 32mm miniature better — support scarring, whether the difference survives painting, when FDM is good enough and you should stop thinking about resin — that is a different question with a different answer. I compared both side by side and wrote it up separately in [FDM vs Resin 3D Printing for Miniatures: When to Switch](/archive/guides/fdm-vs-resin-miniatures/).
 
 What is worth saying here is the process difference underneath it. Resin's supports are thin lattices cured by a light source, so they snap off with a light pull. FDM's supports are extruded plastic tubes that can fuse into the surface they touch. That gap is the single biggest practical difference between the two for hobbyists, and it is a materials property — not a settings problem you can slice away.
 

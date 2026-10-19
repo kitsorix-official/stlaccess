@@ -1,7 +1,7 @@
 {
   "name": "STLACCESS",
   "url": "https://stlaccess.com",
-  "description": "STL scale converter for 3D printed miniatures. Slicer percentages for modern sci-fi epic wargames, classic fantasy RPGs, WWII platoon wargames, and tabletop gaming — tested on my Bambu Lab A1 Mini.",
+  "description": "Privacy-first STL utilities that run entirely in your browser: view, scale-inspect, convert, and pre-check STL files. No uploads, no accounts, no cookies.",
   "baselineHeightCm": 175,
   "baselineHeight": "175cm",
   "eyeLevelCm": 160,
@@ -13,7 +13,7 @@
   "googleFormUrl": "https://forms.gle/njKi8KgCjUQEM1n96",
   "donations": {
     "btc": "bc1qnlrx0hn79ld08k0r90zl3fks29ztym9g866fcp",
-    "lightning": "your-name@your-lightning-wallet"
+    "lightning": ""
   },
   "datePublished": "2026-05-07",
   "lastContentReview": "2026-08-15",
@@ -30,7 +30,7 @@
   "author": {
     "name": "kitsorix",
     "url": "https://github.com/kitsorix-official",
-    "siteUrl": "https://stlaccess.com/about",
+    "siteUrl": "https://stlaccess.com/about/",
     "jobTitle": "3D Printing Hobbyist"
   },
   "referencePreviews": [
@@ -79,29 +79,28 @@
   ],
   "homepageFaq": [
     {
-      "question": "What scale is <span class=\"text-[#ff6b35]\">modern sci-fi epic wargame</span> miniatures?",
-      "answer": "Most people in the hobby treat modern sci-fi epic wargame miniatures as <span class=\"text-white font-semibold\">32mm heroic scale</span>, measured from eye level at roughly 160cm. To convert from true 28mm, scale your STL to <span class=\"text-[#ff6b35] font-bold text-lg\">114.3%</span> in your slicer. Your mileage may vary depending on the sculpt."
+      "question": "Do I need to <span class=\"text-[#ff6b35]\">upload my STL file</span> to use these tools?",
+      "answer": "No. Every STLACCESS tool runs entirely in your browser. Your file is read locally with JavaScript — it is never sent to a server, never stored, and never seen by me. You can verify it yourself: open your browser's network tab while you use a tool and watch it stay empty."
     },
     {
-      "question": "How do I convert <span class=\"text-[#ff6b35]\">28mm to 32mm</span> for classic fantasy RPG?",
-      "answer": "Multiply your 28mm STL file by <span class=\"text-[#ff6b35] font-bold text-lg\">114.3%</span> to get what most players call heroic 32mm scale. This accounts for the <span class=\"text-white font-semibold\">175cm human baseline</span> and <a href=\"/about\" class=\"text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors\">eye-level measurement</a> I use on STLACCESS. If your group uses something different, adjust accordingly."
+      "question": "Which <span class=\"text-[#ff6b35]\">STL formats</span> are supported?",
+      "answer": "The STL Viewer and Printability Checker handle both <span class=\"text-white font-semibold\">binary and ASCII STL</span>, the two encodings of the STL format. The STL Converter adds OBJ and PLY to that list. No installation is needed for any of them — a modern browser is enough."
     },
     {
-      "question": "Does <span class=\"text-[#ff6b35]\">material shrinkage</span> affect FDM miniatures?",
-      "answer": "PLA and PETG shrink about <span class=\"text-white font-semibold\">0.2-0.5%</span> during cooling. This is small enough that I do not add compensation. If you want maximum accuracy, print a test piece first and measure with a digital caliper — I use a PARKSIDE with 0.01mm resolution, costs under 15 euro and does the job perfectly."
+      "question": "Does the <span class=\"text-[#ff6b35]\">STL viewer</span> work offline?",
+      "answer": "Yes, after the first page load. Because nothing is uploaded, all rendering happens on your own hardware. Once the page and its scripts are cached, you can disconnect from the internet and keep viewing and analyzing files. There is nothing to install and no account to create."
     },
     {
-      "question": "What is the difference between <span class=\"text-[#ff6b35]\">28mm and 32mm</span> miniatures?",
-      "answer": "<span class=\"text-white font-semibold\">28mm true scale</span> measures a 175cm human from eye level. <span class=\"text-white font-semibold\">32mm heroic scale</span> uses the same baseline but adds exaggerated proportions for detail and durability. A 32mm miniature ends up roughly <span class=\"text-[#ff6b35] font-bold\">14% taller</span> than its 28mm equivalent.",
-      "answerExtra": "The flagship modern sci-fi epic wargame uses 32mm heroic scale. A lot of fantasy RPG miniatures are closer to 28mm true scale, though it varies by manufacturer."
+      "question": "Is an STL file always in <span class=\"text-[#ff6b35]\">millimetres</span>?",
+      "answer": "STL files carry no unit information at all — they are just numbers. Most slicers assume millimetres, but some exporters write inches. A file exported in inches imports <span class=\"text-white font-semibold\">25.4× too small</span> in a metric slicer. Checking the real dimensions before slicing is exactly what the Scale Inspector is for."
     },
     {
-      "question": "How do I scale an <span class=\"text-[#ff6b35]\">STL file</span> in my slicer?",
-      "answer": "Import the STL into your slicer (<span class=\"text-white\">Chitubox</span>, <span class=\"text-white\">Lychee</span>, <span class=\"text-white\">PrusaSlicer</span>, or <span class=\"text-white\">Cura</span>). Select the model, open the scale tool, and enter the percentage from the STL scale calculator. Lock the <span class=\"text-[#ff6b35] font-semibold\">X, Y, and Z</span> axes to uniform scaling. Apply the change and slice as normal."
+      "question": "How do I check if my STL is <span class=\"text-[#ff6b35]\">watertight</span>?",
+      "answer": "Use the <a href=\"/stl-printability-checker/\" class=\"text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors\">STL Printability Checker</a>. It flags open edges and non-manifold geometry — the two defects that make a slicer produce gaps or missing walls — in seconds, without uploading the file. Catching it before slicing saves a failed print, not just a re-slice."
     },
     {
-      "question": "What does <span class=\"text-[#ff6b35]\">1:56 scale</span> mean in miniature gaming?",
-      "answer": "1:56 is a ratio scale common in historical wargaming, including <span class=\"text-white font-semibold\">WWII platoon wargame</span>. It works out to roughly 28mm true scale when you use a 175cm human baseline. To convert 1:56 STLs to 32mm heroic, most people scale them to <span class=\"text-[#ff6b35] font-bold text-lg\">114.3%</span>."
+      "question": "Are these tools <span class=\"text-[#ff6b35]\">free</span>, and do you track me?",
+      "answer": "All four tools are free with no account, no paywall, and no analytics on your files. The site is built and maintained by one person who has been 3D printing since 2017. If a tool saves you a failed print, <a href=\"/support/\" class=\"text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors\">supporting the site</a> is optional and appreciated."
     }
   ],
   "quickRef": [
@@ -123,7 +122,7 @@
     },
     {
       "question": "What is the difference between 28mm and 32mm scale?",
-      "answer": "28mm is the classic tabletop standard — measured to eye level on a 175cm human with realistic proportions. 32mm heroic scale uses the same baseline but exaggerates heads, hands, and weapons so details read at arm's length. The height difference is only 14.3%, but the added bulk makes them feel a lot bigger on the table. <a href=\"/miniature-size-chart#28mm-to-32mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">Full conversion guide</a>"
+      "answer": "28mm is the classic tabletop standard — measured to eye level on a 175cm human with realistic proportions. 32mm heroic scale uses the same baseline but exaggerates heads, hands, and weapons so details read at arm's length. The height difference is only 14.3%, but the added bulk makes them feel a lot bigger on the table. <a href=\"/archive/miniature-size-chart/#28mm-to-32mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">Full conversion guide</a>"
     },
     {
       "question": "What scale is 1:35 in mm for miniatures?",
@@ -135,7 +134,7 @@
     },
     {
       "question": "Why do 1:48 tanks look better with 28mm infantry than 1:56?",
-      "answer": "Here is the thing — most modern 28mm plastics from the major wargaming publishers and similar manufacturers actually measure closer to 30-32mm. A true 1:56 tank looks undersized next to them. 1:48 model kits match the heroic proportions better, and they are often cheaper than official wargaming vehicles. I use 1:48 for my WWII platoon wargame motor pool and nobody has complained at tournaments. Use my <a href=\"/miniature-size-chart#1-48-to-28mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">1:48 to 28mm guide</a> and see how it looks on your table."
+      "answer": "Here is the thing — most modern 28mm plastics from the major wargaming publishers and similar manufacturers actually measure closer to 30-32mm. A true 1:56 tank looks undersized next to them. 1:48 model kits match the heroic proportions better, and they are often cheaper than official wargaming vehicles. I use 1:48 for my WWII platoon wargame motor pool and nobody has complained at tournaments. Use my <a href=\"/archive/miniature-size-chart/#1-48-to-28mm\" class=\"text-[#ff6b35] hover:text-white transition-colors font-semibold\">1:48 to 28mm guide</a> and see how it looks on your table."
     },
     {
       "question": "What does \"Eye Level\" vs \"Top of Head\" mean in miniature scale?",

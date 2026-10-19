@@ -1,6 +1,6 @@
 // scripts/export-data.mjs
 // Exports the canonical structured data as open, versioned files in public/data/
-// (served at https://stlaccess.com/data/*).
+// (served at https://stlaccess.com/data/*/).
 //
 // Running `npm run export:data` regenerates these from src/data/*.json. The files
 // are the machine-readable source of truth that llms.txt, the Scale Standard page,
@@ -82,7 +82,7 @@ write(
       description:
         "Miniature scale baselines, conversion percentages, and FDM printing profiles published by STLACCESS under CC BY 4.0.",
       license: "https://creativecommons.org/licenses/by/4.0/",
-      homepage: "https://stlaccess.com/scale-standard",
+      homepage: "https://stlaccess.com/archive/scale-standard/",
       files: [
         { path: "scale-baselines.json", format: "application/json", description: "16 scale baselines (eye level / top of head mm, ratio equivalent)" },
         { path: "scale-baselines.csv", format: "text/csv", description: "Same as above, CSV" },

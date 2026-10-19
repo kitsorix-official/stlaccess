@@ -42,7 +42,7 @@ Mechanical stability is everything when you are pushing tall, hollow structures 
 
 ### Which Printer to Buy Is a Separate Question
 
-This page is about *how to print* once you own a machine — layer heights, nozzles, infill, and the settings differences between miniatures and terrain. If you have not bought yet and want specific models with current prices, build volumes, and an honest note on where each one is fiddly, I wrote that up separately: [Best Budget 3D Printers for Tabletop Wargaming](/guides/best-budget-3d-printers-wargaming).
+This page is about *how to print* once you own a machine — layer heights, nozzles, infill, and the settings differences between miniatures and terrain. If you have not bought yet and want specific models with current prices, build volumes, and an honest note on where each one is fiddly, I wrote that up separately: [Best Budget 3D Printers for Tabletop Wargaming](/archive/guides/best-budget-3d-printers-wargaming/).
 
 The short version of what that page concludes: you almost certainly do not need a flagship machine to print terrain and vehicles. A budget CoreXY or a reliable bed-slinger handles the bulk work. Spend money on a fine nozzle only if you intend to print characters.
 

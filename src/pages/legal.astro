@@ -9,7 +9,7 @@ const { baselineHeight, shrinkageRange } = site;
 const legalSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Legal", path: "/legal" },
+    { name: "Legal", path: "/legal/" },
   ]),
 ]);
 ---
@@ -29,7 +29,7 @@ const legalSchema = graph([
     <!-- Header -->
     <div class="max-w-4xl mx-auto px-6 mb-16">
       <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">Legal <span class="text-[#ff6b35]">Stuff</span></h1>
-      <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">The plain-English rules for STLACCESS. No lawyer-speak — if I can't explain it simply, I haven't explained it well enough. Read this page and the <a href="/terms" class="text-[#ff6b35] hover:text-white transition-colors">Terms</a> and <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> together, and you know everything.</p>
+      <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">The plain-English rules for STLACCESS. No lawyer-speak — if I can't explain it simply, I haven't explained it well enough. Read this page and the <a href="/terms/" class="text-[#ff6b35] hover:text-white transition-colors">Terms</a> and <a href="/privacy/" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> together, and you know everything.</p>
     </div>
 </div>
 
@@ -45,7 +45,6 @@ const legalSchema = graph([
           <ul class="list-disc pl-6 space-y-3">
             <li>The tools are free, run in your browser, and don't collect personal information.</li>
             <li>A tiny anonymous counter counts visits. It stores non-personal details in a Google Sheet. That's the only "tracking" on the whole site.</li>
-            <li>Some pages show static third-party ad iframes. They use no cookies or tracking — see the <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> for details.</li>
             <li>The percentages are tested on my own printer — but your results can vary by slicer, printer, and calibration.</li>
             <li>Game names like Warhammer or D&D are used for reference only. I don't own them.</li>
             <li>There are no accounts, no age checks, no selling, and no hosting of STL files.</li>
@@ -110,7 +109,7 @@ const legalSchema = graph([
             Like Cloudflare, the Google servers that run the collector briefly see standard network data — such as your IP address — purely to deliver the request to their cloud; none of it is stored in the sheet.
           </p>
           <p>
-            None of these can be used to find out who you are, and I never sell or share any of this with anyone. I use it for one thing: to know which pages people actually find useful so I can spend my hobby time on the right ones. You can switch the observer off for your browser permanently by visiting any page with <span class="font-mono text-slate-400">?admin=1</span> appended to the address. The <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> explains this in more detail.
+            None of these can be used to find out who you are, and I never sell or share any of this with anyone. I use it for one thing: to know which pages people actually find useful so I can spend my hobby time on the right ones. You can switch the observer off for your browser permanently by visiting any page with <span class="font-mono text-slate-400">?admin=1</span> appended to the address. The <a href="/privacy/" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> explains this in more detail.
           </p>
         </div>
 
@@ -137,7 +136,7 @@ const legalSchema = graph([
         <div class="space-y-6">
           <h2 class="text-2xl font-bold text-white font-heading">If You Message Me</h2>
           <p>
-            The <a href="/contact" class="text-[#ff6b35] hover:text-white transition-colors">Contact page</a> has a "Send me a message" button. When you click it, you <strong class="text-white">leave this site</strong> and are taken to a Google Form I set up for replies. That form asks for your <strong class="text-white">name, your email address, and the content of your message</strong> — so I know who wrote it and can write back to you.
+            The <a href="/contact/" class="text-[#ff6b35] hover:text-white transition-colors">Contact page</a> has a "Send me a message" button. When you click it, you <strong class="text-white">leave this site</strong> and are taken to a Google Form I set up for replies. That form asks for your <strong class="text-white">name, your email address, and the content of your message</strong> — so I know who wrote it and can write back to you.
           </p>
           <p>
             Your response is stored on my <strong class="text-white">Google Drive</strong> (protected by two-factor authentication), where Google Forms keeps it. I hold onto it <strong class="text-white">only for the duration of our conversation</strong> — while we're working through your question or issue. As soon as the matter is resolved and we're both satisfied, I delete your message, your name, and your email address.

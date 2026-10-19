@@ -14,18 +14,18 @@ const bothReady = btcReady && lightningReady;
 const supportSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Support", path: "/support" },
+    { name: "Support", path: "/support/" },
   ]),
   webPage({
     name: "Support | Keep the STLACCESS Scale Tools Free | STLACCESS",
-    description: "STLACCESS has no ads, no accounts, and no paywall. If the calculators saved you a failed print, tip in Bitcoin or Lightning — wallet to wallet, no signup, no tracking.",
-    url: "/support",
+    description: "STLACCESS is donation-funded, with no accounts and no paywall. If the tools saved you a failed print, tip in Bitcoin — wallet to wallet, no signup, no account.",
+    url: "/support/",
   }),
 ]);
 ---
 <Layout
   title="Support | Keep the STLACCESS Scale Tools Free | STLACCESS"
-  description="STLACCESS has no ads, no accounts, and no paywall. If the calculators saved you a failed print, tip in Bitcoin or Lightning — wallet to wallet, no signup, no tracking."
+  description="STLACCESS is donation-funded, with no accounts and no paywall. If the tools saved you a failed print, tip in Bitcoin — wallet to wallet, no signup, no account."
 >
 <JsonLd slot="head" data={supportSchema} />
 <div slot="hero">
@@ -42,7 +42,7 @@ const supportSchema = graph([
       Keep the tools <span class="text-[#ff6b35]">free</span>
     </h1>
     <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-      No ads, no accounts, no paywall — the calculators stay open for everyone whether you pay anything or not. If a conversion saved you a wasted print, a tip covers the filament I burn verifying these percentages. Entirely optional.
+      Donation-funded, no accounts, no paywall — the tools stay open for everyone whether you pay anything or not. If a tool saved you a wasted print, a tip covers the filament and hosting that keep it running. Entirely optional.
     </p>
   </div>
 </div>
@@ -188,7 +188,7 @@ const supportSchema = graph([
         </div>
       </div>
       <p class="text-xs text-slate-400 leading-relaxed">
-        A tip is a tip: no tiers, no members-only content, no future obligations from me, and no refund path on-chain. I can't attribute a payment to you unless you tell me yourself — and I don't need you to. What I do with the site regardless of donations is written down in the <a href="/terms" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Terms</a> and <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Privacy Policy</a>.
+        A tip is a tip: no tiers, no members-only content, no future obligations from me, and no refund path on-chain. I can't attribute a payment to you unless you tell me yourself — and I don't need you to. What I do with the site regardless of donations is written down in the <a href="/terms/" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Terms</a> and <a href="/privacy/" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Privacy Policy</a>.
       </p>
     </div>
     <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6">
@@ -202,8 +202,8 @@ const supportSchema = graph([
         </div>
       </div>
       <ul class="list-disc pl-5 space-y-2 text-xs text-slate-400 leading-relaxed">
-        <li><a href="/embed" class="text-[#ff6b35] hover:text-white transition-colors">Embed the converter</a> on your blog or wiki — it links back to me and stays free to use.</li>
-        <li>Found a wrong percentage? <a href="/contact" class="text-[#ff6b35] hover:text-white transition-colors">Send a correction</a> — fixes come from the community.</li>
+        <li><a href="/embed/" class="text-[#ff6b35] hover:text-white transition-colors">Embed the converter</a> on your blog or wiki — it links back to me and stays free to use.</li>
+        <li>Found a wrong percentage? <a href="/contact/" class="text-[#ff6b35] hover:text-white transition-colors">Send a correction</a> — fixes come from the community.</li>
         <li>Tell one person whose proxies keep coming out the wrong size.</li>
       </ul>
     </div>

@@ -1,19 +1,33 @@
 ---
+// Landing homepage for the privacy-first STL utilities pivot.
+// The scale calculator that used to live here moved to its own flagship
+// page: /stl-scale-inspector/ (see src/pages/stl-scale-inspector/).
+// The old 175cm scale reference now lives at /archive/miniature-size-chart/;
+// it is linked once below the tool grid so returning visitors can find it.
 import Layout from "../layouts/Layout.astro";
 import JsonLd from "../components/JsonLd.astro";
 import site from "../data/site.json";
-import scales from "../data/scaleBaselines.json";
-import conversions from "../data/conversionMatrix.json";
 import tools from "../data/tools.json";
 import { graph, organization, webSite, softwareApplication, faqPage } from "../lib/schema";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
-import { assetVersion } from "../utils/assetVersion.js";
 
 const siteUpdated = lastModifiedDate();
 
-const { referencePreviews, homepageFaq, baselineHeight, baselineHeightCm, eyeLevelCm } = site;
+const { homepageFaq } = site;
 
-const engineTool = tools.find((t) => t.slug === "stl-scale-engine");
+// The four foreground tools, in the order the grid renders them. The scale
+// inspector is the flagship: it inherits the calculator that used to be the
+// homepage and owns the scale-verification keyword cluster.
+const toolSlugs = [
+  "stl-viewer",
+  "stl-scale-engine",
+  "stl-converter",
+  "stl-printability-checker"
+];
+const flagshipSlugs = new Set(["stl-scale-engine"]);
+const toolCards = toolSlugs
+  .map((slug) => tools.find((t) => t.slug === slug))
+  .filter((t): t is (typeof tools)[number] => Boolean(t));
 
 const homeFaqItems = homepageFaq.map((item) => ({
   question: item.question,
@@ -23,353 +37,202 @@ const homeFaqItems = homepageFaq.map((item) => ({
 const homeSchema = graph([
   organization(),
   webSite(),
-  ...(engineTool
-    ? [softwareApplication({ name: "STL Scale Calculator", description: engineTool.description, url: "/" })]
-    : []),
+  ...toolCards.map((t) =>
+    softwareApplication({ name: t.name, description: t.description, url: t.url })
+  ),
   faqPage(homeFaqItems, "/"),
 ]);
 
-// Build dropdown labels from scales data
-const dropdownLabels: Record<string, string> = {
-  "28mm": "28mm (Classic True Scale)",
-  "32mm": "32mm (Heroic Scale)",
-  "35mm": "35mm (Eye Level)",
-  "40mm": "40mm (Big Skirmish)",
-  "75mm": "75mm (Display Miniatures)",
-  "1:35": "1:35 (Military Models)",
-  "1:27": "1:27 (Dogfight Ships)",
-  "1:48": "1:48 (Quarter Scale / Aircraft)",
-  "1:56": "1:56 (Vehicle Scale)",
-  "1:72": "1:72 (Plastic Soldiers)",
-  "6mm": "6mm (Epic Scale)",
-  "8mm": "8mm (Epic Sci-Fi)",
-  "10mm": "10mm (Sci-Fi Mass Battle)",
-  "30mm": "30mm (Modern Heroic)",
-  "15mm": "15mm (WWII Company)",
-  "1:100": "1:100 (WWII / 15mm)"
-};
-
-// Sort scales into groups by type, then by eyeLevelMm
-const gamingScales = Object.entries(scales)
-  .filter(([, s]) => s.type === "gaming" || s.type === "display")
-  .sort(([, a], [, b]) => a.eyeLevelMm - b.eyeLevelMm);
-const ratioScales = Object.entries(scales)
-  .filter(([, s]) => s.type === "ratio")
-  .sort(([, a], [, b]) => a.eyeLevelMm - b.eyeLevelMm);
-
-const selectOptions = {
-  source: [
-    ...ratioScales.map(([key, s]) => ({
-      value: key,
-      label: dropdownLabels[key] || `${key} (${s.games[0] || ""})`,
-      group: "Ratio Scales",
-      default: key === "28mm"
-    })),
-    ...gamingScales.map(([key, s]) => ({
-      value: key,
-      label: dropdownLabels[key] || `${key} (${s.games[0] || ""})`,
-      group: "Gaming Scales",
-      default: key === "28mm"
-    }))
-  ],
-  target: [
-    ...ratioScales.map(([key, s]) => ({
-      value: key,
-      label: dropdownLabels[key] || `${key} (${s.games[0] || ""})`,
-      group: "Ratio Scales",
-      default: key === "32mm"
-    })),
-    ...gamingScales.map(([key, s]) => ({
-      value: key,
-      label: dropdownLabels[key] || `${key} (${s.games[0] || ""})`,
-      group: "Gaming Scales",
-      default: key === "32mm"
-    }))
-  ]
-};
-
-// Build standard mm values: ratio scales use topOfHeadMm, gaming/display use eyeLevelMm
-const calculatorScales: Record<string, { standardMm: number; topOfHeadMm: number; type: string }> = {};
-for (const [key, s] of Object.entries(scales)) {
-  calculatorScales[key] = {
-    standardMm: s.type === "ratio" ? s.topOfHeadMm : s.eyeLevelMm,
-    topOfHeadMm: s.topOfHeadMm,
-    type: s.type
-  };
-}
-
-// Extract head-mode overrides from conversionMatrix.json (topHeadPercentage where non-null)
-const headOverrides: Record<string, number> = {};
-for (const conv of conversions) {
-  if (conv.topHeadPercentage) {
-    headOverrides[`${conv.h1Source}_${conv.h1Target}`] = parseFloat(conv.topHeadPercentage);
-  }
-}
-
-const scalesCount = Object.keys(scales).length;
-
-// Pre-rendered default result (28mm -> 32mm, Eye Level) so the result is
-// visible without JavaScript. Math mirrors mathscaler.js calculate().
-const defaultSource = "28mm";
-const defaultTarget = "32mm";
-const defaultSourceData = calculatorScales[defaultSource];
-const defaultTargetData = calculatorScales[defaultTarget];
-// Format mm so the visible formula divides out to the visible result — ratio
-// scales carry 3-dp standard values (e.g. 36.458), gaming scales are whole mm.
-const fmtMm = (v: number) => {
-  const s = v.toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
-  return s.includes(".") ? s : s + ".0";
-};
-const defaultResultText = ((defaultTargetData.standardMm / defaultSourceData.standardMm) * 100).toFixed(1) + "%";
-const defaultFormula = `${fmtMm(defaultTargetData.standardMm)} ÷ ${fmtMm(defaultSourceData.standardMm)} × 100`;
-const defaultContext = `${defaultSource} → ${defaultTarget} · Eye Level`;
+const useCases = [
+  { icon: "ti-ruler-measure", text: "Check a downloaded model's real dimensions before you commit filament or resin to it." },
+  { icon: "ti-arrows-right-left", text: "Convert STL to OBJ or PLY for a sculpting, rendering, or CAD pipeline." },
+  { icon: "ti-checkbox", text: "Find non-manifold edges before a ten-hour print, not after it." },
+  { icon: "ti-lock", text: "Inspect a client's confidential model without routing it through someone else's cloud." },
+  { icon: "ti-device-desktop", text: "Open an STL on a locked-down work computer where you cannot install software." },
+  { icon: "ti-wifi-off", text: "Keep working offline — after the first page load, no connection is needed." }
+];
 ---
 <Layout
-  title="STL Scale Converter | Slicer Percentage Calculator for 3D Miniatures | STLACCESS"
-  description="Free browser-based scale calculator for 3D printed miniatures. Instantly calculate exact slicer percentages from 28mm to 32mm, 15mm skirmish, and real-world object conversions."
+  title="Free STL Tools — Viewer, Scale Inspector, Converter, Printability | STLACCESS"
+  description="View, verify, convert and pre-check STL files in your browser. No upload, no account, no cookies. Four free STL utilities that never touch a server."
 >
 
 <JsonLd slot="head" data={homeSchema} />
 
-<!-- Hero Section. Carries the screen-reader breadcrumb so it stays ahead of
-     the H1 in the accessibility tree now that the hero renders as the
-     <header> at the top of <main>, ahead of the default slot. -->
+<!-- Hero. Self-contained answer for AI retrieval: what this is, what never
+     happens, what it costs — all in the first paragraph after the H1. -->
 <div slot="hero">
 <nav class="sr-only" aria-label="Breadcrumb">
   <span aria-current="page">Home</span>
 </nav>
-<div class="pt-20 pb-16 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
+<div class="pt-24 pb-20 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
 <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-6">
-Verified for Windows, Edge, Chitubox & Lychee Slicer
+No upload · No account · No cookies · Free
 </p>
 <h1 id="hero-heading" class="text-4xl md:text-7xl font-bold mb-6 font-heading tracking-tight leading-tight">
-  STL Scale Converter<br />
-  <span class="text-[#ff6b35] italic">Exact Slicer Percentages for Miniatures</span>
+  STL Tools That<br />
+  <span class="text-[#ff6b35] italic">Never Touch a Server</span>
 </h1>
-<p id="hero-description" class="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto leading-relaxed">
-  Stop wasting filament and resin on mis-sized proxies. Tested with digital calipers on a <span class="text-white font-semibold">Bambu Lab A1 Mini</span>, this free tool calculates exact scale percentages for tabletop miniatures, terrain, and multi-part kits.
+<p id="hero-description" class="text-lg md:text-xl text-slate-300 mb-6 max-w-2xl mx-auto leading-relaxed">
+  View, verify the scale of, convert, and pre-check STL files with four free utilities that run entirely in your browser.
+  Your file is read locally and never uploaded — there is no upload endpoint to send it to, no account to create, and no
+  installation to run. Free, forever, for everyone.
 </p>
-<p class="text-sm text-slate-500">
-  Runs instantly in your browser. Zero file uploads, zero installation, 100% offline-ready math.
-</p>
-</div>
-</div>
-
-<!-- Engine App Container -->
-<section id="engine" class="px-6 pb-16" aria-labelledby="engine-heading">
-<h2 id="engine-heading" class="sr-only">My 3D Print Scale Calculator</h2>
-<div class="max-w-xl mx-auto bg-slate-900/40 p-1 rounded-[2.5rem] border border-white/10 glow-box">
-<div class="bg-[#0a0a0a] p-8 md:p-10 rounded-[2.2rem] space-y-8 relative">
-
-<!-- Input: Source -->
-<div class="space-y-3">
-<label for="sourceScale" class="block text-xs font-bold uppercase tracking-widest text-slate-500">
-Current STL Scale
-</label>
-<div class="relative">
-<select id="sourceScale" class="w-full bg-slate-900 border border-slate-800 text-white rounded-2xl px-5 py-4 focus-ring appearance-none cursor-pointer transition-all hover:border-slate-600">
-{(() => {
-  const groups = {};
-  selectOptions.source.forEach(opt => {
-    if (!groups[opt.group]) groups[opt.group] = [];
-    groups[opt.group].push(opt);
-  });
-  return Object.entries(groups).map(([group, opts]) => (
-    <optgroup label={group}>
-      {opts.map(opt => (
-        <option value={opt.value} selected={opt.default}>{opt.label}</option>
-      ))}
-    </optgroup>
-  ));
-})()}
-</select>
-<div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
-<i class="ti ti-chevron-down text-xs"></i>
-</div>
-</div>
-</div>
-
-<!-- Input: Target -->
-<div class="space-y-3">
-<label for="targetScale" class="block text-xs font-bold uppercase tracking-widest text-slate-500">
-Scale You Want
-</label>
-<div class="relative">
-<select id="targetScale" class="w-full bg-slate-900 border border-slate-800 text-white rounded-2xl px-5 py-4 focus-ring appearance-none cursor-pointer transition-all hover:border-slate-600">
-{selectOptions.target.map(opt => (
-  <option value={opt.value} selected={opt.default}>{opt.label}</option>
-))}
-</select>
-<div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
-<i class="ti ti-chevron-down text-xs"></i>
-</div>
-</div>
-</div>
-
-<!-- Input: Logic Toggle -->
-<fieldset class="bg-black/40 p-2 rounded-2xl border border-white/5">
-<legend class="sr-only">Measurement method</legend>
-<div class="flex gap-2">
-<label class="flex-1 text-center py-3 rounded-xl cursor-pointer transition-all font-semibold text-sm relative group">
-<input type="radio" name="logic" value="eye" class="sr-only" checked />
-<div class="bg-transparent border border-transparent py-2 rounded-lg group-has-[:checked]:bg-slate-800 group-has-[:checked]:border-white/10 group-has-[:checked]:text-[#ff6b35]">
-Eye Level (Standard)
-</div>
-</label>
-<label class="flex-1 text-center py-3 rounded-xl cursor-pointer transition-all font-semibold text-sm relative group">
-<input type="radio" name="logic" value="head" class="sr-only" />
-<div class="bg-transparent border border-transparent py-2 rounded-lg group-has-[:checked]:bg-slate-800 group-has-[:checked]:border-white/10 group-has-[:checked]:text-[#ff6b35]">
-Top of Head
-</div>
-</label>
-</div>
-</fieldset>
-
-<!-- Input: Shrinkage Compensation -->
-<div class="bg-black/40 p-4 rounded-2xl border border-white/5 space-y-4">
-<div class="flex items-center justify-between">
-<div class="space-y-1">
-<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400">
-Material compensation
-</h3>
-<p class="text-[10px] text-slate-500">
-Add a slight percentage bump for cooling contraction in PLA or PETG.
-</p>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input type="checkbox" id="useShrinkage" class="sr-only peer" aria-label="Apply material compensation" />
-<div class="w-11 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#ff6b35]"></div>
-</label>
-</div>
-<div id="shrinkageInputContainer" class="hidden animate-in fade-in slide-in-from-top-2 duration-300">
-<div class="relative">
-<input type="number" id="shrinkageRate" value="1.5" step="0.1" min="0" max="10" class="w-full bg-slate-900 border border-slate-800 text-white rounded-xl px-4 py-3 focus-ring transition-all hover:border-slate-600 text-sm font-bold" aria-label="Shrinkage compensation rate" />
-<div class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-xs font-bold uppercase">
-% Rate
-</div>
-</div>
-</div>
-</div>
-
-<!-- Result Section -->
-<div class="pt-4" role="region" aria-live="polite">
-<div class="bg-[#ff6b35] rounded-[2rem] p-8 text-black text-center relative overflow-hidden">
-<div class="absolute top-0 right-0 p-4 opacity-10" aria-hidden="true">
-<i class="ti ti-printer text-6xl -rotate-12"></i>
-</div>
-<span class="text-[10px] font-black uppercase tracking-[0.2em] mb-2 block opacity-80">
-Type this into your slicer
-</span>
-<div id="resultDisplay" class="text-6xl md:text-7xl font-black font-heading tracking-tighter leading-none">
-{defaultResultText}
-</div>
-<p id="resultContext" class="text-xs font-black uppercase tracking-[0.15em] text-black/70 mt-2">
-{defaultContext}
-</p>
-<p id="resultFormula" class="text-[10px] font-bold text-black/50 uppercase tracking-widest mt-1">
-{defaultFormula}
-</p>
-<div class="mt-6 flex flex-wrap gap-3">
-<a href="/3d-math/filament-cost-calculator" id="estimateCostBtn" class="flex-1 py-4 bg-black text-white rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-black/80 transition-all flex items-center justify-center gap-2 focus-ring">
-<i class="ti ti-currency-dollar"></i>
-<span>Estimate Cost</span>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<a href="/stl-scale-inspector/" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#ff6b35] hover:bg-[#e05a28] text-black font-black rounded-xl text-sm uppercase tracking-widest transition-all shadow-lg shadow-[#ff6b35]/30 focus-ring">
+  <i class="ti ti-ruler-measure text-lg" aria-hidden="true"></i>
+  Try the Scale Inspector
 </a>
-<button id="copyPctBtn" type="button" class="flex-1 py-4 bg-black/10 text-black rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-black/20 transition-all flex items-center justify-center gap-2 focus-ring cursor-pointer" aria-label="Copy percentage to clipboard">
-<i class="ti ti-copy"></i>
-<span>Copy</span>
-</button>
-<button id="swapScaleBtn" type="button" class="flex-1 py-4 bg-black/10 text-black rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-black/20 transition-all flex items-center justify-center gap-2 focus-ring cursor-pointer" aria-label="Swap source and target scales">
-<i class="ti ti-arrows-right-left"></i>
-<span>Swap</span>
-</button>
-</div>
-<div class="mt-4 flex items-center justify-center gap-2 text-[10px] text-black/60 font-bold uppercase tracking-widest">
-<i class="ti ti-shield-half"></i>
-Tested on Bambu A1 Mini
-<span class="mx-1">•</span>
-<a href="/about" class="hover:underline">My Methodology</a>
-</div>
-</div>
-</div>
-
-<p class="text-[11px] text-slate-500 text-center leading-relaxed px-4">
-Conversion logic assumes a {baselineHeightCm} human baseline. Eye Level measures to {eyeLevelCm}cm. Top of Head accounts for hair and helmets at {baselineHeightCm}cm.
-<br />
-<strong class="text-slate-400">Tip:</strong> Always use <span class="text-[#ff6b35] font-semibold">Uniform Scaling</span> (lock X, Y, Z axes) in Chitubox or Lychee to avoid model distortion.
-</p>
-
-</div>
-</div>
-</section>
-
-<!-- How to Use -->
-<section class="max-w-3xl mx-auto px-6 py-12" aria-labelledby="howto-heading">
-<h2 id="howto-heading" class="text-3xl md:text-4xl font-bold font-heading mb-8">
-How I use the calculator <span class="text-[#ff6b35]">for every print</span>
-</h2>
-<ol class="space-y-6">
-<li class="flex gap-4 items-start">
-<span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">1</span>
-<div>
-<p class="text-slate-200 font-semibold">Pick the scales</p>
-<p class="text-slate-400 text-sm">Check what scale the sculptor modeled in — usually listed on Patreon or MyMiniFactory — then select the target scale for your army.</p>
-</div>
-</li>
-<li class="flex gap-4 items-start">
-<span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">2</span>
-<div>
-<p class="text-slate-200 font-semibold">Copy the exact percentage</p>
-<p class="text-slate-400 text-sm">Eyeballing percentages leads to distorted proportions. The calculator gives exact mathematical output verified with physical calipers.</p>
-</div>
-</li>
-<li class="flex gap-4 items-start">
-<span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">3</span>
-<div>
-<p class="text-slate-200 font-semibold">Paste and lock axes</p>
-<p class="text-slate-400 text-sm">Enter the percentage into <span class="text-white">Lychee</span> or <span class="text-white">Chitubox</span>, lock <span class="text-[#ff6b35] font-semibold">X, Y, and Z</span> to uniform scaling, and slice.</p>
-</div>
-</li>
-</ol>
-</section>
-
-<!-- Reference Section -->
-<section id="reference" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5" aria-labelledby="reference-heading">
-<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-<div class="max-w-xl">
-<h2 id="reference-heading" class="text-3xl md:text-5xl font-bold font-heading mb-4">
-The conversions I use <span class="text-[#ff6b35] italic">most often</span>
-</h2>
-<p id="reference-intro" class="text-slate-400 text-lg">
-Before committing a miniature to a long print, verify the scale first. These are the percentages used in my own printing queue.
-</p>
-</div>
-<a href="/miniature-size-chart" class="text-[#ff6b35] font-bold text-sm uppercase tracking-widest border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-1 transition-all">
-View full miniature size chart
+<a href="/stl-viewer/" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent hover:bg-white/5 border border-white/10 text-slate-300 hover:text-white font-bold rounded-xl text-sm uppercase tracking-widest transition-all focus-ring">
+  <i class="ti ti-3d-cube-sphere text-lg" aria-hidden="true"></i>
+  Open the STL Viewer
 </a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-{referencePreviews.map((card, i) => (
-  <a href={`/miniature-size-chart#${card.slug}`} class="group block bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50">
-    <span class={`text-[10px] font-bold uppercase tracking-widest block mb-4 ${i === 0 ? 'text-[#ff6b35]' : 'text-slate-500'}`}>{card.category}</span>
-    <h3 class="text-xl font-bold mb-2 group-hover:text-[#ff6b35] transition-colors">{card.label}</h3>
-    <p class="text-sm text-slate-500 mb-6">{card.description}</p>
-    <div class="text-4xl font-bold font-heading text-[#ff6b35]">{card.percentage}</div>
+</div>
+</div>
+
+<!-- Tool grid — one card per tool, each a self-contained answer. -->
+<section class="max-w-6xl mx-auto px-6 py-20 md:py-28 border-t border-white/5" aria-labelledby="tools-heading">
+<div class="max-w-2xl mb-12">
+<h2 id="tools-heading" class="text-3xl md:text-5xl font-bold font-heading mb-4">
+  Four tools, one rule: <span class="text-[#ff6b35] italic">your files stay yours</span>
+</h2>
+<p class="text-slate-400 text-lg">
+  Each tool solves one job completely. None of them uploads anything, asks for an account, or tracks you.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+{toolCards.map((tool) => (
+  <a href={tool.url} class="group block bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50 relative">
+    {flagshipSlugs.has(tool.slug) && (
+      <span class="absolute top-6 right-6 text-[10px] font-black uppercase tracking-widest text-[#ff6b35] bg-[#ff6b35]/10 border border-[#ff6b35]/20 rounded-full px-3 py-1">
+        Most used
+      </span>
+    )}
+    <div class="w-12 h-12 rounded-2xl bg-[#ff6b35]/10 border border-[#ff6b35]/20 flex items-center justify-center mb-6">
+      <i class={`ti ${tool.icon} text-[#ff6b35] text-xl`} aria-hidden="true"></i>
+    </div>
+    <h3 class="text-xl font-bold mb-2 group-hover:text-[#ff6b35] transition-colors">{tool.name}</h3>
+    <p class="text-sm text-slate-400 leading-relaxed mb-4">{tool.shortDescription}</p>
+    <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-6">{tool.features[0]}</p>
+    <span class="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-[#ff6b35]">
+      Open tool <i class="ti ti-arrow-right text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
+    </span>
   </a>
 ))}
 </div>
+
+<!-- Returning visitors — the 175cm scale reference that used to front this
+     site now lives under /archive/. Kept findable on the homepage so an
+     existing user following an old bookmark or habit lands on it instead of
+     concluding the tool is gone. -->
+<p class="mt-8 text-sm text-slate-400 leading-relaxed">
+  Looking for the old scale reference? The <a href="/archive/miniature-size-chart/" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Miniature Size Chart</a> — the full 175cm-baseline percentage table — is still here, now filed under the archive. The <a href="/stl-scale-inspector/" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Scale Inspector</a> does the same math for a single pair of scales.
+</p>
 </section>
 
-<!-- FAQ Section -->
-<section id="faq" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5" aria-labelledby="faq-heading">
-<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-<div class="max-w-xl">
+<!-- Privacy proof — the moat. Quotable passage for AI engines answering
+     "is there an STL tool that doesn't upload my files?". -->
+<section class="max-w-3xl mx-auto px-6 py-20 md:py-28 border-t border-white/5" aria-labelledby="privacy-heading">
+<h2 id="privacy-heading" class="text-3xl md:text-4xl font-bold font-heading mb-6">
+  Open your browser's network tab — <span class="text-[#ff6b35] italic">you'll see 0 bytes uploaded</span>
+</h2>
+<p class="text-lg text-slate-300 leading-relaxed mb-8">
+  Most online STL tools upload your file to a server and then promise to delete it. These tools never receive it in
+  the first place. Every byte of parsing, rendering, and math happens on your own hardware, which is why they can make
+  a guarantee instead of a promise: your model is confidential by default, not by policy.
+</p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+<div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+  <i class="ti ti-device-desktop text-[#ff6b35] text-xl mb-3 block" aria-hidden="true"></i>
+  <p class="text-sm font-semibold text-slate-200">Runs in your browser</p>
+  <p class="text-xs text-slate-500 mt-1">Nothing to install, nothing to upload.</p>
+</div>
+<div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+  <i class="ti ti-wifi-off text-[#ff6b35] text-xl mb-3 block" aria-hidden="true"></i>
+  <p class="text-sm font-semibold text-slate-200">Works offline</p>
+  <p class="text-xs text-slate-500 mt-1">After the first load, no connection needed.</p>
+</div>
+<div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
+  <i class="ti ti-cookie-off text-[#ff6b35] text-xl mb-3 block" aria-hidden="true"></i>
+  <p class="text-sm font-semibold text-slate-200">No cookies, no banner</p>
+  <p class="text-xs text-slate-500 mt-1">No cookies means no consent banner to click through.</p>
+</div>
+</div>
+<a href="/privacy/" class="text-[#ff6b35] font-bold text-sm uppercase tracking-widest border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-1 transition-all">
+  Read the privacy policy
+</a>
+</section>
+
+<!-- How it works — low-commitment familiarization with the loop. -->
+<section class="max-w-3xl mx-auto px-6 py-20 md:py-28 border-t border-white/5" aria-labelledby="howto-heading">
+<h2 id="howto-heading" class="text-3xl md:text-4xl font-bold font-heading mb-10">
+  How it works <span class="text-[#ff6b35] italic">in three steps</span>
+</h2>
+<ol class="space-y-6 mb-10">
+<li class="flex gap-4 items-start">
+  <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">1</span>
+  <div>
+    <p class="text-slate-200 font-semibold">Open a tool and drop in your file — or pick your scales</p>
+    <p class="text-slate-400 text-sm">No sign-up, no upload dialog. The file is read straight from your disk by the page itself.</p>
+  </div>
+</li>
+<li class="flex gap-4 items-start">
+  <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">2</span>
+  <div>
+    <p class="text-slate-200 font-semibold">The tool analyzes it locally</p>
+    <p class="text-slate-400 text-sm">Rendering, dimension math, format conversion, and mesh checks all run on your own hardware.</p>
+  </div>
+</li>
+<li class="flex gap-4 items-start">
+  <span class="flex-shrink-0 w-10 h-10 rounded-full bg-[#ff6b35]/10 text-[#ff6b35] font-bold flex items-center justify-center text-sm border border-[#ff6b35]/20">3</span>
+  <div>
+    <p class="text-slate-200 font-semibold">You keep the result</p>
+    <p class="text-slate-400 text-sm">A screenshot, a converted file on your disk, or an exact percentage to type into your slicer.</p>
+  </div>
+</li>
+</ol>
+<aside class="bg-slate-900/30 border border-[#ff6b35]/20 rounded-2xl p-6" aria-label="Practical example">
+  <p class="font-mono text-[10px] font-black uppercase tracking-widest text-[#ff6b35] mb-2">A real example</p>
+  <p class="text-sm text-slate-300 leading-relaxed">
+    A miniature exported in inches imports into a metric slicer <span class="text-white font-semibold">25.4&times; too small</span>.
+    A "close enough" 115% instead of the exact <span class="text-[#ff6b35] font-bold">114.3%</span> means a twenty-model unit
+    ends up visibly shorter than the rest of the army. These tools exist to settle that before the printer starts.
+  </p>
+</aside>
+<p class="text-center text-sm text-slate-500 mt-8">
+  Every tool is free, and stays free. If one of them saves you a failed print,
+  <a href="/support/" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">you can support the site</a> —
+  no pressure either way.
+</p>
+</section>
+
+<!-- Use cases — H2 phrased as the question AI engines fan out to. -->
+<section class="max-w-3xl mx-auto px-6 py-20 md:py-28 border-t border-white/5" aria-labelledby="usecases-heading">
+<h2 id="usecases-heading" class="text-3xl md:text-4xl font-bold font-heading mb-10">
+  What can you do here <span class="text-[#ff6b35] italic">without installing anything?</span>
+</h2>
+<ul class="space-y-5">
+{useCases.map((item) => (
+  <li class="flex gap-4 items-start">
+    <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-900/60 border border-white/5 flex items-center justify-center">
+      <i class={`ti ${item.icon} text-[#ff6b35]`} aria-hidden="true"></i>
+    </div>
+    <p class="text-slate-300 leading-relaxed pt-2">{item.text}</p>
+  </li>
+))}
+</ul>
+</section>
+
+<!-- FAQ — H2-question format for query fan-out coverage. -->
+<section id="faq" class="max-w-6xl mx-auto px-6 py-20 md:py-28 border-t border-white/5" aria-labelledby="faq-heading">
+<div class="max-w-2xl mb-12">
 <h2 id="faq-heading" class="text-3xl md:text-5xl font-bold font-heading mb-4">
-Questions I get asked <span class="text-[#ff6b35] italic">about scaling</span>
+  Questions people actually <span class="text-[#ff6b35] italic">ask about browser STL tools</span>
 </h2>
 <p class="text-slate-400 text-lg">
-Straight answers from my own experience at the painting desk.
+  Straight answers, no marketing.
 </p>
-</div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 {homepageFaq.map((item) => (
@@ -384,53 +247,53 @@ Straight answers from my own experience at the painting desk.
 </div>
 </section>
 
-<!-- About / EEAT Section -->
-<section class="max-w-3xl mx-auto px-6 py-16 border-t border-white/5" aria-label="About STLACCESS">
-<div class="flex flex-col md:flex-row gap-8 items-start mb-8">
-  <div>
-    <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-2">
-      {siteUpdated && `Last updated: ${formatLongDate(siteUpdated)}`}
-    </p>
-    <h2 class="text-3xl md:text-5xl font-bold font-heading mb-6">
-      Why I Built <span class="text-[#ff6b35] italic">STLACCESS</span>
-    </h2>
-  </div>
-</div>
+<!-- About / EEAT -->
+<section class="max-w-3xl mx-auto px-6 py-20 md:py-28 border-t border-white/5" aria-label="About STLACCESS">
+<p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-2">
+  {siteUpdated && `Last updated: ${formatLongDate(siteUpdated)}`}
+</p>
+<h2 class="text-3xl md:text-5xl font-bold font-heading mb-6">
+  Why I built <span class="text-[#ff6b35] italic">STLACCESS</span>
+</h2>
 
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
-  I started 3D printing back in 2017 with a cheap entry-level FDM printer. In 2019, I ran a commercial print service in Enschede, Netherlands, but quickly realized running commercial queues drained the fun out of the hobby. I shut it down and returned strictly to hobby printing on a <span class="text-white font-semibold">Bambu Lab A1 Mini</span>.
+  I started 3D printing back in 2017 with a cheap entry-level FDM printer. In 2019, I ran a commercial print service in
+  Enschede, Netherlands, but quickly realized running commercial queues drained the fun out of the hobby. I shut it down
+  and returned strictly to hobby printing on a <span class="text-white font-semibold">Bambu Lab A1 Mini</span>.
 </p>
 
 <p class="text-lg text-slate-300 leading-relaxed mb-6">
-  The frustration with miniatures scaling incorrectly led me to pull out digital calipers and work out the exact mathematical percentages. Every formula here is tested on my own printer to ensure proxies match existing tabletop units.
+  Years of fixing mis-sized prints taught me one habit: verify the file before the machine commits hours and material to
+  it. These four tools are that habit, generalized — the same checks I run at my own desk, turned into pages anyone can
+  use without installing a thing.
 </p>
 
 <p class="text-slate-400 leading-relaxed mb-8">
-  This calculator runs entirely in your browser. I never see your files.
+  Built, tested, and maintained by one person. Every tool runs in your browser, so I never see your files.
 </p>
 
 <div class="text-center">
   <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500">
-    <a href="/about" class="hover:text-[#ff6b35] transition-colors">Read my full methodology</a>
+    <a href="/about/" class="hover:text-[#ff6b35] transition-colors">Read my full methodology</a>
     <span class="mx-2 text-slate-700">•</span>
-    <a href="/miniature-size-chart" class="hover:text-[#ff6b35] transition-colors">View my miniature size chart data sources</a>
+    <a href="/privacy/" class="hover:text-[#ff6b35] transition-colors">How privacy works here</a>
   </p>
 </div>
 </section>
 
 <!-- Feedback -->
-<section id="feedback" class="max-w-3xl mx-auto px-6 py-12 border-t border-white/5 scroll-mt-28" aria-labelledby="feedback-heading">
+<section id="feedback" class="max-w-3xl mx-auto px-6 py-20 md:py-24 border-t border-white/5 scroll-mt-28" aria-labelledby="feedback-heading">
 <aside id="hp-feedback-container" class="my-8 rounded-[2rem] border border-white/5 bg-slate-900/20 p-8 md:p-10 text-center" aria-labelledby="feedback-heading">
 <div id="hp-form-wrapper">
 <div class="max-w-[550px] mx-auto mb-6">
 <span class="font-mono inline-block rounded bg-[#ff6b35]/10 px-2.5 py-1 text-xs font-bold uppercase tracking-widest text-[#ff6b35] mb-3">
-Community Feedback
+Feedback
 </span>
 <h2 id="feedback-heading" class="font-heading text-2xl font-bold text-white mb-2 tracking-tight">
-Need another system added?
+Need a tool that isn't here yet?
 </h2>
 <p class="text-sm leading-relaxed text-slate-400">
-Tell me what scale or system is missing and I'll test it.
+Tell me what you need to check, convert, or inspect — and I'll look at building it.
 </p>
 </div>
 <form id="hp-feedback-form" action={site.gasEndpoint} method="POST" class="space-y-4 max-w-xl mx-auto text-left">
@@ -444,16 +307,16 @@ Request type
 </legend>
 <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 <label class="relative flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-all hover:border-[#ff6b35]">
-<input type="radio" name="type" value="missing-system" checked class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
-<span class="text-sm font-medium text-slate-200">Add wargame system</span>
+<input type="radio" name="type" value="new-tool" checked class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
+<span class="text-sm font-medium text-slate-200">Suggest a new tool</span>
 </label>
 <label class="relative flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-all hover:border-[#ff6b35]">
-<input type="radio" name="type" value="slicer-feature" class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
-<span class="text-sm font-medium text-slate-200">Scale tool request</span>
+<input type="radio" name="type" value="feature-request" class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
+<span class="text-sm font-medium text-slate-200">Feature request</span>
 </label>
 <label class="relative flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-all hover:border-[#ff6b35]">
 <input type="radio" name="type" value="bug-report" class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
-<span class="text-sm font-medium text-slate-200">The math looks wrong</span>
+<span class="text-sm font-medium text-slate-200">Something is broken</span>
 </label>
 <label class="relative flex cursor-pointer items-center gap-3 rounded-xl border border-white/10 bg-black/40 p-4 transition-all hover:border-[#ff6b35]">
 <input type="radio" name="type" value="other" class="h-4 w-4 shrink-0 cursor-pointer appearance-none rounded-full border border-white/20 bg-transparent transition-all checked:border-[#ff6b35] checked:bg-[#ff6b35] checked:ring-4 checked:ring-black/40" />
@@ -464,7 +327,7 @@ Request type
 </div>
 <div>
 <label class="block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500 mb-2" for="hp-details">Details</label>
-<input type="text" id="hp-details" name="details" placeholder="e.g., my 40mm skirmish miniatures come out oversized" required class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all" />
+<input type="text" id="hp-details" name="details" placeholder="e.g., a wall thickness checker would save my prints" required class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all" />
 </div>
 <div class="flex justify-center pt-2">
 <button type="submit" id="hp-submit-btn" class="w-full sm:w-auto inline-flex items-center justify-center rounded-2xl bg-[#ff6b35] px-8 py-4 text-sm font-bold text-black hover:brightness-110 active:scale-95 transition-all duration-200 cursor-pointer">
@@ -478,7 +341,7 @@ Submit
 <span class="text-[#ff6b35] text-xl font-bold">OK</span>
 </div>
 <h3 class="font-heading text-lg font-bold text-white mb-1 tracking-tight">Got it.</h3>
-<p class="text-sm text-slate-400 max-w-sm mx-auto">Thanks. I'll test it myself before the next update.</p>
+<p class="text-sm text-slate-400 max-w-sm mx-auto">Thanks. I'll look into it before the next build.</p>
 </div>
 </aside>
 <script is:inline>
@@ -517,9 +380,4 @@ btn.style.opacity = '1';
 </script>
 </section>
 
-<!-- Calculator Data Injection -->
-<script is:inline set:html={`window.CALCULATOR_SCALES = ${JSON.stringify(calculatorScales)};window.CALCULATOR_HEAD_OVERRIDES = ${JSON.stringify(headOverrides)};`} />
-
-<!-- Page Specific Scripts -->
-<script is:inline src={assetVersion('js/mathscaler.js')}></script>
 </Layout>

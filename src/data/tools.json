@@ -1,14 +1,21 @@
 [
   {
     "slug": "stl-scale-engine",
-    "name": "STL Scale Engine",
-    "h1": "STL Scale Calculator",
-    "metaTitle": "STL Scale Calculator for Tabletop Miniatures | Slicer Percentages | STLACCESS",
-    "shortDescription": "The main scale calculator. Pick your source and target scales, and I will give you the exact number to type into your slicer.",
-    "description": "This is the tool I use before every print. Select the scale your STL was designed for, pick the scale you need, and choose between eye-level or top-of-head measurement. Supports 15+ tabletop scales including modern sci-fi epic wargames, classic fantasy RPGs, WWII platoon wargames, 35mm sci-fi mass-battle games, and 40mm sci-fi skirmish games. Everything runs in your browser — no uploads, no accounts, no cookies.",
-    "icon": "ti-calculator",
-    "url": "/",
-    "features": ["15+ gaming scales supported", "Eye Level and Top of Head measurement", "Shrinkage compensation toggle", "Copy to clipboard", "Bookmarkable URL parameters"],
+    "name": "STL Scale Inspector",
+    "h1": "STL Scale Inspector",
+    "metaTitle": "STL Scale Inspector | Check Scale Before You Slice | No Upload | STLACCESS",
+    "shortDescription": "Check what size an STL will actually print at. Use the scale math, or drop in a file to read its real millimetre and inch dimensions locally.",
+    "description": "The tool I use before every print. Select the scale your STL was designed for, pick the scale you need, and choose between eye-level or top-of-head measurement. You can also drop an STL into the local file inspector to read its exact bounding box in millimetres and inches, flag an inches-vs-millimetres mismatch, and calculate the percentage needed to reach a target height. Supports 16 tabletop scales and runs entirely in your browser \u2014 no uploads, no accounts, no cookies.",
+    "icon": "ti-ruler-measure",
+    "url": "/stl-scale-inspector/",
+    "features": [
+      "15+ gaming scales supported",
+      "Local STL dimension and unit inspection",
+      "Eye Level and Top of Head measurement",
+      "Shrinkage compensation toggle",
+      "Copy to clipboard",
+      "Bookmarkable URL parameters"
+    ],
     "category": "calculators",
     "featured": true
   },
@@ -18,8 +25,14 @@
     "shortDescription": "Every conversion percentage I've verified for scaling 3D printed miniatures, all in one searchable list. Print-tested on FDM.",
     "description": "Every conversion percentage I have verified, all on a single page. Covers 28mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales. Each entry shows the math, the scale baselines, and FDM print notes. You can jump straight to the calculator from any conversion. I update these when the community catches something wrong.",
     "icon": "ti-book",
-    "url": "/miniature-size-chart",
-    "features": ["46 verified conversion pairs", "Search and filter by scale", "Full math breakdown for each entry", "Print-tested on FDM", "Community feedback and correction system"],
+    "url": "/archive/miniature-size-chart/",
+    "features": [
+      "46 verified conversion pairs",
+      "Search and filter by scale",
+      "Full math breakdown for each entry",
+      "Print-tested on FDM",
+      "Community feedback and correction system"
+    ],
     "category": "references",
     "featured": true
   },
@@ -29,8 +42,15 @@
     "shortDescription": "Type in two measurements in millimetres, get the exact percentage for your slicer. Works for any scale combination.",
     "description": "The simplest tool on the site. Enter your current model height and your desired target height, and the calculator gives you the percentage to type into Chitubox, Lychee, or PrusaSlicer. Shows the formula so you can check the math yourself. No account, no cookies, no bloat.",
     "icon": "ti-percentage",
-    "url": "/3d-math/slicer-percentage-calculator",
-    "features": ["Any source size to any target size", "Real-time calculation as you type", "12 common conversion presets", "Formula breakdown for verification", "Copy result to clipboard", "Zero bloat — no account, no cookies"],
+    "url": "/archive/3d-math/slicer-percentage-calculator/",
+    "features": [
+      "Any source size to any target size",
+      "Real-time calculation as you type",
+      "12 common conversion presets",
+      "Formula breakdown for verification",
+      "Copy result to clipboard",
+      "Zero bloat \u2014 no account, no cookies"
+    ],
     "category": "calculators",
     "featured": true
   },
@@ -40,8 +60,15 @@
     "shortDescription": "Know your print cost before you start. Enter filament price, weight used, and optional electricity to estimate the true cost of 3D printing miniatures.",
     "description": "Enter your roll price, the grams your slicer reports, and optionally your printer power draw and print time. The calculator tells you the filament cost, electricity cost, and total. Works for PLA, PETG, and any filament type. Preset buttons for common rolls so you don't have to type everything manually.",
     "icon": "ti-currency-dollar",
-    "url": "/3d-math/filament-cost-calculator",
-    "features": ["Real-time cost calculation", "Filament cost per print", "Optional electricity cost estimate", "Filament presets with real market prices", "Deep-link from scale engine", "No account, no cookies"],
+    "url": "/archive/3d-math/filament-cost-calculator/",
+    "features": [
+      "Real-time cost calculation",
+      "Filament cost per print",
+      "Optional electricity cost estimate",
+      "Filament presets with real market prices",
+      "Deep-link from scale engine",
+      "No account, no cookies"
+    ],
     "category": "calculators",
     "featured": true
   },
@@ -49,12 +76,18 @@
     "slug": "reference-bar-generator",
     "name": "Scale Reference Bar Generator",
     "h1": "STL Scale Reference Bar Generator",
-    "metaTitle": "STL Scale Reference Bar Generator — Calibration Bar for Lychee & Chitubox | STLACCESS",
+    "metaTitle": "STL Scale Reference Bar Generator \u2014 Calibration Bar for Lychee & Chitubox | STLACCESS",
     "shortDescription": "Generate a printable ruler bar at any tabletop scale and import it into Lychee or Chitubox to measure unknown STLs. Download the STL right in your browser.",
-    "description": "The tool behind those 'cubes to import into lychee for scaling' searches. Pick a scale and a bar length, and I generate an STL ruler bar you can download instantly. It has 5mm tick marks along its length plus an end tab exactly as tall as a figure at that scale. Import it next to any model of unknown scale, measure the model against the ruler in your slicer, and you instantly know what percentage to type in. Generated in your browser — nothing uploaded.",
+    "description": "The tool behind those 'cubes to import into lychee for scaling' searches. Pick a scale and a bar length, and I generate an STL ruler bar you can download instantly. It has 5mm tick marks along its length plus an end tab exactly as tall as a figure at that scale. Import it next to any model of unknown scale, measure the model against the ruler in your slicer, and you instantly know what percentage to type in. Generated in your browser \u2014 nothing uploaded.",
     "icon": "ti-cube",
-    "url": "/3d-math/reference-bar-generator",
-    "features": ["Downloadable STL, generated in your browser", "All 16 tabletop scales supported", "5mm tick marks plus a figure-height end tab", "Ruler lengths from 30 to 100mm", "No uploads, no accounts, no cookies"],
+    "url": "/archive/3d-math/reference-bar-generator/",
+    "features": [
+      "Downloadable STL, generated in your browser",
+      "All 16 tabletop scales supported",
+      "5mm tick marks plus a figure-height end tab",
+      "Ruler lengths from 30 to 100mm",
+      "No uploads, no accounts, no cookies"
+    ],
     "category": "references",
     "featured": false
   },
@@ -62,12 +95,19 @@
     "slug": "filament-density-calculator",
     "name": "Filament Density Calculator",
     "h1": "Filament Density & Weight-to-Volume Estimator",
-    "metaTitle": "Filament Density & Weight-to-Volume Estimator — Grams from Volume | STLACCESS",
+    "metaTitle": "Filament Density & Weight-to-Volume Estimator \u2014 Grams from Volume | STLACCESS",
     "shortDescription": "Enter dimensions or a volume, pick a material, and get the weight in grams before you open your slicer. PLA, PETG, ABS, resin, and more.",
-    "description": "A pre-slice planning calculator. Type the dimensions of a solid or hollow shape — or the volume straight from your slicer — choose a material, and the tool multiplies volume by density to give you the weight in grams, prints per spool, and a print-time baseline. Hollow prints account for wall thickness and infill, so the number reflects what actually comes off the build plate. Runs entirely in your browser — no uploads, no accounts, no cookies.",
+    "description": "A pre-slice planning calculator. Type the dimensions of a solid or hollow shape \u2014 or the volume straight from your slicer \u2014 choose a material, and the tool multiplies volume by density to give you the weight in grams, prints per spool, and a print-time baseline. Hollow prints account for wall thickness and infill, so the number reflects what actually comes off the build plate. Runs entirely in your browser \u2014 no uploads, no accounts, no cookies.",
     "icon": "ti-scale",
-    "url": "/3d-math/filament-density-calculator",
-    "features": ["12 material densities plus custom density", "Box, cylinder, sphere, and tube shapes", "Hollow shell math with wall thickness and infill", "Direct volume input in cm³ or mL", "Prints per spool and cost estimate", "Print time baseline by quality preset"],
+    "url": "/archive/3d-math/filament-density-calculator/",
+    "features": [
+      "12 material densities plus custom density",
+      "Box, cylinder, sphere, and tube shapes",
+      "Hollow shell math with wall thickness and infill",
+      "Direct volume input in cm\u00b3 or mL",
+      "Prints per spool and cost estimate",
+      "Print time baseline by quality preset"
+    ],
     "category": "calculators",
     "featured": false
   },
@@ -75,12 +115,19 @@
     "slug": "eu-3d-printing-import-cost-calculator",
     "name": "EU Import & Landed Cost Calculator",
     "h1": "EU 3D Printing Import & Landed Cost Calculator",
-    "metaTitle": "EU 3D Printing Import & Landed Cost Calculator — €3 Customs Duty + VAT | STLACCESS",
-    "shortDescription": "The true landed cost in EUR for 3D printing supplies shipped into the EU — item price, shipping, the €3 per-item customs duty, and import VAT for your country.",
-    "description": "Sticker prices on foreign webshops no longer tell the whole story. Since 1 July 2026 the EU charges a €3 customs duty per item on parcels valued up to €150, and import VAT applies to the item price, shipping, and duty combined. Enter what you are buying, how many distinct product categories are in the box, and your country's VAT rate — the calculator gives you the full landed cost in EUR instantly. Built for EU makers ordering filaments, nozzles, heater blocks, and printer parts from outside the EU. Runs entirely in your browser — no uploads, no accounts, no cookies.",
+    "metaTitle": "EU 3D Printing Import & Landed Cost Calculator \u2014 \u20ac3 Customs Duty + VAT | STLACCESS",
+    "shortDescription": "The true landed cost in EUR for 3D printing supplies shipped into the EU \u2014 item price, shipping, the \u20ac3 per-item customs duty, and import VAT for your country.",
+    "description": "Sticker prices on foreign webshops no longer tell the whole story. Since 1 July 2026 the EU charges a \u20ac3 customs duty per item on parcels valued up to \u20ac150, and import VAT applies to the item price, shipping, and duty combined. Enter what you are buying, how many distinct product categories are in the box, and your country's VAT rate \u2014 the calculator gives you the full landed cost in EUR instantly. Built for EU makers ordering filaments, nozzles, heater blocks, and printer parts from outside the EU. Runs entirely in your browser \u2014 no uploads, no accounts, no cookies.",
     "icon": "ti-truck-delivery",
-    "url": "/3d-math/eu-3d-printing-import-cost-calculator",
-    "features": ["€3 flat customs duty per item category", "Import VAT for all 27 EU member states", "Correct VAT base: item + shipping + duty", "Over-€150 orders with custom duty rate", "Instant landed-cost breakdown in EUR", "No account, no cookies — nothing uploaded"],
+    "url": "/archive/3d-math/eu-3d-printing-import-cost-calculator/",
+    "features": [
+      "\u20ac3 flat customs duty per item category",
+      "Import VAT for all 27 EU member states",
+      "Correct VAT base: item + shipping + duty",
+      "Over-\u20ac150 orders with custom duty rate",
+      "Instant landed-cost breakdown in EUR",
+      "No account, no cookies \u2014 nothing uploaded"
+    ],
     "category": "calculators",
     "featured": false
   },
@@ -90,10 +137,17 @@
     "h1": "Resin & Filament Shrinkage Compensation Calculator",
     "metaTitle": "3D Resin Shrinkage Calculator | Dimensional Tolerance Math | STLACCESS",
     "shortDescription": "Calculate exact dimensional scaling compensation for resin and FDM 3D printing. Prevent shrinkage distortion and ensure precise part-to-part fitting.",
-    "description": "When 3D printing engineering components or tight-tolerance miniatures, material cooling and UV curing cause physical parts to shrink. This interactive 3D math tool calculates your exact dimensional compensation percentage to counteract volumetric shrinkage in your slicer. Thirteen material presets, separate XY and Z shrink rates, and a measured-coupon mode that back-solves your real shrink factor from caliper readings. Runs entirely in your browser — no uploads, no accounts, no cookies.",
+    "description": "When 3D printing engineering components or tight-tolerance miniatures, material cooling and UV curing cause physical parts to shrink. This interactive 3D math tool calculates your exact dimensional compensation percentage to counteract volumetric shrinkage in your slicer. Thirteen material presets, separate XY and Z shrink rates, and a measured-coupon mode that back-solves your real shrink factor from caliper readings. Runs entirely in your browser \u2014 no uploads, no accounts, no cookies.",
     "icon": "ti-ruler-measure",
-    "url": "/3d-math/resin-shrinkage-compensation-calculator",
-    "features": ["13 resin and filament shrink presets", "Separate XY and Z compensation", "Measured test coupon back-solve mode", "Exact 1÷k inverse, not the naive 1+s", "Fit clearance for press and slide fits", "Copy the scale percentage to clipboard"],
+    "url": "/archive/3d-math/resin-shrinkage-compensation-calculator/",
+    "features": [
+      "13 resin and filament shrink presets",
+      "Separate XY and Z compensation",
+      "Measured test coupon back-solve mode",
+      "Exact 1\u00f7k inverse, not the naive 1+s",
+      "Fit clearance for press and slide fits",
+      "Copy the scale percentage to clipboard"
+    ],
     "category": "calculators",
     "featured": false
   },
@@ -103,10 +157,17 @@
     "h1": "Miniature Resin Weight & Cost Calculator",
     "metaTitle": "Miniature Resin Cost Calculator | STL Weight & Volume Math | STLACCESS",
     "shortDescription": "Calculate exact resin weight, material volume, and printing cost for tabletop miniatures. Input your bottle price and model mL for instant pricing.",
-    "description": "Accurately budgeting your tabletop 3D printing projects requires combining liquid volume geometry with resin density math. This 3D calculation tool breaks down exact material weight, hollowed wall volume, and total cost per print. Model a bounding box, paste the volume straight out of your slicer, price it against your own bottle, and scale it up to a whole army. Runs entirely in your browser — no uploads, no accounts, no cookies.",
+    "description": "Accurately budgeting your tabletop 3D printing projects requires combining liquid volume geometry with resin density math. This 3D calculation tool breaks down exact material weight, hollowed wall volume, and total cost per print. Model a bounding box, paste the volume straight out of your slicer, price it against your own bottle, and scale it up to a whole army. Runs entirely in your browser \u2014 no uploads, no accounts, no cookies.",
     "icon": "ti-weight",
-    "url": "/3d-math/miniature-resin-weight-cost-calculator",
-    "features": ["Box, cylinder, and sphere volume math", "Hollowed shell with wall thickness and solid base", "Direct volume input from Chitubox or Lychee", "6 bottle presets with per-mL cost rates", "Army planner for N miniatures at once", "Weight in grams as a hollowing sanity check"],
+    "url": "/archive/3d-math/miniature-resin-weight-cost-calculator/",
+    "features": [
+      "Box, cylinder, and sphere volume math",
+      "Hollowed shell with wall thickness and solid base",
+      "Direct volume input from Chitubox or Lychee",
+      "6 bottle presets with per-mL cost rates",
+      "Army planner for N miniatures at once",
+      "Weight in grams as a hollowing sanity check"
+    ],
     "category": "calculators",
     "featured": false
   },
@@ -116,11 +177,78 @@
     "h1": "Layer Height Resolution & Angle Step Calculator",
     "metaTitle": "3D Layer Resolution & Angle Calculator | Print Math | STLACCESS",
     "shortDescription": "Calculate optimal layer height, Z-axis resolution, and surface stair-stepping angles for FDM and resin 3D printing precision.",
-    "description": "Surface smoothness on curved 3D prints is governed by trigonometric layer-step math. This tool calculates the effective vertical resolution and facet angles based on your layer height and printer nozzle or LCD panel specs. Step riser, step tread, worst-case faceting at 45°, sanding estimates, print-time tradeoffs, and the maximum unsupported overhang for seven materials. Runs entirely in your browser — no uploads, no accounts, no cookies.",
+    "description": "Surface smoothness on curved 3D prints is governed by trigonometric layer-step math. This tool calculates the effective vertical resolution and facet angles based on your layer height and printer nozzle or LCD panel specs. Step riser, step tread, worst-case faceting at 45\u00b0, sanding estimates, print-time tradeoffs, and the maximum unsupported overhang for seven materials. Runs entirely in your browser \u2014 no uploads, no accounts, no cookies.",
     "icon": "ti-stack-2",
-    "url": "/3d-math/layer-resolution-angle-calculator",
-    "features": ["Layer count from model height", "Step riser, tread, and facet geometry", "Worst-case faceting at 45° surfaces", "Sanding effort estimate per layer height", "Max unsupported overhang for 7 materials", "MSLA LCD pixel pitch for resin XY detail"],
+    "url": "/archive/3d-math/layer-resolution-angle-calculator/",
+    "features": [
+      "Layer count from model height",
+      "Step riser, tread, and facet geometry",
+      "Worst-case faceting at 45\u00b0 surfaces",
+      "Sanding effort estimate per layer height",
+      "Max unsupported overhang for 7 materials",
+      "MSLA LCD pixel pitch for resin XY detail"
+    ],
     "category": "references",
     "featured": false
+  },
+  {
+    "slug": "stl-viewer",
+    "name": "STL Viewer",
+    "h1": "STL Viewer",
+    "metaTitle": "Free STL Viewer Online | Open STL Files in Your Browser, No Upload | STLACCESS",
+    "shortDescription": "Open any STL file in 3D directly in your browser. Rotate, orbit, and inspect the mesh \u2014 the file never leaves your device.",
+    "description": "A browser-based 3D viewer for STL files. Drop a file in and it renders instantly with WebGL \u2014 no installation, no account, no upload. Your file is read locally and never sent to a server. Supports binary and ASCII STL, reports triangle count, file size, and the exact bounding box, and includes orbit, pan, zoom, reset, and wireframe controls.",
+    "icon": "ti-3d-cube-sphere",
+    "url": "/stl-viewer/",
+    "features": [
+      "Binary and ASCII STL",
+      "WebGL rendering, no install",
+      "100% client-side \u2014 file never uploaded",
+      "Orbit, pan, zoom, and wireframe",
+      "Bounding box and triangle stats",
+      "Works offline after first load"
+    ],
+    "category": "utilities",
+    "featured": true
+  },
+  {
+    "slug": "stl-converter",
+    "name": "STL Converter",
+    "h1": "STL Converter",
+    "metaTitle": "Free STL Converter Online | Convert STL to OBJ & PLY, No Upload | STLACCESS",
+    "shortDescription": "Convert STL files to OBJ, PLY, binary STL, or ASCII STL right in your browser. Conversion happens on your device \u2014 nothing is uploaded.",
+    "description": "Convert STL files into OBJ, ASCII PLY, binary STL, or ASCII STL without sending your model to a cloud service. Vertices are welded with an adjustable tolerance for OBJ and PLY export, and the conversion runs locally in your browser, so confidential or client models never leave your machine. Free, no account, no watermarks, no file size limit beyond your own hardware.",
+    "icon": "ti-arrows-right-left",
+    "url": "/stl-converter/",
+    "features": [
+      "STL to OBJ and PLY",
+      "Binary STL and ASCII STL re-export",
+      "Adjustable vertex merge tolerance",
+      "100% client-side conversion",
+      "No account, no watermarks",
+      "Works offline after first load"
+    ],
+    "category": "utilities",
+    "featured": true
+  },
+  {
+    "slug": "stl-printability-checker",
+    "name": "STL Printability Checker",
+    "h1": "STL Printability Checker",
+    "metaTitle": "STL Printability Checker | Watertight & Non-Manifold Check, No Upload | STLACCESS",
+    "shortDescription": "Check an STL for print-killers \u2014 non-manifold edges, holes, bad winding, and disconnected shells \u2014 before you waste filament or resin.",
+    "description": "Pre-slice validation for STL files. Checks the mesh for open edges, non-manifold geometry, inconsistent face winding, zero-area triangles, and disconnected shells, entirely in your browser. Reports bounding box, volume, and surface area, with an adjustable vertex merge tolerance. Catch a bad file in seconds instead of ten hours into a print. Nothing is uploaded.",
+    "icon": "ti-checkbox",
+    "url": "/stl-printability-checker/",
+    "features": [
+      "Open-edge and watertight check",
+      "Non-manifold edge detection",
+      "Winding, degenerate, and shell checks",
+      "Adjustable merge tolerance",
+      "100% client-side analysis",
+      "Works offline after first load"
+    ],
+    "category": "utilities",
+    "featured": true
   }
 ]

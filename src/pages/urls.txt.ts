@@ -7,7 +7,11 @@ export const prerender = true;
 
 const base = site.url;
 
-const staticPages = ['', 'about', 'contact', 'embed', 'faq', 'legal', 'privacy', 'terms', 'scale-standard'];
+// Root (foreground) pages. Trailing slashes match trailingSlash: 'always'.
+const staticPages = ['', 'stl-viewer', 'stl-scale-inspector', 'stl-converter', 'stl-printability-checker', 'about', 'contact', 'embed', 'legal', 'privacy', 'terms'];
+
+// Archived legacy sections (indexable, unlinked from the nav).
+const archiveHubs = ['archive/guides', 'archive/fdm', 'archive/fdm-printing-profiles', 'archive/miniature-size-chart', 'archive/3d-math', 'archive/scale-standard', 'archive/faq'];
 
 export const GET: APIRoute = async () => {
   const [guides, fdm] = await Promise.all([
@@ -15,18 +19,19 @@ export const GET: APIRoute = async () => {
     getCollection('fdm'),
   ]);
 
+  // Archive calculator detail pages come from tools.json; the scale engine
+  // and size chart are not under /archive/3d-math/, and the three new
+  // client-side utilities are foreground pages already listed above.
+  const archiveTools = tools.filter(
+    (t) => !['stl-scale-engine', 'scale-reference', 'stl-viewer', 'stl-converter', 'stl-printability-checker'].includes(t.slug)
+  );
+
   const urls = [
-    ...staticPages.map((p) => (p === '' ? `${base}/` : `${base}/${p}`)),
-    `${base}/fdm-printing-profiles`,
-    `${base}/fdm`,
-    `${base}/miniature-size-chart`,
-    `${base}/3d-math`,
-    `${base}/guides`,
-    ...tools
-      .filter((t) => t.slug !== 'stl-scale-engine' && t.slug !== 'scale-reference')
-      .map((t) => `${base}/3d-math/${t.slug}`),
-    ...guides.map((g) => `${base}/guides/${g.id}`),
-    ...fdm.map((a) => `${base}/fdm/${a.id}`),
+    ...staticPages.map((p) => (p === '' ? `${base}/` : `${base}/${p}/`)),
+    ...archiveHubs.map((p) => `${base}/${p}/`),
+    ...archiveTools.map((t) => `${base}${t.url}`),
+    ...guides.map((g) => `${base}/archive/guides/${g.id}/`),
+    ...fdm.map((a) => `${base}/archive/fdm/${a.id}/`),
   ];
 
   return new Response(urls.join('\n') + '\n', {

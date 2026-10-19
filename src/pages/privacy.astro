@@ -7,14 +7,14 @@ import { graph, breadcrumb } from "../lib/schema";
 const privacySchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Privacy Policy", path: "/privacy" },
+    { name: "Privacy Policy", path: "/privacy/" },
   ]),
 ]);
 ---
 
 <Layout
   title="Privacy Policy | STLACCESS — 3D Print Scale Calculator"
-  description="No accounts, no cookies, no personal data collection. A cookie-free web observer counts anonymous visits into a Google Sheet. Full breakdown of what is stored, how Cloudflare handles your data, affiliate promotion disclosure, and how children are protected."
+  description="No accounts, no cookies, no personal data collection. A cookie-free web observer counts anonymous visits into a Google Sheet. Full breakdown of what is stored, how Cloudflare handles your data, how the site is funded, and how children are protected."
 >
 <JsonLd slot="head" data={privacySchema} />
 <div slot="hero">
@@ -84,7 +84,7 @@ const privacySchema = graph([
             <i class="ti ti-eye-off text-[#ff6b35]" aria-hidden="true"
             ></i>
           </div>
-          <h3 class="font-bold text-white mb-2">No Tracking</h3>
+          <h3 class="font-bold text-white mb-2">No Cookies, No IDs</h3>
           <p class="text-sm text-slate-400">
             No cookies, no banners, no personal data collection. The only
             analytics is a cookie-free web observer counting anonymous visits —
@@ -103,14 +103,14 @@ const privacySchema = graph([
             1. Information I Collect & How It's Handled
           </h2>
           <p>
-            When you use the calculator engines for scale conversion, everything
-            runs locally on your machine. Your STL scale data never leaves your
-            browser.
+            When you use the viewer, scale inspector, converter, or printability
+            checker, everything runs locally on your machine. Your STL file never
+            leaves your browser.
           </p>
           <p>
             <strong>Feedback Forms (Anonymous):</strong> If you drop a scaling issue, feature request,
-            or update suggestion using the two feedback forms on this site (on the homepage and the
-            reference page), that information is sent to a spreadsheet on Google Sheets and backed up
+            or update suggestion using the feedback forms on this site (the homepage and the archived
+            reference pages), that information is sent to a spreadsheet on Google Sheets and backed up
             on my secure, two-factor authenticated Google Drive. These forms are set up so they
             do not collect or store any names, email addresses, or personal information.
             I keep this raw community input around only for the duration of processing
@@ -118,7 +118,7 @@ const privacySchema = graph([
           </p>
           <p>
             <strong>Contact Form (Google Form):</strong> The <a
-              href="/contact"
+              href="/contact/"
               class="text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors"
               >Contact page</a
             > has a "Send me a message" button. Clicking "Open form" takes you <strong class="text-white">off this site</strong>
@@ -164,7 +164,7 @@ const privacySchema = graph([
             <li><strong>When the visit happened</strong> (<span class="font-mono text-slate-400">timestamp_utc</span>, <span class="font-mono text-slate-400">date</span>) — the time is stamped by the collector's own clock, never by your device.</li>
           </ul>
           <p>
-            There is no persistent visitor ID and no session ID: nothing is stored on your device to tell one visit from another, so the observer can't recognise you on a return trip. None of these fields can be used to work out who you are, and I never sell or share them. I use them for a single purpose: to understand which pages are useful so I can spend my time improving the right things. The full explanation also lives on the <a href="/legal" class="text-[#ff6b35] hover:text-white transition-colors">Legal page</a>.
+            There is no persistent visitor ID and no session ID: nothing is stored on your device to tell one visit from another, so the observer can't recognise you on a return trip. None of these fields can be used to work out who you are, and I never sell or share them. I use them for a single purpose: to understand which pages are useful so I can spend my time improving the right things. The full explanation also lives on the <a href="/legal/" class="text-[#ff6b35] hover:text-white transition-colors">Legal page</a>.
           </p>
         </div>
 
@@ -173,7 +173,7 @@ const privacySchema = graph([
             3. Cookies and Storage
           </h2>
           <p>
-STLACCESS sets no cookies, and the web observer stores nothing on your device — no persistent ID, no session ID, no tracking of any kind. The only browser storage the site can write is:
+STLACCESS sets no cookies, and the web observer stores nothing on your device — no persistent ID, no session ID, nothing that could link one visit to another. The only browser storage the site can write is:
           </p>
           <ul class="list-disc pl-6 space-y-4">
             <li>
@@ -243,19 +243,16 @@ STLACCESS sets no cookies, and the web observer stores nothing on your device �
 
         <div class="space-y-6">
           <h2 class="text-2xl font-bold text-white font-heading">
-            6. Affiliate Links & Advertising Disclosure
+            6. How the Site Is Funded
           </h2>
           <p>
-            <strong class="text-white">Right now: none.</strong> STLACCESS currently runs no ads, no affiliate links, and no sponsored banners. The calculators and guides earn nothing today — there is no ad network, no tracking pixel, and no paywall, and I intend to keep it that way.
+            STLACCESS is funded entirely by optional donations. The <a href="/support/" class="text-[#ff6b35] hover:text-white transition-colors">Support page</a> explains how to send a Bitcoin tip. There is no paywall, no subscription, no account, and nothing on the site is gated behind a payment.
           </p>
           <p>
-            <strong class="text-white">If that ever changes:</strong> any sponsored placement or affiliate link that appears here will be clearly labeled as sponsored before you click it, will open in a new tab with rel="sponsored" attributes so search engines do not treat it as an editorial endorsement, and will never sit inside the calculators themselves. I will only link to offers that genuinely make sense for 3D printing and tabletop hobbyists.
+            <strong class="text-white">Support page tips:</strong> donations are direct wallet-to-wallet Bitcoin transfers. No form, no account, no email — nothing about you or your visit reaches me beyond what a normal blockchain transaction shows publicly.
           </p>
           <p>
-            When you click any outbound link — sponsored or not — the destination site may briefly see standard network data such as your IP address and browser, the same way every website works. I do not control what third parties collect on their own sites, and no link on this site sets cookies or collects personal data through STLACCESS. Any advertiser or affiliate partner has their own privacy policy, which I recommend reviewing before completing a purchase or offer.
-          </p>
-          <p>
-            <strong class="text-white">Support page tips:</strong> donations on the <a href="/support" class="text-[#ff6b35] hover:text-white transition-colors">Support page</a> are direct wallet-to-wallet transfers (Bitcoin or Lightning). No form, no account, no email — nothing about you or your visit reaches me beyond what a normal blockchain transaction shows publicly.
+            When you click an outbound link, the destination site may briefly see standard network data such as your IP address and browser, the same way every website works. I do not control what third parties collect on their own sites, and no link on this site sets cookies or collects personal data through STLACCESS.
           </p>
         </div>
 
@@ -282,7 +279,7 @@ STLACCESS sets no cookies, and the web observer stores nothing on your device �
             If you have an issue with privacy setups or want to check how an
             edge layout works, feel free to open a ticket directly on the GitHub
             repository. For generic use rules, check out the <a
-              href="/terms"
+              href="/terms/"
               class="text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors"
               >Terms of Service</a
             >.

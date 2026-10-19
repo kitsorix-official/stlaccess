@@ -38,7 +38,7 @@ This guide untangles it. I measured the publisher's official minis against my ow
 
 ### 28mm to the eyes, about 30-32mm tall
 
-The classic fantasy RPG is **true 28mm scale**. On the [175cm human baseline](/guides/175cm-baseline) I use across this site, a Medium humanoid measures **28mm from the feet to the eyes** — which works out to about **30-32mm to the top of the head**, because the forehead and hair add a few millimetres past the eye line. That's the same convention as every other tabletop scale: eyes, not crown.
+The classic fantasy RPG is **true 28mm scale**. On the [175cm human baseline](/archive/guides/175cm-baseline/) I use across this site, a Medium humanoid measures **28mm from the feet to the eyes** — which works out to about **30-32mm to the top of the head**, because the forehead and hair add a few millimetres past the eye line. That's the same convention as every other tabletop scale: eyes, not crown.
 
 The publisher's official minis match this. Its flagship product lines are branded and sculpted at true 28mm, which is one reason they slot into a classic fantasy RPG table so seamlessly. If you pick up any of the official lines, you can print and play at 28mm without converting anything.
 
@@ -46,7 +46,7 @@ The publisher's official minis match this. Its flagship product lines are brande
 
 Here's the trap. A huge share of the STLs sold "for the classic fantasy RPG" — especially the popular fantasy sculptors on the usual platforms — are actually sculpted at **32mm heroic**. It's not malicious; bigger models carry more detail, print more forgivingly, and look better in renders. But it means a party printed from mixed sources will show two generations of height side by side.
 
-The fix is the same one as everywhere else on this site: measure the model's Z-height in your slicer, then use [114.3% to go 28mm to 32mm](/guides/28mm-to-32mm-scale-conversion) or [87.5% to go back down](/guides/32mm-to-28mm-scale-conversion). Both percentages, plus the reasoning, are covered in their own guides.
+The fix is the same one as everywhere else on this site: measure the model's Z-height in your slicer, then use [114.3% to go 28mm to 32mm](/archive/guides/28mm-to-32mm-scale-conversion/) or [87.5% to go back down](/archive/guides/32mm-to-28mm-scale-conversion/). Both percentages, plus the reasoning, are covered in their own guides.
 
 ## How Tall Are Classic Fantasy RPG Minis by Size Category?
 
@@ -84,13 +84,13 @@ With axes locked, these are the numbers that cover almost every classic fantasy 
 | Medium humanoid | Large creature | 200.0% |
 | Medium humanoid | Huge creature | ~300.0% |
 
-The Medium-to-Large jump is just scaling a humanoid figure to double height, since a 9-foot ogre is twice a 4.5-foot human. The Medium-to-Huge jump (~59mm from ~30mm) lands around 200% to 300% depending on how big you want your giant — the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) gives you the exact number for any target height, and the [scale conversion chart](/miniature-size-chart) has the full table.
+The Medium-to-Large jump is just scaling a humanoid figure to double height, since a 9-foot ogre is twice a 4.5-foot human. The Medium-to-Huge jump (~59mm from ~30mm) lands around 200% to 300% depending on how big you want your giant — the [slicer percentage calculator](/archive/3d-math/slicer-percentage-calculator/) gives you the exact number for any target height, and the [scale conversion chart](/archive/miniature-size-chart/) has the full table.
 
 ### Scaling monster STLs to match official minis
 
 The one place I'm careful is monsters. Ancient dragons and krakens from third-party sculptors range wildly — I've seen "Gargantuan" dragons from 80mm to 180mm, because there's no single answer for "how tall is a dragon". My rule: decide your target base (4-inch for Gargantuan) and scale the STL so the *footprint* fits, then let the height be whatever proportion the sculptor chose. That keeps the mini legal on the table and stops you from obsessing over a number nobody official publishes.
 
-If a dragon STL has no scale listed at all, measure it against my [scale reference bar](/3d-math/reference-bar-generator) in your slicer to see what height it's actually sculpted at — then you scale from there instead of guessing.
+If a dragon STL has no scale listed at all, measure it against my [scale reference bar](/archive/3d-math/reference-bar-generator/) in your slicer to see what height it's actually sculpted at — then you scale from there instead of guessing.
 
 ## How Do I Measure a Classic Fantasy RPG Mini to Find Its Scale?
 
@@ -98,10 +98,10 @@ If a dragon STL has no scale listed at all, measure it against my [scale referen
 
 The single most useful habit for classic fantasy RPG printing: **measure to the eyes**. A humanoid is "28mm" when its eye line is 28mm above the base, and the 2-4mm between the eyes and the top of the head is exactly where the confusion comes from. When you read a Z-height in your slicer, you're reading total height including the head and the base — so subtract the base and eyeball the eye line before you decide a model is "the wrong scale".
 
-This is the same convention the [175cm baseline guide](/guides/175cm-baseline) explains in full, and it's why two minis that are both "28mm" can measure 30mm and 32mm total and still be exactly the same scale.
+This is the same convention the [175cm baseline guide](/archive/guides/175cm-baseline/) explains in full, and it's why two minis that are both "28mm" can measure 30mm and 32mm total and still be exactly the same scale.
 
 ### What if my STL has no scale listed?
 
-You have three options, in order of how much I trust them. First, check the model description — many sculptors state the intended height even if not the scale word. Second, measure the printed or sliced height and compare it to this guide's chart; a Medium humanoid at 30-32mm is true 28mm, at 34.5mm total it's 32mm heroic. Third, print a [scale reference bar](/3d-math/reference-bar-generator) to measure the sliced height against the chart and work out the exact percentage for whatever game you're printing.
+You have three options, in order of how much I trust them. First, check the model description — many sculptors state the intended height even if not the scale word. Second, measure the printed or sliced height and compare it to this guide's chart; a Medium humanoid at 30-32mm is true 28mm, at 34.5mm total it's 32mm heroic. Third, print a [scale reference bar](/archive/3d-math/reference-bar-generator/) to measure the sliced height against the chart and work out the exact percentage for whatever game you're printing.
 
-That's the classic fantasy RPG scale answer. True 28mm to the eyes, bases over heights, and one measurement before you type any percentage. The complete set of conversions across every tabletop scale — the classic fantasy RPG, the modern sci-fi epic wargame, the 35mm sci-fi mass-battle game, and the ratio scales — is on the [miniature scale conversion chart](/miniature-size-chart).
+That's the classic fantasy RPG scale answer. True 28mm to the eyes, bases over heights, and one measurement before you type any percentage. The complete set of conversions across every tabletop scale — the classic fantasy RPG, the modern sci-fi epic wargame, the 35mm sci-fi mass-battle game, and the ratio scales — is on the [miniature scale conversion chart](/archive/miniature-size-chart/).

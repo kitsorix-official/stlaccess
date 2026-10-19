@@ -80,7 +80,7 @@ Use this as a rough rule of thumb:
 
 If you already own an FDM printer, don't feel you need to rush out and buy a resin one. Start with a 0.2mm nozzle and good settings, and only reach for resin if the fine detail you want is genuinely beyond FDM.
 
-If your real question is broader than miniatures — large props, functional brackets, or whether a service-bureau SLS machine is worth it — I compared all three processes by what the part has to do in [FDM vs Resin vs SLS 3D Printing](/fdm/fdm-vs-resin-sla-sls-3d-printing).
+If your real question is broader than miniatures — large props, functional brackets, or whether a service-bureau SLS machine is worth it — I compared all three processes by what the part has to do in [FDM vs Resin vs SLS 3D Printing](/archive/fdm/fdm-vs-resin-sla-sls-3d-printing/).
 
 ## Summary
 

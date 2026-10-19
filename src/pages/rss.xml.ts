@@ -23,7 +23,7 @@ interface FeedItem {
 function toItem(entry: CollectionEntry<'guides'> | CollectionEntry<'fdm'>, base: string): FeedItem {
   return {
     title: entry.data.title,
-    url: `${site.url}${base}/${entry.id}`,
+    url: `${site.url}${base}/${entry.id}/`,
     description: entry.data.description,
     pubDate: entry.data.pubDate,
   };
@@ -36,8 +36,8 @@ export const GET: APIRoute = async () => {
   ]);
 
   const items = [
-    ...guides.map((entry) => toItem(entry, '/guides')),
-    ...fdm.map((entry) => toItem(entry, '/fdm')),
+    ...guides.map((entry) => toItem(entry, '/archive/guides')),
+    ...fdm.map((entry) => toItem(entry, '/archive/fdm')),
   ].sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf());
 
   const lastBuildDate = new Date().toUTCString();

@@ -9,17 +9,17 @@ const schema = graph([
     name: "Embed the STL Scale Converter on Your Site",
     description:
       "Free iframe embed code for the STLACCESS STL scale converter. Exact slicer percentages for 16 tabletop scales, no cookies, runs in the visitor's browser. Keep the attribution link and it's yours to use.",
-    url: "/embed",
+    url: "/embed/",
   }),
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Embed the converter", path: "/embed" },
+    { name: "Embed the converter", path: "/embed/" },
   ]),
   softwareApplication({
     name: "STLACCESS Embeddable STL Scale Converter",
     description:
       "Embeddable widget that calculates exact slicer percentages for 16 tabletop miniature scales using the STLACCESS 175cm baseline.",
-    url: "/widget",
+    url: "/widget/",
   }),
 ]);
 ---
@@ -43,7 +43,7 @@ const schema = graph([
         Embed <span class="text-[#ff6b35] italic">the STL Scale Converter</span> on your site
       </h1>
       <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
-        Free to use on any maker blog, tutorial page, or community resource. Drop in one <code class="text-[#ff6b35]">&lt;iframe&gt;</code> and your readers get exact slicer percentages for 16 tabletop scales — the same math as the <a href="/" class="text-[#ff6b35] hover:underline font-semibold">STL scale calculator</a> on the homepage.
+        Free to use on any maker blog, tutorial page, or community resource. Drop in one <code class="text-[#ff6b35]">&lt;iframe&gt;</code> and your readers get exact slicer percentages for 16 tabletop scales — the same math as the <a href="/stl-scale-inspector/" class="text-[#ff6b35] hover:underline font-semibold">STL Scale Inspector</a>.
       </p>
     </div>
   </div>
@@ -54,7 +54,7 @@ const schema = graph([
       <div>
         <h2 id="snippet-heading" class="text-xl font-bold font-heading mb-3">Copy-paste embed code</h2>
         <pre class="bg-slate-900/60 border border-white/10 rounded-2xl p-5 text-xs font-mono text-slate-300 overflow-x-auto leading-relaxed" aria-label="Embed code to copy"><code>&lt;iframe
-  src="https://stlaccess.com/widget"
+  src="https://stlaccess.com/widget/"
   title="STL scale converter by STLACCESS"
   width="100%" height="560"
   style="border:0;border-radius:20px;background:#0a0a0a;max-width:430px"
@@ -85,7 +85,7 @@ const schema = graph([
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
         <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="ti ti-link text-[#ff6b35]" aria-hidden="true"></i>Deep-link presets</h3>
-        <p class="text-sm text-slate-400 leading-relaxed">Add URL parameters to the <code class="text-[#ff6b35]">src</code> to pre-select scales: <code class="text-xs text-slate-300">src="https://stlaccess.com/widget?source=28mm&target=32mm&logic=eye"</code> — perfect for a specific tutorial.</p>
+        <p class="text-sm text-slate-400 leading-relaxed">Add URL parameters to the <code class="text-[#ff6b35]">src</code> to pre-select scales: <code class="text-xs text-slate-300">src="https://stlaccess.com/widget/?source=28mm&target=32mm&logic=eye"</code> — perfect for a specific tutorial.</p>
       </div>
       <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
         <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="ti ti-heart-handshake text-[#ff6b35]" aria-hidden="true"></i>One condition</h3>
@@ -97,7 +97,7 @@ const schema = graph([
       </div>
     </div>
     <p class="text-sm text-slate-500 mt-6">
-      Questions about a specific embed context? <a href="/contact" class="text-[#ff6b35] hover:underline">Get in touch</a>. Want the full reference instead of the widget? Use the <a href="/scale-standard" class="text-[#ff6b35] hover:underline font-semibold">STLACCESS Scale Standard</a> and the open datasets.
+      Questions about a specific embed context? <a href="/contact/" class="text-[#ff6b35] hover:underline">Get in touch</a>. Want the full reference instead of the widget? Use the <a href="/archive/scale-standard/" class="text-[#ff6b35] hover:underline font-semibold">STLACCESS Scale Standard</a> and the open datasets.
     </p>
   </section>
 </Layout>

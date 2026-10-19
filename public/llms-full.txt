@@ -7,12 +7,12 @@ the slicer percentage is always (target standard mm ÷ source standard mm) × 10
 
 ## Reference
 
-- **STLACCESS Scale Standard** — https://stlaccess.com/scale-standard
+- **STLACCESS Scale Standard** — https://stlaccess.com/archive/scale-standard/
   (175cm baseline, eyes at 160cm, gaming scales to eye level, ratio scales to top of head)
 - **Open datasets (CC BY 4.0)** — https://stlaccess.com/data/index.json
   (JSON + CSV: 16 baselines, 46 conversions, 26 FDM profiles)
-- **Miniature Size Chart** — https://stlaccess.com/miniature-size-chart (46 verified conversions)
-- **Embeddable converter widget** — https://stlaccess.com/embed
+- **Miniature Size Chart** — https://stlaccess.com/archive/miniature-size-chart/ (46 verified conversions)
+- **Embeddable converter widget** — https://stlaccess.com/embed/
 
 ## Guides (16)
 
@@ -81,7 +81,7 @@ Published: 2026-08-15
 
 Of all the conversions I get asked about, this is the one. Someone prints a classic fantasy RPG party, realises it looks tiny next to a modern sci-fi epic wargame army, and starts searching "28mm to 32mm scale up" — and the answer is the same every time: **114.3%, typed into your slicer with the axes locked.**
 
-This guide walks through the math so the number sticks, shows the exact clicks in the four slicers I use, and gives you a calculator you can play with right here. If you need the reverse (shrinking a 32mm mini down to 28mm), I've got a dedicated [32mm to 28mm guide](/guides/32mm-to-28mm-scale-conversion) for that too.
+This guide walks through the math so the number sticks, shows the exact clicks in the four slicers I use, and gives you a calculator you can play with right here. If you need the reverse (shrinking a 32mm mini down to 28mm), I've got a dedicated [32mm to 28mm guide](/archive/guides/32mm-to-28mm-scale-conversion/) for that too.
 
 ## What Percentage Do I Scale 28mm to 32mm?
 
@@ -89,7 +89,7 @@ This guide walks through the math so the number sticks, shows the exact clicks i
 
 Type **114.3%** into your slicer's scale field — with X, Y, and Z locked — and a true 28mm miniature becomes a true 32mm miniature. That's the whole answer. It's also the most searched scale conversion in the tabletop space, and for good reason: it's the jump between the two biggest scales in the hobby.
 
-On the [175cm human baseline](/guides/175cm-baseline) I use for every conversion on this site, a 28mm figure measures 28mm from the bottom of the feet to eye level, and a 32mm figure measures 32mm to the eyes. The percentage is just target divided by source: **32 ÷ 28 = 1.143, which is 114.3%**. The same formula drives the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) and every row on the [scale conversion chart](/miniature-size-chart).
+On the [175cm human baseline](/archive/guides/175cm-baseline/) I use for every conversion on this site, a 28mm figure measures 28mm from the bottom of the feet to eye level, and a 32mm figure measures 32mm to the eyes. The percentage is just target divided by source: **32 ÷ 28 = 1.143, which is 114.3%**. The same formula drives the [slicer percentage calculator](/archive/3d-math/slicer-percentage-calculator/) and every row on the [scale conversion chart](/archive/miniature-size-chart/).
 
 If you want to play with the numbers yourself, here's the exact calculator I use before every batch — enter your own source and target heights in millimetres and it gives you the slicer percentage instantly.
 
@@ -112,7 +112,7 @@ If you want to play with the numbers yourself, here's the exact calculator I use
       <output id="calcResult" class="text-3xl font-black font-heading text-[#ff6b35]">114.3%</output>
     </div>
   </div>
-  <p class="text-xs text-slate-500">Same math as the <a href="/3d-math/slicer-percentage-calculator" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">slicer percentage calculator</a>: target ÷ source × 100.</p>
+  <p class="text-xs text-slate-500">Same math as the <a href="/archive/3d-math/slicer-percentage-calculator/" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">slicer percentage calculator</a>: target ÷ source × 100.</p>
 </div>
 <script is:inline>
   function updateScaleCalc() {
@@ -130,7 +130,7 @@ If you want to play with the numbers yourself, here's the exact calculator I use
 
 Honestly, the even numbers would be easier to remember, but scale math doesn't work that way. 28mm and 32mm are both measurements of the *same* 175cm human at different magnifications, so the ratio between them is fixed: 32/28. You can't round 114.3% to 115% without shifting every figure off the eye line by a fraction of a millimetre. It won't ruin a print, but if you're batch-scaling an army, 114.3% keeps everyone exactly in proportion.
 
-The one thing that *does* change the number is how you measure. A 28mm gaming figure measured to the top of the head is about **30.5mm**, and a 32mm heroic figure is about **34.5mm** — so measured top-of-head, the conversion is **116.1%** instead. Every scale on the [miniature scale conversion chart](/miniature-size-chart) shows both numbers, because sculptors disagree about which one matters. Gaming convention says the eyes, so I use 114.3% as my default and I suggest you do the same.
+The one thing that *does* change the number is how you measure. A 28mm gaming figure measured to the top of the head is about **30.5mm**, and a 32mm heroic figure is about **34.5mm** — so measured top-of-head, the conversion is **116.1%** instead. Every scale on the [miniature scale conversion chart](/archive/miniature-size-chart/) shows both numbers, because sculptors disagree about which one matters. Gaming convention says the eyes, so I use 114.3% as my default and I suggest you do the same.
 
 ## How Do I Scale a 28mm Mini to 32mm in My Slicer?
 
@@ -146,7 +146,7 @@ The one mistake I see constantly in the community is scaling without locking the
 
 ### Where the scale field lives in Chitubox, Lychee, Cura, and PrusaSlicer
 
-Chitubox and Lychee I covered in depth in my [Chitubox & Lychee scaling guide](/guides/chitubox-lychee-scaling-guide), but the short version: Chitubox is `T` → Transform → Scale, and Lychee is Transform → Uniform Scaling. Both show the current X/Y/Z dimensions in millimetres, so you can verify the height before and after.
+Chitubox and Lychee I covered in depth in my [Chitubox & Lychee scaling guide](/archive/guides/chitubox-lychee-scaling-guide/), but the short version: Chitubox is `T` → Transform → Scale, and Lychee is Transform → Uniform Scaling. Both show the current X/Y/Z dimensions in millimetres, so you can verify the height before and after.
 
 Cura and PrusaSlicer work the same way under different names. In Cura, select the model and the Scale tool (or press `S`), then make sure the padlock between the X/Y/Z boxes is closed before entering 114.3. In PrusaSlicer, it's the Scale button in the left toolbar — the three fields are locked by default, so you only type the number once. In every case the Z-axis readout after applying should show roughly 32mm for a 28mm-sourced figure, plus whatever the base contributes.
 
@@ -154,25 +154,25 @@ Cura and PrusaSlicer work the same way under different names. In Cura, select th
 
 ### Eye-level vs top-of-head measurement
 
-I find this trips up more people than anything else. When you hold a 28mm and a 32mm miniature side by side, the 32mm figure doesn't look 14.3% bigger — it looks almost a third bigger. That's partly the heroic proportions (bigger heads, hands, and weapons) and partly because the difference compounds in three dimensions: 114.3% in every axis is **1.143³ ≈ 1.49**, so the 32mm figure has nearly *50% more volume* than the 28mm figure. Same for the reverse — [drop a model to 87.5%](/guides/32mm-to-28mm-scale-conversion) and it loses about a third of its volume.
+I find this trips up more people than anything else. When you hold a 28mm and a 32mm miniature side by side, the 32mm figure doesn't look 14.3% bigger — it looks almost a third bigger. That's partly the heroic proportions (bigger heads, hands, and weapons) and partly because the difference compounds in three dimensions: 114.3% in every axis is **1.143³ ≈ 1.49**, so the 32mm figure has nearly *50% more volume* than the 28mm figure. Same for the reverse — [drop a model to 87.5%](/archive/guides/32mm-to-28mm-scale-conversion/) and it loses about a third of its volume.
 
 That volume jump is exactly why the publisher moved from 28mm to 32mm between 2014 and 2015: the extra material gives a painter more surface for detail and makes a model read better at arm's length. If you're scaling a classic fantasy RPG STL up to stand next to a modern heroic (32mm) army, 114.3% is right — the slight sculpting differences fade once the model has the same bulk as its neighbours.
 
 ### Why a 32mm hero looks so much bigger than the math suggests
 
-The other half of the illusion is proportion. Most 32mm-scale sculpts are *heroic* — the head is about 1:6 of the total height instead of the realistic 1:7.5, and hands and weapons are oversized too. So when you compare a true-scale 28mm sculpt against a heroic 32mm sculpt, you're seeing two differences at once: the scale jump *and* the proportion style. That's worth knowing before you print a whole proxy squad: the percentage gets the height right, but the *feel* of the model still depends on the sculptor's style. Print my [scale reference bar](/3d-math/reference-bar-generator) and measure an unlabelled STL in your slicer to see whether it's true-scale or heroic before you scale from the wrong starting point.
+The other half of the illusion is proportion. Most 32mm-scale sculpts are *heroic* — the head is about 1:6 of the total height instead of the realistic 1:7.5, and hands and weapons are oversized too. So when you compare a true-scale 28mm sculpt against a heroic 32mm sculpt, you're seeing two differences at once: the scale jump *and* the proportion style. That's worth knowing before you print a whole proxy squad: the percentage gets the height right, but the *feel* of the model still depends on the sculptor's style. Print my [scale reference bar](/archive/3d-math/reference-bar-generator/) and measure an unlabelled STL in your slicer to see whether it's true-scale or heroic before you scale from the wrong starting point.
 
 ## What Does 28mm and 32mm Mean in Real Terms?
 
 ### The 175cm human baseline
 
-Both numbers come from measuring the same average human — 175cm tall, eyes at 160cm — and then scaling that figure so either the eye line or the top of the head lands on the stated millimetre count. 28mm to the eyes at 1:56, 32mm to the eyes at 1:50. The shorthand is "the eyes", but what it really means is "this miniature is the same height, at the table, as a real person standing next to the model kit at the stated scale." I've written the whole methodology out in the [175cm baseline guide](/guides/175cm-baseline), including why eye-level and top-of-head scales can't be mixed without a conversion step.
+Both numbers come from measuring the same average human — 175cm tall, eyes at 160cm — and then scaling that figure so either the eye line or the top of the head lands on the stated millimetre count. 28mm to the eyes at 1:56, 32mm to the eyes at 1:50. The shorthand is "the eyes", but what it really means is "this miniature is the same height, at the table, as a real person standing next to the model kit at the stated scale." I've written the whole methodology out in the [175cm baseline guide](/archive/guides/175cm-baseline/), including why eye-level and top-of-head scales can't be mixed without a conversion step.
 
 ### Classic fantasy RPG vs modern sci-fi epic wargame: which scale do you actually play?
 
 This is the fork in the road. True 28mm is the language of the classic fantasy RPG, the 28mm WWII platoon wargame, and most historical games. 32mm heroic is the language of the modern sci-fi wargame (32mm), the modern fantasy wargame (32mm heroic), and most current skirmish games. Play one system and you never need this conversion. Play both — or print STLs from one ecosystem for use in the other, which is what nearly everyone I know does — and 114.3% becomes your best friend.
 
-If you're mostly a fantasy RPG player, my [fantasy RPG miniature scale guide](/guides/classic-fantasy-rpg-miniature-scale-guide) has the full size-category chart. If you're scaling the 32mm heroic sci-fi standard and want to know exactly where your army sits, the [modern sci-fi epic wargame scale profile](/fdm-printing-profiles#sci-fi-epic-32mm) breaks down the classic true-scale vs modern heroic difference — which, conveniently, is the same 28mm-to-32mm jump this guide covers.
+If you're mostly a fantasy RPG player, my [fantasy RPG miniature scale guide](/archive/guides/classic-fantasy-rpg-miniature-scale-guide/) has the full size-category chart. If you're scaling the 32mm heroic sci-fi standard and want to know exactly where your army sits, the [modern sci-fi epic wargame scale profile](/archive/fdm-printing-profiles/#sci-fi-epic-32mm) breaks down the classic true-scale vs modern heroic difference — which, conveniently, is the same 28mm-to-32mm jump this guide covers.
 
 ## Where Does the 28mm to 32mm Conversion Break Down?
 
@@ -180,9 +180,9 @@ If you're mostly a fantasy RPG player, my [fantasy RPG miniature scale guide](/g
 
 Every conversion on this site assumes the *source* model is honestly 28mm. In practice, "28mm" can mean anything from 25mm true-scale to 32mm labelled as 28mm — I've held both. So my rule is: measure before you trust. Select the model in your slicer and read the Z-height, then compare it to the eye-level number in the chart. If a claimed 28mm figure already reads 32mm to the eyes, the sculptor was working in 32mm the whole time and scaling it by 114.3% would be wrong.
 
-The second honest limit is the print itself. Scaling a 28mm STL up by 14.3% hides print artefacts — bigger layer lines look smoother relative to the model, and fine detail gets more forgiving. That's one more reason this conversion is so popular. If you're scaling the *other* way and shrinking a 32mm hero down, detail gets denser and support points get pickier; I cover that properly in the [downscale guide](/guides/32mm-to-28mm-scale-conversion) with the settings I use to keep faces clean at 87.5%.
+The second honest limit is the print itself. Scaling a 28mm STL up by 14.3% hides print artefacts — bigger layer lines look smoother relative to the model, and fine detail gets more forgiving. That's one more reason this conversion is so popular. If you're scaling the *other* way and shrinking a 32mm hero down, detail gets denser and support points get pickier; I cover that properly in the [downscale guide](/archive/guides/32mm-to-28mm-scale-conversion/) with the settings I use to keep faces clean at 87.5%.
 
-That's the whole conversion. 114.3%, axes locked, one test print, and you're done. If you want the master list of every scale jump in the hobby — 15mm to 28mm, 1:72 to 32mm, 1:35 to 28mm and the rest — the full [miniature scale conversion chart](/miniature-size-chart) has them all in one table, calculated on the same 175cm baseline.
+That's the whole conversion. 114.3%, axes locked, one test print, and you're done. If you want the master list of every scale jump in the hobby — 15mm to 28mm, 1:72 to 32mm, 1:35 to 28mm and the rest — the full [miniature scale conversion chart](/archive/miniature-size-chart/) has them all in one table, calculated on the same 175cm baseline.
 
 ---
 
@@ -197,27 +197,27 @@ Published: 2026-08-15
 
 The internet is full of guides for scaling miniatures up — a classic fantasy RPG party meeting a modern sci-fi epic wargame army, small scale jumping to heroic scale, all that. But shrinking a miniature is just as common, and it's harder to get right. Scale a model down by 12.5% and every support point, every thin blade, and every layer line has to work at the smaller size.
 
-This guide covers the number (87.5%, same as it ever was), the slicer routine that keeps detail intact, and the practical reasons you'd downscale at all. If you're going the other way, my [28mm to 32mm guide](/guides/28mm-to-32mm-scale-conversion) has the full walkthrough.
+This guide covers the number (87.5%, same as it ever was), the slicer routine that keeps detail intact, and the practical reasons you'd downscale at all. If you're going the other way, my [28mm to 32mm guide](/archive/guides/28mm-to-32mm-scale-conversion/) has the full walkthrough.
 
 ## What Percentage Do I Scale 32mm Down to 28mm?
 
 ### The number: 87.5%
 
-Type **87.5%** into your slicer with X, Y, and Z locked. That's 28 ÷ 32 × 100 — the exact reverse of the 28mm-to-32mm upscale, which is [114.3%](/guides/28mm-to-32mm-scale-conversion). Where the upscale grows a model by 14.3%, the downscale shrinks it by 12.5%, so a heroic 32mm figure lands at true 28mm eye level on the [175cm baseline](/guides/175cm-baseline).
+Type **87.5%** into your slicer with X, Y, and Z locked. That's 28 ÷ 32 × 100 — the exact reverse of the 28mm-to-32mm upscale, which is [114.3%](/archive/guides/28mm-to-32mm-scale-conversion/). Where the upscale grows a model by 14.3%, the downscale shrinks it by 12.5%, so a heroic 32mm figure lands at true 28mm eye level on the [175cm baseline](/archive/guides/175cm-baseline/).
 
-This is the conversion I reach for when a modern sci-fi epic wargame proxy needs to stand next to a classic fantasy RPG party, or when a sculpt I love only exists in 32mm and I play the 28mm WWII platoon wargame. The number shows up in the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) and in every row of the [miniature scale conversion chart](/miniature-size-chart), always with the axes locked and always measured to the eyes.
+This is the conversion I reach for when a modern sci-fi epic wargame proxy needs to stand next to a classic fantasy RPG party, or when a sculpt I love only exists in 32mm and I play the 28mm WWII platoon wargame. The number shows up in the [slicer percentage calculator](/archive/3d-math/slicer-percentage-calculator/) and in every row of the [miniature scale conversion chart](/archive/miniature-size-chart/), always with the axes locked and always measured to the eyes.
 
 ### Why 87.5% and not 90%?
 
 Same reason the upscale isn't 115%: because both scales measure the same 175cm human to the eyes, the ratio between them is fixed at 28/32. Deviating from it shifts every figure off the intended eye line. 90% sounds friendlier and is close enough to pass the eye test on a single model, but batch-scaling a squad to 90% leaves you with a 28.8mm figure — small enough that nobody will measure it, wrong enough that I won't recommend it.
 
-The one thing that *does* change the number is the measurement convention. If a sculptor measures to the top of the head instead of the eyes, the downscale percentage shifts by about a point in the other direction. The [scale conversion chart](/miniature-size-chart) lists both where it matters, but gaming convention says the eyes, so 87.5% is my default.
+The one thing that *does* change the number is the measurement convention. If a sculptor measures to the top of the head instead of the eyes, the downscale percentage shifts by about a point in the other direction. The [scale conversion chart](/archive/miniature-size-chart/) lists both where it matters, but gaming convention says the eyes, so 87.5% is my default.
 
 ## Why Would I Shrink a 32mm Miniature to 28mm?
 
 ### Fitting more minis on the plate
 
-The most practical reason, especially on resin: an 87.5% miniature takes up about 67% of the volume of the original (0.875³ ≈ 0.67), so you fit noticeably more minis per build plate per run. Once you're printing rank-and-file infantry in batches, that's real time and real resin saved. I use the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) to plan batch spacing, and the [reference](/miniature-size-chart) page has the full matrix if you want to see every pairing at once.
+The most practical reason, especially on resin: an 87.5% miniature takes up about 67% of the volume of the original (0.875³ ≈ 0.67), so you fit noticeably more minis per build plate per run. Once you're printing rank-and-file infantry in batches, that's real time and real resin saved. I use the [slicer percentage calculator](/archive/3d-math/slicer-percentage-calculator/) to plan batch spacing, and the [reference](/archive/miniature-size-chart/) page has the full matrix if you want to see every pairing at once.
 
 ### Mixing with a true-scale collection
 
@@ -240,7 +240,7 @@ Lock the axes, type 87.5, apply. Then the steps that actually matter when you're
 
 Two things, predictably: surface detail and mechanical strength. Fine features get denser relative to the nozzle or resin pixel, so a face that printed cleanly at 32mm can lose its expression at 87.5%. On FDM, thinner features also mean more fragile prints — swords, rifles, and capes are the first casualties. That's the trade you're accepting for a cheaper, denser plate.
 
-The good news is that everything shrinks uniformly, so proportions never distort. If the original was well-sculpted, the 87.5% version is the same sculpt with less material. That's exactly why the [reference page](/miniature-size-chart) treats downscale as the mirror of upscale rather than a separate skill — the math is the same, only the print settings change.
+The good news is that everything shrinks uniformly, so proportions never distort. If the original was well-sculpted, the 87.5% version is the same sculpt with less material. That's exactly why the [reference page](/archive/miniature-size-chart/) treats downscale as the mirror of upscale rather than a separate skill — the math is the same, only the print settings change.
 
 ## Are 32mm and 28mm Miniatures Really That Different?
 
@@ -250,11 +250,11 @@ Side by side, the difference reads as much bigger than 14.3%. Hold a classic tru
 
 ### Heroic proportions vs true scale when going down
 
-This is the one thing nobody warns you about: scale is not the same as proportion. 28mm and 32mm describe where a figure's eyes sit; heroic describes how the sculptor shaped the body inside that height. A 32mm heroic miniature downscaled to 87.5% still has the big head and oversized hands — it's a heroic 28mm figure. So measure any unlabelled STL against a [scale reference bar](/3d-math/reference-bar-generator) and weigh the proportions before you type in a percentage.
+This is the one thing nobody warns you about: scale is not the same as proportion. 28mm and 32mm describe where a figure's eyes sit; heroic describes how the sculptor shaped the body inside that height. A 32mm heroic miniature downscaled to 87.5% still has the big head and oversized hands — it's a heroic 28mm figure. So measure any unlabelled STL against a [scale reference bar](/archive/3d-math/reference-bar-generator/) and weigh the proportions before you type in a percentage.
 
-If you mostly play 28mm systems, my [fantasy RPG miniature scale guide](/guides/classic-fantasy-rpg-miniature-scale-guide) shows what a true 28mm army looks like across every size category, from Tiny to Gargantuan. Compare it against your shrunken 32mm squad and you'll see the proportions instantly.
+If you mostly play 28mm systems, my [fantasy RPG miniature scale guide](/archive/guides/classic-fantasy-rpg-miniature-scale-guide/) shows what a true 28mm army looks like across every size category, from Tiny to Gargantuan. Compare it against your shrunken 32mm squad and you'll see the proportions instantly.
 
-That's the downscale. 87.5%, axes locked, supports re-generated, one test print. If you want the full set of percentages — including how the same ratio behaves across the 35mm sci-fi mass-battle game and the 40mm sci-fi skirmish game, and the rest — the [miniature scale conversion chart](/miniature-size-chart) has the master list.
+That's the downscale. 87.5%, axes locked, supports re-generated, one test print. If you want the full set of percentages — including how the same ratio behaves across the 35mm sci-fi mass-battle game and the 40mm sci-fi skirmish game, and the rest — the [miniature scale conversion chart](/archive/miniature-size-chart/) has the master list.
 
 ---
 
@@ -429,7 +429,7 @@ This matters for things like transport trays, heavy vehicle proxies, and functio
 
 The two setups complement each other. Resin handles the detail work where layer lines would ruin the model. FDM handles the volume work where speed and cost per model matter more than surface finish. A $200 FDM printer running overnight terrain while your resin machine sleeps is the most efficient use of your hobby budget.
 
-Once the machine is chosen, the settings are what decide whether it is worth owning. I put together the layer heights, nozzle sizes, infill densities, and support strategies for printing both miniatures and terrain on the same printer in [Tabletop Gaming with FDM](/fdm/best-fdm-printer-miniatures-and-terrain).
+Once the machine is chosen, the settings are what decide whether it is worth owning. I put together the layer heights, nozzle sizes, infill densities, and support strategies for printing both miniatures and terrain on the same printer in [Tabletop Gaming with FDM](/archive/fdm/best-fdm-printer-miniatures-and-terrain/).
 
 ## Summary
 
@@ -498,7 +498,7 @@ Before you type a single percentage, you need to know what you're starting from.
 
 The number that matters for scale is the **Z-axis** — that's the height. Select your model, look at the Z field, and you instantly know its current height in mm. That's the source number for every conversion you type in.
 
-Here is the catch I hit constantly: **which height counts depends on how the sculptor measured it.** Gaming scales like 28mm and 32mm measure to eye level, so a true 32mm model usually reads 34-35mm on the Z-axis once you include the forehead, hair, or helmet. If you measure a "32mm" model and see 34.5mm, that is not a mistake — that is eye level plus skull. If you have an unlabeled sculpt, print the [scale reference bar](/3d-math/reference-bar-generator) and measure it in your slicer, and the [reference library](/miniature-size-chart) notes which measurement each scale uses.
+Here is the catch I hit constantly: **which height counts depends on how the sculptor measured it.** Gaming scales like 28mm and 32mm measure to eye level, so a true 32mm model usually reads 34-35mm on the Z-axis once you include the forehead, hair, or helmet. If you measure a "32mm" model and see 34.5mm, that is not a mistake — that is eye level plus skull. If you have an unlabeled sculpt, print the [scale reference bar](/archive/3d-math/reference-bar-generator/) and measure it in your slicer, and the [reference library](/archive/miniature-size-chart/) notes which measurement each scale uses.
 
 A quick sanity check before you scale: a 28-32mm miniature should be roughly the height of your thumb. If the Z-axis shows a grain of rice instead, the file was exported in inches — jump down to the Lychee units section for the fix.
 
@@ -542,7 +542,7 @@ If your file's X-axis shows as, for example, 30mm:
 | Scale to 32mm (from 28mm) | 114.3% |
 | Scale to 35mm (from 28mm) | 125.0% |
 
-Use the [STLACCESS scale engine](/) to calculate any conversion, or browse the [reference library](/miniature-size-chart) for pre-calculated percentages. I use both constantly — that's the whole reason I built them.
+Use the [STLACCESS scale engine](/) to calculate any conversion, or browse the [reference library](/archive/miniature-size-chart/) for pre-calculated percentages. I use both constantly — that's the whole reason I built them.
 
 ## Common Mistakes to Avoid
 
@@ -550,7 +550,7 @@ These are the mistakes I've personally made, so you don't have to:
 
 - **Forgetting to lock the aspect ratio** — results in a squashed or stretched miniature. My hydraulic-press print was the teacher here.
 - **Scaling the base with the model** — makes the base look wrong for the game system. Separate it first.
-- **Distinguishing between eye-level and top-of-head** — 28mm refers to eye level; ratio scales like 1:56 are top-of-head. The [scale reference](/miniature-size-chart) has notes for each
+- **Distinguishing between eye-level and top-of-head** — 28mm refers to eye level; ratio scales like 1:56 are top-of-head. The [scale reference](/archive/miniature-size-chart/) has notes for each
 - **Skipping the test print** — I always print one test piece and measure it with my PARKSIDE calipers before committing to a full squad. The STL scale calculator has a [shrinkage compensation toggle](/) for filaments that shrink more than the usual 0.2-0.5%
 
 ---
@@ -572,7 +572,7 @@ This guide untangles it. I measured the publisher's official minis against my ow
 
 ### 28mm to the eyes, about 30-32mm tall
 
-The classic fantasy RPG is **true 28mm scale**. On the [175cm human baseline](/guides/175cm-baseline) I use across this site, a Medium humanoid measures **28mm from the feet to the eyes** — which works out to about **30-32mm to the top of the head**, because the forehead and hair add a few millimetres past the eye line. That's the same convention as every other tabletop scale: eyes, not crown.
+The classic fantasy RPG is **true 28mm scale**. On the [175cm human baseline](/archive/guides/175cm-baseline/) I use across this site, a Medium humanoid measures **28mm from the feet to the eyes** — which works out to about **30-32mm to the top of the head**, because the forehead and hair add a few millimetres past the eye line. That's the same convention as every other tabletop scale: eyes, not crown.
 
 The publisher's official minis match this. Its flagship product lines are branded and sculpted at true 28mm, which is one reason they slot into a classic fantasy RPG table so seamlessly. If you pick up any of the official lines, you can print and play at 28mm without converting anything.
 
@@ -580,7 +580,7 @@ The publisher's official minis match this. Its flagship product lines are brande
 
 Here's the trap. A huge share of the STLs sold "for the classic fantasy RPG" — especially the popular fantasy sculptors on the usual platforms — are actually sculpted at **32mm heroic**. It's not malicious; bigger models carry more detail, print more forgivingly, and look better in renders. But it means a party printed from mixed sources will show two generations of height side by side.
 
-The fix is the same one as everywhere else on this site: measure the model's Z-height in your slicer, then use [114.3% to go 28mm to 32mm](/guides/28mm-to-32mm-scale-conversion) or [87.5% to go back down](/guides/32mm-to-28mm-scale-conversion). Both percentages, plus the reasoning, are covered in their own guides.
+The fix is the same one as everywhere else on this site: measure the model's Z-height in your slicer, then use [114.3% to go 28mm to 32mm](/archive/guides/28mm-to-32mm-scale-conversion/) or [87.5% to go back down](/archive/guides/32mm-to-28mm-scale-conversion/). Both percentages, plus the reasoning, are covered in their own guides.
 
 ## How Tall Are Classic Fantasy RPG Minis by Size Category?
 
@@ -618,13 +618,13 @@ With axes locked, these are the numbers that cover almost every classic fantasy 
 | Medium humanoid | Large creature | 200.0% |
 | Medium humanoid | Huge creature | ~300.0% |
 
-The Medium-to-Large jump is just scaling a humanoid figure to double height, since a 9-foot ogre is twice a 4.5-foot human. The Medium-to-Huge jump (~59mm from ~30mm) lands around 200% to 300% depending on how big you want your giant — the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) gives you the exact number for any target height, and the [scale conversion chart](/miniature-size-chart) has the full table.
+The Medium-to-Large jump is just scaling a humanoid figure to double height, since a 9-foot ogre is twice a 4.5-foot human. The Medium-to-Huge jump (~59mm from ~30mm) lands around 200% to 300% depending on how big you want your giant — the [slicer percentage calculator](/archive/3d-math/slicer-percentage-calculator/) gives you the exact number for any target height, and the [scale conversion chart](/archive/miniature-size-chart/) has the full table.
 
 ### Scaling monster STLs to match official minis
 
 The one place I'm careful is monsters. Ancient dragons and krakens from third-party sculptors range wildly — I've seen "Gargantuan" dragons from 80mm to 180mm, because there's no single answer for "how tall is a dragon". My rule: decide your target base (4-inch for Gargantuan) and scale the STL so the *footprint* fits, then let the height be whatever proportion the sculptor chose. That keeps the mini legal on the table and stops you from obsessing over a number nobody official publishes.
 
-If a dragon STL has no scale listed at all, measure it against my [scale reference bar](/3d-math/reference-bar-generator) in your slicer to see what height it's actually sculpted at — then you scale from there instead of guessing.
+If a dragon STL has no scale listed at all, measure it against my [scale reference bar](/archive/3d-math/reference-bar-generator/) in your slicer to see what height it's actually sculpted at — then you scale from there instead of guessing.
 
 ## How Do I Measure a Classic Fantasy RPG Mini to Find Its Scale?
 
@@ -632,13 +632,13 @@ If a dragon STL has no scale listed at all, measure it against my [scale referen
 
 The single most useful habit for classic fantasy RPG printing: **measure to the eyes**. A humanoid is "28mm" when its eye line is 28mm above the base, and the 2-4mm between the eyes and the top of the head is exactly where the confusion comes from. When you read a Z-height in your slicer, you're reading total height including the head and the base — so subtract the base and eyeball the eye line before you decide a model is "the wrong scale".
 
-This is the same convention the [175cm baseline guide](/guides/175cm-baseline) explains in full, and it's why two minis that are both "28mm" can measure 30mm and 32mm total and still be exactly the same scale.
+This is the same convention the [175cm baseline guide](/archive/guides/175cm-baseline/) explains in full, and it's why two minis that are both "28mm" can measure 30mm and 32mm total and still be exactly the same scale.
 
 ### What if my STL has no scale listed?
 
-You have three options, in order of how much I trust them. First, check the model description — many sculptors state the intended height even if not the scale word. Second, measure the printed or sliced height and compare it to this guide's chart; a Medium humanoid at 30-32mm is true 28mm, at 34.5mm total it's 32mm heroic. Third, print a [scale reference bar](/3d-math/reference-bar-generator) to measure the sliced height against the chart and work out the exact percentage for whatever game you're printing.
+You have three options, in order of how much I trust them. First, check the model description — many sculptors state the intended height even if not the scale word. Second, measure the printed or sliced height and compare it to this guide's chart; a Medium humanoid at 30-32mm is true 28mm, at 34.5mm total it's 32mm heroic. Third, print a [scale reference bar](/archive/3d-math/reference-bar-generator/) to measure the sliced height against the chart and work out the exact percentage for whatever game you're printing.
 
-That's the classic fantasy RPG scale answer. True 28mm to the eyes, bases over heights, and one measurement before you type any percentage. The complete set of conversions across every tabletop scale — the classic fantasy RPG, the modern sci-fi epic wargame, the 35mm sci-fi mass-battle game, and the ratio scales — is on the [miniature scale conversion chart](/miniature-size-chart).
+That's the classic fantasy RPG scale answer. True 28mm to the eyes, bases over heights, and one measurement before you type any percentage. The complete set of conversions across every tabletop scale — the classic fantasy RPG, the modern sci-fi epic wargame, the 35mm sci-fi mass-battle game, and the ratio scales — is on the [miniature scale conversion chart](/archive/miniature-size-chart/).
 
 ---
 
@@ -863,7 +863,7 @@ Use this as a rough rule of thumb:
 
 If you already own an FDM printer, don't feel you need to rush out and buy a resin one. Start with a 0.2mm nozzle and good settings, and only reach for resin if the fine detail you want is genuinely beyond FDM.
 
-If your real question is broader than miniatures — large props, functional brackets, or whether a service-bureau SLS machine is worth it — I compared all three processes by what the part has to do in [FDM vs Resin vs SLS 3D Printing](/fdm/fdm-vs-resin-sla-sls-3d-printing).
+If your real question is broader than miniatures — large props, functional brackets, or whether a service-bureau SLS machine is worth it — I compared all three processes by what the part has to do in [FDM vs Resin vs SLS 3D Printing](/archive/fdm/fdm-vs-resin-sla-sls-3d-printing/).
 
 ## Summary
 
@@ -1157,13 +1157,13 @@ Everything in this guide is worked out at 32mm scale because that is the modern 
 
 Run the same 18-foot dragon through it and it comes out at 96mm instead of 110mm. And because 28mm eye level maps to roughly 1:56 top of head, everything in this guide converts to 28mm WWII platoon wargame vehicles and terrain without re-rolling the numbers.
 
-I built a dedicated [28mm scale guide](/guides/real-world-objects-to-28mm) with a full set of 28mm charts for humans, monsters, vehicles, and terrain — same formula, 28mm-specific numbers, and how to mix 28mm and 32mm armies on one table. For quick 32mm work, the "Converting Any Scale" table above has everything you need.
+I built a dedicated [28mm scale guide](/archive/guides/real-world-objects-to-28mm/) with a full set of 28mm charts for humans, monsters, vehicles, and terrain — same formula, 28mm-specific numbers, and how to mix 28mm and 32mm armies on one table. For quick 32mm work, the "Converting Any Scale" table above has everything you need.
 
 ## Why the 175cm Baseline Matters
 
 Gaming scales like 28mm and 32mm are measured to the eye (160cm on a 175cm human), not the top of the head. If your game system uses a different baseline — some older games measure against a 6-foot human — the monster will come out slightly different.
 
-STLACCESS uses the 175cm baseline for all conversions. You can read more about [why that number was chosen](/guides/175cm-baseline) and how it affects every percentage in the [reference library](/miniature-size-chart).
+STLACCESS uses the 175cm baseline for all conversions. You can read more about [why that number was chosen](/archive/guides/175cm-baseline/) and how it affects every percentage in the [reference library](/archive/miniature-size-chart/).
 
 ## Terrain and Buildings
 
@@ -1286,33 +1286,33 @@ Published: 2026-08-15
 
 Every time I build a proxy army for the 35mm sci-fi mass-battle game, someone asks the same two questions: how big are these guys, and what percentage do I type in? This game sits in an awkward spot between the two big fantasy scales — bigger than the modern sci-fi epic wargame, smaller than the 40mm sci-fi skirmish game — so the conversions never feel obvious.
 
-I measured my own armoured trooper core set with my PARKSIDE calipers, cross-checked against my [scale notes for the modern sci-fi epic wargame](/fdm-printing-profiles#sci-fi-epic-32mm), and here's the honest version of what I found.
+I measured my own armoured trooper core set with my PARKSIDE calipers, cross-checked against my [scale notes for the modern sci-fi epic wargame](/archive/fdm-printing-profiles/#sci-fi-epic-32mm), and here's the honest version of what I found.
 
 ## What Scale Are the 35mm Sci-Fi Mass-Battle Game's Miniatures?
 
 ### 35mm to the eyes, about 40mm tall
 
-The game's "35mm" designation is an **eye-level measurement**. An armoured trooper's eyes sit roughly **35.7mm above the base**, and the full figure — helmet and all — reaches about **40mm**. That's the same convention as every other gaming scale on the [175cm human baseline](/guides/175cm-baseline): you measure to the eye line, not the top of the head, which is why the numbers in the box and the ruler never quite agree.
+The game's "35mm" designation is an **eye-level measurement**. An armoured trooper's eyes sit roughly **35.7mm above the base**, and the full figure — helmet and all — reaches about **40mm**. That's the same convention as every other gaming scale on the [175cm human baseline](/archive/guides/175cm-baseline/): you measure to the eye line, not the top of the head, which is why the numbers in the box and the ruler never quite agree.
 
 For comparison, that makes this game's troopers noticeably taller than a 32mm modern sci-fi epic wargame miniature and noticeably shorter than the 40mm sci-fi skirmish game's figures. On the table the difference reads instantly — an armoured trooper next to a modern heroic (32mm) power-armoured soldier looks a head more imposing, which is exactly the vibe the game wants for its heroes.
 
 ### The 1:47 math behind the label
 
-The publisher works this game from a slightly taller eye-height reference than my usual 160cm — they use **1678mm**, the measured average adult eye height. Divide 35.7mm by that and you get **1:47 scale**. It's a hair larger than the 1:48 space opera model kits from major manufacturers, which is why those kits are the community's favourite way to add vehicles and terrain to this game's table. My [reference](/miniature-size-chart) treats this game at 35mm eye level, and the difference between 1:47 and 1:48 is small enough to be invisible at the table.
+The publisher works this game from a slightly taller eye-height reference than my usual 160cm — they use **1678mm**, the measured average adult eye height. Divide 35.7mm by that and you get **1:47 scale**. It's a hair larger than the 1:48 space opera model kits from major manufacturers, which is why those kits are the community's favourite way to add vehicles and terrain to this game's table. My [reference](/archive/miniature-size-chart/) treats this game at 35mm eye level, and the difference between 1:47 and 1:48 is small enough to be invisible at the table.
 
 ## How Big Is This Game's Mini Compared to the Classic Fantasy RPG or the Modern Sci-Fi Epic Wargame?
 
 ### Compared to the 32mm modern sci-fi epic wargame — scale to 109.4%
 
-If you're printing modern sci-fi epic wargame-scaled STLs as proxies for this game, the number is **109.4%** (35 ÷ 32 × 100), axes locked. That's the same jump, in reverse, as scaling one of these minis down to sit in a 32mm heroic sci-fi army — I keep both directions on the [scale conversion chart](/miniature-size-chart).
+If you're printing modern sci-fi epic wargame-scaled STLs as proxies for this game, the number is **109.4%** (35 ÷ 32 × 100), axes locked. That's the same jump, in reverse, as scaling one of these minis down to sit in a 32mm heroic sci-fi army — I keep both directions on the [scale conversion chart](/archive/miniature-size-chart/).
 
-A tip from my own painting desk: before scaling a whole squad, measure the STL against a [scale reference bar](/3d-math/reference-bar-generator). A lot of sculptors label "35mm" files that are actually 32mm heroic or vice versa, and it changes the percentage you need.
+A tip from my own painting desk: before scaling a whole squad, measure the STL against a [scale reference bar](/archive/3d-math/reference-bar-generator/). A lot of sculptors label "35mm" files that are actually 32mm heroic or vice versa, and it changes the percentage you need.
 
 ### Compared to the classic fantasy RPG's true 28mm — scale to 125%
 
 The big jump is from the classic fantasy RPG's true 28mm scale: **125%** (35 ÷ 28 × 100). A 28mm figure scaled to 125% matches this game's trooper at the eyes. Going the other way — from this game into a 28mm army — is **80%** (28 ÷ 35 × 100).
 
-Both numbers are in the [reference matrix](/miniature-size-chart), and both assume true 28mm to begin with. Since most third-party classic-fantasy-RPG-style STLs are actually sculpted at 32mm heroic these days, I always measure the model's Z-height in my slicer before I trust a 125% scaling.
+Both numbers are in the [reference matrix](/archive/miniature-size-chart/), and both assume true 28mm to begin with. Since most third-party classic-fantasy-RPG-style STLs are actually sculpted at 32mm heroic these days, I always measure the model's Z-height in my slicer before I trust a 125% scaling.
 
 ## How Do I Scale a 3D Print to Match This Game?
 
@@ -1327,11 +1327,11 @@ Here's the set I use, all with X, Y, and Z locked:
 | 1:48 (space opera model kits) | 96.0% | Scale model kits down to infantry match |
 | 40mm (sci-fi skirmish game) | 87.5% | Shrinking big space opera sculpts to this game |
 
-Every one of these is the same formula — target eye height ÷ source eye height × 100 — which is what the [slicer percentage calculator](/3d-math/slicer-percentage-calculator) does for you if you ever need a pair I haven't listed.
+Every one of these is the same formula — target eye height ÷ source eye height × 100 — which is what the [slicer percentage calculator](/archive/3d-math/slicer-percentage-calculator/) does for you if you ever need a pair I haven't listed.
 
 ### Print a scale standee and check it in the slicer
 
-The honest version of the "measure twice, cut once" rule for this game's proxies: print a **reference standee** — a plain 35mm-tall bar — and import it next to your model in the slicer. The [reference-bar generator](/3d-math/reference-bar-generator) creates one at any scale, with tick marks and an end tab exactly as tall as a figure at that scale. Select your model, read its current height, compare it to the tab, and you'll know the exact percentage without a single guess. I print one 35mm standee alongside the first test model of every batch, and it has caught more wrong assumptions than I care to count.
+The honest version of the "measure twice, cut once" rule for this game's proxies: print a **reference standee** — a plain 35mm-tall bar — and import it next to your model in the slicer. The [reference-bar generator](/archive/3d-math/reference-bar-generator/) creates one at any scale, with tick marks and an end tab exactly as tall as a figure at that scale. Select your model, read its current height, compare it to the tab, and you'll know the exact percentage without a single guess. I print one 35mm standee alongside the first test model of every batch, and it has caught more wrong assumptions than I care to count.
 
 ## What Vehicles and Bases Does This Game Use?
 
@@ -1353,7 +1353,7 @@ If you're printing proxies, matching the base size matters more than the infantr
 
 The vehicles are where this game's 1:47 scale shines for printing. Because the game's walkers and speeders are oversized on purpose (they're designed to be readable at table distance, not accurate to the films), you have a lot of room to work with. The community's favourite trick is printing space opera vehicle STLs that are *supposed* to be display-scaled and shrinking them to fit this game's table — 1:48 kits at 96% are the closest fit, so check the exact height you need against this game's scale before you commit to the plate.
 
-That's the conversion. 35mm to the eyes, 109.4% from the modern sci-fi epic wargame, 125% from the classic fantasy RPG, and a printed standee to keep you honest. The full set of percentages across every scale sits on the [miniature scale conversion chart](/miniature-size-chart).
+That's the conversion. 35mm to the eyes, 109.4% from the modern sci-fi epic wargame, 125% from the classic fantasy RPG, and a printed standee to keep you honest. The full set of percentages across every scale sits on the [miniature scale conversion chart](/archive/miniature-size-chart/).
 
 ---
 
@@ -1437,7 +1437,7 @@ Check the model in Blender or MeshLab before printing. If you can see faceted ed
 - **FDM, 32mm → 200mm+ (625%):** Visible ridges even with optimal settings. Check polygon count and be ready for serious post-processing.
 - **Always check the polygon density** before committing a big upscale to a long print.
 
-For more on how scales relate and the baseline measurements used, see the [scale reference library](/miniature-size-chart) or use the [STL scale engine](/) to calculate any conversion.
+For more on how scales relate and the baseline measurements used, see the [scale reference library](/archive/miniature-size-chart/) or use the [STL scale engine](/) to calculate any conversion.
 
 ## FDM Articles (5)
 
@@ -1466,7 +1466,7 @@ Mechanical stability is everything when you are pushing tall, hollow structures 
 
 ### Which Printer to Buy Is a Separate Question
 
-This page is about *how to print* once you own a machine — layer heights, nozzles, infill, and the settings differences between miniatures and terrain. If you have not bought yet and want specific models with current prices, build volumes, and an honest note on where each one is fiddly, I wrote that up separately: [Best Budget 3D Printers for Tabletop Wargaming](/guides/best-budget-3d-printers-wargaming).
+This page is about *how to print* once you own a machine — layer heights, nozzles, infill, and the settings differences between miniatures and terrain. If you have not bought yet and want specific models with current prices, build volumes, and an honest note on where each one is fiddly, I wrote that up separately: [Best Budget 3D Printers for Tabletop Wargaming](/archive/guides/best-budget-3d-printers-wargaming/).
 
 The short version of what that page concludes: you almost certainly do not need a flagship machine to print terrain and vehicles. A budget CoreXY or a reliable bed-slinger handles the bulk work. Spend money on a fine nozzle only if you intend to print characters.
 
@@ -1601,7 +1601,7 @@ FDM is vastly superior for a low-stress workflow. You plug it in, level the bed,
 
 ### If the Question Is Specifically Miniatures
 
-This page is about choosing a *process* for a *part*. If what you actually want to know is which technology prints a 28mm or 32mm miniature better — support scarring, whether the difference survives painting, when FDM is good enough and you should stop thinking about resin — that is a different question with a different answer. I compared both side by side and wrote it up separately in [FDM vs Resin 3D Printing for Miniatures: When to Switch](/guides/fdm-vs-resin-miniatures).
+This page is about choosing a *process* for a *part*. If what you actually want to know is which technology prints a 28mm or 32mm miniature better — support scarring, whether the difference survives painting, when FDM is good enough and you should stop thinking about resin — that is a different question with a different answer. I compared both side by side and wrote it up separately in [FDM vs Resin 3D Printing for Miniatures: When to Switch](/archive/guides/fdm-vs-resin-miniatures/).
 
 What is worth saying here is the process difference underneath it. Resin's supports are thin lattices cured by a light source, so they snap off with a light pull. FDM's supports are extruded plastic tubes that can fuse into the surface they touch. That gap is the single biggest practical difference between the two for hobbyists, and it is a materials property — not a settings problem you can slice away.
 

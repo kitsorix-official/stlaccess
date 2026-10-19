@@ -1,0 +1,269 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import site from "../../data/site.json";
+import baselines from "../../data/scaleBaselines.json";
+import { graph, breadcrumb, webPage } from "../../lib/schema";
+import { lastModifiedDate, formatLongDate, lastModifiedISO } from "../../lib/freshness";
+
+const siteUpdated = lastModifiedDate();
+
+// Precision-aware mm formatter: 28 -> "28.0", 36.458 -> "36.458", 31.25 -> "31.25"
+const fmtMm = (v) => {
+  const s = Number(v).toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+  return s.includes(".") ? s : `${s}.0`;
+};
+
+// Canonical one-line definitions for the named standard.
+const definedTerms = [
+  {
+    name: "STLACCESS Scale Standard",
+    description:
+      "The reference convention every STLACCESS conversion uses: a 175cm (5'9\") human with eyes at 160cm. Gaming scales measure to eye level; ratio scales measure to the top of the head. It makes every slicer percentage consistent across sculptors and games.",
+  },
+  {
+    name: "Eye Level (miniature scale)",
+    description:
+      "A miniature measured from the bottom of the foot to the centre of the eye — 160cm on the 175cm baseline. Used for gaming scales: 28mm, 32mm, 35mm, 40mm, 75mm.",
+  },
+  {
+    name: "Top of Head (miniature scale)",
+    description:
+      "A miniature measured from the bottom of the foot to the crown of the head — the full 175cm of the baseline. Used for ratio scales: 1:35, 1:27, 1:48, 1:56, 1:72, 1:100.",
+  },
+  {
+    name: "Slicer Percentage",
+    description:
+      "The number typed into a slicer to rescale an STL: (target standard mm ÷ source standard mm) × 100. 28mm → 32mm is 114.3%; 32mm → 75mm is 234.4%.",
+  },
+  {
+    name: "Heroic Scale",
+    description:
+      "A gaming scale that keeps the 175cm baseline but exaggerates heads, hands, and weapons for readability at arm's length — e.g. heroic 32mm ≈ 1:50 measured to eye level. Not a different baseline, just different proportions.",
+  },
+];
+
+const canonicalConversions = [
+  { label: "28mm → 32mm", pct: "114.3%", topHead: "116.1%", note: "true scale to heroic — the hobby's most-asked conversion" },
+  { label: "28mm → 35mm", pct: "125.0%", note: "true scale to 35mm sci-fi mass-battle" },
+  { label: "32mm → 75mm", pct: "234.4%", note: "gaming scale to display painting scale" },
+  { label: "1:48 → 28mm", pct: "76.8%", note: "model kit (aircraft/vehicles) to true 28mm" },
+  { label: "1:56 → 28mm", pct: "89.6%", note: "WWII wargaming to true 28mm" },
+  { label: "1:35 → 1:56", pct: "62.5%", note: "large model kit to WWII tabletop" },
+];
+
+const baselineEntries = Object.entries(baselines);
+
+const schema = graph([
+  webPage({
+    name: "STLACCESS Scale Standard — the 175cm miniature scale reference",
+    description:
+      "The named reference behind every STLACCESS conversion: a 175cm human with eyes at 160cm, gaming scales to eye level, ratio scales to top of head, and the formula (target ÷ source) × 100.",
+    url: "/archive/scale-standard/",
+  }),
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Scale Standard", path: "/archive/scale-standard/" },
+  ]),
+  {
+    "@type": "DefinedTermSet",
+    "@id": "https://stlaccess.com/#scale-standard",
+    name: "STLACCESS Scale Standard",
+    url: "https://stlaccess.com/archive/scale-standard/",
+    description:
+      "The named set of definitions behind every STLACCESS scale conversion: the 175cm/160cm human baseline, eye-level vs top-of-head measurement, and the slicer-percentage formula.",
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    creator: { "@id": "https://stlaccess.com/#person" },
+    hasDefinedTerm: definedTerms.map((t, i) => ({
+      "@type": "DefinedTerm",
+      "@id": `https://stlaccess.com/archive/scale-standard/#term-${i + 1}`,
+      name: t.name,
+      description: t.description,
+      inDefinedTermSet: "https://stlaccess.com/#scale-standard",
+      url: `https://stlaccess.com/archive/scale-standard/#${t.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+    })),
+  },
+  {
+    "@type": "Dataset",
+    "@id": "https://stlaccess.com/data/#conversion-dataset",
+    name: "STLACCESS miniature scale conversion dataset",
+    description:
+      "Machine-readable scale baselines (16), verified conversion percentages (46), and FDM printing profiles (26) published under CC BY 4.0.",
+    url: "https://stlaccess.com/data/conversion-matrix.json",
+    license: "https://creativecommons.org/licenses/by/4.0/",
+    isAccessibleForFree: true,
+    creator: { "@id": "https://stlaccess.com/#person" },
+    publisher: { "@id": "https://stlaccess.com/#organization" },
+    distribution: [
+      { "@type": "DataDownload", contentUrl: "https://stlaccess.com/data/conversion-matrix.json", encodingFormat: "application/json" },
+      { "@type": "DataDownload", contentUrl: "https://stlaccess.com/data/conversion-matrix.csv", encodingFormat: "text/csv" },
+      { "@type": "DataDownload", contentUrl: "https://stlaccess.com/data/scale-baselines.json", encodingFormat: "application/json" },
+      { "@type": "DataDownload", contentUrl: "https://stlaccess.com/data/scale-baselines.csv", encodingFormat: "text/csv" },
+      { "@type": "DataDownload", contentUrl: "https://stlaccess.com/data/fdm-profiles.json", encodingFormat: "application/json" },
+      { "@type": "DataDownload", contentUrl: "https://stlaccess.com/data/fdm-profiles.csv", encodingFormat: "text/csv" },
+    ],
+  },
+]);
+---
+<Layout
+  title="STLACCESS Scale Standard | The 175cm Miniature Scale Reference | STLACCESS"
+  description="The named reference behind every STLACCESS conversion: a 175cm human with eyes at 160cm, gaming scales to eye level, ratio scales to top of head, and the formula (target ÷ source) × 100. Open data included."
+>
+  <JsonLd slot="head" data={schema} />
+
+  <div slot="hero">
+    <!-- Breadcrumbs -->
+    <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+      <span class="mx-2 text-slate-800">/</span>
+      <span class="text-slate-400" aria-current="page">Scale Standard</span>
+    </nav>
+
+    <!-- Header -->
+    <div class="pb-8 px-6 max-w-6xl mx-auto" aria-labelledby="standard-hero-heading">
+      <h1 id="standard-hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
+        The STLACCESS <span class="text-[#ff6b35]">Scale Standard</span>
+      </h1>
+      <p class="text-lg text-slate-400 max-w-2xl leading-relaxed">
+        One reference locks in every conversion on this site: a <strong class="text-white">175cm human with eyes at 160cm</strong>.
+        Gaming scales measure to eye level. Ratio scales measure to the top of the head.
+        This single convention is why 28mm scales up to 32mm at exactly <strong class="text-[#ff6b35]">114.3%</strong> — and why mixing measurement styles without adjusting produces undersized or oversized prints.
+      </p>
+      {siteUpdated && <p class="text-xs text-slate-600 mt-3">Last updated: {formatLongDate(siteUpdated)}</p>}
+    </div>
+  </div>
+
+  <!-- Direct answer -->
+  <section class="px-6 max-w-6xl mx-auto" aria-label="The standard in one paragraph">
+    <div class="relative rounded-2xl border border-[#ff6b35]/30 bg-gradient-to-br from-[#ff6b35]/15 via-[#ff6b35]/5 to-transparent p-6 md:p-8 overflow-hidden">
+      <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[#ff6b35]/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="relative">
+        <div class="flex items-center gap-2 mb-4">
+          <i class="ti ti-alert-circle text-[#ff6b35]" aria-hidden="true"></i>
+          <h2 class="text-xs font-black uppercase tracking-widest text-[#ff6b35]">The Direct Answer</h2>
+        </div>
+        <p class="text-lg md:text-xl font-semibold text-white leading-relaxed">
+          The STLACCESS Scale Standard measures every miniature from a 175cm human baseline: eyes at 160cm for gaming scales (28mm, 32mm, 35mm, 40mm, 75mm), the full 175cm crown for ratio scales (1:35, 1:27, 1:48, 1:56, 1:72, 1:100). Slicer percentage = (target standard mm ÷ source standard mm) × 100. All numbers verified on physical FDM test prints.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The reference table -->
+  <section class="px-6 py-12 max-w-6xl mx-auto" aria-labelledby="baselines-heading">
+    <div class="mb-6 flex items-center gap-3">
+      <h2 id="baselines-heading" class="text-2xl font-bold font-heading">The 16 scale baselines</h2>
+      <span class="text-xs text-slate-500 font-medium">mm to eye level and top of head, with ratio equivalent</span>
+    </div>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-900/40 text-left text-[10px] uppercase tracking-[0.2em] text-slate-500">
+            <th class="px-5 py-4 font-black">Scale</th>
+            <th class="px-5 py-4 font-black">Type</th>
+            <th class="px-5 py-4 font-black">Ratio ≈</th>
+            <th class="px-5 py-4 font-black text-right">Eye level</th>
+            <th class="px-5 py-4 font-black text-right">Top of head</th>
+            <th class="px-5 py-4 font-black">Common use</th>
+          </tr>
+        </thead>
+        <tbody>
+          {baselineEntries.map(([key, b]) => (
+            <tr class="border-t border-white/5 hover:bg-slate-900/30 transition-colors">
+              <td class="px-5 py-3.5 font-mono font-bold text-white">{key}</td>
+              <td class="px-5 py-3.5 text-slate-400 capitalize">{b.type}</td>
+              <td class="px-5 py-3.5 font-mono text-slate-300">{b.ratioEquivalent}</td>
+              <td class="px-5 py-3.5 font-mono text-right text-[#ff6b35]">{fmtMm(b.eyeLevelMm)}mm</td>
+              <td class="px-5 py-3.5 font-mono text-right text-white">{fmtMm(b.topOfHeadMm)}mm</td>
+              <td class="px-5 py-3.5 text-slate-400">{(b.games || []).slice(0, 2).join(", ")}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- The rules -->
+  <section class="px-6 pb-12 max-w-6xl mx-auto" aria-labelledby="rules-heading">
+    <h2 id="rules-heading" class="text-2xl font-bold font-heading mb-6">The three rules</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+        <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="ti ti-eye text-[#ff6b35]" aria-hidden="true"></i>Gaming scales → eye level</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">28mm, 32mm, 35mm, 40mm, 75mm measure to the eyes: a 175cm human's eyes sit at <strong class="text-white">160cm</strong>. That is the reference for every gaming scale.</p>
+      </div>
+      <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+        <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="ti ti-ruler text-[#ff6b35]" aria-hidden="true"></i>Ratio scales → top of head</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">1:35, 1:27, 1:48, 1:56, 1:72, 1:100 measure to the crown: the full <strong class="text-white">175cm</strong>. 1:48 = 175 ÷ 48 = <strong class="text-white">{fmtMm(baselines["1:48"].topOfHeadMm)}mm</strong> top of head.</p>
+      </div>
+      <div class="bg-black/20 p-6 rounded-2xl border border-white/5">
+        <h3 class="font-bold text-white mb-3 flex items-center gap-2"><i class="ti ti-percentage text-[#ff6b35]" aria-hidden="true"></i>Same baseline, pure ratio</h3>
+        <p class="text-sm text-slate-400 leading-relaxed">(target ÷ source) × 100. 28 ÷ 32 = <strong class="text-white">87.5%</strong> down; 32 ÷ 28 = <strong class="text-white">114.3%</strong> up. No fudge factors — the percentages come straight from the standard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Canonical conversions -->
+  <section class="px-6 pb-12 max-w-6xl mx-auto" aria-labelledby="canonical-heading">
+    <div class="mb-6 flex items-center gap-3">
+      <h2 id="canonical-heading" class="text-2xl font-bold font-heading">Canonical conversions</h2>
+      <span class="text-xs text-slate-500 font-medium">the numbers other resources quote</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {canonicalConversions.map((c) => (
+        <a href="/archive/miniature-size-chart/" class="group bg-slate-900/20 border border-white/5 rounded-2xl p-5 hover:border-[#ff6b35]/50 hover:bg-slate-900/40 transition-all">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-white font-bold group-hover:text-[#ff6b35] transition-colors">{c.label}</span>
+            <span class="text-lg font-mono text-[#ff6b35] font-black">{c.pct}</span>
+          </div>
+          {c.topHead && <p class="text-xs text-slate-500 mt-1 font-mono">top of head {c.topHead}</p>}
+          <p class="text-xs text-slate-400 mt-2">{c.note}</p>
+        </a>
+      ))}
+    </div>
+    <p class="text-sm text-slate-500 mt-4">
+      All 46 conversions with full math are on the <a href="/archive/miniature-size-chart/" class="text-[#ff6b35] hover:underline font-semibold">Miniature Size Chart</a>.
+    </p>
+  </section>
+
+  <!-- Open data -->
+  <section class="px-6 pb-24 max-w-6xl mx-auto" aria-labelledby="open-data-heading">
+    <div class="rounded-2xl border border-white/5 bg-black/20 p-6 md:p-8">
+      <div class="mb-4 flex items-center gap-3">
+        <h2 id="open-data-heading" class="text-xl font-bold font-heading">Open data</h2>
+        <span class="text-xs font-mono text-[#ff6b35] bg-[#ff6b35]/10 px-2 py-0.5 rounded-full">CC BY 4.0</span>
+      </div>
+      <p class="text-sm text-slate-400 leading-relaxed mb-5">
+        The standard above is published as downloadable JSON + CSV so developers, slicer-tool authors, and AI systems can cite the same numbers this site uses. Licensed CC BY 4.0 — share and adapt freely, credit STLACCESS and link back.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+        <a href="/data/scale-baselines.json" class="rounded-xl border border-white/10 bg-slate-900/30 hover:border-[#ff6b35]/50 p-4 transition-all">
+          <span class="block font-mono text-[#ff6b35] font-bold">scale-baselines.json</span>
+          <span class="block text-slate-500 mt-1 text-xs">16 scales · eye level / top of head mm</span>
+        </a>
+        <a href="/data/scale-baselines.csv" class="rounded-xl border border-white/10 bg-slate-900/30 hover:border-[#ff6b35]/50 p-4 transition-all">
+          <span class="block font-mono text-[#ff6b35] font-bold">scale-baselines.csv</span>
+          <span class="block text-slate-500 mt-1 text-xs">same data, spreadsheet-ready</span>
+        </a>
+        <a href="/data/conversion-matrix.json" class="rounded-xl border border-white/10 bg-slate-900/30 hover:border-[#ff6b35]/50 p-4 transition-all">
+          <span class="block font-mono text-[#ff6b35] font-bold">conversion-matrix.json</span>
+          <span class="block text-slate-500 mt-1 text-xs">46 conversions · slicer % + math</span>
+        </a>
+        <a href="/data/conversion-matrix.csv" class="rounded-xl border border-white/10 bg-slate-900/30 hover:border-[#ff6b35]/50 p-4 transition-all">
+          <span class="block font-mono text-[#ff6b35] font-bold">conversion-matrix.csv</span>
+          <span class="block text-slate-500 mt-1 text-xs">46 rows, one per line</span>
+        </a>
+        <a href="/data/fdm-profiles.json" class="rounded-xl border border-white/10 bg-slate-900/30 hover:border-[#ff6b35]/50 p-4 transition-all">
+          <span class="block font-mono text-[#ff6b35] font-bold">fdm-profiles.json</span>
+          <span class="block text-slate-500 mt-1 text-xs">26 anonymized printing profiles</span>
+        </a>
+        <a href="/data/fdm-profiles.csv" class="rounded-xl border border-white/10 bg-slate-900/30 hover:border-[#ff6b35]/50 p-4 transition-all">
+          <span class="block font-mono text-[#ff6b35] font-bold">fdm-profiles.csv</span>
+          <span class="block text-slate-500 mt-1 text-xs">26 rows, CSV</span>
+        </a>
+      </div>
+      <p class="text-xs text-slate-600 mt-5">
+        License: <a href="/data/LICENSE" class="text-[#ff6b35] hover:underline">CC BY 4.0</a> · manifest: <a href="/data/index.json" class="text-[#ff6b35] hover:underline">index.json</a> · more about the method: <a href="/about/" class="text-[#ff6b35] hover:underline">About / methodology</a>
+      </p>
+    </div>
+  </section>
+</Layout>

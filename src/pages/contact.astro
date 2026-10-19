@@ -7,13 +7,13 @@ import { graph, breadcrumb, webPage } from '../lib/schema';
 const contactSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Contact", path: "/contact" },
+    { name: "Contact", path: "/contact/" },
   ]),
   webPage({
     type: "ContactPage",
     name: "Contact | 3D Print Miniature Scale Support | STLACCESS",
     description: "Wrong percentage on a conversion? Need a game system added? Drop me a line — I read every message and fix errors when the community catches them.",
-    url: "/contact",
+    url: "/contact/",
   }),
 ]);
 ---
@@ -49,7 +49,7 @@ const contactSchema = graph([
       <div>
         <h2 id="contact-cta-heading" class="text-2xl font-bold font-heading text-white mb-3">Send me a message</h2>
         <p class="text-slate-400">
-          The button takes you off-site to my Google Form. It asks for your name and email so I can reply — I keep your message only until the matter is resolved, then delete it. <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Privacy details</a>
+          The button takes you off-site to my Google Form. It asks for your name and email so I can reply — I keep your message only until the matter is resolved, then delete it. <a href="/privacy/" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Privacy details</a>
         </p>
       </div>
       <a

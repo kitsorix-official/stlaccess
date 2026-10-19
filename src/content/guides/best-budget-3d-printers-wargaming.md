@@ -120,7 +120,7 @@ This matters for things like transport trays, heavy vehicle proxies, and functio
 
 The two setups complement each other. Resin handles the detail work where layer lines would ruin the model. FDM handles the volume work where speed and cost per model matter more than surface finish. A $200 FDM printer running overnight terrain while your resin machine sleeps is the most efficient use of your hobby budget.
 
-Once the machine is chosen, the settings are what decide whether it is worth owning. I put together the layer heights, nozzle sizes, infill densities, and support strategies for printing both miniatures and terrain on the same printer in [Tabletop Gaming with FDM](/fdm/best-fdm-printer-miniatures-and-terrain).
+Once the machine is chosen, the settings are what decide whether it is worth owning. I put together the layer heights, nozzle sizes, infill densities, and support strategies for printing both miniatures and terrain on the same printer in [Tabletop Gaming with FDM](/archive/fdm/best-fdm-printer-miniatures-and-terrain/).
 
 ## Summary
 

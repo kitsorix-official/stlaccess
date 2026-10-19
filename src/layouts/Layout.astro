@@ -3,7 +3,7 @@ import "../styles/global.css";
 import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
 import FeedbackBanner from "../components/FeedbackBanner.astro";
-import SupportCta from "../components/SupportCta.astro";
+import SupportNudge from "../components/SupportNudge.astro";
 import { assetVersion } from "../utils/assetVersion.js";
 
 const siteUpdated = lastModifiedDate();
@@ -23,18 +23,21 @@ if (!title || !description) {
 }
 
 let pathname = Astro.url.pathname;
-if (pathname.endsWith(".html")) {
-  pathname = pathname.slice(0, -5);
-}
 if (pathname.endsWith("/index")) {
   pathname = pathname.slice(0, -6);
 }
-if (pathname !== "/" && pathname.endsWith("/")) {
-  pathname = pathname.slice(0, -1);
+// Astro canonicalizes `.pathname` and drops the trailing slash, so restore it
+// (trailingSlash is 'always'). Without this, pathname never matches the
+// include-list guards below and page exclusions silently stop working, and the
+// canonical link would omit its slash too.
+if (pathname !== "/" && !pathname.endsWith("/")) {
+  pathname = pathname + "/";
 }
+// With trailingSlash 'always', we keep trailing slashes; canonical must include them
 const canonical = new URL(pathname, Astro.site || site.url).href;
 
 const currentPath = Astro.url.pathname;
+const isSupportNudgeExcluded = ["/support/", "/embed/", "/widget/", "/404/"].includes(pathname);
 const banner = site.banner || { enabled: false };
 
 // Pages opt into a page-level header (H1 + intro + breadcrumbs) via the
@@ -209,63 +212,53 @@ const hasHero = Astro.slots.has("hero");
         >
           <li>
             <a
-              href="/"
-              class={currentPath === "/"
+              href="/stl-viewer/"
+              class={currentPath.startsWith("/stl-viewer")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Scale Engine
+              STL Viewer
             </a>
           </li>
           <li>
             <a
-              href="/miniature-size-chart"
-class={currentPath.startsWith("/miniature-size-chart")
+              href="/stl-scale-inspector/"
+              class={currentPath.startsWith("/stl-scale-inspector")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Size Chart
+              Scale Inspector
             </a>
           </li>
 
           <li>
             <a
-              href="/3d-math"
-              class={currentPath === "/3d-math"
+              href="/stl-converter/"
+              class={currentPath.startsWith("/stl-converter")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              3D Math
+              Converter
             </a>
           </li>
           <li>
             <a
-              href="/fdm-printing-profiles"
-              class={currentPath.startsWith("/fdm-printing-profiles")
+              href="/stl-printability-checker/"
+              class={currentPath.startsWith("/stl-printability-checker")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Printing Profiles
+              Printability
             </a>
           </li>
           <li>
             <a
-              href="/fdm"
-              class={currentPath.startsWith("/fdm")
+              href="/support/"
+              class={currentPath.startsWith("/support")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              FDM
-            </a>
-          </li>
-          <li>
-            <a
-              href="/guides"
-              class={currentPath.startsWith("/guides")
-                ? "text-white border-b-2 border-[#ff6b35] pb-1"
-                : "hover:text-white transition-colors"}
-            >
-              Guides
+              Support
             </a>
           </li>
         </ul>
@@ -274,15 +267,12 @@ class={currentPath.startsWith("/miniature-size-chart")
       </div>
     </header>
 
-    {/* Support CTA — the primary ask. Sits directly below the sticky navbar
-        (order-2, between the order-1 navbar and the order-3 main content) on
-        every content page. Excluded: /support itself (it is the destination),
-        the /embed + /widget surfaces (they render inside third-party sites),
-        and 404. To change this strip anywhere, edit
-        src/components/SupportCta.astro — addresses live in site.json. */}
-    {!["/support", "/embed", "/widget", "/404"].includes(pathname) && (
-      <SupportCta />
-    )}
+    {/* Support nudge — floating glass card, bottom-left. It is fixed, so it
+        never reflows the page and no longer pushes the hero down. Excluded:
+        /support itself (it is the destination), the /embed + /widget
+        surfaces (they render inside third-party sites), and 404. The address
+        lives in site.json. */}
+    {!isSupportNudgeExcluded && <SupportNudge />}
 
     <!-- Main content -->
     <main id="main-content" class="flex-grow order-3">
@@ -322,9 +312,9 @@ class={currentPath.startsWith("/miniature-size-chart")
               >
             </div>
             <p class="text-slate-500 text-sm max-w-sm leading-relaxed">
-              Independent tools for 3D printing scale conversion. Built and
-              maintained by one person who prints test pieces to verify every
-              percentage.
+              Privacy-first STL utilities that run entirely in your browser.
+              No uploads, no accounts, no cookies — built and maintained by
+              one person who 3D prints since 2017.
             </p>
           </div>
 
@@ -335,58 +325,35 @@ class={currentPath.startsWith("/miniature-size-chart")
               <h4
                 class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6"
               >
-                3D Math
+                Tools
               </h4>
               <ul class="space-y-4 text-sm text-slate-500 font-medium">
                 <li>
-                  <a href="/" class="hover:text-[#ff6b35] transition-colors"
-                    >Scale Engine</a
-                  >
-                </li>
-                <li>
                   <a
-                    href="/miniature-size-chart"
+                    href="/stl-viewer/"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Miniature Size Chart</a
+                    >STL Viewer</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/3d-math"
-                    class="hover:text-[#ff6b35] transition-colors">All 3D Math</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/scale-standard"
+                    href="/stl-scale-inspector/"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Scale Standard</a
+                    >Scale Inspector</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/embed"
+                    href="/stl-converter/"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Embed the Converter</a
+                    >STL Converter</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/fdm-printing-profiles"
+                    href="/stl-printability-checker/"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Printing Profiles</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/fdm"
-                    class="hover:text-[#ff6b35] transition-colors">FDM</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/guides"
-                    class="hover:text-[#ff6b35] transition-colors">Guides</a
+                    >Printability Checker</a
                   >
                 </li>
               </ul>
@@ -402,25 +369,27 @@ class={currentPath.startsWith("/miniature-size-chart")
               <ul class="space-y-4 text-sm text-slate-500 font-medium">
                 <li>
                   <a
-                    href="/about"
+                    href="/about/"
                     class="hover:text-[#ff6b35] transition-colors"
                     >About & Methodology</a
                   >
                 </li>
                 <li>
-                  <a href="/faq" class="hover:text-[#ff6b35] transition-colors"
-                    >FAQ</a
+                  <a
+                    href="/embed/"
+                    class="hover:text-[#ff6b35] transition-colors"
+                    >Embed the Converter</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/contact"
+                    href="/contact/"
                     class="hover:text-[#ff6b35] transition-colors">Contact</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/support"
+                    href="/support/"
                     class="hover:text-[#ff6b35] transition-colors"
                     >Support the Site</a
                   >
@@ -454,21 +423,21 @@ class={currentPath.startsWith("/miniature-size-chart")
               <ul class="space-y-4 text-sm text-slate-500 font-medium">
                 <li>
                   <a
-                    href="/privacy"
+                    href="/privacy/"
                     class="hover:text-[#ff6b35] transition-colors"
                     >Privacy Policy</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/terms"
+                    href="/terms/"
                     class="hover:text-[#ff6b35] transition-colors"
                     >Terms of Service</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/legal"
+                    href="/legal/"
                     class="hover:text-[#ff6b35] transition-colors"
                     >Global Compliance</a
                   >
@@ -532,46 +501,46 @@ class={currentPath.startsWith("/miniature-size-chart")
       <ul class="grid grid-cols-4 h-16 max-w-6xl mx-auto">
         <li class="h-full">
           <a
-            href="/"
-            class={currentPath === "/"
+            href="/stl-viewer/"
+            class={currentPath.startsWith("/stl-viewer")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="ti ti-calculator text-base" aria-hidden="true"></i>
-            <span>Scaler</span>
+            <i class="ti ti-3d-cube-sphere text-base" aria-hidden="true"></i>
+            <span>Viewer</span>
           </a>
         </li>
         <li class="h-full">
           <a
-            href="/3d-math/filament-cost-calculator"
-            class={currentPath === "/3d-math/filament-cost-calculator"
+            href="/stl-scale-inspector/"
+            class={currentPath.startsWith("/stl-scale-inspector")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="ti ti-currency-dollar text-base" aria-hidden="true"></i>
-            <span>Filament Cost</span>
+            <i class="ti ti-ruler-measure text-base" aria-hidden="true"></i>
+            <span>Inspector</span>
           </a>
         </li>
         <li class="h-full">
           <a
-            href="/3d-math"
-            class={currentPath === "/3d-math"
+            href="/stl-converter/"
+            class={currentPath.startsWith("/stl-converter")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="ti ti-calculator text-base" aria-hidden="true"></i>
-            <span>3D Math</span>
+            <i class="ti ti-arrows-right-left text-base" aria-hidden="true"></i>
+            <span>Converter</span>
           </a>
         </li>
         <li class="h-full">
           <a
-            href="/miniature-size-chart"
-            class={currentPath.startsWith("/miniature-size-chart")
+            href="/stl-printability-checker/"
+            class={currentPath.startsWith("/stl-printability-checker")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="ti ti-book text-base" aria-hidden="true"></i>
-            <span>Size Chart</span>
+            <i class="ti ti-checkbox text-base" aria-hidden="true"></i>
+            <span>Checks</span>
           </a>
         </li>
       </ul>

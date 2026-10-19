@@ -1,0 +1,256 @@
+---
+// Real client-side STL converter: STL in, OBJ / PLY / binary STL / ASCII STL out.
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import tools from "../../data/tools.json";
+import { graph, organization, webSite, softwareApplication, breadcrumb, faqPage } from "../../lib/schema";
+import { assetVersion } from "../../utils/assetVersion.js";
+
+const tool = tools.find((t) => t.slug === "stl-converter");
+
+const faqs = [
+  {
+    question: "Does this STL converter upload my file?",
+    answer: "No. The STL is read locally with FileReader, converted in memory, and saved with a Blob download. There is no upload request and no server-side converter. Your model can be confidential and still never leave the machine.",
+  },
+  {
+    question: "Which formats can I convert to?",
+    answer: "STL input works in both binary and ASCII. You can export OBJ, ASCII PLY, binary STL, or ASCII STL. Binary STL is the smallest and is what most slicers prefer; OBJ and PLY are useful for sculpting, rendering, and scan tools.",
+  },
+  {
+    question: "Can it convert OBJ or PLY back into STL?",
+    answer: "Not in this build. This page accepts STL input and exports OBJ, PLY, binary STL, or ASCII STL. If you need the reverse direction, send a note through the feedback form and it will be considered for the next update.",
+  },
+  {
+    question: "What is the vertex merge tolerance?",
+    answer: "STL stores every triangle with its own three vertices, so shared corners are duplicated. Before writing OBJ or PLY, the converter merges vertices that fall within the tolerance - 0.001 mm by default. Raise it for messy scans, lower it for very fine details.",
+  },
+  {
+    question: "Does conversion change the model's size or units?",
+    answer: "No. Coordinates are copied one-to-one. STL files do not contain units, and this converter does not guess or rescale them. If a model is 25.4 times too small, it was probably authored in inches; fix the scale in the slicer or with the Scale Inspector.",
+  },
+  {
+    question: "Does converting repair a broken mesh?",
+    answer: "No. Conversion is a format change, not a repair. Open edges, non-manifold geometry, and inconsistent winding survive the round trip. Run the file through the STL Printability Checker before you slice it.",
+  },
+];
+
+const schema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "STL Converter", path: "/stl-converter/" },
+  ]),
+  organization(),
+  webSite(),
+  softwareApplication({
+    name: "STL Converter",
+    description: tool?.description || "Convert STL files to OBJ, PLY, binary STL, or ASCII STL locally in your browser.",
+    url: "/stl-converter/",
+  }),
+  faqPage(faqs.map((item) => ({ question: item.question, answer: item.answer })), "/stl-converter/"),
+]);
+---
+<Layout
+  title="Free STL Converter Online | Convert STL to OBJ & PLY, No Upload | STLACCESS"
+  description="Convert STL files to OBJ and PLY in your browser. Conversion runs locally on your device — nothing is uploaded, no account, no watermarks."
+>
+<JsonLd slot="head" data={schema} />
+
+<div slot="hero">
+<nav class="sr-only" aria-label="Breadcrumb">
+  <a href="/">Home</a> › <span aria-current="page">STL Converter</span>
+</nav>
+<div class="pt-24 pb-16 px-6 text-center max-w-4xl mx-auto" aria-labelledby="hero-heading">
+<p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-6">
+No upload · No account · Runs in your browser
+</p>
+<h1 id="hero-heading" class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight leading-tight">
+  STL Converter<br />
+  <span class="text-[#ff6b35] italic">Format Changes Without the Cloud</span>
+</h1>
+<p class="text-lg md:text-xl text-slate-300 mb-6 max-w-2xl mx-auto leading-relaxed">
+  Turn an STL into OBJ, PLY, binary STL, or ASCII STL without handing a client's model to a cloud converter.
+  Everything happens in this tab: no upload, no account, no watermark, and no queue. The download is written
+  straight to your disk by your own browser.
+</p>
+<div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-mono uppercase tracking-widest text-slate-500">
+  <span class="flex items-center gap-2"><i class="ti ti-check text-[#ff6b35]" aria-hidden="true"></i>OBJ + PLY export</span>
+  <span class="flex items-center gap-2"><i class="ti ti-check text-[#ff6b35]" aria-hidden="true"></i>Binary or ASCII</span>
+  <span class="flex items-center gap-2"><i class="ti ti-check text-[#ff6b35]" aria-hidden="true"></i>No watermarks</span>
+</div>
+</div>
+</div>
+
+<!-- Converter app -->
+<section id="converter" class="max-w-3xl mx-auto px-6 pb-20 md:pb-28" aria-labelledby="converter-heading">
+<h2 id="converter-heading" class="sr-only">STL format converter</h2>
+
+<div id="stl-converter-drop" class="relative overflow-hidden rounded-[2rem] border-2 border-dashed border-white/10 bg-slate-900/20 p-8 text-center transition-all hover:border-[#ff6b35]/40 md:p-12">
+  <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-3xl border border-[#ff6b35]/20 bg-[#ff6b35]/10">
+    <i class="ti ti-arrows-right-left text-3xl text-[#ff6b35]" aria-hidden="true"></i>
+  </div>
+  <p class="mb-2 text-xl font-bold font-heading text-white">Drop an STL file here</p>
+  <p class="mx-auto mb-6 max-w-md text-sm leading-relaxed text-slate-400">
+    Binary or ASCII input. Choose the output format after the file is measured — the conversion itself is local and instant.
+  </p>
+  <div class="flex flex-wrap items-center justify-center gap-3">
+    <label for="stl-converter-file" class="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-[#ff6b35] px-5 py-3 text-xs font-black uppercase tracking-widest text-black hover:bg-[#e05a28] transition-all focus-ring">
+      <i class="ti ti-folder-open" aria-hidden="true"></i>Choose STL file
+    </label>
+    <button type="button" id="stl-converter-demo" class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-black/30 px-5 py-3 text-xs font-bold uppercase tracking-widest text-slate-300 hover:border-white/20 hover:text-white transition-all focus-ring">
+      <i class="ti ti-cube" aria-hidden="true"></i>Demo cube
+    </button>
+  </div>
+  <p class="mt-5 text-[11px] font-mono uppercase tracking-widest text-slate-600">No upload endpoint · no account · no file size cap</p>
+
+  <div id="stl-converter-loading" hidden class="absolute inset-0 flex flex-col items-center justify-center bg-black/80 backdrop-blur-sm">
+    <div class="mb-4 h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-[#ff6b35]" aria-hidden="true"></div>
+    <p data-loading-label class="text-sm font-semibold text-slate-300">Reading locally...</p>
+  </div>
+</div>
+
+<input id="stl-converter-file" type="file" accept=".stl,model/stl,application/sla" class="sr-only" />
+
+<div id="stl-converter-error" hidden role="alert" class="mt-4 rounded-2xl border border-red-500/30 bg-red-500/5 p-5">
+  <p class="flex items-start gap-3 text-sm text-red-300">
+    <i class="ti ti-alert-triangle mt-0.5 text-lg" aria-hidden="true"></i>
+    <span id="stl-converter-error-text">Could not read that file.</span>
+  </p>
+</div>
+
+<div id="stl-converter-info" hidden class="mt-6 rounded-[2rem] border border-white/5 bg-slate-900/30 p-6 md:p-8">
+  <div class="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+    <div class="rounded-2xl border border-white/5 bg-black/30 p-4 md:col-span-2">
+      <p class="mb-1 text-[10px] font-mono uppercase tracking-widest text-slate-500">Source file</p>
+      <p id="converter-stat-name" class="truncate text-sm font-semibold text-slate-200">-</p>
+    </div>
+    <div class="rounded-2xl border border-white/5 bg-black/30 p-4">
+      <p class="mb-1 text-[10px] font-mono uppercase tracking-widest text-slate-500">Format</p>
+      <p id="converter-stat-format" class="text-sm font-semibold text-slate-200">-</p>
+    </div>
+    <div class="rounded-2xl border border-white/5 bg-black/30 p-4">
+      <p class="mb-1 text-[10px] font-mono uppercase tracking-widest text-slate-500">File size</p>
+      <p id="converter-stat-size" class="text-sm font-semibold text-slate-200">-</p>
+    </div>
+    <div class="rounded-2xl border border-white/5 bg-black/30 p-4">
+      <p class="mb-1 text-[10px] font-mono uppercase tracking-widest text-slate-500">Triangles</p>
+      <p id="converter-stat-triangles" class="text-sm font-semibold text-slate-200">-</p>
+    </div>
+    <div class="col-span-2 rounded-2xl border border-[#ff6b35]/20 bg-[#ff6b35]/5 p-4 md:col-span-3">
+      <p class="mb-1 text-[10px] font-mono uppercase tracking-widest text-[#ff6b35]/80">Bounding box</p>
+      <p id="converter-stat-dimensions" class="text-sm font-semibold text-white">-</p>
+    </div>
+  </div>
+
+  <div class="grid gap-5 md:grid-cols-2">
+    <div>
+      <label for="converter-format" class="mb-2 block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500">Output format</label>
+      <select id="converter-format" class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all">
+        <option value="obj">OBJ (.obj) — best for sculpting, CAD, and renderers</option>
+        <option value="ply">PLY (.ply) — ASCII mesh for scan and research tools</option>
+        <option value="stl-binary">Binary STL (.stl) — smallest, slicer-friendly</option>
+        <option value="stl-ascii">ASCII STL (.stl) — human-readable, larger</option>
+      </select>
+    </div>
+    <div>
+      <label for="converter-tolerance" class="mb-2 block font-mono text-[10px] font-black uppercase tracking-wider text-slate-500">Vertex merge tolerance (mm)</label>
+      <input id="converter-tolerance" type="number" value="0.001" min="0.000001" step="0.001" class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all" />
+      <p class="mt-2 text-xs leading-relaxed text-slate-500">Used for OBJ and PLY only. Lower it for fine detail, raise it for noisy scans.</p>
+    </div>
+  </div>
+
+  <button type="button" id="converter-download" disabled class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#ff6b35] px-6 py-4 text-sm font-black uppercase tracking-widest text-black hover:bg-[#e05a28] active:scale-[0.99] transition-all focus-ring disabled:cursor-not-allowed disabled:opacity-40">
+    <i class="ti ti-download" aria-hidden="true"></i><span id="converter-download-label">Convert &amp; download OBJ</span>
+  </button>
+  <p id="converter-status" role="status" aria-live="polite" class="mt-4 text-center text-xs text-slate-400">Choose an STL to begin.</p>
+
+  <div id="converter-output-summary" hidden class="mt-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-center text-xs text-emerald-300">
+    Saved <span id="converter-output-name" class="font-semibold">file</span> (<span id="converter-output-size">0 B</span>) to your downloads folder.
+  </div>
+</div>
+</section>
+
+<!-- Format guide -->
+<section class="max-w-3xl mx-auto px-6 py-20 md:py-24 border-t border-white/5" aria-labelledby="formats-heading">
+<h2 id="formats-heading" class="text-3xl md:text-4xl font-bold font-heading mb-8">
+  Which output format <span class="text-[#ff6b35] italic">should you pick?</span>
+</h2>
+<div class="grid gap-4 sm:grid-cols-2">
+  <div class="rounded-2xl border border-white/5 bg-slate-900/30 p-6">
+    <p class="mb-2 font-mono text-[10px] font-black uppercase tracking-widest text-[#ff6b35]">OBJ</p>
+    <p class="text-sm leading-relaxed text-slate-400">The safest hand-off to Blender, ZBrush, CAD, or a render engine. Vertices are merged, faces are indexed, and almost everything imports it.</p>
+  </div>
+  <div class="rounded-2xl border border-white/5 bg-slate-900/30 p-6">
+    <p class="mb-2 font-mono text-[10px] font-black uppercase tracking-widest text-[#ff6b35]">PLY</p>
+    <p class="text-sm leading-relaxed text-slate-400">A compact ASCII mesh with an explicit vertex/face header. Useful for scan processing, research code, and tools that dislike OBJ.</p>
+  </div>
+  <div class="rounded-2xl border border-white/5 bg-slate-900/30 p-6">
+    <p class="mb-2 font-mono text-[10px] font-black uppercase tracking-widest text-[#ff6b35]">Binary STL</p>
+    <p class="text-sm leading-relaxed text-slate-400">The normal slicer format: 50 bytes per triangle, small and fast. Re-export it when a converter produced an unnecessarily huge ASCII file.</p>
+  </div>
+  <div class="rounded-2xl border border-white/5 bg-slate-900/30 p-6">
+    <p class="mb-2 font-mono text-[10px] font-black uppercase tracking-widest text-[#ff6b35]">ASCII STL</p>
+    <p class="text-sm leading-relaxed text-slate-400">Readable and diffable, but several times larger. Useful for debugging a mesh or checking coordinates by eye, not for production.</p>
+  </div>
+</div>
+</section>
+
+<!-- Privacy -->
+<section class="max-w-3xl mx-auto px-6 py-20 md:py-24 border-t border-white/5" aria-labelledby="privacy-heading">
+<h2 id="privacy-heading" class="text-3xl md:text-4xl font-bold font-heading mb-6">
+  Client work stays <span class="text-[#ff6b35] italic">client-side</span>
+</h2>
+<p class="text-lg leading-relaxed text-slate-300 mb-6">
+  Cloud converters ask you to upload a model before they will hand back a file. For a commissioned miniature, an
+  unreleased product, or a scan of a person, that is a data-sharing decision disguised as a utility. This converter
+  has no upload step at all: the bytes are read from your disk, converted in memory, and written back as a download.
+</p>
+<p class="text-slate-400 leading-relaxed">
+  Nothing is stored between visits. There is no account, no history, no server-side copy, and no watermark added to
+  the output. When you close the tab, the mesh is gone.
+</p>
+</section>
+
+<!-- FAQ -->
+<section class="max-w-6xl mx-auto px-6 py-20 md:py-28 border-t border-white/5" aria-labelledby="faq-heading">
+<div class="max-w-2xl mb-12">
+  <h2 id="faq-heading" class="text-3xl md:text-5xl font-bold font-heading mb-4">
+    STL conversion <span class="text-[#ff6b35] italic">questions</span>
+  </h2>
+  <p class="text-slate-400 text-lg">Formats, welding, units, and what conversion does not fix.</p>
+</div>
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+  {faqs.map((item, index) => (
+    <article id={`qa-${index}`} class="rounded-3xl border border-white/5 bg-slate-900/30 p-8 transition-all hover:border-[#ff6b35]/20 hover:bg-slate-900/50">
+      <h3 class="mb-4 text-lg font-bold text-slate-200">{item.question}</h3>
+      <p class="text-sm leading-relaxed text-slate-400">{item.answer}</p>
+    </article>
+  ))}
+</div>
+</section>
+
+<!-- Other tools -->
+<section class="max-w-6xl mx-auto px-6 py-20 md:py-24 border-t border-white/5" aria-labelledby="more-heading">
+<h2 id="more-heading" class="text-2xl md:text-3xl font-bold font-heading mb-8">Before you convert, <span class="text-[#ff6b35] italic">check the mesh</span></h2>
+<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+  <a href="/stl-viewer/" class="group rounded-2xl border border-white/5 bg-slate-900/30 p-6 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all">
+    <i class="ti ti-3d-cube-sphere mb-4 block text-2xl text-[#ff6b35]" aria-hidden="true"></i>
+    <p class="font-bold text-slate-200 group-hover:text-[#ff6b35] transition-colors">STL Viewer</p>
+    <p class="mt-2 text-sm text-slate-500">Open the model in 3D and read its bounding box before exporting.</p>
+  </a>
+  <a href="/stl-scale-inspector/" class="group rounded-2xl border border-white/5 bg-slate-900/30 p-6 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all">
+    <i class="ti ti-ruler-measure mb-4 block text-2xl text-[#ff6b35]" aria-hidden="true"></i>
+    <p class="font-bold text-slate-200 group-hover:text-[#ff6b35] transition-colors">STL Scale Inspector</p>
+    <p class="mt-2 text-sm text-slate-500">Check dimensions, inches vs millimetres, and the exact slicer percentage.</p>
+  </a>
+  <a href="/stl-printability-checker/" class="group rounded-2xl border border-white/5 bg-slate-900/30 p-6 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all">
+    <i class="ti ti-checkbox mb-4 block text-2xl text-[#ff6b35]" aria-hidden="true"></i>
+    <p class="font-bold text-slate-200 group-hover:text-[#ff6b35] transition-colors">Printability Checker</p>
+    <p class="mt-2 text-sm text-slate-500">Find holes and non-manifold edges that a format change will not repair.</p>
+  </a>
+</div>
+</section>
+
+<script is:inline src={assetVersion('js/stl-core.js')}></script>
+<script is:inline src={assetVersion('js/stl-converter.js')}></script>
+</Layout>

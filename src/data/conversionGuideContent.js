@@ -1,6 +1,6 @@
 // src/data/conversionGuideContent.js
 // Hand-authored, per-conversion content rendered inline on the all-in-one
-// miniature size chart (/miniature-size-chart).
+// miniature size chart (/archive/miniature-size-chart).
 //
 // IMPORTANT anti-pSEO note:
 // Every string here is written by hand for its specific source->target pair.

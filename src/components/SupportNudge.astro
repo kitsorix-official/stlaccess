@@ -1,0 +1,155 @@
+---
+/**
+ * Floating support nudge — glass-morphism card, fixed to the bottom-left.
+ *
+ * Replaces the old full-width strip that sat between the navbar and the hero
+ * and pushed every page down. This sits on top of the page instead: it never
+ * reflows content, and it is deliberately placed clear of the mobile bottom
+ * nav (bottom-16 on small screens, bottom-6 from `md` up).
+ *
+ * Privacy: the collapse/expand choice is remembered in sessionStorage, which
+ * lives in memory for a single tab and is cleared when the tab closes. It is
+ * strictly-necessary interface state — no cookie, no identifier, no
+ * cross-site anything, so it does not create an obligation to show a consent
+ * banner. Nothing is written to disk and nothing is ever sent anywhere.
+ *
+ * Address comes from `donations` in src/data/site.json. If it is empty the
+ * component renders nothing at all.
+ */
+import site from "../data/site.json";
+
+const btc = site.donations?.btc ?? "";
+const btcReady = Boolean(btc) && !btc.includes("YOUR_");
+const storageKey = "stlaccess:support-nudge-collapsed";
+---
+
+{
+  btcReady && (
+    <>
+      {/* Runs before the panel is parsed so a returning visitor within the
+          same tab never sees a flash of the expanded card. */}
+      <script is:inline define:vars={{ storageKey }}>
+        try {
+          if (sessionStorage.getItem(storageKey) === "1") {
+            document.documentElement.setAttribute("data-support-collapsed", "1");
+          }
+        } catch (e) {
+          /* Storage blocked — card simply starts expanded. */
+        }
+      </script>
+
+      <aside
+        data-support-nudge
+        aria-label="Support this site"
+        class="fixed bottom-16 left-4 z-40 w-[calc(100%-2rem)] max-w-[22rem] md:bottom-6 md:left-6"
+      >
+        <div class="rounded-2xl border border-white/10 bg-slate-900/70 p-3 shadow-2xl shadow-black/60 backdrop-blur-xl">
+          {/* Collapsed pill — the resting state. `hidden` here is the no-JS
+              fallback; the collapse styles below swap which child is shown. */}
+          <button
+            type="button"
+            data-support-expand
+            class="hidden w-full items-center justify-center gap-2 px-1 py-1 text-xs font-black uppercase tracking-widest text-slate-200 transition-colors hover:text-white focus-ring"
+          >
+            <i class="ti ti-heart-handshake text-[#ff6b35] text-lg" aria-hidden="true"></i>
+            <span>Support</span>
+          </button>
+
+          {/* Expanded card */}
+          <div data-support-body class="hidden space-y-4 p-2">
+            <p class="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#ff6b35]">
+              Support
+            </p>
+            <p class="text-sm leading-relaxed text-slate-300">
+              Donation-funded, no accounts, no paywall. If a tool saved you a
+              failed print, an optional Bitcoin tip keeps it running.
+            </p>
+            <div class="flex flex-col gap-2">
+              <button
+                type="button"
+                data-copy={btc}
+                class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-slate-200 transition-all hover:border-white/20 hover:text-white focus-ring"
+              >
+                <i class="ti ti-copy" aria-hidden="true"></i>
+                <span data-copy-label>Copy BTC</span>
+              </button>
+              <div class="flex items-center gap-2">
+                <a
+                  href="/support/"
+                  class="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-[#ff6b35] px-4 py-2.5 text-xs font-black uppercase tracking-widest text-black transition-all hover:bg-[#e05a28] focus-ring"
+                >
+                  <i class="ti ti-heart-handshake" aria-hidden="true"></i>
+                  Support the site
+                </a>
+                <button
+                  type="button"
+                  data-support-collapse
+                  aria-label="Hide the support card for this tab"
+                  class="shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-transparent text-slate-400 transition-colors hover:text-white focus-ring"
+                >
+                  <i class="ti ti-x" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <style is:global>
+        /* Collapsed state: swap the card body out for a compact pill. Both
+           children carry `.hidden` for the no-JS case; these rules, which
+           always win on specificity, decide which one is actually shown. */
+        [data-support-nudge] [data-support-expand] {
+          display: none;
+        }
+        [data-support-nudge] [data-support-body] {
+          display: block;
+        }
+        html[data-support-collapsed="1"] [data-support-nudge] {
+          width: auto;
+          max-width: none;
+        }
+        html[data-support-collapsed="1"] [data-support-nudge] [data-support-body] {
+          display: none;
+        }
+        html[data-support-collapsed="1"] [data-support-nudge] [data-support-expand] {
+          display: flex;
+        }
+      </style>
+
+      <script is:inline define:vars={{ storageKey }}>
+        (function () {
+          var nudge = document.querySelector("[data-support-nudge]");
+          if (!nudge) return;
+
+          function setCollapsed(collapsed) {
+            if (collapsed) {
+              document.documentElement.setAttribute("data-support-collapsed", "1");
+            } else {
+              document.documentElement.removeAttribute("data-support-collapsed");
+            }
+            try {
+              if (collapsed) sessionStorage.setItem(storageKey, "1");
+              else sessionStorage.removeItem(storageKey);
+            } catch (e) {
+              /* Nothing to do — the choice just won't outlive this page. */
+            }
+          }
+
+          var collapseBtn = nudge.querySelector("[data-support-collapse]");
+          var expandBtn = nudge.querySelector("[data-support-expand]");
+          if (collapseBtn) {
+            collapseBtn.addEventListener("click", function () {
+              setCollapsed(true);
+            });
+          }
+          if (expandBtn) {
+            expandBtn.addEventListener("click", function () {
+              setCollapsed(false);
+            });
+          }
+        })();
+      </script>
+    </>
+  )
+}

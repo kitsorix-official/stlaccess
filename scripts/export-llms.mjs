@@ -84,12 +84,12 @@ the slicer percentage is always (target standard mm ÷ source standard mm) × 10
 
 ## Reference
 
-- **STLACCESS Scale Standard** — https://stlaccess.com/scale-standard
+- **STLACCESS Scale Standard** — https://stlaccess.com/archive/scale-standard/
   (175cm baseline, eyes at 160cm, gaming scales to eye level, ratio scales to top of head)
 - **Open datasets (CC BY 4.0)** — https://stlaccess.com/data/index.json
   (JSON + CSV: 16 baselines, 46 conversions, 26 FDM profiles)
-- **Miniature Size Chart** — https://stlaccess.com/miniature-size-chart (46 verified conversions)
-- **Embeddable converter widget** — https://stlaccess.com/embed
+- **Miniature Size Chart** — https://stlaccess.com/archive/miniature-size-chart/ (46 verified conversions)
+- **Embeddable converter widget** — https://stlaccess.com/embed/
 
 `;
 
