@@ -153,6 +153,44 @@ for (const page of pages) {
   }
 }
 
+// Also assert the AI-facing text files point at things that exist. llms.txt
+// and llms-full.txt are hand-written/generated maps of the site; a stale URL
+// there sends agents to a redirect or a 404.
+function distFileExists(urlPath) {
+  let p = urlPath.split("#")[0].split("?")[0];
+  try {
+    p = decodeURIComponent(p);
+  } catch {
+    /* keep raw */
+  }
+  if (!p.startsWith("/")) return false;
+  let fp = path.join(DIST, p.replace(/^\//, ""));
+  if (p.endsWith("/") || p === "/") fp = path.join(fp, "index.html");
+  if (fs.existsSync(fp) && fs.statSync(fp).isFile()) return true;
+  if (fs.existsSync(`${fp}.html`)) return true;
+  if (fs.existsSync(path.join(fp, "index.html"))) return true;
+  return false;
+}
+
+let llmsUrlCount = 0;
+for (const file of ["llms.txt", "llms-full.txt"]) {
+  const fp = path.join(DIST, file);
+  if (!fs.existsSync(fp)) {
+    failures.push(`${file} missing from build output`);
+    continue;
+  }
+  const text = fs.readFileSync(fp, "utf8");
+  const urls = [...text.matchAll(/https:\/\/stlaccess\.com(\/[^\s)\]"'`<>]*)/g)]
+    .map((match) => (match[1] || "/").replace(/[.,;:]+$/, ""));
+  const seen = new Set();
+  for (const url of urls) {
+    if (seen.has(url)) continue;
+    seen.add(url);
+    llmsUrlCount += 1;
+    if (!distFileExists(url)) failures.push(`${file}: dead URL ${url}`);
+  }
+}
+
 const content = pages.filter((page) => page.tier === "content");
 const quiet = process.argv.includes("--quiet");
 console.log(`Discovery audit: ${pages.length} pages (${content.length} content pages)`);
@@ -178,4 +216,5 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("PASS: every content page links the tools in-body.");
+console.log(`PASS: every content page links the tools in-body.`);
+console.log(`PASS: ${llmsUrlCount} llms.txt URL(s) resolve to built files.`);

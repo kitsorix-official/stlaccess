@@ -1,7 +1,7 @@
 # STLACCESS — Full Content Archive
 
 Full text of https://stlaccess.com: the STL scale standard, 16
-scale-conversion guides, and 5 FDM printing articles. Every
+archived guides, and 5 FDM printing articles. Every
 conversion starts from a 175cm human baseline measured to eye level (160cm);
 the slicer percentage is always (target standard mm ÷ source standard mm) × 100.
 
@@ -18,7 +18,7 @@ the slicer percentage is always (target standard mm ÷ source standard mm) × 10
 
 ### Why Miniature Scales Use a 175cm Human Baseline
 
-Source: https://stlaccess.com/guides/175cm-baseline
+Source: https://stlaccess.com/archive/guides/175cm-baseline/
 Published: 2026-06-15
 
 **Description:** Most tabletop miniature scales are built around a 175cm (5'9) human. Here is why I chose that number for every STLACCESS scale conversion.
@@ -72,7 +72,7 @@ Every conversion percentage published on STLACCESS is physically printed and mea
 
 ### How to Scale 28mm to 32mm (114.3% Slicer Percentage, Explained)
 
-Source: https://stlaccess.com/guides/28mm-to-32mm-scale-conversion
+Source: https://stlaccess.com/archive/guides/28mm-to-32mm-scale-conversion/
 Published: 2026-08-15
 
 **Description:** What percent for 28mm to 32mm? 114.3% with XYZ locked. The math behind the conversion, the exact slicer steps for Chitubox, Lychee, Cura, and PrusaSlicer, and how to verify it on a test print.
@@ -188,7 +188,7 @@ That's the whole conversion. 114.3%, axes locked, one test print, and you're don
 
 ### How to Downscale 32mm to 28mm (87.5% Slicer Percentage, Explained)
 
-Source: https://stlaccess.com/guides/32mm-to-28mm-scale-conversion
+Source: https://stlaccess.com/archive/guides/32mm-to-28mm-scale-conversion/
 Published: 2026-08-15
 
 **Description:** Shrink 32mm miniatures down to true 28mm scale with an 87.5% slicer percentage. Fits more minis on a resin plate and mixes classic fantasy RPG proxies into true-scale armies.
@@ -260,7 +260,7 @@ That's the downscale. 87.5%, axes locked, supports re-generated, one test print.
 
 ### Arachne vs Classic Wall Generator: Which Is Sharper for Miniatures?
 
-Source: https://stlaccess.com/guides/arachne-vs-classic-wall-generator-miniatures
+Source: https://stlaccess.com/archive/guides/arachne-vs-classic-wall-generator-miniatures/
 Published: 2026-08-30
 
 **Description:** Arachne is supposed to make tighter details than the classic wall generator, but on test miniatures classic often prints fine detail sharper. A practical comparison for 28-32mm FDM prints.
@@ -320,7 +320,7 @@ I still use Arachne for terrain and big flat pieces where its speed shines. For 
 
 ### Best Budget 3D Printers for Tabletop Wargaming — FDM Terrrain & Vehicle Guide
 
-Source: https://stlaccess.com/guides/best-budget-3d-printers-wargaming
+Source: https://stlaccess.com/archive/guides/best-budget-3d-printers-wargaming/
 Published: 2026-08-26
 
 **Description:** Top budget FDM 3D printers for wargaming terrain, vehicles, and scatter. Sovol SV06 ACE, Creality Ender-3 V3 SE, Bambu Lab A1 Mini, and Elegoo Centauri Carbon compared.
@@ -444,7 +444,7 @@ You don't need to spend $800+ to get a capable FDM printer for wargaming. Pick t
 
 ### How to Scale Miniatures in Chitubox & Lychee Slicer (Without Messing Up the Base)
 
-Source: https://stlaccess.com/guides/chitubox-lychee-scaling-guide
+Source: https://stlaccess.com/archive/guides/chitubox-lychee-scaling-guide/
 Published: 2026-06-22
 Updated: 2026-08-15
 
@@ -557,7 +557,7 @@ These are the mistakes I've personally made, so you don't have to:
 
 ### Classic Fantasy RPG Miniature Scale Guide — What Size Are Classic Fantasy RPG Minis?
 
-Source: https://stlaccess.com/guides/classic-fantasy-rpg-miniature-scale-guide
+Source: https://stlaccess.com/archive/guides/classic-fantasy-rpg-miniature-scale-guide/
 Published: 2026-08-15
 
 **Description:** What scale is the classic fantasy RPG? Medium humanoids are 28mm to the eyes on the 175cm baseline. The full classic fantasy RPG size chart: Tiny, Small, Medium, Large, Huge, Gargantuan with mini heights and base sizes.
@@ -644,7 +644,7 @@ That's the classic fantasy RPG scale answer. True 28mm to the eyes, bases over h
 
 ### Cura Tree Support Settings: How to Make Supports Easy to Remove
 
-Source: https://stlaccess.com/guides/cura-tree-support-settings-miniatures
+Source: https://stlaccess.com/archive/guides/cura-tree-support-settings-miniatures/
 Published: 2026-08-30
 
 **Description:** The exact Cura tree (organic) support settings for 3D printing miniatures that come off clean — Z distance, interface layers, branch distance and angle, and painting supports on manually.
@@ -715,7 +715,7 @@ The day I stopped trusting auto supports for characters and started painting the
 
 ### FDM Miniature Printing: Complete Guide to Layer Height, Nozzles, and Settings
 
-Source: https://stlaccess.com/guides/fdm-miniature-printing-guide
+Source: https://stlaccess.com/archive/guides/fdm-miniature-printing-guide/
 Published: 2026-07-09
 Updated: 2026-08-15
 
@@ -811,7 +811,7 @@ I dialed all of this in the slow way so you don't have to. If your first FDM min
 
 ### FDM vs Resin 3D Printing for Miniatures: When to Switch
 
-Source: https://stlaccess.com/guides/fdm-vs-resin-miniatures
+Source: https://stlaccess.com/archive/guides/fdm-vs-resin-miniatures/
 Published: 2026-08-30
 
 **Description:** The honest resin vs FDM comparison for tabletop miniatures — detail, support removal, toxicity, speed, and which kinds of models each printer genuinely does better.
@@ -878,7 +878,7 @@ The truth is most armies don't need resin. If you're printing quantities of rock
 
 ### How to Measure a Miniature's Scale: Eye Level vs Top of Head Explained
 
-Source: https://stlaccess.com/guides/how-to-measure-miniature-scale
+Source: https://stlaccess.com/archive/guides/how-to-measure-miniature-scale/
 Published: 2026-07-11
 
 **Description:** How I measure miniature scale for 3D printing — eye level vs top of head, PARKSIDE digital calipers, and why the 175cm baseline works.
@@ -961,7 +961,7 @@ This is the chart I use when a sculptor's label is vague:
 
 ### Real-World Objects to 28mm Scale: Feet to MM Conversion for 28mm WWII Platoon Wargames, the Classic Fantasy RPG & Historical
 
-Source: https://stlaccess.com/guides/real-world-objects-to-28mm
+Source: https://stlaccess.com/archive/guides/real-world-objects-to-28mm/
 Published: 2026-08-30
 
 **Description:** The formula I use to convert real-world heights to true 28mm miniature scale. Charts for humans, monsters, vehicles, and terrain for 28mm WWII platoon wargames, the classic fantasy RPG, and historical wargaming.
@@ -1072,7 +1072,7 @@ This is the chart I wish I'd had when I started. Whenever I'm scaling a real-wor
 
 ### Real-World Objects to 32mm Scale: Feet to MM Conversion (The Math Explained)
 
-Source: https://stlaccess.com/guides/real-world-objects-to-32mm
+Source: https://stlaccess.com/archive/guides/real-world-objects-to-32mm/
 Published: 2026-06-28
 Updated: 2026-08-15
 
@@ -1181,7 +1181,7 @@ To convert any real measurement to miniature millimetres on the fly, plug the nu
 
 ### Resin2FDM: Convert Resin-Supported STLs to FDM-Ready in Blender
 
-Source: https://stlaccess.com/guides/resin2fdm-convert-stl-to-fdm-ready
+Source: https://stlaccess.com/archive/guides/resin2fdm-convert-stl-to-fdm-ready/
 Published: 2026-08-30
 
 **Description:** How to take a resin-presupported STL from any sculptor and make it print clean on an FDM printer using the Resin2FDM Blender add-on — split, assign, thicken supports, and slice for cleanup.
@@ -1277,7 +1277,7 @@ The first time I converted a pre-supported file I expected a mess. Instead I got
 
 ### 35mm Sci-Fi Mass-Battle Game Scale Guide — What Scale Are Its Miniatures?
 
-Source: https://stlaccess.com/guides/sci-fi-mass-battle-35mm-scale-guide
+Source: https://stlaccess.com/archive/guides/sci-fi-mass-battle-35mm-scale-guide/
 Published: 2026-08-15
 
 **Description:** Miniatures for the 35mm sci-fi mass-battle game are 35mm scale (1:47), measured to eye level at 35.7mm. Full height about 40mm. Exact slicer percentages to convert its STLs and proxies for space opera armies.
@@ -1359,7 +1359,7 @@ That's the conversion. 35mm to the eyes, 109.4% from the modern sci-fi epic warg
 
 ### Upscaling 3D Prints: How Big Can You Enlarge a 32mm Miniature Before Losing Detail?
 
-Source: https://stlaccess.com/guides/upscaling-3d-prints-detail-limit
+Source: https://stlaccess.com/archive/guides/upscaling-3d-prints-detail-limit/
 Published: 2026-06-25
 
 **Description:** How much can you enlarge a 32mm miniature on FDM before losing detail? Layer line visibility, nozzle settings, and slicer tips for clean upscaling on my Bambu Lab A1 Mini.
@@ -1443,7 +1443,7 @@ For more on how scales relate and the baseline measurements used, see the [scale
 
 ### Tabletop Gaming with FDM: Best Printers, Settings, and Models for Minis and Terrain
 
-Source: https://stlaccess.com/fdm/best-fdm-printer-miniatures-and-terrain
+Source: https://stlaccess.com/archive/fdm/best-fdm-printer-miniatures-and-terrain/
 Published: 2026-09-14
 
 **Description:** FDM printers and slicer settings that actually work for tabletop miniatures and terrain — CoreXY vs bed-slinger picks across budgets, 0.2mm nozzle tuning, and a mini-vs-terrain settings cheat sheet.
@@ -1505,7 +1505,7 @@ Take your time dialing in your profile, embrace the trial-and-error curve, and g
 
 ### The Ultimate FDM Filament Guide: Materials, Nozzles, and Strength Tuning
 
-Source: https://stlaccess.com/fdm/fdm-3d-printer-filament-guide
+Source: https://stlaccess.com/archive/fdm/fdm-3d-printer-filament-guide/
 Published: 2026-09-14
 
 **Description:** PLA, PETG, ABS, ASA, TPU, nylon composites, and metal-filled filaments — how to choose the right plastic, match it to the correct nozzle, and avoid clogs, warping, and shredded spools.
@@ -1558,7 +1558,7 @@ Take the time to match your plastic to your environment, audit your hotend hardw
 
 ### FDM vs Resin vs SLS 3D Printing: Which Technology Fits Your Project?
 
-Source: https://stlaccess.com/fdm/fdm-vs-resin-sla-sls-3d-printing
+Source: https://stlaccess.com/archive/fdm/fdm-vs-resin-sla-sls-3d-printing/
 Published: 2026-09-14
 
 **Description:** A head-to-head look at FDM, resin/SLA, and SLS printing — how each melts, cures, or sinters material, plus detail, strength, safety, and cost comparisons with a decision matrix for props, miniatures, and functional parts.
@@ -1613,7 +1613,7 @@ Your choice ultimately comes down to your primary projects, your budget, and you
 
 ### How to Sand, Paint, and Post-Process FDM 3D Prints Like a Pro
 
-Source: https://stlaccess.com/fdm/how-to-sand-and-paint-fdm-prints
+Source: https://stlaccess.com/archive/fdm/how-to-sand-and-paint-fdm-prints/
 Published: 2026-09-14
 
 **Description:** Turn rough, ridged FDM prints into smooth, professional parts — surgical support removal, the 120-to-400 grit progression, filler priming and the spray-sand-repeat cycle, then painting and locking in your FDM miniatures.
@@ -1690,7 +1690,7 @@ Take your time, embrace the learning curve, and happy printing!
 
 ### What Is FDM 3D Printing? A Beginner's Guide to How It Works
 
-Source: https://stlaccess.com/fdm/what-is-fdm-3d-printing-guide
+Source: https://stlaccess.com/archive/fdm/what-is-fdm-3d-printing-guide/
 Published: 2026-09-14
 
 **Description:** FDM vs FFF explained, the extrusion process from STL to G-code to finished layers, the history from Stratasys to the 2009 patent expiry and RepRap boom, plus the real pros and cons of fused deposition modeling.

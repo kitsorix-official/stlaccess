@@ -45,7 +45,7 @@ function collect(dir, basePath) {
       const slug = f.replace(/\.md$/, '');
       const md = readFileSync(join(dir, f), 'utf8');
       const { fm, body } = parseFrontmatter(md);
-      return { slug, fm, body, url: `${SITE}${basePath}/${slug}` };
+      return { slug, fm, body, url: `${SITE}${basePath}/${slug}/` };
     })
     .sort((a, b) => {
       // 175cm-baseline first in Guides (it's the canonical reference),
@@ -72,13 +72,21 @@ function articleBlock(a) {
   return lines.join('\n');
 }
 
-const guides = collect(join(root, 'src', 'content', 'guides'), '/guides');
-const fdm = collect(join(root, 'src', 'content', 'fdm'), '/fdm');
+const guides = collect(join(root, 'src', 'content', 'guides'), '/archive/guides');
+const fdm = collect(join(root, 'src', 'content', 'fdm'), '/archive/fdm');
+
+// Counts in the header are read from the same data files that feed the site,
+// so they cannot drift from the published datasets.
+const readData = (name) =>
+  JSON.parse(readFileSync(join(root, 'src', 'data', name), 'utf8'));
+const baselines = readData('scaleBaselines.json');
+const conversions = readData('conversionMatrix.json');
+const profiles = readData('fdmProfiles.json');
 
 const header = `# STLACCESS — Full Content Archive
 
 Full text of https://stlaccess.com: the STL scale standard, ${guides.length}
-scale-conversion guides, and ${fdm.length} FDM printing articles. Every
+archived guides, and ${fdm.length} FDM printing articles. Every
 conversion starts from a 175cm human baseline measured to eye level (160cm);
 the slicer percentage is always (target standard mm ÷ source standard mm) × 100.
 
@@ -87,8 +95,8 @@ the slicer percentage is always (target standard mm ÷ source standard mm) × 10
 - **STLACCESS Scale Standard** — https://stlaccess.com/archive/scale-standard/
   (175cm baseline, eyes at 160cm, gaming scales to eye level, ratio scales to top of head)
 - **Open datasets (CC BY 4.0)** — https://stlaccess.com/data/index.json
-  (JSON + CSV: 16 baselines, 46 conversions, 26 FDM profiles)
-- **Miniature Size Chart** — https://stlaccess.com/archive/miniature-size-chart/ (46 verified conversions)
+  (JSON + CSV: ${Object.keys(baselines).length} baselines, ${conversions.length} conversions, ${profiles.length} FDM profiles)
+- **Miniature Size Chart** — https://stlaccess.com/archive/miniature-size-chart/ (${conversions.length} verified conversions)
 - **Embeddable converter widget** — https://stlaccess.com/embed/
 
 `;
