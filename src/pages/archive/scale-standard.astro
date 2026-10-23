@@ -1,12 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
+import ContextualToolCta from "../../components/tools/ContextualToolCta.astro";
+import ToolRail from "../../components/tools/ToolRail.astro";
 import site from "../../data/site.json";
 import baselines from "../../data/scaleBaselines.json";
 import { graph, breadcrumb, webPage } from "../../lib/schema";
 import { lastModifiedDate, formatLongDate, lastModifiedISO } from "../../lib/freshness";
+import { TOOL_SLUGS, type ToolSlug } from "../../lib/toolGraph";
 
 const siteUpdated = lastModifiedDate();
+const railItems = TOOL_SLUGS.map((slug) => ({ tool: slug as ToolSlug }));
 
 // Precision-aware mm formatter: 28 -> "28.0", 36.458 -> "36.458", 31.25 -> "31.25"
 const fmtMm = (v) => {
@@ -266,4 +270,17 @@ const schema = graph([
       </p>
     </div>
   </section>
+
+  <ContextualToolCta
+    tool="stl-scale-inspector"
+    heading="Apply this standard to a real model"
+    body="The Scale Inspector uses this baseline directly. Pick the source and target scale to get the exact slicer percentage, or drop in an STL to read its real height."
+  />
+
+  <ToolRail
+    items={railItems}
+    heading="The live tools"
+    intro="This standard is archived reference. The four current tools run entirely in your browser."
+    id="archive-tools"
+  />
 </Layout>

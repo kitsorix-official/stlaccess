@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import JsonLd from "../components/JsonLd.astro";
+import ToolStrip from "../components/tools/ToolStrip.astro";
 import site from "../data/site.json";
 import { graph, breadcrumb, webPage, softwareApplication } from "../lib/schema";
 
@@ -100,4 +101,6 @@ const schema = graph([
       Questions about a specific embed context? <a href="/contact/" class="text-[#ff6b35] hover:underline">Get in touch</a>. Want the full reference instead of the widget? Use the <a href="/archive/scale-standard/" class="text-[#ff6b35] hover:underline font-semibold">STLACCESS Scale Standard</a> and the open datasets.
     </p>
   </section>
+
+<ToolStrip />
 </Layout>

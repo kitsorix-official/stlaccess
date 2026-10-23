@@ -1,14 +1,37 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import JsonLd from "../../../components/JsonLd.astro";
+import ContextualToolCta from "../../../components/tools/ContextualToolCta.astro";
+import ToolRail from "../../../components/tools/ToolRail.astro";
+import RelatedReading from "../../../components/tools/RelatedReading.astro";
+import { getCollection } from "astro:content";
 import site from "../../../data/site.json";
 import rawConversions from "../../../data/conversionMatrix.json";
 import { conversionGuideContent } from "../../../data/conversionGuideContent.js";
 import { graph, breadcrumb, faqPage, article } from "../../../lib/schema";
 import { lastModifiedDate, formatLongDate, lastModifiedISO } from "../../../lib/freshness";
+import { TOOL_SLUGS, type ToolSlug } from "../../../lib/toolGraph";
 
 const { referencePageQA, gasEndpoint, printerName } = site;
 const siteUpdated = lastModifiedDate();
+const railItems = TOOL_SLUGS.map((slug) => ({ tool: slug as ToolSlug }));
+
+// The chart is a lookup table; these guides explain the measurements it encodes.
+const relatedSlugs = [
+  "how-to-measure-miniature-scale",
+  "28mm-to-32mm-scale-conversion",
+  "32mm-to-28mm-scale-conversion",
+];
+const guideEntries = await getCollection("guides");
+const relatedGuides = relatedSlugs
+  .map((slug) => guideEntries.find((entry) => entry.id === slug))
+  .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry))
+  .map((entry) => ({
+    title: entry.data.title,
+    url: `/archive/guides/${entry.id}/`,
+    description: entry.data.description,
+    meta: entry.data.tags.slice(0, 2).join(" · "),
+  }));
 
 const conv28to32 = rawConversions.find(c => c.slug === '28mm-to-32mm');
 
@@ -665,5 +688,25 @@ const referenceSchema = graph([
     });
   }
 </script>
+
+<ContextualToolCta
+  tool="stl-scale-inspector"
+  heading="Found your conversion? Apply it without the math"
+  body="The Scale Inspector turns any pair of these scales into the exact slicer percentage, and can read the real bounding box straight from your STL file."
+/>
+
+<ToolRail
+  items={railItems}
+  heading="The live tools"
+  intro="This chart is archived reference. The four current tools run entirely in your browser."
+  id="archive-tools"
+/>
+
+<RelatedReading
+  items={relatedGuides}
+  heading="How these numbers were measured"
+  intro="The method behind the chart, and the two conversions people ask about most."
+  id="related-guides"
+/>
 
 </Layout>

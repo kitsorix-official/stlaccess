@@ -4,6 +4,7 @@ import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
 import FeedbackBanner from "../components/FeedbackBanner.astro";
 import SupportNudge from "../components/SupportNudge.astro";
+import ArchiveToolBar from "../components/tools/ArchiveToolBar.astro";
 import { assetVersion } from "../utils/assetVersion.js";
 
 const siteUpdated = lastModifiedDate();
@@ -38,6 +39,10 @@ const canonical = new URL(pathname, Astro.site || site.url).href;
 
 const currentPath = Astro.url.pathname;
 const isSupportNudgeExcluded = ["/support/", "/embed/", "/widget/", "/404/"].includes(pathname);
+// Archived reference content gets a slim bar linking the four live tools. It
+// is rendered from the layout so every current and future /archive/ page is
+// covered without touching individual pages.
+const isArchivePage = pathname.startsWith("/archive/");
 const banner = site.banner || { enabled: false };
 
 // Pages opt into a page-level header (H1 + intro + breadcrumbs) via the
@@ -276,6 +281,7 @@ const hasHero = Astro.slots.has("hero");
 
     <!-- Main content -->
     <main id="main-content" class="flex-grow order-3">
+      {isArchivePage && <ArchiveToolBar />}
       {/* Page header — H1, intro, and breadcrumbs. Inside <main> so the outer
           <header> above holds only site chrome (nav + brand). It was the
           order-2 body flex item before, so it still renders between the

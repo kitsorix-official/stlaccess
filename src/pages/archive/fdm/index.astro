@@ -1,8 +1,12 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import JsonLd from "../../../components/JsonLd.astro";
+import ToolRail from "../../../components/tools/ToolRail.astro";
 import { getCollection } from "astro:content";
 import { graph, breadcrumb, itemList } from "../../../lib/schema";
+import { TOOL_SLUGS, type ToolSlug } from "../../../lib/toolGraph";
+
+const railItems = TOOL_SLUGS.map((slug) => ({ tool: slug as ToolSlug }));
 
 const sortedPosts = (await getCollection("fdm")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
@@ -130,5 +134,12 @@ const fdmSchema = graph([
     });
   }
 </script>
+
+<ToolRail
+  items={railItems}
+  heading="These articles are archived — the live tools are here"
+  intro="Every article you just read ends in a job one of these four tools does locally."
+  id="archive-tools"
+/>
 
 </Layout>

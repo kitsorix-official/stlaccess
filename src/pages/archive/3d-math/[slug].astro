@@ -5,7 +5,10 @@
 // inside the article, part="content" renders the trailing content sections.
 import Layout from "../../../layouts/Layout.astro";
 import JsonLd from "../../../components/JsonLd.astro";
+import ContextualToolCta from "../../../components/tools/ContextualToolCta.astro";
+import ToolRail from "../../../components/tools/ToolRail.astro";
 import tools from "../../../data/tools.json";
+import { ctasFor, TOOL_SLUGS, type ToolSlug } from "../../../lib/toolGraph";
 import SlicerPercentageTool from "../../../components/tools/SlicerPercentageTool.astro";
 import FilamentCostTool from "../../../components/tools/FilamentCostTool.astro";
 import ReferenceBarTool from "../../../components/tools/ReferenceBarTool.astro";
@@ -27,6 +30,10 @@ export async function getStaticPaths() {
 }
 
 const { tool } = Astro.props;
+const ctas = ctasFor("3d-math", tool.slug);
+const primaryCta = ctas[0];
+const secondaryCta = ctas[1];
+const railItems = TOOL_SLUGS.map((slug) => ({ tool: slug as ToolSlug }));
 
 const toolFaqs: Record<string, { question: string; answer: string }[]> = {
   "slicer-percentage-calculator": slicerFaq,
@@ -144,6 +151,14 @@ const toolSchema = graph([
     </section>
   )}
 
+  {primaryCta && (
+    <ContextualToolCta
+      tool={primaryCta.tool}
+      heading={primaryCta.heading}
+      body={primaryCta.body}
+    />
+  )}
+
   <!-- Back link -->
   <div class="mt-12">
     <a href="/archive/3d-math/" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
@@ -163,5 +178,21 @@ const toolSchema = graph([
 {tool.slug === "resin-shrinkage-compensation-calculator" && <ResinShrinkageTool part="content" />}
 {tool.slug === "miniature-resin-weight-cost-calculator" && <MiniatureResinTool part="content" />}
 {tool.slug === "layer-resolution-angle-calculator" && <LayerResolutionTool part="content" />}
+
+{secondaryCta && (
+  <ContextualToolCta
+    tool={secondaryCta.tool}
+    heading={secondaryCta.heading}
+    body={secondaryCta.body}
+    tone="quiet"
+  />
+)}
+
+<ToolRail
+  items={railItems}
+  heading="The live tools"
+  intro="These run entirely in your browser. The calculators above are archived reference; the four tools below are the current site."
+  id="archive-tools"
+/>
 
 </Layout>

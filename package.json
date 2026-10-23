@@ -10,9 +10,11 @@
     "export:data": "node scripts/export-data.mjs",
     "export:llms": "node scripts/export-llms.mjs",
     "build": "npm run export:data && npm run export:llms && astro build",
+    "postbuild": "node scripts/check-discovery.mjs --quiet",
     "build:indexnow": "npm run build && npm run indexnow",
     "preview": "astro preview",
     "check:redirects": "node scripts/check-redirects.mjs",
+    "check:discovery": "node scripts/check-discovery.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "astro": "astro"
   },

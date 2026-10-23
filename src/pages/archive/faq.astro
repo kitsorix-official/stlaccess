@@ -1,11 +1,35 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import JsonLd from '../../components/JsonLd.astro';
+import ToolRail from '../../components/tools/ToolRail.astro';
+import RelatedReading from '../../components/tools/RelatedReading.astro';
 import site from '../../data/site.json';
 import { faqData } from '../../data/archive/faqContent.js';
 import { graph, breadcrumb, faqPage } from '../../lib/schema';
+import { TOOL_SLUGS, type ToolSlug } from '../../lib/toolGraph';
 
 const quickRef = site.quickRef;
+const railItems = TOOL_SLUGS.map((slug) => ({ tool: slug as ToolSlug }));
+const relatedPages = [
+  {
+    title: 'The STLACCESS Scale Standard',
+    url: '/archive/scale-standard/',
+    description: 'The 175cm baseline, the measurement rules, and how each scale is derived.',
+    meta: 'Reference',
+  },
+  {
+    title: 'Miniature Size Chart',
+    url: '/archive/miniature-size-chart/',
+    description: 'Every verified conversion percentage in one searchable table.',
+    meta: 'Reference',
+  },
+  {
+    title: 'FDM Printing Profiles',
+    url: '/archive/fdm-printing-profiles/',
+    description: 'Printer-specific settings for miniatures and terrain, with the reasoning behind each value.',
+    meta: 'Reference',
+  },
+];
 
 const allFaqItems = faqData.flatMap((cat) =>
   cat.questions.map((item) => ({ question: item.q, answer: item.a }))
@@ -200,5 +224,19 @@ const faqSchema = graph([
     });
   });
 </script>
+
+<ToolRail
+  items={railItems}
+  heading="Skip the reading — do it locally"
+  intro="These answers are archived reference. The four current tools run entirely in your browser."
+  id="archive-tools"
+/>
+
+<RelatedReading
+  items={relatedPages}
+  heading="The pages these answers come from"
+  intro="The reference material behind the numbers, if you want the full method."
+  id="related-reading"
+/>
 
 </Layout>

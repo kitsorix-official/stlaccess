@@ -4,14 +4,20 @@
 // scripts as before, so public/js/mathscaler.js works unchanged.
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
+import ToolRail from "../../components/tools/ToolRail.astro";
+import RelatedReading from "../../components/tools/RelatedReading.astro";
 import site from "../../data/site.json";
 import scales from "../../data/scaleBaselines.json";
 import conversions from "../../data/conversionMatrix.json";
 import tools from "../../data/tools.json";
 import { graph, organization, webSite, softwareApplication, breadcrumb } from "../../lib/schema";
+import { nextStepsFor } from "../../lib/toolGraph";
+import { relatedGuidesFor } from "../../lib/relatedGuides";
 import { assetVersion } from "../../utils/assetVersion.js";
 
 const engineTool = tools.find((t) => t.slug === "stl-scale-engine");
+const nextSteps = nextStepsFor("stl-scale-inspector");
+const relatedGuides = await relatedGuidesFor("stl-scale-inspector");
 
 const toolSchema = graph([
   breadcrumb([
@@ -466,6 +472,20 @@ View full miniature size chart
 ))}
 </div>
 </section>
+
+<ToolRail
+  items={nextSteps}
+  heading="Scale is one step, not the whole job"
+  intro="Correct size does not mean printable, and printable does not mean in the right format. These handle the rest, locally."
+  id="next-steps"
+/>
+
+<RelatedReading
+  items={relatedGuides}
+  heading="The reasoning behind this scale math"
+  intro="Archived guides that explain the 175cm baseline, eye-level measuring, and the conversion percentages."
+  id="related-guides"
+/>
 
 <!-- Calculator Data Injection -->
 <script is:inline set:html={`window.CALCULATOR_SCALES = ${JSON.stringify(calculatorScales)};window.CALCULATOR_HEAD_OVERRIDES = ${JSON.stringify(headOverrides)};`} />

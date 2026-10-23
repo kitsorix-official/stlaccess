@@ -3,11 +3,17 @@
 // Nothing on this page fetches, posts, or uploads the selected file.
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
+import ToolRail from "../../components/tools/ToolRail.astro";
+import RelatedReading from "../../components/tools/RelatedReading.astro";
 import tools from "../../data/tools.json";
 import { graph, organization, webSite, softwareApplication, breadcrumb, faqPage } from "../../lib/schema";
+import { nextStepsFor } from "../../lib/toolGraph";
+import { relatedGuidesFor } from "../../lib/relatedGuides";
 import { assetVersion } from "../../utils/assetVersion.js";
 
 const tool = tools.find((t) => t.slug === "stl-viewer");
+const nextSteps = nextStepsFor("stl-viewer");
+const relatedGuides = await relatedGuidesFor("stl-viewer");
 
 const faqs = [
   {
@@ -233,28 +239,19 @@ No upload · No account · Runs in your browser
 </div>
 </section>
 
-<!-- Other tools -->
-<section class="max-w-6xl mx-auto px-6 py-20 md:py-24 border-t border-white/5" aria-labelledby="more-heading">
-<h2 id="more-heading" class="text-2xl md:text-3xl font-bold font-heading mb-8">Keep going <span class="text-[#ff6b35] italic">without leaving your browser</span></h2>
-<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-  <a href="/stl-scale-inspector/" class="group rounded-2xl border border-white/5 bg-slate-900/30 p-6 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all">
-    <i class="ti ti-ruler-measure mb-4 block text-2xl text-[#ff6b35]" aria-hidden="true"></i>
-    <p class="font-bold text-slate-200 group-hover:text-[#ff6b35] transition-colors">STL Scale Inspector</p>
-    <p class="mt-2 text-sm text-slate-500">Measure a file and get the exact percentage to type into your slicer.</p>
-  </a>
-  <a href="/stl-converter/" class="group rounded-2xl border border-white/5 bg-slate-900/30 p-6 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all">
-    <i class="ti ti-arrows-right-left mb-4 block text-2xl text-[#ff6b35]" aria-hidden="true"></i>
-    <p class="font-bold text-slate-200 group-hover:text-[#ff6b35] transition-colors">STL Converter</p>
-    <p class="mt-2 text-sm text-slate-500">Turn STL into OBJ or PLY, or re-export binary/ASCII, locally.</p>
-  </a>
-  <a href="/stl-printability-checker/" class="group rounded-2xl border border-white/5 bg-slate-900/30 p-6 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all">
-    <i class="ti ti-checkbox mb-4 block text-2xl text-[#ff6b35]" aria-hidden="true"></i>
-    <p class="font-bold text-slate-200 group-hover:text-[#ff6b35] transition-colors">Printability Checker</p>
-    <p class="mt-2 text-sm text-slate-500">Find holes, non-manifold edges, and winding problems before you print.</p>
-  </a>
-</div>
-</section>
+<ToolRail
+  items={nextSteps}
+  heading="Keep going without leaving your browser"
+  intro="The viewer tells you shape and size. These three finish the job, and none of them uploads anything."
+  id="next-steps"
+/>
 
+<RelatedReading
+  items={relatedGuides}
+  heading="The reasoning behind this viewer"
+  intro="Archived guides that explain the measurements and settings behind what you just opened."
+  id="related-guides"
+/>
 <script is:inline src={assetVersion('js/stl-core.js')}></script>
 <script is:inline src={assetVersion('js/stl-viewer.js')}></script>
 </Layout>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import JsonLd from '../components/JsonLd.astro';
+import ToolStrip from '../components/tools/ToolStrip.astro';
 import site from '../data/site.json';
 import { graph, breadcrumb } from '../lib/schema';
 
@@ -204,4 +205,6 @@ const legalSchema = graph([
       </div>
     </section>
   </article>
+
+<ToolStrip />
 </Layout>

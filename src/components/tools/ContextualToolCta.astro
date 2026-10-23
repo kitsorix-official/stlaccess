@@ -1,0 +1,41 @@
+---
+// Inline, contextual pointer from archived content to the live tool that
+// finishes the job described in the article. Rendered compactly so it reads as
+// part of the article rather than as an ad.
+import { toolMeta, type ToolSlug } from "../../lib/toolGraph";
+
+interface Props {
+  tool: ToolSlug;
+  heading: string;
+  body: string;
+  /** "brand" for the highlighted version, "quiet" for a low-key inline note. */
+  tone?: "brand" | "quiet";
+}
+
+const { tool, heading, body, tone = "brand" } = Astro.props;
+const meta = toolMeta(tool);
+
+const wrapper =
+  tone === "brand"
+    ? "border-[#ff6b35]/25 bg-gradient-to-br from-[#ff6b35]/10 via-slate-900/40 to-slate-900/20"
+    : "border-white/10 bg-slate-900/30";
+---
+
+<aside class={`my-10 rounded-2xl border p-6 md:p-7 ${wrapper}`} data-tool-cta={tool}>
+  <p class="mb-3 flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-widest text-[#ff6b35]">
+    <i class={`ti ${meta.icon} text-sm`} aria-hidden="true"></i>
+    Free tool · runs locally
+  </p>
+  <p class="mb-2 text-lg font-bold font-heading tracking-tight text-white">{heading}</p>
+  <p class="mb-5 max-w-2xl text-sm leading-relaxed text-slate-400">{body}</p>
+  <a
+    href={meta.url}
+    class="inline-flex items-center gap-2 rounded-xl bg-[#ff6b35] px-5 py-3 text-xs font-black uppercase tracking-widest text-black transition-all hover:bg-[#e05a28] focus-ring"
+  >
+    {meta.label}
+    <i class="ti ti-arrow-right text-[10px]" aria-hidden="true"></i>
+  </a>
+  <p class="mt-4 text-[11px] font-mono uppercase tracking-widest text-slate-600">
+    {meta.name} · no upload · no account
+  </p>
+</aside>

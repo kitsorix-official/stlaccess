@@ -1,0 +1,394 @@
+{
+  "tools": {
+    "stl-viewer": {
+      "name": "STL Viewer",
+      "url": "/stl-viewer/",
+      "icon": "ti-3d-cube-sphere",
+      "short": "Open a model in 3D and read its exact bounding box.",
+      "label": "Open the viewer"
+    },
+    "stl-scale-inspector": {
+      "name": "STL Scale Inspector",
+      "url": "/stl-scale-inspector/",
+      "icon": "ti-ruler-measure",
+      "short": "Check scale and get the exact slicer percentage.",
+      "label": "Check the scale"
+    },
+    "stl-converter": {
+      "name": "STL Converter",
+      "url": "/stl-converter/",
+      "icon": "ti-arrows-right-left",
+      "short": "Convert STL to OBJ, PLY, binary or ASCII locally.",
+      "label": "Convert the file"
+    },
+    "stl-printability-checker": {
+      "name": "STL Printability Checker",
+      "url": "/stl-printability-checker/",
+      "icon": "ti-checkbox",
+      "short": "Find holes, non-manifold edges and winding conflicts.",
+      "label": "Check printability"
+    }
+  },
+
+  "nextSteps": {
+    "stl-viewer": [
+      {
+        "tool": "stl-printability-checker",
+        "line": "A viewer shows shape, not printability. Test the mesh for holes and non-manifold edges before you slice."
+      },
+      {
+        "tool": "stl-scale-inspector",
+        "line": "Dimensions exactly 25.4x too small means the file was authored in inches. Fix the units and get a slicer percentage."
+      },
+      {
+        "tool": "stl-converter",
+        "line": "Need OBJ or PLY for another toolchain? Convert locally, with nothing uploaded."
+      }
+    ],
+    "stl-scale-inspector": [
+      {
+        "tool": "stl-viewer",
+        "line": "Confirm the scaled result in 3D and read the real bounding box before you commit a print."
+      },
+      {
+        "tool": "stl-printability-checker",
+        "line": "Correct scale does not mean printable. Check watertightness and winding before you slice."
+      },
+      {
+        "tool": "stl-converter",
+        "line": "Send the rescaled model to another program as OBJ or PLY, without an upload."
+      }
+    ],
+    "stl-converter": [
+      {
+        "tool": "stl-printability-checker",
+        "line": "A format change does not repair geometry. Check the mesh before you convert."
+      },
+      {
+        "tool": "stl-viewer",
+        "line": "Open the model in 3D and read its bounding box before exporting."
+      },
+      {
+        "tool": "stl-scale-inspector",
+        "line": "Check dimensions, inches vs millimetres, and the exact slicer percentage."
+      }
+    ],
+    "stl-printability-checker": [
+      {
+        "tool": "stl-viewer",
+        "line": "See the model in 3D and read its bounding box before you investigate a finding."
+      },
+      {
+        "tool": "stl-scale-inspector",
+        "line": "A correct mesh at the wrong scale still prints wrong. Check the scale next."
+      },
+      {
+        "tool": "stl-converter",
+        "line": "Export a clean mesh as OBJ or PLY for Blender or another repair tool."
+      }
+    ]
+  },
+
+  "toolGuides": {
+    "stl-viewer": [
+      { "slug": "how-to-measure-miniature-scale", "collection": "guides" },
+      { "slug": "fdm-miniature-printing-guide", "collection": "guides" },
+      { "slug": "upscaling-3d-prints-detail-limit", "collection": "guides" }
+    ],
+    "stl-scale-inspector": [
+      { "slug": "28mm-to-32mm-scale-conversion", "collection": "guides" },
+      { "slug": "32mm-to-28mm-scale-conversion", "collection": "guides" },
+      { "slug": "how-to-measure-miniature-scale", "collection": "guides" },
+      { "slug": "175cm-baseline", "collection": "guides" },
+      { "slug": "chitubox-lychee-scaling-guide", "collection": "guides" }
+    ],
+    "stl-converter": [
+      { "slug": "resin2fdm-convert-stl-to-fdm-ready", "collection": "guides" },
+      { "slug": "upscaling-3d-prints-detail-limit", "collection": "guides" },
+      { "slug": "cura-tree-support-settings-miniatures", "collection": "guides" }
+    ],
+    "stl-printability-checker": [
+      { "slug": "fdm-miniature-printing-guide", "collection": "guides" },
+      { "slug": "cura-tree-support-settings-miniatures", "collection": "guides" },
+      { "slug": "resin2fdm-convert-stl-to-fdm-ready", "collection": "guides" },
+      { "slug": "arachne-vs-classic-wall-generator-miniatures", "collection": "guides" }
+    ]
+  },
+
+  "guideCtas": {
+    "175cm-baseline": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Turn the baseline into a number",
+        "body": "The 175cm baseline is the theory. Pick your source and target scale in the Scale Inspector and it returns the exact percentage to type into your slicer."
+      }
+    ],
+    "28mm-to-32mm-scale-conversion": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Get 114.3% without doing the math",
+        "body": "The Scale Inspector applies the same 28mm to 32mm conversion and returns the exact slicer percentage, plus a unit check if the file was authored in inches."
+      },
+      {
+        "tool": "stl-viewer",
+        "heading": "Confirm the result before you print",
+        "body": "Open the scaled STL in the Viewer and read the bounding box. If the height is still wrong, the scale was applied to the wrong axis."
+      }
+    ],
+    "32mm-to-28mm-scale-conversion": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Get 87.5% in one step",
+        "body": "Enter 32mm as the source and 28mm as the target in the Scale Inspector to get the exact downscale percentage, without rounding it by hand."
+      },
+      {
+        "tool": "stl-viewer",
+        "heading": "Check the downscaled model",
+        "body": "Open the result in the Viewer and confirm the bounding box before you slice. Downscaling is where base thickness and thin weapons start to matter."
+      }
+    ],
+    "arachne-vs-classic-wall-generator-miniatures": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Check the mesh before you blame the walls",
+        "body": "Wall generator differences only show up on a clean mesh. Run the file through the Printability Checker first, because holes and non-manifold edges imitate a wall problem."
+      }
+    ],
+    "best-budget-3d-printers-wargaming": [
+      {
+        "tool": "stl-viewer",
+        "heading": "Inspect a model before you buy a printer for it",
+        "body": "Drop the STL into the Viewer to see its actual size and triangle count. It is the quickest way to tell whether a budget printer is being asked to do too much."
+      },
+      {
+        "tool": "stl-printability-checker",
+        "heading": "A cheap printer still needs a sound mesh",
+        "body": "Check for holes and non-manifold edges before you decide a printer is at fault. Most failed prints blamed on hardware are geometry problems."
+      }
+    ],
+    "chitubox-lychee-scaling-guide": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Skip the slicer's scale box",
+        "body": "Enter the two scales in the Scale Inspector and paste the exact percentage into Chitubox or Lychee. No decimal guessing, no drifting proportions."
+      },
+      {
+        "tool": "stl-viewer",
+        "heading": "Verify the file before it reaches the slicer",
+        "body": "Open it in the Viewer first and read the bounding box. That tells you whether the model needs scaling at all, before the slicer obscures the original size."
+      }
+    ],
+    "classic-fantasy-rpg-miniature-scale-guide": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Convert classic fantasy minis to your scale",
+        "body": "Once you know the source scale, the Scale Inspector turns it into the exact percentage for your table. It covers 25mm, 28mm, 32mm and the rest of the classic range."
+      }
+    ],
+    "cura-tree-support-settings-miniatures": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Supports cannot fix a broken mesh",
+        "body": "Tree supports help overhangs, not holes. Check watertightness and winding before you spend an evening tuning support settings that were never the problem."
+      }
+    ],
+    "fdm-miniature-printing-guide": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Check the model before you tune the settings",
+        "body": "Layer height and nozzle choice are wasted on a mesh with holes. Run the file through the Printability Checker first, then open it in the Viewer to confirm the size."
+      },
+      {
+        "tool": "stl-viewer",
+        "heading": "See the model you are about to print",
+        "body": "Open the STL in the Viewer and read the bounding box before you set layer height. If the model is in inches, every setting below is being applied to the wrong size."
+      }
+    ],
+    "fdm-vs-resin-miniatures": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "The same mesh fails on both machines",
+        "body": "Before you switch processes to fix a bad print, check the geometry. Holes and inconsistent winding fail on FDM and resin alike."
+      }
+    ],
+    "how-to-measure-miniature-scale": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Stop measuring by eye",
+        "body": "Pick eye-level or top-of-head measurement in the Scale Inspector and it returns the percentage, and it can read the real bounding box straight from the STL."
+      },
+      {
+        "tool": "stl-viewer",
+        "heading": "Read the actual height from the file",
+        "body": "The Viewer reports the exact bounding box of the mesh, so you can compare the sculpt to the number you measured instead of trusting the store listing."
+      }
+    ],
+    "real-world-objects-to-28mm": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Apply the conversion to a real model",
+        "body": "Once you have the target height, the Scale Inspector converts it into the exact percentage for your slicer — with the 28mm baseline already built in."
+      }
+    ],
+    "real-world-objects-to-32mm": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Apply the conversion to a real model",
+        "body": "Enter the measured height and target scale in the Scale Inspector to get the slicer percentage, rather than scaling a terrain piece by trial and error."
+      }
+    ],
+    "resin2fdm-convert-stl-to-fdm-ready": [
+      {
+        "tool": "stl-converter",
+        "heading": "Convert without Blender",
+        "body": "If you only need OBJ or PLY for another toolchain, the Converter does it in the browser. No Blender round trip, no upload, no watermarks."
+      },
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Confirm the converted mesh is still sound",
+        "body": "Conversion can weld vertices and change topology. Check for holes and non-manifold edges after the export, before you send it to the printer."
+      }
+    ],
+    "sci-fi-mass-battle-35mm-scale-guide": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Scale a 35mm model to your army",
+        "body": "Use the Scale Inspector to convert the sculpt to your table's scale and get the exact percentage, so a proxy does not end up a head taller than the rest of the unit."
+      }
+    ],
+    "upscaling-3d-prints-detail-limit": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Find the real scale before you enlarge",
+        "body": "Upscaling starts with knowing the actual size. The Scale Inspector reads the bounding box from the file and returns the percentage for your target height."
+      },
+      {
+        "tool": "stl-viewer",
+        "heading": "Inspect detail before you commit filament",
+        "body": "Open the model in the Viewer and orbit it before an upscale. Detail that already looks soft at the current size will not improve when it is larger."
+      }
+    ]
+  },
+
+  "fdmCtas": {
+    "fdm-3d-printer-filament-guide": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Filament will not fix geometry",
+        "body": "PLA, PETG and TPU all fail on a mesh with holes. Check the model before you blame the material."
+      }
+    ],
+    "what-is-fdm-3d-printing-guide": [
+      {
+        "tool": "stl-viewer",
+        "heading": "See what an STL actually is",
+        "body": "Drop a file into the Viewer to see the triangle mesh FDM printing starts from, and read its size before any of the settings matter."
+      }
+    ],
+    "best-fdm-printer-miniatures-and-terrain": [
+      {
+        "tool": "stl-viewer",
+        "heading": "Size the model before you size the printer",
+        "body": "Open the STL in the Viewer to see the real bounding box. Terrain that does not fit the build plate is a printer choice problem you can catch early."
+      },
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Check the file before blaming the machine",
+        "body": "Run the mesh through the Printability Checker before you decide a printer is the limitation."
+      }
+    ],
+    "how-to-sand-and-paint-fdm-prints": [
+      {
+        "tool": "stl-viewer",
+        "heading": "Plan the finish from the mesh",
+        "body": "Open the model in the Viewer and orbit it before sanding. Layer direction and overhangs decide where the post-processing effort will actually go."
+      }
+    ],
+    "fdm-vs-resin-sla-sls-3d-printing": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Geometry fails on every process",
+        "body": "Compare the processes, but check the mesh first. A hole prints badly on FDM, resin and SLS alike."
+      }
+    ]
+  },
+
+  "calcCtas": {
+    "slicer-percentage-calculator": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Converting between named scales instead?",
+        "body": "The Scale Inspector does the same math from scale names, and can read the real dimensions straight from an STL file."
+      },
+      {
+        "tool": "stl-viewer",
+        "heading": "Check the result in 3D",
+        "body": "Open the scaled model in the Viewer and read the bounding box before you commit the print."
+      }
+    ],
+    "filament-cost-calculator": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "A failed print costs more than a good one",
+        "body": "Check the mesh before you spend filament. Holes and non-manifold edges are the cheapest failures to catch."
+      },
+      {
+        "tool": "stl-viewer",
+        "heading": "Measure before you cost it",
+        "body": "Open the file in the Viewer to confirm the size and triangle count your cost estimate is based on."
+      }
+    ],
+    "reference-bar-generator": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Calibrate, then scale",
+        "body": "Once the bar confirms your slicer is honest, the Scale Inspector gives you the exact percentage for the real model."
+      }
+    ],
+    "filament-density-calculator": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Density math needs a closed mesh",
+        "body": "Volume, and therefore material weight, is only accurate on a watertight model. Check the mesh before you trust the grams."
+      }
+    ],
+    "eu-3d-printing-import-cost-calculator": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Do not pay import duty on a bad file",
+        "body": "Check the mesh as soon as it arrives, while you can still ask the seller for a replacement."
+      }
+    ],
+    "resin-shrinkage-compensation-calculator": [
+      {
+        "tool": "stl-scale-inspector",
+        "heading": "Combine shrinkage with scale",
+        "body": "The Scale Inspector handles the scale conversion and offers a shrinkage toggle, so you do not apply the compensation twice."
+      },
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Shrinkage does not close holes",
+        "body": "Compensating for cure shrinkage only helps a sound mesh. Check watertightness before you compensate."
+      }
+    ],
+    "miniature-resin-weight-cost-calculator": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Resin cost is a volume question",
+        "body": "Volume is only exact for a closed mesh. Check the model before you trust the cost estimate, especially on hollowed parts."
+      }
+    ],
+    "layer-resolution-angle-calculator": [
+      {
+        "tool": "stl-printability-checker",
+        "heading": "Layer math assumes a sound mesh",
+        "body": "Stair-stepping is a surface question; holes and winding conflicts are decided before it. Check the geometry first."
+      },
+      {
+        "tool": "stl-viewer",
+        "heading": "See the surface you are calculating",
+        "body": "Open the model in the Viewer and orbit it to find the shallow angles that matter, before you pick a layer height."
+      }
+    ]
+  }
+}

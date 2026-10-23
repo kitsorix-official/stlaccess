@@ -1,0 +1,32 @@
+---
+// Slim tool bar shown on every /archive/ page via Layout.astro. It is the
+// safety net that makes the live tools reachable from the archived reference
+// content without adding the archive itself back into the navigation.
+import { TOOL_SLUGS, toolMeta } from "../../lib/toolGraph";
+
+const tools = TOOL_SLUGS.map(toolMeta);
+---
+
+<div class="w-full border-b border-white/5 bg-slate-900/20" data-archive-bar>
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-4 gap-y-2 px-6 py-3">
+    <span class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-500">
+      <i class="ti ti-archive text-sm text-[#ff6b35]/70" aria-hidden="true"></i>
+      Archived reference
+    </span>
+    <span class="hidden h-4 w-px bg-white/10 sm:block" aria-hidden="true"></span>
+    <span class="text-[11px] text-slate-500">The live tools:</span>
+    <ul class="flex flex-wrap items-center gap-x-4 gap-y-1">
+      {tools.map((tool) => (
+        <li>
+          <a
+            href={tool.url}
+            class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 transition-colors hover:text-[#ff6b35] focus-ring"
+          >
+            <i class={`ti ${tool.icon} text-[11px] text-[#ff6b35]/80`} aria-hidden="true"></i>
+            {tool.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

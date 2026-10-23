@@ -1,9 +1,13 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import JsonLd from "../../../components/JsonLd.astro";
+import ContextualToolCta from "../../../components/tools/ContextualToolCta.astro";
+import ToolRail from "../../../components/tools/ToolRail.astro";
+import RelatedReading from "../../../components/tools/RelatedReading.astro";
 import { getCollection, render } from "astro:content";
 import { graph, organization, person, breadcrumb, article, faqPage } from "../../../lib/schema";
 import { lastModifiedDate, formatLongDate } from "../../../lib/freshness";
+import { ctasFor, TOOL_SLUGS, type ToolSlug } from "../../../lib/toolGraph";
 
 export async function getStaticPaths() {
   const posts = await getCollection("fdm");
@@ -19,6 +23,42 @@ const pubDate = post.data.pubDate;
 const readMinutes = Math.max(1, Math.round((post.body ?? "").trim().split(/\s+/).filter(Boolean).length / 200));
 
 const modDate = lastModifiedDate() ?? post.data.modDate ?? pubDate;
+
+// First CTA sits at the hero/article boundary; the second closes the article.
+const ctas = ctasFor("fdm", post.id);
+const primaryCta = ctas[0];
+const followUpCta = ctas[1];
+const railItems = TOOL_SLUGS.map((tool) => ({ tool: tool as ToolSlug }));
+
+const allFdm = await getCollection("fdm");
+const tagSet = new Set(post.data.tags);
+const scoredFdm = allFdm
+  .filter((entry) => entry.id !== post.id)
+  .map((entry) => ({
+    entry,
+    score: entry.data.tags.filter((tag) => tagSet.has(tag)).length,
+  }))
+  .filter((item) => item.score > 0)
+  .sort((a, b) => b.score - a.score);
+
+const chosenFdm = scoredFdm.slice(0, 3);
+if (chosenFdm.length < 3) {
+  const seen = new Set([post.id, ...chosenFdm.map((item) => item.entry.id)]);
+  const recent = allFdm
+    .filter((entry) => !seen.has(entry.id))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  for (const entry of recent) {
+    if (chosenFdm.length >= 3) break;
+    chosenFdm.push({ entry, score: 0 });
+  }
+}
+
+const related = chosenFdm.map(({ entry }) => ({
+  title: entry.data.title,
+  url: `/archive/fdm/${entry.id}/`,
+  description: entry.data.description,
+  meta: entry.data.tags.slice(0, 2).join(" · "),
+}));
 
 const guideSchema = graph([
   organization(),
@@ -110,6 +150,14 @@ const guideSchema = graph([
 </div>
 
 <article class="max-w-4xl mx-auto px-6 pb-12">
+  {primaryCta && (
+    <ContextualToolCta
+      tool={primaryCta.tool}
+      heading={primaryCta.heading}
+      body={primaryCta.body}
+    />
+  )}
+
   <div class="prose max-w-none">
     <Content />
   </div>
@@ -130,6 +178,15 @@ const guideSchema = graph([
     </section>
   )}
 
+  {followUpCta && (
+    <ContextualToolCta
+      tool={followUpCta.tool}
+      heading={followUpCta.heading}
+      body={followUpCta.body}
+      tone="quiet"
+    />
+  )}
+
   <footer class="mt-16 pt-8 border-t border-white/5">
     <a href="/archive/fdm/" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
       <i class="ti ti-arrow-left text-xs"></i>
@@ -137,5 +194,19 @@ const guideSchema = graph([
     </a>
   </footer>
 </article>
+
+<ToolRail
+  items={railItems}
+  heading="Do it locally"
+  intro="Every live tool reads the file on your own device. Nothing is uploaded, and nothing is stored."
+  id="archive-tools"
+/>
+
+<RelatedReading
+  items={related}
+  heading="Related FDM articles"
+  intro="More from the archived reference, chosen by shared topic."
+  id="related-fdm"
+/>
 
 </Layout>

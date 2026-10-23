@@ -1,6 +1,8 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import JsonLd from "../../../components/JsonLd.astro";
+import ContextualToolCta from "../../../components/tools/ContextualToolCta.astro";
+import ToolRail from "../../../components/tools/ToolRail.astro";
 import site from "../../../data/site.json";
 import profiles from "../../../data/fdmProfiles.json";
 import conversions from "../../../data/conversionMatrix.json";
@@ -8,9 +10,11 @@ import { fdmProfileDetails } from "../../../data/fdmProfileDetails.js";
 import { fdmProfileGuides } from "../../../data/fdmProfileGuides.js";
 import { graph, breadcrumb, article, faqPage } from "../../../lib/schema";
 import { lastModifiedDate, formatLongDate, lastModifiedISO } from "../../../lib/freshness";
+import { TOOL_SLUGS, type ToolSlug } from "../../../lib/toolGraph";
 
 const { gasEndpoint, printerName, baselineHeight, eyeLevelCm } = site;
 const siteUpdated = lastModifiedDate();
+const railItems = TOOL_SLUGS.map((slug) => ({ tool: slug as ToolSlug }));
 
 // Group profiles by scale, mm scales ascending numerically, ratio scales after
 const byScale = {};
@@ -637,5 +641,18 @@ const pageSchema = graph([
     });
   }
 </script>
+
+<ContextualToolCta
+  tool="stl-printability-checker"
+  heading="A good profile cannot save a bad mesh"
+  body="These profiles assume clean geometry. Check the model for holes, non-manifold edges and winding conflicts before you spend a profile on it."
+/>
+
+<ToolRail
+  items={railItems}
+  heading="The live tools"
+  intro="These profiles are archived reference. The four current tools run entirely in your browser."
+  id="archive-tools"
+/>
 
 </Layout>

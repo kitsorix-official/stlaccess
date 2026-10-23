@@ -1,14 +1,17 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import JsonLd from "../../../components/JsonLd.astro";
+import ToolRail from "../../../components/tools/ToolRail.astro";
 import tools from "../../../data/tools.json";
 import scales from "../../../data/scaleBaselines.json";
 import conversions from "../../../data/conversionMatrix.json";
 import site from "../../../data/site.json";
 import categoryLabels from "../../../data/toolCategories.json";
 import { graph, breadcrumb, itemList } from "../../../lib/schema";
+import { TOOL_SLUGS, type ToolSlug } from "../../../lib/toolGraph";
 
 const { printerName } = site;
+const railItems = TOOL_SLUGS.map((slug) => ({ tool: slug as ToolSlug }));
 const scalesCount = Object.keys(scales).length;
 const conversionsCount = conversions.length;
 
@@ -189,5 +192,12 @@ const toolsSchema = graph([
     </div>
   </div>
 </aside>
+
+<ToolRail
+  items={railItems}
+  heading="These calculators are archived — the live tools are here"
+  intro="The four current tools run entirely in your browser: no upload, no account, no storage."
+  id="archive-tools"
+/>
 
 </Layout>

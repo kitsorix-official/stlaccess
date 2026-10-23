@@ -389,13 +389,50 @@ import site from "../data/site.json";
         </div>
 
         <!-- Main Action Callout -->
-        <div class="mb-12 fade-in" style="animation-delay: 0.5s;">
+        <div class="mb-10 fade-in" style="animation-delay: 0.5s;">
           <a
             href="/stl-scale-inspector/"
             class="inline-flex items-center justify-center px-8 py-4 bg-[#ff6b35] text-black font-bold text-sm uppercase tracking-widest rounded-2xl transition-all duration-200 hover:brightness-110 active:scale-95 shadow-lg shadow-[#ff6b35]/20 cursor-pointer"
           >
             Open the STL Scale Inspector
           </a>
+        </div>
+
+        <!-- Live tools — a lost bookmark usually lands here, so give every
+             route back instead of only the scale tool. -->
+        <div class="mb-10 fade-in" style="animation-delay: 0.55s;">
+          <p
+            class="text-xs font-mono uppercase tracking-widest text-gray-500 mb-4"
+          >
+            Or open one of the live tools:
+          </p>
+          <div
+            class="flex flex-wrap justify-center gap-2"
+            role="list"
+            aria-label="Live browser tools"
+          >
+            <a
+              href="/stl-viewer/"
+              role="listitem"
+              class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900/50 border border-slate-800 rounded-xl text-sm text-gray-300 font-mono transition-all duration-200 hover:border-[#ff6b35] hover:text-[#ff6b35]"
+            >
+              <i class="ti ti-3d-cube-sphere" aria-hidden="true"></i> STL Viewer
+            </a>
+            <a
+              href="/stl-converter/"
+              role="listitem"
+              class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900/50 border border-slate-800 rounded-xl text-sm text-gray-300 font-mono transition-all duration-200 hover:border-[#ff6b35] hover:text-[#ff6b35]"
+            >
+              <i class="ti ti-arrows-right-left" aria-hidden="true"></i> STL Converter
+            </a>
+            <a
+              href="/stl-printability-checker/"
+              role="listitem"
+              class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900/50 border border-slate-800 rounded-xl text-sm text-gray-300 font-mono transition-all duration-200 hover:border-[#ff6b35] hover:text-[#ff6b35]"
+            >
+              <i class="ti ti-checkbox" aria-hidden="true"></i> Printability Checker
+            </a>
+          </div>
         </div>
 
         <!-- Quick Links Grid -->

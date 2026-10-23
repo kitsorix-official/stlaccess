@@ -1,0 +1,37 @@
+---
+// Compact inline tool strip for utility and legal pages, where a full rail
+// would be out of place but the four tools should still be one click away.
+import { TOOL_SLUGS, toolMeta } from "../../lib/toolGraph";
+
+interface Props {
+  heading?: string;
+  note?: string;
+}
+
+const {
+  heading = "The four live tools",
+  note = "All four run entirely in your browser. No upload, no account, no storage.",
+} = Astro.props;
+
+const tools = TOOL_SLUGS.map(toolMeta);
+---
+
+<section class="max-w-4xl mx-auto px-6 py-14 border-t border-white/5" aria-labelledby="tool-strip-heading" data-tool-strip>
+  <p id="tool-strip-heading" class="mb-3 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+    {heading}
+  </p>
+  <p class="mb-5 max-w-2xl text-sm leading-relaxed text-slate-500">{note}</p>
+  <ul class="flex flex-wrap gap-x-6 gap-y-3">
+    {tools.map((tool) => (
+      <li>
+        <a
+          href={tool.url}
+          class="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition-colors hover:text-[#ff6b35] focus-ring"
+        >
+          <i class={`ti ${tool.icon} text-[#ff6b35]/80`} aria-hidden="true"></i>
+          {tool.name}
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>
