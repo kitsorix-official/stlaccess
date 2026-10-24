@@ -25,16 +25,6 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
-# Google access re-enabled (the site was re-added to Google Search Console).
-# Every Google Search / Images / News / Video / Ads / URL-Inspection bot now
-# falls through to the "User-agent: *" group above (Allow: /), so no explicit
-# Googlebot group is needed.
-# Google-Extended is the one exception: it is Google's dedicated AI-*training*
-# control and does NOT affect Search, so it stays blocked to preserve the
-# "ai-train=no" signal above. Remove it too if you ever want Google AI
-# training on this content.
-User-agent: Google-Extended
-Disallow: /
 
 # Block all Wayback Machine / Internet Archive crawlers
 User-agent: ia_archiver
