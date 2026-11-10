@@ -1,0 +1,27 @@
+# --- URL hygiene only ---
+# Clean slate: all legacy redirect rules are gone; unknown URLs 404.
+
+# Trailing slash → clean URL
+/about/  /about  301
+/contact/  /contact  301
+/faq/  /faq  301
+/games/  /games  301
+/guides/  /guides  301
+/legal/  /legal  301
+/privacy/  /privacy  301
+/reference/  /reference  301
+/terms/  /terms  301
+/tools/  /tools  301
+
+# .html extension → clean URL
+/index.html  /  301
+/about.html  /about  301
+/contact.html  /contact  301
+/faq.html  /faq  301
+/games.html  /games  301
+/guides.html  /guides  301
+/legal.html  /legal  301
+/privacy.html  /privacy  301
+/reference.html  /reference  301
+/terms.html  /terms  301
+/tools.html  /tools  301
