@@ -1,8 +1,68 @@
 # Known old URLs that search engines (Bing, etc.) still have indexed.
-# Each one 301-redirects via public/_redirects to its consolidated target,
-# but crawlers won't re-fetch them unless we tell IndexNow. Submitting them
-# forces a recrawl so the redirect is followed and the stale entry drops out.
+# Since the clean-slate restore these URLs return 404 — no redirects.
+# Submitting them via IndexNow forces a recrawl so the stale entries
+# drop out of the index instead of lingering as dead links.
 #
 # One URL (absolute or root-relative) per line. Lines starting with # are ignored.
+#
+# Note: the runner already collects every non-wildcard source in _redirects and
+# every sitemap URL automatically. This file exists for URLs that are no longer
+# in the sitemap and have no literal path in _redirects, so they are invisible
+# to the automatic collector.
+
+# --- Archive-era pages (consolidated/pivoted away; now 404) ---
+/archive/3d-math
+/archive/3d-math/eu-3d-printing-import-cost-calculator
+/archive/3d-math/filament-cost-calculator
+/archive/3d-math/filament-density-calculator
+/archive/3d-math/layer-resolution-angle-calculator
+/archive/3d-math/miniature-resin-weight-cost-calculator
+/archive/3d-math/reference-bar-generator
+/archive/3d-math/resin-shrinkage-compensation-calculator
+/archive/3d-math/slicer-percentage-calculator
+/archive/faq
+/archive/fdm
+/archive/fdm/best-fdm-printer-miniatures-and-terrain
+/archive/fdm/fdm-3d-printer-filament-guide
+/archive/fdm/fdm-vs-resin-sla-sls-3d-printing
+/archive/fdm/how-to-sand-and-paint-fdm-prints
+/archive/fdm-printing-profiles
+/archive/fdm/what-is-fdm-3d-printing-guide
+/archive/guides
+/archive/guides/175cm-baseline
+/archive/guides/28mm-to-32mm-scale-conversion
+/archive/guides/32mm-to-28mm-scale-conversion
+/archive/guides/arachne-vs-classic-wall-generator-miniatures
+/archive/guides/best-budget-3d-printers-wargaming
+/archive/guides/chitubox-lychee-scaling-guide
+/archive/guides/classic-fantasy-rpg-miniature-scale-guide
+/archive/guides/cura-tree-support-settings-miniatures
+/archive/guides/fdm-miniature-printing-guide
+/archive/guides/fdm-vs-resin-miniatures
+/archive/guides/how-to-measure-miniature-scale
+/archive/guides/real-world-objects-to-28mm
+/archive/guides/real-world-objects-to-32mm
+/archive/guides/resin2fdm-convert-stl-to-fdm-ready
+/archive/guides/sci-fi-mass-battle-35mm-scale-guide
+/archive/guides/upscaling-3d-prints-detail-limit
+/archive/miniature-size-chart
+/archive/scale-standard
+
+# --- Sep-Nov tools and pages (privacy pivot; now 404) ---
+/embed
+/stl-converter
+/stl-printability-checker
+/stl-scale-inspector
+/stl-viewer
+/support
+/widget
+
+# --- Older legacy URLs (pre-archive; still 404) ---
 /blog/chitubox-lychee-scaling-guide
 /blog/175cm-baseline
+/guides/28mm-to-32mm-percentage
+/guides/stl-scale-conversion-chart
+/tools/stlscale-engine
+/calculator/filament-cost-calculator
+/calculator/slicer-percentage-calculator
+/library.html
