@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
+import TrademarkNotice from "../../components/TrademarkNotice.astro";
 import site from "../../data/site.json";
 import rawConversions from "../../data/conversions.json";
 import { graph, breadcrumb, faqPage } from "../../lib/schema";
@@ -368,6 +369,11 @@ const referenceSchema = graph([
       </a>
     </div>
   </div>
+</section>
+
+<!-- Trademark notice -->
+<section class="max-w-6xl mx-auto px-6 pb-12">
+  <TrademarkNotice />
 </section>
 
 <!-- Data Correction Form -->

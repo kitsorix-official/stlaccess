@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
+import TrademarkNotice from "../../components/TrademarkNotice.astro";
 import gameSystems from "../../data/gameSystems.json";
 import site from "../../data/site.json";
 import { graph, breadcrumb, itemList } from "../../lib/schema";
@@ -131,6 +132,9 @@ const gamesSchema = graph([
         </a>
       </div>
     </div>
+
+    <!-- Trademark notice -->
+    <TrademarkNotice />
 
   </section>
 

@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
+import TrademarkNotice from "../../components/TrademarkNotice.astro";
 import { getCollection, render } from "astro:content";
 import site from "../../data/site.json";
 import { graph, organization, person, breadcrumb, article, faqPage } from "../../lib/schema";
@@ -132,6 +133,9 @@ const guideSchema = graph([
       </div>
     </section>
   )}
+
+  <!-- Trademark notice -->
+  <TrademarkNotice />
 
   <footer class="mt-16 pt-8 border-t border-white/5">
     <a href="/guides" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">

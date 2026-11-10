@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
+import TrademarkNotice from "../../components/TrademarkNotice.astro";
 import gameSystems from "../../data/gameSystems.json";
 import conversions from "../../data/conversions.json";
 import site from "../../data/site.json";
@@ -270,6 +271,9 @@ const pageSchema = graph([
       ))}
     </div>
   </div>
+
+  <!-- Trademark notice -->
+  <TrademarkNotice name={game.name} publisher={game.publisher} />
 
   <!-- CTA -->
   <div class="text-center py-10 border-t border-white/5">

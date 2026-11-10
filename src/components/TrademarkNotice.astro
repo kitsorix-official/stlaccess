@@ -1,0 +1,42 @@
+---
+/**
+ * Trademark notice — shown on pages that reference branded game names.
+ *
+ * Pass `name` and `publisher` (from gameSystems.json) for a specific
+ * notice on game detail pages, or nothing for the generic version on
+ * reference/guide hub and detail pages.
+ *
+ * The legal pages (/legal, /terms) carry the full notice; this is the
+ * short on-page version that sits where the trademark use happens.
+ */
+const { name, publisher } = Astro.props;
+---
+
+<div class="mt-8 rounded-xl border border-white/5 bg-[#0a0a0a]/50 px-5 py-4">
+  <p class="text-xs text-slate-500 leading-relaxed">
+    <i class="fa-solid fa-scale-balanced text-slate-600 mr-1.5" aria-hidden="true"></i>
+    {name && publisher ? (
+      <>
+        {`${name} and all related names, ranges, and units are trademarks of ${publisher}.`}{' '}
+        STLACCESS is an independent hobby project — not affiliated with,
+        endorsed by, or sponsored by any game manufacturer or publisher.
+        Names appear only to identify miniature scales and printing
+        settings; no branded files, models, or artwork are hosted here.
+      </>
+    ) : (
+      <>
+        All game names, model ranges, and unit names mentioned on this page
+        are trademarks of their respective owners. STLACCESS is an
+        independent hobby project — not affiliated with, endorsed by, or
+        sponsored by any game manufacturer or publisher. Names appear only
+        to identify miniature scales and printing settings; no branded
+        files, models, or artwork are hosted here.
+      </>
+    )}
+    <a
+      href="/legal"
+      class="underline decoration-white/20 hover:decoration-[#ff6b35] hover:text-slate-300 transition-colors"
+      >Full trademark notice</a
+    >
+  </p>
+</div>
