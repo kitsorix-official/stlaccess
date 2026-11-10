@@ -1,20 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import JsonLd from '../components/JsonLd.astro';
-import ToolStrip from '../components/tools/ToolStrip.astro';
 import site from '../data/site.json';
 import { graph, breadcrumb } from '../lib/schema';
 
 const termsSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Terms of Service", path: "/terms/" },
+    { name: "Terms of Service", path: "/terms" },
   ]),
 ]);
 ---
 <Layout
   title="Terms of Service | 3D Print Miniature Scale Tool | STLACCESS"
-  description="Simple rules for using the STLACCESS 3D printing miniature scale tools for every tabletop scale — 6mm epic, 28mm true scale, 32mm heroic, and more. Fair use, the failed print clause, age rules, and why your prints can differ from mine."
+  description="Simple rules for using the STLACCESS 3D printing miniature scale tools for Warhammer, D&D, Bolt Action, and tabletop gaming. Fair use, the failed print clause, age rules, and why your prints can differ from mine."
 >
 <JsonLd slot="head" data={termsSchema} />
 <div slot="hero">
@@ -47,12 +46,11 @@ const termsSchema = graph([
         <div class="space-y-6">
           <h2 class="text-2xl font-bold text-white font-heading">Using the Site</h2>
           <p>
-            STLACCESS is a free tool built entirely for the 3D printing and tabletop gaming community — from 6mm epic to 32mm heroic, 35mm eye level, and every other scale I have measured.
+            STLACCESS is a free tool built entirely for the 3D printing and tabletop gaming community — Warhammer, D&D, Bolt Action, Star Wars Legion, and every other system I have scaled for.
           </p>
           <ul class="list-disc pl-6 space-y-4">
             <li><strong>Fair Use:</strong> You are completely free to use my scale conversion numbers for your personal and commercial 3D printing projects.</li>
             <li><strong>Play Nice:</strong> Please do not run automated scraping scripts to grab the conversion datasets or try to overwhelm my traffic setup.</li>
-            <li><strong>Outbound Links:</strong> Links to other websites open in a new tab where applicable and are subject to those websites' own terms and privacy policies — not mine. See the <a href="/privacy/" class="text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors">Privacy Policy</a> for details.</li>
             <li><strong>The Reference Badge:</strong> The embeddable reference badges are designed for sculptors and web stores to share scale information with their customers. Do not alter the badge embed code to distort how a scale applies to a model.</li>
           </ul>
         </div>
@@ -124,13 +122,11 @@ const termsSchema = graph([
         <div class="space-y-6">
           <h2 class="text-2xl font-bold text-white font-heading">How Things Stand</h2>
           <p>
-            Since people access this calculation layout globally from printing desks and tournament halls, I design everything to be as clear and minimal as possible. These guidelines are managed under the local rules where this hobby project runs, and I try to stay friendly to laws around the world — including the tougher ones like GDPR in Europe and the UK Children's Code. If you want to see how data is isolated, check out the <a href="/privacy/" class="text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors">Privacy Policy</a>.
+            Since people access this calculation layout globally from printing desks and tournament halls, I design everything to be as clear and minimal as possible. These guidelines are managed under the local rules where this hobby project runs, and I try to stay friendly to laws around the world — including the tougher ones like GDPR in Europe and the UK Children's Code. If you want to see how data is isolated, check out the <a href="/privacy" class="text-white border-b border-white/20 hover:text-[#ff6b35] transition-colors">Privacy Policy</a>.
           </p>
         </div>
 
       </div>
     </section>
   </article>
-
-<ToolStrip />
 </Layout>

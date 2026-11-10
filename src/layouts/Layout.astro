@@ -2,10 +2,6 @@
 import "../styles/global.css";
 import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
-import FeedbackBanner from "../components/FeedbackBanner.astro";
-import SupportNudge from "../components/SupportNudge.astro";
-import ArchiveToolBar from "../components/tools/ArchiveToolBar.astro";
-import { assetVersion } from "../utils/assetVersion.js";
 
 const siteUpdated = lastModifiedDate();
 
@@ -24,30 +20,21 @@ if (!title || !description) {
 }
 
 let pathname = Astro.url.pathname;
+if (pathname.endsWith(".html")) {
+  pathname = pathname.slice(0, -5);
+}
 if (pathname.endsWith("/index")) {
   pathname = pathname.slice(0, -6);
 }
-// Astro canonicalizes `.pathname` and drops the trailing slash, so restore it
-// (trailingSlash is 'always'). Without this, pathname never matches the
-// include-list guards below and page exclusions silently stop working, and the
-// canonical link would omit its slash too.
-if (pathname !== "/" && !pathname.endsWith("/")) {
-  pathname = pathname + "/";
+if (pathname !== "/" && pathname.endsWith("/")) {
+  pathname = pathname.slice(0, -1);
 }
-// With trailingSlash 'always', we keep trailing slashes; canonical must include them
 const canonical = new URL(pathname, Astro.site || site.url).href;
 
 const currentPath = Astro.url.pathname;
-const isSupportNudgeExcluded = ["/support/", "/embed/", "/widget/", "/404/"].includes(pathname);
-// Archived reference content gets a slim bar linking the four live tools. It
-// is rendered from the layout so every current and future /archive/ page is
-// covered without touching individual pages.
-const isArchivePage = pathname.startsWith("/archive/");
-const banner = site.banner || { enabled: false };
-
-// Pages opt into a page-level header (H1 + intro + breadcrumbs) via the
-// "hero" slot. 404 has none, so only emit the <header> when it is filled.
-const hasHero = Astro.slots.has("hero");
+const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
+  ? site.banner
+  : { enabled: false };
 ---
 
 <!doctype html>
@@ -72,56 +59,45 @@ const hasHero = Astro.slots.has("hero");
     <!-- Canonical -->
     <link rel="canonical" href={canonical} />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:site_name" content={site.name} />
-    <meta property="og:image" content={`${site.url}/social.png`} />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${site.url}/social.png`} />
-
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+    <!-- PWA manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
     <!-- Preconnect -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
 
-    <!-- Tabler Icons (MIT — free for commercial use, attribution not required) -->
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.46.0/tabler-icons.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
     <!-- RSS Autodiscovery -->
     <link
       rel="alternate"
       type="application/rss+xml"
-      title={`${site.name} — FDM Scale Math`}
+      title={`${site.name} Guides`}
       href={`${site.url}/rss.xml`}
     />
 
     <!-- observatory -->
-    <script is:inline defer src={assetVersion('js/observatory.js')}></script>
+    <script is:inline defer src="/js/observatory.js"></script>
 
-
+    <!-- PWA: service worker registration + update prompt -->
+    <script is:inline defer src="/js/pwa-register.js"></script>
 
     <!-- JSON-LD structured data injected by pages -->
     <slot name="head" />
   </head>
 
   <body class="min-h-screen flex flex-col bg-black text-white">
-    <!-- Header: site chrome only — sticky navbar and brand. The header uses
-         display:contents so its children stay flex items of <body> (required
-         for the navbar's sticky positioning). Page-level headings (H1, intro,
-         breadcrumbs) live in the <header> inside <main> below, not here. -->
+    <!-- Header: skip link + sticky navbar. The header uses display:contents
+         so its children stay flex items of <body> (required for the navbar's
+         sticky positioning). -->
     <header class="contents">
       {/* Global announcement banner — order-0 renders above the order-1 navbar */}
       {banner.enabled && (
@@ -136,7 +112,7 @@ const hasHero = Astro.slots.has("hero");
               <div class="flex items-center justify-between gap-4">
                 <a href={banner.url} class="flex items-center gap-3 min-w-0 group">
                   <span class="shrink-0 w-8 h-8 rounded-lg bg-[#ff6b35]/20 flex items-center justify-center">
-                    <i class={`ti ${banner.icon} text-[#ff6b35] text-sm`}></i>
+                    <i class={`fa-solid ${banner.icon} text-[#ff6b35] text-sm`}></i>
                   </span>
                   <span class="min-w-0 text-sm text-slate-300">
                     <span class="font-semibold text-white group-hover:text-[#ff6b35] transition-colors">
@@ -145,7 +121,7 @@ const hasHero = Astro.slots.has("hero");
                   </span>
                   <span class="shrink-0 hidden sm:inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#ff6b35] group-hover:translate-x-0.5 transition-transform">
                     {banner.urlLabel}
-                    <i class="ti ti-arrow-right text-[8px]"></i>
+                    <i class="fa-solid fa-arrow-right text-[8px]"></i>
                   </span>
                 </a>
                 <button
@@ -154,7 +130,7 @@ const hasHero = Astro.slots.has("hero");
                   aria-label="Dismiss announcement"
                   class="shrink-0 w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors text-slate-500 hover:text-slate-300"
                 >
-                  <i class="ti ti-x text-xs"></i>
+                  <i class="fa-solid fa-xmark text-xs"></i>
                 </button>
               </div>
             </div>
@@ -164,13 +140,6 @@ const hasHero = Astro.slots.has("hero");
 
       <script is:inline data-ttl-days={banner.ttlDays || 14}>
         (function () {
-          // Bail before touching storage when the banner isn't rendered
-          // (banner.enabled = false). This keeps the page free of any
-          // localStorage access in the default, no-banner configuration.
-          var banner = document.getElementById("site-banner");
-          var btn = document.getElementById("dismiss-banner");
-          if (!banner || !btn) return;
-
           var KEY = "stla-banner";
           var TTL_MS = parseInt(document.currentScript.dataset.ttlDays, 10) * 86400000;
           try {
@@ -180,6 +149,9 @@ const hasHero = Astro.slots.has("hero");
               if (Date.now() - d.ts < TTL_MS) return;
             }
           } catch (e) {}
+          var banner = document.getElementById("site-banner");
+          var btn = document.getElementById("dismiss-banner");
+          if (!banner || !btn) return;
           banner.classList.remove("hidden");
           btn.addEventListener("click", function () {
             banner.classList.add("hidden");
@@ -187,6 +159,11 @@ const hasHero = Astro.slots.has("hero");
           });
         })();
       </script>
+
+      <!-- Hero (homepage only) — first in DOM, visually below navbar via order -->
+      <div class="order-2">
+        <slot name="hero" />
+      </div>
 
       <!-- Skip link -->
       <a
@@ -217,53 +194,53 @@ const hasHero = Astro.slots.has("hero");
         >
           <li>
             <a
-              href="/stl-viewer/"
-              class={currentPath.startsWith("/stl-viewer")
+              href="/"
+              class={currentPath === "/"
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              STL Viewer
+              Scale Engine
             </a>
           </li>
           <li>
             <a
-              href="/stl-scale-inspector/"
-              class={currentPath.startsWith("/stl-scale-inspector")
+              href="/reference"
+              class={currentPath === "/reference"
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Scale Inspector
+              Reference
             </a>
           </li>
 
           <li>
             <a
-              href="/stl-converter/"
-              class={currentPath.startsWith("/stl-converter")
+              href="/tools"
+              class={currentPath === "/tools"
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Converter
+              Tools
             </a>
           </li>
           <li>
             <a
-              href="/stl-printability-checker/"
-              class={currentPath.startsWith("/stl-printability-checker")
+              href="/games"
+              class={currentPath.startsWith("/games")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Printability
+              Game Systems
             </a>
           </li>
           <li>
             <a
-              href="/support/"
-              class={currentPath.startsWith("/support")
+              href="/guides"
+              class={currentPath.startsWith("/guides")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Support
+              Guides
             </a>
           </li>
         </ul>
@@ -272,38 +249,14 @@ const hasHero = Astro.slots.has("hero");
       </div>
     </header>
 
-    {/* Support nudge — floating glass card, bottom-left. It is fixed, so it
-        never reflows the page and no longer pushes the hero down. Excluded:
-        /support itself (it is the destination), the /embed + /widget
-        surfaces (they render inside third-party sites), and 404. The address
-        lives in site.json. */}
-    {!isSupportNudgeExcluded && <SupportNudge />}
-
     <!-- Main content -->
     <main id="main-content" class="flex-grow order-3">
-      {isArchivePage && <ArchiveToolBar />}
-      {/* Page header — H1, intro, and breadcrumbs. Inside <main> so the outer
-          <header> above holds only site chrome (nav + brand). It was the
-          order-2 body flex item before, so it still renders between the
-          navbar (order-1) and the page body. */}
-      {hasHero && (
-        <header>
-          <slot name="hero" />
-        </header>
-      )}
-
       <slot />
     </main>
 
-    {/* Feedback solicitation — at the end of the page (order-4, between the
-        order-3 main content and the order-5 footer). Appears once per visitor
-        and retires itself once dismissed or once the visitor scrolls to the
-        form. */}
-    <FeedbackBanner href="/#feedback" />
-
     <!-- Footer -->
     <footer
-      class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-auto order-5"
+      class="w-full bg-black border-t border-white/5 pt-20 pb-10 px-6 mt-auto order-4"
     >
       <div class="max-w-6xl mx-auto">
         <!-- Main grid -->
@@ -318,9 +271,9 @@ const hasHero = Astro.slots.has("hero");
               >
             </div>
             <p class="text-slate-500 text-sm max-w-sm leading-relaxed">
-              Privacy-first STL utilities that run entirely in your browser.
-              No uploads, no accounts, no cookies — built and maintained by
-              one person who 3D prints since 2017.
+              Independent tools for 3D printing scale conversion. Built and
+              maintained by one person who prints test pieces to verify every
+              percentage.
             </p>
           </div>
 
@@ -335,31 +288,34 @@ const hasHero = Astro.slots.has("hero");
               </h4>
               <ul class="space-y-4 text-sm text-slate-500 font-medium">
                 <li>
-                  <a
-                    href="/stl-viewer/"
-                    class="hover:text-[#ff6b35] transition-colors"
-                    >STL Viewer</a
+                  <a href="/" class="hover:text-[#ff6b35] transition-colors"
+                    >Scale Engine</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/stl-scale-inspector/"
+                    href="/reference"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Scale Inspector</a
+                    >Reference Library</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/stl-converter/"
-                    class="hover:text-[#ff6b35] transition-colors"
-                    >STL Converter</a
+                    href="/tools"
+                    class="hover:text-[#ff6b35] transition-colors">All Tools</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/stl-printability-checker/"
+                    href="/games"
                     class="hover:text-[#ff6b35] transition-colors"
-                    >Printability Checker</a
+                    >Game Systems</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/guides"
+                    class="hover:text-[#ff6b35] transition-colors">Guides</a
                   >
                 </li>
               </ul>
@@ -375,29 +331,20 @@ const hasHero = Astro.slots.has("hero");
               <ul class="space-y-4 text-sm text-slate-500 font-medium">
                 <li>
                   <a
-                    href="/about/"
+                    href="/about"
                     class="hover:text-[#ff6b35] transition-colors"
                     >About & Methodology</a
                   >
                 </li>
                 <li>
-                  <a
-                    href="/embed/"
-                    class="hover:text-[#ff6b35] transition-colors"
-                    >Embed the Converter</a
+                  <a href="/faq" class="hover:text-[#ff6b35] transition-colors"
+                    >FAQ</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/contact/"
+                    href="/contact"
                     class="hover:text-[#ff6b35] transition-colors">Contact</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="/support/"
-                    class="hover:text-[#ff6b35] transition-colors"
-                    >Support the Site</a
                   >
                 </li>
                 <li>
@@ -429,21 +376,21 @@ const hasHero = Astro.slots.has("hero");
               <ul class="space-y-4 text-sm text-slate-500 font-medium">
                 <li>
                   <a
-                    href="/privacy/"
+                    href="/privacy"
                     class="hover:text-[#ff6b35] transition-colors"
                     >Privacy Policy</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/terms/"
+                    href="/terms"
                     class="hover:text-[#ff6b35] transition-colors"
                     >Terms of Service</a
                   >
                 </li>
                 <li>
                   <a
-                    href="/legal/"
+                    href="/legal"
                     class="hover:text-[#ff6b35] transition-colors"
                     >Global Compliance</a
                   >
@@ -484,16 +431,6 @@ const hasHero = Astro.slots.has("hero");
             )}
           </div>
         </div>
-        <p class="max-w-6xl mx-auto px-6 py-4 text-[11px] leading-relaxed text-slate-600 border-t border-white/5">
-          STLACCESS is independent. Game and system names appearing on this site
-          (including any registered trademarks) belong to their respective
-          owners and are used only to describe miniature scale and proportions.
-          STLACCESS is not affiliated with, endorsed by, or connected to any of
-          those owners.
-        </p>
-        <p class="max-w-6xl mx-auto px-6 pb-2 text-[11px] leading-relaxed text-slate-700">
-          Icons by <a href="https://tabler.io/icons" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition-colors">Tabler Icons</a> (MIT — <a href="https://github.com/tabler/tabler-icons/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" class="hover:text-slate-400 transition-colors">license</a>; free for commercial use, no attribution required).
-        </p>
       </div>
     </footer>
 
@@ -501,80 +438,56 @@ const hasHero = Astro.slots.has("hero");
          after the footer in the DOM so it never overlaps it: it sits below
          the footer once the page is scrolled to the end. -->
     <nav
-      class="md:hidden sticky bottom-0 z-50 order-6 border-t border-white/5 bg-black/95 backdrop-blur-xl pb-[env(safe-area-inset-bottom)]"
+      class="md:hidden sticky bottom-0 z-50 order-5 border-t border-white/5 bg-black/95 backdrop-blur-xl pb-[env(safe-area-inset-bottom)]"
       aria-label="Mobile navigation"
     >
       <ul class="grid grid-cols-4 h-16 max-w-6xl mx-auto">
         <li class="h-full">
           <a
-            href="/stl-viewer/"
-            class={currentPath.startsWith("/stl-viewer")
+            href="/"
+            class={currentPath === "/"
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="ti ti-3d-cube-sphere text-base" aria-hidden="true"></i>
-            <span>Viewer</span>
+            <i class="fa-solid fa-calculator text-base" aria-hidden="true"></i>
+            <span>Scaler</span>
           </a>
         </li>
         <li class="h-full">
           <a
-            href="/stl-scale-inspector/"
-            class={currentPath.startsWith("/stl-scale-inspector")
+            href="/tools/filament-cost-calculator"
+            class={currentPath === "/tools/filament-cost-calculator"
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="ti ti-ruler-measure text-base" aria-hidden="true"></i>
-            <span>Inspector</span>
+            <i class="fa-solid fa-dollar-sign text-base" aria-hidden="true"></i>
+            <span>Filament Cost</span>
           </a>
         </li>
         <li class="h-full">
           <a
-            href="/stl-converter/"
-            class={currentPath.startsWith("/stl-converter")
+            href="/tools"
+            class={currentPath === "/tools"
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="ti ti-arrows-right-left text-base" aria-hidden="true"></i>
-            <span>Converter</span>
+            <i class="fa-solid fa-screwdriver-wrench text-base" aria-hidden="true"></i>
+            <span>Tools</span>
           </a>
         </li>
         <li class="h-full">
           <a
-            href="/stl-printability-checker/"
-            class={currentPath.startsWith("/stl-printability-checker")
+            href="/reference"
+            class={currentPath === "/reference"
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="ti ti-checkbox text-base" aria-hidden="true"></i>
-            <span>Checks</span>
+            <i class="fa-solid fa-book-open text-base" aria-hidden="true"></i>
+            <span>Reference</span>
           </a>
         </li>
       </ul>
     </nav>
-
-    {/* Shared copy-to-clipboard for every [data-copy] button on the site
-        (the /support address cards and the footer Support CTA). One
-        delegation point instead of a script per page. */}
-    <script is:inline>
-      document.querySelectorAll("[data-copy]").forEach(function (button) {
-        button.addEventListener("click", function () {
-          var text = button.getAttribute("data-copy");
-          if (!text || !navigator.clipboard || !navigator.clipboard.writeText)
-            return;
-          navigator.clipboard.writeText(text).then(function () {
-            var label = button.querySelector("[data-copy-label]");
-            if (!label || label.dataset.busy === "1") return;
-            var original = label.textContent;
-            label.dataset.busy = "1";
-            label.textContent = "Copied";
-            setTimeout(function () {
-              label.textContent = original;
-              label.dataset.busy = "0";
-            }, 1500);
-          });
-        });
-      });
-    </script>
 
   </body>
 </html>

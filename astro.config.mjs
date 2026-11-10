@@ -1,7 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
+import pwa from './scripts/pwa-integration.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -44,8 +46,6 @@ const singleSitemap = () => ({
         fs.copyFileSync(sitemap0Path, targetSitemapPath);
         console.log(`[single-sitemap] Successfully created single sitemap at: ${targetSitemapPath}`);
 
-        // With trailingSlash 'always', sitemap will include trailing slashes as expected.
-
         fs.unlinkSync(sitemap0Path);
         if (fs.existsSync(sitemapIndexPath)) {
           fs.unlinkSync(sitemapIndexPath);
@@ -79,20 +79,18 @@ const singleSitemap = () => ({
 // https://astro.build/config
 export default defineConfig({
   site: 'https://stlaccess.com/',
-  trailingSlash: 'always',
+  trailingSlash: 'never',
 
   build: {
-    format: 'directory'
+    format: 'file'
   },
 
   integrations: [
     sitemap({
-      // /widget is a noindex embed surface (not a landing page); keep it out
-      // of the sitemap entirely.
-      filter(page) {
-        return new URL(page).pathname !== '/widget';
-      },
       serialize(item) {
+        if (item.url !== 'https://stlaccess.com/' && item.url.endsWith('/')) {
+          item.url = item.url.slice(0, -1);
+        }
         if (lastmod) {
           item.lastmod = lastmod;
         }
@@ -100,6 +98,8 @@ export default defineConfig({
       }
     }),
     singleSitemap(),
+    react(),
+    pwa()
   ],
 
   vite: {

@@ -1,13 +1,13 @@
 /**
  * The STLACCESS Scale Engine Core
  * Dynamic calculator — reads scale data from window.CALCULATOR_SCALES
- * injected by the Astro page at build time from src/data/scaleBaselines.json.
+ * injected by the Astro page at build time from src/data/scales.json.
  *
  * Eye-level mode: percentage = (targetStandard / sourceStandard) × 100
  *   - Ratio scales use topOfHeadMm as standard (ratio = total height)
  *   - Gaming/display scales use eyeLevelMm as standard
  *
- * Top-of-head mode: checks validated overrides first (from conversionMatrix.json),
+ * Top-of-head mode: checks validated overrides first (from conversions.json),
  *   then falls back to (targetTopOfHeadMm / sourceStandard) × 100.
  */
 
@@ -15,14 +15,6 @@ function getScaleData() {
     var scales = window.CALCULATOR_SCALES || {};
     var headOverrides = window.CALCULATOR_HEAD_OVERRIDES || {};
     return { scales: scales, headOverrides: headOverrides };
-}
-
-// Format a millimetre value so the displayed formula actually divides out to
-// the displayed result. Ratio scales carry 3-dp values (e.g. 36.458); gaming
-// scales are whole mm. Trims trailing zeros but always keeps one decimal.
-function fmtMm(v) {
-    var s = Number(v).toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
-    return s.indexOf('.') === -1 ? s + '.0' : s;
 }
 
 function calculate() {
@@ -53,7 +45,7 @@ function calculate() {
     var overrideKey = source + '_' + target;
 
     if (logic === 'head') {
-        // Check for validated override from conversionMatrix.json
+        // Check for validated override from conversions.json
         if (headOverrides[overrideKey] !== undefined) {
             result = headOverrides[overrideKey];
         } else {
@@ -89,11 +81,11 @@ function calculate() {
     var formulaEl = document.getElementById('resultFormula');
     if (formulaEl) {
         if (logic === 'eye') {
-            formulaEl.textContent = fmtMm(targetData.standardMm) + ' \u00F7 ' + fmtMm(sourceData.standardMm) + ' \u00D7 100';
+            formulaEl.textContent = targetData.standardMm.toFixed(1) + ' \u00F7 ' + sourceData.standardMm.toFixed(1) + ' \u00D7 100';
         } else if (headOverrides[overrideKey] !== undefined) {
             formulaEl.textContent = 'Validated by my test prints';
         } else {
-            formulaEl.textContent = fmtMm(targetData.topOfHeadMm) + ' \u00F7 ' + fmtMm(sourceData.standardMm) + ' \u00D7 100';
+            formulaEl.textContent = targetData.topOfHeadMm.toFixed(1) + ' \u00F7 ' + sourceData.standardMm.toFixed(1) + ' \u00D7 100';
         }
     }
 
@@ -105,7 +97,7 @@ function calculate() {
         params.set('to', target);
         params.set('percent', result.toFixed(1));
         params.set('logic', logic);
-        costBtn.href = '/archive/3d-math/filament-cost-calculator/?' + params.toString();
+        costBtn.href = '/tools/filament-cost-calculator?' + params.toString();
     }
 }
 
@@ -137,7 +129,7 @@ if (copyBtn) {
         if (!text) return;
         navigator.clipboard.writeText(text).then(function() {
             var original = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<i class="ti ti-check"></i><span>Copied!</span>';
+            copyBtn.innerHTML = '<i class="fa-solid fa-check"></i><span>Copied!</span>';
             setTimeout(function() {
                 copyBtn.innerHTML = original;
             }, 1500);

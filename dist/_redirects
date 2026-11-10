@@ -1,71 +1,52 @@
-# --- Core Pages & Legacy Hubs ---
-# /calculator → /3d-math (renamed; subpaths map 1:1)
-/calculator      /archive/3d-math/         301
-/calculator/*  /archive/3d-math/:splat  301
+/library  /reference  301
+/library.html  /reference  301
+/blog  /guides  301
+/blog/*  /guides/:splat  301
+/embed  /  301
 
-/library        /archive/miniature-size-chart/  301
-/library.html   /archive/miniature-size-chart/  301
-/cookies  /privacy/  301
-/cookies/  /privacy/  301
-/llm.txt        /llms.txt              301
+# Trailing slash → clean URL
+/faq/  /faq  301
+/privacy/  /privacy  301
+/terms/  /terms  301
+/embed/  /  301
+/reference/  /reference  301
 
-# --- Specific Legacy Guide/Blog Slugs ---
-# (Placed before the wildcard catches them)
-# Bing shows /blog/chitubox-lychee-scaling-guide ranking at position 2.5 with
-# a 15% CTR -- the best-performing legacy URL in the report. It maps cleanly
-# onto the flagship STL Scale Inspector (same scale-verification intent), so
-# it points at the live tool instead of the archived copy.
-/blog/chitubox-lychee-scaling-guide  /stl-scale-inspector/  301
-/blog/175cm-baseline  /archive/guides/175cm-baseline/  301
-/blog/stl-scale-conversion-chart          /archive/miniature-size-chart/  301
-/blog/28mm-to-32mm-percentage             /archive/miniature-size-chart/  301
-/blog/warhammer-40k-scale-guide  /archive/guides/sci-fi-mass-battle-35mm-scale-guide/  301
-/blog/bolt-action-scale-guide             /archive/fdm-printing-profiles/  301
-/blog/dungeons-and-dragons-miniature-scale  /archive/guides/classic-fantasy-rpg-miniature-scale-guide/  301
+# .html extension → clean URL
+/index.html  /  301
+/reference.html  /reference  301
+/faq.html  /faq  301
 
-/archive/guides/stl-scale-conversion-chart         /archive/miniature-size-chart/  301
-/archive/guides/28mm-to-32mm-percentage            /archive/miniature-size-chart/  301
-/archive/guides/warhammer-40k-scale-guide  /archive/guides/sci-fi-mass-battle-35mm-scale-guide/  301
-/archive/guides/bolt-action-scale-guide            /archive/fdm-printing-profiles/  301
-/archive/guides/dungeons-and-dragons-miniature-scale  /archive/guides/classic-fantasy-rpg-miniature-scale-guide/  301
-/archive/guides/star-wars-legion-scale-guide  /archive/guides/sci-fi-mass-battle-35mm-scale-guide/  301
-/archive/guides/dnd-miniature-scale-guide  /archive/guides/classic-fantasy-rpg-miniature-scale-guide/  301
+# Reference and Game System sub-pages now live at their own URLs
+# (/reference/{slug} and /games/{slug}) instead of collapsing into the hubs.
 
-# --- Catch-all Directory Redirects ---
-# NOTE: /archive/guides/* has NO catch-all on purpose. The guide library is restored
-# and served as real pages, and Netlify applies _redirects rules *before*
-# static files — a catch-all here would shadow every restored guide.
-/blog/*    /archive/fdm/  301
+# Guides consolidated into reference and games
+/guides/stl-scale-conversion-chart  /reference  301
+/guides/stl-scale-conversion-chart/  /reference  301
+/guides/28mm-to-32mm-percentage  /reference#28mm-to-32mm  301
+/guides/28mm-to-32mm-percentage/  /reference#28mm-to-32mm  301
+/guides/warhammer-40k-scale-guide  /games#warhammer-40000  301
+/guides/warhammer-40k-scale-guide/  /games#warhammer-40000  301
+/guides/bolt-action-scale-guide  /games#bolt-action  301
+/guides/bolt-action-scale-guide/  /games#bolt-action  301
+/guides/dungeons-and-dragons-miniature-scale  /games#dungeons-and-dragons  301
+/guides/dungeons-and-dragons-miniature-scale/  /games#dungeons-and-dragons  301
 
-# The old /guides/ section moved wholesale to /archive/guides/. Specific rule
-# first (Netlify: first match wins), then the section + 1:1 splat.
-/guides/chitubox-lychee-scaling-guide  /stl-scale-inspector/          301
-/guides                                /archive/guides/               301
-/guides/*  /archive/guides/:splat  301
+# Missing slash in path
+/reference32mm-to-40mm  /reference  301
+/reference35mm-to-28mm  /reference  301
+/reference1-48-to-75mm  /reference  301
 
-# Game systems that now have a dedicated, de-branded generic guide should land
-# on that guide rather than the profiles hub. Listed before the wildcard below
-# because Netlify matches redirects in order (first match wins).
-/games/star-wars-legion  /archive/guides/sci-fi-mass-battle-35mm-scale-guide/  301
+# Old tool paths
+/tools/stlscaler/  /  301
+/tools/stl-scale-engine  /  301
+/tools/stl-scale-engine/  /  301
+/tools/stlscale-engine  /  301
+/tools/personal-library  /tools  301
+/tools/scale-reference  /reference  301
+/tools/scale-reference/  /reference  301
 
-# All remaining legacy /games and game subpaths map to profiles
-/games/*   /archive/fdm-printing-profiles/  301
+# Non-existent pages
+/cookies/  /privacy  301
 
-# --- Reference & Old Tool Slugs ---
-/reference            /archive/miniature-size-chart/  301
-/reference/*          /archive/miniature-size-chart/  301
-/reference32mm-to-40mm /archive/miniature-size-chart/  301
-/reference35mm-to-28mm /archive/miniature-size-chart/  301
-/reference1-48-to-75mm /archive/miniature-size-chart/  301
-
-/tools                /archive/3d-math/  301
-# The live scale calculator moved off the homepage to its own flagship tool URL.
-/tools/stlscaler/     /stl-scale-inspector/  301
-/tools/stl-scale-engine /stl-scale-inspector/  301
-/tools/scale-reference /archive/miniature-size-chart/  301
-/tools/3d-scale-visualizer /archive/3d-math/  301
-/tools/real-world-scale-converter  /archive/guides/real-world-objects-to-32mm/  301
-/tools/miniature-scale-identifier /archive/3d-math/  301
-
-# Any remaining /tools/<slug> maps dynamically 1:1 to /archive/3d-math/<slug>
-/tools/*  /archive/3d-math/:splat  301
+# llms.txt (renamed from llm.txt)
+/llm.txt  /llms.txt  301

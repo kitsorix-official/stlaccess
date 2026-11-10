@@ -1,54 +1,98 @@
-# STLACCESS — Privacy-First STL Tools That Run in Your Browser
+# STLACCESS — My STL Scale Converter for 3D Printed Miniatures
 
-> STLACCESS is a suite of free, browser-based STL utilities: an STL Viewer, an STL Scale Inspector, an STL Converter, and an STL Printability Checker. Every tool is 100% client-side — files are never uploaded, there is no account, no cookie banner, and no installation. The site is static (built with Astro) and each tool works offline after the first page load. The brand is **STLACCESS**.
+&gt; I built this browser-based tool suite to calculate resize percentages for scaling STL files between tabletop gaming systems. It's free, requires no upload, and needs no login. All the math runs in your browser. I built it with Astro. The brand is **STLACCESS** — "STL scale" always refers to the *function* (scaling STL files), never to a product name.
 
-## The four tools
+## What I built STLACCESS for
 
-| Tool | URL | What it does | Status |
-|------|-----|--------------|--------|
-| STL Scale Inspector | https://stlaccess.com/stl-scale-inspector/ | Check what size an STL will print at. Pick source and target scale for the exact slicer percentage, or drop in an STL to read its real X/Y/Z dimensions in millimetres and inches and calculate a target-height percentage. 16 tabletop scales, eye-level/top-of-head measurement, shrinkage compensation, copy-to-clipboard, deep-linkable URL parameters. | Live |
-| STL Viewer | https://stlaccess.com/stl-viewer/ | Open binary and ASCII STL files in 3D with WebGL. Orbit, pan, zoom, wireframe, and read the exact bounding box. No upload, no install. | Live |
-| STL Converter | https://stlaccess.com/stl-converter/ | Convert STL to OBJ, ASCII PLY, binary STL, or ASCII STL locally in the browser. Adjustable vertex merge tolerance. No upload limits because there is no upload, no watermarks, no account. | Live |
-| STL Printability Checker | https://stlaccess.com/stl-printability-checker/ | Pre-slice mesh validation: open edges, non-manifold edges, inconsistent winding, degenerate triangles, disconnected shells, plus bounding box, volume, and surface area. Adjustable merge tolerance. Runs locally. | Live |
+I built STLACCESS to solve one problem I kept hitting: figuring out what percentage to type into my slicer to scale an STL file from one miniature scale to another. Every conversion I publish uses a 175cm human baseline, measured to eye level (160cm) by default. The site hosts the main **STL Scale Engine** (the calculator on the homepage), a reference library of 46 verified conversions, 26 game-system guides, 6 deep-dive guides, and supporting tools for 3D printing hobbyists like me.
 
-## The privacy guarantee
+## How I calculate every conversion
 
-These are the facts the site is built around, stated plainly so they can be quoted:
-
-- **No upload.** There is no upload endpoint. Files are read locally by the page and never sent to a server.
-- **No account, no login, no paywall.** Every tool is free.
-- **No cookies, no consent banner.** The only analytics is an anonymous, cookie-free pageview counter that stores no identifier, no IP address, and nothing on the visitor's device (disclosed in the privacy policy).
-- **Works offline.** After the first page load, tools continue to run with no connection.
-- **Verifiable claim.** Open the browser's network tab while using a tool: no file bytes are transmitted.
-
-## Key pages
-
-- [Home](https://stlaccess.com/) — Overview of the four tools and the privacy guarantee
-- [STL Scale Inspector](https://stlaccess.com/stl-scale-inspector/) — The live flagship tool
-- [STL Viewer](https://stlaccess.com/stl-viewer/)
-- [STL Converter](https://stlaccess.com/stl-converter/)
-- [STL Printability Checker](https://stlaccess.com/stl-printability-checker/)
-- [About & Methodology](https://stlaccess.com/about/) — Who runs the site and how results are verified
-- [Privacy Policy](https://stlaccess.com/privacy/) — Exactly what is and is not stored
-- [Terms](https://stlaccess.com/terms/)
-- [Legal](https://stlaccess.com/legal/)
-- [Contact](https://stlaccess.com/contact/)
-- [Support](https://stlaccess.com/support/) — Optional Bitcoin tips; donation-funded, no paywall
-- [Embed the Scale Calculator](https://stlaccess.com/embed/) — Free iframe embed (widget surface: https://stlaccess.com/widget/)
-- [RSS feed](https://stlaccess.com/rss.xml) — Archived guide and FDM articles
-- [llms-full.txt](https://stlaccess.com/llms-full.txt) — Full text of the archived articles, generated at build time
-
-## Scale-inspector math
-
-The scale inspector uses a **175cm human baseline**, measured to **eye level (160cm)** by default.
-
+- **Human baseline:** 175cm (5'9"). **Eyes at 160cm.**
 - **Gaming/display scales** (28mm, 32mm, 35mm, 40mm, 75mm, 6mm, 8mm, 10mm, 30mm, 15mm) are measured to **eye level**.
 - **Ratio scales** (1:35, 1:27, 1:48, 1:56, 1:72, 1:100) are measured to the **top of the head**.
-- **Formula:** `(target standard mm ÷ source standard mm) × 100 = slicer percentage`.
+- **Formula I use:** `(target standard mm ÷ source standard mm) × 100 = slicer percentage`.
 
-Canonical examples: 28mm → 32mm = **114.3%** (top-of-head variant 116.1%); 32mm → 28mm = **87.5%**; 1:35 → 1:56 = **62.5%**; 1:100 → 28mm = **160.0%**; 32mm → 75mm = **234.4%**. The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculated scale.
+Canonical examples I verify on my own prints: 28mm → 32mm = **114.3%** (top-of-head variant 116.1%); 32mm → 28mm = **87.5%**;
+1:35 → 1:56 = **62.5%**; 1:100 → 28mm = **160.0%**; 32mm → 75mm = **234.4%**.
+The eye-to-top-of-head gap (~15cm) creates a **5–10%** difference in calculated scale.
 
-### Common conversions
+## Key pages I built
+
+- [STL Scale Converter (homepage)](https://stlaccess.com/) — Main calculator (the STL Scale Engine): 16 tabletop scales, eye-level and top-of-head measurement, shrinkage compensation toggle, copy-to-clipboard, deep-linkable URL params
+- [Scale Conversion Reference](https://stlaccess.com/reference) — 46 verified conversion percentages with my math breakdowns, print-tested results, and community feedback system
+- [Conversion FAQ](https://stlaccess.com/faq) — Answers I wrote about 28mm, 32mm, 35mm, 1:35, 1:48, 1:56, 1:72, and 1:100 scales
+- [Methodology / About](https://stlaccess.com/about) — My 175cm human baseline, FDM test prints with digital calipers, and the story behind why I started this project
+- [All Tools](https://stlaccess.com/tools) — STL Scale Engine, Scale Conversion Reference, Slicer Percentage Calculator, Filament Cost Calculator, Real-World to Miniature Scale Converter, STL Scale Reference Bar Generator, and Miniature Scale Identifier
+- [Game Systems](https://stlaccess.com/games) — Scale guides I wrote for 26 tabletop games with related conversions, printing tips, and base sizes
+- [Guides](https://stlaccess.com/guides) — 6 deep-dive guides I wrote on miniature scale, 3D printing, and conversion math
+- [Slicer Percentage Calculator](https://stlaccess.com/tools/slicer-percentage-calculator) — Enter any current height and target height to get the exact slicer percentage
+- [Filament Cost Calculator](https://stlaccess.com/tools/filament-cost-calculator) — Calculate print cost from filament price, weight, and optional electricity
+- [Miniature Scale Identifier](https://stlaccess.com/tools/miniature-scale-identifier) — Measure a model's height in mm (slicer bounding box or ruler) and it tells you which scale it matches — 28mm, 32mm heroic, 35mm Legion, 40mm Shatterpoint, 1:35 kits, and more — with matched game systems and a deep-link into the engine
+- [Real-World to Miniature Scale Converter](https://stlaccess.com/tools/real-world-scale-converter) — Reverse of the engine: convert real-world measurements (feet/inches) to exact mm at any tabletop scale
+- [STL Scale Reference Bar Generator](https://stlaccess.com/tools/reference-bar-generator) — Generate a download-and-print STL ruler bar (5mm ticks + end tab the exact height of a figure at that scale) to calibrate in Lychee or Chitubox
+- [Privacy Policy](https://stlaccess.com/privacy) — No cookies, no personal data collection. Cookie-free analytics only.
+- [Terms](https://stlaccess.com/terms) — Terms of use
+- [Legal](https://stlaccess.com/legal) — Legal information
+- [Contact](https://stlaccess.com/contact) — Report errors, request new scales, suggest features
+- [RSS Feed](https://stlaccess.com/rss.xml) — Guide articles feed
+
+## Supported game systems (26 total)
+
+| System | Scale | Ratio | Measurement | Publisher | Genre |
+|--------|-------|-------|-------------|-----------|-------|
+| Warhammer 40,000 | 32mm | 1:50 | eye level | Games Workshop | Sci-fi Wargame |
+| Warhammer Age of Sigmar | 32mm | 1:50 | eye level | Games Workshop | Fantasy Wargame |
+| Warhammer: The Old World | 28mm | 1:56 | eye level | Games Workshop | Classic Fantasy Wargame |
+| Middle-earth Strategy Battle Game | 28mm | 1:56 | eye level | Games Workshop | Fantasy Skirmish |
+| Bolt Action | 28mm | 1:56 | eye level | Warlord Games | Historical WWII |
+| Dungeons & Dragons | 28mm | 1:56 | eye level | Wizards of the Coast | Tabletop RPG |
+| Star Wars: Legion | 35mm | 1:47 | eye level | Atomic Mass Games | Sci-fi Skirmish |
+| Star Wars: Shatterpoint | 40mm | 1:43 | eye level | Atomic Mass Games | Sci-fi Skirmish |
+| Marvel: Crisis Protocol | 35mm | 1:48 | eye level | Atomic Mass Games | Superhero Skirmish |
+| Malifaux | 32mm | 1:50 | eye level | Wyrd Miniatures | Gothic Pulp Skirmish |
+| Infinity | 28mm | 1:56 | eye level | Corvus Belli | Sci-fi Skirmish |
+| Warmachine & Hordes | 30mm | 1:54 | eye level | Privateer Press | Steampunk Fantasy |
+| Frostgrave & Stargrave | 28mm | 1:56 | eye level | Osprey Games / Warlord Games | Fantasy/Sci-fi Skirmish |
+| Kings of War | 28mm | 1:56 | eye level | Mantic Games | Fantasy Mass Battle |
+| Kill Team | 32mm | 1:50 | eye level | Games Workshop | Sci-fi Skirmish |
+| Necromunda | 32mm | 1:50 | eye level | Games Workshop | Dystopian Skirmish |
+| Warcry | 32mm | 1:50 | eye level | Games Workshop | Fantasy Skirmish |
+| BattleTech | 6mm | 1:285 | top of machine | Catalyst Game Labs | Sci-fi Tactical |
+| Flames of War | 15mm | 1:100 | eye level | Battlefront Miniatures | Historical WWII |
+| Dropzone Commander | 10mm | 1:160 | top of unit | TTCombat | Sci-fi Mass Battle |
+| Legions Imperialis | 8mm | 1:200 | top of unit | Games Workshop | Epic-scale Sci-fi |
+| Grimdark Future (One Page Rules) | 32mm | 1:50 | eye level | One Page Rules | Sci-fi Wargame |
+| Fallout: Wasteland Warfare | 32mm | 1:50 | eye level | Modiphius Entertainment | Post-Apocalyptic Skirmish |
+| Gaslands | 1:56 | 1:56 | vehicle scale | Osprey Games | Vehicular Combat |
+| Star Wars: X-Wing | 1:27 | 1:27 | vehicle scale | Atomic Mass Games | Space Combat |
+| Conquest: Last Argument of Kings | 35mm | 1:47 | eye level | Parabellum Wargames | Fantasy Mass Battle |
+
+## Scale baselines (from scales.json)
+
+| Scale | Eye Level | Top of Head | Ratio | Type | Common Games |
+|-------|-----------|-------------|-------|------|--------------|
+| 28mm | 28.0mm | 30.5mm | 1:56 | gaming | D&D, Pathfinder, Bolt Action, Frostgrave, Infinity, Kill Team, Necromunda, Kings of War |
+| 30mm | 30.0mm | 32.8mm | ~1:58 | gaming | Warmachine & Hordes |
+| 32mm | 32.0mm | 34.5mm | 1:50 | gaming | Warhammer 40k (Primaris), AoS, Malifaux, Fallout, Grimdark Future, Kill Team, Necromunda, Warcry |
+| 35mm | 35.0mm | 38.0mm | 1:48 | gaming | Star Wars: Legion, Conquest |
+| 40mm | 40.0mm | 43.0mm | 1:43 | gaming | Star Wars: Shatterpoint, display vignettes |
+| 75mm | 75.0mm | 80.0mm | 1:24 | display | Display busts, competitions |
+| 1:35 | 45.7mm | 50.0mm | 1:35 | ratio | Tamiya, Trumpeter, MiniArt, military dioramas |
+| 1:48 | 33.3mm | 36.5mm | 1:48 | ratio | O-gauge trains, Bandai Star Wars, aircraft kits |
+| 1:56 | 28.6mm | 31.3mm | 1:56 | ratio | Bolt Action vehicles, Chain of Command |
+| 1:72 | 22.2mm | 24.3mm | 1:72 | ratio | Airfix, Revell, Zvezda, Plastic Soldier Company |
+| 1:100 | 16.0mm | 17.5mm | 1:100 | ratio | Flames of War, Team Yankee |
+| 6mm | 6.0mm | 6.5mm | ~1:292 | gaming | BattleTech, Epic 40k |
+| 8mm | 8.0mm | 8.8mm | ~1:219 | gaming | Legions Imperialis, Adeptus Titanicus |
+| 10mm | 10.0mm | 10.9mm | ~1:175 | gaming | Dropzone Commander |
+| 15mm | 15.0mm | 16.3mm | 1:117 | gaming | Flames of War, Team Yankee |
+
+## Common conversions (46 total in reference library)
+
+All percentages use the 175cm human baseline with eye-level measurement unless noted. Top-of-head percentage is provided where available.
+
+### Gaming scale conversions
 
 | From | To | Slicer % | Top-of-Head % |
 |------|----|----------|---------------|
@@ -62,61 +106,151 @@ Canonical examples: 28mm → 32mm = **114.3%** (top-of-head variant 116.1%); 32m
 | 32mm | 75mm | 234.4% | — |
 | 35mm | 28mm | 80.0% | — |
 | 35mm | 32mm | 91.4% | — |
-| 1:100 | 28mm | 160.0% | — |
-| 1:100 | 32mm | 182.9% | — |
-| 1:35 | 28mm | 56.0% | 61.3% |
-| 1:35 | 32mm | 64.0% | — |
-| 1:48 | 28mm | 76.8% | — |
-| 1:48 | 32mm | 87.8% | — |
-| 1:56 | 28mm | 89.6% | — |
-| 1:56 | 32mm | 102.4% | — |
-| 1:72 | 28mm | 115.2% | — |
-| 1:72 | 32mm | 131.7% | — |
+| 35mm | 40mm | 114.3% | — |
+| 35mm | 75mm | 214.3% | — |
+| 40mm | 32mm | 80.0% | — |
 
-Machine-readable open data (CC BY 4.0): [scale-baselines.json](https://stlaccess.com/data/scale-baselines.json) / [.csv](https://stlaccess.com/data/scale-baselines.csv), [conversion-matrix.json](https://stlaccess.com/data/conversion-matrix.json), [fdm-profiles.json](https://stlaccess.com/data/fdm-profiles.json), and [index.json](https://stlaccess.com/data/index.json).
+### Ratio scale to gaming scale conversions
 
-## Archive (legacy content, still live and indexable)
+| From | To | Slicer % |
+|------|----|----------|
+| 1:100 | 1:35 | 285.7% |
+| 1:100 | 28mm | 160.0% |
+| 1:100 | 32mm | 182.9% |
+| 1:100 | 35mm | 200.0% |
+| 1:100 | 40mm | 228.6% |
+| 1:100 | 75mm | 428.6% |
+| 1:35 | 28mm | 56.0% |
+| 1:35 | 28mm (top of head) | 61.3% |
+| 1:35 | 32mm | 64.0% |
+| 1:35 | 35mm | 70.0% |
+| 1:35 | 40mm | 80.0% |
+| 1:35 | 75mm | 150.0% |
+| 1:48 | 1:35 | 137.1% |
+| 1:48 | 28mm | 76.8% |
+| 1:48 | 32mm | 87.8% |
+| 1:48 | 35mm | 96.0% |
+| 1:48 | 40mm | 109.7% |
+| 1:48 | 75mm | 205.7% |
+| 1:56 | 1:35 | 160.0% |
+| 1:56 | 28mm | 89.6% |
+| 1:56 | 32mm | 102.4% |
+| 1:56 | 35mm | 112.0% |
+| 1:56 | 40mm | 128.0% |
+| 1:56 | 75mm | 240.0% |
+| 1:72 | 1:35 | 205.7% |
+| 1:72 | 28mm | 115.2% |
+| 1:72 | 32mm | 131.7% |
+| 1:72 | 35mm | 144.0% |
+| 1:72 | 40mm | 164.6% |
+| 1:72 | 75mm | 308.6% |
 
-The original wargaming-scale content was moved under `/archive/` and is no longer linked from the main navigation. It remains published and indexable, and old URLs 301-redirect to the closest match. The high-value Chitubox/Lychee scaling guide redirects to the live Scale Inspector instead.
+### Gaming scale to ratio scale conversions
 
-- [Archived guides](https://stlaccess.com/archive/guides/) — 16 long-form scale and printing articles
-- [Archived FDM articles](https://stlaccess.com/archive/fdm/) — 5 FDM-focused articles
-- [Archived FDM printing profiles](https://stlaccess.com/archive/fdm-printing-profiles/) — 26 anonymized profiles
-- [Miniature size chart](https://stlaccess.com/archive/miniature-size-chart/) — 46 verified conversion pairs
-- [STLACCESS Scale Standard](https://stlaccess.com/archive/scale-standard/) — Named reference and open dataset
-- [Conversion FAQ](https://stlaccess.com/archive/faq/)
-- [3D Math calculators](https://stlaccess.com/archive/3d-math/) — Archived calculators listed below
+| From | To | Slicer % |
+|------|----|----------|
+| 28mm | 1:35 | 178.6% |
+| 32mm | 1:35 | 156.3% |
+| 35mm | 1:35 | 142.9% |
 
-### Archived calculators
+### Ratio scale to ratio scale conversions
 
-| Tool | URL |
-|------|-----|
-| Slicer Percentage Calculator | https://stlaccess.com/archive/3d-math/slicer-percentage-calculator/ |
-| Filament Cost Calculator | https://stlaccess.com/archive/3d-math/filament-cost-calculator/ |
-| STL Scale Reference Bar Generator | https://stlaccess.com/archive/3d-math/reference-bar-generator/ |
-| Filament Density Calculator | https://stlaccess.com/archive/3d-math/filament-density-calculator/ |
-| EU Import & Landed Cost Calculator | https://stlaccess.com/archive/3d-math/eu-3d-printing-import-cost-calculator/ |
-| Resin Shrinkage Compensation Calculator | https://stlaccess.com/archive/3d-math/resin-shrinkage-compensation-calculator/ |
-| Miniature Resin Weight & Cost Calculator | https://stlaccess.com/archive/3d-math/miniature-resin-weight-cost-calculator/ |
-| Layer Height Resolution & Angle Step Calculator | https://stlaccess.com/archive/3d-math/layer-resolution-angle-calculator/ |
+| From | To | Slicer % |
+|------|----|----------|
+| 1:48 | 1:56 | 85.7% |
+| 1:56 | 1:48 | 116.7% |
 
-## How the site is built
+## Guides I wrote (6 total)
 
-- Astro (static site generation), Tailwind CSS v4, TypeScript, content collections
-- No backend, no database, no user accounts
-- All tool logic runs client-side in JavaScript/WebGL
-- Sitemap and RSS generated at build time
-- Source on GitHub: [kitsorix-official/stlaccess](https://github.com/kitsorix-official/stlaccess)
+Every guide I write opens with a **Direct Answer box** (rendered from frontmatter `tldr`) plus jump links to its sections. `description` is used for SEO/meta only. Game-specific guides (Warhammer 40k, Bolt Action, D&D) were merged as "Deep Dive" sections of /games, and the chart + 28mm→32mm guides were merged into /reference — all five old URLs 301-redirect.
 
-## Editing conventions
+- [How to Measure a Miniature's Scale: Eye Level vs Top of Head Explained](https://stlaccess.com/guides/how-to-measure-miniature-scale) — Measure foot to eye level, not top of head; a "28mm" mini is ~31–32mm to the crown
+- [FDM Miniature Printing: Complete Guide to Layer Height, Nozzles, and Settings](https://stlaccess.com/guides/fdm-miniature-printing-guide) — 0.2mm nozzle @ 0.06mm for characters; 0.4mm @ 0.08mm for rank-and-file; PLA, 100% fan, tilt 15–20°, tree supports
+- [How to Scale Real-World Objects to 32mm Miniatures (The Math Explained)](https://stlaccess.com/guides/real-world-objects-to-32mm) — (real inches ÷ 72) × 32 = mm; an 18-ft dragon ≈ 96mm
+- [Upscaling 3D Prints: How Big Can You Go Before You Lose Detail?](https://stlaccess.com/guides/upscaling-3d-prints-detail-limit) — FDM: ~50mm (156%) practical ceiling; 0.2mm nozzle at 0.08mm layers pushes it to ~80mm
+- [How to Scale Miniatures in Chitubox & Lychee Slicer (Without Messing Up the Base)](https://stlaccess.com/guides/chitubox-lychee-scaling-guide) — Lock the chain-link/aspect ratio first; inch-exported files scale up 2540%
+- [Why Miniature Scales Use a 175cm Human Baseline](https://stlaccess.com/guides/175cm-baseline) — Origin and reasoning behind the 175cm reference height
 
-- **Brand:** always STLACCESS.
-- **Tool names:** STL Viewer, STL Scale Inspector, STL Converter, STL Printability Checker.
-- **Privacy claims must stay literally true.** Do not call a tool "no upload" unless the file is processed entirely client-side. Do not claim a tool is live before it is.
-- **Numbers:** derive from the 175cm/160cm baseline and the formula above; changes must be verified against `scaleBaselines.json` / `conversionMatrix.json` / `fdmProfiles.json`.
-- **Voice:** first-person hobbyist, plain English.
+## Tools I built (7 total)
+
+| Tool | URL | Description |
+|------|-----|-------------|
+| STL Scale Engine | / | Main calculator I use: source/target scale selection, eye-level/top-of-head toggle, shrinkage compensation, copy to clipboard, deep-linkable via URL parameters |
+| Scale Conversion Reference | /reference | 46 verified conversion pairs with my mathematical proof, search/filter, print-tested notes, community feedback |
+| Slicer Percentage Calculator | /tools/slicer-percentage-calculator | Enter any current model height and target height to get exact percentage, 12 common presets, formula breakdown |
+| Filament Cost Calculator | /tools/filament-cost-calculator | Calculate print cost from filament roll price, weight used, optional electricity cost, 6 filament presets (Budget/Mid/Premium PLA and PETG) |
+| Miniature Scale Identifier | /tools/miniature-scale-identifier | Identify a model's scale from a measured height (eye level, top of head, or "not sure"); ranks the closest scale matches by % deviation, lists their game systems, and deep-links to the engine pre-filled |
+| Real-World to Miniature Scale Converter | /tools/real-world-scale-converter | Convert real-world measurements (feet/inches) to exact millimetres at any tabletop scale, using the same 175cm/160cm baseline |
+| STL Scale Reference Bar Generator | /tools/reference-bar-generator | Download a printable STL ruler bar with 5mm tick marks and an end tab exactly as tall as a figure at the chosen scale, for calibrating unknown models in slicers |
+
+## Filament presets
+
+| Name | Price | Weight | Type | Brands |
+|------|-------|--------|------|--------|
+| Budget PLA | 14.99 | 1000g | PLA | eSun, Sunlu |
+| Mid PLA | 19.99 | 1000g | PLA | Bambu Lab, Polymaker |
+| Premium PLA | 30.92 | 970g | PLA-CF | Bambu Lab |
+| Budget PETG | 16.99 | 1000g | PETG | eSun, Sunlu |
+| Mid PETG | 18.99 | 1000g | PETG | Bambu Lab |
+| Premium PETG | 34.99 | 1000g | PETG | Prusament |
+
+## How I designed the calculator
+
+1. I select a source scale (e.g. 28mm) and target scale (e.g. 32mm)
+2. The calculator divides the target standard mm by the source standard mm to get a percentage
+3. I enter that percentage in my slicer (PrusaSlicer, Cura, Chitubox, Lychee, Bambu Studio)
+4. The STL scales proportionally in the slicer
+
+Formula I use: `(target standard mm) / (source standard mm) * 100 = percentage`
+
+For ratio scales, the calculator converts ratio-to-mm using the 175cm baseline (top-of-head), then divides as normal. Gaming scales use eye-level mm.
+
+## How I test every conversion
+
+- Human baseline: 175cm (standard reference height used by most miniature manufacturers)
+- Eye level: 160cm (default measurement method for fantasy and sci-fi)
+- Top of head: 175cm (used for historical kits, display busts, and ratio scales)
+- All percentages verified with FDM test prints on my Bambu Lab A1 Mini
+- Digital caliper measurements at 0.01mm precision
+- FDM accuracy: over-extrusion can add 0.3%-0.5% to dimensions
+- Thermal shrinkage: PLA and PETG shrink 0.2%-0.5% during cooling (not compensated, tends to cancel with over-extrusion)
+- Layer height bias: 0.1-0.2mm stair-step error on curved surfaces at 0.08mm layers
+
+## How I built the site
+
+- Built with Astro 7.1.3, Tailwind CSS v4 (`@tailwindcss/vite`), TypeScript, content collections
+- Static site generation (no backend, no database)
+- All calculations run client-side in JavaScript
+- No cookies, no accounts. Cookie-free analytics (Umami) for anonymous pageview counts only.
+- Sitemap + RSS feed generated at build time
+- Structured data in `src/data/*.json`; guide articles in `src/content/guides/*.md`
+- Source on GitHub (kitsorix-official)
+
+## FAQ topics I cover
+
+- **Methodology**: Measurement methods, scale inconsistency between manufacturers, checking scale without printing
+- **Sci-fi and fantasy**: Primaris vs Firstborn scale, mixing scales between systems, 28mm vs 32mm differences
+- **Historical and vehicles**: 1:56 vehicle compatibility with 28mm infantry, 1:48 kits, converting 1:35 STLs to 1:56
+- **FDM printing and slicers**: Bounding box height vs eye-level, filament shrinkage, FDM capability at 28mm/32mm, which slicer to use
+
+## My editing conventions
+
+- **Brand:** always STLACCESS. The calculator is called the STL Scale Engine / STL scale calculator — a *function*, never a brand. Never write "stlscale" as a word that looks like a product name.
+- **Meta titles:** keyword-first → problem/intent → brand. Pattern: `"&lt;Keyword&gt; | &lt;intent&gt; | STLACCESS"`.
+- **Meta descriptions:** ≤155 characters, natural language, name what the user gets + the problem solved.
+- **Guide frontmatter:** `tldr` is the Direct Answer shown in the orange box — one punchy sentence with the key number inline. `description` stays for SEO.
+- **Numbers:** always derive from the 175cm/160cm baseline and the formula above. Any change must be verified against `scales.json` / `conversions.json` / `gameSystems.json`.
+- **Voice:** first-person hobbyist ("I printed it myself"), plain English.
 - **Build check:** `npm run build` must stay green.
 
-## About the operator
+## What I've been working on
 
-STLACCESS is a free, independent project built and maintained by one person who has been 3D printing since 2017, including a stint running a commercial print service in Enschede, Netherlands. Percentages are verified with FDM test prints on a Bambu Lab A1 Mini and a PARKSIDE digital caliper (0.01mm resolution). Donation-funded, no accounts, no paywall.
+- **Scale Identifier tool** — new `/tools/miniature-scale-identifier` page that reverse-engineers a model's scale from a height measurement (eye level, top of head, or "not sure"), compares against the same 16 scale baselines with a strong-match threshold (≤12% deviation), lists matched game systems, and deep-links into the engine pre-filled. Ships with a height→scale lookup table, 3-step measuring walkthrough, and a 6-question FAQ (FAQPage JSON-LD).
+- **Guide redesign** — I added Direct Answer boxes with jump-to-section navigation, reading time, H1-first reading order, restyled `.prose` (card-style tables, accent-bar headings, custom list markers).
+- **SEO pass** — keyword-first titles, all 26 game meta descriptions rewritten to ≤155 characters, homepage H1 names the tool ("The STL scale calculator…"), reference hub title gained the `| STLACCESS` suffix, 4 guide descriptions trimmed, 2 tool descriptions enriched.
+- **Layout & navigation** — sticky desktop nav, mobile bottom nav, breadcrumbs, skip link, H1s moved into the masthead.
+- **Branding cleanup** — removed `stlscale` as a site alternate name and as a tool name; the brand is exclusively **STLACCESS**; the calculator is referred to only as the STL Scale Engine.
+
+## About me
+
+STLACCESS is a free, independent project I built. All percentages are calculated from a 175cm human baseline and verified with FDM test prints and digital calipers on my Bambu Lab A1 Mini. The site has no backend, no cookies, no accounts — just cookie-free analytics (Umami) for anonymous pageview stats. Everything runs in your browser. Source code is on GitHub. I started this project from frustration with scale creep in my own tabletop gaming, plus lessons I learned from a failed local print service I ran in Enschede, Netherlands.

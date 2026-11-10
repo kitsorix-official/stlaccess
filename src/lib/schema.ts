@@ -5,14 +5,13 @@ export const SITE_URL = "https://stlaccess.com";
 export const ORG_ID = `${SITE_URL}/#organization`;
 export const PERSON_ID = `${SITE_URL}/#person`;
 export const AUTHOR_URL = "https://github.com/kitsorix-official";
-export const LOGO_URL = `${SITE_URL}/social.png`;
-export const IMAGE_URL = `${SITE_URL}/social.png`;
+export const LOGO_URL = `${SITE_URL}/pwa-512x512.png`;
+export const IMAGE_URL = `${SITE_URL}/og-image.svg`;
 
 export function stripHtml(text: string): string {
   return text
     .replace(/<[^>]*>/g, " ")
     .replace(/\s+/g, " ")
-    .replace(/\s+([,.;:!?])/g, "$1")
     .trim();
 }
 
@@ -23,7 +22,7 @@ export function organization() {
     name: "STLACCESS",
     url: SITE_URL,
     description:
-      "Privacy-first STL utilities that run entirely in the browser: an STL viewer, scale and dimension inspector, converter, and printability checker. No uploads, no accounts, no cookies.",
+      "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on a Bambu Lab A1 Mini.",
     logo: LOGO_URL,
     image: IMAGE_URL,
     founder: { "@id": PERSON_ID },
@@ -48,7 +47,7 @@ export function webSite() {
     name: "STLACCESS",
     url: SITE_URL,
     description:
-      "Privacy-first STL utilities that run entirely in the browser: an STL viewer, scale and dimension inspector, converter, and printability checker. No uploads, no accounts, no cookies.",
+      "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on a Bambu Lab A1 Mini.",
     inLanguage: "en",
     publisher: { "@id": ORG_ID },
     potentialAction: [
@@ -56,7 +55,7 @@ export function webSite() {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: `${SITE_URL}/archive/miniature-size-chart/?q={search_term_string}`,
+          urlTemplate: `${SITE_URL}/reference?q={search_term_string}`,
         },
         "query-input": "required name=search_term_string",
       },

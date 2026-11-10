@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import JsonLd from '../components/JsonLd.astro';
-import ToolStrip from '../components/tools/ToolStrip.astro';
 import site from '../data/site.json';
 import { graph, breadcrumb } from '../lib/schema';
 
@@ -10,7 +9,7 @@ const { baselineHeight, shrinkageRange } = site;
 const legalSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Legal", path: "/legal/" },
+    { name: "Legal", path: "/legal" },
   ]),
 ]);
 ---
@@ -30,7 +29,7 @@ const legalSchema = graph([
     <!-- Header -->
     <div class="max-w-4xl mx-auto px-6 mb-16">
       <h1 class="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">Legal <span class="text-[#ff6b35]">Stuff</span></h1>
-      <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">The plain-English rules for STLACCESS. No lawyer-speak — if I can't explain it simply, I haven't explained it well enough. Read this page and the <a href="/terms/" class="text-[#ff6b35] hover:text-white transition-colors">Terms</a> and <a href="/privacy/" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> together, and you know everything.</p>
+      <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">The plain-English rules for STLACCESS. No lawyer-speak — if I can't explain it simply, I haven't explained it well enough. Read this page and the <a href="/terms" class="text-[#ff6b35] hover:text-white transition-colors">Terms</a> and <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> together, and you know everything.</p>
     </div>
 </div>
 
@@ -61,9 +60,9 @@ const legalSchema = graph([
               I built this site to be usable by everyone. It works cleanly with keyboard navigation and screen readers without getting in your way.
             </p>
             <ul class="text-xs space-y-2 text-slate-500">
-              <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> High contrast layout</li>
-              <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> Screen reader labels</li>
-              <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> Simple, clean HTML structure</li>
+              <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> High contrast layout</li>
+              <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> Screen reader labels</li>
+              <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> Simple, clean HTML structure</li>
             </ul>
           </div>
 
@@ -71,13 +70,12 @@ const legalSchema = graph([
           <div class="bg-slate-900/30 p-8 rounded-3xl border border-white/5" aria-labelledby="data-heading">
             <h2 id="data-heading" class="text-xl font-bold text-white font-heading mb-4">Your Data</h2>
             <p class="text-sm text-slate-400 leading-relaxed mb-6">
-              There are no cookie banners, no personal data collection, and no invasive analytics here. The only analytics is a small custom web observer script — an anonymous, cookie-free visitor counter — sending non-personal visit details to a private Google Sheet I can open. No identifiable data is stored or shared. The one exception: if you message me, the Contact page sends you to my Google Form, which collects your name and email so I can reply — I delete it as soon as we're done.
+              There are no cookie banners, no personal data collection, and no invasive analytics here. The only analytics is a self-hosted web observer — an anonymous, cookie-free visitor counter. No identifiable data is stored or shared. The one exception: if you message me, the Contact page sends you to my Google Form, which collects your name and email so I can reply — I delete it as soon as we're done.
             </p>
             <ul class="text-xs space-y-2 text-slate-500">
-              <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> Cookie-free web observer only</li>
-              <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> Calculators run in your browser</li>
-              <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> No cookies, and no device storage (beyond an opt-out flag)</li>
-              <li><i class="ti ti-check text-[#ff6b35] mr-2"></i> Open and honest setup</li>
+              <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> Cookie-free web observer only</li>
+              <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> Calculators run in your browser</li>
+              <li><i class="fa-solid fa-check text-[#ff6b35] mr-2"></i> Open and honest setup</li>
             </ul>
           </div>
         </div>
@@ -93,24 +91,25 @@ const legalSchema = graph([
           </p>
           <div class="rounded-2xl border border-white/5 bg-black/40 p-6">
             <p class="font-mono text-xs text-slate-400 leading-loose break-words">
-              timestamp_utc · date · page · agent · source · source_name · referrer
+              timestamp_utc · received_utc · date · time · page · event · event_value · referrer · traffic_source · ai_source · device · viewport · browser · os · language · visitor_type · scroll_depth · session_id
             </p>
           </div>
           <p>In plain words, that means:</p>
           <ul class="list-disc pl-6 space-y-3">
             <li>Which page you looked at (<span class="font-mono text-slate-400">page</span>).</li>
-            <li>Which website or link brought you here — reduced to its address and page path, with any tracking parameters removed (<span class="font-mono text-slate-400">referrer</span>) — plus a coarse label for how you arrived (<span class="font-mono text-slate-400">source</span>: direct, search, social, or referral), and the operator's name when I recognise it (<span class="font-mono text-slate-400">source_name</span>, e.g. google, bing, chatgpt, perplexity).</li>
-            <li>Whether the visit looks like a person or a bot — a plain label (<span class="font-mono text-slate-400">agent</span>: human, crawler, or automation) used only to keep crawlers out of the human numbers.</li>
-            <li>Time stamps so I can see when people visit (<span class="font-mono text-slate-400">timestamp_utc</span>, <span class="font-mono text-slate-400">date</span>), stamped by the collector's own clock.</li>
+            <li>Which website or link brought you here — reduced to its address and page path, with any tracking parameters removed — plus a coarse label for how you arrived (<span class="font-mono text-slate-400">referrer</span>, <span class="font-mono text-slate-400">traffic_source</span>: direct, search, social, or referral).</li>
+            <li>What kind of device and screen you used — phone, tablet, or computer (<span class="font-mono text-slate-400">device</span>, <span class="font-mono text-slate-400">viewport</span>).</li>
+            <li>Which browser family, a coarse operating system label, and your browser's language (<span class="font-mono text-slate-400">browser</span>, <span class="font-mono text-slate-400">os</span>, <span class="font-mono text-slate-400">language</span>).</li>
+            <li>How far down the page you scrolled — recorded on a rolling basis as you read, empty on pages you don't scroll (<span class="font-mono text-slate-400">scroll_depth</span>).</li>
+            <li>Time stamps so I can see when people visit (<span class="font-mono text-slate-400">timestamp_utc</span>, <span class="font-mono text-slate-400">received_utc</span>, <span class="font-mono text-slate-400">date</span>, <span class="font-mono text-slate-400">time</span>).</li>
+            <li>A random visit ID so two visits aren't counted as one (<span class="font-mono text-slate-400">session_id</span>), and a simple <em>new</em> or <em>returning</em> label (<span class="font-mono text-slate-400">visitor_type</span>) — worked out on your device from a locally stored random ID that never leaves your browser.</li>
+            <li>A few small reserved labels (<span class="font-mono text-slate-400">event</span>, <span class="font-mono text-slate-400">event_value</span>, <span class="font-mono text-slate-400">ai_source</span>) — these stay empty for now.</li>
           </ul>
-          <p>
-            There is no persistent visitor ID and no session ID: the observer stores nothing on your device, so it cannot tell one visit from another or recognise you on a return trip.
-          </p>
           <p>
             Like Cloudflare, the Google servers that run the collector briefly see standard network data — such as your IP address — purely to deliver the request to their cloud; none of it is stored in the sheet.
           </p>
           <p>
-            None of these can be used to find out who you are, and I never sell or share any of this with anyone. I use it for one thing: to know which pages people actually find useful so I can spend my hobby time on the right ones. You can switch the observer off for your browser permanently by visiting any page with <span class="font-mono text-slate-400">?admin=1</span> appended to the address. The <a href="/privacy/" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> explains this in more detail.
+            None of these can be used to find out who you are, and I never sell or share any of this with anyone. I use it for one thing: to know which pages people actually find useful so I can spend my hobby time on the right ones. You can switch the observer off for your browser permanently by visiting any page with <span class="font-mono text-slate-400">?admin=1</span> appended to the address. The <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors">Privacy Policy</a> explains this in more detail.
           </p>
         </div>
 
@@ -137,7 +136,7 @@ const legalSchema = graph([
         <div class="space-y-6">
           <h2 class="text-2xl font-bold text-white font-heading">If You Message Me</h2>
           <p>
-            The <a href="/contact/" class="text-[#ff6b35] hover:text-white transition-colors">Contact page</a> has a "Send me a message" button. When you click it, you <strong class="text-white">leave this site</strong> and are taken to a Google Form I set up for replies. That form asks for your <strong class="text-white">name, your email address, and the content of your message</strong> — so I know who wrote it and can write back to you.
+            The <a href="/contact" class="text-[#ff6b35] hover:text-white transition-colors">Contact page</a> has a "Send me a message" button. When you click it, you <strong class="text-white">leave this site</strong> and are taken to a Google Form I set up for replies. That form asks for your <strong class="text-white">name, your email address, and the content of your message</strong> — so I know who wrote it and can write back to you.
           </p>
           <p>
             Your response is stored on my <strong class="text-white">Google Drive</strong> (protected by two-factor authentication), where Google Forms keeps it. I hold onto it <strong class="text-white">only for the duration of our conversation</strong> — while we're working through your question or issue. As soon as the matter is resolved and we're both satisfied, I delete your message, your name, and your email address.
@@ -205,6 +204,4 @@ const legalSchema = graph([
       </div>
     </section>
   </article>
-
-<ToolStrip />
 </Layout>

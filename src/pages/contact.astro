@@ -1,20 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import JsonLd from '../components/JsonLd.astro';
-import ToolStrip from '../components/tools/ToolStrip.astro';
 import site from '../data/site.json';
 import { graph, breadcrumb, webPage } from '../lib/schema';
 
 const contactSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "Contact", path: "/contact/" },
+    { name: "Contact", path: "/contact" },
   ]),
   webPage({
     type: "ContactPage",
     name: "Contact | 3D Print Miniature Scale Support | STLACCESS",
     description: "Wrong percentage on a conversion? Need a game system added? Drop me a line — I read every message and fix errors when the community catches them.",
-    url: "/contact/",
+    url: "/contact",
   }),
 ]);
 ---
@@ -50,7 +49,7 @@ const contactSchema = graph([
       <div>
         <h2 id="contact-cta-heading" class="text-2xl font-bold font-heading text-white mb-3">Send me a message</h2>
         <p class="text-slate-400">
-          The button takes you off-site to my Google Form. It asks for your name and email so I can reply — I keep your message only until the matter is resolved, then delete it. <a href="/privacy/" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Privacy details</a>
+          The button takes you off-site to my Google Form. It asks for your name and email so I can reply — I keep your message only until the matter is resolved, then delete it. <a href="/privacy" class="text-[#ff6b35] hover:text-white transition-colors underline underline-offset-2">Privacy details</a>
         </p>
       </div>
       <a
@@ -59,7 +58,7 @@ const contactSchema = graph([
         rel="noopener noreferrer"
         class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-8 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all shrink-0"
       >
-        <i class="ti ti-pencil"></i>
+        <i class="fa-solid fa-pen"></i>
         Open form
       </a>
     </div>
@@ -70,7 +69,7 @@ const contactSchema = graph([
     <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center">
-          <i class="ti ti-clock text-[#ff6b35]"></i>
+          <i class="fa-solid fa-clock text-[#ff6b35]"></i>
         </div>
         <div>
           <h3 class="text-white font-semibold text-sm">Response time</h3>
@@ -84,7 +83,7 @@ const contactSchema = graph([
     <div class="bg-slate-900/30 border border-white/5 rounded-2xl p-6">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-10 h-10 rounded-xl bg-[#ff6b35]/10 flex items-center justify-center">
-          <i class="ti ti-brand-github text-[#ff6b35]"></i>
+          <i class="fa-brands fa-github text-[#ff6b35]"></i>
         </div>
         <div>
           <h3 class="text-white font-semibold text-sm">GitHub</h3>
@@ -100,13 +99,13 @@ const contactSchema = graph([
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#ff6b35] hover:text-white transition-colors"
       >
-        <i class="ti ti-brand-github"></i>
+        <i class="fa-brands fa-github"></i>
         Open an issue
       </a>
     </div>
     <div class="bg-[#ff6b35]/5 border border-[#ff6b35]/20 rounded-2xl p-6">
       <div class="flex items-start gap-3 mb-3">
-        <i class="ti ti-user text-[#ff6b35] text-lg"></i>
+        <i class="fa-solid fa-user text-[#ff6b35] text-lg"></i>
         <div>
           <h3 class="text-white font-semibold text-sm">Who replies</h3>
           <p class="text-xs text-slate-500">{site.author.name}</p>
@@ -119,6 +118,4 @@ const contactSchema = graph([
   </div>
 
 </article>
-
-<ToolStrip />
 </Layout>

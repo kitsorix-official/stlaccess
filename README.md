@@ -3,14 +3,13 @@
 **Get your miniatures the right size before you waste filament.**
 
 STLACCESS is a fast, browser-based tool suite for scaling 3D-printable miniatures between the many scales
-used in tabletop gaming — 6mm epic, 28mm true scale, 32mm heroic, 35mm eye level, historical wargaming,
+used in tabletop gaming — Warhammer, D&D, Bolt Action, Star Wars Legion & Shatterpoint, historical wargaming,
 and display figures. It exists because getting a printed proxy to match your army shouldn't require guesswork
 or a pile of failed prints.
 
-No file uploads, no user accounts, no cookies. The only network requests are an anonymous, cookie-free
-pageview counter (a small custom script writing pageview counts to a private Google Sheet) and, if you choose
-to use one of the feedback forms, a submission to the same private sheet. Every calculation runs directly in
-your browser — your STLs and dimensions never leave your machine.
+No file uploads, no user accounts, no cookies. Privacy-first, cookie-free analytics (Umami) for anonymous
+pageviews only. Every calculation runs directly in your browser — your STLs and dimensions never leave your
+machine.
 
 ## Why I Built This
 
@@ -31,72 +30,45 @@ Every conversion on the site starts from the same reference point:
 - **Ratio scales** (1:35, 1:48, 1:56, 1:72, 1:100…) are measured to the **top of the head**.
 - The formula is dead simple: **(target ÷ source) × 100 = slicer percentage**.
 
-This shared baseline is why 28mm scales up to 32mm at exactly **114.3%** (116.1% measured to the top of the
-head), and why mixing eye-level and top-of-head scales without adjusting produces undersized or oversized
-prints. All percentages are verified with physical test prints on a Bambu Lab A1 Mini, measured with a
-PARKSIDE digital caliper (0.01mm resolution, 0–150mm range, all-metal construction).
+This shared baseline is why 28mm scales up to 32mm at exactly **114.3%**, and why mixing eye-level and
+top-of-head scales without adjusting produces undersized or oversized prints. All percentages are verified
+with physical test prints on a Bambu Lab A1 Mini, measured with a PARKSIDE digital caliper (0.01mm resolution, 0–150mm range, all-metal construction).
 
 ## What's Inside
 
-- **STL Scale Engine** (`/`) — 16 tabletop scales, eye-level/top-of-head measurement modes, adjustable
-  shrinkage compensation, copy-to-clipboard, and bookmarkable URL params. Powered by the community's most-asked
-  conversion, 28mm → 32mm. This is the **fast-numbers** option.
-- **3D Math & Calculators** (`/3d-math`) — the full tool suite:
-  - Slicer Percentage Calculator — two measurements in, one exact percentage out.
-  - Filament Cost Calculator — know what a print costs (filament + electricity) before you start.
-  - Filament Density Calculator — grams from any shape or volume, with hollow-shell math.
-  - EU Import & Landed Cost Calculator — true EUR cost of 3D printing supplies shipped into the EU (€3 duty + VAT).
-  - Resin Shrinkage Calculator — dimensional compensation for resin and FDM materials, 13 presets plus a
-    measured-coupon back-solve mode.
-  - Miniature Resin Weight & Cost Calculator — weight and cost per miniature, with an army planner.
-  - Layer Resolution & Angle Calculator — layer height, stair-step faceting, and overhang math.
-  - Scale Reference Bar Generator — download a printable STL ruler bar (5mm ticks + a figure-height end tab)
-    to identify unknown scales in Lychee or Chitubox.
-- **Guides** (`/guides`) — 16 in-depth articles on scale theory, FDM printing, and the methodology behind
-  every percentage on the site (Chitubox/Lychee scaling, FDM vs resin, real-world objects to 28mm/32mm,
-  and more).
-- **Miniature Size Chart** (`/miniature-size-chart`) — 46 verified conversion pairs with full math breakdowns
-  and FDM printing notes.
-- **Scale Standard** (`/scale-standard`) — the named reference behind every number: 175cm baseline, eyes at
-  160cm, gaming scales to eye level, ratio scales to top of head. Includes the open dataset downloads.
-- **FDM Printing Profiles** (`/fdm-printing-profiles`) — 26 anonymized profile scale guides (modern sci-fi epic
-  32mm, fantasy epic 32mm, 28mm true scale, 35mm eye level, WWII, mech tactical, epic 6–10mm, and more), each
-  with its scale, base sizes, and FDM printing tips.
-- **FDM Hub** (`/fdm`) — FDM-focused math, calculators, and 5 articles on FDM printing for miniatures and terrain.
+- **Scale Engine** (`/`) — 16 tabletop scales, eye-level/top-of-head measurement modes, adjustable shrinkage
+  compensation (for PETG and other cooling-shrink materials), copy-to-clipboard, and bookmarkable URL params.
+  Powered by the community's most-asked
+  conversion, 28mm → 32mm.
+- **Scale Conversion Reference** (`/reference`) — 44 verified conversion pairs with full math breakdowns and
+  FDM printing notes.
+- **Tabletop Game Scale Guide** (`/games`) — 26 game systems (Warhammer 40k, Age of Sigmar, D&D, Bolt Action,
+  Legion, Shatterpoint, BattleTech, Flames of War, and more), each with its scale, base sizes, conversion
+  table, and FDM printing tips.
+- **Guides** (`/guides`) — 11 in-depth articles on scale theory, measurement, slicer workflow, and FDM
+  settings. Every guide opens with a **Direct Answer box** so you get the number immediately, before the deep
+  dive.
+- **Filament Cost Calculator** (`/tools/filament-cost-calculator`) — know what a print costs (filament +
+  electricity) before you start.
+- **Slicer Percentage Calculator** (`/tools/slicer-percentage-calculator`) — two measurements in, one exact
+  percentage out.
 
 ## Privacy
 
-Your project files and dimensions stay on your hardware. Nothing is uploaded to a server — the only network
-requests are an anonymous, cookie-free pageview count and optional feedback-form submissions, both writing to
-a private Google Sheet. No tracking cookies, no analytics SDKs, no third-party embeds.
+Your project files and dimensions stay on your hardware. Nothing is uploaded to a server — the only
+third-party request is an anonymous, cookie-free pageview count.
 
 ## Try the Tool
 
 👉 **[Launch STLACCESS](https://stlaccess.com)**
 
-## Embed on Your Site
-
-The STL scale converter is available as a free, self-contained iframe widget for maker
-blogs, tutorials, and community resources — no cookies, no scripts for your visitors,
-and the math runs in their browser. Grab the copy-paste code at
-**[/embed](https://stlaccess.com/embed)**. One condition: keep the "Powered by
-STLACCESS" attribution line and link it back to the site.
-
 ## The Stack
 
-- Built with **Astro** (content collections for `/guides` and `/fdm`), **Tailwind CSS v4**
-  (`@tailwindcss/vite`), and **TypeScript**.
+- Built with **Astro** (content collections), **Tailwind CSS v4** (`@tailwindcss/vite`), and **TypeScript**.
 - Static-first: every page pre-rendered, no client framework, no backend database.
-- Sitemap, RSS feed (21 items), `llms.txt`, `urls.txt`, and the open datasets in `public/data/`
-  (baselines, conversions, profiles — JSON + CSV under CC BY 4.0, regenerated by `npm run export:data`)
-  are all generated at build time.
-- `public/llms-full.txt` — full text of every guide and FDM article — is regenerated from the
-  content collections by `npm run export:llms` and links back from `llms.txt`.
-- Structured site data (scales, conversions, profiles, tools, presets, FAQs) lives in `src/data/`
-  as `.json` and `.js` modules.
-- Security headers (`public/_headers`), explicit legacy redirects (`public/_redirects`), and a
-  `robots.txt` with AI-training opt-outs plus explicit AI-*search* crawler allows are deployed with
-  the site on Cloudflare Pages.
+- Sitemap + RSS feed generated at build time.
+- Structured site data (scales, conversions, games, tools, presets) lives in `src/data/*.json`; guide
+  articles live in `src/content/guides/*.md` with a `tldr` field that powers each guide's Direct Answer box.
 
 ### Local Development
 
@@ -111,18 +83,11 @@ npm run preview # preview the production build
 
 ```
 src/
-├── components/    FeedbackBanner, JsonLd, tool components
-├── content/       content collections: guides/ (16), fdm/ (5)
-├── data/          Structured data: scales, conversions, profiles, tools, presets, FAQs
 ├── layouts/       Layout.astro — global header, masthead, nav, footer
-├── lib/           schema helpers (JSON-LD), content freshness
-├── pages/         Routes (/, /3d-math, /guides, /miniature-size-chart, /fdm, /fdm-printing-profiles, …)
+├── pages/         Routes (/, /reference, /games, /guides, /tools, /about, …)
+├── content/       Guides collection (markdown, content collections schema in content.config.ts)
+├── data/          Structured data: scales, conversions, gameSystems, tools, filamentPresets, …
 └── styles/        global.css — theme tokens + prose/table styling
-public/
-├── _headers       security headers
-├── _redirects     explicit legacy 301s (no catch-alls over live pages)
-├── js/            mathscaler.js, observatory.js, adblock-detect.js
-└── llms.txt       machine-readable site index
 ```
 
 ## Updates, Tweaks, & Suggestions
@@ -136,15 +101,9 @@ repository.
 
 ## Recent Updates
 
-- **Full debug pass** — fixed the empty RSS feed (now 21 items), corrected `llms.txt`, tightened conversion
-  math precision so displayed equations balance, dropped dead React/three dependencies, added security
-  headers, and added honeypot fields to the feedback forms.
-- **Guides restored and de-duplicated** — the 16 `/guides` articles are live again and kept separate from the
-  FDM hub articles; legacy guide URLs 301 to their live equivalents instead of the `/fdm` hub.
-- **Ko-fi removed** — no longer referenced anywhere on the site.
-- **Redirects audited** — retired tool slugs redirect individually and properly (`/tools/*` → `/3d-math/*`,
-  one-off legacy slugs → their live pages); no catch-all shadows real pages.
-- **SEO pass** — keyword-first titles, all game meta descriptions rewritten to ≤155 characters, and a
+- **Guide redesign** — Direct Answer boxes with jump-to-section navigation, reading time, H1-first reading
+  order, and restyled prose (card-style tables, accent-bar headings, custom list markers).
+- **SEO pass** — keyword-first titles, all 26 game meta descriptions rewritten to ≤155 characters, and a
   homepage H1 that says exactly what the tool does.
 - **Layout & navigation** — sticky desktop nav, mobile bottom nav, breadcrumbs, skip link, and every page's
   H1 moved up into the masthead.

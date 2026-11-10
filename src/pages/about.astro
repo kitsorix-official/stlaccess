@@ -1,8 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import JsonLd from '../components/JsonLd.astro';
-import ToolStrip from '../components/tools/ToolStrip.astro';
-import conversions from '../data/conversionMatrix.json';
+import conversions from '../data/conversions.json';
 import tools from '../data/tools.json';
 import filamentPresets from '../data/filamentPresets.json';
 import site from '../data/site.json';
@@ -16,19 +15,19 @@ const aboutSchema = graph([
   person(),
   breadcrumb([
     { name: "Home", path: "/" },
-    { name: "About & Methodology", path: "/about/" },
+    { name: "About & Methodology", path: "/about" },
   ]),
   webPage({
     type: "ProfilePage",
-    name: "About STLACCESS — Built by a Miniature & 3D Printing Hobbyist",
+    name: "About STLACCESS — Built by a Warhammer & 3D Printing Hobbyist",
     description: site.description,
-    url: "/about/",
+    url: "/about",
     mainEntity: PERSON_ID,
   }),
 ]);
 ---
 <Layout
-  title={`About STLACCESS | Built by a Miniature & 3D Printing Hobbyist`}
+  title={`About STLACCESS | Built by a Warhammer & 3D Printing Hobbyist`}
   description={`Why I built the STLACCESS 3D print scale calculator to stop wasted filament and solve scale creep in tabletop 3D printing. Tested on a Bambu Lab A1 Mini with real PLA prints.`}
 >
 
@@ -62,7 +61,7 @@ const aboutSchema = graph([
     <section class="space-y-6" aria-labelledby="the-problem">
       <h2 id="the-problem" class="text-3xl font-bold text-white font-heading">Why "32mm" rarely means 32mm</h2>
       <p>
-        If you've been 3D printing tabletop miniatures for more than a week, you've experienced the frustration. You download an incredible STL, slice it, hit print, and 8 hours later discover your new character towers over your current squad—or looks like a child standing next to your terrain.
+        If you've been 3D printing tabletop miniatures for more than a week, you've experienced the frustration. You download an incredible proxy STL, slice it, hit print, and 8 hours later discover your new character towers over your Warhammer squad—or looks like a child standing next to your terrain.
       </p>
       <p>
         <strong class="text-white">I call it scale creep</strong> — because that's exactly what happens to my army when one sculptor measures to the eye and another measures to the crown. I've learned the hard way that no two creators agree on what "32mm" actually means. Some account for base thickness, others don't. For anyone trying to build a cohesive army or gaming table, it leads to a pile of failed prints and wasted filament.
@@ -85,7 +84,7 @@ const aboutSchema = graph([
         <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
           <h3 class="text-[#ff6b35] font-bold mb-2">Eye level ({site.eyeLevelCm}cm)</h3>
           <p class="text-sm">
-            The standard for fantasy and sci-fi miniatures (modern heroic scale). Measures directly to eye level so helmets, hats, and spikes don't mess up the scale ratio.
+            The standard for fantasy and sci-fi miniatures (like Warhammer or D&D). Measures directly to eye level so helmets, hats, and spikes don't mess up the scale ratio.
           </p>
         </div>
         <div class="bg-black/40 p-6 rounded-2xl border border-white/5">
@@ -111,21 +110,21 @@ const aboutSchema = graph([
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-          <i class="ti ti-ruler text-[#ff6b35] text-lg mb-3 block"></i>
+          <i class="fa-solid fa-ruler text-[#ff6b35] text-lg mb-3 block"></i>
           <h4 class="text-white font-semibold text-sm mb-2">FDM Calibration</h4>
           <p class="text-xs text-slate-400">
             Slight over-extrusion can expand dimensions by <span class="text-[#ff6b35] font-semibold">0.3% to 0.5%</span>. Keeping flow rate tuned is essential before measuring physical minis.
           </p>
         </div>
         <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-          <i class="ti ti-stack text-[#ff6b35] text-lg mb-3 block"></i>
+          <i class="fa-solid fa-layer-group text-[#ff6b35] text-lg mb-3 block"></i>
           <h4 class="text-white font-semibold text-sm mb-2">Layer Stepping</h4>
           <p class="text-xs text-slate-400">
             Printing at <span class="text-[#ff6b35] font-semibold">0.08mm</span> vs 0.2mm layer heights changes surface stepping, which can subtly shift crown-height caliper readings on rounded helmets.
           </p>
         </div>
         <div class="bg-slate-900/30 p-6 rounded-2xl border border-white/5">
-          <i class="ti ti-temperature text-[#ff6b35] text-lg mb-3 block"></i>
+          <i class="fa-solid fa-temperature-high text-[#ff6b35] text-lg mb-3 block"></i>
           <h4 class="text-white font-semibold text-sm mb-2">Material Shrinkage</h4>
           <p class="text-xs text-slate-400">
             PLA and PETG shrink roughly <span class="text-[#ff6b35] font-semibold">0.2% to 0.5%</span> as they cool. I include material compensation options in the tools to counteract this.
@@ -133,7 +132,7 @@ const aboutSchema = graph([
         </div>
       </div>
       <p>
-        My worst mistake? I once eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." My armoured soldier came out looking like a bobblehead — correct height, wrong proportions. That's why I now measure every conversion with my PARKSIDE calipers before I publish the percentage.
+        My worst mistake? I once eyeballed 115% for a 28mm→32mm conversion because "it looked close enough." My Space Marine came out looking like a bobblehead — correct height, wrong proportions. That's why I now measure every conversion with my PARKSIDE calipers before I publish the percentage.
       </p>
       <p>
         I test <strong class="text-white">every conversion</strong> on my <span class="text-[#ff6b35] font-semibold">{site.printerName}</span> — mostly PLA and PETG. If a converted proxy comes off the build plate looking out of proportion with the rest of my unit, I adjust the numbers before they go live. <strong class="text-white">I don't publish percentages I haven't personally verified.</strong>
@@ -150,7 +149,7 @@ const aboutSchema = graph([
         In 2019, I tried turning the hobby into a business by running a 3D printing service in <strong class="text-white">Enschede, Netherlands</strong>. It didn't take long to realize that running a commercial print service completely drained the fun out of the hobby. The margins were tight, managing print queues felt like a grind, and I had no time left to print or paint minis for myself. Eventually, I shut down the service and stepped away.
       </p>
       <p>
-        When I returned to 3D printing, I kept it strictly about the hobby. Now I print on a <span class="text-[#ff6b35] font-semibold">{site.printerName}</span>—mostly PLA and PETG—focusing on sci-fi and fantasy miniature proxies, tabletop terrain, board game upgrades, and the occasional practical print. Zero commercial pressure, just enjoying the process.
+        When I returned to 3D printing, I kept it strictly about the hobby. Now I print on a <span class="text-[#ff6b35] font-semibold">{site.printerName}</span>—mostly PLA and PETG—focusing on Warhammer proxies, tabletop terrain, board game upgrades, and the occasional practical print. Zero commercial pressure, just enjoying the process.
       </p>
       <p>
         Running that print service taught me one key lesson: nobody wants to commit to a 10-hour print only to find out the model is scaled wrong. I built STLACCESS to solve the exact scaling headaches I kept hitting on my own workbench.
@@ -162,7 +161,7 @@ const aboutSchema = graph([
       <h2 id="what-is-heading" class="text-3xl font-bold text-white font-heading mb-6">What STLACCESS is (and isn't)</h2>
       <div class="space-y-4 text-sm text-slate-400">
         <p>
-          <strong class="text-white">Built for the painting desk.</strong> I don't sell STL files, spools of filament, or printers. There are no paywalls. I built these calculators for my own workflow and published them so other tabletop printers can save time and filament.
+          <strong class="text-white">Built for the painting desk.</strong> I don't sell STL files, spools of filament, or printers. There are no paywalls or affiliate tricks. I built these calculators for my own workflow and published them so other tabletop printers can save time and filament.
         </p>
         <p>
           <strong class="text-white">Grounded in real printing experience.</strong> The numbers aren't just theoretical math. They are tested with physical test prints, measured with my PARKSIDE digital calipers (0.01mm precision), and adjusted when real-world results don't look tabletop-ready.
@@ -191,8 +190,8 @@ const aboutSchema = graph([
         </div>
       </div>
       <p class="text-xs text-slate-500 mt-6">
-        <a href={site.author.url} target="_blank" rel="noopener noreferrer" class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1">
-          <i class="ti ti-git-branch text-xs"></i>
+        <a href={site.author.url} class="text-[#ff6b35] hover:text-white transition-colors font-semibold inline-flex items-center gap-1">
+          <i class="fa-solid fa-code-branch text-xs"></i>
           Follow on GitHub
         </a>
       </p>
@@ -204,14 +203,12 @@ const aboutSchema = graph([
   <div class="mt-24 pt-12 border-t border-white/5 text-center">
     <h3 class="text-2xl font-bold font-heading mb-6">Get your scale right before you print</h3>
     <a
-      href="/stl-scale-inspector/"
+      href="/"
       class="inline-flex items-center gap-3 bg-[#ff6b35] text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:scale-105 hover:shadow-2xl hover:shadow-[#ff6b35]/30 active:scale-95 transition-all duration-200"
     >
-      <i class="ti ti-ruler-measure"></i>
-      Open the STL Scale Inspector
+      <i class="fa-solid fa-calculator"></i>
+      Launch the 3D print scale calculator
     </a>
   </div>
 </div>
-
-<ToolStrip />
 </Layout>

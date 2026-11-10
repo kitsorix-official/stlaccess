@@ -1,0 +1,83 @@
+[
+  {
+    "id": "none",
+    "name": "No Print Bed (Infinite Ground)",
+    "manufacturer": "Universal",
+    "width": 0,
+    "depth": 0,
+    "height": 0,
+    "type": "none"
+  },
+  {
+    "id": "bambu_p1s",
+    "name": "Bambu Lab X1C / P1S / P1P",
+    "manufacturer": "Bambu Lab",
+    "width": 256,
+    "depth": 256,
+    "height": 256,
+    "type": "FDM"
+  },
+  {
+    "id": "bambu_a1_mini",
+    "name": "Bambu Lab A1 Mini",
+    "manufacturer": "Bambu Lab",
+    "width": 180,
+    "depth": 180,
+    "height": 180,
+    "type": "FDM"
+  },
+  {
+    "id": "elegoo_mars4",
+    "name": "Elegoo Mars 4 / Mars 3 Pro (Resin)",
+    "manufacturer": "Elegoo",
+    "width": 153.36,
+    "depth": 77.76,
+    "height": 175,
+    "type": "Resin"
+  },
+  {
+    "id": "elegoo_saturn3",
+    "name": "Elegoo Saturn 3 / 4 Ultra 12K (Resin)",
+    "manufacturer": "Elegoo",
+    "width": 218.88,
+    "depth": 122.88,
+    "height": 250,
+    "type": "Resin"
+  },
+  {
+    "id": "anycubic_m5s",
+    "name": "Anycubic Photon Mono M5s (Resin)",
+    "manufacturer": "Anycubic",
+    "width": 218.88,
+    "depth": 122.88,
+    "height": 200,
+    "type": "Resin"
+  },
+  {
+    "id": "phrozen_mega8k",
+    "name": "Phrozen Sonic Mega 8K (Large Resin)",
+    "manufacturer": "Phrozen",
+    "width": 330,
+    "depth": 185,
+    "height": 400,
+    "type": "Resin"
+  },
+  {
+    "id": "prusa_mk4",
+    "name": "Prusa MK4 / MK3S+ (FDM)",
+    "manufacturer": "Prusa Research",
+    "width": 250,
+    "depth": 210,
+    "height": 220,
+    "type": "FDM"
+  },
+  {
+    "id": "ender3",
+    "name": "Creality Ender-3 V3 / V2 (FDM)",
+    "manufacturer": "Creality",
+    "width": 220,
+    "depth": 220,
+    "height": 250,
+    "type": "FDM"
+  }
+]
