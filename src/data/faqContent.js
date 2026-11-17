@@ -53,7 +53,7 @@ export const faqData = [
       },
       {
         q: "Will 1:48 infantry look too tall next to 28mm miniatures?",
-        a: `Yes. True 1:48 miniatures are about 35mm tall. They will tower over 28mm tabletop miniatures. If you have 1:48 miniatures you want to use, scale them down to <span class="text-[#ff6b35] font-semibold">76.8%</span> to match 28mm eye level. Or just use them as officers and heroes who are supposed to be tall.`,
+        a: `Yes. True 1:48 miniatures are about 35mm tall. They will tower over 28mm tabletop miniatures. If you have 1:48 miniatures you want to use, scale them down to <span class="text-[#ff6b35] font-semibold">84.1%</span> to match 28mm eye level. Or just use them as officers and heroes who are supposed to be tall.`,
       },
       {
         q: "Why are there so few 1:56 vehicle STLs available?",

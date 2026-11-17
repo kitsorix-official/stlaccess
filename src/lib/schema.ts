@@ -22,7 +22,7 @@ export function organization() {
     name: "STLACCESS",
     url: SITE_URL,
     description:
-      "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on a Bambu Lab A1 Mini.",
+      "Browser-only STL and 3D printing learning hub: miniature scale converter, size charts, FDM guides, resin-to-FDM workflows and STL file basics, tested on a Bambu Lab A1 Mini.",
     logo: LOGO_URL,
     image: IMAGE_URL,
     founder: { "@id": PERSON_ID },
@@ -47,7 +47,7 @@ export function webSite() {
     name: "STLACCESS",
     url: SITE_URL,
     description:
-      "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on a Bambu Lab A1 Mini.",
+      "Browser-only STL and 3D printing learning hub: miniature scale converter, size charts, FDM guides, resin-to-FDM workflows and STL file basics, tested on a Bambu Lab A1 Mini.",
     inLanguage: "en",
     publisher: { "@id": ORG_ID },
     potentialAction: [
@@ -117,12 +117,10 @@ export function faqPage(items: FaqItem[], pageUrl?: string) {
       "@type": "Question",
       name: stripHtml(item.question),
       answerCount: 1,
-      datePublished: new Date().toISOString().split("T")[0],
       ...(item.url || pageUrl ? { url: item.url || `${SITE_URL}${pageUrl}#qa-${i}` } : {}),
       acceptedAnswer: {
         "@type": "Answer",
         text: stripHtml(item.answer),
-        datePublished: new Date().toISOString().split("T")[0],
         upvoteCount: 0,
         author: {
           "@type": "Person",
@@ -200,7 +198,7 @@ export function webPage({ type = "WebPage", name, description, url, mainEntity }
     name,
     description,
     url: `${SITE_URL}${url}`,
-    isPartOf: { "@id": SITE_URL },
+    isPartOf: { "@id": `${SITE_URL}/#website` },
     ...(mainEntity ? { mainEntity: { "@id": mainEntity } } : {}),
   };
 }

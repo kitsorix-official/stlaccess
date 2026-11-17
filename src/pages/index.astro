@@ -7,6 +7,7 @@ import conversions from "../data/conversions.json";
 import tools from "../data/tools.json";
 import { graph, organization, webSite, softwareApplication, faqPage } from "../lib/schema";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
+import { learningTracks } from "../lib/learningPaths";
 
 const siteUpdated = lastModifiedDate();
 
@@ -118,8 +119,8 @@ const defaultFormula = `${defaultTargetData.standardMm.toFixed(1)} ÷ ${defaultS
 const defaultContext = `${defaultSource} → ${defaultTarget} · Eye Level`;
 ---
 <Layout
-  title="STL Scale Converter | Slicer Percentage Calculator for 3D Miniatures | STLACCESS"
-  description="I built this free scale calculator after wasting too much filament on mis-sized prints. Tested on my Bambu Lab A1 Mini with digital calipers."
+  title="STL Scale Converter & 3D Printing Learning Hub | STLACCESS"
+  description="Free miniature scale calculator plus hand-written guides on STL files, scale maths, FDM settings and resin-to-FDM conversion. Tested on my Bambu Lab A1 Mini."
 >
 
 <JsonLd slot="head" data={homeSchema} />
@@ -279,7 +280,7 @@ Type this into your slicer
 <i class="fa-solid fa-shield-halved"></i>
 Tested by me
 <span class="mx-1">•</span>
-<a href="/about" class="hover:underline">My Methodology</a>
+<a href="/methodology" class="hover:underline">My Methodology</a>
 </div>
 </div>
 </div>
@@ -322,6 +323,36 @@ How I use the calculator <span class="text-[#ff6b35]">for every print</span>
 </div>
 </li>
 </ol>
+</section>
+
+<!-- Four learning pillars -->
+<section id="learn" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5" aria-labelledby="learn-heading">
+  <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+    <div class="max-w-2xl">
+      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-4">Start with the question you have</p>
+      <h2 id="learn-heading" class="text-3xl md:text-5xl font-bold font-heading mb-4">
+        Learn the four things <span class="text-[#ff6b35] italic">I had to learn the hard way</span>
+      </h2>
+      <p class="text-slate-400 text-lg">
+        The calculator answers “what percentage?” These tracks answer the questions around it: what an STL contains, why it imports at the wrong size, how scale maths works and how to print the result.
+      </p>
+    </div>
+    <a href="/learn" class="text-[#ff6b35] font-bold text-sm uppercase tracking-widest border-b-2 border-[#ff6b35]/20 hover:border-[#ff6b35] pb-1 transition-all">
+      See all learning tracks
+    </a>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {learningTracks.map((track, i) => (
+      <a href={track.path} class="group block bg-slate-900/30 p-8 rounded-3xl border border-white/5 hover:border-[#ff6b35]/40 transition-all hover:bg-slate-900/50">
+        <span class="text-[10px] font-bold uppercase tracking-widest block mb-4 text-[#ff6b35]">Track 0{i + 1}</span>
+        <h3 class="text-xl font-bold mb-3 group-hover:text-[#ff6b35] transition-colors">{track.title}</h3>
+        <p class="text-sm text-slate-400 leading-relaxed mb-6">{track.description}</p>
+        <span class="inline-flex items-center gap-2 text-sm font-semibold text-[#ff6b35]">
+          Open the track <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+        </span>
+      </a>
+    ))}
+  </div>
 </section>
 
 <!-- Reference Section -->
@@ -411,7 +442,7 @@ Straight answers from my own experience at the painting desk.
 
 <div class="text-center">
   <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500">
-    <a href="/about" class="hover:text-[#ff6b35] transition-colors">Read my full methodology</a>
+    <a href="/methodology" class="hover:text-[#ff6b35] transition-colors">Read my full methodology</a>
     <span class="mx-2 text-slate-700">•</span>
     <a href="/reference" class="hover:text-[#ff6b35] transition-colors">View my wargaming data sources</a>
   </p>

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Budget PLA",
+    "price": 14.99,
+    "weight": 1000,
+    "type": "PLA",
+    "brands": "eSun, Sunlu"
+  },
+  {
+    "name": "Mid PLA",
+    "price": 19.99,
+    "weight": 1000,
+    "type": "PLA",
+    "brands": "Bambu Lab, Polymaker"
+  },
+  {
+    "name": "Premium PLA",
+    "price": 30.92,
+    "weight": 970,
+    "type": "PLA-CF",
+    "brands": "Bambu Lab"
+  },
+  {
+    "name": "Budget PETG",
+    "price": 16.99,
+    "weight": 1000,
+    "type": "PETG",
+    "brands": "eSun, Sunlu"
+  },
+  {
+    "name": "Mid PETG",
+    "price": 18.99,
+    "weight": 1000,
+    "type": "PETG",
+    "brands": "Bambu Lab"
+  },
+  {
+    "name": "Premium PETG",
+    "price": 34.99,
+    "weight": 1000,
+    "type": "PETG",
+    "brands": "Prusament"
+  }
+]

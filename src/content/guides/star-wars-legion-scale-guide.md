@@ -72,7 +72,7 @@ Here's the set I use, all with X, Y, and Z locked:
 | --- | --- | --- |
 | 28mm (D&D / Bolt Action) | 125.0% | Classic infantry to Legion |
 | 32mm (Warhammer / heroic) | 109.4% | The most common proxy jump |
-| 1:48 (Bandai / Revell kits) | 96.0% | Scale model kits down to infantry match |
+| 1:48 (Bandai / Revell kits) | 105.1% | Scale model kits down to infantry match |
 | 40mm (Shatterpoint) | 87.5% | Shrinking big Star Wars sculpts to Legion |
 
 Every one of these is the same formula — target eye height ÷ source eye height × 100 — which is what the [slicer percentage calculator](/tools/slicer-percentage-calculator) does for you if you ever need a pair I haven't listed.

@@ -1,0 +1,7 @@
+name,price,weight,type,brands
+Budget PLA,14.99,1000,PLA,"eSun, Sunlu"
+Mid PLA,19.99,1000,PLA,"Bambu Lab, Polymaker"
+Premium PLA,30.92,970,PLA-CF,Bambu Lab
+Budget PETG,16.99,1000,PETG,"eSun, Sunlu"
+Mid PETG,18.99,1000,PETG,Bambu Lab
+Premium PETG,34.99,1000,PETG,Prusament

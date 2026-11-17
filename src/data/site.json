@@ -1,7 +1,7 @@
 {
   "name": "STLACCESS",
   "url": "https://stlaccess.com",
-  "description": "STL scale converter for 3D printed miniatures. Slicer percentages for Warhammer, D&D, Bolt Action, and tabletop gaming — tested on my Bambu Lab A1 Mini.",
+  "description": "Browser-only STL and 3D printing learning hub: miniature scale converter, size charts, FDM guides, resin-to-FDM workflows and STL file basics, tested on my Bambu Lab A1 Mini.",
   "baselineHeightCm": 175,
   "baselineHeight": "175cm",
   "eyeLevelCm": 160,
@@ -13,14 +13,14 @@
   "googleFormUrl": "https://forms.gle/njKi8KgCjUQEM1n96",
   "datePublished": "2026-05-07",
   "lastContentReview": "2026-08-15",
-  "rssChannelTitle": "STLACCESS Guides — 3D Print Miniature Scale Conversion",
-  "rssChannelDescription": "Articles about 3D printed miniature scale conversion, FDM printing tips, and the methodology behind every conversion percentage on STLACCESS.",
+  "rssChannelTitle": "STLACCESS Guides — Scale, STL Files and FDM Printing",
+  "rssChannelDescription": "Hand-written guides about miniature scale conversion, STL file basics, FDM settings, resin-to-FDM workflows and the methodology behind every percentage on STLACCESS.",
   "banner": {
     "enabled": true,
-    "message": "New: 3D Scale Visualizer \u2014 Compare miniature scales side-by-side in an interactive 3D viewport",
-    "url": "/tools/3d-scale-visualizer",
-    "urlLabel": "Try it",
-    "icon": "fa-cubes",
+    "message": "New learning hubs — scale maths, FDM settings, resin-to-FDM and STL file basics",
+    "url": "/learn",
+    "urlLabel": "Explore",
+    "icon": "fa-graduation-cap",
     "ttlDays": 14
   },
   "author": {
@@ -41,21 +41,21 @@
       "slug": "1-35-to-32mm",
       "label": "1:35 to 32mm",
       "category": "Historical",
-      "percentage": "64.0%",
+      "percentage": "70.0%",
       "description": "Military kits to heroic gaming scale"
     },
     {
       "slug": "1-48-to-28mm",
       "label": "1:48 to 28mm",
       "category": "Quarter scale",
-      "percentage": "76.8%",
+      "percentage": "84.1%",
       "description": "Aircraft and vehicle models to true 28mm"
     },
     {
       "slug": "1-56-to-28mm",
       "label": "1:56 to 28mm",
       "category": "Bolt Action",
-      "percentage": "89.6%",
+      "percentage": "97.9%",
       "description": "WWII wargaming to true 28mm"
     },
     {
@@ -97,21 +97,45 @@
     },
     {
       "question": "What does <span class=\"text-[#ff6b35]\">1:56 scale</span> mean in miniature gaming?",
-      "answer": "1:56 is a ratio scale common in historical wargaming, including <span class=\"text-white font-semibold\">Bolt Action</span>. It works out to roughly 28mm true scale when you use a 175cm human baseline. To convert 1:56 STLs to 32mm heroic, most people scale them to <span class=\"text-[#ff6b35] font-bold text-lg\">114.3%</span>."
+      "answer": "1:56 is a ratio scale common in historical wargaming, including <span class=\"text-white font-semibold\">Bolt Action</span>. It works out to roughly 28mm true scale when you use a 175cm human baseline. To convert 1:56 STLs to 32mm heroic, most people scale them to <span class=\"text-[#ff6b35] font-bold text-lg\">111.9%</span>."
     }
   ],
   "quickRef": [
-    { "from": "32mm (Heroic)", "to": "28mm (True)", "pct": "87.5%" },
-    { "from": "1:56 (Bolt Action)", "to": "1:48 (Tamiya)", "pct": "116.7%" },
-    { "from": "1:35 (Model Kit)", "to": "1:56 (Tabletop)", "pct": "62.5%" },
-    { "from": "32mm (AoS/Legion)", "to": "28mm (D&D)", "pct": "87.5%" },
-    { "from": "28mm (Heroic)", "to": "1:48 (True)", "pct": "130.4%" },
-    { "from": "1:48 (Aircraft)", "to": "1:56 (Ground)", "pct": "85.7%" }
+    {
+      "from": "32mm (Heroic)",
+      "to": "28mm (True)",
+      "pct": "87.5%"
+    },
+    {
+      "from": "1:56 (Bolt Action)",
+      "to": "1:48 (Tamiya)",
+      "pct": "116.4%"
+    },
+    {
+      "from": "1:35 (Model Kit)",
+      "to": "1:56 (Tabletop)",
+      "pct": "62.6%"
+    },
+    {
+      "from": "32mm (AoS/Legion)",
+      "to": "28mm (D&D)",
+      "pct": "87.5%"
+    },
+    {
+      "from": "28mm (True)",
+      "to": "1:48 (Quarter / Aircraft)",
+      "pct": "118.9%"
+    },
+    {
+      "from": "1:48 (Aircraft)",
+      "to": "1:56 (Ground)",
+      "pct": "85.9%"
+    }
   ],
   "referencePageQA": [
     {
       "question": "What percentage do I scale 28mm to 32mm?",
-      "answer": "Type <span class=\"text-[#ff6b35] font-bold\">114.3%</span> into your slicer. That is the number for 28mm to 32mm measured to eye level. If you measure to the top of the head instead, use <span class=\"text-[#ff6b35] font-bold\">116.1%</span>. I have tested this on PLA with no additional shrinkage compensation needed."
+      "answer": "Type <span class=\"text-[#ff6b35] font-bold\">114.3%</span> into your slicer. That is the number for 28mm to 32mm measured to eye level. If you measure to the top of the head instead, use <span class=\"text-[#ff6b35] font-bold\">113.1%</span>. I have tested this on PLA with no additional shrinkage compensation needed."
     },
     {
       "question": "How big is a 28mm miniature in real measurements?",
@@ -123,7 +147,7 @@
     },
     {
       "question": "What scale is 1:35 in mm for miniatures?",
-      "answer": "At 1:35, a 175cm human works out to about 50mm to the eyes. That is significantly bigger than 28mm tabletop miniatures — most 1:35 kits are Tamiya-style military models, not wargaming miniatures. If you want to mix a 1:35 tank with 28mm infantry, scale it down to <span class=\"text-[#ff6b35] font-bold\">62.5%</span> in your slicer."
+      "answer": "At 1:35, a 175cm human is 50mm to the top of the head, or about 45.7mm to the eyes. That is bigger than 28mm tabletop miniatures — most 1:35 kits are Tamiya-style military models, not wargaming miniatures. To match 28mm infantry eye to eye, scale the kit down to <span class=\"text-[#ff6b35] font-bold\">61.3%</span> in your slicer."
     },
     {
       "question": "Does PLA or PETG shrink after printing?",

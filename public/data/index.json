@@ -1,0 +1,75 @@
+{
+  "name": "STLACCESS open datasets",
+  "description": "Scale baselines, conversion percentages, game system scales, material densities, filament presets and tools published by STLACCESS under CC BY 4.0.",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "homepage": "https://stlaccess.com/methodology",
+  "generatedFrom": "src/data/*.json",
+  "files": [
+    {
+      "path": "scale-baselines.json",
+      "format": "application/json",
+      "count": 16,
+      "description": "Scale baselines with eye-level and top-of-head millimetre values"
+    },
+    {
+      "path": "scale-baselines.csv",
+      "format": "text/csv",
+      "count": 16,
+      "description": "Same data as CSV"
+    },
+    {
+      "path": "conversion-matrix.json",
+      "format": "application/json",
+      "count": 46,
+      "description": "Every verified scale conversion with its math"
+    },
+    {
+      "path": "conversion-matrix.csv",
+      "format": "text/csv",
+      "count": 46,
+      "description": "Same data as CSV"
+    },
+    {
+      "path": "game-systems.json",
+      "format": "application/json",
+      "count": 26,
+      "description": "Game system scales and print notes"
+    },
+    {
+      "path": "game-systems.csv",
+      "format": "text/csv",
+      "count": 26,
+      "description": "Same data as CSV"
+    },
+    {
+      "path": "material-densities.json",
+      "format": "application/json",
+      "count": 12,
+      "description": "Filament and resin densities in g/cm³"
+    },
+    {
+      "path": "material-densities.csv",
+      "format": "text/csv",
+      "count": 12,
+      "description": "Same data as CSV"
+    },
+    {
+      "path": "filament-presets.json",
+      "format": "application/json",
+      "count": 6,
+      "description": "Filament price and weight presets"
+    },
+    {
+      "path": "filament-presets.csv",
+      "format": "text/csv",
+      "count": 6,
+      "description": "Same data as CSV"
+    },
+    {
+      "path": "tools.json",
+      "format": "application/json",
+      "count": 9,
+      "description": "Browser-only tools and their canonical URLs"
+    }
+  ]
+}

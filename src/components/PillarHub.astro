@@ -1,0 +1,105 @@
+---
+import Layout from "../layouts/Layout.astro";
+import JsonLd from "./JsonLd.astro";
+import { graph, breadcrumb, itemList } from "../lib/schema";
+
+export interface HubCard {
+  title: string;
+  description: string;
+  href: string;
+  tag?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  heading: string;
+  answer: string;
+  intro: string;
+  path: string;
+  cards: HubCard[];
+  related?: { title: string; href: string }[];
+}
+
+const { title, description, eyebrow, heading, answer, intro, path, cards, related = [] } = Astro.props;
+
+const crumbs = path === "/learn"
+  ? [{ name: "Home", path: "/" }, { name: "Learn", path: "/learn" }]
+  : [
+      { name: "Home", path: "/" },
+      { name: "Learn", path: "/learn" },
+      { name: heading, path },
+    ];
+
+const hubSchema = graph([
+  breadcrumb(crumbs),
+  itemList(cards.map((card) => ({
+    type: card.href.startsWith("/tools/")
+      ? "SoftwareApplication"
+      : card.href.startsWith("/learn/")
+        ? "WebPage"
+        : "Article",
+    name: card.title,
+    url: card.href,
+    description: card.description,
+  }))),
+]);
+---
+
+<Layout title={title} description={description}>
+  <JsonLd slot="head" data={hubSchema} />
+
+  <div slot="hero">
+    <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+      <span class="mx-2 text-slate-800">/</span>
+      {crumbs.slice(1).map((crumb, i) => (
+        <span>
+          {i > 0 && <span class="mx-2 text-slate-800">/</span>}
+          <a href={crumb.path} class={i === crumbs.length - 2 ? "text-slate-400" : "hover:text-[#ff6b35] transition-colors"}>{crumb.name}</a>
+        </span>
+      ))}
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-6 pb-14">
+      <p class="text-xs font-black uppercase tracking-[0.25em] text-[#ff6b35] mb-4">{eyebrow}</p>
+      <h1 class="text-4xl md:text-6xl font-bold font-heading tracking-tight mb-6">{heading}</h1>
+      <div class="rounded-2xl border border-[#ff6b35]/30 bg-gradient-to-br from-[#ff6b35]/15 via-[#ff6b35]/5 to-transparent p-6 md:p-8 mb-6" role="note" aria-label="Direct answer">
+        <p class="text-lg md:text-xl font-semibold text-white leading-relaxed">{answer}</p>
+      </div>
+      <p class="text-lg text-slate-400 max-w-3xl leading-relaxed">{intro}</p>
+    </div>
+  </div>
+
+  <main class="max-w-6xl mx-auto px-6 pb-16">
+    <h2 class="text-2xl font-bold font-heading mb-6">Start here</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {cards.map((card) => (
+        <a href={card.href} class="group block bg-slate-900/30 rounded-3xl border border-white/5 p-7 hover:border-[#ff6b35]/40 hover:bg-slate-900/50 transition-all">
+          <div class="flex flex-col h-full">
+            {card.tag && (
+              <span class="text-[10px] font-bold uppercase tracking-wider text-[#ff6b35] bg-[#ff6b35]/10 px-2.5 py-1 rounded-full self-start mb-4">{card.tag}</span>
+            )}
+            <h3 class="text-xl font-bold mb-3 group-hover:text-[#ff6b35] transition-colors">{card.title}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed flex-1">{card.description}</p>
+            <span class="inline-flex items-center gap-2 text-sm font-semibold text-[#ff6b35] mt-6">
+              Read more <i class="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    {related.length > 0 && (
+      <aside class="mt-14 pt-8 border-t border-white/5" aria-label="Related pages">
+        <h2 class="text-sm font-black uppercase tracking-widest text-slate-500 mb-5">Related on STLACCESS</h2>
+        <ul class="flex flex-wrap gap-x-8 gap-y-3">
+          {related.map((item) => (
+            <li><a href={item.href} class="text-sm text-slate-300 hover:text-[#ff6b35] transition-colors">{item.title}</a></li>
+          ))}
+        </ul>
+      </aside>
+    )}
+  </main>
+</Layout>

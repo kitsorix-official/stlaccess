@@ -118,7 +118,7 @@ export const gameGuides = {
               </thead>
               <tbody>
                 <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:35 vehicle</td><td class="py-2 px-3 text-slate-300">1:56 vehicle</td><td class="py-2 px-3 text-right font-mono font-bold text-white">62.5%</td></tr>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:48 vehicle</td><td class="py-2 px-3 text-slate-300">1:56 vehicle</td><td class="py-2 px-3 text-right font-mono font-bold text-white">85.7%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:48 vehicle</td><td class="py-2 px-3 text-slate-300">1:56 vehicle</td><td class="py-2 px-3 text-right font-mono font-bold text-white">85.9%</td></tr>
                 <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:72 vehicle</td><td class="py-2 px-3 text-slate-300">1:56 vehicle</td><td class="py-2 px-3 text-right font-mono font-bold text-white">128.6%</td></tr>
                 <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">32mm infantry</td><td class="py-2 px-3 text-slate-300">28mm infantry</td><td class="py-2 px-3 text-right font-mono font-bold text-white">87.5%</td></tr>
                 <tr><td class="py-2 px-3 text-slate-300">35mm infantry</td><td class="py-2 px-3 text-slate-300">28mm infantry</td><td class="py-2 px-3 text-right font-mono font-bold text-white">80.0%</td></tr>
@@ -359,7 +359,7 @@ export const gameGuides = {
       {
         heading: "Converting Out of the 28mm Lane",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">The validated steps out of 28mm cover the common side projects: 125.0% brings a classic Fantasy model up to the Legion and MCP lane, and 178.6% scales it into the 1:35 model-kit world for display or terrain work.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">The validated steps out of 28mm cover the common side projects: 125.0% brings a classic Fantasy model up to the Legion and MCP lane, and 163.2% scales it into the 1:35 model-kit world for display or terrain work.</p>
         `
       },
       {
@@ -416,7 +416,7 @@ export const gameGuides = {
       {
         heading: "Vehicles and Display Pieces",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">Two validated steps are useful for MESBG side projects: 178.6% takes a 28mm model into the 1:35 model-kit lane for vehicles and terrain displays, and 267.9% pushes a favorite hero all the way to display scale for the cabinet.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">Two validated steps are useful for MESBG side projects: 163.2% takes a 28mm model into the 1:35 model-kit lane for vehicles and terrain displays, and 267.9% pushes a favorite hero all the way to display scale for the cabinet.</p>
         `
       },
       {
@@ -905,8 +905,8 @@ export const gameGuides = {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:100 → 1:35 (micro scale up)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 17.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">285.7%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale to model kit)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:100 → 1:35 (micro scale up)</td><td class="py-2 px-3 font-mono text-slate-500">45.7 ÷ 16.0</td><td class="py-2 px-3 text-right font-mono font-bold text-white">285.6%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale to model kit)</td><td class="py-2 px-3 font-mono text-slate-500">45.7 ÷ 22.2</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.9%</td></tr>
               </tbody>
             </table>
           </div>
@@ -948,8 +948,8 @@ export const gameGuides = {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">15mm (1:100) → 28mm tabletop</td><td class="py-2 px-3 font-mono text-slate-500">28.0 ÷ 17.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">160.0%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">15mm (1:100) → 32mm heroic</td><td class="py-2 px-3 font-mono text-slate-500">32.0 ÷ 17.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">182.9%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">15mm (1:100) → 28mm tabletop</td><td class="py-2 px-3 font-mono text-slate-500">28.0 ÷ 16.0</td><td class="py-2 px-3 text-right font-mono font-bold text-white">175.0%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">15mm (1:100) → 32mm heroic</td><td class="py-2 px-3 font-mono text-slate-500">32.0 ÷ 16.0</td><td class="py-2 px-3 text-right font-mono font-bold text-white">200.0%</td></tr>
               </tbody>
             </table>
           </div>
@@ -959,7 +959,7 @@ export const gameGuides = {
       {
         heading: "The Model-Kit Jump",
         html: `
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">The validated step from 1:100 up to the 1:35 model-kit lane is 285.7%. It is a huge jump — more for display and diorama work than for tabletop play, where the 15mm size is the point.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">The validated step from 1:100 up to the 1:35 model-kit lane is 285.6%. It is a huge jump — more for display and diorama work than for tabletop play, where the 15mm size is the point.</p>
         `
       },
       {
@@ -1009,8 +1009,8 @@ export const gameGuides = {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:100 → 1:35 (scale up reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 17.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">285.7%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:100 → 1:35 (scale up reference)</td><td class="py-2 px-3 font-mono text-slate-500">45.7 ÷ 16.0</td><td class="py-2 px-3 text-right font-mono font-bold text-white">285.6%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale reference)</td><td class="py-2 px-3 font-mono text-slate-500">45.7 ÷ 22.2</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.9%</td></tr>
               </tbody>
             </table>
           </div>
@@ -1070,8 +1070,8 @@ export const gameGuides = {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:100 → 1:35 (scale up reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 17.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">285.7%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale reference)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:100 → 1:35 (scale up reference)</td><td class="py-2 px-3 font-mono text-slate-500">45.7 ÷ 16.0</td><td class="py-2 px-3 text-right font-mono font-bold text-white">285.6%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale reference)</td><td class="py-2 px-3 font-mono text-slate-500">45.7 ÷ 22.2</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.9%</td></tr>
               </tbody>
             </table>
           </div>
@@ -1227,9 +1227,9 @@ export const gameGuides = {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:56 vehicle → 28mm infantry</td><td class="py-2 px-3 font-mono text-slate-500">28.0 ÷ 31.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">89.6%</td></tr>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:56 vehicle → 32mm heroic</td><td class="py-2 px-3 font-mono text-slate-500">32.0 ÷ 31.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">102.4%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">28mm infantry → 1:35 model kit</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 28.0</td><td class="py-2 px-3 text-right font-mono font-bold text-white">178.6%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:56 vehicle → 28mm infantry</td><td class="py-2 px-3 font-mono text-slate-500">28.0 ÷ 28.6</td><td class="py-2 px-3 text-right font-mono font-bold text-white">97.9%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:56 vehicle → 32mm heroic</td><td class="py-2 px-3 font-mono text-slate-500">32.0 ÷ 28.6</td><td class="py-2 px-3 text-right font-mono font-bold text-white">111.9%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">28mm infantry → 1:35 model kit</td><td class="py-2 px-3 font-mono text-slate-500">45.7 ÷ 28.0</td><td class="py-2 px-3 text-right font-mono font-bold text-white">163.2%</td></tr>
               </tbody>
             </table>
           </div>
@@ -1444,12 +1444,12 @@ export const gameGuides = {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:48 → 1:35 (quarter scale up)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 36.5</td><td class="py-2 px-3 text-right font-mono font-bold text-white">137.1%</td></tr>
-                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale up)</td><td class="py-2 px-3 font-mono text-slate-500">50.0 ÷ 24.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.7%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:48 → 1:35 (quarter scale up)</td><td class="py-2 px-3 font-mono text-slate-500">45.7 ÷ 33.3</td><td class="py-2 px-3 text-right font-mono font-bold text-white">137.2%</td></tr>
+                <tr><td class="py-2 px-3 text-slate-300">1:72 → 1:35 (small scale up)</td><td class="py-2 px-3 font-mono text-slate-500">45.7 ÷ 22.2</td><td class="py-2 px-3 text-right font-mono font-bold text-white">205.9%</td></tr>
               </tbody>
             </table>
           </div>
-          <p class="text-sm text-slate-400 leading-relaxed mt-4">There is no validated 1:27-to-1:35 pair in the matrix, so when I scale a Bandai or Revell ship kit (1:48) I use the 137.1% reference step and verify against an official X-Wing model.</p>
+          <p class="text-sm text-slate-400 leading-relaxed mt-4">There is no validated 1:27-to-1:35 pair in the matrix, so when I scale a Bandai or Revell ship kit (1:48) I use the 137.2% reference step and verify against an official X-Wing model.</p>
         `
       },
       {

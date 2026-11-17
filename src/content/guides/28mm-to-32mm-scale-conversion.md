@@ -1,7 +1,7 @@
 ---
 title: "How to Scale 28mm to 32mm (114.3% Slicer Percentage, Explained)"
 description: "What percent for 28mm to 32mm? 114.3% with XYZ locked. The math behind the conversion, the exact slicer steps for Chitubox, Lychee, Cura, and PrusaSlicer, and how to verify it on a test print."
-tldr: "Type 114.3% into your slicer with X, Y, and Z locked. That's 32mm ÷ 28mm × 100, measured to eye level on a 175cm baseline. Measured to the top of the head the number is 116.1%. Print one test piece and check it with calipers (a PARKSIDE with 0.01mm resolution costs under 15 euro) before you commit to a full squad."
+tldr: "Type 114.3% into your slicer with X, Y, and Z locked. That's 32mm ÷ 28mm × 100, measured to eye level on a 175cm baseline. Measured to the top of the head the number is 113.1%. Print one test piece and check it with calipers (a PARKSIDE with 0.01mm resolution costs under 15 euro) before you commit to a full squad."
 pubDate: 2026-08-15
 modDate: 2026-08-15
 faq:
@@ -24,7 +24,7 @@ faq:
       you scale by 114.3%. No other magic in the number.
   - question: Is 28mm to 32mm measured to the top of the head?
     answer: >-
-      No. Measured to the top of the head the percentage is 116.1%,
+      No. Measured to the top of the head the percentage is 113.1%,
       because the skull adds a fixed height to both figures. Gaming scales
       are conventionally measured to eye level, which is why 114.3% is the
       default.
@@ -82,7 +82,7 @@ If you want to play with the numbers yourself, here's the exact calculator I use
 
 Honestly, the even numbers would be easier to remember, but scale math doesn't work that way. 28mm and 32mm are both measurements of the *same* 175cm human at different magnifications, so the ratio between them is fixed: 32/28. You can't round 114.3% to 115% without shifting every figure off the eye line by a fraction of a millimetre. It won't ruin a print, but if you're batch-scaling an army, 114.3% keeps everyone exactly in proportion.
 
-The one thing that *does* change the number is how you measure. A 28mm gaming figure measured to the top of the head is about **30.5mm**, and a 32mm heroic figure is about **34.5mm** — so measured top-of-head, the conversion is **116.1%** instead. Every scale on the [miniature scale conversion chart](/reference) shows both numbers, because sculptors disagree about which one matters. Gaming convention says the eyes, so I use 114.3% as my default and I suggest you do the same.
+The one thing that *does* change the number is how you measure. A 28mm gaming figure measured to the top of the head is about **30.5mm**, and a 32mm heroic figure is about **34.5mm** — so measured top-of-head, the conversion is **113.1%** instead. Every scale on the [miniature scale conversion chart](/reference) shows both numbers, because sculptors disagree about which one matters. Gaming convention says the eyes, so I use 114.3% as my default and I suggest you do the same.
 
 ## How Do I Scale a 28mm Mini to 32mm in My Slicer?
 

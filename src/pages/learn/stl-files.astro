@@ -1,0 +1,31 @@
+---
+import PillarHub from "../../components/PillarHub.astro";
+
+const cards = [
+  { title: "How to open an STL file", tag: "Basics", description: "What is actually inside an STL, the difference between ASCII and binary, and the browser, slicer and CAD options for viewing one.", href: "/guides/how-to-open-an-stl-file" },
+  { title: "Why your STL looks tiny in the slicer", tag: "Troubleshooting", description: "Units, metres vs millimetres, scaling already baked into the file and the measurement convention — the four usual causes.", href: "/guides/why-stl-looks-small-in-slicer" },
+  { title: "Chitubox and Lychee scaling", tag: "Slicers", description: "Where the scale tool lives, how to lock the axes, and how to read the dimension fields correctly in resin slicers.", href: "/guides/chitubox-lychee-scaling-guide" },
+  { title: "3D scale visualizer", tag: "Tool", description: "Compare miniature scales side by side in a browser viewport before you commit to a print.", href: "/tools/3d-scale-visualizer" },
+  { title: "Miniature scale identifier", tag: "Tool", description: "Measure a model's height and get the likely scale and matching game systems in one step.", href: "/tools/miniature-scale-identifier" },
+  { title: "Reference bar generator", tag: "Tool", description: "Print a simple scale bar with an end tab at the exact height of your target scale and measure against it in the slicer.", href: "/tools/reference-bar-generator" },
+];
+
+const related = [
+  { title: "Scale conversion chart", href: "/miniature-size-chart" },
+  { title: "How I calculate everything", href: "/methodology" },
+  { title: "All tools", href: "/tools" },
+  { title: "All guides", href: "/guides" },
+];
+---
+
+<PillarHub
+  title="STL File Basics: Open, Inspect, Scale | STLACCESS"
+  description="Learn what STL files are, how to open and inspect them in a browser, why they import at the wrong size, and how to measure them before printing."
+  eyebrow="Pillar 4 of 4"
+  heading="STL file fundamentals"
+  answer="An STL stores only the surface triangles of a model — no units, no scale and no material. So the number you see when you import one is just a measurement in your slicer's default units. Check the bounding box, confirm the unit, then apply a scale from a stated baseline."
+  intro="Most scaling mistakes happen before the slicer percentage is typed in: the file was exported in metres, the sculptor used a different measurement convention, or the model includes a base you forgot to subtract. These guides and browser-only tools help you catch that first. Your files are never uploaded."
+  path="/learn/stl-files"
+  cards={cards}
+  related={related}
+/>

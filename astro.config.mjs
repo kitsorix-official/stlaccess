@@ -8,10 +8,63 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Freshness: every page's sitemap <lastmod> is set to the build date, since
-// content is bulk-edited as a whole and the lastmod should reflect "today"
-// whenever a build is deployed. Captured once so all pages share one value.
-const lastmod = new Date().toISOString();
+// Freshness: sitemap <lastmod> reflects real content dates, not the build date.
+// Rebuilding/deploying is not a content edit. Guides use their frontmatter
+// modDate/pubDate; other pages fall back to the source file mtime, then to the
+// explicit content-review date in site.json.
+const siteConfig = JSON.parse(
+  fs.readFileSync(new URL("./src/data/site.json", import.meta.url), "utf8"),
+);
+const reviewLastmod = siteConfig.lastContentReview
+  ? new Date(siteConfig.lastContentReview).toISOString()
+  : null;
+
+function frontmatterDate(file) {
+  try {
+    const text = fs.readFileSync(file, "utf8");
+    const match =
+      text.match(/^modDate:\s*"?([^"\n]+)"?\s*$/m) ||
+      text.match(/^pubDate:\s*"?([^"\n]+)"?\s*$/m);
+    if (!match) return null;
+    const date = new Date(match[1].trim());
+    return Number.isNaN(date.valueOf()) ? null : date.toISOString();
+  } catch {
+    return null;
+  }
+}
+
+function lastmodForUrl(url) {
+  const rel = new URL(url).pathname.replace(/^\/+|\/+$/g, "");
+  const segments = rel ? rel.split("/") : [];
+  const pageRoot = path.join(process.cwd(), "src/pages");
+  const candidates = [];
+
+  if (segments[0] === "guides" && segments[1]) {
+    candidates.push(
+      path.join(process.cwd(), "src/content/guides", `${segments[1]}.md`),
+    );
+  }
+  candidates.push(path.join(pageRoot, rel, "index.astro"));
+  candidates.push(path.join(pageRoot, `${rel}.astro`));
+  candidates.push(path.join(pageRoot, `${rel}.md`));
+  if (segments.length > 1) {
+    candidates.push(
+      path.join(pageRoot, ...segments.slice(0, -1), "[slug].astro"),
+    );
+  }
+
+  for (const file of candidates) {
+    if (!fs.existsSync(file)) continue;
+    const contentDate = file.endsWith(".md") ? frontmatterDate(file) : null;
+    if (contentDate) return contentDate;
+    try {
+      return fs.statSync(file).mtime.toISOString();
+    } catch {
+      // Try the next candidate.
+    }
+  }
+  return reviewLastmod ?? new Date(0).toISOString();
+}
 
 // A tiny integration to collapse Astro's sitemap-index.xml and sitemap-0.xml into a single sitemap.xml
 // and strip the <meta name="generator"> tag from all HTML output
@@ -91,9 +144,7 @@ export default defineConfig({
         if (item.url !== 'https://stlaccess.com/' && item.url.endsWith('/')) {
           item.url = item.url.slice(0, -1);
         }
-        if (lastmod) {
-          item.lastmod = lastmod;
-        }
+        item.lastmod = lastmodForUrl(item.url);
         return item;
       }
     }),

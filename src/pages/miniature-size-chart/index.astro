@@ -1,0 +1,232 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import site from "../../data/site.json";
+import scales from "../../data/scales.json";
+import conversions from "../../data/conversions.json";
+import { graph, breadcrumb, article, faqPage } from "../../lib/schema";
+import { lastModifiedDate, formatLongDate } from "../../lib/freshness";
+
+const updated = lastModifiedDate();
+const scaleEntries = Object.entries(scales).sort((a, b) => a[1].eyeLevelMm - b[1].eyeLevelMm);
+const sortedConversions = [...conversions].sort((a, b) => {
+  if (a.popular !== b.popular) return a.popular ? -1 : 1;
+  return a.h1Source.localeCompare(b.h1Source) || a.h1Target.localeCompare(b.h1Target);
+});
+
+const faq = [
+  {
+    question: "What is a miniature size chart used for?",
+    answer: "It gives you the slicer percentage for changing a model from one tabletop scale to another. Find the source scale in the left column, the target scale in the next column, then type the listed percentage into the uniform scale field with X, Y and Z locked.",
+  },
+  {
+    question: "Why is 28mm to 32mm 114.3%?",
+    answer: "Because 32 divided by 28, multiplied by 100, is 114.2857. Both values are eye-level measurements on the same 175cm human baseline, so the ratio is the slicer percentage. The top-of-head variant is about 113.1%.",
+  },
+  {
+    question: "Which conversions are measured to the top of the head?",
+    answer: "Ratio scale names are defined from the top of a 175cm human: 1:35 is 50.0mm to the crown. My conversion percentages compare eye-level equivalents instead, so 1:35 is 45.7mm to the eyes. Gaming scales such as 28mm, 32mm and 35mm are already eye-level labels. The chart shows both baselines so you can see which number I used.",
+  },
+  {
+    question: "Can I rely on these percentages for every STL?",
+    answer: "Use them as the starting point. Sculptors exaggerate proportions and manufacturers drift between ranges. Print one test model, measure it and compare it with a figure you trust before committing to a whole army.",
+  },
+  {
+    question: "How do I find the scale of an unlabelled STL?",
+    answer: "Measure its height in your slicer or with callipers, then use the Miniature Scale Identifier. It compares your measurement with the same baselines used in this chart and hands you a link to the exact conversion.",
+  },
+];
+
+const chartSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Miniature size chart", path: "/miniature-size-chart" },
+  ]),
+  article({
+    title: "Miniature Size Chart: Every Scale Conversion Percentage on One Page",
+    description: `All ${conversions.length} verified miniature scale conversions and ${scaleEntries.length} scale baselines, calculated from a 175cm human baseline and tested on physical prints.`,
+    url: "/miniature-size-chart",
+    datePublished: site.datePublished,
+    dateModified: (updated ?? new Date()).toISOString().slice(0, 10),
+    keywords: ["miniature size chart", "scale conversion chart", "28mm to 32mm", "1:48", "1:56", "slicer percentages"],
+  }),
+  faqPage(faq, "/miniature-size-chart"),
+]);
+---
+
+<Layout
+  title="Miniature Size Chart | All Scale Conversion Percentages for 3D Printing"
+  description={`The complete miniature size chart: ${conversions.length} slicer percentages across ${scaleEntries.length} scales, from 6mm epic to 75mm display. Calculated from a 175cm human baseline and verified on my prints.`}
+>
+  <JsonLd slot="head" data={chartSchema} />
+
+  <div slot="hero">
+    <nav class="max-w-6xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+      <span class="mx-2 text-slate-800">/</span>
+      <span class="text-slate-400" aria-current="page">Miniature Size Chart</span>
+    </nav>
+
+    <div class="max-w-6xl mx-auto px-6 pb-14">
+      <p class="text-xs font-black uppercase tracking-[0.25em] text-[#ff6b35] mb-4">One chart, every number</p>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight">
+        Miniature Size <span class="text-[#ff6b35] italic">Chart</span>
+      </h1>
+      <div class="rounded-2xl border border-[#ff6b35]/30 bg-gradient-to-br from-[#ff6b35]/15 via-[#ff6b35]/5 to-transparent p-6 md:p-8 mb-6" role="note" aria-label="Direct answer">
+        <p class="text-lg md:text-xl font-semibold text-white leading-relaxed">
+          Need a number fast? <strong class="text-[#ff6b35]">28mm → 32mm is 114.3%</strong>, <strong class="text-[#ff6b35]">32mm → 28mm is 87.5%</strong>, and <strong class="text-[#ff6b35]">1:48 → 28mm is 84.1%</strong>. The full table below has all {conversions.length} conversions I have verified, each with its source and target measurement.
+        </p>
+      </div>
+      <p class="text-lg text-slate-400 max-w-3xl leading-relaxed">
+        Every figure here comes from the same 175cm human baseline with eyes at 160cm. Gaming labels describe eye level; ratio labels are defined from full height, but I compare eye-level equivalents for every conversion. I print on a {site.printerName}, so the percentages are checked against real parts rather than copied from another chart.
+      </p>
+      <p class="text-sm text-slate-500 mt-4">
+        New to this? Read the <a href="/methodology" class="text-[#ff6b35] hover:underline">full methodology</a> or open the <a href="/learn/scale" class="text-[#ff6b35] hover:underline">scale learning hub</a>.
+        {updated && <span class="block mt-2 text-xs text-slate-600">Last reviewed: {formatLongDate(updated)}</span>}
+      </p>
+    </div>
+  </div>
+
+  <section class="max-w-6xl mx-auto px-6 pb-6" aria-labelledby="chart-search-heading">
+    <h2 id="chart-search-heading" class="sr-only">Search the chart</h2>
+    <div class="relative">
+      <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" aria-hidden="true"></i>
+      <input
+        type="search"
+        id="chart-search"
+        placeholder="Search a scale or conversion, e.g. 28mm to 32mm or 1:56"
+        class="w-full bg-slate-900/40 border border-white/10 rounded-2xl py-4 pl-12 pr-5 text-white placeholder-slate-600 focus:outline-none focus:border-[#ff6b35]/60 transition-colors"
+        aria-label="Search scale baselines and conversions"
+      />
+    </div>
+    <p id="chart-no-results" class="hidden text-center text-slate-500 italic py-10">No rows match that search. Try “28mm”, “1:35” or “display”.</p>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 pb-14" aria-labelledby="baselines-heading">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+      <div>
+        <h2 id="baselines-heading" class="text-2xl font-bold font-heading">Scale baselines at a glance</h2>
+        <p class="text-sm text-slate-400 mt-1">The exact millimetre values behind every percentage on this site.</p>
+      </div>
+      <a href="/data/scale-baselines.csv" class="text-sm text-[#ff6b35] hover:underline">Download CSV →</a>
+    </div>
+    <div class="overflow-x-auto rounded-2xl border border-white/5">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-900/60 text-left">
+          <tr>
+            <th class="px-5 py-3 text-slate-400 font-bold">Scale</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Type</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Eye level</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Top of head</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Ratio</th>
+            <th class="px-5 py-3 text-slate-400 font-bold">Common use</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-white/5" id="baseline-rows">
+          {scaleEntries.map(([key, scale]) => (
+            <tr class="bg-slate-900/20 chart-row" data-search={`${key} ${scale.shortName} ${scale.type} ${scale.ratioEquivalent} ${(scale.games || []).join(" ")}`.toLowerCase()}>
+              <td class="px-5 py-4 font-bold text-white">{scale.shortName}</td>
+              <td class="px-5 py-4 text-slate-400 capitalize">{scale.type}</td>
+              <td class="px-5 py-4 font-mono text-slate-300">{scale.eyeLevelMm.toFixed(1)}mm</td>
+              <td class="px-5 py-4 font-mono text-slate-300">{scale.topOfHeadMm.toFixed(1)}mm</td>
+              <td class="px-5 py-4 font-mono text-[#ff6b35]">{scale.ratioEquivalent}</td>
+              <td class="px-5 py-4 text-slate-400">{(scale.games || []).slice(0, 3).join(", ")}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 pb-16" aria-labelledby="conversions-heading">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+      <div>
+        <h2 id="conversions-heading" class="text-2xl font-bold font-heading">Every verified conversion</h2>
+        <p class="text-sm text-slate-400 mt-1">Type the percentage into your slicer with uniform scaling. The math column shows exactly how I got there.</p>
+      </div>
+      <a href="/data/conversion-matrix.csv" class="text-sm text-[#ff6b35] hover:underline">Download CSV →</a>
+    </div>
+
+    <div class="space-y-3" id="conversion-rows">
+      {sortedConversions.map((conv) => (
+        <details class="chart-row group bg-slate-900/20 border border-white/5 rounded-2xl overflow-hidden hover:border-[#ff6b35]/40 transition-colors" data-search={`${conv.h1Source} ${conv.h1Target} ${conv.sourceLabel} ${conv.targetLabel} ${conv.percentage} ${conv.subtext}`.toLowerCase()}>
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 hover:bg-slate-900/40 transition-colors">
+            <div>
+              <h3 class="font-bold text-white text-lg">
+                {conv.h1Source} <span class="text-slate-500 text-sm font-medium">to</span> {conv.h1Target}
+                {conv.popular && <span class="ml-2 text-[9px] font-black uppercase tracking-widest text-[#ff6b35] bg-[#ff6b35]/10 px-2 py-0.5 rounded-full">Most used</span>}
+              </h3>
+              <p class="text-sm text-slate-400 mt-1">{conv.subtext}</p>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <span class="text-xl font-mono text-[#ff6b35] bg-[#ff6b35]/10 px-3 py-1 rounded-xl font-black">{conv.percentage}%</span>
+              <i class="fa-solid fa-chevron-down text-slate-500 text-xs group-open:rotate-180 transition-transform" aria-hidden="true"></i>
+            </div>
+          </summary>
+          <div class="px-6 pb-6 pt-2 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">The math</h4>
+              <code class="block bg-black/40 p-4 rounded-xl text-xs font-mono text-[#ff6b35] overflow-x-auto">({conv.math}) × 100 = {conv.percentage}%</code>
+              {conv.topHeadPercentage && (
+                <p class="text-sm text-slate-400 mt-3 font-mono">Top of head: <span class="text-white font-bold">{conv.topHeadPercentage}%</span></p>
+              )}
+            </div>
+            <div>
+              <h4 class="text-xs font-black uppercase tracking-widest text-slate-500 mb-2">Scale baselines</h4>
+              <ul class="space-y-2 text-sm text-slate-400">
+                <li class="flex justify-between gap-3"><span>Source</span><span class="text-white font-mono">{conv.sourceValue}</span></li>
+                <li class="flex justify-between gap-3"><span>Target</span><span class="text-white font-mono">{conv.targetValue}</span></li>
+                <li class="flex justify-between gap-3 border-t border-white/5 pt-2"><span>Scale factor</span><span class="text-[#ff6b35] font-mono font-bold">{conv.percentage}%</span></li>
+              </ul>
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="chart-faq-heading">
+    <h2 id="chart-faq-heading" class="text-2xl font-bold font-heading mb-6">Miniature size chart FAQ</h2>
+    <div class="space-y-4">
+      {faq.map((item, i) => (
+        <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5" id={`qa-${i}`}>
+          <summary class="flex items-center justify-between gap-4 cursor-pointer list-none">
+            <span class="font-bold text-white">{item.question}</span>
+            <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs group-open:rotate-180 transition-transform" aria-hidden="true"></i>
+          </summary>
+          <p class="text-sm text-slate-400 leading-relaxed mt-3">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <aside class="max-w-6xl mx-auto px-6 pb-20" aria-label="Related pages">
+    <h2 class="text-sm font-black uppercase tracking-widest text-slate-500 mb-5">Related on STLACCESS</h2>
+    <ul class="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+      <li><a href="/methodology" class="text-slate-300 hover:text-[#ff6b35] transition-colors">How I calculate everything</a></li>
+      <li><a href="/guides/how-to-measure-miniature-scale" class="text-slate-300 hover:text-[#ff6b35] transition-colors">How to measure a miniature</a></li>
+      <li><a href="/tools/miniature-scale-identifier" class="text-slate-300 hover:text-[#ff6b35] transition-colors">Identify an unknown scale</a></li>
+      <li><a href="/tools/reference-bar-generator" class="text-slate-300 hover:text-[#ff6b35] transition-colors">Print a scale reference bar</a></li>
+      <li><a href="/games" class="text-slate-300 hover:text-[#ff6b35] transition-colors">Game system scales</a></li>
+    </ul>
+  </aside>
+
+  <script>
+    const search = document.getElementById("chart-search") as HTMLInputElement | null;
+    const rows = Array.from(document.querySelectorAll<HTMLElement>(".chart-row"));
+    const noResults = document.getElementById("chart-no-results");
+    if (search) {
+      search.addEventListener("input", () => {
+        const query = search.value.toLowerCase().trim();
+        let visible = 0;
+        for (const row of rows) {
+          const haystack = row.dataset.search || "";
+          const show = !query || haystack.includes(query);
+          row.style.display = show ? "" : "none";
+          if (show) visible += 1;
+        }
+        noResults?.classList.toggle("hidden", visible > 0);
+      });
+    }
+  </script>
+</Layout>

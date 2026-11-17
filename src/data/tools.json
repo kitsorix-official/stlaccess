@@ -35,6 +35,19 @@
     "featured": true
   },
   {
+    "slug": "filament-density-calculator",
+    "name": "Filament Density Calculator",
+    "h1": "Filament Density Calculator: Convert Volume to Weight",
+    "metaTitle": "Filament Density Calculator | Convert 3D Print Volume to Weight | STLACCESS",
+    "shortDescription": "Convert model volume to grams with real filament and resin densities, including hollow wall and infill math.",
+    "description": "Enter a bounding box or your slicer's volume readout and get grams, prints per spool, filament cost and a rough time baseline. Uses published PLA, PETG, ABS, nylon and resin densities from the STLACCESS dataset. Everything runs in your browser — no uploads, no accounts, no cookies.",
+    "icon": "fa-weight-scale",
+    "url": "/tools/filament-density-calculator",
+    "features": ["Shape dimensions or direct volume input", "PLA, PETG, ABS, ASA, TPU, nylon and resin presets", "Hollow wall thickness and infill math", "Prints per spool and cost per print", "Print-time planning baseline", "No account, no cookies"],
+    "category": "calculators",
+    "featured": true
+  },
+  {
     "slug": "filament-cost-calculator",
     "name": "Filament Cost Calculator",
     "shortDescription": "Know your print cost before you start. Enter filament price, weight used, and optional electricity to estimate the true cost of 3D printing miniatures.",

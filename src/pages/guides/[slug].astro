@@ -6,6 +6,7 @@ import { getCollection, render } from "astro:content";
 import site from "../../data/site.json";
 import { graph, organization, person, breadcrumb, article, faqPage } from "../../lib/schema";
 import { lastModifiedDate, formatLongDate } from "../../lib/freshness";
+import { getGuidePillars, getPrimaryGuidePillar } from "../../lib/learningPaths";
 
 export async function getStaticPaths() {
   const posts = await getCollection("guides");
@@ -20,7 +21,17 @@ const { Content, headings } = await render(post);
 const pubDate = post.data.pubDate;
 const readMinutes = Math.max(1, Math.round((post.body ?? "").trim().split(/\s+/).filter(Boolean).length / 200));
 
-const modDate = lastModifiedDate() ?? post.data.modDate ?? pubDate;
+const modDate = post.data.modDate ?? pubDate ?? lastModifiedDate();
+
+const primaryPillar = getPrimaryGuidePillar(post.id);
+const pillars = getGuidePillars(post.id);
+const allPosts = await getCollection("guides");
+const siblings = allPosts
+  .filter((candidate) => (
+    candidate.id !== post.id
+    && getGuidePillars(candidate.id).some((track) => track.key === primaryPillar.key)
+  ))
+  .slice(0, 3);
 
 const guideSchema = graph([
   organization(),
@@ -28,6 +39,7 @@ const guideSchema = graph([
   breadcrumb([
     { name: "Home", path: "/" },
     { name: "Guides", path: "/guides" },
+    { name: primaryPillar.shortTitle, path: primaryPillar.path },
     { name: post.data.title, path: `/guides/${post.id}` },
   ]),
   article({
@@ -55,6 +67,8 @@ const guideSchema = graph([
   <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
   <span class="mx-2 text-slate-800">/</span>
   <a href="/guides" class="hover:text-[#ff6b35] transition-colors">Guides</a>
+  <span class="mx-2 text-slate-800">/</span>
+  <a href={primaryPillar.path} class="hover:text-[#ff6b35] transition-colors">{primaryPillar.shortTitle}</a>
   <span class="mx-2 text-slate-800">/</span>
   <span class="text-slate-400" aria-current="page">{post.data.title}</span>
 </nav>
@@ -137,10 +151,57 @@ const guideSchema = graph([
   <!-- Trademark notice -->
   <TrademarkNotice />
 
+  <aside class="mt-16 pt-8 border-t border-white/5" aria-labelledby="keep-learning-heading">
+    <h2 id="keep-learning-heading" class="text-sm font-black uppercase tracking-widest text-slate-500 mb-5">Keep learning</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-600 mb-2">Learning track</h3>
+        <a href={primaryPillar.path} class="text-[#ff6b35] hover:underline font-semibold">{primaryPillar.title} →</a>
+      </div>
+
+      {pillars.length > 1 && (
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-widest text-slate-600 mb-2">Also part of</h3>
+          <ul class="flex flex-wrap gap-x-6 gap-y-2">
+            {pillars.filter((track) => track.key !== primaryPillar.key).map((track) => (
+              <li><a href={track.path} class="text-sm text-slate-300 hover:text-[#ff6b35] transition-colors">{track.shortTitle}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {siblings.length > 0 && (
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-widest text-slate-600 mb-2">Read next in {primaryPillar.shortTitle}</h3>
+          <ul class="space-y-2">
+            {siblings.map((sibling) => (
+              <li>
+                <a href={`/guides/${sibling.id}`} class="text-sm text-slate-300 hover:text-[#ff6b35] transition-colors">
+                  <i class="fa-solid fa-arrow-right text-[9px] text-[#ff6b35] mr-2" aria-hidden="true"></i>
+                  {sibling.data.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-600 mb-2">Useful next stops</h3>
+        <ul class="flex flex-wrap gap-x-6 gap-y-2">
+          <li><a href={primaryPillar.toolPath} class="text-sm text-slate-300 hover:text-[#ff6b35] transition-colors">{primaryPillar.toolName}</a></li>
+          <li><a href="/methodology" class="text-sm text-slate-300 hover:text-[#ff6b35] transition-colors">How I calculate this</a></li>
+          <li><a href="/miniature-size-chart" class="text-sm text-slate-300 hover:text-[#ff6b35] transition-colors">Full size chart</a></li>
+          <li><a href="/guides" class="text-sm text-slate-300 hover:text-[#ff6b35] transition-colors">All guides</a></li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
   <footer class="mt-16 pt-8 border-t border-white/5">
-    <a href="/guides" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
-      <i class="fa-solid fa-arrow-left text-xs"></i>
-      Back to all guides
+    <a href={primaryPillar.path} class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#ff6b35] transition-colors">
+      <i class="fa-solid fa-arrow-left text-xs" aria-hidden="true"></i>
+      Back to {primaryPillar.shortTitle}
     </a>
   </footer>
 

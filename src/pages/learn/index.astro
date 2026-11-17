@@ -1,0 +1,49 @@
+---
+import PillarHub from "../../components/PillarHub.astro";
+
+const cards = [
+  {
+    title: "Miniature scale & conversion math",
+    tag: "The foundation",
+    description: "What 28mm and 32mm actually mean, the 175cm human baseline, eye level vs top of head, and the exact slicer percentage for every conversion.",
+    href: "/learn/scale",
+  },
+  {
+    title: "FDM miniature printing",
+    tag: "Settings that work",
+    description: "Nozzles, layer heights, orientation, supports and slicer behaviour — what I changed after hundreds of prints on a Bambu Lab A1 Mini.",
+    href: "/learn/fdm",
+  },
+  {
+    title: "Resin to FDM conversion",
+    tag: "Workflow",
+    description: "Turn a resin pre-supported STL into an FDM-ready print: split the model, thicken the supports, export cleanly and slice for easy cleanup.",
+    href: "/learn/resin-to-fdm",
+  },
+  {
+    title: "STL file fundamentals",
+    tag: "Start here",
+    description: "What an STL actually contains, how to open and inspect one, why models import at the wrong size, and how to check a file before you print.",
+    href: "/learn/stl-files",
+  },
+];
+
+const related = [
+  { title: "Full scale chart", href: "/miniature-size-chart" },
+  { title: "How I calculate everything", href: "/methodology" },
+  { title: "Browser-only tools", href: "/tools" },
+  { title: "Game system scales", href: "/games" },
+];
+---
+
+<PillarHub
+  title="Learn 3D Printing Scale & STL Basics | STLACCESS"
+  description="Four practical learning tracks for 3D printing hobbyists: miniature scale maths, FDM settings, resin-to-FDM conversion and STL file basics. No uploads, no accounts."
+  eyebrow="The learning hub"
+  heading="Learn it before you waste filament"
+  answer="STLACCESS is an educational hub for 3D printing enthusiasts. Start with scale and conversion maths, then move into FDM settings, resin-to-FDM conversion and STL file basics. Every number is calculated from one stated baseline and tested on my own printer."
+  intro="I built this site because the same four questions kept coming up: how big should this model be, what percentage do I type in the slicer, why did the import come in tiny, and how do I actually print it. These tracks answer those questions in order, with the maths shown rather than hidden. There are no models for sale here — just tools, charts and guides."
+  path="/learn"
+  cards={cards}
+  related={related}
+/>

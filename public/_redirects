@@ -1,5 +1,4 @@
-# --- URL hygiene only ---
-# Clean slate: all legacy redirect rules are gone; unknown URLs 404.
+# --- URL hygiene + recovered URL equity ---
 
 # Trailing slash → clean URL
 /about/  /about  301
@@ -12,6 +11,12 @@
 /reference/  /reference  301
 /terms/  /terms  301
 /tools/  /tools  301
+/learn/  /learn  301
+/methodology/  /methodology  301
+/miniature-size-chart/  /miniature-size-chart  301
+/tools/*/  /tools/:splat  301
+/learn/*/  /learn/:splat  301
+/guides/*/  /guides/:splat  301
 
 # .html extension → clean URL
 /index.html  /  301
@@ -25,3 +30,71 @@
 /reference.html  /reference  301
 /terms.html  /terms  301
 /tools.html  /tools  301
+/learn.html  /learn  301
+/methodology.html  /methodology  301
+/miniature-size-chart.html  /miniature-size-chart  301
+
+# --- Recovered URL equity (2026-11 rebuild) ---
+# Archived guides → their restored, canonical locations.
+/archive/guides/fdm-miniature-printing-guide/  /guides/fdm-miniature-printing-guide  301
+/archive/guides/resin2fdm-convert-stl-to-fdm-ready/  /guides/resin2fdm-convert-stl-to-fdm-ready  301
+/archive/guides/arachne-vs-classic-wall-generator-miniatures/  /guides/arachne-vs-classic-wall-generator-miniatures  301
+/archive/guides/chitubox-lychee-scaling-guide/  /guides/chitubox-lychee-scaling-guide  301
+/archive/guides/fdm-vs-resin-miniatures/  /guides/fdm-vs-resin-miniatures  301
+/archive/guides/real-world-objects-to-28mm/  /guides/real-world-objects-to-28mm  301
+/archive/guides/real-world-objects-to-32mm/  /guides/real-world-objects-to-32mm  301
+/archive/guides/how-to-measure-miniature-scale/  /guides/how-to-measure-miniature-scale  301
+/archive/guides/32mm-to-28mm-scale-conversion/  /guides/32mm-to-28mm-scale-conversion  301
+/archive/guides/28mm-to-32mm-scale-conversion/  /guides/28mm-to-32mm-scale-conversion  301
+/archive/guides/175cm-baseline/  /guides/175cm-baseline  301
+/archive/guides/upscaling-3d-prints-detail-limit/  /guides/upscaling-3d-prints-detail-limit  301
+/archive/guides/*  /guides/:splat  301
+
+# Old chart / calculator paths → current equivalents.
+/archive/miniature-size-chart/  /miniature-size-chart  301
+/archive/miniature-size-chart  /miniature-size-chart  301
+/guides/stl-scale-conversion-chart  /miniature-size-chart  301
+/guides/28mm-to-32mm-percentage  /guides/28mm-to-32mm-scale-conversion  301
+/archive/scale-standard/  /methodology  301
+/archive/faq/  /faq  301
+/3d-math/filament-density-calculator  /tools/filament-density-calculator  301
+/3d-math/filament-density-calculator/  /tools/filament-density-calculator  301
+/archive/3d-math/filament-density-calculator/  /tools/filament-density-calculator  301
+/archive/3d-math/filament-density-calculator  /tools/filament-density-calculator  301
+/3d-math/slicer-percentage-calculator  /tools/slicer-percentage-calculator  301
+/archive/3d-math/slicer-percentage-calculator/  /tools/slicer-percentage-calculator  301
+/calculator/slicer-percentage-calculator  /tools/slicer-percentage-calculator  301
+/calculator/filament-cost-calculator  /tools/filament-cost-calculator  301
+/3d-math/resin-shrinkage-compensation-calculator  /methodology  301
+/3d-math/miniature-resin-weight-cost-calculator  /tools/filament-cost-calculator  301
+/3d-math/reference-bar-generator  /tools/reference-bar-generator  301
+/archive/3d-math/reference-bar-generator/  /tools/reference-bar-generator  301
+/3d-math/layer-resolution-angle-calculator  /learn/fdm  301
+/3d-math  /tools  301
+/archive/3d-math/  /tools  301
+
+# Old FDM section → the FDM pillar and its guides.
+/fdm  /learn/fdm  301
+/archive/fdm/  /learn/fdm  301
+/fdm/what-is-fdm-3d-printing-guide  /learn/fdm  301
+/fdm/fdm-3d-printer-filament-guide  /learn/fdm  301
+/fdm/how-to-sand-and-paint-fdm-prints  /learn/fdm  301
+/fdm/best-fdm-printer-miniatures-and-terrain  /guides/best-budget-3d-printers-wargaming  301
+/fdm-printing-profiles  /learn/fdm  301
+/archive/fdm-printing-profiles/  /learn/fdm  301
+
+# Retired browser utilities → educational hub / closest live tool.
+/stl-viewer/  /learn/stl-files  301
+/stl-viewer  /learn/stl-files  301
+/stl-scale-inspector/  /tools/miniature-scale-identifier  301
+/stl-scale-inspector  /tools/miniature-scale-identifier  301
+/stl-printability-checker/  /learn/stl-files  301
+/stl-printability-checker  /learn/stl-files  301
+/stl-converter/  /learn/stl-files  301
+/stl-converter  /learn/stl-files  301
+/embed  /  301
+/widget  /tools/reference-bar-generator  301
+/support  /about  301
+
+# Generic game trailing-slash cleanup.
+/games/*/  /games/:splat  301

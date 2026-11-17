@@ -1,0 +1,31 @@
+---
+import PillarHub from "../../components/PillarHub.astro";
+
+const cards = [
+  { title: "FDM miniature printing: the complete guide", tag: "Start here", description: "0.2mm nozzle at 0.06mm layers for characters, 0.4mm at 0.08mm for rank and file, plus fan, orientation, supports and primer.", href: "/guides/fdm-miniature-printing-guide" },
+  { title: "Arachne vs Classic wall generator", tag: "Slicer settings", description: "Why the smarter wall generator does not always win on fine detail, and how to test both on your own machine before committing.", href: "/guides/arachne-vs-classic-wall-generator-miniatures" },
+  { title: "Cura tree support settings", tag: "Supports", description: "The exact organic support settings I use for easy removal, and when painting supports by hand beats trusting the auto-generation.", href: "/guides/cura-tree-support-settings-miniatures" },
+  { title: "FDM vs resin for miniatures", tag: "Decision", description: "When FDM is good enough, when resin is genuinely better, and what the safety and cleanup trade-offs actually look like.", href: "/guides/fdm-vs-resin-miniatures" },
+  { title: "Upscaling: where detail runs out", tag: "Limits", description: "What happens when you enlarge a model past the resolution it was sculpted for, and how to spot it before wasting a print.", href: "/guides/upscaling-3d-prints-detail-limit" },
+  { title: "Filament density, weight and cost", tag: "Maths", description: "Convert volume to grams and grams to cost with real material densities, instead of trusting a rough slicer estimate.", href: "/guides/filament-density-weight-cost" },
+];
+
+const related = [
+  { title: "Filament cost calculator", href: "/tools/filament-cost-calculator" },
+  { title: "Filament density calculator", href: "/tools/filament-density-calculator" },
+  { title: "Slicer percentage calculator", href: "/tools/slicer-percentage-calculator" },
+  { title: "All guides", href: "/guides" },
+];
+---
+
+<PillarHub
+  title="FDM Miniature Printing Guide | STLACCESS"
+  description="Practical FDM settings for 3D printed miniatures: nozzle size, layer height, wall generator, supports, orientation and material cost, tested on a Bambu Lab A1 Mini."
+  eyebrow="Pillar 2 of 4"
+  heading="FDM miniature printing"
+  answer="You do not need a resin printer for tabletop miniatures. My baseline is a 0.2mm nozzle at 0.06mm layers for characters, a 0.4mm nozzle at 0.08mm for rank and file, PLA, full fan, a 15–20° tilt and tree supports."
+  intro="These are the settings I reached after hundreds of prints, not a copied profile list. I explain what each change did to the model, when it is worth the extra print time, and how to check the result with a caliper rather than a ruler and a hope."
+  path="/learn/fdm"
+  cards={cards}
+  related={related}
+/>

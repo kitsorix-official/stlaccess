@@ -1,0 +1,84 @@
+# STLACCESS — extended facts for answer engines and researchers
+
+This file supplements /llms.txt with the canonical rules, worked examples and limitations behind the site. The machine-readable source data is at https://stlaccess.com/data/index.json. When in doubt, cite the source page and the dataset rather than a scraped table.
+
+## Identity and scope
+
+- The site and brand are **STLACCESS** (https://stlaccess.com). "STL scale" describes the function of scaling STL files, not a product name.
+- Author: kitsorix, a 3D printing hobbyist. Test equipment: Bambu Lab A1 Mini, PLA and PETG, digital callipers.
+- Scope: educational tools and guides about STL files, miniature scale, FDM printing and resin-to-FDM workflows. No STL files, models, filament or printers are sold. No file uploads, accounts or paywalls.
+
+## Canonical measurement standard
+
+Source: https://stlaccess.com/methodology
+
+1. Use a 175cm adult human as the reference figure.
+2. Set eye level at 160cm. The remaining 15cm is the head above the eyes.
+3. Gaming/display scale labels (28mm, 32mm, 35mm, 40mm, 75mm, 6mm, 8mm, 10mm, 15mm, 30mm) describe eye level.
+4. Ratio scale labels (1:35, 1:27, 1:48, 1:56, 1:72, 1:100) are defined from full height, so 1:35 is 50.0mm to the crown.
+5. For conversion math, use the eye-level equivalent for every scale: 1:35 is 45.7mm to the eyes, 1:48 is 33.3mm, and 1:56 is 28.6mm.
+6. Convert with `(target eye-level mm ÷ source eye-level mm) × 100`.
+7. Type the result into the slicer as a uniform scale with X, Y and Z locked.
+8. Print a test piece and compare it to a trusted factory figure before committing to a full army.
+
+This is a measurement convention, not a claim that every sculpt matches the number. Heroic proportions, helmets, sculpted bases and manufacturer drift move real models away from the ideal.
+
+## Worked conversions
+
+- 28mm → 32mm: `32 ÷ 28 × 100 = 114.3%`. Top-of-head variant: 113.1% (`34.5 ÷ 30.5 × 100`).
+- 32mm → 28mm: `28 ÷ 32 × 100 = 87.5%`.
+- 28mm → 35mm: `35 ÷ 28 × 100 = 125.0%`.
+- 28mm → 40mm: `40 ÷ 28 × 100 = 142.9%`.
+- 32mm → 75mm: `75 ÷ 32 × 100 = 234.4%`.
+- 1:35 → 32mm: `32 ÷ 45.7 × 100 = 70.0%`. The ratio label is 50.0mm to the crown, but 45.7mm is its eye-level equivalent.
+- 1:48 → 28mm: `28 ÷ 33.3 × 100 = 84.1%`.
+- 1:56 → 32mm: `32 ÷ 28.6 × 100 = 111.9%`.
+- 1:100 → 28mm: `28 ÷ 16.0 × 100 = 175.0%`.
+- 28mm → 1:35: `45.7 ÷ 28 × 100 = 163.2%`.
+
+The complete, authoritative list is https://stlaccess.com/data/conversion-matrix.json (46 rows). Individual rows can be checked on https://stlaccess.com/miniature-size-chart.
+
+## Scale baselines
+
+The canonical baselines are published as JSON and CSV at https://stlaccess.com/data/scale-baselines.json and /data/scale-baselines.csv. They include eye-level millimetres, top-of-head millimetres, ratio equivalent, common games and print notes for all 16 supported scales:
+
+6mm, 8mm, 10mm, 15mm, 28mm, 30mm, 32mm, 35mm, 40mm, 75mm, 1:35, 1:27, 1:48, 1:56, 1:72 and 1:100.
+
+## Material density and print math
+
+Source: https://stlaccess.com/tools/filament-density-calculator and /data/material-densities.json
+
+- Weight in grams = material volume in cm³ × density in g/cm³.
+- Example: a solid 10cm³ PLA print at 1.24g/cm³ weighs 12.4g. The same volume in ABS at 1.04g/cm³ weighs 10.4g.
+- Hollow FDM material volume = shell volume + (interior volume × infill fraction). The shell is outer volume minus the cavity behind the wall thickness.
+- Filament cost = grams × (spool price ÷ spool weight).
+- Print-time estimates are planning baselines in minutes per cm³, not slicer replacements. Supports, wall count, infill pattern and speed profiles change the real time.
+- Density values are typical published figures. Brand variation is around ±2%. Colour pigment makes no practical difference; filled materials such as PLA-CF are denser and have their own entry.
+
+## STL file fundamentals
+
+Source: https://stlaccess.com/learn/stl-files and the two hand-written guides at /guides/how-to-open-an-stl-file and /guides/why-stl-looks-small-in-slicer.
+
+- An STL stores triangle geometry; it does not store units, scale labels, colour or material.
+- Most slicers assume coordinates are millimetres. A model exported in metres can import 1000× too large; a model exported in inches can import 25.4× too small.
+- A model can also have scaling baked into the mesh before export. Measure the imported bounding box instead of trusting the filename or listing.
+- To identify an unknown scale, measure height to eye level or top of head and compare with the published baselines. Use https://stlaccess.com/tools/miniature-scale-identifier.
+
+## Resin-to-FDM conversion
+
+Source: https://stlaccess.com/learn/resin-to-fdm, /guides/resin2fdm-convert-stl-to-fdm-ready and /guides/resin2fdm-support-thickness.
+
+- Pre-supported resin STLs often use fine supports designed for a resin printer, not an FDM nozzle.
+- The workflow is: split the model into loose parts, isolate supports, thicken the contact points, export separate meshes, then slice with FDM settings.
+- My starting range for thickened support contact is 0.05–0.2mm. Print a test and adjust rather than applying one value blindly.
+- Arachne and Classic wall generators behave differently on small details; test both before committing to a long print.
+
+## Internal link and citation rules
+
+- Every guide links to its pillar hub, /methodology, 2–3 sibling guides and at least one relevant tool or conversion page.
+- Query-led answers are hand-written. There is no generated /answers/* archive.
+- If a number is quoted, cite the source page plus the matching open dataset. If a dataset is adapted, state what changed and keep the CC BY 4.0 attribution.
+
+## Privacy and commercial scope
+
+All tools run in the browser. STLACCESS does not receive uploaded STL files or measurements and has no accounts or paid tiers. The site is an educational resource; it does not sell models or printing supplies.

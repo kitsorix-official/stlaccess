@@ -1,15 +1,13 @@
 // src/lib/freshness.ts
 // Site freshness control.
 //
-// "Last updated" signals (sitemap <lastmod>, visible "Last updated" text, and
-// JSON-LD dateModified/datePublished) are derived from the BUILD DATE, which is
-// captured once at module load time. Because the content is bulk-edited as a
-// whole, treating every page's freshness as "today" stays accurate whenever a
-// build is deployed.
+// "Last updated" signals use the explicit content-review date from site.json
+// by default, NOT the build date. Rebuilding the site is a deployment event,
+// not a content edit, and falsely bumping every <lastmod> erodes trust with
+// search engines and answer engines.
 //
-// The explicit content-review date in site.json (`lastContentReview`) is still
-// available via `contentReviewDate()` for any semantic bookkeeping that needs
-// to know when content was last manually reviewed, separately from the build.
+// Content pages should pass their own `modDate` (see `guides/[slug].astro`).
+// `contentReviewDate()` exposes the same site-wide review date for bookkeeping.
 
 import site from "../data/site.json";
 
@@ -31,14 +29,14 @@ export function contentReviewDate(): Date | null {
   return reviewDate;
 }
 
-/** The date this build was generated. Used for all "last updated" signals. */
+/** Site-wide content review date, falling back to the build date. */
 export function lastModifiedDate(): Date {
-  return buildDate;
+  return reviewDate ?? buildDate;
 }
 
-/** ISO string of the build date. */
+/** ISO string of the site-wide content review date. */
 export function lastModifiedISO(): string {
-  return buildDate.toISOString();
+  return lastModifiedDate().toISOString();
 }
 
 export function formatLongDate(date: Date): string {

@@ -1,0 +1,31 @@
+---
+import PillarHub from "../../components/PillarHub.astro";
+
+const cards = [
+  { title: "The 175cm baseline", tag: "Method", description: "Why every percentage on this site starts from a 175cm human, with eyes at 160cm, and what changes when you measure to the top of the head.", href: "/guides/175cm-baseline" },
+  { title: "28mm to 32mm: 114.3%", tag: "Most used", description: "The full working for the conversion I type most often, plus the 113.1% top-of-head variant and when each one applies.", href: "/guides/28mm-to-32mm-scale-conversion" },
+  { title: "32mm to 28mm: 87.5%", tag: "Most used", description: "Scale heroic figures down to true scale without guessing, including the measuring errors that make this conversion look wrong.", href: "/guides/32mm-to-28mm-scale-conversion" },
+  { title: "Complete miniature size chart", tag: "Data", description: "Every verified conversion pair in one table: gaming scales, ratio scales, percentages and the measurement convention behind each number.", href: "/miniature-size-chart" },
+  { title: "How to measure a miniature", tag: "Practical", description: "Use your slicer's bounding box or a caliper to work out what scale an unlabelled STL really is before you scale it.", href: "/guides/how-to-measure-miniature-scale" },
+  { title: "Game systems explained", tag: "Reference", description: "What scale D&D, Legion, fantasy RPG and mass-battle game miniatures actually are, with the percentages to convert between them.", href: "/games" },
+];
+
+const related = [
+  { title: "Slicer percentage calculator", href: "/tools/slicer-percentage-calculator" },
+  { title: "Real-world scale converter", href: "/tools/real-world-scale-converter" },
+  { title: "How I calculate everything", href: "/methodology" },
+  { title: "All guides", href: "/guides" },
+];
+---
+
+<PillarHub
+  title="Miniature Scale & Conversion Guide | STLACCESS"
+  description="Learn how miniature scales work: the 175cm human baseline, eye-level equivalents, and exact slicer percentages for 28mm, 32mm, 35mm and ratio scales."
+  eyebrow="Pillar 1 of 4"
+  heading="Miniature scale & conversion math"
+  answer="Gaming labels describe eye level, and ratio labels are defined from full height, but my conversion pairs compare eye-level equivalents on the same 175cm human (eyes at 160cm). On that basis, 28mm to 32mm is 114.3% and 32mm to 28mm is 87.5%. Every other conversion uses the same formula: target divided by source, times 100."
+  intro="This is the foundation of everything else on STLACCESS. Once you know which height a scale refers to and which baseline it was derived from, the slicer percentage stops being a guess. The guides below work from first principles and show the arithmetic, not just the answer."
+  path="/learn/scale"
+  cards={cards}
+  related={related}
+/>

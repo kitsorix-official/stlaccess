@@ -1,0 +1,31 @@
+---
+import PillarHub from "../../components/PillarHub.astro";
+
+const cards = [
+  { title: "Resin2FDM: the full workflow", tag: "Main guide", description: "Split a pre-supported STL into loose parts, assign the miniature, thicken the supports and export separate files that slice cleanly on FDM.", href: "/guides/resin2fdm-convert-stl-to-fdm-ready" },
+  { title: "How thick should resin supports be?", tag: "Numbers", description: "The 0.05–0.2mm thickening range, why different sculptors need different values, and how a test print tells you when to stop.", href: "/guides/resin2fdm-support-thickness" },
+  { title: "Arachne vs Classic walls", tag: "After conversion", description: "Once the model is FDM-ready, choose the wall generator that keeps the detail you just worked to preserve.", href: "/guides/arachne-vs-classic-wall-generator-miniatures" },
+  { title: "Tree supports that come off", tag: "Slicer", description: "If you are generating fresh supports instead of converting resin ones, these are the Cura settings I use.", href: "/guides/cura-tree-support-settings-miniatures" },
+  { title: "Why the model imports at the wrong size", tag: "Troubleshooting", description: "Chitubox and Lychee can report dimensions that do not match the scale on the box. Here is how to check before scaling.", href: "/guides/why-stl-looks-small-in-slicer" },
+  { title: "FDM vs resin: when to switch", tag: "Decision", description: "The honest comparison of detail, support removal, handling, speed and safety for tabletop work.", href: "/guides/fdm-vs-resin-miniatures" },
+];
+
+const related = [
+  { title: "Scale reference bar generator", href: "/tools/reference-bar-generator" },
+  { title: "Miniature scale identifier", href: "/tools/miniature-scale-identifier" },
+  { title: "Shrinkage and measurement notes", href: "/methodology" },
+  { title: "All guides", href: "/guides" },
+];
+---
+
+<PillarHub
+  title="Resin to FDM Conversion Guide | STLACCESS"
+  description="How to convert resin pre-supported STL files for FDM printing with Resin2FDM: support thickness, splitting models, exporting and slicing."
+  eyebrow="Pillar 3 of 4"
+  heading="Resin to FDM conversion"
+  answer="Resin supports are too thin for a 0.2mm or 0.4mm nozzle. The Resin2FDM workflow splits the miniature from its supports, thickens those supports to roughly 0.05–0.2mm, then exports both parts so your slicer can print the supports at faster, coarse settings."
+  intro="If you only have an FDM printer but the model you want is sold pre-supported for resin, you do not have to give up on it. I walk through the Blender add-on, the numbers that matter and the failure modes I hit, so you can decide whether a model is worth converting at all."
+  path="/learn/resin-to-fdm"
+  cards={cards}
+  related={related}
+/>

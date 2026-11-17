@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
+import { learningTracks } from "../lib/learningPaths";
 
 const siteUpdated = lastModifiedDate();
 
@@ -56,8 +57,20 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
     />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Canonical -->
+    <!-- Canonical + social / answer-engine unfurls -->
     <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={`${site.url}/stlaccess-social-banner.png`} />
+    <meta property="og:image:alt" content="STLACCESS — browser-only 3D print scale and STL learning hub" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site.url}/stlaccess-social-banner.png`} />
 
     <!-- Icons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -67,14 +80,30 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
     <!-- PWA manifest -->
     <link rel="manifest" href="/manifest.webmanifest" />
 
-    <!-- Preconnect -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
-
-    <!-- Font Awesome -->
+    <!-- Self-hosted fonts: preload the three variable files, then the
+         Font Awesome stylesheet (also self-hosted — no third-party CDN). -->
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="preload"
+      href="/fonts/inter-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
+    <link
+      rel="preload"
+      href="/fonts/space-grotesk-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/jetbrains-mono-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/fonts/fa/all.min.css" />
 
     <!-- RSS Autodiscovery -->
     <link
@@ -204,19 +233,28 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
           </li>
           <li>
             <a
-              href="/reference"
-              class={currentPath === "/reference"
+              href="/learn"
+              class={currentPath.startsWith("/learn")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Reference
+              Learn
             </a>
           </li>
-
+          <li>
+            <a
+              href="/guides"
+              class={currentPath.startsWith("/guides")
+                ? "text-white border-b-2 border-[#ff6b35] pb-1"
+                : "hover:text-white transition-colors"}
+            >
+              Guides
+            </a>
+          </li>
           <li>
             <a
               href="/tools"
-              class={currentPath === "/tools"
+              class={currentPath.startsWith("/tools")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
@@ -230,17 +268,48 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
                 ? "text-white border-b-2 border-[#ff6b35] pb-1"
                 : "hover:text-white transition-colors"}
             >
-              Game Systems
+              Games
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Learning pillars — visible on every route so the four tracks stay discoverable -->
+      <nav
+        class="max-w-6xl mx-auto px-6 pb-2 -mt-1 overflow-x-auto"
+        aria-label="Learning pillars"
+      >
+        <ul class="flex min-w-max gap-x-6 gap-y-1 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+          {learningTracks.map((track) => (
+            <li>
+              <a
+                href={track.path}
+                class={currentPath === track.path
+                  ? "text-[#ff6b35]"
+                  : "hover:text-[#ff6b35] transition-colors"}
+              >
+                {track.shortTitle}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a
+              href="/methodology"
+              class={currentPath === "/methodology"
+                ? "text-[#ff6b35]"
+                : "hover:text-[#ff6b35] transition-colors"}
+            >
+              Method
             </a>
           </li>
           <li>
             <a
-              href="/guides"
-              class={currentPath.startsWith("/guides")
-                ? "text-white border-b-2 border-[#ff6b35] pb-1"
-                : "hover:text-white transition-colors"}
+              href="/miniature-size-chart"
+              class={currentPath === "/miniature-size-chart"
+                ? "text-[#ff6b35]"
+                : "hover:text-[#ff6b35] transition-colors"}
             >
-              Guides
+              Size chart
             </a>
           </li>
         </ul>
@@ -271,14 +340,41 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
               >
             </div>
             <p class="text-slate-500 text-sm max-w-sm leading-relaxed">
-              Independent tools for 3D printing scale conversion. Built and
-              maintained by one person who prints test pieces to verify every
-              percentage.
+              Independent tools and guides for STL files, scale maths, FDM
+              printing and resin-to-FDM conversion. Built and maintained by one
+              person who prints test pieces to verify every percentage.
             </p>
           </div>
 
           <!-- Link columns -->
-          <div class="flex flex-wrap gap-x-16 gap-y-8">
+          <div class="flex flex-wrap gap-x-12 gap-y-8">
+            <!-- Learn -->
+            <div>
+              <h4
+                class="text-xs font-black uppercase tracking-[0.2em] text-white mb-6"
+              >
+                Learn
+              </h4>
+              <ul class="space-y-4 text-sm text-slate-500 font-medium">
+                <li>
+                  <a href="/learn" class="hover:text-[#ff6b35] transition-colors"
+                    >All learning tracks</a
+                  >
+                </li>
+                {learningTracks.map((track) => (
+                  <li>
+                    <a href={track.path} class="hover:text-[#ff6b35] transition-colors">{track.shortTitle}</a>
+                  </li>
+                ))}
+                <li>
+                  <a href="/methodology" class="hover:text-[#ff6b35] transition-colors">Methodology</a>
+                </li>
+                <li>
+                  <a href="/miniature-size-chart" class="hover:text-[#ff6b35] transition-colors">Size chart</a>
+                </li>
+              </ul>
+            </div>
+
             <!-- Tools -->
             <div>
               <h4
@@ -455,35 +551,35 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
         </li>
         <li class="h-full">
           <a
-            href="/tools/filament-cost-calculator"
-            class={currentPath === "/tools/filament-cost-calculator"
+            href="/learn"
+            class={currentPath.startsWith("/learn")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
-            <i class="fa-solid fa-dollar-sign text-base" aria-hidden="true"></i>
-            <span>Filament Cost</span>
+            <i class="fa-solid fa-graduation-cap text-base" aria-hidden="true"></i>
+            <span>Learn</span>
+          </a>
+        </li>
+        <li class="h-full">
+          <a
+            href="/guides"
+            class={currentPath.startsWith("/guides")
+              ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
+              : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
+          >
+            <i class="fa-solid fa-book-open text-base" aria-hidden="true"></i>
+            <span>Guides</span>
           </a>
         </li>
         <li class="h-full">
           <a
             href="/tools"
-            class={currentPath === "/tools"
+            class={currentPath.startsWith("/tools")
               ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
               : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
           >
             <i class="fa-solid fa-screwdriver-wrench text-base" aria-hidden="true"></i>
             <span>Tools</span>
-          </a>
-        </li>
-        <li class="h-full">
-          <a
-            href="/reference"
-            class={currentPath === "/reference"
-              ? "flex flex-col items-center justify-center gap-1 h-full text-[#ff6b35] border-t-2 border-[#ff6b35] text-[10px] font-semibold"
-              : "flex flex-col items-center justify-center gap-1 h-full text-slate-400 hover:text-white transition-colors border-t-2 border-transparent text-[10px] font-semibold"}
-          >
-            <i class="fa-solid fa-book-open text-base" aria-hidden="true"></i>
-            <span>Reference</span>
           </a>
         </li>
       </ul>

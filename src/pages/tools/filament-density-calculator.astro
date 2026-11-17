@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import FilamentDensityTool from "../../components/tools/FilamentDensityTool.astro";
+import { graph, breadcrumb, softwareApplication, faqPage, article } from "../../lib/schema";
+import site from "../../data/site.json";
+
+const faq = [
+  {
+    question: "How do you calculate filament weight from volume?",
+    answer: "Weight = volume × density. A 10cm³ solid model in PLA at 1.24g/cm³ weighs 12.4g. For a hollow FDM print, subtract the cavity behind the wall thickness, then add only the chosen infill percentage of what remains.",
+  },
+  {
+    question: "What is the density of PLA, PETG, ABS and resin?",
+    answer: "PLA is 1.24g/cm³, PETG 1.27, ABS 1.04, ASA 1.07, TPU 1.21 and nylon about 1.14. Standard resin sits near 1.10 and ABS-like resin around 1.15.",
+  },
+  {
+    question: "Does colour change filament density?",
+    answer: "Colour pigment makes no practical difference. Fillers do: carbon-fibre blends such as PLA-CF are slightly denser than base PLA, which is why they have their own preset.",
+  },
+  {
+    question: "How accurate is the print time estimate?",
+    answer: "It is a planning baseline, not a slicer replacement. Supports, wall count, infill pattern and speed profiles all move the real number, so take your slicer's estimate as final.",
+  },
+];
+
+const toolSchema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Tools", path: "/tools" },
+    { name: "Filament density calculator", path: "/tools/filament-density-calculator" },
+  ]),
+  softwareApplication({
+    name: "Filament Density Calculator",
+    description: "Convert part volume to grams and grams to cost using real filament and resin densities, with hollow wall and infill math.",
+    url: "/tools/filament-density-calculator",
+  }),
+  article({
+    title: "Filament Density Calculator: Convert Volume to Weight",
+    description: "Weight = volume × density. Use real PLA, PETG, ABS, nylon and resin densities to estimate print weight, cost and time before you slice.",
+    url: "/tools/filament-density-calculator",
+    datePublished: site.datePublished,
+    dateModified: site.lastContentReview,
+    keywords: ["filament density calculator", "3D print weight calculator", "volume to grams", "PLA density"],
+  }),
+  faqPage(faq, "/tools/filament-density-calculator"),
+]);
+---
+
+<Layout
+  title="Filament Density Calculator | Convert 3D Print Volume to Weight | STLACCESS"
+  description="Convert model volume to grams with real filament densities for PLA, PETG, ABS, nylon and resin. Includes hollow wall + infill math, spool cost and a print-time baseline."
+>
+  <JsonLd slot="head" data={toolSchema} />
+
+  <div slot="hero">
+    <nav class="max-w-4xl mx-auto px-6 pt-12 pb-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+      <span class="mx-2 text-slate-800">/</span>
+      <a href="/tools" class="hover:text-[#ff6b35] transition-colors">Tools</a>
+      <span class="mx-2 text-slate-800">/</span>
+      <span class="text-slate-400" aria-current="page">Filament Density Calculator</span>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 pb-10">
+      <p class="text-xs font-black uppercase tracking-[0.25em] text-[#ff6b35] mb-4">Math, not guesswork</p>
+      <h1 class="text-4xl md:text-6xl font-bold font-heading tracking-tight mb-6">
+        Filament Density <span class="text-[#ff6b35] italic">Calculator</span>
+      </h1>
+      <p class="text-lg text-slate-400 max-w-3xl leading-relaxed">
+        Turn a bounding box or your slicer's volume readout into grams, filament cost and a rough time baseline. Every material uses the density from my published dataset, and nothing leaves your browser.
+      </p>
+    </div>
+  </div>
+
+  <FilamentDensityTool />
+
+  <aside class="max-w-4xl mx-auto px-6 pb-20" aria-label="Related pages">
+    <h2 class="text-sm font-black uppercase tracking-widest text-slate-500 mb-5">Keep learning</h2>
+    <ul class="flex flex-wrap gap-x-8 gap-y-3 text-sm">
+      <li><a href="/guides/filament-density-weight-cost" class="text-slate-300 hover:text-[#ff6b35] transition-colors">Filament density, weight and cost guide</a></li>
+      <li><a href="/tools/filament-cost-calculator" class="text-slate-300 hover:text-[#ff6b35] transition-colors">Filament cost calculator</a></li>
+      <li><a href="/learn/fdm" class="text-slate-300 hover:text-[#ff6b35] transition-colors">FDM printing pillar</a></li>
+      <li><a href="/methodology" class="text-slate-300 hover:text-[#ff6b35] transition-colors">How I calculate everything</a></li>
+    </ul>
+  </aside>
+</Layout>
