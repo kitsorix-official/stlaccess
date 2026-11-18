@@ -271,49 +271,30 @@ const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
               Games
             </a>
           </li>
-        </ul>
-      </nav>
-
-      <!-- Learning pillars — visible on every route so the four tracks stay discoverable -->
-      <nav
-        class="max-w-6xl mx-auto px-6 pb-2 -mt-1 overflow-x-auto"
-        aria-label="Learning pillars"
-      >
-        <ul class="flex min-w-max gap-x-6 gap-y-1 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-          {learningTracks.map((track) => (
-            <li>
-              <a
-                href={track.path}
-                class={currentPath === track.path
-                  ? "text-[#ff6b35]"
-                  : "hover:text-[#ff6b35] transition-colors"}
-              >
-                {track.shortTitle}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a
-              href="/methodology"
-              class={currentPath === "/methodology"
-                ? "text-[#ff6b35]"
-                : "hover:text-[#ff6b35] transition-colors"}
-            >
-              Method
-            </a>
-          </li>
           <li>
             <a
               href="/miniature-size-chart"
               class={currentPath === "/miniature-size-chart"
-                ? "text-[#ff6b35]"
-                : "hover:text-[#ff6b35] transition-colors"}
+                ? "text-white border-b-2 border-[#ff6b35] pb-1"
+                : "hover:text-white transition-colors"}
             >
               Size chart
             </a>
           </li>
+          <li>
+            <a
+              href="/methodology"
+              class={currentPath === "/methodology"
+                ? "text-white border-b-2 border-[#ff6b35] pb-1"
+                : "hover:text-white transition-colors"}
+            >
+              Method
+            </a>
+          </li>
         </ul>
       </nav>
+
+      <!-- Learning tracks stay discoverable in the footer instead of a second top bar. -->
 
       </div>
     </header>
