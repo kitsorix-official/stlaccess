@@ -318,19 +318,25 @@ const mobileNav = [
       class="w-full bg-black border-t border-white/5 pt-14 pb-10 px-6 mt-auto order-4"
     >
       <div class="max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
-          <div>
-            <span class="text-xl font-bold font-heading"
-              >STL<span class="text-[#ff6b35]">ACCESS</span></span
-            >
-            <p class="text-slate-500 text-sm max-w-md mt-3 leading-relaxed">
-              Scale maths, FDM printing, resin-to-FDM workflows and STL file
-              basics. Every percentage is tested on my A1 Mini.
-            </p>
-          </div>
+        <div>
+          <span class="text-xl font-bold font-heading"
+            >STL<span class="text-[#ff6b35]">ACCESS</span></span
+          >
+          <p class="text-slate-500 text-sm max-w-md mt-3 leading-relaxed">
+            Scale maths, FDM printing, resin-to-FDM workflows and STL file
+            basics. Every percentage is tested on my A1 Mini.
+          </p>
+        </div>
 
-          <nav aria-label="Secondary navigation">
-            <ul class="flex flex-wrap gap-x-6 gap-y-3 text-sm text-slate-500">
+        <nav
+          aria-label="Secondary navigation"
+          class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8"
+        >
+          <section>
+            <h2 class="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-white">
+              Project
+            </h2>
+            <ul class="space-y-3 text-sm text-slate-500">
               <li>
                 <a href="/about" class="hover:text-[#ff6b35] transition-colors">About</a>
               </li>
@@ -340,6 +346,14 @@ const mobileNav = [
               <li>
                 <a href="/contact" class="hover:text-[#ff6b35] transition-colors">Contact</a>
               </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-white">
+              Resources
+            </h2>
+            <ul class="space-y-3 text-sm text-slate-500">
               <li>
                 <a href="/reference" class="hover:text-[#ff6b35] transition-colors">Reference library</a>
               </li>
@@ -359,6 +373,14 @@ const mobileNav = [
                   rel="noopener noreferrer">Report an issue</a
                 >
               </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-white">
+              Legal
+            </h2>
+            <ul class="space-y-3 text-sm text-slate-500">
               <li>
                 <a href="/privacy" class="hover:text-[#ff6b35] transition-colors">Privacy</a>
               </li>
@@ -369,8 +391,8 @@ const mobileNav = [
                 <a href="/legal" class="hover:text-[#ff6b35] transition-colors">Legal</a>
               </li>
             </ul>
-          </nav>
-        </div>
+          </section>
+        </nav>
 
         <div
           class="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between gap-3 text-xs text-slate-600"
