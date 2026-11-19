@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { versionedAsset } from '../src/utils/assetVersion.js';
 
 const projectRoot = fileURLToPath(new URL('..', import.meta.url));
 
@@ -61,8 +62,11 @@ export default function pwa() {
         console.log('[pwa] Wrote manifest.webmanifest');
 
         // --- Precache list (everything in dist except the SW and redirects) ---
+        // Version the same public scripts the markup references so the offline
+        // cache and the network request use the same cache key.
         const precacheUrls = collectFiles(distPath, distPath, [])
           .filter((f) => f !== '/sw.js' && f !== '/_redirects')
+          .map((f) => (/\.(?:js|css)$/.test(f) ? versionedAsset(f, distPath) : f))
           .sort();
 
         // --- Navigation map: pretty URL -> cached file ---
@@ -78,32 +82,26 @@ export default function pwa() {
           navMap[pretty + '/'] = f;
         }
 
-        // --- Cross-origin assets precached at install so the site stays ---
-        // --- fully styled offline (Font Awesome CSS + webfonts the site ---
-        // --- actually uses). cdnjs serves these with CORS enabled, so ---
-        // --- cache.add() works from the service worker. ---
-        const externalPrecache = [
-          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2',
-          'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2',
-        ];
+        // Font Awesome is self-hosted under /fonts/, so it is already in
+        // precacheUrls. No cross-origin precache is needed (and the CSP would
+        // block it anyway).
 
         // --- Version = hash of the manifest contents, so ANY content change ---
         // --- produces new sw.js bytes and triggers the update prompt. ---
         const hash = crypto.createHash('sha256');
         for (const f of precacheUrls) {
+          const cleanPath = f.split('?')[0];
           const fileHash = crypto
             .createHash('sha256')
-            .update(fs.readFileSync(path.join(distPath, f)))
+            .update(fs.readFileSync(path.join(distPath, cleanPath)))
             .digest('hex');
           hash.update(f);
           hash.update(fileHash);
         }
         hash.update(JSON.stringify(navMap));
-        hash.update(JSON.stringify(externalPrecache));
         const version = hash.digest('hex').slice(0, 12);
 
-        const precacheList = precacheUrls.concat(externalPrecache);
+        const precacheList = precacheUrls;
 
         // --- Render the service worker ---
         const template = fs.readFileSync(

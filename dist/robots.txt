@@ -3,6 +3,8 @@ Allow: /
 
 # Answer engines and research crawlers are welcome to read, cite and quote
 # this educational site. No upload, no accounts, no paywall.
+# LLM overview: https://stlaccess.com/llms.txt
+# Full text: https://stlaccess.com/llms-full.txt
 User-agent: GPTBot
 Allow: /
 
@@ -15,7 +17,19 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
 User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Applebot
 Allow: /
 
 User-agent: cohere-ai

@@ -51,7 +51,7 @@ const referenceSchema = graph([
 </div>
 
 <!-- Search / Filter -->
-<form role="search" class="px-6 mb-6 max-w-6xl mx-auto" aria-labelledby="ref-search-heading" onsubmit="return false">
+<div role="search" class="px-6 mb-6 max-w-6xl mx-auto" aria-labelledby="ref-search-heading">
   <h2 id="ref-search-heading" class="sr-only">Search conversions</h2>
   <div class="relative group">
     <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
@@ -66,7 +66,7 @@ const referenceSchema = graph([
   <div id="noResults" class="hidden mt-8 text-center text-slate-500 italic py-12 border border-dashed border-white/5 rounded-3xl">
     No conversions found. Try "28mm" or "1:35".
   </div>
-</form>
+</div>
 
 <!-- Conversion Card Matrix -->
 <section class="px-6 pb-24 max-w-6xl mx-auto" id="conversion-details" aria-labelledby="details-heading">
@@ -236,7 +236,7 @@ const referenceSchema = graph([
             There is also a fiscal reality: 1:48 Tamiya kits are widely available at hobby shops and often cost <strong class="text-white">half the price</strong> of official wargaming-branded 1:56 kits.
           </p>
           <p>
-            For the technical hobbyist, 1:48 is a rare win-win: better visual proportions and lower cost. Use my <a rel="nofollow" href="/?source=1:48&target=32mm&logic=eye" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">1:48 to 32mm conversion</a> and see how it looks on your table.
+            For the technical hobbyist, 1:48 is a rare win-win: better visual proportions and lower cost. Use my <a href="/?source=1:48&target=32mm&logic=eye" class="text-[#ff6b35] hover:text-white transition-colors font-semibold">1:48 to 32mm conversion</a> and see how it looks on your table.
           </p>
         </div>
       </div>
@@ -305,7 +305,9 @@ const referenceSchema = graph([
               <i class="fa-solid fa-calculator text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
               <div>
                 <p class="text-white font-semibold text-sm mb-1">28mm true scale to 32mm heroic</p>
-                <p class="text-slate-400 text-sm">I set my slicer to <span class="text-white font-mono">{conv28to32.percentage}%</span> for eye level{conv28to32.topHeadPercentage ? `, or <span class="text-white font-mono">${conv28to32.topHeadPercentage}%</span> for top of head` : ''}.</p>
+                <p class="text-slate-400 text-sm">
+                  I set my slicer to <span class="text-white font-mono">{conv28to32.percentage}%</span> for eye level{conv28to32.topHeadPercentage ? <>, or <span class="text-white font-mono">{conv28to32.topHeadPercentage}%</span> for top of head</> : null}.
+                </p>
               </div>
             </div>
             <div class="flex items-start gap-4 p-5 rounded-xl bg-white/[0.03] border border-white/5">
@@ -319,7 +321,7 @@ const referenceSchema = graph([
               <i class="fa-solid fa-bullseye text-[#ff6b35] mt-0.5" aria-hidden="true"></i>
               <div>
                 <p class="text-white font-semibold text-sm mb-1">The number I actually use</p>
-                <p class="text-slate-400 text-sm">To match a realistic 28mm soldier to a modern heroic system with material cooling accounted for, I land on <span class="text-white font-mono">115.8%</span>. Your printer may want something different.</p>
+                <p class="text-slate-400 text-sm">To match a realistic 28mm soldier to a modern heroic system, I use <span class="text-white font-mono">{conv28to32.percentage}%</span> — the same eye-level value as the chart. Your printer may want something different.</p>
               </div>
             </div>
           </div>
@@ -402,7 +404,7 @@ const referenceSchema = graph([
             id="ref-correction"
             name="correction"
             rows="3"
-            placeholder="e.g. The 1:48 scale vehicle upscale for Bolt Action should be 114.5% instead of 114.3% because..."
+            placeholder="e.g. The 28mm to 32mm percentage should be different because..."
             required
             class="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-[#ff6b35] focus:ring-1 focus:ring-[#ff6b35] focus:outline-none transition-all resize-none"
           ></textarea>

@@ -57,7 +57,7 @@ export const faqData = [
       },
       {
         q: "Why are there so few 1:56 vehicle STLs available?",
-        a: `Most historical vehicle designers work in 1:35 for traditional model kits. 1:56 is a wargaming niche. You can downscale a 1:35 vehicle STL to <span class="text-[#ff6b35] font-semibold">62.5%</span> to get a 1:56 equivalent. On FDM the detail may soften at that reduction, but a 0.2mm nozzle helps preserve it.`,
+        a: `Most historical vehicle designers work in 1:35 for traditional model kits. 1:56 is a wargaming niche. You can downscale a 1:35 vehicle STL to <span class="text-[#ff6b35] font-semibold">62.6%</span> to get a 1:56 equivalent. On FDM the detail may soften at that reduction, but a 0.2mm nozzle helps preserve it.`,
       },
     ]
   },

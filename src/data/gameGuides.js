@@ -117,9 +117,9 @@ export const gameGuides = {
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:35 vehicle</td><td class="py-2 px-3 text-slate-300">1:56 vehicle</td><td class="py-2 px-3 text-right font-mono font-bold text-white">62.5%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:35 vehicle</td><td class="py-2 px-3 text-slate-300">1:56 vehicle</td><td class="py-2 px-3 text-right font-mono font-bold text-white">62.6%</td></tr>
                 <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:48 vehicle</td><td class="py-2 px-3 text-slate-300">1:56 vehicle</td><td class="py-2 px-3 text-right font-mono font-bold text-white">85.9%</td></tr>
-                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:72 vehicle</td><td class="py-2 px-3 text-slate-300">1:56 vehicle</td><td class="py-2 px-3 text-right font-mono font-bold text-white">128.6%</td></tr>
+                <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">1:72 vehicle</td><td class="py-2 px-3 text-slate-300">1:56 vehicle</td><td class="py-2 px-3 text-right font-mono font-bold text-white">128.8%</td></tr>
                 <tr class="border-b border-white/5"><td class="py-2 px-3 text-slate-300">32mm infantry</td><td class="py-2 px-3 text-slate-300">28mm infantry</td><td class="py-2 px-3 text-right font-mono font-bold text-white">87.5%</td></tr>
                 <tr><td class="py-2 px-3 text-slate-300">35mm infantry</td><td class="py-2 px-3 text-slate-300">28mm infantry</td><td class="py-2 px-3 text-right font-mono font-bold text-white">80.0%</td></tr>
               </tbody>

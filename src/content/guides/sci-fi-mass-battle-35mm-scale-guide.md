@@ -3,7 +3,7 @@ title: "35mm Sci-Fi Mass-Battle Game Scale Guide — What Scale Are Its Miniatur
 description: "Miniatures for the 35mm sci-fi mass-battle game are 35mm scale (1:47), measured to eye level at 35.7mm. Full height about 40mm. Exact slicer percentages to convert its STLs and proxies for space opera armies."
 tldr: "The 35mm sci-fi mass-battle game's minis are 35mm scale measured to the eyes (about 35.7mm, roughly 40mm total height), around 1:47 — between the modern sci-fi epic wargame's 32mm and the 40mm sci-fi skirmish game's 40mm. To proxy into a 35mm sci-fi mass-battle army, scale 32mm STLs to 109.4% or 28mm STLs to 125%. Print a scale standee and compare in your slicer before committing."
 pubDate: 2026-08-15
-modDate: 2026-08-15
+modDate: 2026-11-19
 faq:
   - question: What scale is the 35mm sci-fi mass-battle game?
     answer: >-
@@ -99,6 +99,6 @@ If you're printing proxies, matching the base size matters more than the infantr
 
 ### Vehicles slide between scales
 
-The vehicles are where this game's 1:47 scale shines for printing. Because the game's walkers and speeders are oversized on purpose (they're designed to be readable at table distance, not accurate to the films), you have a lot of room to work with. The community's favourite trick is printing space opera vehicle STLs that are *supposed* to be display-scaled and shrinking them to fit this game's table — 1:48 kits at 96% are the closest fit, so check the exact height you need against this game's scale before you commit to the plate.
+The vehicles are where this game's 1:47 scale shines for printing. Because the game's walkers and speeders are oversized on purpose (they're designed to be readable at table distance, not accurate to the films), you have a lot of room to work with. The community's favourite trick is printing space opera vehicle STLs that are *supposed* to be display-scaled and resizing them to fit this game's table — a 1:48 kit goes to 105.1%, a slight upscale to the 35mm eye-level baseline, so check the exact height you need against this game's scale before you commit to the plate.
 
 That's the conversion. 35mm to the eyes, 109.4% from the modern sci-fi epic wargame, 125% from the classic fantasy RPG, and a printed standee to keep you honest. The full set of percentages across every scale sits on the [miniature scale conversion chart](/miniature-size-chart).

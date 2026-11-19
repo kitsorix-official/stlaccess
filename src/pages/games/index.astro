@@ -61,7 +61,7 @@ const gamesSchema = graph([
 </div>
 
   <!-- Search / Filter -->
-  <form role="search" class="px-6 mb-12 max-w-6xl mx-auto" aria-labelledby="games-search-heading" onsubmit="return false">
+  <div role="search" class="px-6 mb-12 max-w-6xl mx-auto" aria-labelledby="games-search-heading">
     <h2 id="games-search-heading" class="sr-only">Search game systems</h2>
     <div class="relative group">
       <i class="fa-solid fa-magnifying-glass absolute left-6 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#ff6b35] transition-colors" aria-hidden="true"></i>
@@ -76,7 +76,7 @@ const gamesSchema = graph([
     <div id="noResults" class="hidden mt-8 text-center text-slate-500 italic py-12 border border-dashed border-white/5 rounded-3xl">
       No game systems found. Try "Warhammer" or "Bolt Action".
     </div>
-  </form>
+  </div>
 
   <!-- Game Systems by Scale: condensed hub cards linking to spoke detail pages -->
   <section class="max-w-6xl mx-auto px-6 pb-12 md:pb-20" id="game-systems" aria-labelledby="systems-heading">

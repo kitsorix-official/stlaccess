@@ -84,7 +84,7 @@ export const gameDetailContent = {
       "Rank-and-file infantry print at a 0.4mm nozzle and 0.1mm layers; officers and snipers get 0.06mm on a 0.2mm nozzle. Vehicles print fast and clean at 0.2mm layers. Bayonets and rifle barrels soften on FDM, so I orient those parts carefully.",
     faq: [
       { name: "Is Bolt Action 28mm or 1:56?", text: "Both. Infantry are 28mm true scale to the eyes, and the official vehicle scale is 1:56. Many players prefer 1:48 Tamiya kits because they look correct next to bulkier modern plastic infantry." },
-      { name: "How do I bring a 1:35 vehicle STL down for Bolt Action?", text: "Scale a 1:35 vehicle to 62.5% to reach 1:56. If you target 1:48 instead, use a smaller reduction so the hull lands in the 1:48 sweet spot." },
+      { name: "How do I bring a 1:35 vehicle STL down for Bolt Action?", text: "Scale a 1:35 vehicle to 62.6% to reach 1:56. If you target 1:48 instead, use a smaller reduction so the hull lands in the 1:48 sweet spot." },
     ],
   },
   "dungeons-and-dragons": {

@@ -79,7 +79,7 @@ const groupedGuides = tracks
   </section>
 
   <!-- Search / Filter -->
-  <form role="search" class="px-6 pb-8 max-w-6xl mx-auto" onsubmit="return false">
+  <div role="search" class="px-6 pb-8 max-w-6xl mx-auto">
     <div class="relative max-w-md">
       <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm pointer-events-none" aria-hidden="true"></i>
       <input
@@ -90,7 +90,7 @@ const groupedGuides = tracks
         aria-label="Search guides"
       />
     </div>
-  </form>
+  </div>
 
   {sortedPosts.length === 0 ? (
     <section class="px-6 pb-24 max-w-6xl mx-auto" aria-labelledby="guides-grid-heading">

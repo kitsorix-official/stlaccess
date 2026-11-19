@@ -2,7 +2,22 @@
 import Layout from "../../layouts/Layout.astro";
 import JsonLd from "../../components/JsonLd.astro";
 import ScaleVisualizerApp from "../../components/visualizer/ScaleVisualizerApp.tsx";
-import { graph, breadcrumb, softwareApplication } from "../../lib/schema";
+import { graph, breadcrumb, softwareApplication, faqPage } from "../../lib/schema";
+
+const faq = [
+  {
+    question: "How does the 3D scale visualizer work?",
+    answer: "It places a calibrated 10mm grid beside figures scaled with the same eye-level baselines used across STLACCESS, so you can compare 28mm, 32mm, 35mm and ratio scales side by side before you print. Everything runs locally in your browser.",
+  },
+  {
+    question: "Which miniature scales can I compare?",
+    answer: "The visualizer covers 28mm, 32mm, 35mm and 40mm gaming scales plus ratio scales such as 1:35, 1:48, 1:56 and 1:72. The same baselines drive the conversion chart and the slicer percentages in the scale converter.",
+  },
+  {
+    question: "Why compare by eye level instead of total height?",
+    answer: "Gaming labels describe the height of a 175cm human's eyes, which sit at 160cm, while ratio labels are defined from full height. Mixing the two conventions produces models that look visibly wrong, so every comparison here uses eye-level equivalents.",
+  },
+];
 
 const schema = graph([
   breadcrumb([
@@ -14,6 +29,7 @@ const schema = graph([
     description: "Interactive 3D comparison tool for visualizing miniature scale differences between 28mm, 32mm, 35mm, and ratio scales on a calibrated 10mm grid.",
     url: "/tools/3d-scale-visualizer",
   }),
+  faqPage(faq),
 ]);
 ---
 
@@ -43,6 +59,31 @@ const schema = graph([
       </p>
     </div>
   </div>
+
+  <section class="max-w-4xl mx-auto px-6 pb-12" aria-labelledby="visualizer-answer-heading">
+    <div class="rounded-[2rem] border border-[#ff6b35]/30 bg-gradient-to-br from-[#ff6b35]/15 via-[#ff6b35]/5 to-transparent p-6 md:p-9">
+      <p class="text-xs font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3">Direct answer</p>
+      <h2 id="visualizer-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">See the scale difference before you print</h2>
+      <p class="text-slate-300 leading-relaxed">
+        The visualizer compares miniature scales against a calibrated 10mm grid so you can judge how a 28mm, 32mm, 35mm or ratio-scale model will look next to figures you already own. It uses the same eye-level baselines as the conversion chart, and it runs entirely in your browser.
+      </p>
+    </div>
+
+    <div class="mt-10">
+      <h2 class="text-xl md:text-2xl font-bold font-heading mb-5">Questions this tool answers</h2>
+      <div class="space-y-4">
+        {faq.map((item) => (
+          <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+            <summary class="cursor-pointer font-semibold text-white flex items-center justify-between gap-4">
+              {item.question}
+              <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180" aria-hidden="true"></i>
+            </summary>
+            <p class="mt-4 text-sm text-slate-400 leading-relaxed">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <div class="h-[75vh] w-full">
     <ScaleVisualizerApp client:only="react" />

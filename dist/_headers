@@ -1,12 +1,12 @@
 # Cloudflare Pages response headers.
 #
-# Static, no-cookie site. Everything is self-hosted (fonts, icons, scripts),
-# so the CSP below can stay tight. Inline scripts/styles are required because
-# the site ships several inline <script> blocks and inline <style>; they are
-# all authored in this repo, never user-supplied.
+# Static, no-cookie site. Everything is self-hosted (fonts, icons, scripts).
+# The CSP below is a strict fallback; scripts/csp-integration.mjs replaces the
+# script-src/style-src directives with SHA-256 hashes of this build's first-
+# party inline scripts and styles after Astro finishes generating the HTML.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; form-action 'self' https://script.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-L1uAX4Om6QOHkJZHdLKL6wAHPQgoxvUBWBahhizoTQ8=' 'sha256-g9nmsnDhJWHw9/fGj6c0M3UsWVaYiWSV33hryoSqsws=' 'sha256-n13dH2SSnqiSIzDq0bE7FvdGhW0xSZ7cC9VHDZ2JsJ8=' 'sha256-35v/flNoEaljdxb4sqszgaTBV/pOvT5g95VSMaLUkCg=' 'sha256-I6G3Fucl0FcQSGx0Me0jilNp4CbKH8CulGKIjhPaHr8=' 'sha256-n4GnOMaS2xuj7xUARsFoN5/4xrYQcRss9KjT1dxadxs=' 'sha256-E9llCoZw40rQBs82MehBFLxXeqJH5rxFwsFtmEwY11E=' 'sha256-Ti7Y1dgbTifamjVFsTKbnPnzwinq2ym2f5nNSZNAo1g=' 'sha256-2xZPxc6ouyWzRLxAgmPff0y8nrMnd5I2JCo2cxaB5dc=' 'sha256-Y8t0ntteBwH+PqGKUyjWW3CAk+BNJKSoQc0xZ68FjhM=' 'sha256-UIrFqcaitjA3OKa9mHKajg3N+0Y7tW9+y0o3QmMFeZQ=' 'sha256-QQhTxJcr0Bbp2E6NZX+LNnwc6EF3aHiZtx7PC6u364s=' 'sha256-vP9qr7J6mjyqzLSv9Zwkh9ykf6Lj9VbewCieeWEK47c=' 'sha256-rsrnwzQH23ThvR9kpLfhSgryev7dJiVgVcXsAYBcyIw=' 'sha256-aKwQdQbzw3PO2zeKweP/xoHSCJxBN03URvm5kN7k/4I=' 'sha256-2MGBSonkQ77GWyIUKsR0oXT5p16gGR7ojQ3EPqx7GVk=' 'sha256-fz3vL13ftnr4Te5kP0VWOaBIHth4y4SWuExEC3Fx4cE='; style-src 'self' 'sha256-ZLwDEIPDHbRRAeXqChmlM4jaFBkHIF0LzKHNOYjnicE=' 'sha256-vv9IoKo7BSLbWcUHr3tNmfNVmm5L/9Cfn2H6LMk7/ow=' 'unsafe-hashes' 'sha256-Rf8qxCA1Lk62i9GeuNkuk95dEI+k1UlQg50/uw0HGSY=' 'sha256-dOz13AxVquOQxcu6seDCdjyS1PuhXEZj8oYBJMqQQiY=' 'sha256-fi9Hk2nCTUN60YsKRfhX06bGJLfP4rMcsH76WaO670c=' 'sha256-4nX+RrrN3BX7MzW7GVLcn41o8jiN9tPcRn2CtMJZGFM=' 'sha256-b9+RSvSWWOzlQH6Wl5DI2L32rWcfsjyZboHNl9+z7ic=' 'sha256-1YEn7hkOCDFMdyqfoICxl7N8sbprf4xirAV1YcTYYEA=' 'sha256-i0JPB0qmRu5AViJTxOIzqXnfGoiWFw+oNAm4uJd7ZQk=' 'sha256-Bp8uiZj5gsDTIj8WTP7ta4fWYoaXKibtP2WrHnfM7Is='; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; form-action 'self' https://script.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   X-XSS-Protection: 0
@@ -18,11 +18,10 @@
   X-Permitted-Cross-Domain-Policies: none
   Cache-Control: public, max-age=0, must-revalidate
 
-# Cloudflare Pages serves /js/* from its own cache (observed: 4 hours) and
-# overrides this Cache-Control, so _headers alone cannot keep a changed
-# script fresh. The real fix is the content-hash query the markup adds
-# (/js/foo.js?v=<hash>) — see src/utils/assetVersion.js. Kept here so the
-# directive applies if the zone's cache settings ever respect it.
+# Cloudflare may serve /js/* from its edge cache regardless of the directive
+# below. Markup adds a content-hash query (src/utils/assetVersion.js), so a
+# changed script is a new cache key. This directive still asks origins that
+# honour it to revalidate immediately.
 /js/*
   Cache-Control: public, max-age=0, must-revalidate
 

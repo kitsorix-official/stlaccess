@@ -4,14 +4,15 @@ import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import pwa from './scripts/pwa-integration.mjs';
+import cspHeaders from './scripts/csp-integration.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // Freshness: sitemap <lastmod> reflects real content dates, not the build date.
 // Rebuilding/deploying is not a content edit. Guides use their frontmatter
-// modDate/pubDate; other pages fall back to the source file mtime, then to the
-// explicit content-review date in site.json.
+// modDate/pubDate; other pages use the explicit content-review date in
+// site.json, which is also the date shown visitors in the page footer.
 const siteConfig = JSON.parse(
   fs.readFileSync(new URL("./src/data/site.json", import.meta.url), "utf8"),
 );
@@ -57,11 +58,6 @@ function lastmodForUrl(url) {
     if (!fs.existsSync(file)) continue;
     const contentDate = file.endsWith(".md") ? frontmatterDate(file) : null;
     if (contentDate) return contentDate;
-    try {
-      return fs.statSync(file).mtime.toISOString();
-    } catch {
-      // Try the next candidate.
-    }
   }
   return reviewLastmod ?? new Date(0).toISOString();
 }
@@ -150,7 +146,8 @@ export default defineConfig({
     }),
     singleSitemap(),
     react(),
-    pwa()
+    pwa(),
+    cspHeaders()
   ],
 
   vite: {

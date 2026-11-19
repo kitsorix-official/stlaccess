@@ -111,13 +111,14 @@ export interface FaqItem {
 }
 
 export function faqPage(items: FaqItem[], pageUrl?: string) {
+  void pageUrl; // Kept for backwards compatibility with existing callers.
   return {
     "@type": "FAQPage",
-    mainEntity: items.map((item, i) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: stripHtml(item.question),
       answerCount: 1,
-      ...(item.url || pageUrl ? { url: item.url || `${SITE_URL}${pageUrl}#qa-${i}` } : {}),
+      ...(item.url ? { url: item.url } : {}),
       acceptedAnswer: {
         "@type": "Answer",
         text: stripHtml(item.answer),
@@ -127,7 +128,7 @@ export function faqPage(items: FaqItem[], pageUrl?: string) {
           name: "kitsorix",
           url: AUTHOR_URL,
         },
-        url: item.url || (pageUrl ? `${SITE_URL}${pageUrl}#qa-${i}` : undefined),
+        ...(item.url ? { url: item.url } : {}),
       },
     })),
   };
@@ -204,9 +205,24 @@ export function webPage({ type = "WebPage", name, description, url, mainEntity }
 }
 
 export function graph(nodes: Record<string, unknown>[]) {
+  // A node that points at an @id which is never defined in the same document
+  // is meaningless to answer engines. Add the shared Person / Organization /
+  // WebSite nodes whenever anything references them, without duplicating them.
+  const result = [...nodes];
+  const websiteId = `${SITE_URL}/#website`;
+  const hasRef = (id: string) => JSON.stringify(result).includes(id);
+  const hasNode = (id: string) => result.some((node) => node["@id"] === id);
+
+  if (hasRef(websiteId) && !hasNode(websiteId)) result.unshift(webSite());
+  if (hasRef(ORG_ID) && !hasNode(ORG_ID)) result.unshift(organization());
+  if (hasRef(PERSON_ID) && !hasNode(PERSON_ID)) result.unshift(person());
+  // webSite() and organization() introduce references of their own.
+  if (hasRef(ORG_ID) && !hasNode(ORG_ID)) result.unshift(organization());
+  if (hasRef(PERSON_ID) && !hasNode(PERSON_ID)) result.unshift(person());
+
   return {
     "@context": "https://schema.org",
-    "@graph": nodes,
+    "@graph": result,
   };
 }
 

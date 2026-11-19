@@ -18,6 +18,13 @@
 /learn/*/  /learn/:splat  301
 /guides/*/  /guides/:splat  301
 
+# Subpage .html → clean URL (the top-level rules below handle section indexes)
+/games/*.html  /games/:splat  301
+/guides/*.html  /guides/:splat  301
+/tools/*.html  /tools/:splat  301
+/learn/*.html  /learn/:splat  301
+/reference/*.html  /reference/:splat  301
+
 # .html extension → clean URL
 /index.html  /  301
 /about.html  /about  301
@@ -48,6 +55,9 @@
 /archive/guides/28mm-to-32mm-scale-conversion/  /guides/28mm-to-32mm-scale-conversion  301
 /archive/guides/175cm-baseline/  /guides/175cm-baseline  301
 /archive/guides/upscaling-3d-prints-detail-limit/  /guides/upscaling-3d-prints-detail-limit  301
+# Strip the trailing slash or extension in one hop, before the catch-all.
+/archive/guides/*/  /guides/:splat  301
+/archive/guides/*.html  /guides/:splat  301
 /archive/guides/*  /guides/:splat  301
 
 # Old chart / calculator paths → current equivalents.

@@ -4,25 +4,9 @@ import JsonLd from "../../components/JsonLd.astro";
 import FilamentDensityTool from "../../components/tools/FilamentDensityTool.astro";
 import { graph, breadcrumb, softwareApplication, faqPage, article } from "../../lib/schema";
 import site from "../../data/site.json";
+import filamentDensityFaq from "../../data/filamentDensityFaq.js";
 
-const faq = [
-  {
-    question: "How do you calculate filament weight from volume?",
-    answer: "Weight = volume × density. A 10cm³ solid model in PLA at 1.24g/cm³ weighs 12.4g. For a hollow FDM print, subtract the cavity behind the wall thickness, then add only the chosen infill percentage of what remains.",
-  },
-  {
-    question: "What is the density of PLA, PETG, ABS and resin?",
-    answer: "PLA is 1.24g/cm³, PETG 1.27, ABS 1.04, ASA 1.07, TPU 1.21 and nylon about 1.14. Standard resin sits near 1.10 and ABS-like resin around 1.15.",
-  },
-  {
-    question: "Does colour change filament density?",
-    answer: "Colour pigment makes no practical difference. Fillers do: carbon-fibre blends such as PLA-CF are slightly denser than base PLA, which is why they have their own preset.",
-  },
-  {
-    question: "How accurate is the print time estimate?",
-    answer: "It is a planning baseline, not a slicer replacement. Supports, wall count, infill pattern and speed profiles all move the real number, so take your slicer's estimate as final.",
-  },
-];
+const faq = filamentDensityFaq;
 
 const toolSchema = graph([
   breadcrumb([

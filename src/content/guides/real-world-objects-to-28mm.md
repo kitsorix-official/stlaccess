@@ -1,8 +1,9 @@
 ---
-title: "Real-World Objects to 28mm Scale: Feet to MM Conversion for 28mm WWII Platoon Wargames, the Classic Fantasy RPG & Historical"
+title: "Real-World Objects to 28mm Scale: Feet-to-MM Conversion"
 description: "The formula I use to convert real-world heights to true 28mm miniature scale. Charts for humans, monsters, vehicles, and terrain for 28mm WWII platoon wargames, the classic fantasy RPG, and historical wargaming."
 tldr: "(real height in inches × 28 ÷ 63 = height in mm). An 18-foot dragon at 28mm scale stands about 96mm tall. Because 28mm eye level maps to roughly 1:56 top of head, the same numbers double as 28mm WWII platoon wargame vehicle and terrain sizes."
 pubDate: "2026-08-30"
+modDate: 2026-11-19
 faq:
   - question: How do I convert a real-world height into 28mm miniature scale?
     answer: >-

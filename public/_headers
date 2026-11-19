@@ -1,12 +1,12 @@
 # Cloudflare Pages response headers.
 #
-# Static, no-cookie site. Everything is self-hosted (fonts, icons, scripts),
-# so the CSP below can stay tight. Inline scripts/styles are required because
-# the site ships several inline <script> blocks and inline <style>; they are
-# all authored in this repo, never user-supplied.
+# Static, no-cookie site. Everything is self-hosted (fonts, icons, scripts).
+# The CSP below is a strict fallback; scripts/csp-integration.mjs replaces the
+# script-src/style-src directives with SHA-256 hashes of this build's first-
+# party inline scripts and styles after Astro finishes generating the HTML.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; form-action 'self' https://script.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://script.google.com https://script.googleusercontent.com; form-action 'self' https://script.google.com; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; worker-src 'self'; manifest-src 'self'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   X-XSS-Protection: 0
@@ -18,11 +18,10 @@
   X-Permitted-Cross-Domain-Policies: none
   Cache-Control: public, max-age=0, must-revalidate
 
-# Cloudflare Pages serves /js/* from its own cache (observed: 4 hours) and
-# overrides this Cache-Control, so _headers alone cannot keep a changed
-# script fresh. The real fix is the content-hash query the markup adds
-# (/js/foo.js?v=<hash>) — see src/utils/assetVersion.js. Kept here so the
-# directive applies if the zone's cache settings ever respect it.
+# Cloudflare may serve /js/* from its edge cache regardless of the directive
+# below. Markup adds a content-hash query (src/utils/assetVersion.js), so a
+# changed script is a new cache key. This directive still asks origins that
+# honour it to revalidate immediately.
 /js/*
   Cache-Control: public, max-age=0, must-revalidate
 

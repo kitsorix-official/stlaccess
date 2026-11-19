@@ -1,107 +1,114 @@
 ---
-title: "Classic Fantasy RPG Miniature Scale Guide — What Size Are Classic Fantasy RPG Minis?"
-description: "What scale is the classic fantasy RPG? Medium humanoids are 28mm to the eyes on the 175cm baseline. The full classic fantasy RPG size chart: Tiny, Small, Medium, Large, Huge, Gargantuan with mini heights and base sizes."
-tldr: "The classic fantasy RPG is 28mm true scale: a Medium humanoid measures 28mm to the eyes, about 30-32mm total height. The publisher's official minis run true 28mm, while most printed STLs are 32mm heroic. Bases: 1-inch Medium, 2-inch Large, 3-inch Huge, 4-inch Gargantuan."
+title: "Classic Fantasy Miniatures: 25mm Heritage vs 28mm Heroic"
+description: "Why classic fantasy ranges mix 25mm heritage, 28mm eye lines and 32mm heroic sculpts. How I compare ranges, pick bases and scale STLs without breaking a table."
+tldr: "Older fantasy ranges were sold as 25mm, modern sculpts as 28mm, and many STLs are 32mm heroic. Compare eye lines, not box labels: 28mm to 32mm is 114.3%, 32mm to 28mm is 87.5%. Bases and silhouette decide play."
 pubDate: 2026-08-15
-modDate: 2026-08-15
+modDate: 2026-11-19
 faq:
-  - question: What scale are classic fantasy RPG miniatures?
+  - question: Are classic fantasy miniatures 25mm or 28mm?
     answer: >-
-      True 28mm scale. A Medium humanoid measures 28mm from the feet to
-      the eyes on the 175cm baseline, about 30-32mm to the top of the
-      head. The publisher's official lines are true 28mm; most
-      third-party STLs are 32mm heroic.
-  - question: How tall are classic fantasy RPG minis?
+      Both labels are in circulation. Vintage ranges were sold as 25mm,
+      modern ranges as 28mm, and the number usually described a rough total
+      height rather than a strict eye line. I measure to the eyes on the
+      175cm baseline: a true 28mm humanoid has a 28mm eye line and measures
+      about 30-32mm to the top of the head.
+  - question: Why do old metal figures look shorter than new STLs?
     answer: >-
-      It depends on size category. A Medium humanoid is about 30-32mm
-      total. Large creatures are roughly 44mm, Huge about 59mm, and
-      Gargantuan 90-120mm or more. What matters on the table is the base:
-      1-inch Medium, 2-inch Large, 3-inch Huge, 4-inch Gargantuan.
-  - question: What base sizes do classic fantasy RPG minis use?
+      Sculpting style drifted toward heroic proportions: bigger heads,
+      hands and weapons on the same nominal scale. Thicker bases and
+      hair add millimetres too. Two figures both sold as 28mm can look
+      like different scales until you compare the eye lines and ignore
+      the base.
+  - question: Can I mix 25mm, 28mm and 32mm figures in one warband?
     answer: >-
-      Tiny minis fit on 1-inch squares or smaller, Small and Medium use
-      1-inch (25mm) round bases, Large uses 2-inch (50mm), Huge uses
-      3-inch (75mm), and Gargantuan uses 4-inch (100mm) or larger.
-  - question: Are classic fantasy RPG minis 28mm or 32mm?
+      Yes, as long as the bases match the game and the eye lines stay
+      close. I keep veterans on their original 25mm-style bases, put
+      new heroic sculpts beside them, and only scale a figure when its
+      eyes sit more than about 2mm above or below the rest of the group.
+  - question: What percentage converts a 32mm heroic STL for a classic 28mm table?
     answer: >-
-      Officially, the classic fantasy RPG is 28mm true scale — a Medium mini is 28mm to the
-      eyes. Many third-party STL designers sculpt in 32mm heroic because
-      it carries more detail; if you mix them, scale 28mm to 114.3%.
-tags: ["fantasy rpg", "28mm", "miniature scale", "size chart"]
+      Use 87.5% to bring a 32mm eye line down to 28mm, or 114.3% to go
+      the other direction. Lock X, Y and Z in the slicer and measure the
+      model, not the base. The full table is on the miniature size chart.
+  - question: Do base sizes matter more than height in classic fantasy games?
+    answer: >-
+      Usually. A figure occupies the base it stands on, so a 25mm scout
+      on a 25mm base plays the same as a 32mm hero on the same base.
+      Match the footprint first, then worry about a millimetre or two of
+      height.
+tags: ["classic fantasy", "25mm", "28mm", "heroic scale", "miniature scale", "STL printing"]
 ---
 
-The classic fantasy RPG is the easiest game to answer "what scale am I playing?" for, and the hardest to answer "how big should this miniature be?" for — because the answer changes depending on whether you're talking about a halfling, an ogre, or an ancient dragon. Officially it's all one scale. In practice you're juggling six size categories, two measurement conventions, and a whole industry of sculptors who quietly drifted away from true 28mm.
+Classic fantasy miniatures are the messiest scale question in the hobby, and I say that as someone who prints more dwarf kings than is probably reasonable. A figure sold as "25mm" in an old catalogue, a modern "28mm" hero and a 32mm heroic STL can all end up on the same table without anyone breaking the rules. The labels describe three different sculpting eras, not three clean measurements.
 
-This guide untangles it. I measured the publisher's official minis against my own prints, and here's the version of the classic fantasy RPG scale question that actually helps at the slicer.
+This guide is about that compatibility problem. If you want the D&D grid and its size categories, read the [D&D miniature scale guide](/guides/dnd-miniature-scale-guide) instead. Here I am only asking: when I put two fantasy ranges side by side, do the eye lines and bases agree?
 
-## What Scale Are Classic Fantasy RPG Miniatures?
+## What "25mm" used to mean
 
-### 28mm to the eyes, about 30-32mm tall
+Vintage fantasy ranges were advertised in millimetres, but the number was a rough marketing shorthand rather than the strict eye-line baseline I use on this site. A "25mm" dwarf from one manufacturer and a "25mm" human from another could differ by several millimetres because each sculptor interpreted the label differently. Hair, helmets and thick slottabases made the problem worse.
 
-The classic fantasy RPG is **true 28mm scale**. On the [175cm human baseline](/guides/175cm-baseline) I use across this site, a Medium humanoid measures **28mm from the feet to the eyes** — which works out to about **30-32mm to the top of the head**, because the forehead and hair add a few millimetres past the eye line. That's the same convention as every other tabletop scale: eyes, not crown.
+Modern ranges tightened this up. When a game says 28mm now, it usually means a human eye line of **28mm** on my [175cm baseline](/guides/175cm-baseline), which puts the top of the head around **30-32mm**. That is the convention behind the conversion chart and every slicer percentage on STLACCESS.
 
-The publisher's official minis match this. Its flagship product lines are branded and sculpted at true 28mm, which is one reason they slot into a classic fantasy RPG table so seamlessly. If you pick up any of the official lines, you can print and play at 28mm without converting anything.
+The practical takeaway: treat an old 25mm label as a family resemblance, not a measurement. Measure the eye line.
 
-### Why so many printed classic fantasy RPG minis are 32mm
+## The three heights you actually see
 
-Here's the trap. A huge share of the STLs sold "for the classic fantasy RPG" — especially the popular fantasy sculptors on the usual platforms — are actually sculpted at **32mm heroic**. It's not malicious; bigger models carry more detail, print more forgivingly, and look better in renders. But it means a party printed from mixed sources will show two generations of height side by side.
+When I sort a mixed fantasy collection, I use these rough bands. They are observations from my own figures, not factory specifications.
 
-The fix is the same one as everywhere else on this site: measure the model's Z-height in your slicer, then use [114.3% to go 28mm to 32mm](/guides/28mm-to-32mm-scale-conversion) or [87.5% to go back down](/guides/32mm-to-28mm-scale-conversion). Both percentages, plus the reasoning, are covered in their own guides.
-
-## How Tall Are Classic Fantasy RPG Minis by Size Category?
-
-### The classic fantasy RPG size chart
-
-The classic fantasy RPG defines size by the space a creature controls on a 5-foot grid, which translates directly to base size and roughly to miniature height. These are the heights I use, worked out from real-world creature sizes at 28mm scale:
-
-| Size | Map space | Example creatures | Mini height | Base |
-| --- | --- | --- | --- | --- |
-| Tiny | 2.5 × 2.5 ft | Rat, imp, familiar | ~10-25mm | Under 1-inch |
-| Small | 5 × 5 ft | Halfling, goblin, kobold | ~25-28mm | 1-inch (25mm) |
-| Medium | 5 × 5 ft | Human, elf, orc | ~30-32mm | 1-inch (25mm) |
-| Large | 10 × 10 ft | Ogre, troll, horse | ~44mm | 2-inch (50mm) |
-| Huge | 15 × 15 ft | Hill giant, young dragon | ~59mm | 3-inch (75mm) |
-| Gargantuan | 20 × 20+ ft | Ancient dragon, kraken | 90-120mm+ | 4-inch+ (100mm+) |
-
-The heights aren't magic numbers — they're the real creature's height divided by 63, which is what 28mm scale means for a 175cm human. An ogre at 9 feet tall lands at about 44mm; a hill giant at 12 feet lands at about 59mm. The publisher's own giants and dragons often run a touch bigger for shelf presence, which is fine — the base, not the height, is what governs play.
-
-### Base sizes are what matter on the table
-
-In actual play, the base is the rule. A creature occupies the squares its base covers — a 2-inch base is "Large" no matter how tall the sculpt is — so when you're printing replacements or proxies, match the base first and the height second. A Huge creature on a 3-inch base with a 55mm sculpt plays identically to the official mini; a Medium minion that towers over the goblins beside it will bother you more than it bothers the rules.
-
-That's also the reason the official lines are internally consistent even though sculptors' proportions drift: every mini ships with the correct base for its category, and the categories are locked to the grid.
-
-## How Do I Scale a Classic Fantasy RPG STL to the Right Size?
-
-### The slicer percentages I use for heroes and monsters
-
-With axes locked, these are the numbers that cover almost every classic fantasy RPG situation:
-
-| What you have | What you want | Percentage |
+| What the sculpt was sold as | Typical eye line | What I look for |
 | --- | --- | --- |
-| 28mm true-scale STL | 32mm heroic look | 114.3% |
-| 32mm heroic STL | True 28mm table | 87.5% |
-| Medium humanoid | Large creature | 200.0% |
-| Medium humanoid | Huge creature | ~300.0% |
+| Vintage 25mm metal | 24-27mm | Slim limbs, small head, often a thick slottabase |
+| Modern 28mm | 28mm | Heroic-ish proportions, ~30-32mm to the crown |
+| 32mm heroic STL | 32mm | Large head and hands, chunky weapons, ~35mm to the crown |
 
-The Medium-to-Large jump is just scaling a humanoid figure to double height, since a 9-foot ogre is twice a 4.5-foot human. The Medium-to-Huge jump (~59mm from ~30mm) lands around 200% to 300% depending on how big you want your giant — the [slicer percentage calculator](/tools/slicer-percentage-calculator) gives you the exact number for any target height, and the [scale conversion chart](/miniature-size-chart) has the full table.
+The eye line is the number that matters. A 27mm vintage human next to a 28mm modern human looks fine. The same vintage human next to a 32mm heroic ranger looks like a child, even though both figures might be described as "28mm" by someone reading the box.
 
-### Scaling monster STLs to match official minis
+## Why heroic sculpts kept getting bigger
 
-The one place I'm careful is monsters. Ancient dragons and krakens from third-party sculptors range wildly — I've seen "Gargantuan" dragons from 80mm to 180mm, because there's no single answer for "how tall is a dragon". My rule: decide your target base (4-inch for Gargantuan) and scale the STL so the *footprint* fits, then let the height be whatever proportion the sculptor chose. That keeps the mini legal on the table and stops you from obsessing over a number nobody official publishes.
+Heroic proportions are deliberate. A slightly oversized head and hands read better across a table, and they give painters more surface area to work with. Over a few decades, that drift accumulated: a figure that would once have been called 28mm now measures closer to 32mm at the eyes while still being sold into the same games.
 
-If a dragon STL has no scale listed at all, measure it against my [scale reference bar](/tools/reference-bar-generator) in your slicer to see what height it's actually sculpted at — then you scale from there instead of guessing.
+Resin and STL sculptors inherited that look. Many fantasy STLs are modelled at 32mm heroic because they print more forgivingly and render beautifully, even when the listing says "28mm scale". I have printed party members from two different designers and watched a 4mm eye-line gap appear between two humans who were supposed to be the same scale.
 
-## How Do I Measure a Classic Fantasy RPG Mini to Find Its Scale?
+That is not a reason to reject the model. It is a reason to measure before you print the whole warband.
 
-### Measure to the eyes, not the top of the head
+## How I compare two ranges at the table
 
-The single most useful habit for classic fantasy RPG printing: **measure to the eyes**. A humanoid is "28mm" when its eye line is 28mm above the base, and the 2-4mm between the eyes and the top of the head is exactly where the confusion comes from. When you read a Z-height in your slicer, you're reading total height including the head and the base — so subtract the base and eyeball the eye line before you decide a model is "the wrong scale".
+I use three checks, in this order:
 
-This is the same convention the [175cm baseline guide](/guides/175cm-baseline) explains in full, and it's why two minis that are both "28mm" can measure 30mm and 32mm total and still be exactly the same scale.
+1. **Eye line.** Hold a ruler beside the base and read the height at the eyes. Ignore spikes, hair and weapon shafts.
+2. **Base footprint.** A figure occupies the base it stands on. If the bases match the game's grid, the figure plays correctly even if the sculpt is a little tall.
+3. **Silhouette.** A slim vintage human and a chunky heroic human can share an eye line and still look different. On a rank-and-file unit I keep one sculpt family per rank; for characters I allow the odd heroic outlier.
 
-### What if my STL has no scale listed?
+When the eye lines are within about 2mm, I leave them alone. Past that, I either rebase the figure or scale the STL.
 
-You have three options, in order of how much I trust them. First, check the model description — many sculptors state the intended height even if not the scale word. Second, measure the printed or sliced height and compare it to this guide's chart; a Medium humanoid at 30-32mm is true 28mm, at 34.5mm total it's 32mm heroic. Third, print a [scale reference bar](/tools/reference-bar-generator) to measure the sliced height against the chart and work out the exact percentage for whatever game you're printing.
+## Scaling without wrecking the bases
 
-That's the classic fantasy RPG scale answer. True 28mm to the eyes, bases over heights, and one measurement before you type any percentage. The complete set of conversions across every tabletop scale — the classic fantasy RPG, the modern sci-fi epic wargame, the 35mm sci-fi mass-battle game, and the ratio scales — is on the [miniature scale conversion chart](/miniature-size-chart).
+The two percentages I reach for are the same ones the rest of the site uses:
+
+| What I have | What I want | Slicer scale |
+| --- | --- | --- |
+| 28mm eye line | 32mm heroic eye line | 114.3% |
+| 32mm heroic eye line | 28mm eye line | 87.5% |
+| 25mm-ish vintage STL | 28mm eye line | Measure first, then use the [slicer percentage calculator](/tools/slicer-percentage-calculator) |
+
+Lock X, Y and Z together. Measure the model from the bottom of the actual model, not the bottom of a thick resin base — scaling a base along with the figure is how a mini ends up floating above its new washers. If a sculpt has no stated height, the [miniature scale identifier](/tools/miniature-scale-identifier) will match it to the nearest baseline before I commit to a percentage.
+
+For the full matrix of ratios and gaming scales, the [miniature size chart](/miniature-size-chart) is the page I keep open while slicing.
+
+## Basing and silhouette beat millimetres
+
+Old fantasy collections are full of square bases, slottabases, washer stacks and the occasional scenic plinth. Modern games usually want round bases on a grid. I rebase to the game first, then compare eye lines; a correctly based figure plays correctly whether its sculpt came from 1985 or last week.
+
+One exception: very large creatures. A dragon's height is whatever the sculptor decided, so I scale it to fit its base footprint and let the height fall where it lands. Chasing an exact millimetre on a Gargantuan model wastes an evening.
+
+## A workflow for mixed classic collections
+
+- Sort figures into eye-line bands with a caliper, not by reading product titles.
+- Rebase to the game's required footprint before scaling anything.
+- Keep one sculpt family per rank where possible; use heroic sculpts as characters.
+- Scale only the outliers, with X/Y/Z locked and the base excluded from the measurement.
+- Print one test figure and hold it beside the unit under the same light you play in.
+
+That is the whole trick. Classic fantasy scale is less about a single correct number and more about knowing which numbers you are actually comparing. Once you measure the eye line and respect the base, a 25mm veteran, a 28mm regular and a 32mm hero can share a table without anyone noticing the history.
+
+For the grid-based size categories and base chart used by a specific modern fantasy RPG, see the [D&D miniature scale guide](/guides/dnd-miniature-scale-guide). For every conversion between these scales, use the [reference library](/reference).

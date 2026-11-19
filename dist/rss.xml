@@ -5,7 +5,7 @@
     <link>https://stlaccess.com/guides</link>
     <description>Hand-written guides about miniature scale conversion, STL file basics, FDM settings, resin-to-FDM workflows and the methodology behind every percentage on STLACCESS.</description>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Nov 2026 07:22:42 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 19 Nov 2026 08:03:44 GMT</lastBuildDate>
     <atom:link href="https://stlaccess.com/rss.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Filament Density: Convert Print Volume to Grams and Cost</title>
@@ -57,7 +57,7 @@
       <guid>https://stlaccess.com/guides/fdm-vs-resin-miniatures</guid>
     </item>
     <item>
-      <title>Real-World Objects to 28mm Scale: Feet to MM Conversion for 28mm WWII Platoon Wargames, the Classic Fantasy RPG &amp; Historical</title>
+      <title>Real-World Objects to 28mm Scale: Feet-to-MM Conversion</title>
       <link>https://stlaccess.com/guides/real-world-objects-to-28mm</link>
       <description>The formula I use to convert real-world heights to true 28mm miniature scale. Charts for humans, monsters, vehicles, and terrain for 28mm WWII platoon wargames, the classic fantasy RPG, and historical wargaming.</description>
       <pubDate>Sun, 30 Aug 2026 00:00:00 GMT</pubDate>
@@ -92,9 +92,9 @@
       <guid>https://stlaccess.com/guides/32mm-to-28mm-scale-conversion</guid>
     </item>
     <item>
-      <title>Classic Fantasy RPG Miniature Scale Guide — What Size Are Classic Fantasy RPG Minis?</title>
+      <title>Classic Fantasy Miniatures: 25mm Heritage vs 28mm Heroic</title>
       <link>https://stlaccess.com/guides/classic-fantasy-rpg-miniature-scale-guide</link>
-      <description>What scale is the classic fantasy RPG? Medium humanoids are 28mm to the eyes on the 175cm baseline. The full classic fantasy RPG size chart: Tiny, Small, Medium, Large, Huge, Gargantuan with mini heights and base sizes.</description>
+      <description>Why classic fantasy ranges mix 25mm heritage, 28mm eye lines and 32mm heroic sculpts. How I compare ranges, pick bases and scale STLs without breaking a table.</description>
       <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
       <guid>https://stlaccess.com/guides/classic-fantasy-rpg-miniature-scale-guide</guid>
     </item>

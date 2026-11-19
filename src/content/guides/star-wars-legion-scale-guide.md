@@ -3,7 +3,7 @@ title: "Star Wars: Legion Scale Guide — What Scale Are Legion Miniatures?"
 description: "Star Wars: Legion miniatures are 35mm scale (1:47), measured to eye level at 35.7mm. Full height about 40mm. Exact slicer percentages to convert Legion STLs and proxies."
 tldr: "Legion minis are 35mm scale measured to the eyes (about 35.7mm, roughly 40mm total height), around 1:47 — between Warhammer's 32mm and Shatterpoint's 40mm. To proxy into a Legion army, scale 32mm STLs to 109.4% or 28mm STLs to 125%. Print a scale standee and compare in your slicer before committing."
 pubDate: 2026-08-15
-modDate: 2026-08-15
+modDate: 2026-11-19
 faq:
   - question: What scale is Star Wars Legion?
     answer: >-
@@ -99,6 +99,6 @@ If you're printing proxies, matching the base size matters more than the infantr
 
 ### Vehicles slide between scales
 
-The vehicles are where Legion's 1:47 scale shines for printing. Because the game's walkers and speeders are oversized on purpose (they're designed to be readable at table distance, not accurate to the films), you have a lot of room to work with. The community's favourite trick is printing Star Wars vehicle STLs that are *supposed* to be display-scaled and shrinking them to fit a Legion table — 1:48 kits at 96% are the closest fit, and the [real-world scale converter](/tools/real-world-scale-converter) gives you the exact millimetre height of any vehicle at Legion scale before you commit to the plate.
+The vehicles are where Legion's 1:47 scale shines for printing. Because the game's walkers and speeders are oversized on purpose (they're designed to be readable at table distance, not accurate to the films), you have a lot of room to work with. The community's favourite trick is printing Star Wars vehicle STLs that are *supposed* to be display-scaled and resizing them to fit a Legion table — a 1:48 kit goes to 105.1%, a slight upscale to the 35mm eye-level baseline, and the [real-world scale converter](/tools/real-world-scale-converter) gives you the exact millimetre height of any vehicle at Legion scale before you commit to the plate.
 
 That's the Legion conversion. 35mm to the eyes, 109.4% from Warhammer, 125% from D&D, and a printed standee to keep you honest. The full set of percentages across every scale sits on the [miniature scale conversion chart](/reference).

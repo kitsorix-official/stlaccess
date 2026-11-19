@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import site from "../data/site.json";
 import { lastModifiedDate, formatLongDate } from "../lib/freshness";
+import { metaTitle, metaDescription } from "../lib/meta.js";
+import { versionedAsset } from "../utils/assetVersion.js";
 
 const siteUpdated = lastModifiedDate();
 
@@ -12,6 +14,10 @@ interface Props {
 }
 
 const { title, description, noIndex = false } = Astro.props;
+const seoTitle = metaTitle(title);
+const seoDescription = metaDescription(description);
+const observatoryScript = versionedAsset("/js/observatory.js");
+const pwaScript = versionedAsset("/js/pwa-register.js");
 
 if (!title || !description) {
   throw new Error(
@@ -54,8 +60,8 @@ const mobileNav = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Primary Meta Tags -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{seoTitle}</title>
+    <meta name="description" content={seoDescription} />
     <meta name="theme-color" content="#ff6b35" />
 
     <meta
@@ -70,15 +76,15 @@ const mobileNav = [
     <link rel="canonical" href={canonical} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={`${site.url}/stlaccess-social-banner.png`} />
     <meta property="og:image:alt" content="STLACCESS — browser-only 3D print scale and STL learning hub" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={seoTitle} />
+    <meta name="twitter:description" content={seoDescription} />
     <meta name="twitter:image" content={`${site.url}/stlaccess-social-banner.png`} />
 
     <!-- Icons -->
@@ -123,10 +129,10 @@ const mobileNav = [
     />
 
     <!-- observatory -->
-    <script is:inline defer src="/js/observatory.js"></script>
+    <script is:inline defer src={observatoryScript}></script>
 
     <!-- PWA: service worker registration + update prompt -->
-    <script is:inline defer src="/js/pwa-register.js"></script>
+    <script is:inline defer src={pwaScript}></script>
 
     <!-- JSON-LD structured data injected by pages -->
     <slot name="head" />
