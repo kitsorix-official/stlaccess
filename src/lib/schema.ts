@@ -104,6 +104,35 @@ export function softwareApplication({ name, description, url }: SoftwareAppOptio
   };
 }
 
+export interface HowToStepInput {
+  name: string;
+  text: string;
+  url?: string;
+}
+
+export interface HowToOptions {
+  name: string;
+  description: string;
+  steps: HowToStepInput[];
+  url?: string;
+}
+
+export function howTo({ name, description, steps, url }: HowToOptions) {
+  return {
+    "@type": "HowTo",
+    name,
+    description,
+    ...(url ? { url: `${SITE_URL}${url}` } : {}),
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+      ...(step.url ? { url: step.url } : {}),
+    })),
+  };
+}
+
 export interface FaqItem {
   question: string;
   answer: string;

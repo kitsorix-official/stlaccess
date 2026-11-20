@@ -151,12 +151,31 @@
     "featured": true
   },
   {
+    "slug": "stl-viewer",
+    "name": "STL Viewer",
+    "h1": "Free STL Viewer — Open STL Files Online",
+    "metaTitle": "Free STL Viewer Online — Open STL Files | STLACCESS",
+    "shortDescription": "Open and preview ASCII or binary STL files in your browser, with dimensions, triangle count and file size. No upload.",
+    "description": "A free browser STL viewer I use for a quick check before an STL reaches my slicer. Drop an ASCII or binary STL into the viewport, orbit the WebGL preview, switch Z-up or Y-up, and read the raw bounding box, triangle count, detected format and file size. The file is parsed locally — no upload, no account, no cookies.",
+    "icon": "fa-cube",
+    "url": "/tools/stl-viewer",
+    "features": [
+      "ASCII + binary STL",
+      "Drag-and-drop or file picker",
+      "WebGL preview with orbit controls",
+      "Bounding box, triangles and file size",
+      "No upload, account or cookies"
+    ],
+    "category": "visualizers",
+    "featured": true
+  },
+  {
     "slug": "3d-scale-visualizer",
     "name": "3D Scale Visualizer",
     "h1": "STL Scale Converter with 3D Visualizer",
     "metaTitle": "STL Scale Converter & 3D Visualizer | Miniature Scale Calculator | STLACCESS",
     "shortDescription": "Compare miniature scales side-by-side in an interactive 3D environment. Rotate, zoom, and measure against a calibrated 10mm grid.",
-    "description": "Interactive 3D comparison tool for visualizing miniature scale differences. Select two scales from Warhammer 40k, D&D, Bolt Action, and 15+ tabletop systems, then see them side-by-side in a rotatable 3D viewport. Includes eye-level vs top-of-head measurement, shrinkage compensation, print bed overlay, and a calibrated 10mm grid. Upload your own STL to compare at any scale. Everything runs in your browser — no uploads, no accounts, no cookies.",
+    "description": "Interactive 3D comparison tool for visualizing miniature scale differences. Select two scales from Warhammer 40k, D&D, Bolt Action, and 15+ tabletop systems, then see them side-by-side in a rotatable 3D viewport. Includes eye-level vs top-of-head measurement, shrinkage compensation, print bed overlay, and a calibrated 10mm grid. Load your own STL locally to compare at any scale. Everything runs in your browser — no uploads, no accounts, no cookies.",
     "icon": "fa-cubes",
     "url": "/tools/3d-scale-visualizer",
     "features": [
@@ -164,7 +183,7 @@
       "15+ tabletop scales supported",
       "Eye-level and top-of-head measurement",
       "Print bed volume overlay",
-      "Custom STL upload",
+      "Custom STL preview (local only)",
       "Calibrated 10mm grid",
       "Screenshot export",
       "Bookmarkable URL parameters",

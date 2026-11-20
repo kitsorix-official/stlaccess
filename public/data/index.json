@@ -68,7 +68,7 @@
     {
       "path": "tools.json",
       "format": "application/json",
-      "count": 9,
+      "count": 10,
       "description": "Browser-only tools and their canonical URLs"
     }
   ]

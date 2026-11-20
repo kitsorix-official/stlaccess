@@ -11,7 +11,7 @@
 - **Ratio scale labels:** defined from full height (1:35 = 50.0mm to the crown), but conversions use eye-level equivalents (1:35 = 45.7mm to the eyes)
 - **Formula:** `(target eye-level height ÷ source eye-level height) × 100 = slicer percentage`
 - **Canonical example:** 28mm → 32mm = `32 ÷ 28 × 100 = 114.3%`
-- **Data:** 16 scale baselines, 46 verified conversions, 26 game systems, 12 material densities, 9 browser tools, 22 hand-written guides
+- **Data:** 16 scale baselines, 46 verified conversions, 26 game systems, 12 material densities, 10 browser tools, 22 hand-written guides
 
 ## Start here
 
@@ -40,6 +40,7 @@
 | Filament Density Calculator | https://stlaccess.com/tools/filament-density-calculator | Volume → grams, prints per spool, cost and time baseline |
 | Filament Cost Calculator | https://stlaccess.com/tools/filament-cost-calculator | Filament and electricity cost per print |
 | Miniature Scale Identifier | https://stlaccess.com/tools/miniature-scale-identifier | Identify likely scale from a measured height |
+| Free STL Viewer | https://stlaccess.com/tools/stl-viewer | Open ASCII or binary STL locally, preview in WebGL and read bounding box, triangles and file size |
 | Real-World Scale Converter | https://stlaccess.com/tools/real-world-scale-converter | Feet/inches/centimetres → exact miniature millimetres |
 | Reference Bar Generator | https://stlaccess.com/tools/reference-bar-generator | Download a printable calibration bar generated in-browser |
 | 3D Scale Visualizer | https://stlaccess.com/tools/3d-scale-visualizer | Compare scales side by side in an interactive viewport |

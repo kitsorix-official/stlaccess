@@ -93,9 +93,10 @@
 /fdm-printing-profiles  /learn/fdm  301
 /archive/fdm-printing-profiles/  /learn/fdm  301
 
-# Retired browser utilities → educational hub / closest live tool.
-/stl-viewer/  /learn/stl-files  301
-/stl-viewer  /learn/stl-files  301
+# Retired browser utilities → closest live tool.
+/stl-viewer.html  /tools/stl-viewer  301
+/stl-viewer/  /tools/stl-viewer  301
+/stl-viewer  /tools/stl-viewer  301
 /stl-scale-inspector/  /tools/miniature-scale-identifier  301
 /stl-scale-inspector  /tools/miniature-scale-identifier  301
 /stl-printability-checker/  /learn/stl-files  301

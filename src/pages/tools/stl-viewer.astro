@@ -1,0 +1,258 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import JsonLd from "../../components/JsonLd.astro";
+import StlViewerApp from "../../components/stl-viewer/StlViewerApp.tsx";
+import {
+  graph,
+  breadcrumb,
+  softwareApplication,
+  howTo,
+  faqPage,
+} from "../../lib/schema";
+
+const faq = [
+  {
+    question: "How do I open an STL file online?",
+    answer:
+      "Open this free STL viewer, choose your .stl file or drag it into the drop zone, and I parse it locally in your browser. You get a WebGL preview plus the bounding box, triangle count, file size and detected ASCII or binary format. Nothing is uploaded.",
+  },
+  {
+    question: "Is this a free STL viewer?",
+    answer:
+      "Yes. This STL viewer online is free and works without an account, cookie or upload. I built it as a quick check before a downloaded model reaches my Bambu Lab A1 Mini.",
+  },
+  {
+    question: "Can I view binary and ASCII STL files?",
+    answer:
+      "Yes. The STL file viewer detects binary STL from its triangle-count header and ASCII STL from its facet blocks, then renders both with WebGL. An STL reader only sees triangles — it cannot recover units, material or print settings.",
+  },
+  {
+    question: "Does this STL viewer upload my file?",
+    answer:
+      "No. The file is read with File.arrayBuffer() in your browser. I do not send it to a server, store it, or log it. Close the tab and the model is gone.",
+  },
+  {
+    question: "Why does my STL preview show the wrong size?",
+    answer:
+      "STL coordinates are unitless. I display the raw X × Y × Z values; your slicer usually treats them as millimetres. A file exported in inches or metres will look 25.4× smaller or 1000× larger until you scale it. Check the bounding box before you trust the number.",
+  },
+  {
+    question: "Can this open OBJ, FBX, STEP or STP files?",
+    answer:
+      "No. I have not added OBJ viewer, FBX viewer, STEP viewer, STP viewer or step file viewer online support here. This page reads STL only. Export your model as STL first if you only need the geometry preview.",
+  },
+  {
+    question: "I search in another language — will this page help?",
+    answer:
+      "Yes. I see the same request as stl viewer online, online stl viewer, stl online viewer, stl file viewer, free stl viewer, view stl, view stl online, open stl file online, stl file opener, stl opener and stl reader. In other languages I see visualizzatore stl online, visualizador stl, visor stl, stl在线, stl在线预览, stl在线查看, stl文件在线查看, stl文件怎么打开, stl文件用什么软件打开, stl查看, stl查看器, stl预览, stlファイル, stlファイル 開き方 and stlデータ. This one English page answers all of them; I do not publish duplicate locale pages.",
+  },
+  {
+    question: "What can I do after I preview the STL?",
+    answer:
+      "Use the height from the bounding box in the Miniature Scale Identifier to name the likely scale, then open the Slicer Percentage Calculator to convert it to the scale you print. The miniature size chart holds the full conversion matrix.",
+  },
+];
+
+const steps = [
+  {
+    name: "Open the viewer",
+    text: "Open the free STL viewer on this page. It runs locally in your browser.",
+  },
+  {
+    name: "Choose or drop your STL",
+    text: "Click Choose STL file or drag an ASCII or binary .stl file onto the drop zone.",
+  },
+  {
+    name: "Inspect the preview",
+    text: "Orbit the WebGL preview, toggle wireframe or grid, and switch Z-up or Y-up until the model stands correctly.",
+  },
+  {
+    name: "Read the measurements",
+    text: "Read the raw X × Y × Z bounding box, triangle count, file size and format, then compare the height with the sculptor's stated scale.",
+  },
+];
+
+const schema = graph([
+  breadcrumb([
+    { name: "Home", path: "/" },
+    { name: "Tools", path: "/tools" },
+    { name: "STL Viewer", path: "/tools/stl-viewer" },
+  ]),
+  softwareApplication({
+    name: "STL Viewer",
+    description:
+      "Free browser-only STL file viewer. Open ASCII or binary STL locally, preview it in WebGL and read the bounding box, triangle count, file size and format. No upload, account or cookies.",
+    url: "/tools/stl-viewer",
+  }),
+  howTo({
+    name: "How to open an STL file online",
+    description:
+      "Open a local STL in a browser viewer, inspect the mesh and read its measurements without uploading the file.",
+    steps,
+    url: "/tools/stl-viewer",
+  }),
+  faqPage(faq),
+]);
+---
+
+<Layout
+  title="Free STL Viewer Online — Open STL Files | STLACCESS"
+  description="Free browser STL viewer. Open an STL file online, preview ASCII or binary STL locally, and read dimensions, triangles and file size. No upload."
+>
+  <JsonLd slot="head" data={schema} />
+
+  <nav class="sr-only" aria-label="Breadcrumb">
+    <a href="/">Home</a> / <a href="/tools">Tools</a> /
+    <span aria-current="page">STL Viewer</span>
+  </nav>
+
+  <div slot="hero">
+    <div class="pt-16 pb-8 px-6 max-w-6xl mx-auto">
+      <nav class="mb-8 text-[10px] font-black uppercase tracking-[0.2em] text-slate-600" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#ff6b35] transition-colors">Home</a>
+        <span class="mx-2 text-slate-800">/</span>
+        <a href="/tools" class="hover:text-[#ff6b35] transition-colors">Tools</a>
+        <span class="mx-2 text-slate-800">/</span>
+        <span class="text-slate-400" aria-current="page">STL Viewer</span>
+      </nav>
+
+      <p class="text-xs font-mono uppercase tracking-[0.3em] text-[#ff6b35]/70 mb-4">
+        Browser-only · no upload
+      </p>
+      <h1 class="text-3xl md:text-5xl font-bold font-heading mb-5 tracking-tight">
+        Free STL Viewer —
+        <span class="text-[#ff6b35] italic">Open STL Files Online</span>
+      </h1>
+      <p class="text-slate-400 max-w-3xl leading-relaxed text-lg">
+        Drop an STL into this viewer to see the model, check its bounding box and
+        confirm the file is complete before you slice it. I built it for the
+        thirty-second check I do on every download that later reaches my Bambu Lab
+        A1 Mini — locally, with no upload and no account.
+      </p>
+    </div>
+  </div>
+
+  <section class="max-w-6xl mx-auto px-6 pb-10" aria-labelledby="stl-viewer-answer-heading">
+    <div class="rounded-[2rem] border border-[#ff6b35]/30 bg-gradient-to-br from-[#ff6b35]/15 via-[#ff6b35]/5 to-transparent p-6 md:p-9">
+      <p class="text-xs font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3">
+        Direct answer
+      </p>
+      <h2 id="stl-viewer-answer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-4">
+        What this STL viewer does
+      </h2>
+      <p class="text-slate-300 leading-relaxed">
+        This is a free online STL viewer that reads ASCII and binary STL files
+        directly in your browser. Use it to view STL online when you want a quick
+        visual check: it renders a WebGL preview, reports the X × Y × Z bounding
+        box, triangle count, file size and detected format, and lets you switch
+        between Z-up and Y-up. Your STL is never uploaded, stored or sent to a
+        server.
+      </p>
+      <p class="mt-5 text-xs leading-relaxed text-slate-500">
+        Whether you call it an STL viewer online, online STL viewer, STL file
+        viewer, free STL viewer, STL opener or STL reader, this is the same
+        browser-only tool.
+      </p>
+    </div>
+  </section>
+
+  <section aria-label="Interactive STL file viewer" class="border-y border-white/5 bg-[#08090b]">
+    <StlViewerApp client:only="react" />
+    <noscript>
+      <p class="mx-auto max-w-6xl px-6 py-10 text-sm text-slate-400">
+        The STL preview needs JavaScript and WebGL. Your file is still never
+        uploaded — the parser runs in your browser.
+      </p>
+    </noscript>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 py-16" aria-labelledby="how-to-use-viewer-heading">
+    <h2 id="how-to-use-viewer-heading" class="text-2xl md:text-3xl font-bold font-heading mb-8">
+      How to use this STL file viewer
+    </h2>
+    <ol class="grid gap-4 md:grid-cols-2">
+      {
+        steps.map((step, index) => (
+          <li class="rounded-2xl border border-white/10 bg-slate-900/25 p-5">
+            <span class="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#ff6b35]/15 font-mono text-sm font-bold text-[#ff6b35]">
+              {index + 1}
+            </span>
+            <h3 class="mb-2 text-lg font-bold text-white">{step.name}</h3>
+            <p class="text-sm leading-relaxed text-slate-400">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-6 pb-16" aria-labelledby="viewer-limits-heading">
+    <div class="grid gap-8 md:grid-cols-2">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.2em] text-[#ff6b35] mb-3">
+          What an STL reader can tell me
+        </p>
+        <h2 id="viewer-limits-heading" class="text-2xl font-bold font-heading mb-4">
+          Useful checks, honest limits
+        </h2>
+        <p class="text-sm leading-relaxed text-slate-400">
+          An STL contains only surface triangles. I can measure the geometry,
+          count triangles and spot a missing limb or a support-only export. I
+          cannot recover the original unit, a scale label, colour, material or
+          print settings. If the bounding box disagrees with the listing, trust
+          the measurement and investigate before printing.
+        </p>
+      </div>
+      <div class="rounded-[2rem] border border-white/10 bg-white/[0.02] p-6">
+        <h3 class="mb-4 text-sm font-black uppercase tracking-[0.16em] text-white">
+          Formats on this page
+        </h3>
+        <ul class="space-y-3 text-sm text-slate-400">
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-check text-[#ff6b35] mt-1 text-[10px]" aria-hidden="true"></i>
+            <span><strong class="text-white">Supported:</strong> binary STL and ASCII STL.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-xmark text-slate-500 mt-1 text-[10px]" aria-hidden="true"></i>
+            <span><strong class="text-white">Not supported:</strong> OBJ, FBX, STEP, STP, 3MF and other formats. Save as STL first.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <i class="fa-solid fa-shield-halved text-[#ff6b35] mt-1 text-[10px]" aria-hidden="true"></i>
+            <span><strong class="text-white">Privacy:</strong> no upload, no account, no cookies, no stored model.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 pb-20" aria-labelledby="viewer-faq-heading">
+    <h2 id="viewer-faq-heading" class="text-2xl md:text-3xl font-bold font-heading mb-8">
+      STL viewer questions I get asked
+    </h2>
+    <div class="space-y-4">
+      {
+        faq.map((item) => (
+          <details class="group bg-slate-900/20 rounded-2xl border border-white/5 p-5">
+            <summary class="cursor-pointer font-semibold text-white flex items-center justify-between gap-4">
+              {item.question}
+              <i class="fa-solid fa-chevron-down text-[#ff6b35] text-xs transition-transform group-open:rotate-180" aria-hidden="true"></i>
+            </summary>
+            <p class="mt-4 text-sm text-slate-400 leading-relaxed">{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 rounded-2xl border border-[#ff6b35]/20 bg-[#ff6b35]/[0.05] p-6">
+      <h2 class="text-lg font-bold text-white mb-3">Keep checking the scale</h2>
+      <p class="text-sm leading-relaxed text-slate-400">
+        A preview tells you the file is intact; it does not tell you the sculpt is
+        the right size. After you note the height, use the
+        <a href="/tools/miniature-scale-identifier" class="text-[#ff6b35] hover:underline"> miniature scale identifier </a>
+        and the
+        <a href="/tools/slicer-percentage-calculator" class="text-[#ff6b35] hover:underline"> slicer percentage calculator </a>
+        to finish the job. The full method is on the
+        <a href="/methodology" class="text-[#ff6b35] hover:underline"> methodology page</a>.
+      </p>
+    </div>
+  </section>
+</Layout>

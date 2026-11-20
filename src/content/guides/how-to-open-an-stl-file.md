@@ -3,7 +3,7 @@ title: "How to Open an STL File (Browser, Slicer or CAD)"
 description: "An STL stores triangles, not units. Here is how to open one in a browser, slicer or CAD tool — and what to check before you print."
 tldr: "Open an STL in a browser viewer for a quick look, in your slicer to measure and print, or in Blender/MeshLab if you need to edit the mesh. An STL contains only surface triangles — no units, no scale and no colour — so always check the bounding box before you trust the size."
 pubDate: 2026-11-17
-modDate: 2026-11-17
+modDate: 2026-11-20
 faq:
   - question: What is the easiest way to open an STL file?
     answer: >-
@@ -68,7 +68,7 @@ Use this when you just want to see the model:
 3. Orbit around the model and check for missing limbs, stray supports or a sculpt that is floating above its base.
 4. Read the viewer's bounding box if it offers one.
 
-A browser check is also the fastest way to confirm that the download is not a resized preview or a support-only file. My [3D Scale Visualizer](/tools/3d-scale-visualizer) does this without uploading your file.
+A browser check is also the fastest way to confirm that the download is not a resized preview or a support-only file. My [free STL viewer](/tools/stl-viewer) does this without uploading your file; the [3D Scale Visualizer](/tools/3d-scale-visualizer) is the one I use when I need to compare two scales side by side.
 
 ## Open it in a slicer
 

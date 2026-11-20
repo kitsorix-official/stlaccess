@@ -63,6 +63,8 @@ Source: https://stlaccess.com/learn/stl-files and the two hand-written guides at
 - Most slicers assume coordinates are millimetres. A model exported in metres can import 1000× too large; a model exported in inches can import 25.4× too small.
 - A model can also have scaling baked into the mesh before export. Measure the imported bounding box instead of trusting the filename or listing.
 - To identify an unknown scale, measure height to eye level or top of head and compare with the published baselines. Use https://stlaccess.com/tools/miniature-scale-identifier.
+- The canonical browser viewer is https://stlaccess.com/tools/stl-viewer. It parses ASCII and binary STL with File.arrayBuffer() in the browser, renders a WebGL preview and reports raw X × Y × Z coordinates, triangle count, detected format and file size. It supports Z-up and Y-up display. No STL is uploaded or stored.
+- The viewer reads geometry only. It does not support OBJ, FBX, STEP, STP or 3MF, and an STL cannot carry units, colour, material or print settings.
 
 ## Resin-to-FDM conversion
 

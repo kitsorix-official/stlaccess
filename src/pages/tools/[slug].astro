@@ -9,7 +9,7 @@ import { graph, breadcrumb, softwareApplication, faqPage } from "../../lib/schem
 
 export async function getStaticPaths() {
   return tools
-    .filter((tool) => tool.slug !== "stl-scale-engine" && tool.slug !== "scale-reference" && tool.slug !== "3d-scale-visualizer" && tool.slug !== "filament-density-calculator")
+    .filter((tool) => tool.slug !== "stl-scale-engine" && tool.slug !== "scale-reference" && tool.slug !== "stl-viewer" && tool.slug !== "3d-scale-visualizer" && tool.slug !== "filament-density-calculator")
     .map((tool) => ({
       params: { slug: tool.slug },
       props: { tool },

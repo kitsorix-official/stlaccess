@@ -38,7 +38,11 @@ if (pathname !== "/" && pathname.endsWith("/")) {
 const canonical = new URL(pathname, Astro.site || site.url).href;
 
 const currentPath = Astro.url.pathname;
-const banner = (site.banner && pathname !== "/tools/3d-scale-visualizer")
+const banner = (
+  site.banner &&
+  pathname !== "/tools/3d-scale-visualizer" &&
+  pathname !== "/tools/stl-viewer"
+)
   ? site.banner
   : { enabled: false };
 
